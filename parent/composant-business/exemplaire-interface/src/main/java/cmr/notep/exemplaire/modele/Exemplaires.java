@@ -1,6 +1,5 @@
 package cmr.notep.exemplaire.modele;
 
-import cmr.notep.modele.Documents;
 import cmr.notep.modele.Personnes;
 import lombok.*;
 
@@ -10,7 +9,7 @@ import java.util.List;
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-/*@Builder*/
+@Builder
 @ToString
 @EqualsAndHashCode
 public class Exemplaires  {
