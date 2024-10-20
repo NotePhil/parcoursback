@@ -10,7 +10,6 @@ import java.util.List;
 @AllArgsConstructor
 @NoArgsConstructor
 @Builder
-@ToString
 @EqualsAndHashCode
 public class Exemplaires  {
     private String id;
