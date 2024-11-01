@@ -12,16 +12,16 @@ import java.util.List;
 @AllArgsConstructor
 @NoArgsConstructor
 @Builder
-@ToString(exclude = {"exemplaire"})
-@EqualsAndHashCode(exclude = {"exemplaire"})
-@JsonIgnoreProperties(value = {"exemplaire"})
+@ToString(exclude = {"exemplairesInterne"})
+@EqualsAndHashCode(exclude = {"exemplairesInterne"})
+@JsonIgnoreProperties(value = {"exemplairesInterne"})
 public class OrdreEtatsInterne {
     private String id;
     private Date dateCreation;
     private Date dateModification;
     private Date dateFinVote;
     private int ordre ;
-    private String etat;
-    private List<EtatsValidationsInterne> etatsValidations;
-    private ExemplairesInterne exemplaire;
+    private String etatsId;
+    private List<EtatsValidationsInterne> etatsValidationsInternes;
+    private ExemplairesInterne exemplairesInterne;
 }

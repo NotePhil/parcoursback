@@ -25,9 +25,9 @@ public class ExemplairesEntity {
     @Column(name = "titre")
     private String titre;
     @Column(name = "personnebeneficiaire")
-    private String personneBeneficiaire;
+    private String personneBeneficiaireId;
     @Column(name = "personnerattachee")
-    private String personneRattachee;
+    private String personneRattacheeId;
     @Column(name="document_id")
     private String documentId;
     @Column(name = "datecreation", updatable = false,nullable = false)
@@ -40,19 +40,19 @@ public class ExemplairesEntity {
     @Column(name = "parent_id")
     private List<String> idExemplairesParents;
     @OneToMany(mappedBy = "exemplaireEntity")
-    @Mapping("ordreEtats")
-    private List<OrdreEtatsEntity> ordreEtats;
+    @Mapping("ordreEtatsInternes")
+    private List<OrdreEtatsEntity> ordreEtatsId;
     @OneToMany(mappedBy = "exemplaireEntity")
-    @Mapping("mouvements")
+    @Mapping("mouvementsInternes")
     private List<MouvementsEntity> mouvementsEntities;
     @ElementCollection
     @CollectionTable(name = "personnesdestinataires", joinColumns = @JoinColumn(name = "exemplaires_id"), schema = "exemplaire")
     @Column(name = "personneid")
-    @Mapping("personnesDestinataires")
+    @Mapping("personnesDestinatairesInternes")
     private List<PersonnesDestinatairesEntity> personnesDestinatairesEntities;
     @ElementCollection
     @CollectionTable(name = "exemplairesattributs", joinColumns = @JoinColumn(name = "exemplaires_id"), schema = "exemplaire")
     @Column(name = "attributsid")
-    @Mapping("exemplaireAttributs")
+    @Mapping("exemplaireAttributsInternes")
     private List<ExemplaireAttributsEntity> exemplaireAttributsEntities;
 }

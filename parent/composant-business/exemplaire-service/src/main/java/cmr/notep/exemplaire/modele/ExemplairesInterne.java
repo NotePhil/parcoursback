@@ -23,10 +23,10 @@ public class ExemplairesInterne  {
     private List<String> idExemplairesParents;
     private Date dateCreation;
     private Date dateModification;
-    private String personneBeneficiaire;
-    private String personneRattachee;
-    private List<OrdreEtatsInterne> ordreEtats;
-    private List<MouvementsInterne> mouvements;
-    private List<PersonnesDestinatairesInterne> personnesDestinataires;
-    private List<ExemplaireAttributsInterne> exemplaireAttributs;
+    private String personneBeneficiaireId;
+    private String personneRattacheeId;
+    private List<OrdreEtatsInterne> ordreEtatsInternes;
+    private List<MouvementsInterne> mouvementsInternes;
+    private List<PersonnesDestinatairesInterne> personnesDestinatairesInternes;
+    private List<ExemplaireAttributsInterne> exemplaireAttributsInternes;
 }

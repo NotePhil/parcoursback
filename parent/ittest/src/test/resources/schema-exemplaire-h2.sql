@@ -78,6 +78,20 @@ CREATE TABLE IF NOT EXISTS exemplaire.personnesdestinataires
     methodeenvoi   VARCHAR(255)
 );
 
+CREATE TABLE exemplaire.etatsvalidations
+(
+    id            VARCHAR(255) NOT NULL,
+    methode       VARCHAR(255),
+    personnel_id  VARCHAR(255),
+    validation_id VARCHAR(255),
+    datecreation  TIMESTAMP WITHOUT TIME ZONE NOT NULL,
+    ordreetat_id  VARCHAR(255),
+    CONSTRAINT pk_etatsvalidations PRIMARY KEY (id)
+);
+
+ALTER TABLE exemplaire.etatsvalidations
+    ADD CONSTRAINT FK_ETATSVALIDATIONS_ON_ORDREETAT FOREIGN KEY (ordreetat_id) REFERENCES exemplaire.ordreetats (id);
+
 ALTER TABLE exemplaire.exemplairesattributs
     ADD CONSTRAINT IF NOT EXISTS fk_exemplairesattributs_on_exemplaires_entity FOREIGN KEY (exemplaires_id) REFERENCES exemplaire.exemplaires (id);
 

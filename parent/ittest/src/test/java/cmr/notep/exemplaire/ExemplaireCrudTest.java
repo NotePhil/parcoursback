@@ -50,9 +50,10 @@ public class ExemplaireCrudTest extends AbstractIttest {
             ,fieldsToExclude));
  }
 
- //@Test
+ @Test
  @SneakyThrows
  public void testPosterExemplaire(){
+   var exemplaires = exemplaireService.avoirTousExemplaires();
    Exemplaires document = new Exemplaires();
    document.setId("identifiantTest");
    document.setTitre("TitreTest");

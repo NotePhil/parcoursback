@@ -7,6 +7,7 @@ import org.hibernate.annotations.GenericGenerator;
 
 import javax.persistence.*;
 import java.util.Date;
+import java.util.List;
 import java.util.UUID;
 
 @Getter
@@ -30,10 +31,12 @@ public class OrdreEtatsEntity {
     @Column(name = "ordre")
     private int ordre ;
     @Column(name = "etats_id")
-    @Mapping("etat")
     private String etatsId;
     @ManyToOne
     @JoinColumn(name = "exemplaire_id")
-    @Mapping("exemplaire")
+    @Mapping("exemplairesInterne")
     private ExemplairesEntity exemplaireEntity;
+    @OneToMany(mappedBy = "ordreEtatEntity")
+    @Mapping("etatsValidationsInternes")
+    private List<EtatsValidationsEntity> etatsValidationsEntities;
 }

@@ -1,6 +1,7 @@
 package cmr.notep.exemplaire.dao;
 
 import lombok.*;
+import org.dozer.Mapping;
 
 import javax.persistence.Column;
 import javax.persistence.Embeddable;

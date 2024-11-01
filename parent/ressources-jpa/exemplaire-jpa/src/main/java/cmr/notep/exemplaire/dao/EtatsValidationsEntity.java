@@ -20,14 +20,13 @@ public class EtatsValidationsEntity {
     @Column(name = "methode")
     String methode;
     @Column(name = "personnel_id")
-    @Mapping("personnel")
     String personnelId;
-    @Column(name = "ordreetat_id")
-    @Mapping("ordreEtat")
-    String ordreEtatId;
     @Column(name = "validation_id")
-    @Mapping("validation")
     String validationId;
     @Column(name = "datecreation", updatable = false,nullable = false)
     Date dateCreation;
+    @ManyToOne
+    @JoinColumn(name = "ordreetat_id")
+    @Mapping("ordreEtatsInterne")
+    private OrdreEtatsEntity ordreEtatEntity;
 }

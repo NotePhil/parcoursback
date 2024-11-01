@@ -53,6 +53,6 @@ public class MouvementsEntity {
     private String distributeursId;
     @ManyToOne
     @JoinColumn(name = "exemplaires_id")
-    @Mapping("exemplaire")
+    @Mapping("exemplaireinterne")
     ExemplairesEntity exemplaireEntity;
 }

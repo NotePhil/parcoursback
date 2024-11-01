@@ -13,7 +13,7 @@ import java.util.Date;
 @ToString
 @EqualsAndHashCode
 public class ExemplaireAttributsInterne {
-    private String attribut;
+    private String attributId;
     private String valeur;
     private Date dateCreation;
     private Date dateModification;

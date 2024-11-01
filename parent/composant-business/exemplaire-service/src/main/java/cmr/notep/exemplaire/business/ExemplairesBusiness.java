@@ -4,12 +4,14 @@ import cmr.notep.api.*;
 import cmr.notep.dao.DaoAccessorService;
 import cmr.notep.exceptions.ParcoursException;
 import cmr.notep.exemplaire.dao.ExemplairesEntity;
+import cmr.notep.exemplaire.helper.ExemplaireConvertirHelper;
 import cmr.notep.exemplaire.modele.*;
 import cmr.notep.exemplaire.repository.ExemplairesRepository;
 import cmr.notep.modele.Documents;
 import cmr.notep.modele.Personnes;
 import cmr.notep.modele.PrecoMouvements;
 import cmr.notep.modele.Validations;
+import lombok.NonNull;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Value;
@@ -51,182 +53,39 @@ public class ExemplairesBusiness {
         this.personnelsApi = personnelsApi;
     }
     public List<Exemplaires> avoirTousExemplaires() throws ParcoursException {
-        List<Exemplaires> list = new ArrayList<>();
+        List<Exemplaires> listExemplaires = new ArrayList<>();
         for (ExemplairesEntity exemplairesEntity : this.daoAccessorService.getRepository(ExemplairesRepository.class).findAll()) {
-            Exemplaires exemplaires = convertirExemplaireInterneEnExemplaire(dozerMapperBean.map(exemplairesEntity, ExemplairesInterne.class));
-            list.add(exemplaires);
+            Exemplaires exemplaires = ExemplaireConvertirHelper.convertirExemplaireInterneEnExemplaire(documentsApi, personnesApi, attributsApi,
+                    precoMouvementsApi, ressourcesApi, distributeursApi,
+                    personnelsApi, validationsApi,  etatsApi,
+                    dozerMapperBean.map(exemplairesEntity, ExemplairesInterne.class));
+            listExemplaires.add(exemplaires);
         }
-        return list;
+        return listExemplaires;
     }
-    public ExemplairesInterne avoirExemplaireInterne(String idExemplaire) throws ParcoursException {
+    private ExemplairesInterne avoirExemplaireInterne(String idExemplaire) throws ParcoursException {
         return dozerMapperBean.map(this.daoAccessorService.getRepository(ExemplairesRepository.class)
                 .findById(idExemplaire)
                 .orElseThrow(()-> new ParcoursException("Attribut introuvable")), ExemplairesInterne.class);
     }
     public Exemplaires avoirExemplaire(String idExemplaire) throws ParcoursException {
         ExemplairesInterne exemplairesInterne = avoirExemplaireInterne(idExemplaire);
-        return convertirExemplaireInterneEnExemplaire(exemplairesInterne);
+        return ExemplaireConvertirHelper.convertirExemplaireInterneEnExemplaire(documentsApi, personnesApi, attributsApi,
+                 precoMouvementsApi, ressourcesApi, distributeursApi,
+                 personnelsApi, validationsApi,  etatsApi,exemplairesInterne);
     }
 
-    private Exemplaires convertirExemplaireInterneEnExemplaire(ExemplairesInterne exemplairesInterne) throws ParcoursException {
-        Documents document = documentsApi.avoirDocument(exemplairesInterne.getDocumentId());
-        Exemplaires exemplaire = Exemplaires.builder().build();
-        dozerMapperBean.map(document, exemplaire);
-
-        exemplaire.setId(exemplairesInterne.getId());
-        exemplaire.setCode(exemplairesInterne.getCode());
-        exemplaire.setCodeBarre(exemplairesInterne.getCodeBarre());
-        exemplaire.setIntitule(exemplairesInterne.getTitre());
-        exemplaire.setIdExemplairesParents(exemplairesInterne.getIdExemplairesParents());
-        exemplaire.setDateCreated(exemplairesInterne.getDateCreation());
-        exemplaire.setDateModificated(exemplairesInterne.getDateModification());
-        exemplaire.setPersonneBeneficiaire(
-                StringUtils.isNotBlank(exemplairesInterne.getPersonneBeneficiaire())?
-                        personnesApi.avoirPersonne(exemplairesInterne.getPersonneBeneficiaire()):null);
-        exemplaire.setPersonneRattachee(
-                StringUtils.isNotBlank(exemplairesInterne.getPersonneRattachee())?
-                        personnesApi.avoirPersonne(exemplairesInterne.getPersonneRattachee()):null);
-        List<OrdreEtats> ordreEtatsList = convertirListeOrdreEtatsInterneEnOrdreEtats(exemplairesInterne.getOrdreEtats());
-        exemplaire.setOrdreEtats(ordreEtatsList);
-        List<Mouvements> mouvements = convertirListeMouvemntsInterneEnMouvements(exemplairesInterne.getMouvements());
-        exemplaire.setMouvements(mouvements);
-        List<PersonnesDestinataires> personnesDestinataires = convertirListePersonneDestinataireInterneEnPersonneDestinataire(exemplairesInterne);
-        exemplaire.setPersonnesDestinataires(personnesDestinataires);
-        List<ExemplaireAttributs> exemplaireAttributs = convertirListExemplaireAttributsInterneEnExemplaireAttributs(exemplairesInterne.getExemplaireAttributs());
-        exemplaire.setExemplaireAttributs(exemplaireAttributs);
-
-        return exemplaire;
+    public Exemplaires posterExemplaire(@NonNull Exemplaires exemplaire) throws ParcoursException {
+        ExemplairesInterne exemplairesInterne = ExemplaireConvertirHelper.convertirExemplaireEnExemplaireInternes(exemplaire);
+        exemplairesInterne = dozerMapperBean.map(daoAccessorService.getRepository(ExemplairesRepository.class)
+                .save(dozerMapperBean.map(exemplairesInterne, ExemplairesEntity.class)), ExemplairesInterne.class);
+        return ExemplaireConvertirHelper.convertirExemplaireInterneEnExemplaire(documentsApi, personnesApi, attributsApi,
+                precoMouvementsApi, ressourcesApi, distributeursApi,
+                personnelsApi, validationsApi,  etatsApi,exemplairesInterne);
     }
 
-    private List<ExemplaireAttributs> convertirListExemplaireAttributsInterneEnExemplaireAttributs(List<ExemplaireAttributsInterne> exemplaireAttributs) {
-        if(CollectionUtils.isEmpty(exemplaireAttributs))
-            return new ArrayList<>();
-        return exemplaireAttributs.stream().map(exemplaireAttributInterne -> {
-            ExemplaireAttributs exemplaireAttribut = null;
-            try {
-                exemplaireAttribut = ExemplaireAttributs.builder()
-                        .valeur(exemplaireAttributInterne.getValeur())
-                        .dateCreation(exemplaireAttributInterne.getDateCreation())
-                        .dateModification(exemplaireAttributInterne.getDateModification())
-                        .attribut(
-                                StringUtils.isNotBlank(exemplaireAttributInterne.getAttribut())?
-                                    attributsApi.avoirAttribut(exemplaireAttributInterne.getAttribut()):null)
-                        .build();
-            } catch (ParcoursException e) {
-                throw new RuntimeException(e);
-            }
-            return exemplaireAttribut;
-        }).toList();
-    }
 
-    private List<Mouvements> convertirListeMouvemntsInterneEnMouvements(List<MouvementsInterne> mouvementsInternes) {
-        if(CollectionUtils.isEmpty(mouvementsInternes))
-            return new ArrayList<>();
-        return mouvementsInternes.stream().map(mouvementInterne -> {
-            Mouvements mouvement = null;
-            try {
-                List<PrecoMouvements> precoMouvementsRespecter = new ArrayList<>();
-                if(!CollectionUtils.isEmpty(mouvementInterne.getPrecoMouvementsRespecter()))
-                    for (String idPreco : mouvementInterne.getPrecoMouvementsRespecter()) {
-                        if(StringUtils.isNotBlank(idPreco))
-                            precoMouvementsRespecter.add(precoMouvementsApi.avoirPrecoMouvement(idPreco));
-                    }
-                List<PrecoMouvements> precoMouvementsVioler = new ArrayList<>();
-                if(!CollectionUtils.isEmpty(mouvementInterne.getPrecoMouvementsVioler()))
-                    for (String idPrecoMouvement : mouvementInterne.getPrecoMouvementsVioler()) {
-                        if(StringUtils.isNotBlank((idPrecoMouvement)))
-                            precoMouvementsVioler.add(precoMouvementsApi.avoirPrecoMouvement(idPrecoMouvement));
-                    }
-                mouvement = Mouvements.builder()
-                        .dateCreation(mouvementInterne.getDateCreation())
-                        .id(mouvementInterne.getId())
-                        .datePeremption(mouvementInterne.getDatePeremption())
-                        .description(mouvementInterne.getDescription())
-                        .prix(mouvementInterne.getPrix())
-                        .quantite(mouvementInterne.getQuantite())
-                        .ressource(
-                                StringUtils.isNotBlank(mouvementInterne.getRessource())?
-                                        ressourcesApi.avoirRessource(mouvementInterne.getRessource()):null)
-                        .distributeur(
-                                StringUtils.isNotBlank(mouvementInterne.getDistributeur())?
-                                        distributeursApi.avoirDistributeur(mouvementInterne.getDistributeur()):null)
-                        .precoMouvementsRespecter(precoMouvementsRespecter)
-                        .precoMouvementsVioler(precoMouvementsVioler)
-                        .build();
-            } catch (ParcoursException e) {
-                throw new RuntimeException(e);
-            }
-            return mouvement;
-        }).toList();
-    }
 
-    private List<PersonnesDestinataires> convertirListePersonneDestinataireInterneEnPersonneDestinataire(ExemplairesInterne exemplairesInterne) {
-        if(CollectionUtils.isEmpty(exemplairesInterne.getPersonnesDestinataires()))
-            return new ArrayList<>();
-        return exemplairesInterne.getPersonnesDestinataires().stream().map(personneDestinataireIntene -> {
-            PersonnesDestinataires personneDestinataire = null;
-            try {
-                personneDestinataire = PersonnesDestinataires.builder()
-                                    .dateEnvoi(personneDestinataireIntene.getDateEnvoi())
-                                    .methodeEnvoi(personneDestinataireIntene.getMethodeEnvoi())
-                                    .personne(
-                                            StringUtils.isNotBlank(personneDestinataireIntene.getPersonne())?
-                                                personnesApi.avoirPersonne(personneDestinataireIntene.getPersonne()):null)
-                                    .build();
 
-            } catch (ParcoursException e) {
-                throw new RuntimeException(e);
-            }
-            return personneDestinataire;
-        }).toList();
-    }
-
-    private List<OrdreEtats> convertirListeOrdreEtatsInterneEnOrdreEtats(List<OrdreEtatsInterne> ordreEtatsInternes) throws ParcoursException {
-        if(CollectionUtils.isEmpty(ordreEtatsInternes))
-            return new ArrayList<>();
-        return ordreEtatsInternes.stream().map(ordreEtatInterne -> {
-            OrdreEtats ordreEtat = null;
-            try {
-                ordreEtat = OrdreEtats.builder()
-                        .id(ordreEtatInterne.getId())
-                        .dateCreation(ordreEtatInterne.getDateCreation())
-                        .dateModification(ordreEtatInterne.getDateModification())
-                        .dateFinVote(ordreEtatInterne.getDateFinVote())
-                        .ordre(ordreEtatInterne.getOrdre())
-                        .etat(etatsApi.avoirEtat(
-                                StringUtils.isNotBlank(ordreEtatInterne.getEtat())?ordreEtatInterne.getEtat():null))
-                        .etatsValidations(convertirEtatsValidationsInterneEnEtatsValidations(ordreEtatInterne.getEtatsValidations()))
-                        .build();
-            } catch (ParcoursException e) {
-                throw new RuntimeException(e);
-            }
-            return ordreEtat;
-        }).toList();
-    }
-
-    private List<EtatsValidations> convertirEtatsValidationsInterneEnEtatsValidations(List<EtatsValidationsInterne> etatsValidationsInternes) {
-        if(CollectionUtils.isEmpty(etatsValidationsInternes))
-            return new ArrayList<>();
-        return etatsValidationsInternes.stream()
-                .filter(etatsValidationsInterne -> StringUtils.isNotBlank(etatsValidationsInterne.getId()))
-                .map(etatsValidationsInterne -> {
-                    EtatsValidations etatsValidation = null;
-                    try {
-                        etatsValidation = EtatsValidations.builder()
-                                .id(etatsValidationsInterne.getId())
-                                .methode(etatsValidationsInterne.getMethode())
-                                .personnel(
-                                        StringUtils.isNotBlank(etatsValidationsInterne.getPersonnel())?
-                                            personnelsApi.avoirPersonnel(etatsValidationsInterne.getPersonnel()):null)
-                                .validation(
-                                        StringUtils.isNotBlank(etatsValidationsInterne.getValidation())?
-                                            validationsApi.avoirValidation(etatsValidationsInterne.getValidation()):null)
-                                .build();
-                    } catch (ParcoursException e) {
-                        throw new RuntimeException(e);
-                    }
-                    return etatsValidation;
-        }).toList();
-    }
 
 }

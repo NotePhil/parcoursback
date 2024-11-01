@@ -23,9 +23,9 @@ public class MouvementsInterne {
     private double prix ;
     private Date dateCreation ;
     private Date datePeremption ;
-    private List<String> precoMouvementsRespecter;
-    private List<String> precoMouvementsVioler;
-    private String ressource;
-    private String distributeur;
-    private ExemplairesInterne exemplaire;
+    private List<String> precoMouvementsRespecterIds;
+    private List<String> precoMouvementsViolerIds;
+    private String ressourcesId;
+    private String distributeursId;
+    private ExemplairesInterne exemplaireinterne;
 }

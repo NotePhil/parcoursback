@@ -15,7 +15,7 @@ public interface IExemplairesApi {
             produces = MediaType.APPLICATION_JSON_VALUE,
             consumes = MediaType.APPLICATION_JSON_VALUE
     )
-    Exemplaires posterExemplaire(@NonNull @RequestBody Exemplaires exemplaire);
+    Exemplaires posterExemplaire(@NonNull @RequestBody Exemplaires exemplaire) throws ParcoursException;
 
     @GetMapping(
             path = "/{idExemplaire}",

@@ -12,7 +12,7 @@ import java.util.Date;
 @ToString
 @EqualsAndHashCode
 public class PersonnesDestinatairesInterne {
-    private String personne;
+    private String personneId;
     private Date dateEnvoi;
     private String methodeEnvoi;
 }

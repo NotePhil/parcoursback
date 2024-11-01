@@ -5,6 +5,8 @@ import cmr.notep.modele.Validations;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import lombok.*;
 
+import java.util.Date;
+
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
@@ -18,4 +20,5 @@ public class EtatsValidations {
     Personnels personnel;
     OrdreEtats ordreEtat;
     Validations validation;
+    Date dateCreation;
 }
