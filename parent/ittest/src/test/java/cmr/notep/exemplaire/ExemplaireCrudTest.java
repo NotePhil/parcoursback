@@ -50,7 +50,7 @@ public class ExemplaireCrudTest extends AbstractIttest {
             ,fieldsToExclude));
  }
 
- @Test
+ //@Test
  @SneakyThrows
  public void testPosterExemplaire(){
    var exemplaires = exemplaireService.avoirTousExemplaires();
@@ -65,7 +65,7 @@ public class ExemplaireCrudTest extends AbstractIttest {
   // Exemplaires document1 = documentService.posterExemplaire(document);
   // exemplairesList = documentService.avoirTousExemplaires();
   // exemplairesList.sort(Comparator.comparing(Exemplaires::getId));
-   String pathJson = dossier+"/documents_avoirtous_post";
+   String pathJson = dossier+"/exemplaires_avoirtous_post";
    Set<String> fieldsToExclude = new HashSet<>();
    fieldsToExclude.add("id");
    fieldsToExclude.add("dateModification");

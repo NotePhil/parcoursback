@@ -33,11 +33,13 @@
             <groupId>cmr.notep</groupId>
             <artifactId>document-service</artifactId>
             <version>${project.version}</version>
+            <classifier>ittest</classifier>
         </dependency>
         <dependency>
             <groupId>cmr.notep.exemplaire</groupId>
             <artifactId>exemplaire-service</artifactId>
             <version>${project.version}</version>
+            <classifier>ittest</classifier>
         </dependency>
         <dependency>
             <groupId>org.springframework.boot</groupId>
