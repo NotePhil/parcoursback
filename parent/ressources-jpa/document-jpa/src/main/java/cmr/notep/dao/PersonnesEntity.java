@@ -30,6 +30,9 @@ public class PersonnesEntity
     @Column(name = "mail")
     private String mail ;
 
+    @Column(name = "person_type", insertable = false , updatable = false)
+    private String person_type ;
+
     @Column(name = "telephone")
     private  String telephone ;
 

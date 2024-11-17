@@ -20,4 +20,5 @@ public  class Personnes {
     private List<Personnes> personnesRatachees;
     private Comptes compte;
     private List<Exemplaires> exemplaires;
+    private String person_type ;
 }
