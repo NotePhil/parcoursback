@@ -92,7 +92,7 @@
                             <goal>repackage</goal>
                         </goals>
                         <configuration>
-                            <classifier>spring-boot</classifier>
+                            <classifier>parcours</classifier>
                             <mainClass>
                                 cmr.notep.exemplaire.ExemplaireApplication
                             </mainClass>

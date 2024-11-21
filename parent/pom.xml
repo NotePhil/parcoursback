@@ -73,6 +73,13 @@
             </dependency>
         </dependencies>
     </dependencyManagement>
+    <distributionManagement>
+        <repository>
+            <id>github</id>
+            <name>GitHub OWNER Apache Maven Packages for exemplaires services</name>
+            <url>https://maven.pkg.github.com/NotePhil/parcoursback</url>
+        </repository>
+    </distributionManagement>
     <build>
         <plugins>
             <plugin>
