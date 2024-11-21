@@ -109,7 +109,7 @@ jobs:
             PARCOURS_PACKAGES_URL=${{ secrets.PARCOURS_PACKAGES_URL }}
             PARCOURS_MICROSERVICE_VERSION=${{ steps.get_version.outputs.version }}
           secrets: |
-            "PARCOURS_TOKEN=${{ secrets.PARCOURS_TOKEN }}"
+            "PARCOURS_TOKEN=${{ secrets.GITHUB_TOKEN }}"
 
   dockerBuildAndPush_exemplaire_service:
     name: Build and Push Docker Image for exemplaire service
@@ -151,4 +151,4 @@ jobs:
             PARCOURS_PACKAGES_URL=${{ secrets.PARCOURS_PACKAGES_URL }}
             PARCOURS_MICROSERVICE_VERSION=${{ steps.get_version.outputs.version }}
           secrets: |
-            "PARCOURS_TOKEN=${{ secrets.PARCOURS_TOKEN }}"
+            "PARCOURS_TOKEN=${{ secrets.GITHUB_TOKEN }}"
