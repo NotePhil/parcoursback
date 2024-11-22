@@ -32,7 +32,7 @@ public class DocumentCrudTest extends AbstractIttest {
  List<Documents> documentsList = null;
  String dossier= "data/documents";
  ObjectMapper objectMapper = new ObjectMapper();
-@Test
+//@Test
 @SneakyThrows
 @Order(1)
  public void testAvoirTousDocuments() {

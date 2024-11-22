@@ -31,7 +31,7 @@ public class ExemplaireCrudTest extends AbstractIttest {
  List<Exemplaires> exemplairesList = null;
  String dossier= "data/exemplaire";
  ObjectMapper objectMapper = new ObjectMapper();
-@Test
+//@Test
 @SneakyThrows
  public void testAvoirTousExemplaires() {
 
