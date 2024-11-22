@@ -52,6 +52,7 @@ jobs:
           cd parent
           mvn -B verify org.sonarsource.scanner.maven:sonar-maven-plugin:sonar \
             -Dsonar.projectKey='NotePhil_parcoursback' \
+            -Dsonar.organization=notephil
             -Dsonar.projectName='parcoursback'
 
       # Step 6: Build the project using Maven
