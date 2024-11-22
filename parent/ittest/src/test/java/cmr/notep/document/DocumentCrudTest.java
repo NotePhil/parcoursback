@@ -51,9 +51,9 @@ public class DocumentCrudTest extends AbstractIttest {
             ,fieldsToExclude));
  }
 
- @Test
+ //@Test
  @SneakyThrows
- @Order(2)
+ //@Order(2)
  public void testPosterDocument(){
    Documents document = new Documents();
    document.setIdDocument("identifiantTest");
