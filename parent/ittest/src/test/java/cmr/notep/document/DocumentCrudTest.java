@@ -10,6 +10,7 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import lombok.SneakyThrows;
 import lombok.extern.slf4j.Slf4j;
 import org.junit.jupiter.api.Assertions;
+import org.junit.jupiter.api.Order;
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.ContextConfiguration;
@@ -33,6 +34,7 @@ public class DocumentCrudTest extends AbstractIttest {
  ObjectMapper objectMapper = new ObjectMapper();
 @Test
 @SneakyThrows
+@Order(1)
  public void testAvoirTousDocuments() {
    documentsList = documentService.avoirTousDocuments();
     String pathJson = dossier+"/documents_avoirtous";
@@ -51,6 +53,7 @@ public class DocumentCrudTest extends AbstractIttest {
 
  @Test
  @SneakyThrows
+ @Order(2)
  public void testPosterDocument(){
    Documents document = new Documents();
    document.setIdDocument("identifiantTest");
