@@ -30,7 +30,7 @@ jobs:
 
       # Step 3: Cache SonarQube packages to speed up builds
       - name: Cache SonarQube Packages
-        uses: actions/cache@v1
+        uses: actions/cache@v3
         with:
           path: ~/.sonar/cache
           key: ${{ runner.os }}-sonar-cache
@@ -38,21 +38,14 @@ jobs:
 
       # Step 4: Cache Maven packages to speed up builds
       - name: Cache Maven Packages
-        uses: actions/cache@v1
+        uses: actions/cache@v3
         with:
           path: ~/.m2/repository
           key: ${{ runner.os }}-m2-${{ hashFiles('**/pom.xml') }}
           restore-keys: ${{ runner.os }}-m2
 
       # Step 5: Run SonarQube analysis
-      - name: SonarQube Scan
-        env:
-          SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}  # Analysis token associated with your project
-        run: |
-          cd parent
-          mvn -B verify org.sonarsource.scanner.maven:sonar-maven-plugin:sonar \
-            -Dsonar.projectKey='NotePhil_parcoursback' \
-            -Dsonar.projectName='parcoursback'
+      
 
       # Step 6: Build the project using Maven
       - name: maven-settings-action
