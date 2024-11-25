@@ -5,7 +5,7 @@
 -- Dumped from database version 16.3
 -- Dumped by pg_dump version 16.3
 
--- Started on 2024-09-17 20:03:22
+-- Started on 2024-11-25 22:59:26
 
 SET statement_timeout = 0;
 SET lock_timeout = 0;
@@ -40,6 +40,25 @@ SET check_function_bodies = false;
 SET xmloption = content;
 SET client_min_messages = warning;
 SET row_security = off;
+
+--
+-- TOC entry 4 (class 2615 OID 2200)
+-- Name: public; Type: SCHEMA; Schema: -; Owner: pg_database_owner
+--
+
+CREATE SCHEMA public;
+
+
+ALTER SCHEMA public OWNER TO pg_database_owner;
+
+--
+-- TOC entry 5255 (class 0 OID 0)
+-- Dependencies: 4
+-- Name: SCHEMA public; Type: COMMENT; Schema: -; Owner: pg_database_owner
+--
+
+COMMENT ON SCHEMA public IS 'standard public schema';
+
 
 SET default_tablespace = '';
 
@@ -1011,19 +1030,19 @@ ALTER TABLE public.violer OWNER TO postgres;
 -- Data for Name: associer; Type: TABLE DATA; Schema: public; Owner: postgres
 --
 
-INSERT INTO public.associer (obligatoire, ordre, attributs_id, categories_id) VALUES (true, 1, 'a1eebc99-9c0b-4ef8-bb6d-6bb9bd380a11', '36b843d8-f8a7-4b76-9980-1add9edc2364');
-INSERT INTO public.associer (obligatoire, ordre, attributs_id, categories_id) VALUES (true, 2, 'a1eebc99-9c0b-4ef8-bb6d-6bb9bd380a13', '36b843d8-f8a7-4b76-9980-1add9edc2364');
-INSERT INTO public.associer (obligatoire, ordre, attributs_id, categories_id) VALUES (false, 3, 'a1eebc99-9c0b-4ef8-bb6d-6bb9bd380a15', '36b843d8-f8a7-4b76-9980-1add9edc2364');
-INSERT INTO public.associer (obligatoire, ordre, attributs_id, categories_id) VALUES (true, 1, 'a2eebc99-9c0b-4ef8-bb6d-6bb9bd380a12', 'be9ef47f-d5a2-4254-ab79-af860672553e');
-INSERT INTO public.associer (obligatoire, ordre, attributs_id, categories_id) VALUES (false, 2, 'a9eebc99-9c0b-4ef8-bb6d-6bb9bd380a19', 'be9ef47f-d5a2-4254-ab79-af860672553e');
-INSERT INTO public.associer (obligatoire, ordre, attributs_id, categories_id) VALUES (true, 3, 'a2eebc99-9c0b-4ef8-bb6d-6bb9bd380a20', 'be9ef47f-d5a2-4254-ab79-af860672553e');
-INSERT INTO public.associer (obligatoire, ordre, attributs_id, categories_id) VALUES (true, 1, 'a1eebc99-9c0b-4ef8-bb6d-6bb9bd380a13', 'be8ef47f-d5a2-4254-ab79-af860672553e');
-INSERT INTO public.associer (obligatoire, ordre, attributs_id, categories_id) VALUES (true, 1, 'a4eebc99-9c0b-4ef8-bb6d-6bb9bd380a14', 'be8ef57f-d5a2-4254-ab79-af860672553e');
-INSERT INTO public.associer (obligatoire, ordre, attributs_id, categories_id) VALUES (true, 1, 'a1eebc99-9c0b-4ef8-bb6d-6bb9bd380a15', 'be8ef56f-d5a2-4254-ab79-af860672553e');
-INSERT INTO public.associer (obligatoire, ordre, attributs_id, categories_id) VALUES (true, 1, 'a6eebc99-9c0b-4ef8-bb6d-6bb9bd380a16', 'be8ef59f-d5a2-4254-ab79-af860672553e');
-INSERT INTO public.associer (obligatoire, ordre, attributs_id, categories_id) VALUES (true, 1, 'a7eebc99-9c0b-4ef8-bb6d-6bb9bd380a17', 'be8ef59f-d5a3-4254-ab79-af860672553e');
-INSERT INTO public.associer (obligatoire, ordre, attributs_id, categories_id) VALUES (true, 1, 'a8eebc99-9c0b-4ef8-bb6d-6bb9bd380a18', 'be8ef59f-d5a4-4254-ab79-af860672553e');
-INSERT INTO public.associer (obligatoire, ordre, attributs_id, categories_id) VALUES (true, 1, 'a9eebc99-9c0b-4ef8-bb6d-6bb9bd380a19', 'be8ef59f-d5a4-4254-ab99-af860672553e');
+INSERT INTO public.associer (obligatoire, ordre, attributs_id, categories_id) VALUES (true, 1, 'a1eebc99-9c0b-4ef8-bb6d-6bb9bd380a11', '36b843d8-f8a7-4b76-9980-1add9edc2364') ON CONFLICT DO NOTHING;
+INSERT INTO public.associer (obligatoire, ordre, attributs_id, categories_id) VALUES (true, 2, 'a1eebc99-9c0b-4ef8-bb6d-6bb9bd380a13', '36b843d8-f8a7-4b76-9980-1add9edc2364') ON CONFLICT DO NOTHING;
+INSERT INTO public.associer (obligatoire, ordre, attributs_id, categories_id) VALUES (false, 3, 'a1eebc99-9c0b-4ef8-bb6d-6bb9bd380a15', '36b843d8-f8a7-4b76-9980-1add9edc2364') ON CONFLICT DO NOTHING;
+INSERT INTO public.associer (obligatoire, ordre, attributs_id, categories_id) VALUES (true, 1, 'a2eebc99-9c0b-4ef8-bb6d-6bb9bd380a12', 'be9ef47f-d5a2-4254-ab79-af860672553e') ON CONFLICT DO NOTHING;
+INSERT INTO public.associer (obligatoire, ordre, attributs_id, categories_id) VALUES (false, 2, 'a9eebc99-9c0b-4ef8-bb6d-6bb9bd380a19', 'be9ef47f-d5a2-4254-ab79-af860672553e') ON CONFLICT DO NOTHING;
+INSERT INTO public.associer (obligatoire, ordre, attributs_id, categories_id) VALUES (true, 3, 'a2eebc99-9c0b-4ef8-bb6d-6bb9bd380a20', 'be9ef47f-d5a2-4254-ab79-af860672553e') ON CONFLICT DO NOTHING;
+INSERT INTO public.associer (obligatoire, ordre, attributs_id, categories_id) VALUES (true, 1, 'a1eebc99-9c0b-4ef8-bb6d-6bb9bd380a13', 'be8ef47f-d5a2-4254-ab79-af860672553e') ON CONFLICT DO NOTHING;
+INSERT INTO public.associer (obligatoire, ordre, attributs_id, categories_id) VALUES (true, 1, 'a4eebc99-9c0b-4ef8-bb6d-6bb9bd380a14', 'be8ef57f-d5a2-4254-ab79-af860672553e') ON CONFLICT DO NOTHING;
+INSERT INTO public.associer (obligatoire, ordre, attributs_id, categories_id) VALUES (true, 1, 'a1eebc99-9c0b-4ef8-bb6d-6bb9bd380a15', 'be8ef56f-d5a2-4254-ab79-af860672553e') ON CONFLICT DO NOTHING;
+INSERT INTO public.associer (obligatoire, ordre, attributs_id, categories_id) VALUES (true, 1, 'a6eebc99-9c0b-4ef8-bb6d-6bb9bd380a16', 'be8ef59f-d5a2-4254-ab79-af860672553e') ON CONFLICT DO NOTHING;
+INSERT INTO public.associer (obligatoire, ordre, attributs_id, categories_id) VALUES (true, 1, 'a7eebc99-9c0b-4ef8-bb6d-6bb9bd380a17', 'be8ef59f-d5a3-4254-ab79-af860672553e') ON CONFLICT DO NOTHING;
+INSERT INTO public.associer (obligatoire, ordre, attributs_id, categories_id) VALUES (true, 1, 'a8eebc99-9c0b-4ef8-bb6d-6bb9bd380a18', 'be8ef59f-d5a4-4254-ab79-af860672553e') ON CONFLICT DO NOTHING;
+INSERT INTO public.associer (obligatoire, ordre, attributs_id, categories_id) VALUES (true, 1, 'a9eebc99-9c0b-4ef8-bb6d-6bb9bd380a19', 'be8ef59f-d5a4-4254-ab99-af860672553e') ON CONFLICT DO NOTHING;
 
 
 --
@@ -1032,16 +1051,16 @@ INSERT INTO public.associer (obligatoire, ordre, attributs_id, categories_id) VA
 -- Data for Name: attributs; Type: TABLE DATA; Schema: public; Owner: postgres
 --
 
-INSERT INTO public.attributs (id, titre, description, etat, datecreation, datemodification, type, valeurpardefaut) VALUES ('a1eebc99-9c0b-4ef8-bb6d-6bb9bd380a11', 'Taille', 'Description Taille', true, '2022-01-01', '2022-01-02', 'String', NULL);
-INSERT INTO public.attributs (id, titre, description, etat, datecreation, datemodification, type, valeurpardefaut) VALUES ('a2eebc99-9c0b-4ef8-bb6d-6bb9bd380a12', 'Poids', 'Description Poids', true, '2022-01-01', '2022-01-02', 'Double', NULL);
-INSERT INTO public.attributs (id, titre, description, etat, datecreation, datemodification, type, valeurpardefaut) VALUES ('a1eebc99-9c0b-4ef8-bb6d-6bb9bd380a13', 'Age', 'Description age', true, '2022-01-01', '2022-01-02', 'Int', NULL);
-INSERT INTO public.attributs (id, titre, description, etat, datecreation, datemodification, type, valeurpardefaut) VALUES ('a4eebc99-9c0b-4ef8-bb6d-6bb9bd380a14', 'Sexe', 'Sexe ', true, '2022-01-01', '2022-01-02', 'String', NULL);
-INSERT INTO public.attributs (id, titre, description, etat, datecreation, datemodification, type, valeurpardefaut) VALUES ('a1eebc99-9c0b-4ef8-bb6d-6bb9bd380a15', 'Teint', 'Coloration', true, '2022-01-01', '2022-01-02', 'String', 'Noir');
-INSERT INTO public.attributs (id, titre, description, etat, datecreation, datemodification, type, valeurpardefaut) VALUES ('a6eebc99-9c0b-4ef8-bb6d-6bb9bd380a16', 'Groupe sangin', 'Groupe sangin', true, '2022-01-01', '2022-01-02', 'String', 'A, A+, A-, B, B+, B-, AB, AB+, AB-, O, O+, O-');
-INSERT INTO public.attributs (id, titre, description, etat, datecreation, datemodification, type, valeurpardefaut) VALUES ('a7eebc99-9c0b-4ef8-bb6d-6bb9bd380a17', 'Allergies', 'Allergies connues ', true, '2022-01-01', '2022-01-02', 'String', NULL);
-INSERT INTO public.attributs (id, titre, description, etat, datecreation, datemodification, type, valeurpardefaut) VALUES ('a8eebc99-9c0b-4ef8-bb6d-6bb9bd380a18', 'Nom', 'Nom de la personne', true, '2022-01-01', '2022-01-02', 'String', NULL);
-INSERT INTO public.attributs (id, titre, description, etat, datecreation, datemodification, type, valeurpardefaut) VALUES ('a9eebc99-9c0b-4ef8-bb6d-6bb9bd380a19', 'Adresse', 'Adresse postale', true, '2022-01-01', '2022-01-02', 'String', NULL);
-INSERT INTO public.attributs (id, titre, description, etat, datecreation, datemodification, type, valeurpardefaut) VALUES ('a2eebc99-9c0b-4ef8-bb6d-6bb9bd380a20', 'Date de naissance', 'Date de naissance', true, '2022-01-01', '2022-01-02', 'Date', NULL);
+INSERT INTO public.attributs (id, titre, description, etat, datecreation, datemodification, type, valeurpardefaut) VALUES ('a1eebc99-9c0b-4ef8-bb6d-6bb9bd380a11', 'Taille', 'Description Taille', true, '2022-01-01', '2022-01-02', 'String', NULL) ON CONFLICT DO NOTHING;
+INSERT INTO public.attributs (id, titre, description, etat, datecreation, datemodification, type, valeurpardefaut) VALUES ('a2eebc99-9c0b-4ef8-bb6d-6bb9bd380a12', 'Poids', 'Description Poids', true, '2022-01-01', '2022-01-02', 'Double', NULL) ON CONFLICT DO NOTHING;
+INSERT INTO public.attributs (id, titre, description, etat, datecreation, datemodification, type, valeurpardefaut) VALUES ('a1eebc99-9c0b-4ef8-bb6d-6bb9bd380a13', 'Age', 'Description age', true, '2022-01-01', '2022-01-02', 'Int', NULL) ON CONFLICT DO NOTHING;
+INSERT INTO public.attributs (id, titre, description, etat, datecreation, datemodification, type, valeurpardefaut) VALUES ('a4eebc99-9c0b-4ef8-bb6d-6bb9bd380a14', 'Sexe', 'Sexe ', true, '2022-01-01', '2022-01-02', 'String', NULL) ON CONFLICT DO NOTHING;
+INSERT INTO public.attributs (id, titre, description, etat, datecreation, datemodification, type, valeurpardefaut) VALUES ('a1eebc99-9c0b-4ef8-bb6d-6bb9bd380a15', 'Teint', 'Coloration', true, '2022-01-01', '2022-01-02', 'String', 'Noir') ON CONFLICT DO NOTHING;
+INSERT INTO public.attributs (id, titre, description, etat, datecreation, datemodification, type, valeurpardefaut) VALUES ('a6eebc99-9c0b-4ef8-bb6d-6bb9bd380a16', 'Groupe sangin', 'Groupe sangin', true, '2022-01-01', '2022-01-02', 'String', 'A, A+, A-, B, B+, B-, AB, AB+, AB-, O, O+, O-') ON CONFLICT DO NOTHING;
+INSERT INTO public.attributs (id, titre, description, etat, datecreation, datemodification, type, valeurpardefaut) VALUES ('a7eebc99-9c0b-4ef8-bb6d-6bb9bd380a17', 'Allergies', 'Allergies connues ', true, '2022-01-01', '2022-01-02', 'String', NULL) ON CONFLICT DO NOTHING;
+INSERT INTO public.attributs (id, titre, description, etat, datecreation, datemodification, type, valeurpardefaut) VALUES ('a8eebc99-9c0b-4ef8-bb6d-6bb9bd380a18', 'Nom', 'Nom de la personne', true, '2022-01-01', '2022-01-02', 'String', NULL) ON CONFLICT DO NOTHING;
+INSERT INTO public.attributs (id, titre, description, etat, datecreation, datemodification, type, valeurpardefaut) VALUES ('a9eebc99-9c0b-4ef8-bb6d-6bb9bd380a19', 'Adresse', 'Adresse postale', true, '2022-01-01', '2022-01-02', 'String', NULL) ON CONFLICT DO NOTHING;
+INSERT INTO public.attributs (id, titre, description, etat, datecreation, datemodification, type, valeurpardefaut) VALUES ('a2eebc99-9c0b-4ef8-bb6d-6bb9bd380a20', 'Date de naissance', 'Date de naissance', true, '2022-01-01', '2022-01-02', 'Date', NULL) ON CONFLICT DO NOTHING;
 
 
 --
@@ -1050,10 +1069,10 @@ INSERT INTO public.attributs (id, titre, description, etat, datecreation, datemo
 -- Data for Name: caisses; Type: TABLE DATA; Schema: public; Owner: postgres
 --
 
-INSERT INTO public.caisses (id, libelle, solde, type, detailjson) VALUES ('a1f8e3b0-4c6d-4e5e-ab7a-2a8b9b9c8d6f', 'Caisse principale', 10000, 'Caisse', '{"description": "Caisse principale"}');
-INSERT INTO public.caisses (id, libelle, solde, type, detailjson) VALUES ('d9e2f1c2-8b3a-4f6c-bd5e-1a7b8a7c6d5e', 'Caisse secondaire', 5000, 'Caisse', '{"description": "Caisse secondaire"}');
-INSERT INTO public.caisses (id, libelle, solde, type, detailjson) VALUES ('b3a7c8d6-1e2f-3d4c-cb6a-9e8f0a7b6c5d', 'Caisse en ligne', 7500, 'Caisse', '{"description": "Caisse en ligne"}');
-INSERT INTO public.caisses (id, libelle, solde, type, detailjson) VALUES ('f0a7b6c5-d4e3f2a1-8d9c-7d6e-5f4a3b2c1e0d', 'Caisse mobile', 3000, 'Caisse', '{"description": "Caisse mobile"}');
+INSERT INTO public.caisses (id, libelle, solde, type, detailjson) VALUES ('a1f8e3b0-4c6d-4e5e-ab7a-2a8b9b9c8d6f', 'Caisse principale', 10000, 'Caisse', '{"description": "Caisse principale"}') ON CONFLICT DO NOTHING;
+INSERT INTO public.caisses (id, libelle, solde, type, detailjson) VALUES ('d9e2f1c2-8b3a-4f6c-bd5e-1a7b8a7c6d5e', 'Caisse secondaire', 5000, 'Caisse', '{"description": "Caisse secondaire"}') ON CONFLICT DO NOTHING;
+INSERT INTO public.caisses (id, libelle, solde, type, detailjson) VALUES ('b3a7c8d6-1e2f-3d4c-cb6a-9e8f0a7b6c5d', 'Caisse en ligne', 7500, 'Caisse', '{"description": "Caisse en ligne"}') ON CONFLICT DO NOTHING;
+INSERT INTO public.caisses (id, libelle, solde, type, detailjson) VALUES ('f0a7b6c5-d4e3f2a1-8d9c-7d6e-5f4a3b2c1e0d', 'Caisse mobile', 3000, 'Caisse', '{"description": "Caisse mobile"}') ON CONFLICT DO NOTHING;
 
 
 --
@@ -1062,15 +1081,15 @@ INSERT INTO public.caisses (id, libelle, solde, type, detailjson) VALUES ('f0a7b
 -- Data for Name: categories; Type: TABLE DATA; Schema: public; Owner: postgres
 --
 
-INSERT INTO public.categories (id, ordre, libelle, etat, datecreation, datemodification, documents_id) VALUES ('36b843d8-f8a7-4b76-9980-1add9edc2364', '0', 'Informations Personnelles', true, '2022-01-01', '2022-01-02', '0190615e-1101-7209-9932-7020bbd556f1');
-INSERT INTO public.categories (id, ordre, libelle, etat, datecreation, datemodification, documents_id) VALUES ('be9ef47f-d5a2-4254-ab79-af860672553e', '1', 'Informations Primaires', true, '2022-01-01', '2022-01-02', '0190615e-1101-7209-9932-7020bbd556f1');
-INSERT INTO public.categories (id, ordre, libelle, etat, datecreation, datemodification, documents_id) VALUES ('be8ef47f-d5a2-4254-ab79-af860672553e', '0', 'Conditions Générales', true, '2022-01-01', '2022-01-02', '0190615e-1101-7209-9932-7020bbd556f2');
-INSERT INTO public.categories (id, ordre, libelle, etat, datecreation, datemodification, documents_id) VALUES ('be8ef57f-d5a2-4254-ab79-af860672553e', '1', 'Conditions Particulières', true, '2022-01-01', '2022-01-02', '0190615e-1101-7209-9932-7020bbd556f2');
-INSERT INTO public.categories (id, ordre, libelle, etat, datecreation, datemodification, documents_id) VALUES ('be8ef56f-d5a2-4254-ab79-af860672553e', '1', 'Informations Personnelles', true, '2022-01-01', '2022-01-02', '0190615e-1101-7209-9932-7020bbd556f3');
-INSERT INTO public.categories (id, ordre, libelle, etat, datecreation, datemodification, documents_id) VALUES ('be8ef59f-d5a2-4254-ab79-af860672553e', '1', 'Informations Primaires', true, '2022-01-01', '2022-01-02', '0190615e-1101-7209-9932-7020bbd556f4');
-INSERT INTO public.categories (id, ordre, libelle, etat, datecreation, datemodification, documents_id) VALUES ('be8ef59f-d5a3-4254-ab79-af860672553e', '1', 'Conditions Générales', true, '2022-01-01', '2022-01-02', '0190615e-1101-7209-9932-7020bbd556f5');
-INSERT INTO public.categories (id, ordre, libelle, etat, datecreation, datemodification, documents_id) VALUES ('be8ef59f-d5a4-4254-ab79-af860672553e', '0', 'Conditions Générales', true, '2022-01-01', '2022-01-02', '0190615e-1101-7209-9932-7020bbd556f6');
-INSERT INTO public.categories (id, ordre, libelle, etat, datecreation, datemodification, documents_id) VALUES ('be8ef59f-d5a4-4254-ab99-af860672553e', '0', 'Catégorie par Defaut', true, '2022-01-01', '2022-01-02', '0190615e-1101-7209-9932-7020bbd556f7');
+INSERT INTO public.categories (id, ordre, libelle, etat, datecreation, datemodification, documents_id) VALUES ('36b843d8-f8a7-4b76-9980-1add9edc2364', '0', 'Informations Personnelles', true, '2022-01-01', '2022-01-02', '0190615e-1101-7209-9932-7020bbd556f1') ON CONFLICT DO NOTHING;
+INSERT INTO public.categories (id, ordre, libelle, etat, datecreation, datemodification, documents_id) VALUES ('be9ef47f-d5a2-4254-ab79-af860672553e', '1', 'Informations Primaires', true, '2022-01-01', '2022-01-02', '0190615e-1101-7209-9932-7020bbd556f1') ON CONFLICT DO NOTHING;
+INSERT INTO public.categories (id, ordre, libelle, etat, datecreation, datemodification, documents_id) VALUES ('be8ef47f-d5a2-4254-ab79-af860672553e', '0', 'Conditions Générales', true, '2022-01-01', '2022-01-02', '0190615e-1101-7209-9932-7020bbd556f2') ON CONFLICT DO NOTHING;
+INSERT INTO public.categories (id, ordre, libelle, etat, datecreation, datemodification, documents_id) VALUES ('be8ef57f-d5a2-4254-ab79-af860672553e', '1', 'Conditions Particulières', true, '2022-01-01', '2022-01-02', '0190615e-1101-7209-9932-7020bbd556f2') ON CONFLICT DO NOTHING;
+INSERT INTO public.categories (id, ordre, libelle, etat, datecreation, datemodification, documents_id) VALUES ('be8ef56f-d5a2-4254-ab79-af860672553e', '1', 'Informations Personnelles', true, '2022-01-01', '2022-01-02', '0190615e-1101-7209-9932-7020bbd556f3') ON CONFLICT DO NOTHING;
+INSERT INTO public.categories (id, ordre, libelle, etat, datecreation, datemodification, documents_id) VALUES ('be8ef59f-d5a2-4254-ab79-af860672553e', '1', 'Informations Primaires', true, '2022-01-01', '2022-01-02', '0190615e-1101-7209-9932-7020bbd556f4') ON CONFLICT DO NOTHING;
+INSERT INTO public.categories (id, ordre, libelle, etat, datecreation, datemodification, documents_id) VALUES ('be8ef59f-d5a3-4254-ab79-af860672553e', '1', 'Conditions Générales', true, '2022-01-01', '2022-01-02', '0190615e-1101-7209-9932-7020bbd556f5') ON CONFLICT DO NOTHING;
+INSERT INTO public.categories (id, ordre, libelle, etat, datecreation, datemodification, documents_id) VALUES ('be8ef59f-d5a4-4254-ab79-af860672553e', '0', 'Conditions Générales', true, '2022-01-01', '2022-01-02', '0190615e-1101-7209-9932-7020bbd556f6') ON CONFLICT DO NOTHING;
+INSERT INTO public.categories (id, ordre, libelle, etat, datecreation, datemodification, documents_id) VALUES ('be8ef59f-d5a4-4254-ab99-af860672553e', '0', 'Catégorie par Defaut', true, '2022-01-01', '2022-01-02', '0190615e-1101-7209-9932-7020bbd556f7') ON CONFLICT DO NOTHING;
 
 
 --
@@ -1079,15 +1098,15 @@ INSERT INTO public.categories (id, ordre, libelle, etat, datecreation, datemodif
 -- Data for Name: comptes; Type: TABLE DATA; Schema: public; Owner: postgres
 --
 
-INSERT INTO public.comptes (id, datecreation, etat, montantdecouvertmax, libelle, personnes_id, solde) VALUES ('00012f83-2a62-4e6d-aa23-57c7825bcd57', '2024-08-19', 'actif', 2000, 'Compte entreprise', '0001ff83-2a62-4e6d-aa23-57c7825bcd57', 102.32);
-INSERT INTO public.comptes (id, datecreation, etat, montantdecouvertmax, libelle, personnes_id, solde) VALUES ('1179bd79-f71b-498b-b247-e7b9bbb3f600', '2024-08-19', 'inactif', 0, 'Compte jeunesse', '0079bd79-f71b-498b-b247-e7b9bbb3f600', 3553.2);
-INSERT INTO public.comptes (id, datecreation, etat, montantdecouvertmax, libelle, personnes_id, solde) VALUES ('1518e585-f82a-4d5f-af1c-54f880d766d3', '2024-08-19', 'actif', 2000, 'Compte entreprise', '0018e585-f82a-4d5f-af1c-54f880d766d3', 646583.32);
-INSERT INTO public.comptes (id, datecreation, etat, montantdecouvertmax, libelle, personnes_id, solde) VALUES ('a1f8e3b0-4c6d-4e5e-7b7a-2a8b9b9c8d6f', '2024-08-19', 'actif', 500, 'Compte courant', '0618e585-f82a-4d5f-af2c-54f880d766d3', 14785);
-INSERT INTO public.comptes (id, datecreation, etat, montantdecouvertmax, libelle, personnes_id, solde) VALUES ('adbff692-418d-43ab-a196-fcc3114b2daa', '2024-08-19', 'actif', 500, 'Compte courant', 'fdbff692-6b8d-43ab-a196-fcc3114b2daa', 31656.325);
-INSERT INTO public.comptes (id, datecreation, etat, montantdecouvertmax, libelle, personnes_id, solde) VALUES ('b3a7c8d6-1e2f-3d4c-7b6a-9e8f0a7b6c5d', '2024-08-19', 'inactif', 0, 'Compte jeunesse', '1979bd79-f71b-498b-b247-e7b9bbb3f600', 789654.23);
-INSERT INTO public.comptes (id, datecreation, etat, montantdecouvertmax, libelle, personnes_id, solde) VALUES ('d301ff83-1b62-4e6d-aa23-57c7825bcd57', '2024-08-19', 'actif', 1000, 'Épargne', 'd301ff83-2a62-4e6d-aa23-57c7825bcd57', 1153548.35);
-INSERT INTO public.comptes (id, datecreation, etat, montantdecouvertmax, libelle, personnes_id, solde) VALUES ('d9e2f1c2-8b3a-4f6c-7d5e-1a7b8a7c6d5e', '2024-08-19', 'actif', 1000, 'Épargne', '0618e585-f82a-4d5f-af2c-04f880d766d3', 635663.254);
-INSERT INTO public.comptes (id, datecreation, etat, montantdecouvertmax, libelle, personnes_id, solde) VALUES ('f0a7b6c5-d4e3f2a1-7b9c-7d6e-5f4a3b2c1e0d', '2024-08-19', 'actif', 2000, 'Compte entreprise', '0618e585-f82a-4d5f-af1c-54f880d766d3', 655318.369);
+INSERT INTO public.comptes (id, datecreation, etat, montantdecouvertmax, libelle, personnes_id, solde) VALUES ('00012f83-2a62-4e6d-aa23-57c7825bcd57', '2024-08-19', 'actif', 2000, 'Compte entreprise', '0001ff83-2a62-4e6d-aa23-57c7825bcd57', 102.32) ON CONFLICT DO NOTHING;
+INSERT INTO public.comptes (id, datecreation, etat, montantdecouvertmax, libelle, personnes_id, solde) VALUES ('1179bd79-f71b-498b-b247-e7b9bbb3f600', '2024-08-19', 'inactif', 0, 'Compte jeunesse', '0079bd79-f71b-498b-b247-e7b9bbb3f600', 3553.2) ON CONFLICT DO NOTHING;
+INSERT INTO public.comptes (id, datecreation, etat, montantdecouvertmax, libelle, personnes_id, solde) VALUES ('1518e585-f82a-4d5f-af1c-54f880d766d3', '2024-08-19', 'actif', 2000, 'Compte entreprise', '0018e585-f82a-4d5f-af1c-54f880d766d3', 646583.32) ON CONFLICT DO NOTHING;
+INSERT INTO public.comptes (id, datecreation, etat, montantdecouvertmax, libelle, personnes_id, solde) VALUES ('a1f8e3b0-4c6d-4e5e-7b7a-2a8b9b9c8d6f', '2024-08-19', 'actif', 500, 'Compte courant', '0618e585-f82a-4d5f-af2c-54f880d766d3', 14785) ON CONFLICT DO NOTHING;
+INSERT INTO public.comptes (id, datecreation, etat, montantdecouvertmax, libelle, personnes_id, solde) VALUES ('adbff692-418d-43ab-a196-fcc3114b2daa', '2024-08-19', 'actif', 500, 'Compte courant', 'fdbff692-6b8d-43ab-a196-fcc3114b2daa', 31656.325) ON CONFLICT DO NOTHING;
+INSERT INTO public.comptes (id, datecreation, etat, montantdecouvertmax, libelle, personnes_id, solde) VALUES ('b3a7c8d6-1e2f-3d4c-7b6a-9e8f0a7b6c5d', '2024-08-19', 'inactif', 0, 'Compte jeunesse', '1979bd79-f71b-498b-b247-e7b9bbb3f600', 789654.23) ON CONFLICT DO NOTHING;
+INSERT INTO public.comptes (id, datecreation, etat, montantdecouvertmax, libelle, personnes_id, solde) VALUES ('d301ff83-1b62-4e6d-aa23-57c7825bcd57', '2024-08-19', 'actif', 1000, 'Épargne', 'd301ff83-2a62-4e6d-aa23-57c7825bcd57', 1153548.35) ON CONFLICT DO NOTHING;
+INSERT INTO public.comptes (id, datecreation, etat, montantdecouvertmax, libelle, personnes_id, solde) VALUES ('d9e2f1c2-8b3a-4f6c-7d5e-1a7b8a7c6d5e', '2024-08-19', 'actif', 1000, 'Épargne', '0618e585-f82a-4d5f-af2c-04f880d766d3', 635663.254) ON CONFLICT DO NOTHING;
+INSERT INTO public.comptes (id, datecreation, etat, montantdecouvertmax, libelle, personnes_id, solde) VALUES ('f0a7b6c5-d4e3f2a1-7b9c-7d6e-5f4a3b2c1e0d', '2024-08-19', 'actif', 2000, 'Compte entreprise', '0618e585-f82a-4d5f-af1c-54f880d766d3', 655318.369) ON CONFLICT DO NOTHING;
 
 
 --
@@ -1104,21 +1123,21 @@ INSERT INTO public.comptes (id, datecreation, etat, montantdecouvertmax, libelle
 -- Data for Name: constituer; Type: TABLE DATA; Schema: public; Owner: postgres
 --
 
-INSERT INTO public.constituer (attributs_id, documents_id) VALUES ('a1eebc99-9c0b-4ef8-bb6d-6bb9bd380a11', '0190615e-1101-7209-9932-7020bbd556f1');
-INSERT INTO public.constituer (attributs_id, documents_id) VALUES ('a1eebc99-9c0b-4ef8-bb6d-6bb9bd380a13', '0190615e-1101-7209-9932-7020bbd556f1');
-INSERT INTO public.constituer (attributs_id, documents_id) VALUES ('a1eebc99-9c0b-4ef8-bb6d-6bb9bd380a15', '0190615e-1101-7209-9932-7020bbd556f1');
-INSERT INTO public.constituer (attributs_id, documents_id) VALUES ('a2eebc99-9c0b-4ef8-bb6d-6bb9bd380a12', '0190615e-1101-7209-9932-7020bbd556f1');
-INSERT INTO public.constituer (attributs_id, documents_id) VALUES ('a9eebc99-9c0b-4ef8-bb6d-6bb9bd380a19', '0190615e-1101-7209-9932-7020bbd556f1');
-INSERT INTO public.constituer (attributs_id, documents_id) VALUES ('a2eebc99-9c0b-4ef8-bb6d-6bb9bd380a20', '0190615e-1101-7209-9932-7020bbd556f1');
-INSERT INTO public.constituer (attributs_id, documents_id) VALUES ('a1eebc99-9c0b-4ef8-bb6d-6bb9bd380a13', '0190615e-1101-7209-9932-7020bbd556f2');
-INSERT INTO public.constituer (attributs_id, documents_id) VALUES ('a4eebc99-9c0b-4ef8-bb6d-6bb9bd380a14', '0190615e-1101-7209-9932-7020bbd556f2');
-INSERT INTO public.constituer (attributs_id, documents_id) VALUES ('a2eebc99-9c0b-4ef8-bb6d-6bb9bd380a20', '0190615e-1101-7209-9932-7020bbd556f2');
-INSERT INTO public.constituer (attributs_id, documents_id) VALUES ('a1eebc99-9c0b-4ef8-bb6d-6bb9bd380a15', '0190615e-1101-7209-9932-7020bbd556f3');
-INSERT INTO public.constituer (attributs_id, documents_id) VALUES ('a6eebc99-9c0b-4ef8-bb6d-6bb9bd380a16', '0190615e-1101-7209-9932-7020bbd556f4');
-INSERT INTO public.constituer (attributs_id, documents_id) VALUES ('a7eebc99-9c0b-4ef8-bb6d-6bb9bd380a17', '0190615e-1101-7209-9932-7020bbd556f5');
-INSERT INTO public.constituer (attributs_id, documents_id) VALUES ('a8eebc99-9c0b-4ef8-bb6d-6bb9bd380a18', '0190615e-1101-7209-9932-7020bbd556f6');
-INSERT INTO public.constituer (attributs_id, documents_id) VALUES ('a9eebc99-9c0b-4ef8-bb6d-6bb9bd380a19', '0190615e-1101-7209-9932-7020bbd556f7');
-INSERT INTO public.constituer (attributs_id, documents_id) VALUES ('a2eebc99-9c0b-4ef8-bb6d-6bb9bd380a20', '0190615e-1101-7209-9932-7020bbd556f8');
+INSERT INTO public.constituer (attributs_id, documents_id) VALUES ('a1eebc99-9c0b-4ef8-bb6d-6bb9bd380a11', '0190615e-1101-7209-9932-7020bbd556f1') ON CONFLICT DO NOTHING;
+INSERT INTO public.constituer (attributs_id, documents_id) VALUES ('a1eebc99-9c0b-4ef8-bb6d-6bb9bd380a13', '0190615e-1101-7209-9932-7020bbd556f1') ON CONFLICT DO NOTHING;
+INSERT INTO public.constituer (attributs_id, documents_id) VALUES ('a1eebc99-9c0b-4ef8-bb6d-6bb9bd380a15', '0190615e-1101-7209-9932-7020bbd556f1') ON CONFLICT DO NOTHING;
+INSERT INTO public.constituer (attributs_id, documents_id) VALUES ('a2eebc99-9c0b-4ef8-bb6d-6bb9bd380a12', '0190615e-1101-7209-9932-7020bbd556f1') ON CONFLICT DO NOTHING;
+INSERT INTO public.constituer (attributs_id, documents_id) VALUES ('a9eebc99-9c0b-4ef8-bb6d-6bb9bd380a19', '0190615e-1101-7209-9932-7020bbd556f1') ON CONFLICT DO NOTHING;
+INSERT INTO public.constituer (attributs_id, documents_id) VALUES ('a2eebc99-9c0b-4ef8-bb6d-6bb9bd380a20', '0190615e-1101-7209-9932-7020bbd556f1') ON CONFLICT DO NOTHING;
+INSERT INTO public.constituer (attributs_id, documents_id) VALUES ('a1eebc99-9c0b-4ef8-bb6d-6bb9bd380a13', '0190615e-1101-7209-9932-7020bbd556f2') ON CONFLICT DO NOTHING;
+INSERT INTO public.constituer (attributs_id, documents_id) VALUES ('a4eebc99-9c0b-4ef8-bb6d-6bb9bd380a14', '0190615e-1101-7209-9932-7020bbd556f2') ON CONFLICT DO NOTHING;
+INSERT INTO public.constituer (attributs_id, documents_id) VALUES ('a2eebc99-9c0b-4ef8-bb6d-6bb9bd380a20', '0190615e-1101-7209-9932-7020bbd556f2') ON CONFLICT DO NOTHING;
+INSERT INTO public.constituer (attributs_id, documents_id) VALUES ('a1eebc99-9c0b-4ef8-bb6d-6bb9bd380a15', '0190615e-1101-7209-9932-7020bbd556f3') ON CONFLICT DO NOTHING;
+INSERT INTO public.constituer (attributs_id, documents_id) VALUES ('a6eebc99-9c0b-4ef8-bb6d-6bb9bd380a16', '0190615e-1101-7209-9932-7020bbd556f4') ON CONFLICT DO NOTHING;
+INSERT INTO public.constituer (attributs_id, documents_id) VALUES ('a7eebc99-9c0b-4ef8-bb6d-6bb9bd380a17', '0190615e-1101-7209-9932-7020bbd556f5') ON CONFLICT DO NOTHING;
+INSERT INTO public.constituer (attributs_id, documents_id) VALUES ('a8eebc99-9c0b-4ef8-bb6d-6bb9bd380a18', '0190615e-1101-7209-9932-7020bbd556f6') ON CONFLICT DO NOTHING;
+INSERT INTO public.constituer (attributs_id, documents_id) VALUES ('a9eebc99-9c0b-4ef8-bb6d-6bb9bd380a19', '0190615e-1101-7209-9932-7020bbd556f7') ON CONFLICT DO NOTHING;
+INSERT INTO public.constituer (attributs_id, documents_id) VALUES ('a2eebc99-9c0b-4ef8-bb6d-6bb9bd380a20', '0190615e-1101-7209-9932-7020bbd556f8') ON CONFLICT DO NOTHING;
 
 
 --
@@ -1127,12 +1146,12 @@ INSERT INTO public.constituer (attributs_id, documents_id) VALUES ('a2eebc99-9c0
 -- Data for Name: deltasoldes; Type: TABLE DATA; Schema: public; Owner: postgres
 --
 
-INSERT INTO public.deltasoldes (id, montantavant, montantapres, datecreation, typemouvement, comptes_id, exemplaires_id) VALUES ('aad314f5-84ad-77cd-874d-9c55f0e45790', 651651.258, 51555.32, '2022-01-02', 'retrait', 'b3a7c8d6-1e2f-3d4c-7b6a-9e8f0a7b6c5d', 'b3a7c8d6-1e2f-3d4c-5b6a-9e8f0a7b6c5d');
-INSERT INTO public.deltasoldes (id, montantavant, montantapres, datecreation, typemouvement, comptes_id, exemplaires_id) VALUES ('aad314f5-84ad-77cd-874d-9c55f0e45791', 651651.258, 51555.32, '2022-01-02', 'retrait', 'a1f8e3b0-4c6d-4e5e-7b7a-2a8b9b9c8d6f', 'a1f8e3b0-4c6d-4e5e-9b7a-2a8b9b9c8d6f');
-INSERT INTO public.deltasoldes (id, montantavant, montantapres, datecreation, typemouvement, comptes_id, exemplaires_id) VALUES ('aad314f5-84ad-77cd-874d-9c55f0e45792', 564566.21, 6544864.21, '2022-01-02', 'paiement', 'd9e2f1c2-8b3a-4f6c-7d5e-1a7b8a7c6d5e', 'd9e2f1c2-8b3a-4f6c-9d5e-1a7b8a7c6d5e');
-INSERT INTO public.deltasoldes (id, montantavant, montantapres, datecreation, typemouvement, comptes_id, exemplaires_id) VALUES ('aad314f5-84ad-77cd-874d-9c55f0e45793', 48646.58, 454151.14, '2022-01-02', 'paiement', 'f0a7b6c5-d4e3f2a1-7b9c-7d6e-5f4a3b2c1e0d', 'f0a7b6c5-d4e3f2a1-8b9c-7d6e-5f4a3b2c1e0d');
-INSERT INTO public.deltasoldes (id, montantavant, montantapres, datecreation, typemouvement, comptes_id, exemplaires_id) VALUES ('aad314f5-84ad-77qd-874d-9c55f0e45790', 45245.6, 4587.35, '2022-01-02', 'retrait', 'd301ff83-1b62-4e6d-aa23-57c7825bcd57', 'a1f1e3b0-4c6d-4e5e-9b7a-2a8b9b9c8d6f');
-INSERT INTO public.deltasoldes (id, montantavant, montantapres, datecreation, typemouvement, comptes_id, exemplaires_id) VALUES ('aad314f5-84ad-77qd-874e-9c55f0e45790', 452.21, 452452.26, '2022-01-02', 'depots', 'adbff692-418d-43ab-a196-fcc3114b2daa', 'a1f1e4b0-4c6d-4e5e-9b7a-2a8b9b9c8d6f');
+INSERT INTO public.deltasoldes (id, montantavant, montantapres, datecreation, typemouvement, comptes_id, exemplaires_id) VALUES ('aad314f5-84ad-77cd-874d-9c55f0e45790', 651651.258, 51555.32, '2022-01-02', 'retrait', 'b3a7c8d6-1e2f-3d4c-7b6a-9e8f0a7b6c5d', 'b3a7c8d6-1e2f-3d4c-5b6a-9e8f0a7b6c5d') ON CONFLICT DO NOTHING;
+INSERT INTO public.deltasoldes (id, montantavant, montantapres, datecreation, typemouvement, comptes_id, exemplaires_id) VALUES ('aad314f5-84ad-77cd-874d-9c55f0e45791', 651651.258, 51555.32, '2022-01-02', 'retrait', 'a1f8e3b0-4c6d-4e5e-7b7a-2a8b9b9c8d6f', 'a1f8e3b0-4c6d-4e5e-9b7a-2a8b9b9c8d6f') ON CONFLICT DO NOTHING;
+INSERT INTO public.deltasoldes (id, montantavant, montantapres, datecreation, typemouvement, comptes_id, exemplaires_id) VALUES ('aad314f5-84ad-77cd-874d-9c55f0e45792', 564566.21, 6544864.21, '2022-01-02', 'paiement', 'd9e2f1c2-8b3a-4f6c-7d5e-1a7b8a7c6d5e', 'd9e2f1c2-8b3a-4f6c-9d5e-1a7b8a7c6d5e') ON CONFLICT DO NOTHING;
+INSERT INTO public.deltasoldes (id, montantavant, montantapres, datecreation, typemouvement, comptes_id, exemplaires_id) VALUES ('aad314f5-84ad-77cd-874d-9c55f0e45793', 48646.58, 454151.14, '2022-01-02', 'paiement', 'f0a7b6c5-d4e3f2a1-7b9c-7d6e-5f4a3b2c1e0d', 'f0a7b6c5-d4e3f2a1-8b9c-7d6e-5f4a3b2c1e0d') ON CONFLICT DO NOTHING;
+INSERT INTO public.deltasoldes (id, montantavant, montantapres, datecreation, typemouvement, comptes_id, exemplaires_id) VALUES ('aad314f5-84ad-77qd-874d-9c55f0e45790', 45245.6, 4587.35, '2022-01-02', 'retrait', 'd301ff83-1b62-4e6d-aa23-57c7825bcd57', 'a1f1e3b0-4c6d-4e5e-9b7a-2a8b9b9c8d6f') ON CONFLICT DO NOTHING;
+INSERT INTO public.deltasoldes (id, montantavant, montantapres, datecreation, typemouvement, comptes_id, exemplaires_id) VALUES ('aad314f5-84ad-77qd-874e-9c55f0e45790', 452.21, 452452.26, '2022-01-02', 'depots', 'adbff692-418d-43ab-a196-fcc3114b2daa', 'a1f1e4b0-4c6d-4e5e-9b7a-2a8b9b9c8d6f') ON CONFLICT DO NOTHING;
 
 
 --
@@ -1141,11 +1160,11 @@ INSERT INTO public.deltasoldes (id, montantavant, montantapres, datecreation, ty
 -- Data for Name: docetats; Type: TABLE DATA; Schema: public; Owner: postgres
 --
 
-INSERT INTO public.docetats (id, ordre, datecreation, datemodification, validations_id, etats_id, documents_id, etapes_id) VALUES ('be8ef4af-d5a2-4254-cd79-af860672553e', 15, '2022-03-02', '2022-10-02', '1901bd80-f71b-498b-b247-e7b9bbb3f602', 'e190615e-1101-7209-9932-7020bbd556f1', '0190615e-1101-7209-9932-7020bbd556f1', '1901bd79-f71b-498b-b247-e7b9bbb3f600');
-INSERT INTO public.docetats (id, ordre, datecreation, datemodification, validations_id, etats_id, documents_id, etapes_id) VALUES ('be8ef4af-d5a2-4254-cd79-af860672554e', 10, '2002-01-02', '2022-11-02', '1901bd80-f71b-498b-b247-e7b9bbb3f601', 'e190615e-1101-7209-9932-7020bbd556f2', '0190615e-1101-7209-9932-7020bbd556f2', '1901bd79-f71b-498b-b247-e7b9bbb3f601');
-INSERT INTO public.docetats (id, ordre, datecreation, datemodification, validations_id, etats_id, documents_id, etapes_id) VALUES ('be8ef4af-d5a2-4254-cd79-af860672555e', 11, '2014-01-12', '2022-02-02', '1901bd80-f71b-498b-b247-e7b9bbb3f600', 'e190615e-1101-7209-9932-7020bbd556f3', '0190615e-1101-7209-9932-7020bbd556f3', '1901bd79-f71b-498b-b247-e7b9bbb3f602');
-INSERT INTO public.docetats (id, ordre, datecreation, datemodification, validations_id, etats_id, documents_id, etapes_id) VALUES ('be8ef4af-d5a2-4254-cd79-af860672556e', 12, '2023-10-25', '2024-03-02', '1901bd80-f71b-498b-b247-e7b9bbb3f603', 'e190615e-1101-7209-9932-7020bbd556f4', '0190615e-1101-7209-9932-7020bbd556f4', '1901bd79-f71b-498b-b247-e7b9bbb3f602');
-INSERT INTO public.docetats (id, ordre, datecreation, datemodification, validations_id, etats_id, documents_id, etapes_id) VALUES ('be8ef4af-d5a2-4254-cd79-af860672557e', 16, '2020-11-15', '2024-05-02', '1901bd80-f71b-498b-b247-e7b9bbb3f604', 'e190615e-1101-7209-9932-7020bbd556f4', '0190615e-1101-7209-9932-7020bbd556f5', '1901bd79-f71b-498b-b247-e7b9bbb3f600');
+INSERT INTO public.docetats (id, ordre, datecreation, datemodification, validations_id, etats_id, documents_id, etapes_id) VALUES ('be8ef4af-d5a2-4254-cd79-af860672553e', 15, '2022-03-02', '2022-10-02', '1901bd80-f71b-498b-b247-e7b9bbb3f602', 'e190615e-1101-7209-9932-7020bbd556f1', '0190615e-1101-7209-9932-7020bbd556f1', '1901bd79-f71b-498b-b247-e7b9bbb3f600') ON CONFLICT DO NOTHING;
+INSERT INTO public.docetats (id, ordre, datecreation, datemodification, validations_id, etats_id, documents_id, etapes_id) VALUES ('be8ef4af-d5a2-4254-cd79-af860672554e', 10, '2002-01-02', '2022-11-02', '1901bd80-f71b-498b-b247-e7b9bbb3f601', 'e190615e-1101-7209-9932-7020bbd556f2', '0190615e-1101-7209-9932-7020bbd556f2', '1901bd79-f71b-498b-b247-e7b9bbb3f601') ON CONFLICT DO NOTHING;
+INSERT INTO public.docetats (id, ordre, datecreation, datemodification, validations_id, etats_id, documents_id, etapes_id) VALUES ('be8ef4af-d5a2-4254-cd79-af860672555e', 11, '2014-01-12', '2022-02-02', '1901bd80-f71b-498b-b247-e7b9bbb3f600', 'e190615e-1101-7209-9932-7020bbd556f3', '0190615e-1101-7209-9932-7020bbd556f3', '1901bd79-f71b-498b-b247-e7b9bbb3f602') ON CONFLICT DO NOTHING;
+INSERT INTO public.docetats (id, ordre, datecreation, datemodification, validations_id, etats_id, documents_id, etapes_id) VALUES ('be8ef4af-d5a2-4254-cd79-af860672556e', 12, '2023-10-25', '2024-03-02', '1901bd80-f71b-498b-b247-e7b9bbb3f603', 'e190615e-1101-7209-9932-7020bbd556f4', '0190615e-1101-7209-9932-7020bbd556f4', '1901bd79-f71b-498b-b247-e7b9bbb3f602') ON CONFLICT DO NOTHING;
+INSERT INTO public.docetats (id, ordre, datecreation, datemodification, validations_id, etats_id, documents_id, etapes_id) VALUES ('be8ef4af-d5a2-4254-cd79-af860672557e', 16, '2020-11-15', '2024-05-02', '1901bd80-f71b-498b-b247-e7b9bbb3f604', 'e190615e-1101-7209-9932-7020bbd556f4', '0190615e-1101-7209-9932-7020bbd556f5', '1901bd79-f71b-498b-b247-e7b9bbb3f600') ON CONFLICT DO NOTHING;
 
 
 --
@@ -1154,8 +1173,8 @@ INSERT INTO public.docetats (id, ordre, datecreation, datemodification, validati
 -- Data for Name: docetats_predecesseurs; Type: TABLE DATA; Schema: public; Owner: postgres
 --
 
-INSERT INTO public.docetats_predecesseurs (docetats_id, predecesseur_id) VALUES ('be8ef4af-d5a2-4254-cd79-af860672553e', 'be8ef4af-d5a2-4254-cd79-af860672555e');
-INSERT INTO public.docetats_predecesseurs (docetats_id, predecesseur_id) VALUES ('be8ef4af-d5a2-4254-cd79-af860672554e', 'be8ef4af-d5a2-4254-cd79-af860672556e');
+INSERT INTO public.docetats_predecesseurs (docetats_id, predecesseur_id) VALUES ('be8ef4af-d5a2-4254-cd79-af860672553e', 'be8ef4af-d5a2-4254-cd79-af860672555e') ON CONFLICT DO NOTHING;
+INSERT INTO public.docetats_predecesseurs (docetats_id, predecesseur_id) VALUES ('be8ef4af-d5a2-4254-cd79-af860672554e', 'be8ef4af-d5a2-4254-cd79-af860672556e') ON CONFLICT DO NOTHING;
 
 
 --
@@ -1164,14 +1183,14 @@ INSERT INTO public.docetats_predecesseurs (docetats_id, predecesseur_id) VALUES 
 -- Data for Name: documents; Type: TABLE DATA; Schema: public; Owner: postgres
 --
 
-INSERT INTO public.documents (id, titre, description, etat, datecreation, datemodification, typemouvement, afficherprix, afficherunite, afficherdistributeur, prixeditable, contientressources, estencaissable) VALUES ('0190615e-1101-7209-9932-7020bbd556f1', 'Note intervention', 'Document delivre par le medecin ou un infirmier de l''etablissement', true, '2023-03-31', '2023-03-31', 'Ajout', 'true', true, true, true, true, true);
-INSERT INTO public.documents (id, titre, description, etat, datecreation, datemodification, typemouvement, afficherprix, afficherunite, afficherdistributeur, prixeditable, contientressources, estencaissable) VALUES ('0190615e-1101-7209-9932-7020bbd556f2', 'Fiche de suivi', 'Document delivre par le medecin ou un infirmier de l''etablissement', true, '2023-03-31', '2023-03-31', 'Neutre', 'true', true, true, true, true, true);
-INSERT INTO public.documents (id, titre, description, etat, datecreation, datemodification, typemouvement, afficherprix, afficherunite, afficherdistributeur, prixeditable, contientressources, estencaissable) VALUES ('0190615e-1101-7209-9932-7020bbd556f3', 'Fiche de soin', 'Document delivre par le medecin ou un infirmier de l''etablissement', true, NULL, NULL, 'Ajout', 'true', true, true, true, true, false);
-INSERT INTO public.documents (id, titre, description, etat, datecreation, datemodification, typemouvement, afficherprix, afficherunite, afficherdistributeur, prixeditable, contientressources, estencaissable) VALUES ('0190615e-1101-7209-9932-7020bbd556f4', 'Formulaire de sortie', 'Document delivre par le medecin ou un infirmier de l''etablissement', true, NULL, NULL, 'Neutre', 'true', true, true, true, true, true);
-INSERT INTO public.documents (id, titre, description, etat, datecreation, datemodification, typemouvement, afficherprix, afficherunite, afficherdistributeur, prixeditable, contientressources, estencaissable) VALUES ('0190615e-1101-7209-9932-7020bbd556f5', 'ordonnance', 'Document delivre par le medecin ou un infirmier de l''etablissement', true, NULL, NULL, 'Neutre', 'true', true, true, true, true, false);
-INSERT INTO public.documents (id, titre, description, etat, datecreation, datemodification, typemouvement, afficherprix, afficherunite, afficherdistributeur, prixeditable, contientressources, estencaissable) VALUES ('0190615e-1101-7209-9932-7020bbd556f6', 'Bon de commande', 'Document delivre par le chef service', true, NULL, NULL, 'Neutre', 'true', true, true, true, true, false);
-INSERT INTO public.documents (id, titre, description, etat, datecreation, datemodification, typemouvement, afficherprix, afficherunite, afficherdistributeur, prixeditable, contientressources, estencaissable) VALUES ('0190615e-1101-7209-9932-7020bbd556f7', 'Bon de livraison', 'Document delivre par ', true, NULL, NULL, 'Reduire', 'true', true, true, true, true, true);
-INSERT INTO public.documents (id, titre, description, etat, datecreation, datemodification, typemouvement, afficherprix, afficherunite, afficherdistributeur, prixeditable, contientressources, estencaissable) VALUES ('0190615e-1101-7209-9932-7020bbd556f8', 'Fiche de selection', 'Document delivre par le magasinier', true, NULL, NULL, 'Neutre', 'true', true, true, true, true, false);
+INSERT INTO public.documents (id, titre, description, etat, datecreation, datemodification, typemouvement, afficherprix, afficherunite, afficherdistributeur, prixeditable, contientressources, estencaissable) VALUES ('0190615e-1101-7209-9932-7020bbd556f1', 'Note intervention', 'Document delivre par le medecin ou un infirmier de l''etablissement', true, '2023-03-31', '2023-03-31', 'Ajout', 'true', true, true, true, true, true) ON CONFLICT DO NOTHING;
+INSERT INTO public.documents (id, titre, description, etat, datecreation, datemodification, typemouvement, afficherprix, afficherunite, afficherdistributeur, prixeditable, contientressources, estencaissable) VALUES ('0190615e-1101-7209-9932-7020bbd556f2', 'Fiche de suivi', 'Document delivre par le medecin ou un infirmier de l''etablissement', true, '2023-03-31', '2023-03-31', 'Neutre', 'true', true, true, true, true, true) ON CONFLICT DO NOTHING;
+INSERT INTO public.documents (id, titre, description, etat, datecreation, datemodification, typemouvement, afficherprix, afficherunite, afficherdistributeur, prixeditable, contientressources, estencaissable) VALUES ('0190615e-1101-7209-9932-7020bbd556f3', 'Fiche de soin', 'Document delivre par le medecin ou un infirmier de l''etablissement', true, NULL, NULL, 'Ajout', 'true', true, true, true, true, false) ON CONFLICT DO NOTHING;
+INSERT INTO public.documents (id, titre, description, etat, datecreation, datemodification, typemouvement, afficherprix, afficherunite, afficherdistributeur, prixeditable, contientressources, estencaissable) VALUES ('0190615e-1101-7209-9932-7020bbd556f4', 'Formulaire de sortie', 'Document delivre par le medecin ou un infirmier de l''etablissement', true, NULL, NULL, 'Neutre', 'true', true, true, true, true, true) ON CONFLICT DO NOTHING;
+INSERT INTO public.documents (id, titre, description, etat, datecreation, datemodification, typemouvement, afficherprix, afficherunite, afficherdistributeur, prixeditable, contientressources, estencaissable) VALUES ('0190615e-1101-7209-9932-7020bbd556f5', 'ordonnance', 'Document delivre par le medecin ou un infirmier de l''etablissement', true, NULL, NULL, 'Neutre', 'true', true, true, true, true, false) ON CONFLICT DO NOTHING;
+INSERT INTO public.documents (id, titre, description, etat, datecreation, datemodification, typemouvement, afficherprix, afficherunite, afficherdistributeur, prixeditable, contientressources, estencaissable) VALUES ('0190615e-1101-7209-9932-7020bbd556f6', 'Bon de commande', 'Document delivre par le chef service', true, NULL, NULL, 'Neutre', 'true', true, true, true, true, false) ON CONFLICT DO NOTHING;
+INSERT INTO public.documents (id, titre, description, etat, datecreation, datemodification, typemouvement, afficherprix, afficherunite, afficherdistributeur, prixeditable, contientressources, estencaissable) VALUES ('0190615e-1101-7209-9932-7020bbd556f7', 'Bon de livraison', 'Document delivre par ', true, NULL, NULL, 'Reduire', 'true', true, true, true, true, true) ON CONFLICT DO NOTHING;
+INSERT INTO public.documents (id, titre, description, etat, datecreation, datemodification, typemouvement, afficherprix, afficherunite, afficherdistributeur, prixeditable, contientressources, estencaissable) VALUES ('0190615e-1101-7209-9932-7020bbd556f8', 'Fiche de selection', 'Document delivre par le magasinier', true, NULL, NULL, 'Neutre', 'true', true, true, true, true, false) ON CONFLICT DO NOTHING;
 
 
 --
@@ -1180,9 +1199,9 @@ INSERT INTO public.documents (id, titre, description, etat, datecreation, datemo
 -- Data for Name: documentspromotions; Type: TABLE DATA; Schema: public; Owner: postgres
 --
 
-INSERT INTO public.documentspromotions (documents_id, promotions_id) VALUES ('0190615e-1101-7209-9932-7020bbd556f1', '1979bd79-f81b-498b-b247-e7b9bbb3f600');
-INSERT INTO public.documentspromotions (documents_id, promotions_id) VALUES ('0190615e-1101-7209-9932-7020bbd556f8', '1979bd79-f81b-498b-b247-e7b9bbb3f602');
-INSERT INTO public.documentspromotions (documents_id, promotions_id) VALUES ('0190615e-1101-7209-9932-7020bbd556f5', '1979bd79-f81b-498b-b247-e7b9bbb3f601');
+INSERT INTO public.documentspromotions (documents_id, promotions_id) VALUES ('0190615e-1101-7209-9932-7020bbd556f1', '1979bd79-f81b-498b-b247-e7b9bbb3f600') ON CONFLICT DO NOTHING;
+INSERT INTO public.documentspromotions (documents_id, promotions_id) VALUES ('0190615e-1101-7209-9932-7020bbd556f8', '1979bd79-f81b-498b-b247-e7b9bbb3f602') ON CONFLICT DO NOTHING;
+INSERT INTO public.documentspromotions (documents_id, promotions_id) VALUES ('0190615e-1101-7209-9932-7020bbd556f5', '1979bd79-f81b-498b-b247-e7b9bbb3f601') ON CONFLICT DO NOTHING;
 
 
 --
@@ -1223,9 +1242,9 @@ INSERT INTO public.documentspromotions (documents_id, promotions_id) VALUES ('01
 -- Data for Name: etapes; Type: TABLE DATA; Schema: public; Owner: postgres
 --
 
-INSERT INTO public.etapes (id, libelle, etat, datemodification, parcours_id) VALUES ('1901bd79-f71b-498b-b247-e7b9bbb3f600', 'Paracetamol', 'true', '2022-01-02', '1900bd79-f71b-498b-b247-e7b9bbb3f602');
-INSERT INTO public.etapes (id, libelle, etat, datemodification, parcours_id) VALUES ('1901bd79-f71b-498b-b247-e7b9bbb3f601', 'Cartouche d''encre', 'true', '2020-01-08', '1900bd79-f71b-498b-b247-e7b9bbb3f600');
-INSERT INTO public.etapes (id, libelle, etat, datemodification, parcours_id) VALUES ('1901bd79-f71b-498b-b247-e7b9bbb3f602', 'Scanner', 'true', '2014-01-04', '1900bd79-f71b-498b-b247-e7b9bbb3f601');
+INSERT INTO public.etapes (id, libelle, etat, datemodification, parcours_id) VALUES ('1901bd79-f71b-498b-b247-e7b9bbb3f600', 'Paracetamol', 'true', '2022-01-02', '1900bd79-f71b-498b-b247-e7b9bbb3f602') ON CONFLICT DO NOTHING;
+INSERT INTO public.etapes (id, libelle, etat, datemodification, parcours_id) VALUES ('1901bd79-f71b-498b-b247-e7b9bbb3f601', 'Cartouche d''encre', 'true', '2020-01-08', '1900bd79-f71b-498b-b247-e7b9bbb3f600') ON CONFLICT DO NOTHING;
+INSERT INTO public.etapes (id, libelle, etat, datemodification, parcours_id) VALUES ('1901bd79-f71b-498b-b247-e7b9bbb3f602', 'Scanner', 'true', '2014-01-04', '1900bd79-f71b-498b-b247-e7b9bbb3f601') ON CONFLICT DO NOTHING;
 
 
 --
@@ -1234,10 +1253,10 @@ INSERT INTO public.etapes (id, libelle, etat, datemodification, parcours_id) VAL
 -- Data for Name: etats; Type: TABLE DATA; Schema: public; Owner: postgres
 --
 
-INSERT INTO public.etats (id, libelle, description, datecreation, datemodification) VALUES ('e190615e-1101-7209-9932-7020bbd556f1', 'En cours', 'En cours', '2022-01-01', '2022-01-02');
-INSERT INTO public.etats (id, libelle, description, datecreation, datemodification) VALUES ('e190615e-1101-7209-9932-7020bbd556f2', 'Valide', 'Valide', '2022-01-01', '2022-01-02');
-INSERT INTO public.etats (id, libelle, description, datecreation, datemodification) VALUES ('e190615e-1101-7209-9932-7020bbd556f3', 'Rejete', 'Rejete', '2022-01-01', '2022-01-02');
-INSERT INTO public.etats (id, libelle, description, datecreation, datemodification) VALUES ('e190615e-1101-7209-9932-7020bbd556f4', 'En attente', 'En attente', '2022-01-01', '2022-01-02');
+INSERT INTO public.etats (id, libelle, description, datecreation, datemodification) VALUES ('e190615e-1101-7209-9932-7020bbd556f1', 'En cours', 'En cours', '2022-01-01', '2022-01-02') ON CONFLICT DO NOTHING;
+INSERT INTO public.etats (id, libelle, description, datecreation, datemodification) VALUES ('e190615e-1101-7209-9932-7020bbd556f2', 'Valide', 'Valide', '2022-01-01', '2022-01-02') ON CONFLICT DO NOTHING;
+INSERT INTO public.etats (id, libelle, description, datecreation, datemodification) VALUES ('e190615e-1101-7209-9932-7020bbd556f3', 'Rejete', 'Rejete', '2022-01-01', '2022-01-02') ON CONFLICT DO NOTHING;
+INSERT INTO public.etats (id, libelle, description, datecreation, datemodification) VALUES ('e190615e-1101-7209-9932-7020bbd556f4', 'En attente', 'En attente', '2022-01-01', '2022-01-02') ON CONFLICT DO NOTHING;
 
 
 --
@@ -1246,12 +1265,12 @@ INSERT INTO public.etats (id, libelle, description, datecreation, datemodificati
 -- Data for Name: exemplaires; Type: TABLE DATA; Schema: public; Owner: postgres
 --
 
-INSERT INTO public.exemplaires (id, personnes_id) VALUES ('a1f8e3b0-4c6d-4e5e-9b7a-2a8b9b9c8d6f', '0618e585-f82a-4d5f-af2c-54f880d766d3');
-INSERT INTO public.exemplaires (id, personnes_id) VALUES ('d9e2f1c2-8b3a-4f6c-9d5e-1a7b8a7c6d5e', '0618e585-f82a-4d5f-af2c-04f880d766d3');
-INSERT INTO public.exemplaires (id, personnes_id) VALUES ('b3a7c8d6-1e2f-3d4c-5b6a-9e8f0a7b6c5d', '1979bd79-f71b-498b-b247-e7b9bbb3f600');
-INSERT INTO public.exemplaires (id, personnes_id) VALUES ('f0a7b6c5-d4e3f2a1-8b9c-7d6e-5f4a3b2c1e0d', '0618e585-f82a-4d5f-af1c-54f880d766d3');
-INSERT INTO public.exemplaires (id, personnes_id) VALUES ('a1f1e3b0-4c6d-4e5e-9b7a-2a8b9b9c8d6f', 'd301ff83-2a62-4e6d-aa23-57c7825bcd57');
-INSERT INTO public.exemplaires (id, personnes_id) VALUES ('a1f1e4b0-4c6d-4e5e-9b7a-2a8b9b9c8d6f', 'fdbff692-6b8d-43ab-a196-fcc3114b2daa');
+INSERT INTO public.exemplaires (id, personnes_id) VALUES ('a1f8e3b0-4c6d-4e5e-9b7a-2a8b9b9c8d6f', '0618e585-f82a-4d5f-af2c-54f880d766d3') ON CONFLICT DO NOTHING;
+INSERT INTO public.exemplaires (id, personnes_id) VALUES ('d9e2f1c2-8b3a-4f6c-9d5e-1a7b8a7c6d5e', '0618e585-f82a-4d5f-af2c-04f880d766d3') ON CONFLICT DO NOTHING;
+INSERT INTO public.exemplaires (id, personnes_id) VALUES ('b3a7c8d6-1e2f-3d4c-5b6a-9e8f0a7b6c5d', '1979bd79-f71b-498b-b247-e7b9bbb3f600') ON CONFLICT DO NOTHING;
+INSERT INTO public.exemplaires (id, personnes_id) VALUES ('f0a7b6c5-d4e3f2a1-8b9c-7d6e-5f4a3b2c1e0d', '0618e585-f82a-4d5f-af1c-54f880d766d3') ON CONFLICT DO NOTHING;
+INSERT INTO public.exemplaires (id, personnes_id) VALUES ('a1f1e3b0-4c6d-4e5e-9b7a-2a8b9b9c8d6f', 'd301ff83-2a62-4e6d-aa23-57c7825bcd57') ON CONFLICT DO NOTHING;
+INSERT INTO public.exemplaires (id, personnes_id) VALUES ('a1f1e4b0-4c6d-4e5e-9b7a-2a8b9b9c8d6f', 'fdbff692-6b8d-43ab-a196-fcc3114b2daa') ON CONFLICT DO NOTHING;
 
 
 --
@@ -1260,10 +1279,10 @@ INSERT INTO public.exemplaires (id, personnes_id) VALUES ('a1f1e4b0-4c6d-4e5e-9b
 -- Data for Name: familles; Type: TABLE DATA; Schema: public; Owner: postgres
 --
 
-INSERT INTO public.familles (id, libelle, description, etat, datecreation, datemodification) VALUES ('f190615e-1101-7209-9932-7020bbd556f1', 'Medicaments', 'Medicaments', true, '2022-01-01', '2022-01-02');
-INSERT INTO public.familles (id, libelle, description, etat, datecreation, datemodification) VALUES ('f190615e-1101-7209-9932-7020bbd556f2', 'Consommables Informatiques', 'Consommables Informatiques', true, '2022-01-01', '2022-01-02');
-INSERT INTO public.familles (id, libelle, description, etat, datecreation, datemodification) VALUES ('f190615e-1101-7209-9932-7020bbd556f3', 'BioMedical', 'BioMedical', true, '2022-01-01', '2022-01-02');
-INSERT INTO public.familles (id, libelle, description, etat, datecreation, datemodification) VALUES ('f190615e-1101-7209-9932-7020bbd556f4', 'Accessoires', 'Accessoires', true, '2022-01-01', '2022-01-02');
+INSERT INTO public.familles (id, libelle, description, etat, datecreation, datemodification) VALUES ('f190615e-1101-7209-9932-7020bbd556f1', 'Medicaments', 'Medicaments', true, '2022-01-01', '2022-01-02') ON CONFLICT DO NOTHING;
+INSERT INTO public.familles (id, libelle, description, etat, datecreation, datemodification) VALUES ('f190615e-1101-7209-9932-7020bbd556f2', 'Consommables Informatiques', 'Consommables Informatiques', true, '2022-01-01', '2022-01-02') ON CONFLICT DO NOTHING;
+INSERT INTO public.familles (id, libelle, description, etat, datecreation, datemodification) VALUES ('f190615e-1101-7209-9932-7020bbd556f3', 'BioMedical', 'BioMedical', true, '2022-01-01', '2022-01-02') ON CONFLICT DO NOTHING;
+INSERT INTO public.familles (id, libelle, description, etat, datecreation, datemodification) VALUES ('f190615e-1101-7209-9932-7020bbd556f4', 'Accessoires', 'Accessoires', true, '2022-01-01', '2022-01-02') ON CONFLICT DO NOTHING;
 
 
 --
@@ -1272,9 +1291,9 @@ INSERT INTO public.familles (id, libelle, description, etat, datecreation, datem
 -- Data for Name: famillespromotions; Type: TABLE DATA; Schema: public; Owner: postgres
 --
 
-INSERT INTO public.famillespromotions (familles_id, promotions_id) VALUES ('f190615e-1101-7209-9932-7020bbd556f1', '1979bd79-f81b-498b-b247-e7b9bbb3f602');
-INSERT INTO public.famillespromotions (familles_id, promotions_id) VALUES ('f190615e-1101-7209-9932-7020bbd556f3', '1979bd79-f81b-498b-b247-e7b9bbb3f601');
-INSERT INTO public.famillespromotions (familles_id, promotions_id) VALUES ('f190615e-1101-7209-9932-7020bbd556f4', '1979bd79-f81b-498b-b247-e7b9bbb3f600');
+INSERT INTO public.famillespromotions (familles_id, promotions_id) VALUES ('f190615e-1101-7209-9932-7020bbd556f1', '1979bd79-f81b-498b-b247-e7b9bbb3f602') ON CONFLICT DO NOTHING;
+INSERT INTO public.famillespromotions (familles_id, promotions_id) VALUES ('f190615e-1101-7209-9932-7020bbd556f3', '1979bd79-f81b-498b-b247-e7b9bbb3f601') ON CONFLICT DO NOTHING;
+INSERT INTO public.famillespromotions (familles_id, promotions_id) VALUES ('f190615e-1101-7209-9932-7020bbd556f4', '1979bd79-f81b-498b-b247-e7b9bbb3f600') ON CONFLICT DO NOTHING;
 
 
 --
@@ -1283,9 +1302,9 @@ INSERT INTO public.famillespromotions (familles_id, promotions_id) VALUES ('f190
 -- Data for Name: filesattentes; Type: TABLE DATA; Schema: public; Owner: postgres
 --
 
-INSERT INTO public.filesattentes (id, datecreation, datemodification, etat, services_id) VALUES ('f190615e-1101-7209-9932-7020bbd556f1', '2022-01-01', '2022-01-02', true, '2190615e-1101-7209-9932-7020bbd556f1');
-INSERT INTO public.filesattentes (id, datecreation, datemodification, etat, services_id) VALUES ('f190615e-1101-7209-9932-7020bbd556f2', '2022-01-01', '2022-01-02', true, '2190615e-1101-7209-9932-7020bbd556f2');
-INSERT INTO public.filesattentes (id, datecreation, datemodification, etat, services_id) VALUES ('f190615e-1101-7209-9932-7020bbd556f3', '2022-01-01', '2022-01-02', true, '2190615e-1101-7209-9932-7020bbd556f3');
+INSERT INTO public.filesattentes (id, datecreation, datemodification, etat, services_id) VALUES ('f190615e-1101-7209-9932-7020bbd556f1', '2022-01-01', '2022-01-02', true, '2190615e-1101-7209-9932-7020bbd556f1') ON CONFLICT DO NOTHING;
+INSERT INTO public.filesattentes (id, datecreation, datemodification, etat, services_id) VALUES ('f190615e-1101-7209-9932-7020bbd556f2', '2022-01-01', '2022-01-02', true, '2190615e-1101-7209-9932-7020bbd556f2') ON CONFLICT DO NOTHING;
+INSERT INTO public.filesattentes (id, datecreation, datemodification, etat, services_id) VALUES ('f190615e-1101-7209-9932-7020bbd556f3', '2022-01-01', '2022-01-02', true, '2190615e-1101-7209-9932-7020bbd556f3') ON CONFLICT DO NOTHING;
 
 
 --
@@ -1302,9 +1321,9 @@ INSERT INTO public.filesattentes (id, datecreation, datemodification, etat, serv
 -- Data for Name: jouerroles; Type: TABLE DATA; Schema: public; Owner: postgres
 --
 
-INSERT INTO public.jouerroles (id, etat, datecreation, datemodification, datefin, datedebut, personnels_id, roles_id) VALUES ('d76fd017-cceb-4926-8705-380b08ad9c6a', NULL, '2022-01-01', '2022-01-02', NULL, '2024-01-01', '4390615e-1101-7209-9932-7020bbd556f1', '5190615e-1101-7209-9932-7020bbd556f1');
-INSERT INTO public.jouerroles (id, etat, datecreation, datemodification, datefin, datedebut, personnels_id, roles_id) VALUES ('d39bcc09-ffe6-48d1-8582-f1173671d59f', NULL, '2022-01-01', '2022-01-02', NULL, '2024-01-01', '4390615e-1101-7209-9932-7020bbd556f2', '6130615e-1101-7209-9932-7020bbd556f2');
-INSERT INTO public.jouerroles (id, etat, datecreation, datemodification, datefin, datedebut, personnels_id, roles_id) VALUES ('9183d626-0c1a-4f70-8556-1c417d5feb91', NULL, '2022-01-01', '2022-01-02', NULL, '2024-01-01', '4390615e-1101-7209-9932-7020bbd556f3', '6191615e-1101-7209-9932-7020bbd556f3');
+INSERT INTO public.jouerroles (id, etat, datecreation, datemodification, datefin, datedebut, personnels_id, roles_id) VALUES ('d76fd017-cceb-4926-8705-380b08ad9c6a', NULL, '2022-01-01', '2022-01-02', NULL, '2024-01-01', '4390615e-1101-7209-9932-7020bbd556f1', '5190615e-1101-7209-9932-7020bbd556f1') ON CONFLICT DO NOTHING;
+INSERT INTO public.jouerroles (id, etat, datecreation, datemodification, datefin, datedebut, personnels_id, roles_id) VALUES ('d39bcc09-ffe6-48d1-8582-f1173671d59f', NULL, '2022-01-01', '2022-01-02', NULL, '2024-01-01', '4390615e-1101-7209-9932-7020bbd556f2', '6130615e-1101-7209-9932-7020bbd556f2') ON CONFLICT DO NOTHING;
+INSERT INTO public.jouerroles (id, etat, datecreation, datemodification, datefin, datedebut, personnels_id, roles_id) VALUES ('9183d626-0c1a-4f70-8556-1c417d5feb91', NULL, '2022-01-01', '2022-01-02', NULL, '2024-01-01', '4390615e-1101-7209-9932-7020bbd556f3', '6191615e-1101-7209-9932-7020bbd556f3') ON CONFLICT DO NOTHING;
 
 
 --
@@ -1329,12 +1348,12 @@ INSERT INTO public.jouerroles (id, etat, datecreation, datemodification, datefin
 -- Data for Name: missions; Type: TABLE DATA; Schema: public; Owner: postgres
 --
 
-INSERT INTO public.missions (id, libelle, description, etat, datecreation, datemodification, services_id) VALUES ('3190615e-1101-7209-9932-7020bbd556f1', 'Encaissement', 'recu de paiement lié à une mission', true, '2000-03-07', '1990-03-07', '2190615e-1101-7209-9932-7020bbd556f1');
-INSERT INTO public.missions (id, libelle, description, etat, datecreation, datemodification, services_id) VALUES ('3190615e-1101-7209-9932-7020bbd556f2', 'Resultat Labo', 'Communiquer les résultats du labo aux patients', true, '2000-03-07', '1990-03-07', '2190615e-1101-7209-9932-7020bbd556f1');
-INSERT INTO public.missions (id, libelle, description, etat, datecreation, datemodification, services_id) VALUES ('3190615e-1101-7209-9932-7020bbd556f3', 'Hospitalisation', 'bon d''entrée et de sortie est une mission', true, '2000-03-07', '1990-03-07', '2190615e-1101-7209-9932-7020bbd556f2');
-INSERT INTO public.missions (id, libelle, description, etat, datecreation, datemodification, services_id) VALUES ('3190615e-1101-7209-9932-7020bbd556f4', 'Prelevement Labo', 'Prélévement fait par laboratoire', true, '2000-03-07', '1990-03-07', '2190615e-1101-7209-9932-7020bbd556f2');
-INSERT INTO public.missions (id, libelle, description, etat, datecreation, datemodification, services_id) VALUES ('3190615e-1101-7209-9932-7020bbd556f5', 'Consultation Spécialiste', 'Consultation faite par un médecin', true, '2000-03-07', '1990-03-07', '2190615e-1101-7209-9932-7020bbd556f3');
-INSERT INTO public.missions (id, libelle, description, etat, datecreation, datemodification, services_id) VALUES ('3190615e-1101-7209-9932-7020bbd556f6', 'Consultation', 'Consultation faite par une infirmière', true, '2000-03-07', '1990-03-07', '2190615e-1101-7209-9932-7020bbd556f3');
+INSERT INTO public.missions (id, libelle, description, etat, datecreation, datemodification, services_id) VALUES ('3190615e-1101-7209-9932-7020bbd556f1', 'Encaissement', 'recu de paiement lié à une mission', true, '2000-03-07', '1990-03-07', '2190615e-1101-7209-9932-7020bbd556f1') ON CONFLICT DO NOTHING;
+INSERT INTO public.missions (id, libelle, description, etat, datecreation, datemodification, services_id) VALUES ('3190615e-1101-7209-9932-7020bbd556f2', 'Resultat Labo', 'Communiquer les résultats du labo aux patients', true, '2000-03-07', '1990-03-07', '2190615e-1101-7209-9932-7020bbd556f1') ON CONFLICT DO NOTHING;
+INSERT INTO public.missions (id, libelle, description, etat, datecreation, datemodification, services_id) VALUES ('3190615e-1101-7209-9932-7020bbd556f3', 'Hospitalisation', 'bon d''entrée et de sortie est une mission', true, '2000-03-07', '1990-03-07', '2190615e-1101-7209-9932-7020bbd556f2') ON CONFLICT DO NOTHING;
+INSERT INTO public.missions (id, libelle, description, etat, datecreation, datemodification, services_id) VALUES ('3190615e-1101-7209-9932-7020bbd556f4', 'Prelevement Labo', 'Prélévement fait par laboratoire', true, '2000-03-07', '1990-03-07', '2190615e-1101-7209-9932-7020bbd556f2') ON CONFLICT DO NOTHING;
+INSERT INTO public.missions (id, libelle, description, etat, datecreation, datemodification, services_id) VALUES ('3190615e-1101-7209-9932-7020bbd556f5', 'Consultation Spécialiste', 'Consultation faite par un médecin', true, '2000-03-07', '1990-03-07', '2190615e-1101-7209-9932-7020bbd556f3') ON CONFLICT DO NOTHING;
+INSERT INTO public.missions (id, libelle, description, etat, datecreation, datemodification, services_id) VALUES ('3190615e-1101-7209-9932-7020bbd556f6', 'Consultation', 'Consultation faite par une infirmière', true, '2000-03-07', '1990-03-07', '2190615e-1101-7209-9932-7020bbd556f3') ON CONFLICT DO NOTHING;
 
 
 --
@@ -1343,12 +1362,12 @@ INSERT INTO public.missions (id, libelle, description, etat, datecreation, datem
 -- Data for Name: mouvementcaisses; Type: TABLE DATA; Schema: public; Owner: postgres
 --
 
-INSERT INTO public.mouvementcaisses (id, montant, moyenpaiement, referencepaiement, detailjson, etat, typemvt, libelle, caisses_id, comptes_id, personnels_id, exemplaires_id, datecreation) VALUES ('97d314f5-84ad-77cd-874d-9c55f0e45790', 45.21, 'sur commande', NULL, NULL, NULL, NULL, NULL, 'a1f8e3b0-4c6d-4e5e-ab7a-2a8b9b9c8d6f', 'a1f8e3b0-4c6d-4e5e-7b7a-2a8b9b9c8d6f', '4390615e-1101-7209-9932-7020bbd556f1', 'a1f8e3b0-4c6d-4e5e-9b7a-2a8b9b9c8d6f', '2022-01-02');
-INSERT INTO public.mouvementcaisses (id, montant, moyenpaiement, referencepaiement, detailjson, etat, typemvt, libelle, caisses_id, comptes_id, personnels_id, exemplaires_id, datecreation) VALUES ('bfee750d-9b8c-7475-9373-08eff9b3ccb7', 1258.36, 'vente à credit', NULL, NULL, NULL, NULL, NULL, 'd9e2f1c2-8b3a-4f6c-bd5e-1a7b8a7c6d5e', 'd9e2f1c2-8b3a-4f6c-7d5e-1a7b8a7c6d5e', '4390615e-1101-7209-9932-7020bbd556f2', 'd9e2f1c2-8b3a-4f6c-9d5e-1a7b8a7c6d5e', '2022-01-02');
-INSERT INTO public.mouvementcaisses (id, montant, moyenpaiement, referencepaiement, detailjson, etat, typemvt, libelle, caisses_id, comptes_id, personnels_id, exemplaires_id, datecreation) VALUES ('0e7cea07-d09e-7f79-be6c-6dd27aecbce6', 1548.21, 'achat express', NULL, NULL, NULL, NULL, NULL, 'b3a7c8d6-1e2f-3d4c-cb6a-9e8f0a7b6c5d', 'b3a7c8d6-1e2f-3d4c-7b6a-9e8f0a7b6c5d', '4390615e-1101-7209-9932-7020bbd556f3', 'b3a7c8d6-1e2f-3d4c-5b6a-9e8f0a7b6c5d', '2022-01-02');
-INSERT INTO public.mouvementcaisses (id, montant, moyenpaiement, referencepaiement, detailjson, etat, typemvt, libelle, caisses_id, comptes_id, personnels_id, exemplaires_id, datecreation) VALUES ('decaedc8-a908-7cad-bdd6-0403a2614f22', 4563.21, 'inventaire', NULL, NULL, NULL, NULL, NULL, 'f0a7b6c5-d4e3f2a1-8d9c-7d6e-5f4a3b2c1e0d', 'f0a7b6c5-d4e3f2a1-7b9c-7d6e-5f4a3b2c1e0d', '4390615e-1101-7209-9932-7020bbd556f3', 'f0a7b6c5-d4e3f2a1-8b9c-7d6e-5f4a3b2c1e0d', '2022-01-02');
-INSERT INTO public.mouvementcaisses (id, montant, moyenpaiement, referencepaiement, detailjson, etat, typemvt, libelle, caisses_id, comptes_id, personnels_id, exemplaires_id, datecreation) VALUES ('0e7cea07-d09e-7f79-be6c-6dd27aecbc47', 5245.54, 'sur commande', NULL, NULL, NULL, NULL, NULL, 'b3a7c8d6-1e2f-3d4c-cb6a-9e8f0a7b6c5d', 'd301ff83-1b62-4e6d-aa23-57c7825bcd57', '4390615e-1101-7209-9932-7020bbd556f3', 'a1f1e3b0-4c6d-4e5e-9b7a-2a8b9b9c8d6f', '2022-01-02');
-INSERT INTO public.mouvementcaisses (id, montant, moyenpaiement, referencepaiement, detailjson, etat, typemvt, libelle, caisses_id, comptes_id, personnels_id, exemplaires_id, datecreation) VALUES ('0e7cea07-d09e-7f79-be6c-6dd27aecbc14', 42542453.54, 'sur commande', NULL, NULL, NULL, NULL, NULL, 'f0a7b6c5-d4e3f2a1-8d9c-7d6e-5f4a3b2c1e0d', 'adbff692-418d-43ab-a196-fcc3114b2daa', '4390615e-1101-7209-9932-7020bbd556f1', 'a1f1e4b0-4c6d-4e5e-9b7a-2a8b9b9c8d6f', '2022-01-02');
+INSERT INTO public.mouvementcaisses (id, montant, moyenpaiement, referencepaiement, detailjson, etat, typemvt, libelle, caisses_id, comptes_id, personnels_id, exemplaires_id, datecreation) VALUES ('97d314f5-84ad-77cd-874d-9c55f0e45790', 45.21, 'sur commande', NULL, NULL, NULL, NULL, NULL, 'a1f8e3b0-4c6d-4e5e-ab7a-2a8b9b9c8d6f', 'a1f8e3b0-4c6d-4e5e-7b7a-2a8b9b9c8d6f', '4390615e-1101-7209-9932-7020bbd556f1', 'a1f8e3b0-4c6d-4e5e-9b7a-2a8b9b9c8d6f', '2022-01-02') ON CONFLICT DO NOTHING;
+INSERT INTO public.mouvementcaisses (id, montant, moyenpaiement, referencepaiement, detailjson, etat, typemvt, libelle, caisses_id, comptes_id, personnels_id, exemplaires_id, datecreation) VALUES ('bfee750d-9b8c-7475-9373-08eff9b3ccb7', 1258.36, 'vente à credit', NULL, NULL, NULL, NULL, NULL, 'd9e2f1c2-8b3a-4f6c-bd5e-1a7b8a7c6d5e', 'd9e2f1c2-8b3a-4f6c-7d5e-1a7b8a7c6d5e', '4390615e-1101-7209-9932-7020bbd556f2', 'd9e2f1c2-8b3a-4f6c-9d5e-1a7b8a7c6d5e', '2022-01-02') ON CONFLICT DO NOTHING;
+INSERT INTO public.mouvementcaisses (id, montant, moyenpaiement, referencepaiement, detailjson, etat, typemvt, libelle, caisses_id, comptes_id, personnels_id, exemplaires_id, datecreation) VALUES ('0e7cea07-d09e-7f79-be6c-6dd27aecbce6', 1548.21, 'achat express', NULL, NULL, NULL, NULL, NULL, 'b3a7c8d6-1e2f-3d4c-cb6a-9e8f0a7b6c5d', 'b3a7c8d6-1e2f-3d4c-7b6a-9e8f0a7b6c5d', '4390615e-1101-7209-9932-7020bbd556f3', 'b3a7c8d6-1e2f-3d4c-5b6a-9e8f0a7b6c5d', '2022-01-02') ON CONFLICT DO NOTHING;
+INSERT INTO public.mouvementcaisses (id, montant, moyenpaiement, referencepaiement, detailjson, etat, typemvt, libelle, caisses_id, comptes_id, personnels_id, exemplaires_id, datecreation) VALUES ('decaedc8-a908-7cad-bdd6-0403a2614f22', 4563.21, 'inventaire', NULL, NULL, NULL, NULL, NULL, 'f0a7b6c5-d4e3f2a1-8d9c-7d6e-5f4a3b2c1e0d', 'f0a7b6c5-d4e3f2a1-7b9c-7d6e-5f4a3b2c1e0d', '4390615e-1101-7209-9932-7020bbd556f3', 'f0a7b6c5-d4e3f2a1-8b9c-7d6e-5f4a3b2c1e0d', '2022-01-02') ON CONFLICT DO NOTHING;
+INSERT INTO public.mouvementcaisses (id, montant, moyenpaiement, referencepaiement, detailjson, etat, typemvt, libelle, caisses_id, comptes_id, personnels_id, exemplaires_id, datecreation) VALUES ('0e7cea07-d09e-7f79-be6c-6dd27aecbc47', 5245.54, 'sur commande', NULL, NULL, NULL, NULL, NULL, 'b3a7c8d6-1e2f-3d4c-cb6a-9e8f0a7b6c5d', 'd301ff83-1b62-4e6d-aa23-57c7825bcd57', '4390615e-1101-7209-9932-7020bbd556f3', 'a1f1e3b0-4c6d-4e5e-9b7a-2a8b9b9c8d6f', '2022-01-02') ON CONFLICT DO NOTHING;
+INSERT INTO public.mouvementcaisses (id, montant, moyenpaiement, referencepaiement, detailjson, etat, typemvt, libelle, caisses_id, comptes_id, personnels_id, exemplaires_id, datecreation) VALUES ('0e7cea07-d09e-7f79-be6c-6dd27aecbc14', 42542453.54, 'sur commande', NULL, NULL, NULL, NULL, NULL, 'f0a7b6c5-d4e3f2a1-8d9c-7d6e-5f4a3b2c1e0d', 'adbff692-418d-43ab-a196-fcc3114b2daa', '4390615e-1101-7209-9932-7020bbd556f1', 'a1f1e4b0-4c6d-4e5e-9b7a-2a8b9b9c8d6f', '2022-01-02') ON CONFLICT DO NOTHING;
 
 
 --
@@ -1357,10 +1376,10 @@ INSERT INTO public.mouvementcaisses (id, montant, moyenpaiement, referencepaieme
 -- Data for Name: mouvements; Type: TABLE DATA; Schema: public; Owner: postgres
 --
 
-INSERT INTO public.mouvements (id, description, quantite, prix, datecreation, dateperemption, datemodification, ressources_id, distributeurs_id) VALUES ('97d314f5-84ad-47cd-874d-9c55f0e45790', 'sur commande', 10, 5000, '2022-01-01', NULL, '2022-01-02', '6190615e-1101-7209-9932-7020bbd556f1', '1979bd79-f71b-498b-b247-e7b9bbb3f600');
-INSERT INTO public.mouvements (id, description, quantite, prix, datecreation, dateperemption, datemodification, ressources_id, distributeurs_id) VALUES ('bfee750d-9b8c-4475-9373-08eff9b3ccb7', 'vente à credit', 20, 10000, '2022-01-01', NULL, '2022-01-02', '6190615e-1101-7209-9932-7020bbd556f2', '0618e585-f82a-4d5f-af1c-54f880d766d3');
-INSERT INTO public.mouvements (id, description, quantite, prix, datecreation, dateperemption, datemodification, ressources_id, distributeurs_id) VALUES ('0e7cea07-d09e-4f79-be6c-6dd27aecbce6', 'achat express', 5, 2000, '2022-01-01', NULL, '2022-01-02', '6190615e-1101-7209-9932-7020bbd556f3', '0618e585-f82a-4d5f-af2c-54f880d766d3');
-INSERT INTO public.mouvements (id, description, quantite, prix, datecreation, dateperemption, datemodification, ressources_id, distributeurs_id) VALUES ('decaedc8-a908-4cad-bdd6-0403a2614f22', 'inventaire', 5, 2000, '2022-01-01', NULL, '2022-01-02', '6190615e-1101-7209-9932-7020bbd556f4', '0618e585-f82a-4d5f-af2c-04f880d766d3');
+INSERT INTO public.mouvements (id, description, quantite, prix, datecreation, dateperemption, datemodification, ressources_id, distributeurs_id) VALUES ('97d314f5-84ad-47cd-874d-9c55f0e45790', 'sur commande', 10, 5000, '2022-01-01', NULL, '2022-01-02', '6190615e-1101-7209-9932-7020bbd556f1', '1979bd79-f71b-498b-b247-e7b9bbb3f600') ON CONFLICT DO NOTHING;
+INSERT INTO public.mouvements (id, description, quantite, prix, datecreation, dateperemption, datemodification, ressources_id, distributeurs_id) VALUES ('bfee750d-9b8c-4475-9373-08eff9b3ccb7', 'vente à credit', 20, 10000, '2022-01-01', NULL, '2022-01-02', '6190615e-1101-7209-9932-7020bbd556f2', '0618e585-f82a-4d5f-af1c-54f880d766d3') ON CONFLICT DO NOTHING;
+INSERT INTO public.mouvements (id, description, quantite, prix, datecreation, dateperemption, datemodification, ressources_id, distributeurs_id) VALUES ('0e7cea07-d09e-4f79-be6c-6dd27aecbce6', 'achat express', 5, 2000, '2022-01-01', NULL, '2022-01-02', '6190615e-1101-7209-9932-7020bbd556f3', '0618e585-f82a-4d5f-af2c-54f880d766d3') ON CONFLICT DO NOTHING;
+INSERT INTO public.mouvements (id, description, quantite, prix, datecreation, dateperemption, datemodification, ressources_id, distributeurs_id) VALUES ('decaedc8-a908-4cad-bdd6-0403a2614f22', 'inventaire', 5, 2000, '2022-01-01', NULL, '2022-01-02', '6190615e-1101-7209-9932-7020bbd556f4', '0618e585-f82a-4d5f-af2c-04f880d766d3') ON CONFLICT DO NOTHING;
 
 
 --
@@ -1369,9 +1388,9 @@ INSERT INTO public.mouvements (id, description, quantite, prix, datecreation, da
 -- Data for Name: ordreetats; Type: TABLE DATA; Schema: public; Owner: postgres
 --
 
-INSERT INTO public.ordreetats (id, datecreation, datemodification, datefinvote, ordre, etats_id) VALUES ('97d314a5-84ad-47cd-874d-9c55f0e45790', '2022-01-01', '2022-01-02', '2022-01-02', 2, 'e190615e-1101-7209-9932-7020bbd556f3');
-INSERT INTO public.ordreetats (id, datecreation, datemodification, datefinvote, ordre, etats_id) VALUES ('97d314a5-84ad-47cd-874d-9c55f0e45791', '2022-01-01', '2022-01-02', '2022-01-02', 5, 'e190615e-1101-7209-9932-7020bbd556f2');
-INSERT INTO public.ordreetats (id, datecreation, datemodification, datefinvote, ordre, etats_id) VALUES ('97d314a5-84ad-47cd-874d-9c55f0e45792', '2022-01-01', '2022-01-02', '2022-01-02', 8, 'e190615e-1101-7209-9932-7020bbd556f1');
+INSERT INTO public.ordreetats (id, datecreation, datemodification, datefinvote, ordre, etats_id) VALUES ('97d314a5-84ad-47cd-874d-9c55f0e45790', '2022-01-01', '2022-01-02', '2022-01-02', 2, 'e190615e-1101-7209-9932-7020bbd556f3') ON CONFLICT DO NOTHING;
+INSERT INTO public.ordreetats (id, datecreation, datemodification, datefinvote, ordre, etats_id) VALUES ('97d314a5-84ad-47cd-874d-9c55f0e45791', '2022-01-01', '2022-01-02', '2022-01-02', 5, 'e190615e-1101-7209-9932-7020bbd556f2') ON CONFLICT DO NOTHING;
+INSERT INTO public.ordreetats (id, datecreation, datemodification, datefinvote, ordre, etats_id) VALUES ('97d314a5-84ad-47cd-874d-9c55f0e45792', '2022-01-01', '2022-01-02', '2022-01-02', 8, 'e190615e-1101-7209-9932-7020bbd556f1') ON CONFLICT DO NOTHING;
 
 
 --
@@ -1396,9 +1415,9 @@ INSERT INTO public.ordreetats (id, datecreation, datemodification, datefinvote, 
 -- Data for Name: parcours; Type: TABLE DATA; Schema: public; Owner: postgres
 --
 
-INSERT INTO public.parcours (id, libelle, datecreation, datemodification) VALUES ('1900bd79-f71b-498b-b247-e7b9bbb3f600', 'Paracetamol', '2022-01-02', '2022-01-02');
-INSERT INTO public.parcours (id, libelle, datecreation, datemodification) VALUES ('1900bd79-f71b-498b-b247-e7b9bbb3f601', 'Cartouche d''encre', '2020-01-08', '2022-01-02');
-INSERT INTO public.parcours (id, libelle, datecreation, datemodification) VALUES ('1900bd79-f71b-498b-b247-e7b9bbb3f602', 'Scanner', '2014-01-04', '2022-01-02');
+INSERT INTO public.parcours (id, libelle, datecreation, datemodification) VALUES ('1900bd79-f71b-498b-b247-e7b9bbb3f600', 'Paracetamol', '2022-01-02', '2022-01-02') ON CONFLICT DO NOTHING;
+INSERT INTO public.parcours (id, libelle, datecreation, datemodification) VALUES ('1900bd79-f71b-498b-b247-e7b9bbb3f601', 'Cartouche d''encre', '2020-01-08', '2022-01-02') ON CONFLICT DO NOTHING;
+INSERT INTO public.parcours (id, libelle, datecreation, datemodification) VALUES ('1900bd79-f71b-498b-b247-e7b9bbb3f602', 'Scanner', '2014-01-04', '2022-01-02') ON CONFLICT DO NOTHING;
 
 
 --
@@ -1407,9 +1426,9 @@ INSERT INTO public.parcours (id, libelle, datecreation, datemodification) VALUES
 -- Data for Name: personnels; Type: TABLE DATA; Schema: public; Owner: postgres
 --
 
-INSERT INTO public.personnels (id, dateentree, nom, datenaissance, telephone, datesortie, email, prenom, sexe, datemodification) VALUES ('4390615e-1101-7209-9932-7020bbd556f1', '2024-07-27', 'Tagne', '2000-04-10', '655455487', NULL, 'tagnewillie@gmail.com', 'Willy', 'M', NULL);
-INSERT INTO public.personnels (id, dateentree, nom, datenaissance, telephone, datesortie, email, prenom, sexe, datemodification) VALUES ('4390615e-1101-7209-9932-7020bbd556f2', '2024-07-27', 'Peter', '2004-08-10', '655455487', NULL, 'peteralan@gmail.com', 'Alan', 'M', NULL);
-INSERT INTO public.personnels (id, dateentree, nom, datenaissance, telephone, datesortie, email, prenom, sexe, datemodification) VALUES ('4390615e-1101-7209-9932-7020bbd556f3', '2024-07-27', 'Dombo', '2002-10-10', '655455487', NULL, 'dombogilles@gmail.com', 'Gilles', 'M', NULL);
+INSERT INTO public.personnels (id, dateentree, nom, datenaissance, telephone, datesortie, email, prenom, sexe, datemodification) VALUES ('4390615e-1101-7209-9932-7020bbd556f1', '2024-07-27', 'Tagne', '2000-04-10', '655455487', NULL, 'tagnewillie@gmail.com', 'Willy', 'M', NULL) ON CONFLICT DO NOTHING;
+INSERT INTO public.personnels (id, dateentree, nom, datenaissance, telephone, datesortie, email, prenom, sexe, datemodification) VALUES ('4390615e-1101-7209-9932-7020bbd556f2', '2024-07-27', 'Peter', '2004-08-10', '655455487', NULL, 'peteralan@gmail.com', 'Alan', 'M', NULL) ON CONFLICT DO NOTHING;
+INSERT INTO public.personnels (id, dateentree, nom, datenaissance, telephone, datesortie, email, prenom, sexe, datemodification) VALUES ('4390615e-1101-7209-9932-7020bbd556f3', '2024-07-27', 'Dombo', '2002-10-10', '655455487', NULL, 'dombogilles@gmail.com', 'Gilles', 'M', NULL) ON CONFLICT DO NOTHING;
 
 
 --
@@ -1418,15 +1437,15 @@ INSERT INTO public.personnels (id, dateentree, nom, datenaissance, telephone, da
 -- Data for Name: personnes; Type: TABLE DATA; Schema: public; Owner: postgres
 --
 
-INSERT INTO public.personnes (id, adresse, mail, telephone, qrcodevalue, code, raisonsociale, nom, prenom, sexe, datenaissance, datecreation, datemodification, person_type, comptes_id) VALUES ('1979bd79-f71b-498b-b247-e7b9bbb3f600', NULL, NULL, NULL, NULL, 'd190615', 'ENEO', NULL, NULL, NULL, NULL, NULL, '2022-01-01', 'distributeurs', 'b3a7c8d6-1e2f-3d4c-7b6a-9e8f0a7b6c5d');
-INSERT INTO public.personnes (id, adresse, mail, telephone, qrcodevalue, code, raisonsociale, nom, prenom, sexe, datenaissance, datecreation, datemodification, person_type, comptes_id) VALUES ('0618e585-f82a-4d5f-af1c-54f880d766d3', NULL, NULL, NULL, NULL, 'd190616', 'Brasserie', NULL, NULL, NULL, NULL, NULL, '2022-01-01', 'distributeurs', 'f0a7b6c5-d4e3f2a1-7b9c-7d6e-5f4a3b2c1e0d');
-INSERT INTO public.personnes (id, adresse, mail, telephone, qrcodevalue, code, raisonsociale, nom, prenom, sexe, datenaissance, datecreation, datemodification, person_type, comptes_id) VALUES ('0618e585-f82a-4d5f-af2c-54f880d766d3', NULL, NULL, NULL, NULL, 'd190619', 'UCB', NULL, NULL, NULL, NULL, NULL, '2022-01-01', 'distributeurs', 'a1f8e3b0-4c6d-4e5e-7b7a-2a8b9b9c8d6f');
-INSERT INTO public.personnes (id, adresse, mail, telephone, qrcodevalue, code, raisonsociale, nom, prenom, sexe, datenaissance, datecreation, datemodification, person_type, comptes_id) VALUES ('0618e585-f82a-4d5f-af2c-04f880d766d3', NULL, NULL, NULL, NULL, 'd190614', 'Pharmacam', NULL, NULL, NULL, NULL, NULL, '2022-01-01', 'distributeurs', 'd9e2f1c2-8b3a-4f6c-7d5e-1a7b8a7c6d5e');
-INSERT INTO public.personnes (id, adresse, mail, telephone, qrcodevalue, code, raisonsociale, nom, prenom, sexe, datenaissance, datecreation, datemodification, person_type, comptes_id) VALUES ('fdbff692-6b8d-43ab-a196-fcc3114b2daa', NULL, NULL, NULL, NULL, NULL, NULL, 'Nkoabang', 'pnjerrtt@gma.com', 'Masculin', '2022-01-01', NULL, '2022-01-02', 'personnesphysique', 'adbff692-418d-43ab-a196-fcc3114b2daa');
-INSERT INTO public.personnes (id, adresse, mail, telephone, qrcodevalue, code, raisonsociale, nom, prenom, sexe, datenaissance, datecreation, datemodification, person_type, comptes_id) VALUES ('d301ff83-2a62-4e6d-aa23-57c7825bcd57', NULL, NULL, NULL, NULL, NULL, NULL, 'Essos', 'nayat@gma.com', 'Masculin', '2022-01-01', NULL, '2022-01-02', 'personnesphysique', 'd301ff83-1b62-4e6d-aa23-57c7825bcd57');
-INSERT INTO public.personnes (id, adresse, mail, telephone, qrcodevalue, code, raisonsociale, nom, prenom, sexe, datenaissance, datecreation, datemodification, person_type, comptes_id) VALUES ('0079bd79-f71b-498b-b247-e7b9bbb3f600', NULL, NULL, NULL, NULL, '43', 'GOSPEL', NULL, NULL, NULL, NULL, NULL, '2022-01-01', 'personnesmorales', '1179bd79-f71b-498b-b247-e7b9bbb3f600');
-INSERT INTO public.personnes (id, adresse, mail, telephone, qrcodevalue, code, raisonsociale, nom, prenom, sexe, datenaissance, datecreation, datemodification, person_type, comptes_id) VALUES ('0001ff83-2a62-4e6d-aa23-57c7825bcd57', NULL, NULL, NULL, NULL, '47', 'Sportif', NULL, NULL, NULL, NULL, NULL, '2022-01-01', 'personnesmorales', '00012f83-2a62-4e6d-aa23-57c7825bcd57');
-INSERT INTO public.personnes (id, adresse, mail, telephone, qrcodevalue, code, raisonsociale, nom, prenom, sexe, datenaissance, datecreation, datemodification, person_type, comptes_id) VALUES ('0018e585-f82a-4d5f-af1c-54f880d766d3', NULL, NULL, NULL, NULL, '45', 'armee', NULL, NULL, NULL, NULL, NULL, '2022-01-01', 'personnesmorales', '1518e585-f82a-4d5f-af1c-54f880d766d3');
+INSERT INTO public.personnes (id, adresse, mail, telephone, qrcodevalue, code, raisonsociale, nom, prenom, sexe, datenaissance, datecreation, datemodification, person_type, comptes_id) VALUES ('0001ff83-2a62-4e6d-aa23-57c7825bcd57', NULL, NULL, NULL, NULL, '47', 'Sportif', NULL, NULL, NULL, NULL, '1990-03-07', '2022-01-01', 'personnesmorales', '00012f83-2a62-4e6d-aa23-57c7825bcd57') ON CONFLICT DO NOTHING;
+INSERT INTO public.personnes (id, adresse, mail, telephone, qrcodevalue, code, raisonsociale, nom, prenom, sexe, datenaissance, datecreation, datemodification, person_type, comptes_id) VALUES ('0018e585-f82a-4d5f-af1c-54f880d766d3', NULL, NULL, NULL, NULL, '45', 'armee', NULL, NULL, NULL, NULL, '1990-03-07', '2022-01-01', 'personnesmorales', '1518e585-f82a-4d5f-af1c-54f880d766d3') ON CONFLICT DO NOTHING;
+INSERT INTO public.personnes (id, adresse, mail, telephone, qrcodevalue, code, raisonsociale, nom, prenom, sexe, datenaissance, datecreation, datemodification, person_type, comptes_id) VALUES ('0079bd79-f71b-498b-b247-e7b9bbb3f600', NULL, NULL, NULL, NULL, '43', 'GOSPEL', NULL, NULL, NULL, NULL, '1990-03-07', '2022-01-01', 'personnesmorales', '1179bd79-f71b-498b-b247-e7b9bbb3f600') ON CONFLICT DO NOTHING;
+INSERT INTO public.personnes (id, adresse, mail, telephone, qrcodevalue, code, raisonsociale, nom, prenom, sexe, datenaissance, datecreation, datemodification, person_type, comptes_id) VALUES ('0618e585-f82a-4d5f-af1c-54f880d766d3', NULL, NULL, NULL, NULL, 'd190616', 'Brasserie', NULL, NULL, NULL, NULL, '1990-03-07', '2022-01-01', 'distributeurs', 'f0a7b6c5-d4e3f2a1-7b9c-7d6e-5f4a3b2c1e0d') ON CONFLICT DO NOTHING;
+INSERT INTO public.personnes (id, adresse, mail, telephone, qrcodevalue, code, raisonsociale, nom, prenom, sexe, datenaissance, datecreation, datemodification, person_type, comptes_id) VALUES ('0618e585-f82a-4d5f-af2c-04f880d766d3', NULL, NULL, NULL, NULL, 'd190614', 'Pharmacam', NULL, NULL, NULL, NULL, '1990-03-07', '2022-01-01', 'distributeurs', 'd9e2f1c2-8b3a-4f6c-7d5e-1a7b8a7c6d5e') ON CONFLICT DO NOTHING;
+INSERT INTO public.personnes (id, adresse, mail, telephone, qrcodevalue, code, raisonsociale, nom, prenom, sexe, datenaissance, datecreation, datemodification, person_type, comptes_id) VALUES ('0618e585-f82a-4d5f-af2c-54f880d766d3', NULL, NULL, NULL, NULL, 'd190619', 'UCB', NULL, NULL, NULL, NULL, '1990-03-07', '2022-01-01', 'distributeurs', 'a1f8e3b0-4c6d-4e5e-7b7a-2a8b9b9c8d6f') ON CONFLICT DO NOTHING;
+INSERT INTO public.personnes (id, adresse, mail, telephone, qrcodevalue, code, raisonsociale, nom, prenom, sexe, datenaissance, datecreation, datemodification, person_type, comptes_id) VALUES ('1979bd79-f71b-498b-b247-e7b9bbb3f600', NULL, NULL, NULL, NULL, 'd190615', 'ENEO', NULL, NULL, NULL, NULL, '1990-03-07', '2022-01-01', 'distributeurs', 'b3a7c8d6-1e2f-3d4c-7b6a-9e8f0a7b6c5d') ON CONFLICT DO NOTHING;
+INSERT INTO public.personnes (id, adresse, mail, telephone, qrcodevalue, code, raisonsociale, nom, prenom, sexe, datenaissance, datecreation, datemodification, person_type, comptes_id) VALUES ('fdbff692-6b8d-43ab-a196-fcc3114b2daa', NULL, NULL, NULL, NULL, NULL, NULL, 'Nkoabang', 'pnjerrtt@gma.com', 'Masculin', '2022-01-01', '1990-03-07', '2022-01-02', 'personnesphysique', 'adbff692-418d-43ab-a196-fcc3114b2daa') ON CONFLICT DO NOTHING;
+INSERT INTO public.personnes (id, adresse, mail, telephone, qrcodevalue, code, raisonsociale, nom, prenom, sexe, datenaissance, datecreation, datemodification, person_type, comptes_id) VALUES ('d301ff83-2a62-4e6d-aa23-57c7825bcd57', NULL, NULL, NULL, NULL, NULL, NULL, 'Essos', 'nayat@gma.com', 'Masculin', '2022-01-01', '1990-03-07', '2022-01-02', 'distributeurs', 'd301ff83-1b62-4e6d-aa23-57c7825bcd57') ON CONFLICT DO NOTHING;
 
 
 --
@@ -1443,14 +1462,14 @@ INSERT INTO public.personnes (id, adresse, mail, telephone, qrcodevalue, code, r
 -- Data for Name: precomouvements; Type: TABLE DATA; Schema: public; Owner: postgres
 --
 
-INSERT INTO public.precomouvements (id, libelle, etat, datecreation, datemodification, typemouvement) VALUES ('6290615e-1101-7209-9932-7020bbd556f1', 'Inventaire', true, '2022-01-01', '2022-01-02', 'Neutre');
-INSERT INTO public.precomouvements (id, libelle, etat, datecreation, datemodification, typemouvement) VALUES ('6290615e-1101-7209-9932-7020bbd556f2', 'Vente', true, '2022-01-01', '2022-01-02', 'Reduire');
-INSERT INTO public.precomouvements (id, libelle, etat, datecreation, datemodification, typemouvement) VALUES ('17ee6932-2fcd-4b93-9c4c-0a4dbf659bff', 'Achat', true, '2022-01-01', '2022-01-02', 'Ajout');
-INSERT INTO public.precomouvements (id, libelle, etat, datecreation, datemodification, typemouvement) VALUES ('77b8577f-6d26-4376-af30-a3c8f75a9194', 'interdiction Infirmière', true, '2022-01-01', '2022-01-02', 'Neutre');
-INSERT INTO public.precomouvements (id, libelle, etat, datecreation, datemodification, typemouvement) VALUES ('6290615e-1101-7209-9932-7020bbd556f5', 'Don', true, '2022-01-01', '2022-01-02', 'Neutre');
-INSERT INTO public.precomouvements (id, libelle, etat, datecreation, datemodification, typemouvement) VALUES ('6290615e-1101-7209-9932-7020bbd556f6', 'Perte', true, '2022-01-01', '2022-01-02', 'Reduire');
-INSERT INTO public.precomouvements (id, libelle, etat, datecreation, datemodification, typemouvement) VALUES ('6290615e-1101-7209-9932-7020bbd556f7', 'Retour', true, '2022-01-01', '2022-01-02', 'Ajout');
-INSERT INTO public.precomouvements (id, libelle, etat, datecreation, datemodification, typemouvement) VALUES ('6290615e-1101-7209-9932-7020bbd556f8', 'Sortie magasin', true, '2022-01-01', '2022-01-02', 'Reduire');
+INSERT INTO public.precomouvements (id, libelle, etat, datecreation, datemodification, typemouvement) VALUES ('6290615e-1101-7209-9932-7020bbd556f1', 'Inventaire', true, '2022-01-01', '2022-01-02', 'Neutre') ON CONFLICT DO NOTHING;
+INSERT INTO public.precomouvements (id, libelle, etat, datecreation, datemodification, typemouvement) VALUES ('6290615e-1101-7209-9932-7020bbd556f2', 'Vente', true, '2022-01-01', '2022-01-02', 'Reduire') ON CONFLICT DO NOTHING;
+INSERT INTO public.precomouvements (id, libelle, etat, datecreation, datemodification, typemouvement) VALUES ('17ee6932-2fcd-4b93-9c4c-0a4dbf659bff', 'Achat', true, '2022-01-01', '2022-01-02', 'Ajout') ON CONFLICT DO NOTHING;
+INSERT INTO public.precomouvements (id, libelle, etat, datecreation, datemodification, typemouvement) VALUES ('77b8577f-6d26-4376-af30-a3c8f75a9194', 'interdiction Infirmière', true, '2022-01-01', '2022-01-02', 'Neutre') ON CONFLICT DO NOTHING;
+INSERT INTO public.precomouvements (id, libelle, etat, datecreation, datemodification, typemouvement) VALUES ('6290615e-1101-7209-9932-7020bbd556f5', 'Don', true, '2022-01-01', '2022-01-02', 'Neutre') ON CONFLICT DO NOTHING;
+INSERT INTO public.precomouvements (id, libelle, etat, datecreation, datemodification, typemouvement) VALUES ('6290615e-1101-7209-9932-7020bbd556f6', 'Perte', true, '2022-01-01', '2022-01-02', 'Reduire') ON CONFLICT DO NOTHING;
+INSERT INTO public.precomouvements (id, libelle, etat, datecreation, datemodification, typemouvement) VALUES ('6290615e-1101-7209-9932-7020bbd556f7', 'Retour', true, '2022-01-01', '2022-01-02', 'Ajout') ON CONFLICT DO NOTHING;
+INSERT INTO public.precomouvements (id, libelle, etat, datecreation, datemodification, typemouvement) VALUES ('6290615e-1101-7209-9932-7020bbd556f8', 'Sortie magasin', true, '2022-01-01', '2022-01-02', 'Reduire') ON CONFLICT DO NOTHING;
 
 
 --
@@ -1459,15 +1478,15 @@ INSERT INTO public.precomouvements (id, libelle, etat, datecreation, datemodific
 -- Data for Name: precomouvementsqtes; Type: TABLE DATA; Schema: public; Owner: postgres
 --
 
-INSERT INTO public.precomouvementsqtes (id, qtemin, qtemax, montantmin, montantmax, datecreation, datemodification, precomouvements_id, ressources_id) VALUES ('a97eb081-62f6-4617-ba29-64dc8593a9ff', 10, 100, 500, 5000, '2022-01-01', '2022-01-02', '6290615e-1101-7209-9932-7020bbd556f1', '6190615e-1101-7209-9932-7020bbd556f1');
-INSERT INTO public.precomouvementsqtes (id, qtemin, qtemax, montantmin, montantmax, datecreation, datemodification, precomouvements_id, ressources_id) VALUES ('a87eb081-62f6-4617-ba29-64dc8593a9ff', 20, 200, 1000, 10000, '2022-01-01', '2022-01-02', '6290615e-1101-7209-9932-7020bbd556f2', '6190615e-1101-7209-9932-7020bbd556f2');
-INSERT INTO public.precomouvementsqtes (id, qtemin, qtemax, montantmin, montantmax, datecreation, datemodification, precomouvements_id, ressources_id) VALUES ('a77eb081-62f6-4617-ba29-64dc8593a9ff', 5, 50, 200, 2000, '2022-01-01', '2022-01-02', '17ee6932-2fcd-4b93-9c4c-0a4dbf659bff', '6190615e-1101-7209-9932-7020bbd556f3');
-INSERT INTO public.precomouvementsqtes (id, qtemin, qtemax, montantmin, montantmax, datecreation, datemodification, precomouvements_id, ressources_id) VALUES ('a67eb081-62f6-4617-ba29-64dc8593a9ff', 5, 50, 200, 2000, '2022-01-01', '2022-01-02', '77b8577f-6d26-4376-af30-a3c8f75a9194', '6190615e-1101-7209-9932-7020bbd556f4');
-INSERT INTO public.precomouvementsqtes (id, qtemin, qtemax, montantmin, montantmax, datecreation, datemodification, precomouvements_id, ressources_id) VALUES ('a97eb071-62f6-4617-ba29-64dc8593a9ff', 5, 50, 200, 2000, '2022-01-01', '2022-01-02', '77b8577f-6d26-4376-af30-a3c8f75a9194', '6190615e-1101-7209-9932-7020bbd556f5');
-INSERT INTO public.precomouvementsqtes (id, qtemin, qtemax, montantmin, montantmax, datecreation, datemodification, precomouvements_id, ressources_id) VALUES ('a97eb081-72f6-4617-ba29-64dc8593a9ff', 5, 50, 200, 2000, '2022-01-01', '2022-01-02', '6290615e-1101-7209-9932-7020bbd556f6', NULL);
-INSERT INTO public.precomouvementsqtes (id, qtemin, qtemax, montantmin, montantmax, datecreation, datemodification, precomouvements_id, ressources_id) VALUES ('a97eb081-62f6-4617-ba49-64dc8593a9ff', 5, 50, 200, 2000, '2022-01-01', '2022-01-02', '6290615e-1101-7209-9932-7020bbd556f7', NULL);
-INSERT INTO public.precomouvementsqtes (id, qtemin, qtemax, montantmin, montantmax, datecreation, datemodification, precomouvements_id, ressources_id) VALUES ('a97eb081-62f6-4617-ba29-65dc8593a9ff', 5, 50, 200, 2000, '2022-01-01', '2022-01-02', '6290615e-1101-7209-9932-7020bbd556f8', NULL);
-INSERT INTO public.precomouvementsqtes (id, qtemin, qtemax, montantmin, montantmax, datecreation, datemodification, precomouvements_id, ressources_id) VALUES ('a97eb081-62f6-4617-ba29-74dc8593a9ff', 5, 50, 200, 2000, '2022-01-01', '2022-01-02', '6290615e-1101-7209-9932-7020bbd556f8', NULL);
+INSERT INTO public.precomouvementsqtes (id, qtemin, qtemax, montantmin, montantmax, datecreation, datemodification, precomouvements_id, ressources_id) VALUES ('a97eb081-62f6-4617-ba29-64dc8593a9ff', 10, 100, 500, 5000, '2022-01-01', '2022-01-02', '6290615e-1101-7209-9932-7020bbd556f1', '6190615e-1101-7209-9932-7020bbd556f1') ON CONFLICT DO NOTHING;
+INSERT INTO public.precomouvementsqtes (id, qtemin, qtemax, montantmin, montantmax, datecreation, datemodification, precomouvements_id, ressources_id) VALUES ('a87eb081-62f6-4617-ba29-64dc8593a9ff', 20, 200, 1000, 10000, '2022-01-01', '2022-01-02', '6290615e-1101-7209-9932-7020bbd556f2', '6190615e-1101-7209-9932-7020bbd556f2') ON CONFLICT DO NOTHING;
+INSERT INTO public.precomouvementsqtes (id, qtemin, qtemax, montantmin, montantmax, datecreation, datemodification, precomouvements_id, ressources_id) VALUES ('a77eb081-62f6-4617-ba29-64dc8593a9ff', 5, 50, 200, 2000, '2022-01-01', '2022-01-02', '17ee6932-2fcd-4b93-9c4c-0a4dbf659bff', '6190615e-1101-7209-9932-7020bbd556f3') ON CONFLICT DO NOTHING;
+INSERT INTO public.precomouvementsqtes (id, qtemin, qtemax, montantmin, montantmax, datecreation, datemodification, precomouvements_id, ressources_id) VALUES ('a67eb081-62f6-4617-ba29-64dc8593a9ff', 5, 50, 200, 2000, '2022-01-01', '2022-01-02', '77b8577f-6d26-4376-af30-a3c8f75a9194', '6190615e-1101-7209-9932-7020bbd556f4') ON CONFLICT DO NOTHING;
+INSERT INTO public.precomouvementsqtes (id, qtemin, qtemax, montantmin, montantmax, datecreation, datemodification, precomouvements_id, ressources_id) VALUES ('a97eb071-62f6-4617-ba29-64dc8593a9ff', 5, 50, 200, 2000, '2022-01-01', '2022-01-02', '77b8577f-6d26-4376-af30-a3c8f75a9194', '6190615e-1101-7209-9932-7020bbd556f5') ON CONFLICT DO NOTHING;
+INSERT INTO public.precomouvementsqtes (id, qtemin, qtemax, montantmin, montantmax, datecreation, datemodification, precomouvements_id, ressources_id) VALUES ('a97eb081-72f6-4617-ba29-64dc8593a9ff', 5, 50, 200, 2000, '2022-01-01', '2022-01-02', '6290615e-1101-7209-9932-7020bbd556f6', NULL) ON CONFLICT DO NOTHING;
+INSERT INTO public.precomouvementsqtes (id, qtemin, qtemax, montantmin, montantmax, datecreation, datemodification, precomouvements_id, ressources_id) VALUES ('a97eb081-62f6-4617-ba49-64dc8593a9ff', 5, 50, 200, 2000, '2022-01-01', '2022-01-02', '6290615e-1101-7209-9932-7020bbd556f7', NULL) ON CONFLICT DO NOTHING;
+INSERT INTO public.precomouvementsqtes (id, qtemin, qtemax, montantmin, montantmax, datecreation, datemodification, precomouvements_id, ressources_id) VALUES ('a97eb081-62f6-4617-ba29-65dc8593a9ff', 5, 50, 200, 2000, '2022-01-01', '2022-01-02', '6290615e-1101-7209-9932-7020bbd556f8', NULL) ON CONFLICT DO NOTHING;
+INSERT INTO public.precomouvementsqtes (id, qtemin, qtemax, montantmin, montantmax, datecreation, datemodification, precomouvements_id, ressources_id) VALUES ('a97eb081-62f6-4617-ba29-74dc8593a9ff', 5, 50, 200, 2000, '2022-01-01', '2022-01-02', '6290615e-1101-7209-9932-7020bbd556f8', NULL) ON CONFLICT DO NOTHING;
 
 
 --
@@ -1476,9 +1495,9 @@ INSERT INTO public.precomouvementsqtes (id, qtemin, qtemax, montantmin, montantm
 -- Data for Name: promotions; Type: TABLE DATA; Schema: public; Owner: postgres
 --
 
-INSERT INTO public.promotions (id, datedebut, datefin, codeunique, typeremise, valeurremise, datecreation, datemodification, distributeurs_id) VALUES ('1979bd79-f81b-498b-b247-e7b9bbb3f600', '2022-01-01', '2022-01-01', 'R5', 'garantie', 54.25, '2000-04-10', '2022-01-01', '1979bd79-f71b-498b-b247-e7b9bbb3f600');
-INSERT INTO public.promotions (id, datedebut, datefin, codeunique, typeremise, valeurremise, datecreation, datemodification, distributeurs_id) VALUES ('1979bd79-f81b-498b-b247-e7b9bbb3f601', '2022-01-01', '2022-01-01', 'R54', 'virement', 74.25, '2004-08-10', '2022-01-01', '0618e585-f82a-4d5f-af1c-54f880d766d3');
-INSERT INTO public.promotions (id, datedebut, datefin, codeunique, typeremise, valeurremise, datecreation, datemodification, distributeurs_id) VALUES ('1979bd79-f81b-498b-b247-e7b9bbb3f602', '2022-01-01', '2022-01-01', 'R45', 'devoir', 95.23, '2002-10-10', '2022-01-01', 'd301ff83-2a62-4e6d-aa23-57c7825bcd57');
+INSERT INTO public.promotions (id, datedebut, datefin, codeunique, typeremise, valeurremise, datecreation, datemodification, distributeurs_id) VALUES ('1979bd79-f81b-498b-b247-e7b9bbb3f600', '2022-01-01', '2022-01-01', 'R5', 'garantie', 54.25, '2000-04-10', '2022-01-01', '1979bd79-f71b-498b-b247-e7b9bbb3f600') ON CONFLICT DO NOTHING;
+INSERT INTO public.promotions (id, datedebut, datefin, codeunique, typeremise, valeurremise, datecreation, datemodification, distributeurs_id) VALUES ('1979bd79-f81b-498b-b247-e7b9bbb3f601', '2022-01-01', '2022-01-01', 'R54', 'virement', 74.25, '2004-08-10', '2022-01-01', '0618e585-f82a-4d5f-af1c-54f880d766d3') ON CONFLICT DO NOTHING;
+INSERT INTO public.promotions (id, datedebut, datefin, codeunique, typeremise, valeurremise, datecreation, datemodification, distributeurs_id) VALUES ('1979bd79-f81b-498b-b247-e7b9bbb3f602', '2022-01-01', '2022-01-01', 'R45', 'devoir', 95.23, '2002-10-10', '2022-01-01', 'd301ff83-2a62-4e6d-aa23-57c7825bcd57') ON CONFLICT DO NOTHING;
 
 
 --
@@ -1487,8 +1506,8 @@ INSERT INTO public.promotions (id, datedebut, datefin, codeunique, typeremise, v
 -- Data for Name: rattacher; Type: TABLE DATA; Schema: public; Owner: postgres
 --
 
-INSERT INTO public.rattacher (personnes_id, rattacher_id) VALUES ('1979bd79-f71b-498b-b247-e7b9bbb3f600', 'd301ff83-2a62-4e6d-aa23-57c7825bcd57');
-INSERT INTO public.rattacher (personnes_id, rattacher_id) VALUES ('fdbff692-6b8d-43ab-a196-fcc3114b2daa', '0618e585-f82a-4d5f-af1c-54f880d766d3');
+INSERT INTO public.rattacher (personnes_id, rattacher_id) VALUES ('1979bd79-f71b-498b-b247-e7b9bbb3f600', 'd301ff83-2a62-4e6d-aa23-57c7825bcd57') ON CONFLICT DO NOTHING;
+INSERT INTO public.rattacher (personnes_id, rattacher_id) VALUES ('fdbff692-6b8d-43ab-a196-fcc3114b2daa', '0618e585-f82a-4d5f-af1c-54f880d766d3') ON CONFLICT DO NOTHING;
 
 
 --
@@ -1497,9 +1516,9 @@ INSERT INTO public.rattacher (personnes_id, rattacher_id) VALUES ('fdbff692-6b8d
 -- Data for Name: remplir; Type: TABLE DATA; Schema: public; Owner: postgres
 --
 
-INSERT INTO public.remplir (datefin, datecreation, datedebut, etat, droitajouter, droitmodifier, droitconsulter, droitvalider, roles_id, missions_id) VALUES ('2022-01-02', '2022-01-02', '2022-01-02', true, true, true, true, true, '6130615e-1101-7209-9932-7020bbd556f2', '3190615e-1101-7209-9932-7020bbd556f1');
-INSERT INTO public.remplir (datefin, datecreation, datedebut, etat, droitajouter, droitmodifier, droitconsulter, droitvalider, roles_id, missions_id) VALUES ('2022-01-02', '2022-01-02', '2022-01-02', true, true, true, true, true, '5190615e-1101-7209-9932-7020bbd556f1', '3190615e-1101-7209-9932-7020bbd556f2');
-INSERT INTO public.remplir (datefin, datecreation, datedebut, etat, droitajouter, droitmodifier, droitconsulter, droitvalider, roles_id, missions_id) VALUES ('2022-01-02', '2022-01-02', '2022-01-02', true, true, true, true, true, '6191615e-1101-7209-9932-7020bbd556f3', '3190615e-1101-7209-9932-7020bbd556f3');
+INSERT INTO public.remplir (datefin, datecreation, datedebut, etat, droitajouter, droitmodifier, droitconsulter, droitvalider, roles_id, missions_id) VALUES ('2022-01-02', '2022-01-02', '2022-01-02', true, true, true, true, true, '6130615e-1101-7209-9932-7020bbd556f2', '3190615e-1101-7209-9932-7020bbd556f1') ON CONFLICT DO NOTHING;
+INSERT INTO public.remplir (datefin, datecreation, datedebut, etat, droitajouter, droitmodifier, droitconsulter, droitvalider, roles_id, missions_id) VALUES ('2022-01-02', '2022-01-02', '2022-01-02', true, true, true, true, true, '5190615e-1101-7209-9932-7020bbd556f1', '3190615e-1101-7209-9932-7020bbd556f2') ON CONFLICT DO NOTHING;
+INSERT INTO public.remplir (datefin, datecreation, datedebut, etat, droitajouter, droitmodifier, droitconsulter, droitvalider, roles_id, missions_id) VALUES ('2022-01-02', '2022-01-02', '2022-01-02', true, true, true, true, true, '6191615e-1101-7209-9932-7020bbd556f3', '3190615e-1101-7209-9932-7020bbd556f3') ON CONFLICT DO NOTHING;
 
 
 --
@@ -1508,9 +1527,9 @@ INSERT INTO public.remplir (datefin, datecreation, datedebut, etat, droitajouter
 -- Data for Name: respecter; Type: TABLE DATA; Schema: public; Owner: postgres
 --
 
-INSERT INTO public.respecter (mouvements_id, precomouvements_id) VALUES ('97d314f5-84ad-47cd-874d-9c55f0e45790', '6290615e-1101-7209-9932-7020bbd556f1');
-INSERT INTO public.respecter (mouvements_id, precomouvements_id) VALUES ('bfee750d-9b8c-4475-9373-08eff9b3ccb7', '6290615e-1101-7209-9932-7020bbd556f2');
-INSERT INTO public.respecter (mouvements_id, precomouvements_id) VALUES ('0e7cea07-d09e-4f79-be6c-6dd27aecbce6', '17ee6932-2fcd-4b93-9c4c-0a4dbf659bff');
+INSERT INTO public.respecter (mouvements_id, precomouvements_id) VALUES ('97d314f5-84ad-47cd-874d-9c55f0e45790', '6290615e-1101-7209-9932-7020bbd556f1') ON CONFLICT DO NOTHING;
+INSERT INTO public.respecter (mouvements_id, precomouvements_id) VALUES ('bfee750d-9b8c-4475-9373-08eff9b3ccb7', '6290615e-1101-7209-9932-7020bbd556f2') ON CONFLICT DO NOTHING;
+INSERT INTO public.respecter (mouvements_id, precomouvements_id) VALUES ('0e7cea07-d09e-4f79-be6c-6dd27aecbce6', '17ee6932-2fcd-4b93-9c4c-0a4dbf659bff') ON CONFLICT DO NOTHING;
 
 
 --
@@ -1519,24 +1538,24 @@ INSERT INTO public.respecter (mouvements_id, precomouvements_id) VALUES ('0e7cea
 -- Data for Name: ressources; Type: TABLE DATA; Schema: public; Owner: postgres
 --
 
-INSERT INTO public.ressources (id, libelle, description, etat, datecreation, datemodification, quantite, seuilalerte, prixentree, prixsortie, unite, familles_id) VALUES ('6190615e-1101-7209-9932-7020bbd556f1', 'Paracetamol', 'Paracetamol', true, '2022-01-01', '2022-01-02', 4, 20, 1200, 2000, 'Boite', 'f190615e-1101-7209-9932-7020bbd556f1');
-INSERT INTO public.ressources (id, libelle, description, etat, datecreation, datemodification, quantite, seuilalerte, prixentree, prixsortie, unite, familles_id) VALUES ('6190615e-1101-7209-9932-7020bbd556f2', 'Cartouche d''encre', 'Cartouche d''encre', true, '2022-01-01', '2022-01-02', 4, 10, 2000, 3000, 'Boite', 'f190615e-1101-7209-9932-7020bbd556f2');
-INSERT INTO public.ressources (id, libelle, description, etat, datecreation, datemodification, quantite, seuilalerte, prixentree, prixsortie, unite, familles_id) VALUES ('6190615e-1101-7209-9932-7020bbd556f3', 'Scanner', 'Scanner', true, '2022-01-01', '2022-01-02', 4, 2, 12000, 20000, 'Packs', 'f190615e-1101-7209-9932-7020bbd556f2');
-INSERT INTO public.ressources (id, libelle, description, etat, datecreation, datemodification, quantite, seuilalerte, prixentree, prixsortie, unite, familles_id) VALUES ('6190615e-1101-7209-9932-7020bbd556f4', 'Imprimante', 'Imprimante', true, '2022-01-01', '2022-01-02', 4, 2, 12000, 20000, 'Packs', 'f190615e-1101-7209-9932-7020bbd556f2');
-INSERT INTO public.ressources (id, libelle, description, etat, datecreation, datemodification, quantite, seuilalerte, prixentree, prixsortie, unite, familles_id) VALUES ('6190615e-1101-7209-9932-7020bbd556f5', 'Souris', 'Souris', true, '2022-01-01', '2022-01-02', 40, 12, 25, 20, 'Packs', 'f190615e-1101-7209-9932-7020bbd556f2');
-INSERT INTO public.ressources (id, libelle, description, etat, datecreation, datemodification, quantite, seuilalerte, prixentree, prixsortie, unite, familles_id) VALUES ('6190615e-1101-7209-9932-7020bbd556f6', 'Stylet', 'Stylet', true, '2022-01-01', '2022-01-02', 24, 9, 20, 20000, 'Packs', 'f190615e-1101-7209-9932-7020bbd556f2');
-INSERT INTO public.ressources (id, libelle, description, etat, datecreation, datemodification, quantite, seuilalerte, prixentree, prixsortie, unite, familles_id) VALUES ('6190615e-1101-7209-9932-7020bbd556f7', 'Doliprane', 'Doliprane', true, '2022-01-01', '2022-01-02', 90, 40, 1200, 2000, 'Boite', 'f190615e-1101-7209-9932-7020bbd556f1');
-INSERT INTO public.ressources (id, libelle, description, etat, datecreation, datemodification, quantite, seuilalerte, prixentree, prixsortie, unite, familles_id) VALUES ('6190615e-1101-7209-9932-7020bbd556f8', 'Pommade', 'Pommade', true, '2022-01-01', '2022-01-02', 20, 20, 200, 210, 'Litre', 'f190615e-1101-7209-9932-7020bbd556f1');
-INSERT INTO public.ressources (id, libelle, description, etat, datecreation, datemodification, quantite, seuilalerte, prixentree, prixsortie, unite, familles_id) VALUES ('6190615e-1101-7209-9932-7020bbd556f9', 'Seringue', 'Seringue', true, '2022-01-01', '2022-01-02', 42, 20, 100, 200, 'Boite', 'f190615e-1101-7209-9932-7020bbd556f3');
-INSERT INTO public.ressources (id, libelle, description, etat, datecreation, datemodification, quantite, seuilalerte, prixentree, prixsortie, unite, familles_id) VALUES ('6190615e-1101-7209-9932-7020bbd556f0', 'Perfuseur', 'Perfuseur', true, '2022-01-01', '2022-01-02', 5, 20, 90, 230, 'Boite', 'f190615e-1101-7209-9932-7020bbd556f3');
-INSERT INTO public.ressources (id, libelle, description, etat, datecreation, datemodification, quantite, seuilalerte, prixentree, prixsortie, unite, familles_id) VALUES ('5f516ee3-b23d-4cf1-8d55-e301764e0501', 'Gants', 'Gants', true, '2022-01-01', '2022-01-02', 4, 20, 1200, 2000, 'Boite', 'f190615e-1101-7209-9932-7020bbd556f3');
-INSERT INTO public.ressources (id, libelle, description, etat, datecreation, datemodification, quantite, seuilalerte, prixentree, prixsortie, unite, familles_id) VALUES ('5f516ee3-b23d-4cf1-8d55-e301764e0502', 'Masque', 'Masque', true, '2022-01-01', '2022-01-02', 4, 20, 1200, 2000, 'Boite', 'f190615e-1101-7209-9932-7020bbd556f3');
-INSERT INTO public.ressources (id, libelle, description, etat, datecreation, datemodification, quantite, seuilalerte, prixentree, prixsortie, unite, familles_id) VALUES ('5f516ee3-b23d-4cf1-8d55-e301764e0503', 'Gel Hydroalcoolique', 'Gel Hydroalcoolique', true, '2022-01-01', '2022-01-02', 54, 200, 1200, 2000, 'Litre', 'f190615e-1101-7209-9932-7020bbd556f3');
-INSERT INTO public.ressources (id, libelle, description, etat, datecreation, datemodification, quantite, seuilalerte, prixentree, prixsortie, unite, familles_id) VALUES ('5f516ee3-b23d-4cf1-8d55-e301764e0504', 'Coton', 'Coton', true, '2022-01-01', '2022-01-02', 44, 230, 1200, 2000, 'Boite', 'f190615e-1101-7209-9932-7020bbd556f3');
-INSERT INTO public.ressources (id, libelle, description, etat, datecreation, datemodification, quantite, seuilalerte, prixentree, prixsortie, unite, familles_id) VALUES ('5f516ee3-b23d-4cf1-8d55-e301764e0505', 'Papier', 'Papier', true, '2022-01-01', '2022-01-02', 24, 20, 1200, 2000, 'Packs', 'f190615e-1101-7209-9932-7020bbd556f4');
-INSERT INTO public.ressources (id, libelle, description, etat, datecreation, datemodification, quantite, seuilalerte, prixentree, prixsortie, unite, familles_id) VALUES ('5f516ee3-b23d-4cf1-8d55-e301764e0506', 'Encre', 'Encre', true, '2022-01-01', '2022-01-02', 4, 20, 1200, 2000, 'Boite', 'f190615e-1101-7209-9932-7020bbd556f4');
-INSERT INTO public.ressources (id, libelle, description, etat, datecreation, datemodification, quantite, seuilalerte, prixentree, prixsortie, unite, familles_id) VALUES ('5f516ee3-b23d-4cf1-8d55-e301764e0507', 'Toner', 'Toner', true, '2022-01-01', '2022-01-02', 4, 20, 1200, 2000, 'Boite', 'f190615e-1101-7209-9932-7020bbd556f4');
-INSERT INTO public.ressources (id, libelle, description, etat, datecreation, datemodification, quantite, seuilalerte, prixentree, prixsortie, unite, familles_id) VALUES ('5f516ee3-b23d-4cf1-8d55-e301764e0508', 'Cahier', 'Cahier', true, '2022-01-01', '2022-01-02', 4, 20, 1200, 2000, 'Packs', 'f190615e-1101-7209-9932-7020bbd556f4');
+INSERT INTO public.ressources (id, libelle, description, etat, datecreation, datemodification, quantite, seuilalerte, prixentree, prixsortie, unite, familles_id) VALUES ('6190615e-1101-7209-9932-7020bbd556f1', 'Paracetamol', 'Paracetamol', true, '2022-01-01', '2022-01-02', 4, 20, 1200, 2000, 'Boite', 'f190615e-1101-7209-9932-7020bbd556f1') ON CONFLICT DO NOTHING;
+INSERT INTO public.ressources (id, libelle, description, etat, datecreation, datemodification, quantite, seuilalerte, prixentree, prixsortie, unite, familles_id) VALUES ('6190615e-1101-7209-9932-7020bbd556f2', 'Cartouche d''encre', 'Cartouche d''encre', true, '2022-01-01', '2022-01-02', 4, 10, 2000, 3000, 'Boite', 'f190615e-1101-7209-9932-7020bbd556f2') ON CONFLICT DO NOTHING;
+INSERT INTO public.ressources (id, libelle, description, etat, datecreation, datemodification, quantite, seuilalerte, prixentree, prixsortie, unite, familles_id) VALUES ('6190615e-1101-7209-9932-7020bbd556f3', 'Scanner', 'Scanner', true, '2022-01-01', '2022-01-02', 4, 2, 12000, 20000, 'Packs', 'f190615e-1101-7209-9932-7020bbd556f2') ON CONFLICT DO NOTHING;
+INSERT INTO public.ressources (id, libelle, description, etat, datecreation, datemodification, quantite, seuilalerte, prixentree, prixsortie, unite, familles_id) VALUES ('6190615e-1101-7209-9932-7020bbd556f4', 'Imprimante', 'Imprimante', true, '2022-01-01', '2022-01-02', 4, 2, 12000, 20000, 'Packs', 'f190615e-1101-7209-9932-7020bbd556f2') ON CONFLICT DO NOTHING;
+INSERT INTO public.ressources (id, libelle, description, etat, datecreation, datemodification, quantite, seuilalerte, prixentree, prixsortie, unite, familles_id) VALUES ('6190615e-1101-7209-9932-7020bbd556f5', 'Souris', 'Souris', true, '2022-01-01', '2022-01-02', 40, 12, 25, 20, 'Packs', 'f190615e-1101-7209-9932-7020bbd556f2') ON CONFLICT DO NOTHING;
+INSERT INTO public.ressources (id, libelle, description, etat, datecreation, datemodification, quantite, seuilalerte, prixentree, prixsortie, unite, familles_id) VALUES ('6190615e-1101-7209-9932-7020bbd556f6', 'Stylet', 'Stylet', true, '2022-01-01', '2022-01-02', 24, 9, 20, 20000, 'Packs', 'f190615e-1101-7209-9932-7020bbd556f2') ON CONFLICT DO NOTHING;
+INSERT INTO public.ressources (id, libelle, description, etat, datecreation, datemodification, quantite, seuilalerte, prixentree, prixsortie, unite, familles_id) VALUES ('6190615e-1101-7209-9932-7020bbd556f7', 'Doliprane', 'Doliprane', true, '2022-01-01', '2022-01-02', 90, 40, 1200, 2000, 'Boite', 'f190615e-1101-7209-9932-7020bbd556f1') ON CONFLICT DO NOTHING;
+INSERT INTO public.ressources (id, libelle, description, etat, datecreation, datemodification, quantite, seuilalerte, prixentree, prixsortie, unite, familles_id) VALUES ('6190615e-1101-7209-9932-7020bbd556f8', 'Pommade', 'Pommade', true, '2022-01-01', '2022-01-02', 20, 20, 200, 210, 'Litre', 'f190615e-1101-7209-9932-7020bbd556f1') ON CONFLICT DO NOTHING;
+INSERT INTO public.ressources (id, libelle, description, etat, datecreation, datemodification, quantite, seuilalerte, prixentree, prixsortie, unite, familles_id) VALUES ('6190615e-1101-7209-9932-7020bbd556f9', 'Seringue', 'Seringue', true, '2022-01-01', '2022-01-02', 42, 20, 100, 200, 'Boite', 'f190615e-1101-7209-9932-7020bbd556f3') ON CONFLICT DO NOTHING;
+INSERT INTO public.ressources (id, libelle, description, etat, datecreation, datemodification, quantite, seuilalerte, prixentree, prixsortie, unite, familles_id) VALUES ('6190615e-1101-7209-9932-7020bbd556f0', 'Perfuseur', 'Perfuseur', true, '2022-01-01', '2022-01-02', 5, 20, 90, 230, 'Boite', 'f190615e-1101-7209-9932-7020bbd556f3') ON CONFLICT DO NOTHING;
+INSERT INTO public.ressources (id, libelle, description, etat, datecreation, datemodification, quantite, seuilalerte, prixentree, prixsortie, unite, familles_id) VALUES ('5f516ee3-b23d-4cf1-8d55-e301764e0501', 'Gants', 'Gants', true, '2022-01-01', '2022-01-02', 4, 20, 1200, 2000, 'Boite', 'f190615e-1101-7209-9932-7020bbd556f3') ON CONFLICT DO NOTHING;
+INSERT INTO public.ressources (id, libelle, description, etat, datecreation, datemodification, quantite, seuilalerte, prixentree, prixsortie, unite, familles_id) VALUES ('5f516ee3-b23d-4cf1-8d55-e301764e0502', 'Masque', 'Masque', true, '2022-01-01', '2022-01-02', 4, 20, 1200, 2000, 'Boite', 'f190615e-1101-7209-9932-7020bbd556f3') ON CONFLICT DO NOTHING;
+INSERT INTO public.ressources (id, libelle, description, etat, datecreation, datemodification, quantite, seuilalerte, prixentree, prixsortie, unite, familles_id) VALUES ('5f516ee3-b23d-4cf1-8d55-e301764e0503', 'Gel Hydroalcoolique', 'Gel Hydroalcoolique', true, '2022-01-01', '2022-01-02', 54, 200, 1200, 2000, 'Litre', 'f190615e-1101-7209-9932-7020bbd556f3') ON CONFLICT DO NOTHING;
+INSERT INTO public.ressources (id, libelle, description, etat, datecreation, datemodification, quantite, seuilalerte, prixentree, prixsortie, unite, familles_id) VALUES ('5f516ee3-b23d-4cf1-8d55-e301764e0504', 'Coton', 'Coton', true, '2022-01-01', '2022-01-02', 44, 230, 1200, 2000, 'Boite', 'f190615e-1101-7209-9932-7020bbd556f3') ON CONFLICT DO NOTHING;
+INSERT INTO public.ressources (id, libelle, description, etat, datecreation, datemodification, quantite, seuilalerte, prixentree, prixsortie, unite, familles_id) VALUES ('5f516ee3-b23d-4cf1-8d55-e301764e0505', 'Papier', 'Papier', true, '2022-01-01', '2022-01-02', 24, 20, 1200, 2000, 'Packs', 'f190615e-1101-7209-9932-7020bbd556f4') ON CONFLICT DO NOTHING;
+INSERT INTO public.ressources (id, libelle, description, etat, datecreation, datemodification, quantite, seuilalerte, prixentree, prixsortie, unite, familles_id) VALUES ('5f516ee3-b23d-4cf1-8d55-e301764e0506', 'Encre', 'Encre', true, '2022-01-01', '2022-01-02', 4, 20, 1200, 2000, 'Boite', 'f190615e-1101-7209-9932-7020bbd556f4') ON CONFLICT DO NOTHING;
+INSERT INTO public.ressources (id, libelle, description, etat, datecreation, datemodification, quantite, seuilalerte, prixentree, prixsortie, unite, familles_id) VALUES ('5f516ee3-b23d-4cf1-8d55-e301764e0507', 'Toner', 'Toner', true, '2022-01-01', '2022-01-02', 4, 20, 1200, 2000, 'Boite', 'f190615e-1101-7209-9932-7020bbd556f4') ON CONFLICT DO NOTHING;
+INSERT INTO public.ressources (id, libelle, description, etat, datecreation, datemodification, quantite, seuilalerte, prixentree, prixsortie, unite, familles_id) VALUES ('5f516ee3-b23d-4cf1-8d55-e301764e0508', 'Cahier', 'Cahier', true, '2022-01-01', '2022-01-02', 4, 20, 1200, 2000, 'Packs', 'f190615e-1101-7209-9932-7020bbd556f4') ON CONFLICT DO NOTHING;
 
 
 --
@@ -1545,9 +1564,9 @@ INSERT INTO public.ressources (id, libelle, description, etat, datecreation, dat
 -- Data for Name: ressourcespromotions; Type: TABLE DATA; Schema: public; Owner: postgres
 --
 
-INSERT INTO public.ressourcespromotions (promotions_id, ressources_id) VALUES ('1979bd79-f81b-498b-b247-e7b9bbb3f600', '6190615e-1101-7209-9932-7020bbd556f6');
-INSERT INTO public.ressourcespromotions (promotions_id, ressources_id) VALUES ('1979bd79-f81b-498b-b247-e7b9bbb3f601', '6190615e-1101-7209-9932-7020bbd556f4');
-INSERT INTO public.ressourcespromotions (promotions_id, ressources_id) VALUES ('1979bd79-f81b-498b-b247-e7b9bbb3f602', '6190615e-1101-7209-9932-7020bbd556f2');
+INSERT INTO public.ressourcespromotions (promotions_id, ressources_id) VALUES ('1979bd79-f81b-498b-b247-e7b9bbb3f600', '6190615e-1101-7209-9932-7020bbd556f6') ON CONFLICT DO NOTHING;
+INSERT INTO public.ressourcespromotions (promotions_id, ressources_id) VALUES ('1979bd79-f81b-498b-b247-e7b9bbb3f601', '6190615e-1101-7209-9932-7020bbd556f4') ON CONFLICT DO NOTHING;
+INSERT INTO public.ressourcespromotions (promotions_id, ressources_id) VALUES ('1979bd79-f81b-498b-b247-e7b9bbb3f602', '6190615e-1101-7209-9932-7020bbd556f2') ON CONFLICT DO NOTHING;
 
 
 --
@@ -1556,9 +1575,9 @@ INSERT INTO public.ressourcespromotions (promotions_id, ressources_id) VALUES ('
 -- Data for Name: roles; Type: TABLE DATA; Schema: public; Owner: postgres
 --
 
-INSERT INTO public.roles (id, titre, description, etat, datecreation, datemodification) VALUES ('5190615e-1101-7209-9932-7020bbd556f1', 'vendeur', 'personnel au contact du client', true, '2022-01-01', '2022-01-02');
-INSERT INTO public.roles (id, titre, description, etat, datecreation, datemodification) VALUES ('6130615e-1101-7209-9932-7020bbd556f2', 'traiteur', 'Personnel administratif', true, '2022-01-01', '2022-01-02');
-INSERT INTO public.roles (id, titre, description, etat, datecreation, datemodification) VALUES ('6191615e-1101-7209-9932-7020bbd556f3', 'marcheur', 'commercial sur le terrain', true, '2022-01-01', '2022-01-02');
+INSERT INTO public.roles (id, titre, description, etat, datecreation, datemodification) VALUES ('5190615e-1101-7209-9932-7020bbd556f1', 'vendeur', 'personnel au contact du client', true, '2022-01-01', '2022-01-02') ON CONFLICT DO NOTHING;
+INSERT INTO public.roles (id, titre, description, etat, datecreation, datemodification) VALUES ('6130615e-1101-7209-9932-7020bbd556f2', 'traiteur', 'Personnel administratif', true, '2022-01-01', '2022-01-02') ON CONFLICT DO NOTHING;
+INSERT INTO public.roles (id, titre, description, etat, datecreation, datemodification) VALUES ('6191615e-1101-7209-9932-7020bbd556f3', 'marcheur', 'commercial sur le terrain', true, '2022-01-01', '2022-01-02') ON CONFLICT DO NOTHING;
 
 
 --
@@ -1567,14 +1586,14 @@ INSERT INTO public.roles (id, titre, description, etat, datecreation, datemodifi
 -- Data for Name: sapplique; Type: TABLE DATA; Schema: public; Owner: postgres
 --
 
-INSERT INTO public.sapplique (familles_id, precomouvementsqtes_id) VALUES ('f190615e-1101-7209-9932-7020bbd556f1', 'a97eb081-72f6-4617-ba29-64dc8593a9ff');
-INSERT INTO public.sapplique (familles_id, precomouvementsqtes_id) VALUES ('f190615e-1101-7209-9932-7020bbd556f2', 'a97eb081-62f6-4617-ba49-64dc8593a9ff');
-INSERT INTO public.sapplique (familles_id, precomouvementsqtes_id) VALUES ('f190615e-1101-7209-9932-7020bbd556f3', 'a97eb081-62f6-4617-ba29-65dc8593a9ff');
-INSERT INTO public.sapplique (familles_id, precomouvementsqtes_id) VALUES ('f190615e-1101-7209-9932-7020bbd556f4', 'a97eb081-62f6-4617-ba49-64dc8593a9ff');
-INSERT INTO public.sapplique (familles_id, precomouvementsqtes_id) VALUES ('f190615e-1101-7209-9932-7020bbd556f1', 'a97eb081-62f6-4617-ba49-64dc8593a9ff');
-INSERT INTO public.sapplique (familles_id, precomouvementsqtes_id) VALUES ('f190615e-1101-7209-9932-7020bbd556f2', 'a97eb081-72f6-4617-ba29-64dc8593a9ff');
-INSERT INTO public.sapplique (familles_id, precomouvementsqtes_id) VALUES ('f190615e-1101-7209-9932-7020bbd556f3', 'a97eb081-62f6-4617-ba49-64dc8593a9ff');
-INSERT INTO public.sapplique (familles_id, precomouvementsqtes_id) VALUES ('f190615e-1101-7209-9932-7020bbd556f4', 'a97eb081-62f6-4617-ba29-65dc8593a9ff');
+INSERT INTO public.sapplique (familles_id, precomouvementsqtes_id) VALUES ('f190615e-1101-7209-9932-7020bbd556f1', 'a97eb081-72f6-4617-ba29-64dc8593a9ff') ON CONFLICT DO NOTHING;
+INSERT INTO public.sapplique (familles_id, precomouvementsqtes_id) VALUES ('f190615e-1101-7209-9932-7020bbd556f2', 'a97eb081-62f6-4617-ba49-64dc8593a9ff') ON CONFLICT DO NOTHING;
+INSERT INTO public.sapplique (familles_id, precomouvementsqtes_id) VALUES ('f190615e-1101-7209-9932-7020bbd556f3', 'a97eb081-62f6-4617-ba29-65dc8593a9ff') ON CONFLICT DO NOTHING;
+INSERT INTO public.sapplique (familles_id, precomouvementsqtes_id) VALUES ('f190615e-1101-7209-9932-7020bbd556f4', 'a97eb081-62f6-4617-ba49-64dc8593a9ff') ON CONFLICT DO NOTHING;
+INSERT INTO public.sapplique (familles_id, precomouvementsqtes_id) VALUES ('f190615e-1101-7209-9932-7020bbd556f1', 'a97eb081-62f6-4617-ba49-64dc8593a9ff') ON CONFLICT DO NOTHING;
+INSERT INTO public.sapplique (familles_id, precomouvementsqtes_id) VALUES ('f190615e-1101-7209-9932-7020bbd556f2', 'a97eb081-72f6-4617-ba29-64dc8593a9ff') ON CONFLICT DO NOTHING;
+INSERT INTO public.sapplique (familles_id, precomouvementsqtes_id) VALUES ('f190615e-1101-7209-9932-7020bbd556f3', 'a97eb081-62f6-4617-ba49-64dc8593a9ff') ON CONFLICT DO NOTHING;
+INSERT INTO public.sapplique (familles_id, precomouvementsqtes_id) VALUES ('f190615e-1101-7209-9932-7020bbd556f4', 'a97eb081-62f6-4617-ba29-65dc8593a9ff') ON CONFLICT DO NOTHING;
 
 
 --
@@ -1583,9 +1602,9 @@ INSERT INTO public.sapplique (familles_id, precomouvementsqtes_id) VALUES ('f190
 -- Data for Name: services; Type: TABLE DATA; Schema: public; Owner: postgres
 --
 
-INSERT INTO public.services (id, description, libelle, localisation, etat, datecreation, datemodification, codeunique, filesattentes_id) VALUES ('2190615e-1101-7209-9932-7020bbd556f1', 'bien', 'Consultation', 'douala', true, '1972-06-12', '1990-03-07', 'S1', 'f190615e-1101-7209-9932-7020bbd556f1');
-INSERT INTO public.services (id, description, libelle, localisation, etat, datecreation, datemodification, codeunique, filesattentes_id) VALUES ('2190615e-1101-7209-9932-7020bbd556f2', 'bien', 'Laboratoire', 'douala', true, '1990-08-06', '1990-03-07', 'S2', 'f190615e-1101-7209-9932-7020bbd556f2');
-INSERT INTO public.services (id, description, libelle, localisation, etat, datecreation, datemodification, codeunique, filesattentes_id) VALUES ('2190615e-1101-7209-9932-7020bbd556f3', 'bien', 'Pharmacie', 'douala', true, '2000-03-07', '1990-03-07', 'S3', 'f190615e-1101-7209-9932-7020bbd556f3');
+INSERT INTO public.services (id, description, libelle, localisation, etat, datecreation, datemodification, codeunique, filesattentes_id) VALUES ('2190615e-1101-7209-9932-7020bbd556f1', 'bien', 'Consultation', 'douala', true, '1972-06-12', '1990-03-07', 'S1', 'f190615e-1101-7209-9932-7020bbd556f1') ON CONFLICT DO NOTHING;
+INSERT INTO public.services (id, description, libelle, localisation, etat, datecreation, datemodification, codeunique, filesattentes_id) VALUES ('2190615e-1101-7209-9932-7020bbd556f2', 'bien', 'Laboratoire', 'douala', true, '1990-08-06', '1990-03-07', 'S2', 'f190615e-1101-7209-9932-7020bbd556f2') ON CONFLICT DO NOTHING;
+INSERT INTO public.services (id, description, libelle, localisation, etat, datecreation, datemodification, codeunique, filesattentes_id) VALUES ('2190615e-1101-7209-9932-7020bbd556f3', 'bien', 'Pharmacie', 'douala', true, '2000-03-07', '1990-03-07', 'S3', 'f190615e-1101-7209-9932-7020bbd556f3') ON CONFLICT DO NOTHING;
 
 
 --
@@ -1594,14 +1613,14 @@ INSERT INTO public.services (id, description, libelle, localisation, etat, datec
 -- Data for Name: suivre; Type: TABLE DATA; Schema: public; Owner: postgres
 --
 
-INSERT INTO public.suivre (documents_id, precomouvements_id) VALUES ('0190615e-1101-7209-9932-7020bbd556f1', '6290615e-1101-7209-9932-7020bbd556f1');
-INSERT INTO public.suivre (documents_id, precomouvements_id) VALUES ('0190615e-1101-7209-9932-7020bbd556f2', '6290615e-1101-7209-9932-7020bbd556f2');
-INSERT INTO public.suivre (documents_id, precomouvements_id) VALUES ('0190615e-1101-7209-9932-7020bbd556f3', '17ee6932-2fcd-4b93-9c4c-0a4dbf659bff');
-INSERT INTO public.suivre (documents_id, precomouvements_id) VALUES ('0190615e-1101-7209-9932-7020bbd556f4', '77b8577f-6d26-4376-af30-a3c8f75a9194');
-INSERT INTO public.suivre (documents_id, precomouvements_id) VALUES ('0190615e-1101-7209-9932-7020bbd556f5', '6290615e-1101-7209-9932-7020bbd556f5');
-INSERT INTO public.suivre (documents_id, precomouvements_id) VALUES ('0190615e-1101-7209-9932-7020bbd556f6', '6290615e-1101-7209-9932-7020bbd556f6');
-INSERT INTO public.suivre (documents_id, precomouvements_id) VALUES ('0190615e-1101-7209-9932-7020bbd556f7', '6290615e-1101-7209-9932-7020bbd556f7');
-INSERT INTO public.suivre (documents_id, precomouvements_id) VALUES ('0190615e-1101-7209-9932-7020bbd556f8', '6290615e-1101-7209-9932-7020bbd556f8');
+INSERT INTO public.suivre (documents_id, precomouvements_id) VALUES ('0190615e-1101-7209-9932-7020bbd556f1', '6290615e-1101-7209-9932-7020bbd556f1') ON CONFLICT DO NOTHING;
+INSERT INTO public.suivre (documents_id, precomouvements_id) VALUES ('0190615e-1101-7209-9932-7020bbd556f2', '6290615e-1101-7209-9932-7020bbd556f2') ON CONFLICT DO NOTHING;
+INSERT INTO public.suivre (documents_id, precomouvements_id) VALUES ('0190615e-1101-7209-9932-7020bbd556f3', '17ee6932-2fcd-4b93-9c4c-0a4dbf659bff') ON CONFLICT DO NOTHING;
+INSERT INTO public.suivre (documents_id, precomouvements_id) VALUES ('0190615e-1101-7209-9932-7020bbd556f4', '77b8577f-6d26-4376-af30-a3c8f75a9194') ON CONFLICT DO NOTHING;
+INSERT INTO public.suivre (documents_id, precomouvements_id) VALUES ('0190615e-1101-7209-9932-7020bbd556f5', '6290615e-1101-7209-9932-7020bbd556f5') ON CONFLICT DO NOTHING;
+INSERT INTO public.suivre (documents_id, precomouvements_id) VALUES ('0190615e-1101-7209-9932-7020bbd556f6', '6290615e-1101-7209-9932-7020bbd556f6') ON CONFLICT DO NOTHING;
+INSERT INTO public.suivre (documents_id, precomouvements_id) VALUES ('0190615e-1101-7209-9932-7020bbd556f7', '6290615e-1101-7209-9932-7020bbd556f7') ON CONFLICT DO NOTHING;
+INSERT INTO public.suivre (documents_id, precomouvements_id) VALUES ('0190615e-1101-7209-9932-7020bbd556f8', '6290615e-1101-7209-9932-7020bbd556f8') ON CONFLICT DO NOTHING;
 
 
 --
@@ -1610,12 +1629,12 @@ INSERT INTO public.suivre (documents_id, precomouvements_id) VALUES ('0190615e-1
 -- Data for Name: tickets; Type: TABLE DATA; Schema: public; Owner: postgres
 --
 
-INSERT INTO public.tickets (id, codecourt, datecreation, datemodification) VALUES ('be8ef47f-d5a2-4254-cd79-af860672553e', 'rr15', '2022-03-02', '2022-10-02');
-INSERT INTO public.tickets (id, codecourt, datecreation, datemodification) VALUES ('be8ef47f-d5a2-4254-cd79-af860672554e', 'rr10', '2002-01-02', '2022-11-02');
-INSERT INTO public.tickets (id, codecourt, datecreation, datemodification) VALUES ('be8ef47f-d5a2-4254-cd79-af860672555e', 'rr11', '2014-01-12', '2022-02-02');
-INSERT INTO public.tickets (id, codecourt, datecreation, datemodification) VALUES ('be8ef47f-d5a2-4254-cd79-af860672556e', 'rr12', '2023-10-25', '2024-03-02');
-INSERT INTO public.tickets (id, codecourt, datecreation, datemodification) VALUES ('be8ef47f-d5a2-4254-cd79-af860672557e', 'rr16', '2020-11-15', '2024-05-02');
-INSERT INTO public.tickets (id, codecourt, datecreation, datemodification) VALUES ('be8ef47f-d5a2-4254-cd79-af860672558e', 'rr14', '2022-01-02', '2023-03-02');
+INSERT INTO public.tickets (id, codecourt, datecreation, datemodification) VALUES ('be8ef47f-d5a2-4254-cd79-af860672553e', 'rr15', '2022-03-02', '2022-10-02') ON CONFLICT DO NOTHING;
+INSERT INTO public.tickets (id, codecourt, datecreation, datemodification) VALUES ('be8ef47f-d5a2-4254-cd79-af860672554e', 'rr10', '2002-01-02', '2022-11-02') ON CONFLICT DO NOTHING;
+INSERT INTO public.tickets (id, codecourt, datecreation, datemodification) VALUES ('be8ef47f-d5a2-4254-cd79-af860672555e', 'rr11', '2014-01-12', '2022-02-02') ON CONFLICT DO NOTHING;
+INSERT INTO public.tickets (id, codecourt, datecreation, datemodification) VALUES ('be8ef47f-d5a2-4254-cd79-af860672556e', 'rr12', '2023-10-25', '2024-03-02') ON CONFLICT DO NOTHING;
+INSERT INTO public.tickets (id, codecourt, datecreation, datemodification) VALUES ('be8ef47f-d5a2-4254-cd79-af860672557e', 'rr16', '2020-11-15', '2024-05-02') ON CONFLICT DO NOTHING;
+INSERT INTO public.tickets (id, codecourt, datecreation, datemodification) VALUES ('be8ef47f-d5a2-4254-cd79-af860672558e', 'rr14', '2022-01-02', '2023-03-02') ON CONFLICT DO NOTHING;
 
 
 --
@@ -1624,12 +1643,12 @@ INSERT INTO public.tickets (id, codecourt, datecreation, datemodification) VALUE
 -- Data for Name: ticketsfilesattentes; Type: TABLE DATA; Schema: public; Owner: postgres
 --
 
-INSERT INTO public.ticketsfilesattentes (id, etat, dateaffectation, tickets_id, filesattentes_id) VALUES ('be8ef47f-d7a2-4254-cd79-af860672553e', true, '2024-11-04', 'be8ef47f-d5a2-4254-cd79-af860672553e', 'f190615e-1101-7209-9932-7020bbd556f1');
-INSERT INTO public.ticketsfilesattentes (id, etat, dateaffectation, tickets_id, filesattentes_id) VALUES ('be8ef47f-d7a2-4254-cd79-af860672554e', false, '2022-12-04', 'be8ef47f-d5a2-4254-cd79-af860672554e', 'f190615e-1101-7209-9932-7020bbd556f2');
-INSERT INTO public.ticketsfilesattentes (id, etat, dateaffectation, tickets_id, filesattentes_id) VALUES ('be8ef47f-d7a2-4254-cd79-af860672555e', false, '2020-11-04', 'be8ef47f-d5a2-4254-cd79-af860672558e', 'f190615e-1101-7209-9932-7020bbd556f3');
-INSERT INTO public.ticketsfilesattentes (id, etat, dateaffectation, tickets_id, filesattentes_id) VALUES ('be8ef47f-d7a2-4254-cd79-af860672556e', false, '2021-04-04', 'be8ef47f-d5a2-4254-cd79-af860672556e', 'f190615e-1101-7209-9932-7020bbd556f3');
-INSERT INTO public.ticketsfilesattentes (id, etat, dateaffectation, tickets_id, filesattentes_id) VALUES ('be8ef47f-d7a2-4254-cd79-af860672557e', true, '2023-02-04', 'be8ef47f-d5a2-4254-cd79-af860672555e', 'f190615e-1101-7209-9932-7020bbd556f2');
-INSERT INTO public.ticketsfilesattentes (id, etat, dateaffectation, tickets_id, filesattentes_id) VALUES ('be8ef47f-d7a2-4254-cd79-af860672558e', false, '2022-01-04', 'be8ef47f-d5a2-4254-cd79-af860672557e', 'f190615e-1101-7209-9932-7020bbd556f3');
+INSERT INTO public.ticketsfilesattentes (id, etat, dateaffectation, tickets_id, filesattentes_id) VALUES ('be8ef47f-d7a2-4254-cd79-af860672553e', true, '2024-11-04', 'be8ef47f-d5a2-4254-cd79-af860672553e', 'f190615e-1101-7209-9932-7020bbd556f1') ON CONFLICT DO NOTHING;
+INSERT INTO public.ticketsfilesattentes (id, etat, dateaffectation, tickets_id, filesattentes_id) VALUES ('be8ef47f-d7a2-4254-cd79-af860672554e', false, '2022-12-04', 'be8ef47f-d5a2-4254-cd79-af860672554e', 'f190615e-1101-7209-9932-7020bbd556f2') ON CONFLICT DO NOTHING;
+INSERT INTO public.ticketsfilesattentes (id, etat, dateaffectation, tickets_id, filesattentes_id) VALUES ('be8ef47f-d7a2-4254-cd79-af860672555e', false, '2020-11-04', 'be8ef47f-d5a2-4254-cd79-af860672558e', 'f190615e-1101-7209-9932-7020bbd556f3') ON CONFLICT DO NOTHING;
+INSERT INTO public.ticketsfilesattentes (id, etat, dateaffectation, tickets_id, filesattentes_id) VALUES ('be8ef47f-d7a2-4254-cd79-af860672556e', false, '2021-04-04', 'be8ef47f-d5a2-4254-cd79-af860672556e', 'f190615e-1101-7209-9932-7020bbd556f3') ON CONFLICT DO NOTHING;
+INSERT INTO public.ticketsfilesattentes (id, etat, dateaffectation, tickets_id, filesattentes_id) VALUES ('be8ef47f-d7a2-4254-cd79-af860672557e', true, '2023-02-04', 'be8ef47f-d5a2-4254-cd79-af860672555e', 'f190615e-1101-7209-9932-7020bbd556f2') ON CONFLICT DO NOTHING;
+INSERT INTO public.ticketsfilesattentes (id, etat, dateaffectation, tickets_id, filesattentes_id) VALUES ('be8ef47f-d7a2-4254-cd79-af860672558e', false, '2022-01-04', 'be8ef47f-d5a2-4254-cd79-af860672557e', 'f190615e-1101-7209-9932-7020bbd556f3') ON CONFLICT DO NOTHING;
 
 
 --
@@ -1638,10 +1657,10 @@ INSERT INTO public.ticketsfilesattentes (id, etat, dateaffectation, tickets_id, 
 -- Data for Name: traiter; Type: TABLE DATA; Schema: public; Owner: postgres
 --
 
-INSERT INTO public.traiter (documents_id, missions_id) VALUES ('0190615e-1101-7209-9932-7020bbd556f1', '3190615e-1101-7209-9932-7020bbd556f1');
-INSERT INTO public.traiter (documents_id, missions_id) VALUES ('0190615e-1101-7209-9932-7020bbd556f1', '3190615e-1101-7209-9932-7020bbd556f2');
-INSERT INTO public.traiter (documents_id, missions_id) VALUES ('0190615e-1101-7209-9932-7020bbd556f2', '3190615e-1101-7209-9932-7020bbd556f2');
-INSERT INTO public.traiter (documents_id, missions_id) VALUES ('0190615e-1101-7209-9932-7020bbd556f3', '3190615e-1101-7209-9932-7020bbd556f3');
+INSERT INTO public.traiter (documents_id, missions_id) VALUES ('0190615e-1101-7209-9932-7020bbd556f1', '3190615e-1101-7209-9932-7020bbd556f1') ON CONFLICT DO NOTHING;
+INSERT INTO public.traiter (documents_id, missions_id) VALUES ('0190615e-1101-7209-9932-7020bbd556f1', '3190615e-1101-7209-9932-7020bbd556f2') ON CONFLICT DO NOTHING;
+INSERT INTO public.traiter (documents_id, missions_id) VALUES ('0190615e-1101-7209-9932-7020bbd556f2', '3190615e-1101-7209-9932-7020bbd556f2') ON CONFLICT DO NOTHING;
+INSERT INTO public.traiter (documents_id, missions_id) VALUES ('0190615e-1101-7209-9932-7020bbd556f3', '3190615e-1101-7209-9932-7020bbd556f3') ON CONFLICT DO NOTHING;
 
 
 --
@@ -1658,11 +1677,11 @@ INSERT INTO public.traiter (documents_id, missions_id) VALUES ('0190615e-1101-72
 -- Data for Name: validations; Type: TABLE DATA; Schema: public; Owner: postgres
 --
 
-INSERT INTO public.validations (id, code, etat, datecreation, datemodification, typevote, dureevote, typevalidation, roles_id) VALUES ('1901bd80-f71b-498b-b247-e7b9bbb3f602', 'o78', 'attente', '2022-03-02', '2022-10-02', 'multiple', 14, 'prioritaire', '5190615e-1101-7209-9932-7020bbd556f1');
-INSERT INTO public.validations (id, code, etat, datecreation, datemodification, typevote, dureevote, typevalidation, roles_id) VALUES ('1901bd80-f71b-498b-b247-e7b9bbb3f601', 'o89', 'suppression', '2002-01-02', '2022-11-02', 'multiple', 2, 'prioritaire', '6130615e-1101-7209-9932-7020bbd556f2');
-INSERT INTO public.validations (id, code, etat, datecreation, datemodification, typevote, dureevote, typevalidation, roles_id) VALUES ('1901bd80-f71b-498b-b247-e7b9bbb3f600', 'o85', 'traitement', '2014-01-12', '2022-02-02', 'multiple', 5, 'rechargeable', '6191615e-1101-7209-9932-7020bbd556f3');
-INSERT INTO public.validations (id, code, etat, datecreation, datemodification, typevote, dureevote, typevalidation, roles_id) VALUES ('1901bd80-f71b-498b-b247-e7b9bbb3f603', 'o82', 'traitement', '2023-10-25', '2024-03-02', 'multiple', 22, 'prioritaire', '5190615e-1101-7209-9932-7020bbd556f1');
-INSERT INTO public.validations (id, code, etat, datecreation, datemodification, typevote, dureevote, typevalidation, roles_id) VALUES ('1901bd80-f71b-498b-b247-e7b9bbb3f604', 'o84', 'traitement', '2020-11-15', '2024-05-02', 'multiple', 40, 'prioritaire', '6191615e-1101-7209-9932-7020bbd556f3');
+INSERT INTO public.validations (id, code, etat, datecreation, datemodification, typevote, dureevote, typevalidation, roles_id) VALUES ('1901bd80-f71b-498b-b247-e7b9bbb3f602', 'o78', 'attente', '2022-03-02', '2022-10-02', 'multiple', 14, 'prioritaire', '5190615e-1101-7209-9932-7020bbd556f1') ON CONFLICT DO NOTHING;
+INSERT INTO public.validations (id, code, etat, datecreation, datemodification, typevote, dureevote, typevalidation, roles_id) VALUES ('1901bd80-f71b-498b-b247-e7b9bbb3f601', 'o89', 'suppression', '2002-01-02', '2022-11-02', 'multiple', 2, 'prioritaire', '6130615e-1101-7209-9932-7020bbd556f2') ON CONFLICT DO NOTHING;
+INSERT INTO public.validations (id, code, etat, datecreation, datemodification, typevote, dureevote, typevalidation, roles_id) VALUES ('1901bd80-f71b-498b-b247-e7b9bbb3f600', 'o85', 'traitement', '2014-01-12', '2022-02-02', 'multiple', 5, 'rechargeable', '6191615e-1101-7209-9932-7020bbd556f3') ON CONFLICT DO NOTHING;
+INSERT INTO public.validations (id, code, etat, datecreation, datemodification, typevote, dureevote, typevalidation, roles_id) VALUES ('1901bd80-f71b-498b-b247-e7b9bbb3f603', 'o82', 'traitement', '2023-10-25', '2024-03-02', 'multiple', 22, 'prioritaire', '5190615e-1101-7209-9932-7020bbd556f1') ON CONFLICT DO NOTHING;
+INSERT INTO public.validations (id, code, etat, datecreation, datemodification, typevote, dureevote, typevalidation, roles_id) VALUES ('1901bd80-f71b-498b-b247-e7b9bbb3f604', 'o84', 'traitement', '2020-11-15', '2024-05-02', 'multiple', 40, 'prioritaire', '6191615e-1101-7209-9932-7020bbd556f3') ON CONFLICT DO NOTHING;
 
 
 --
@@ -1671,9 +1690,9 @@ INSERT INTO public.validations (id, code, etat, datecreation, datemodification, 
 -- Data for Name: violer; Type: TABLE DATA; Schema: public; Owner: postgres
 --
 
-INSERT INTO public.violer (mouvements_id, precomouvements_id) VALUES ('97d314f5-84ad-47cd-874d-9c55f0e45790', '6290615e-1101-7209-9932-7020bbd556f6');
-INSERT INTO public.violer (mouvements_id, precomouvements_id) VALUES ('bfee750d-9b8c-4475-9373-08eff9b3ccb7', '6290615e-1101-7209-9932-7020bbd556f7');
-INSERT INTO public.violer (mouvements_id, precomouvements_id) VALUES ('0e7cea07-d09e-4f79-be6c-6dd27aecbce6', '6290615e-1101-7209-9932-7020bbd556f8');
+INSERT INTO public.violer (mouvements_id, precomouvements_id) VALUES ('97d314f5-84ad-47cd-874d-9c55f0e45790', '6290615e-1101-7209-9932-7020bbd556f6') ON CONFLICT DO NOTHING;
+INSERT INTO public.violer (mouvements_id, precomouvements_id) VALUES ('bfee750d-9b8c-4475-9373-08eff9b3ccb7', '6290615e-1101-7209-9932-7020bbd556f7') ON CONFLICT DO NOTHING;
+INSERT INTO public.violer (mouvements_id, precomouvements_id) VALUES ('0e7cea07-d09e-4f79-be6c-6dd27aecbce6', '6290615e-1101-7209-9932-7020bbd556f8') ON CONFLICT DO NOTHING;
 
 
 --
@@ -2873,7 +2892,7 @@ ALTER TABLE ONLY public.violer
     ADD CONSTRAINT fk_violer_on_preco_mouvements_entity FOREIGN KEY (precomouvements_id) REFERENCES public.precomouvements(id);
 
 
--- Completed on 2024-09-17 20:03:22
+-- Completed on 2024-11-25 22:59:28
 
 --
 -- PostgreSQL database dump complete
