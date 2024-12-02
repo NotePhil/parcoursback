@@ -75,10 +75,15 @@
     </dependencyManagement>
     <distributionManagement>
         <repository>
-            <id>github</id>
+            <id>github-release</id>
             <name>GitHub OWNER Apache Maven Packages for exemplaires services</name>
-            <url>https://maven.pkg.github.com/NotePhil/parcoursback</url>
+            <url>https://maven.pkg.github.com/NotePhil/parcoursback/release</url>
         </repository>
+        <snapshotRepository>
+            <id>github-snapshot</id>
+            <name>GitHub OWNER Apache Maven Packages for exemplaires services</name>
+            <url>https://maven.pkg.github.com/NotePhil/parcoursback/snapshot</url>
+        </snapshotRepository>
     </distributionManagement>
     <build>
         <plugins>
