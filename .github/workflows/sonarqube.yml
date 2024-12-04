@@ -67,9 +67,11 @@ jobs:
           servers: '[{"id": "github","configuration": {"httpHeaders": {"property": {"name": "Authorization","value": "Bearer ${{ secrets.MANAGE_PACKAGE_60J }}"}}}}]'
 
       - name: Deploy  document et exemplaire applications with Maven
+        env:
+          GIT_ACTOR: ${{ github.actor }}
         if: ${{ env.RUN_MAVEN_DEPLOY == 'true' }}
         run: |
-          cd parent && mvn clean deploy
+          cd parent && mvn clean deploy -Dgit_actor=$GIT_ACTOR
 
   dockerBuildAndPush_document_service:
     name: Build and Push Docker Image for document service
