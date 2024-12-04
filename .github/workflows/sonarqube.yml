@@ -59,7 +59,7 @@ jobs:
       - name: maven-settings-action
         uses: s4u/maven-settings-action@v3.1.0
         with:
-          servers: '[{"id": "github","configuration": {"httpHeaders": {"property": {"name": "Authorization","value": "Bearer ${{ secrets.GITHUB_TOKEN }}"}}}}]'
+          servers: '[{"id": "github","configuration": {"httpHeaders": {"property": {"name": "Authorization","value": "Bearer ${{ secrets.MANAGE_PACKAGE_60J }}"}}}}]'
 
       - name: Build with Maven
         run: |
