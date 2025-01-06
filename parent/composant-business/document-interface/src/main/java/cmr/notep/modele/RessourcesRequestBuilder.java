@@ -13,15 +13,23 @@ public class RessourcesRequestBuilder {
     private Boolean etat;
     private Date[] periodeCreation; // [minDate, maxDate]
     private Date[] periodeModification; // [minDate, maxDate]
-    private Integer quantite;
+    private Integer[] quantite; // [qteMin, qteMax]
     private Integer seuilAlerte;
     private Double[] prixEntree; // [minPrice, maxPrice]
     private Double[] prixSortie; // [minPrice, maxPrice]
     private String unites;
+    private String libelleFamille;
 
     public String QueryBuilder()
     {
-        StringBuilder query = new StringBuilder("SELECT * FROM ressources r WHERE 1=1 ");
+        StringBuilder query = new StringBuilder("SELECT r.* FROM ressources r ");
+
+        if(libelleFamille != null && !libelleFamille.isEmpty())
+        {
+            query.append(" JOIN familles f on r.familles_id = f.id WHERE f.libelle LIKE '%").append(libelleFamille).append("%'");
+        }
+
+        else query.append(" WHERE 1=1 ");
 
         if (id != null && !id.isEmpty()) {
             query.append(" AND r.id LIKE '%").append(id).append("%'");
@@ -51,8 +59,10 @@ public class RessourcesRequestBuilder {
                     .append("'");
         }
 
-        if (quantite != null) {
-            query.append(" AND r.quantite = ").append(quantite);
+        if (quantite != null && quantite.length == 2) {
+            query.append(" AND r.quantite BETWEEN ").append(quantite[0])
+                    .append(" AND ")
+                    .append(quantite[1]);
         }
 
         if (seuilAlerte != null) {
