@@ -1,24 +1,27 @@
 package cmr.notep.modele;
 
-import lombok.*;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import lombok.AllArgsConstructor;
+import lombok.Builder;
+import lombok.Data;
+import lombok.NoArgsConstructor;
+import lombok.experimental.SuperBuilder;
 
-import java.util.Date;
+import java.util.ArrayList;
 import java.util.List;
 
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-@Builder
-public  class Personnes {
+@SuperBuilder
+@JsonIgnoreProperties(ignoreUnknown = true)
+public class Personnes {
     private String id ;
     private String adresse ;
     private String mail ;
     private  String telephone ;
     private  String qrcodevalue ;
-    private Date dateCreation;
-    private Date dateModification;
-    private List<Personnes> personnesRatachees;
     private Comptes compte;
-    private List<Exemplaires> exemplaires;
-    private String person_type ;
+    private Exemplaires exemplaires;
+    private List<Personnes> personnesRatachees = new ArrayList<>();
 }
