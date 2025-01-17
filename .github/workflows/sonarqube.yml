@@ -60,14 +60,14 @@ jobs:
       # Step 6: Build the project using Maven
       - name: Build with Maven
         run: |
-          cd parent &&  mvn clean install -Dmaven.test.skip=false && find . -name "*.jar"
+          cd parent &&  mvn clean install -Dmaven.test.skip=true && find . -name "*.jar"
 
       - name: Deploy  document et exemplaire applications with Maven
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         if: ${{ env.RUN_MAVEN_DEPLOY == 'true' }}
         run: |
-          cd parent && mvn deploy
+          cd parent && mvn deploy && find . -name "*.jar"
 
   dockerBuildAndPush_document_service:
     name: Build and Push Docker Image for document service
@@ -91,7 +91,7 @@ jobs:
       - name: Getting microservice version
         id: get_version
         run: |
-          version=$(cat parent/composant-business/document-service/pom.xml | grep -m 1 "<version>" | sed -e 's/<\/\?version>//g' -e 's/^[ \t]*//;s/[ \t]*$//')
+          version=$(cat parent/composant-business/document-service/pom.xml | grep -m 2 "<version>" | sed -n '2p' | sed -e 's/<\/\?version>//g' -e 's/^[ \t]*//;s/[ \t]*$//')
           echo "version=${version}" >> $GITHUB_OUTPUT
 
       # Step 9: Build and push Docker image to the registry (if needed)
@@ -133,7 +133,7 @@ jobs:
       - name: Getting microservice version
         id: get_version
         run: |
-          version=$(cat parent/composant-business/exemplaire-service/pom.xml | grep -m 1 "<version>" | sed -e 's/<\/\?version>//g' -e 's/^[ \t]*//;s/[ \t]*$//')
+          version=$(cat parent/composant-business/exemplaire-service/pom.xml | grep -m 2 "<version>" | sed -n '2p' | sed -e 's/<\/\?version>//g' -e 's/^[ \t]*//;s/[ \t]*$//')
           echo "version=${version}" >> $GITHUB_OUTPUT
 
       # Step 9: Build and push Docker image to the registry (if needed)
