@@ -10,16 +10,13 @@ RUN apt-get update && apt-get install -y \
     && rm -rf /var/lib/apt/lists/*  # Clean up to reduce image size
 
 # Download the JAR file from GitHub Packages using the secret token
+ARG PARCOURS_TOKEN
 ARG PARCOURS_PACKAGES_URL
 ARG PARCOURS_MICROSERVICE_VERSION
-ARG PARCOURS_com_group_artifact
 
-RUN echo "Taking from: ${PARCOURS_PACKAGES_URL}/${PARCOURS_com_group_artifact}/${PARCOURS_MICROSERVICE_VERSION}/document-service-${PARCOURS_MICROSERVICE_VERSION}.jar"
-
-RUN --mount=type=secret,id=PARCOURS_TOKEN,dst=/run/secrets/pass_token curl -L -o document-service.jar \
-      -H "Authorization: Bearer $(cat /run/secrets/pass_token)" \
-      "${PARCOURS_PACKAGES_URL}/${PARCOURS_com_group_artifact}/${PARCOURS_MICROSERVICE_VERSION}/document-service-${PARCOURS_MICROSERVICE_VERSION}.jar"
-
+RUN curl -H "Authorization: Bearer ${PARCOURS_TOKEN}" \
+     -L -o document-service.jar \
+     "${PARCOURS_PACKAGES_URL}/document-service/${PARCOURS_MICROSERVICE_VERSION}/document-service-${PARCOURS_MICROSERVICE_VERSION}.jar"
 
 # Use OpenJDK as the base image for running the application
 FROM openjdk:17-jdk-slim
@@ -32,9 +29,6 @@ COPY --from=downloader /app/document-service.jar .
 
 # Command to run the application
 ENTRYPOINT ["java", "-jar", "document-service.jar"]
-
-# Pass command line arguments to Java application
-CMD ["--spring.datasource.url=jdbc:postgresql://${PARCOURS_BD_URL}/${PARCOURS_BD_NAME}", "--spring.datasource.username=${PARCOURS_DB_USER}", "--spring.datasource.password=${PARCOURS_DB_PASSWORD}"]
 
 # Expose the application port
 EXPOSE 8685
