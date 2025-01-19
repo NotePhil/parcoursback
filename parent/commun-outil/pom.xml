@@ -6,12 +6,12 @@
     <parent>
         <groupId>cmr.notep</groupId>
         <artifactId>parent</artifactId>
-        <version>1.0-002</version>
+        <version>1.0-003</version>
     </parent>
     <groupId>cmr.notep</groupId>
     <artifactId>commun-outil</artifactId>
     <packaging>jar</packaging>
-    <version>1.0-002</version>
+    <version>1.0-003</version>
 
     <dependencies>
         <dependency>
