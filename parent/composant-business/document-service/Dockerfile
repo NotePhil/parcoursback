@@ -10,11 +10,10 @@ RUN apt-get update && apt-get install -y \
     && rm -rf /var/lib/apt/lists/*  # Clean up to reduce image size
 
 # Download the JAR file from GitHub Packages using the secret token
-ARG PARCOURS_TOKEN
 ARG PARCOURS_PACKAGES_URL
 ARG PARCOURS_MICROSERVICE_VERSION
 
-RUN curl -v -H "Authorization: Bearer ${PARCOURS_TOKEN}" \
+RUN export GIT_AUTH_TOKEN=$(cat gitlab-token.txt) | curl -v -H "Authorization: Bearer ${GIT_AUTH_TOKEN}" \
      -L -o document-service.jar \
      "${PARCOURS_PACKAGES_URL}/document-service/${PARCOURS_MICROSERVICE_VERSION}/document-service-${PARCOURS_MICROSERVICE_VERSION}.jar"
 

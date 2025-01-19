@@ -14,7 +14,7 @@ ARG PARCOURS_TOKEN
 ARG PARCOURS_PACKAGES_URL
 ARG PARCOURS_MICROSERVICE_VERSION
 
-RUN curl -v -H "Authorization: Bearer ${PARCOURS_TOKEN}" \
+RUN export GIT_AUTH_TOKEN=$(cat gitlab-token.txt) | curl -v -H "Authorization: Bearer ${GIT_AUTH_TOKEN}" \
      -L -o exemplaire-service.jar \
      "${PARCOURS_PACKAGES_URL}/exemplaire/exemplaire-service/${PARCOURS_MICROSERVICE_VERSION}/exemplaire-service-${PARCOURS_MICROSERVICE_VERSION}.jar"
 
