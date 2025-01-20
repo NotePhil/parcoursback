@@ -6,11 +6,11 @@
     <parent>
         <groupId>cmr.notep</groupId>
         <artifactId>parent</artifactId>
-        <version>1.0-003</version>
+        <version>1.0-004</version>
     </parent>
     <packaging>pom</packaging>
     <artifactId>ressources-jpa</artifactId>
-    <version>1.0-003</version>
+    <version>1.0-004</version>
     <modules>
         <module>common-jpa</module>
         <module>document-jpa</module>
