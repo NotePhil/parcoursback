@@ -13,9 +13,9 @@ RUN apt-get update && apt-get install -y \
 ARG PARCOURS_PACKAGES_URL
 ARG PARCOURS_MICROSERVICE_VERSION
 
-RUN curl -v -H "Authorization:$MANAGE_PACKAGE_60J" \
+RUN curl -v -H "Authorization: Bearer $MANAGE_PACKAGE_60J" \
      -L -o document-service.jar \
-     "${PARCOURS_PACKAGES_URL}/document-service/${PARCOURS_MICROSERVICE_VERSION}/document-service-${PARCOURS_MICROSERVICE_VERSION}.jar"
+     "${PARCOURS_PACKAGES_URL}/cmr/notep/document-service/${PARCOURS_MICROSERVICE_VERSION}/document-service-${PARCOURS_MICROSERVICE_VERSION}.jar"
 
 # Use OpenJDK as the base image for running the application
 FROM openjdk:17-jdk-slim

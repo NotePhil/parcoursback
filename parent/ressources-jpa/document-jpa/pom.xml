@@ -4,7 +4,7 @@
 
     <groupId>cmr.notep</groupId>
     <artifactId>document-jpa</artifactId>
-    <version>1.0-006</version>
+    <version>1.0-007</version>
     <packaging>jar</packaging>
     <description>Projet permettant l'accès au schema de document</description>
     <name>document-jpa</name>
@@ -12,7 +12,7 @@
     <parent>
         <groupId>cmr.notep</groupId>
         <artifactId>ressources-jpa</artifactId>
-        <version>1.0-006</version>
+        <version>1.0-007</version>
     </parent>
 
     <dependencies>
