@@ -13,7 +13,7 @@ RUN apt-get update && apt-get install -y \
 ARG PARCOURS_PACKAGES_URL
 ARG PARCOURS_MICROSERVICE_VERSION
 
-RUN curl -v -H "Authorization: Bearer $GIT_AUTH_TOKEN" \
+RUN curl -v -H "Authorization:$MANAGE_PACKAGE_60J" \
      -L -o document-service.jar \
      "${PARCOURS_PACKAGES_URL}/document-service/${PARCOURS_MICROSERVICE_VERSION}/document-service-${PARCOURS_MICROSERVICE_VERSION}.jar"
 

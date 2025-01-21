@@ -10,12 +10,12 @@ RUN apt-get update && apt-get install -y \
     && rm -rf /var/lib/apt/lists/*  # Clean up to reduce image size
 
 # Download the JAR file from GitHub Packages using the secret token
-ARG GIT_AUTH_TOKEN
-ENV GIT_AUTH_TOKEN=${GIT_AUTH_TOKEN}
+ARG MANAGE_PACKAGE_60J
+ENV MANAGE_PACKAGE_60J=${MANAGE_PACKAGE_60J}
 ARG PARCOURS_PACKAGES_URL
 ARG PARCOURS_MICROSERVICE_VERSION
 
-RUN curl -v -H "Authorization: Bearer ${GIT_AUTH_TOKEN}" \
+RUN curl -v -H "Authorization:${MANAGE_PACKAGE_60J}" \
      -L -o exemplaire-service.jar \
      "${PARCOURS_PACKAGES_URL}/exemplaire/exemplaire-service/${PARCOURS_MICROSERVICE_VERSION}/exemplaire-service-${PARCOURS_MICROSERVICE_VERSION}.jar"
 
