@@ -108,7 +108,6 @@ jobs:
           build-args: |
             PARCOURS_PACKAGES_URL=${{ secrets.PARCOURS_PACKAGES_URL }}
             PARCOURS_MICROSERVICE_VERSION=${{ steps.get_version.outputs.version }}
-          env: 
             MANAGE_PACKAGE_60J: ${{ secrets.MANAGE_PACKAGE_60J }}
 
   dockerBuildAndPush_exemplaire_service:
@@ -150,5 +149,4 @@ jobs:
           build-args: |
             PARCOURS_PACKAGES_URL=${{ secrets.PARCOURS_PACKAGES_URL }}
             PARCOURS_MICROSERVICE_VERSION=${{ steps.get_version.outputs.version }}
-          env: 
             MANAGE_PACKAGE_60J: ${{ secrets.MANAGE_PACKAGE_60J }}
