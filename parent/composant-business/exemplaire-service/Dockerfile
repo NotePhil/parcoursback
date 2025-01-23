@@ -13,7 +13,7 @@ RUN apt-get update && apt-get install -y \
 ARG PARCOURS_PACKAGES_URL
 ARG PARCOURS_MICROSERVICE_VERSION
 
-RUN --mount=type=secret,id=MANAGE_PACKAGE_60J curl -v -H "Authorization: Bearer $(cat /run/secrets/pass_token)" \
+RUN --mount=type=secret,id=MANAGE_PACKAGE_60J curl -v -H "Authorization: Bearer $MANAGE_PACKAGE_60J" \
      -L -o exemplaire-service.jar \
      "${PARCOURS_PACKAGES_URL}/cmr/notep/exemplaire/exemplaire-service/${PARCOURS_MICROSERVICE_VERSION}/exemplaire-service-${PARCOURS_MICROSERVICE_VERSION}.jar"
 
