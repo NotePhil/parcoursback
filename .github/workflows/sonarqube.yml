@@ -108,8 +108,8 @@ jobs:
           build-args: |
             PARCOURS_PACKAGES_URL=${{ secrets.PARCOURS_PACKAGES_URL }}
             PARCOURS_MICROSERVICE_VERSION=${{ steps.get_version.outputs.version }}
-          secrets: |
-            MANAGE_PACKAGE_60J=${{ secrets.MANAGE_PACKAGE_60J }}
+          env: 
+            MANAGE_PACKAGE_60J: ${{ secrets.MANAGE_PACKAGE_60J }}
 
   dockerBuildAndPush_exemplaire_service:
     name: Build and Push Docker Image for exemplaire service
@@ -150,5 +150,5 @@ jobs:
           build-args: |
             PARCOURS_PACKAGES_URL=${{ secrets.PARCOURS_PACKAGES_URL }}
             PARCOURS_MICROSERVICE_VERSION=${{ steps.get_version.outputs.version }}
-          secrets: |
-            MANAGE_PACKAGE_60J=${{ secrets.MANAGE_PACKAGE_60J }}
+          env: 
+            MANAGE_PACKAGE_60J: ${{ secrets.MANAGE_PACKAGE_60J }}

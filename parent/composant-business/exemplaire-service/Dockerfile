@@ -12,8 +12,9 @@ RUN apt-get update && apt-get install -y \
 # Download the JAR file from GitHub Packages using the secret token
 ARG PARCOURS_PACKAGES_URL
 ARG PARCOURS_MICROSERVICE_VERSION
+ARG MANAGE_PACKAGE_60J
 
-RUN --mount=type=secret,id=MANAGE_PACKAGE_60J curl -v -H "Authorization: Bearer $MANAGE_PACKAGE_60J" \
+RUN --mount=type=secret,id=MANAGE_PACKAGE_60J curl -v -H "Authorization: Bearer ${MANAGE_PACKAGE_60J}" \
      -L -o exemplaire-service.jar \
      "${PARCOURS_PACKAGES_URL}/cmr/notep/exemplaire/exemplaire-service/${PARCOURS_MICROSERVICE_VERSION}/exemplaire-service-${PARCOURS_MICROSERVICE_VERSION}.jar"
 
