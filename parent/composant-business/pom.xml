@@ -6,7 +6,7 @@
     <parent>
         <groupId>cmr.notep</groupId>
         <artifactId>parent</artifactId>
-        <version>1.0-010</version>
+        <version>1.0-011</version>
     </parent>
 
     <artifactId>composant-business</artifactId>

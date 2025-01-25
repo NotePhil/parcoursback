@@ -6,13 +6,13 @@
     <parent>
         <groupId>cmr.notep</groupId>
         <artifactId>parent</artifactId>
-        <version>1.0-010</version>
+        <version>1.0-011</version>
         <relativePath>../../pom.xml</relativePath>
     </parent>
 
     <groupId>cmr.notep.exemplaire</groupId>
     <artifactId>exemplaire-jpa</artifactId>
-    <version>1.0-010</version>
+    <version>1.0-011</version>
     <description>Projet JPA pour le schema exemplaire</description>
 
     <dependencies>
