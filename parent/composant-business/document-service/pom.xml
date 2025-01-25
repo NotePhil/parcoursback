@@ -6,12 +6,12 @@
     <parent>
         <groupId>cmr.notep</groupId>
         <artifactId>composant-business</artifactId>
-        <version>1.0-012</version>
+        <version>1.0-013</version>
         <relativePath>../pom.xml</relativePath>
     </parent>
     <groupId>cmr.notep</groupId>
     <artifactId>document-service</artifactId>
-    <version>1.0-012</version>
+    <version>1.0-013</version>
     <packaging>jar</packaging>
 
 

@@ -6,12 +6,12 @@
     <parent>
         <groupId>cmr.notep</groupId>
         <artifactId>composant-business</artifactId>
-        <version>1.0-012</version>
+        <version>1.0-013</version>
         <relativePath>../pom.xml</relativePath>
     </parent>
     <groupId>cmr.notep.exemplaire</groupId>
     <artifactId>exemplaire-interface</artifactId>
-    <version>1.0-012</version>
+    <version>1.0-013</version>
     <description>interface des ressources relatives au schema exemplaire</description>
     <dependencies>
         <dependency>
@@ -26,7 +26,7 @@
         <dependency>
             <groupId>cmr.notep</groupId>
             <artifactId>document-interface</artifactId>
-            <version>1.0-012</version>
+            <version>1.0-013</version>
             <scope>compile</scope>
         </dependency>
     </dependencies>
