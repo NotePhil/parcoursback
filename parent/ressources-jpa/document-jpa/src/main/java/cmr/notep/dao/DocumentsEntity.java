@@ -13,12 +13,13 @@ import java.util.UUID;
 @Getter
 @Setter
 @Entity
-@Table(name = "documents")
+@Table(name = "documents", schema = "document")
 public class DocumentsEntity {
     @Id
     @GeneratedValue(generator = "UUID")
     @GenericGenerator(name = "UUID", strategy = "org.hibernate.id.UUIDGenerator")
     @Column(name = "id", nullable = false, updatable = false, columnDefinition = "UUID")
+    @Mapping("idDocument")
     private String id;
 
     @Column(name = "titre", nullable = false)
@@ -26,9 +27,6 @@ public class DocumentsEntity {
 
     @Column(name = "description")
     private String description;
-
-    @Column(name="estencaissable")
-    private boolean estEncaissable;
 
     @Column(name = "etat")
     private Boolean etat;
@@ -43,7 +41,7 @@ public class DocumentsEntity {
     private String typeMouvement ;
 
     @Column(name = "afficherprix")
-    private String afficherPrix ;
+    private Boolean afficherPrix ;
 
     @Column(name = "afficherunite")
     private Boolean afficherUnite;
@@ -58,7 +56,7 @@ public class DocumentsEntity {
     private Boolean contientRessources;
 
     @ManyToMany(fetch = FetchType.LAZY, cascade = {CascadeType.ALL})
-    @JoinTable(name = "constituer",
+    @JoinTable(name = "constituer", schema = "document",
             joinColumns = @JoinColumn(name = "documents_id"),
             inverseJoinColumns = @JoinColumn(name = "attributs_id"))
     @Mapping("attributs")
@@ -74,7 +72,7 @@ public class DocumentsEntity {
     private List<MissionsEntity> missionsEntities ;
 
     @ManyToMany(fetch = FetchType.LAZY, cascade = {CascadeType.ALL})
-    @JoinTable(name = "suivre",
+    @JoinTable(name = "suivre", schema = "document",
             joinColumns = @JoinColumn(name = "documents_id"),
             inverseJoinColumns = @JoinColumn(name = "precomouvements_id"))
     @Mapping("precoMouvements")
