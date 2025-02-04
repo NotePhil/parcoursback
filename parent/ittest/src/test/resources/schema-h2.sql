@@ -248,6 +248,7 @@ CREATE TABLE IF NOT EXISTS caisses(
 CREATE TABLE IF NOT EXISTS exemplaires (
     id               VARCHAR(255) NOT NULL,
     personnes_id    VARCHAR(255) NOT NULL,
+    documents_id    VARCHAR(255) NOT NULL,
     CONSTRAINT pk_exemplaires PRIMARY KEY (id)
 );
 
@@ -735,6 +736,10 @@ ALTER TABLE deltasoldes
     ADD CONSTRAINT FK_DELTASOLDES_COMPTES FOREIGN KEY (comptes_id) REFERENCES comptes(id);
 ALTER TABLE deltasoldes
     ADD CONSTRAINT FK_DELTASOLDES_EXEMPLAIRES FOREIGN KEY (exemplaires_id) REFERENCES exemplaires(id);
+
+ALTER TABLE exemplaires
+    ADD CONSTRAINT FK_exemplaire_documents FOREIGN KEY (documents_id) REFERENCES documents(id);
+
 ALTER TABLE comptes
     ADD CONSTRAINT FK_COMPTES_PERSONNES FOREIGN KEY (personnes_id) REFERENCES personnes(id);
 ALTER TABLE personnes

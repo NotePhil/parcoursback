@@ -12,7 +12,7 @@ import java.util.List;
 @Setter
 @Entity
 @Table(name = "exemplaires")
-public class ExemplairesEntity {
+public class ExemplairesEntity{
 
     @Id
     @GeneratedValue(generator = "UUID")
@@ -32,4 +32,9 @@ public class ExemplairesEntity {
     @JoinColumn(name = "personnes_id")
     @Mapping("personne")
     private PersonnesEntity personnesEntity ;
+
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "documents_id")
+    @Mapping("document")
+    private DocumentsEntity documentsEntity ;
 }
