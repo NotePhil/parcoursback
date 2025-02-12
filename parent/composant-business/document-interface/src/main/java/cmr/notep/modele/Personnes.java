@@ -24,5 +24,4 @@ public class Personnes {
     private List<Personnes> personnesRatachees = new ArrayList<>();
     private Comptes compte;
     private Exemplaires exemplaires;
-    private List<Personnes> personnesRatachees = new ArrayList<>();
 }
