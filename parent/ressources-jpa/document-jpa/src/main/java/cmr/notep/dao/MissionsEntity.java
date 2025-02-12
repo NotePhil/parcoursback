@@ -13,7 +13,7 @@ import java.util.List;
 @Getter
 @Setter
 @Entity
-@Table(name = "missions")
+@Table(name = "missions", schema = "document")
 public class MissionsEntity {
     @Id
     @GeneratedValue(generator = "UUID")
@@ -37,7 +37,7 @@ public class MissionsEntity {
     private Date dateModification ;
 
     @ManyToMany(fetch = FetchType.LAZY , cascade = {CascadeType.ALL} )
-    @JoinTable(name = "traiter",
+    @JoinTable(name = "traiter",schema = "document",
         joinColumns = @JoinColumn(name = "missions_id", referencedColumnName = "id"),
             inverseJoinColumns = @JoinColumn(name="documents_id", referencedColumnName = "id")
     )

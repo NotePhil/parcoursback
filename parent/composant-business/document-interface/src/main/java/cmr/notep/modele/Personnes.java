@@ -2,6 +2,7 @@ package cmr.notep.modele;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import lombok.AllArgsConstructor;
+import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import lombok.experimental.SuperBuilder;
@@ -20,6 +21,7 @@ public class Personnes {
     private String mail ;
     private  String telephone ;
     private  String qrcodevalue ;
+    private List<Personnes> personnesRatachees = new ArrayList<>();
     private Comptes compte;
     private Exemplaires exemplaires;
     private List<Personnes> personnesRatachees = new ArrayList<>();

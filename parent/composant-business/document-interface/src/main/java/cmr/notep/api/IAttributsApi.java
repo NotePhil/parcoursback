@@ -1,5 +1,6 @@
 package cmr.notep.api;
 
+import cmr.notep.exceptions.ParcoursException;
 import cmr.notep.modele.Attributs;
 import org.springframework.http.MediaType;
 import org.springframework.lang.NonNull;
@@ -11,10 +12,10 @@ import java.util.List;
 public interface IAttributsApi {
 
     @GetMapping(
-            path = "/{idAttrib}",
+            path = "/{idAttribut}",
             produces = MediaType.APPLICATION_JSON_VALUE
     )
-    Attributs avoirAttribut (@NonNull @RequestParam(name = "idAttribut") String idAttributs);
+    Attributs avoirAttribut (@NonNull @RequestParam(name = "idAttribut") String idAttributs) throws ParcoursException;
 
     @GetMapping(
             produces = MediaType.APPLICATION_JSON_VALUE

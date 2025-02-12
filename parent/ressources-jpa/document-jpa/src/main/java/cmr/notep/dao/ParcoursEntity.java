@@ -13,7 +13,7 @@ import java.util.UUID;
 @Getter
 @Setter
 @Entity
-@Table(name = "parcours")
+@Table(name = "parcours", schema = "document")
 public class ParcoursEntity {
     @Id
     @GeneratedValue(generator = "UUID")

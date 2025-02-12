@@ -1,8 +1,6 @@
 package cmr.notep.dao;
 
 import javax.persistence.*;
-
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.Getter;
 import lombok.Setter;
 import org.dozer.Mapping;
@@ -10,12 +8,11 @@ import org.hibernate.annotations.GenericGenerator;
 
 import java.util.Date;
 import java.util.List;
-import java.util.UUID;
 
 @Getter
 @Setter
 @Entity
-@Table(name = "categories")
+@Table(name = "categories", schema = "document")
 public class CategoriesEntity {
 
     @Id
@@ -42,7 +39,6 @@ public class CategoriesEntity {
     @ManyToOne(fetch = FetchType.LAZY, cascade = {CascadeType.ALL})
     @JoinColumn(name = "documents_id")
     @Mapping("document")
-    @JsonIgnore
     private DocumentsEntity documentsEntity ;
 
     @OneToMany(mappedBy = "categorie", fetch = FetchType.LAZY, cascade = {CascadeType.ALL})

@@ -13,7 +13,7 @@ import java.util.List;
 @Getter
 @Setter
 @Entity
-@Table(name = "precomouvements")
+@Table(name = "precomouvements", schema = "document")
 public class PrecoMouvementsEntity {
 
     @Id
@@ -34,12 +34,6 @@ public class PrecoMouvementsEntity {
 
     @Column(name="typemouvement")
     private String typeMouvement ;
-    @ManyToMany(mappedBy = "precoMouvementsRespecterEntityties")
-    @Mapping("mouvementsCorrects")
-    private List<MouvementsEntity> mouvementsCorrectsEntities ;
-    @ManyToMany(mappedBy = "precoMouvementsViolerEntityties")
-    @Mapping("mouvementsIncorrects")
-    private List<MouvementsEntity> mouvementsIncorrectsEntities ;
 
     @ManyToMany(mappedBy = "precoMouvementsEntities")
     @Mapping("documents")

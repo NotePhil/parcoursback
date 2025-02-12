@@ -13,7 +13,7 @@ import java.util.List;
 @Getter
 @Setter
 @Entity
-@Table(name = "precomouvementsqtes")
+@Table(name = "precomouvementsqtes", schema = "document")
 public class PrecoMouvementsQtesEntity {
     @Id
     @GeneratedValue(generator = "UUID")

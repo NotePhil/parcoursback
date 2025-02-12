@@ -10,7 +10,7 @@ import java.util.Date;
 @Getter
 @Setter
 @Entity
-@Table(name = "remplir")
+@Table(name = "remplir", schema = "document")
 public class RemplirEntity{
 
     @EmbeddedId

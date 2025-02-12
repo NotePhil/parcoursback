@@ -1,12 +1,12 @@
 [ {
-  "id" : null,
+  "idDocument" : "0190615e-1101-7209-9932-7020bbd556f6",
   "titre" : "Bon de commande",
   "description" : "Document delivre par le chef service",
   "etat" : true,
   "dateCreation" : null,
   "dateModification" : null,
   "typeMouvement" : "Neutre",
-  "afficherPrix" : "TRUE",
+  "afficherPrix" : true,
   "afficherUnite" : true,
   "afficherDistributeur" : true,
   "prixEditable" : true,
@@ -19,8 +19,6 @@
     "typeMouvement" : "Reduire",
     "dateCreation" : 1640991600000,
     "dateModification" : null,
-    "mouvementsCorrects" : [ ],
-    "mouvementsIncorrects" : [ ],
     "precoMouvementsQtes" : [ {
       "id" : null,
       "qteMin" : 5,
@@ -82,14 +80,14 @@
   "docEtats" : [ ],
   "promotions" : [ ]
 }, {
-  "id" : null,
+  "idDocument" : "0190615e-1101-7209-9932-7020bbd556f7",
   "titre" : "Bon de livraison",
   "description" : "Document delivre par ",
   "etat" : true,
   "dateCreation" : null,
   "dateModification" : null,
   "typeMouvement" : "Reduire",
-  "afficherPrix" : "TRUE",
+  "afficherPrix" : true,
   "afficherUnite" : true,
   "afficherDistributeur" : true,
   "prixEditable" : true,
@@ -102,8 +100,6 @@
     "typeMouvement" : "Ajout",
     "dateCreation" : 1640991600000,
     "dateModification" : null,
-    "mouvementsCorrects" : [ ],
-    "mouvementsIncorrects" : [ ],
     "precoMouvementsQtes" : [ {
       "id" : null,
       "qteMin" : 5,
@@ -138,7 +134,6 @@
           "prixSortie" : 2000.0,
           "unites" : "Packs",
           "precoMouvementsQtes" : [ ],
-          "mouvements" : [ ],
           "promotions" : [ ]
         }, {
           "id" : null,
@@ -152,7 +147,6 @@
           "prixSortie" : 2000.0,
           "unites" : "Boite",
           "precoMouvementsQtes" : [ ],
-          "mouvements" : [ ],
           "promotions" : [ ]
         }, {
           "id" : null,
@@ -166,7 +160,6 @@
           "prixSortie" : 2000.0,
           "unites" : "Boite",
           "precoMouvementsQtes" : [ ],
-          "mouvements" : [ ],
           "promotions" : [ ]
         }, {
           "id" : null,
@@ -180,7 +173,6 @@
           "prixSortie" : 2000.0,
           "unites" : "Packs",
           "precoMouvementsQtes" : [ ],
-          "mouvements" : [ ],
           "promotions" : [ ]
         } ],
         "promotions" : [ ]
@@ -212,7 +204,6 @@
           "prixSortie" : 200.0,
           "unites" : "Boite",
           "precoMouvementsQtes" : [ ],
-          "mouvements" : [ ],
           "promotions" : [ ]
         }, {
           "id" : null,
@@ -226,7 +217,6 @@
           "prixSortie" : 230.0,
           "unites" : "Boite",
           "precoMouvementsQtes" : [ ],
-          "mouvements" : [ ],
           "promotions" : [ ]
         }, {
           "id" : null,
@@ -240,7 +230,6 @@
           "prixSortie" : 2000.0,
           "unites" : "Boite",
           "precoMouvementsQtes" : [ ],
-          "mouvements" : [ ],
           "promotions" : [ ]
         }, {
           "id" : null,
@@ -254,7 +243,6 @@
           "prixSortie" : 2000.0,
           "unites" : "Boite",
           "precoMouvementsQtes" : [ ],
-          "mouvements" : [ ],
           "promotions" : [ ]
         }, {
           "id" : null,
@@ -268,7 +256,6 @@
           "prixSortie" : 2000.0,
           "unites" : "Litre",
           "precoMouvementsQtes" : [ ],
-          "mouvements" : [ ],
           "promotions" : [ ]
         }, {
           "id" : null,
@@ -282,7 +269,6 @@
           "prixSortie" : 2000.0,
           "unites" : "Boite",
           "precoMouvementsQtes" : [ ],
-          "mouvements" : [ ],
           "promotions" : [ ]
         } ],
         "promotions" : [ ]
@@ -332,14 +318,14 @@
   "docEtats" : [ ],
   "promotions" : [ ]
 }, {
-  "id" : null,
+  "idDocument" : "0190615e-1101-7209-9932-7020bbd556f8",
   "titre" : "Fiche de selection",
   "description" : "Document delivre par le magasinier",
   "etat" : true,
   "dateCreation" : null,
   "dateModification" : null,
   "typeMouvement" : "Neutre",
-  "afficherPrix" : "TRUE",
+  "afficherPrix" : true,
   "afficherUnite" : true,
   "afficherDistributeur" : true,
   "prixEditable" : true,
@@ -352,8 +338,6 @@
     "typeMouvement" : "Reduire",
     "dateCreation" : 1640991600000,
     "dateModification" : null,
-    "mouvementsCorrects" : [ ],
-    "mouvementsIncorrects" : [ ],
     "precoMouvementsQtes" : [ {
       "id" : null,
       "qteMin" : 5,
@@ -379,7 +363,6 @@
           "prixSortie" : 200.0,
           "unites" : "Boite",
           "precoMouvementsQtes" : [ ],
-          "mouvements" : [ ],
           "promotions" : [ ]
         }, {
           "id" : null,
@@ -393,7 +376,6 @@
           "prixSortie" : 230.0,
           "unites" : "Boite",
           "precoMouvementsQtes" : [ ],
-          "mouvements" : [ ],
           "promotions" : [ ]
         }, {
           "id" : null,
@@ -407,7 +389,6 @@
           "prixSortie" : 2000.0,
           "unites" : "Boite",
           "precoMouvementsQtes" : [ ],
-          "mouvements" : [ ],
           "promotions" : [ ]
         }, {
           "id" : null,
@@ -421,7 +402,6 @@
           "prixSortie" : 2000.0,
           "unites" : "Boite",
           "precoMouvementsQtes" : [ ],
-          "mouvements" : [ ],
           "promotions" : [ ]
         }, {
           "id" : null,
@@ -435,7 +415,6 @@
           "prixSortie" : 2000.0,
           "unites" : "Litre",
           "precoMouvementsQtes" : [ ],
-          "mouvements" : [ ],
           "promotions" : [ ]
         }, {
           "id" : null,
@@ -449,7 +428,6 @@
           "prixSortie" : 2000.0,
           "unites" : "Boite",
           "precoMouvementsQtes" : [ ],
-          "mouvements" : [ ],
           "promotions" : [ ]
         } ],
         "promotions" : [ ]
@@ -472,7 +450,6 @@
           "prixSortie" : 2000.0,
           "unites" : "Packs",
           "precoMouvementsQtes" : [ ],
-          "mouvements" : [ ],
           "promotions" : [ ]
         }, {
           "id" : null,
@@ -486,7 +463,6 @@
           "prixSortie" : 2000.0,
           "unites" : "Boite",
           "precoMouvementsQtes" : [ ],
-          "mouvements" : [ ],
           "promotions" : [ ]
         }, {
           "id" : null,
@@ -500,7 +476,6 @@
           "prixSortie" : 2000.0,
           "unites" : "Boite",
           "precoMouvementsQtes" : [ ],
-          "mouvements" : [ ],
           "promotions" : [ ]
         }, {
           "id" : null,
@@ -514,7 +489,6 @@
           "prixSortie" : 2000.0,
           "unites" : "Packs",
           "precoMouvementsQtes" : [ ],
-          "mouvements" : [ ],
           "promotions" : [ ]
         } ],
         "promotions" : [ ]
@@ -546,14 +520,14 @@
   "docEtats" : [ ],
   "promotions" : [ ]
 }, {
-  "id" : null,
+  "idDocument" : "0190615e-1101-7209-9932-7020bbd556f3",
   "titre" : "Fiche de soin",
   "description" : "Document delivre par le medecin ou un infirmier de l'etablissement",
   "etat" : true,
   "dateCreation" : null,
   "dateModification" : null,
   "typeMouvement" : "Ajout",
-  "afficherPrix" : "TRUE",
+  "afficherPrix" : true,
   "afficherUnite" : true,
   "afficherDistributeur" : true,
   "prixEditable" : true,
@@ -586,8 +560,6 @@
     "typeMouvement" : "Ajout",
     "dateCreation" : 1640991600000,
     "dateModification" : null,
-    "mouvementsCorrects" : [ ],
-    "mouvementsIncorrects" : [ ],
     "precoMouvementsQtes" : [ {
       "id" : null,
       "qteMin" : 5,
@@ -607,7 +579,6 @@
         "prixSortie" : 20000.0,
         "unites" : "Packs",
         "precoMouvementsQtes" : null,
-        "mouvements" : null,
         "promotions" : null
       },
       "distributeurs" : [ ]
@@ -645,14 +616,14 @@
   "docEtats" : [ ],
   "promotions" : [ ]
 }, {
-  "id" : null,
+  "idDocument" : "0190615e-1101-7209-9932-7020bbd556f2",
   "titre" : "Fiche de suivi",
   "description" : "Document delivre par le medecin ou un infirmier de l'etablissement",
   "etat" : true,
   "dateCreation" : 1680213600000,
   "dateModification" : null,
   "typeMouvement" : "Neutre",
-  "afficherPrix" : "TRUE",
+  "afficherPrix" : true,
   "afficherUnite" : true,
   "afficherDistributeur" : true,
   "prixEditable" : true,
@@ -685,8 +656,6 @@
     "typeMouvement" : "Reduire",
     "dateCreation" : 1640991600000,
     "dateModification" : null,
-    "mouvementsCorrects" : [ ],
-    "mouvementsIncorrects" : [ ],
     "precoMouvementsQtes" : [ {
       "id" : null,
       "qteMin" : 20,
@@ -706,7 +675,6 @@
         "prixSortie" : 3000.0,
         "unites" : "Boite",
         "precoMouvementsQtes" : null,
-        "mouvements" : null,
         "promotions" : null
       },
       "distributeurs" : [ ]
@@ -780,14 +748,14 @@
   "docEtats" : [ ],
   "promotions" : [ ]
 }, {
-  "id" : null,
+  "idDocument" : "0190615e-1101-7209-9932-7020bbd556f4",
   "titre" : "Formulaire de sortie",
   "description" : "Document delivre par le medecin ou un infirmier de l'etablissement",
   "etat" : true,
   "dateCreation" : null,
   "dateModification" : null,
   "typeMouvement" : "Neutre",
-  "afficherPrix" : "TRUE",
+  "afficherPrix" : true,
   "afficherUnite" : true,
   "afficherDistributeur" : true,
   "prixEditable" : true,
@@ -800,8 +768,6 @@
     "typeMouvement" : "Neutre",
     "dateCreation" : 1640991600000,
     "dateModification" : null,
-    "mouvementsCorrects" : [ ],
-    "mouvementsIncorrects" : [ ],
     "precoMouvementsQtes" : [ {
       "id" : null,
       "qteMin" : 5,
@@ -821,7 +787,6 @@
         "prixSortie" : 20000.0,
         "unites" : "Packs",
         "precoMouvementsQtes" : null,
-        "mouvements" : null,
         "promotions" : null
       },
       "distributeurs" : [ ]
@@ -844,7 +809,6 @@
         "prixSortie" : 20.0,
         "unites" : "Packs",
         "precoMouvementsQtes" : null,
-        "mouvements" : null,
         "promotions" : null
       },
       "distributeurs" : [ ]
@@ -882,14 +846,14 @@
   "docEtats" : [ ],
   "promotions" : [ ]
 }, {
-  "id" : null,
+  "idDocument" : "0190615e-1101-7209-9932-7020bbd556f1",
   "titre" : "Note intervention",
   "description" : "Document delivre par le medecin ou un infirmier de l'etablissement",
   "etat" : true,
   "dateCreation" : 1680213600000,
   "dateModification" : null,
   "typeMouvement" : "Ajout",
-  "afficherPrix" : "TRUE",
+  "afficherPrix" : true,
   "afficherUnite" : true,
   "afficherDistributeur" : true,
   "prixEditable" : true,
@@ -942,8 +906,6 @@
     "typeMouvement" : "Neutre",
     "dateCreation" : 1640991600000,
     "dateModification" : null,
-    "mouvementsCorrects" : [ ],
-    "mouvementsIncorrects" : [ ],
     "precoMouvementsQtes" : [ {
       "id" : null,
       "qteMin" : 10,
@@ -963,7 +925,6 @@
         "prixSortie" : 2000.0,
         "unites" : "Boite",
         "precoMouvementsQtes" : null,
-        "mouvements" : null,
         "promotions" : null
       },
       "distributeurs" : [ ]
@@ -1116,7 +1077,7 @@
   "docEtats" : [ ],
   "promotions" : [ ]
 }, {
-  "id" : null,
+  "idDocument" : "46eb81c3-4efb-4904-b631-9969fdb092f6",
   "titre" : "TitreTest",
   "description" : "DescriptionTest",
   "etat" : true,
@@ -1153,14 +1114,14 @@
   "docEtats" : null,
   "promotions" : null
 }, {
-  "id" : null,
+  "idDocument" : "0190615e-1101-7209-9932-7020bbd556f5",
   "titre" : "ordonnance",
   "description" : "Document delivre par le medecin ou un infirmier de l'etablissement",
   "etat" : true,
   "dateCreation" : null,
   "dateModification" : null,
   "typeMouvement" : "Neutre",
-  "afficherPrix" : "TRUE",
+  "afficherPrix" : true,
   "afficherUnite" : true,
   "afficherDistributeur" : true,
   "prixEditable" : true,
@@ -1173,8 +1134,6 @@
     "typeMouvement" : "Neutre",
     "dateCreation" : 1640991600000,
     "dateModification" : null,
-    "mouvementsCorrects" : [ ],
-    "mouvementsIncorrects" : [ ],
     "precoMouvementsQtes" : [ ]
   } ],
   "attributs" : [ {

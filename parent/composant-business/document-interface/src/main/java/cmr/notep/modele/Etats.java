@@ -19,6 +19,5 @@ public class Etats {
     private Date dateCreation;
     private Date dateModification;
     private List<DocEtats> docEtats;
-    private List<OrdreEtats> ordresEtats;
     private String description;
 }

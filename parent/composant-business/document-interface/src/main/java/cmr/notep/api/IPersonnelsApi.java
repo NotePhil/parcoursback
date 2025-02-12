@@ -1,5 +1,6 @@
 package cmr.notep.api;
 
+import cmr.notep.exceptions.ParcoursException;
 import cmr.notep.modele.Personnels;
 import org.springframework.http.MediaType;
 import org.springframework.lang.NonNull;
@@ -21,7 +22,7 @@ public interface IPersonnelsApi {
             path = "/{idPersonnel}",
             produces = MediaType.APPLICATION_JSON_VALUE
     )
-    Personnels avoirPersonnel(@NonNull @RequestParam(name = "idPersonnel") String idPersonnel);
+    Personnels avoirPersonnel(@NonNull @RequestParam(name = "idPersonnel") String idPersonnel) throws ParcoursException;
 
     @GetMapping(
             produces = MediaType.APPLICATION_JSON_VALUE

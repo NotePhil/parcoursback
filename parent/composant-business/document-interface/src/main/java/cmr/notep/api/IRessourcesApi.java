@@ -1,6 +1,7 @@
 package cmr.notep.api;
 
 
+import cmr.notep.exceptions.ParcoursException;
 import cmr.notep.modele.Ressources;
 import cmr.notep.modele.RessourcesRequestBuilder;
 import org.springframework.http.MediaType;
@@ -15,7 +16,7 @@ public interface IRessourcesApi {
             path = "/{idRessource}",
             produces = MediaType.APPLICATION_JSON_VALUE
     )
-    Ressources avoirRessource (@NonNull @RequestParam(name="idRessource") String idRessource);
+    Ressources avoirRessource (@NonNull @RequestParam(name="idRessource") String idRessource) throws ParcoursException;
 
     @GetMapping(
             produces = MediaType.APPLICATION_JSON_VALUE

@@ -23,7 +23,5 @@ public class PrecoMouvements {
     private Date dateModification ;
     private List<Mouvements> mouvements ;
     private List<Documents> documents ;
-    private List<Mouvements> mouvementsCorrects ;
-    private List<Mouvements> mouvementsIncorrects ;
     private List<PrecoMouvementsQtes> precoMouvementsQtes;
 }

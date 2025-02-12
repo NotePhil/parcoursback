@@ -6,9 +6,10 @@ import org.dozer.Mapping;
 import org.hibernate.annotations.GenericGenerator;
 
 import javax.persistence.*;
-import java.util.ArrayList;
+import java.util.Date;
 import java.util.Date;
 import java.util.List;
+import java.util.UUID;
 
 @Getter
 @Setter
@@ -51,13 +52,6 @@ public class MouvementsEntity {
             inverseJoinColumns = @JoinColumn(name = "precomouvements_id"))
     @Mapping("precoMouvementsVioler")
     private List<PrecoMouvementsEntity> precoMouvementsViolerEntityties;
-
-//    @ManyToMany(fetch = FetchType.LAZY, cascade = {CascadeType.ALL})
-//    @JoinTable(name = "mouvpreco" ,
-//            joinColumns = @JoinColumn(name = "id_precomouvements"),
-//            inverseJoinColumns = @JoinColumn(name = "id_mouvements"))
-//    @Mapping("precoMouvements")
-//    private List<PrecoMouvementsEntity> precoMouvementsEntityList;
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "ressources_id")

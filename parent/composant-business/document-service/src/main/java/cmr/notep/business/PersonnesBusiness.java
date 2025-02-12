@@ -2,14 +2,12 @@ package cmr.notep.business;
 
 import cmr.notep.dao.DaoAccessorService;
 import cmr.notep.dao.PersonnesEntity;
-import cmr.notep.modele.*;
+import cmr.notep.modele.Personnes;
 import cmr.notep.repository.PersonnesRepository;
 import lombok.extern.slf4j.Slf4j;
-import org.jetbrains.annotations.NotNull;
 import org.springframework.stereotype.Component;
 import org.springframework.transaction.annotation.Transactional;
 
-import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 

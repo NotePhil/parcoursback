@@ -13,7 +13,7 @@ import java.util.UUID;
 @Getter
 @Setter
 @Entity
-@Table(name = "familles")
+@Table(name = "familles", schema = "document")
 public class FamillesEntity {
     @Id
     @GeneratedValue(generator = "UUID")
@@ -32,7 +32,7 @@ public class FamillesEntity {
     private Date dateModification;
 
     @ManyToMany(fetch = FetchType.LAZY)
-    @JoinTable(name = "sapplique",
+    @JoinTable(name = "sapplique",schema = "document",
             joinColumns = @JoinColumn(name = "familles_id"),
             inverseJoinColumns = @JoinColumn(name = "precomouvementsqtes_id"))
     @Mapping("precoMouvementsQtes")
