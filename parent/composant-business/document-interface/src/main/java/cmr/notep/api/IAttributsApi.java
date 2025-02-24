@@ -15,7 +15,7 @@ public interface IAttributsApi {
             path = "/{idAttribut}",
             produces = MediaType.APPLICATION_JSON_VALUE
     )
-    Attributs avoirAttribut (@NonNull @RequestParam(name = "idAttribut") String idAttributs) throws ParcoursException;
+    Attributs avoirAttribut (@NonNull @PathVariable(name = "idAttribut") String idAttributs) throws ParcoursException;
 
     @GetMapping(
             produces = MediaType.APPLICATION_JSON_VALUE
