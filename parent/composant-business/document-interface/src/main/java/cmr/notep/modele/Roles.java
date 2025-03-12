@@ -1,12 +1,10 @@
 package cmr.notep.modele;
 
-import lombok.AllArgsConstructor;
-import lombok.Builder;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import lombok.*;
 
 import java.util.Date;
 import java.util.List;
+import java.util.UUID;
 
 @Data
 @AllArgsConstructor
@@ -18,6 +16,7 @@ public class Roles {
     private String description;
     private Boolean etat ;
     private Date dateCreation;
+    private Date dateModification;
     private List<JouerRoles> personnels;
     private List<Remplir> missions;
     private List<Validations> validations;

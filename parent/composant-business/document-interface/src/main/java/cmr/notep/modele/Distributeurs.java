@@ -18,4 +18,5 @@ public class Distributeurs extends Personnes {
     private String raisonSociale;
     private String code ;
     private List<Promotions> promotions;
+    private Mouvements mouvements; 
 }

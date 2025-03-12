@@ -50,4 +50,9 @@ public class PersonnelsEntity {
     @OneToMany(mappedBy = "personnelsEntity", fetch = FetchType.LAZY, cascade = {CascadeType.ALL})
     @Mapping("roles")
     List<JouerRolesEntity> jouerRolesEntities;
+
+    @OneToMany(mappedBy = "personnelsEntity", fetch = FetchType.LAZY, cascade = {CascadeType.ALL})
+    @Mapping("mouvementcaisses")
+    List<MouvementCaissesEntity> mouvementCaissesEntities;
+
 }

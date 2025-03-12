@@ -1,6 +1,5 @@
 package cmr.notep.repository;
 
-import cmr.notep.dao.PersonnelsEntity;
 import cmr.notep.dao.RolesEntity;
 import org.springframework.data.jpa.repository.JpaRepository;
 

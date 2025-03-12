@@ -1,31 +1,29 @@
-package cmr.notep.exemplaire.modele;
+package cmr.notep.modele;
 
-import cmr.notep.modele.Distributeurs;
-import cmr.notep.modele.PrecoMouvements;
-import cmr.notep.modele.Ressources;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import lombok.*;
 
+import java.util.*;
 import java.util.Date;
-import java.util.Date;
-import java.util.List;
+
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
 @Builder
-@JsonIgnoreProperties({"exemplaire"})
-@ToString(exclude = {"exemplaire"})
-@EqualsAndHashCode(exclude = {"exemplaire"})
+@JsonIgnoreProperties({"ressource","distributeur","precoMouvementsRespecter","precoMouvementsVioler"})
+@ToString(exclude = {"ressource","distributeur","precoMouvementsRespecter","precoMouvementsVioler"})
+@EqualsAndHashCode(exclude = {"ressource","distributeur","precoMouvementsRespecter","precoMouvementsVioler"})
 public class Mouvements {
-    private  String id ;
+    private String id ;
     private  String description ;
     private int quantite ;
     private double prix ;
     private Date dateCreation ;
     private Date datePeremption ;
+    private Date dateModification;
     private List<PrecoMouvements> precoMouvementsRespecter;
     private List<PrecoMouvements> precoMouvementsVioler;
     private Ressources ressource;
     private Distributeurs distributeur;
-    private Exemplaires exemplaire;
+
 }

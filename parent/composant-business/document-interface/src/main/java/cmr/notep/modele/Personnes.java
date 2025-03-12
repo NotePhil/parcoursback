@@ -22,4 +22,6 @@ public class Personnes {
     private  String telephone ;
     private  String qrcodevalue ;
     private List<Personnes> personnesRatachees = new ArrayList<>();
+    private Comptes compte;
+    private Exemplaires exemplaires;
 }
