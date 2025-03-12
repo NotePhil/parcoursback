@@ -1,5 +1,6 @@
 package cmr.notep.dao;
 
+import cmr.notep.modele.Type_attribut;
 import lombok.Getter;
 import lombok.Setter;
 import org.hibernate.annotations.GenericGenerator;
@@ -28,8 +29,15 @@ public class AttributsEntity {
     private Date dateCreation;
     @Column(name = "datemodification")
     private Date dateModification;
+
+    @Enumerated(EnumType.STRING)
+    @Column(name = "type_attribut", nullable = false)
+    private Type_attribut type;
+
+    @Enumerated(EnumType.STRING)
     @Column(name = "type", nullable = false)
-    private String type;
+    private Types type_element;
+
     @Column(name = "valeurpardefaut")
     private String valeurParDefaut;
     @ManyToMany(mappedBy = "attributsEntities")
