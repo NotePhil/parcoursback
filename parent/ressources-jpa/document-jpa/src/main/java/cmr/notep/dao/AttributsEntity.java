@@ -1,20 +1,18 @@
 package cmr.notep.dao;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
+import cmr.notep.modele.Type_attribut;
 import lombok.Getter;
 import lombok.Setter;
-import org.dozer.Mapping;
 import org.hibernate.annotations.GenericGenerator;
 
 import javax.persistence.*;
 import java.util.Date;
 import java.util.List;
-import java.util.UUID;
 
 @Getter
 @Setter
 @Entity
-@Table(name = "attributs")
+@Table(name = "attributs", schema = "document")
 public class AttributsEntity {
     @Id
     @GeneratedValue(generator = "UUID")
@@ -31,12 +29,18 @@ public class AttributsEntity {
     private Date dateCreation;
     @Column(name = "datemodification")
     private Date dateModification;
+
+    @Enumerated(EnumType.STRING)
+    @Column(name = "type_attribut", nullable = false)
+    private Type_attribut type;
+
+    @Enumerated(EnumType.STRING)
     @Column(name = "type", nullable = false)
-    private String type;
+    private Types type_element;
+
     @Column(name = "valeurpardefaut")
     private String valeurParDefaut;
     @ManyToMany(mappedBy = "attributsEntities")
-    @JsonIgnore
     private List<DocumentsEntity> documentsEntities;
     //@ManyToMany(mappedBy = "attributsEntities")
     //@Mapping("categories")

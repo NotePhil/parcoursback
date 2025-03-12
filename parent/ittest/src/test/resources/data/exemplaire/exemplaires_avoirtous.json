@@ -1,0 +1,1581 @@
+[ {
+  "idDocument" : "0190615e-1101-7209-9932-7020bbd556f3",
+  "titre" : "Fiche de soin personnalisée",
+  "description" : "Document delivre par le medecin ou un infirmier de l'etablissement",
+  "etat" : true,
+  "dateCreation" : null,
+  "dateModification" : null,
+  "typeMouvement" : "Ajout",
+  "afficherPrix" : true,
+  "afficherUnite" : true,
+  "afficherDistributeur" : true,
+  "prixEditable" : true,
+  "contientRessources" : true,
+  "missions" : [ {
+    "id" : null,
+    "libelle" : "Hospitalisation",
+    "description" : "bon d'entrée et de sortie est une mission",
+    "etat" : true,
+    "dateCreation" : null,
+    "dateModification" : null,
+    "service" : {
+      "id" : null,
+      "description" : "bien",
+      "libelle" : "Laboratoire",
+      "etat" : true,
+      "dateCreation" : null,
+      "dateModification" : null,
+      "codeUnique" : "S2",
+      "localisation" : "douala",
+      "missions" : null,
+      "fileAttente" : null
+    },
+    "roles" : [ ]
+  } ],
+  "precoMouvements" : [ {
+    "id" : null,
+    "libelle" : "Achat",
+    "etat" : true,
+    "typeMouvement" : "Ajout",
+    "dateCreation" : null,
+    "dateModification" : null,
+    "precoMouvementsQtes" : [ {
+      "id" : null,
+      "qteMin" : 5,
+      "qteMax" : 50,
+      "montantMin" : 200.0,
+      "montantMax" : 2000.0,
+      "familles" : [ ],
+      "ressource" : {
+        "id" : null,
+        "libelle" : "Scanner",
+        "etat" : true,
+        "dateCreation" : null,
+        "dateModification" : null,
+        "quantite" : 4,
+        "seuilAlerte" : 2,
+        "prixEntree" : 12000.0,
+        "prixSortie" : 20000.0,
+        "unites" : "Packs",
+        "precoMouvementsQtes" : null,
+        "promotions" : null
+      },
+      "distributeurs" : [ ]
+    } ]
+  } ],
+  "attributs" : [ {
+    "id" : null,
+    "titre" : "Teint",
+    "description" : "Coloration",
+    "etat" : true,
+    "dateCreation" : null,
+    "dateModification" : null,
+    "type" : "String",
+    "valeurParDefaut" : "Noir"
+  } ],
+  "categories" : [ {
+    "id" : null,
+    "ordre" : "1",
+    "libelle" : "Informations Personnelles",
+    "attributs" : [ {
+      "attribut" : {
+        "id" : null,
+        "titre" : "Teint",
+        "description" : "Coloration",
+        "etat" : true,
+        "dateCreation" : null,
+        "dateModification" : null,
+        "type" : "String",
+        "valeurParDefaut" : "Noir"
+      },
+      "obligatoire" : true,
+      "ordre" : 1
+    } ]
+  } ],
+  "docEtats" : [ ],
+  "promotions" : [ ],
+  "id" : null,
+  "code" : "Code3",
+  "codeBarre" : "CodeBarre13",
+  "intitule" : null,
+  "idExemplairesParents" : [ "5b777f4e-ac38-4637-a065-ef87af525e86", "6d5a9f88-704d-4715-9336-92835cf9e824" ],
+  "dateCreated" : null,
+  "dateModificated" : null,
+  "personneBeneficiaire" : {
+    "id" : null,
+    "adresse" : "Bastos",
+    "mail" : "abd@yah.fr",
+    "telephone" : "655454545",
+    "qrcodevalue" : "qrcode1",
+    "personnesRatachees" : [ ]
+  },
+  "personneRattachee" : null,
+  "ordreEtats" : [ {
+    "id" : null,
+    "dateCreation" : null,
+    "dateModification" : null,
+    "dateFinVote" : 1672527600000,
+    "ordre" : 1,
+    "etat" : {
+      "id" : null,
+      "libelle" : "En cours",
+      "dateCreation" : null,
+      "docEtats" : [ ],
+      "description" : "En cours"
+    },
+    "etatsValidations" : [ ]
+  }, {
+    "id" : null,
+    "dateCreation" : null,
+    "dateModification" : null,
+    "dateFinVote" : 1704063600000,
+    "ordre" : 2,
+    "etat" : {
+      "id" : null,
+      "libelle" : "Valide",
+      "dateCreation" : null,
+      "docEtats" : [ ],
+      "description" : "Valide"
+    },
+    "etatsValidations" : [ ]
+  }, {
+    "id" : null,
+    "dateCreation" : null,
+    "dateModification" : null,
+    "dateFinVote" : 1735686000000,
+    "ordre" : 3,
+    "etat" : {
+      "id" : null,
+      "libelle" : "Rejete",
+      "dateCreation" : null,
+      "docEtats" : [ ],
+      "description" : "Rejete"
+    },
+    "etatsValidations" : [ ]
+  } ],
+  "mouvements" : [ {
+    "id" : null,
+    "description" : "vente à credit",
+    "quantite" : 20,
+    "prix" : 10000.0,
+    "dateCreation" : null,
+    "datePeremption" : 1735686000000,
+    "precoMouvementsRespecter" : [ {
+      "id" : null,
+      "libelle" : "Vente",
+      "etat" : true,
+      "typeMouvement" : "Reduire",
+      "dateCreation" : null,
+      "dateModification" : null,
+      "precoMouvementsQtes" : [ {
+        "id" : null,
+        "qteMin" : 20,
+        "qteMax" : 200,
+        "montantMin" : 1000.0,
+        "montantMax" : 10000.0,
+        "familles" : [ ],
+        "ressource" : {
+          "id" : null,
+          "libelle" : "Cartouche d'encre",
+          "etat" : true,
+          "dateCreation" : null,
+          "dateModification" : null,
+          "quantite" : 4,
+          "seuilAlerte" : 10,
+          "prixEntree" : 2000.0,
+          "prixSortie" : 3000.0,
+          "unites" : "Boite",
+          "precoMouvementsQtes" : null,
+          "promotions" : null
+        },
+        "distributeurs" : [ ]
+      } ]
+    } ],
+    "precoMouvementsVioler" : [ ],
+    "ressource" : {
+      "id" : null,
+      "libelle" : "Cartouche d'encre",
+      "etat" : true,
+      "dateCreation" : null,
+      "dateModification" : null,
+      "quantite" : 4,
+      "seuilAlerte" : 10,
+      "prixEntree" : 2000.0,
+      "prixSortie" : 3000.0,
+      "unites" : "Boite",
+      "precoMouvementsQtes" : null,
+      "promotions" : null
+    },
+    "distributeur" : {
+      "id" : null,
+      "adresse" : "Bastos",
+      "mail" : "dbc@yah.fr",
+      "telephone" : "655454545",
+      "qrcodevalue" : "qrcode2",
+      "personnesRatachees" : [ ],
+      "precomouvementsqtes" : [ ],
+      "raisonSociale" : "UCB",
+      "code" : "d190619",
+      "promotions" : [ ]
+    }
+  } ],
+  "personnesDestinataires" : [ {
+    "personne" : {
+      "id" : null,
+      "adresse" : "Bastos",
+      "mail" : "abd@yah.fr",
+      "telephone" : "655454545",
+      "qrcodevalue" : "qrcode1",
+      "personnesRatachees" : [ ]
+    },
+    "dateEnvoi" : 1646607600000,
+    "methodeEnvoi" : "EMAIL"
+  } ],
+  "exemplaireAttributs" : [ {
+    "attribut" : {
+      "id" : null,
+      "titre" : "Teint",
+      "description" : "Coloration",
+      "etat" : true,
+      "dateCreation" : null,
+      "dateModification" : null,
+      "type" : "String",
+      "valeurParDefaut" : "Noir"
+    },
+    "valeur" : "Marron",
+    "dateCreation" : null,
+    "dateModification" : null
+  } ]
+}, {
+  "idDocument" : "0190615e-1101-7209-9932-7020bbd556f2",
+  "titre" : "Fiche de suivi personnalisée",
+  "description" : "Document delivre par le medecin ou un infirmier de l'etablissement",
+  "etat" : true,
+  "dateCreation" : null,
+  "dateModification" : null,
+  "typeMouvement" : "Neutre",
+  "afficherPrix" : true,
+  "afficherUnite" : true,
+  "afficherDistributeur" : true,
+  "prixEditable" : true,
+  "contientRessources" : true,
+  "missions" : [ {
+    "id" : null,
+    "libelle" : "Resultat Labo",
+    "description" : "Communiquer les résultats du labo aux patients",
+    "etat" : true,
+    "dateCreation" : null,
+    "dateModification" : null,
+    "service" : {
+      "id" : null,
+      "description" : "bien",
+      "libelle" : "Consultation",
+      "etat" : true,
+      "dateCreation" : null,
+      "dateModification" : null,
+      "codeUnique" : "S1",
+      "localisation" : "douala",
+      "missions" : null,
+      "fileAttente" : null
+    },
+    "roles" : [ ]
+  } ],
+  "precoMouvements" : [ {
+    "id" : null,
+    "libelle" : "Vente",
+    "etat" : true,
+    "typeMouvement" : "Reduire",
+    "dateCreation" : null,
+    "dateModification" : null,
+    "precoMouvementsQtes" : [ {
+      "id" : null,
+      "qteMin" : 20,
+      "qteMax" : 200,
+      "montantMin" : 1000.0,
+      "montantMax" : 10000.0,
+      "familles" : [ ],
+      "ressource" : {
+        "id" : null,
+        "libelle" : "Cartouche d'encre",
+        "etat" : true,
+        "dateCreation" : null,
+        "dateModification" : null,
+        "quantite" : 4,
+        "seuilAlerte" : 10,
+        "prixEntree" : 2000.0,
+        "prixSortie" : 3000.0,
+        "unites" : "Boite",
+        "precoMouvementsQtes" : null,
+        "promotions" : null
+      },
+      "distributeurs" : [ ]
+    } ]
+  } ],
+  "attributs" : [ {
+    "id" : null,
+    "titre" : "Age",
+    "description" : "Description age",
+    "etat" : true,
+    "dateCreation" : null,
+    "dateModification" : null,
+    "type" : "Int",
+    "valeurParDefaut" : null
+  }, {
+    "id" : null,
+    "titre" : "Date de naissance",
+    "description" : "Date de naissance",
+    "etat" : true,
+    "dateCreation" : null,
+    "dateModification" : null,
+    "type" : "Date",
+    "valeurParDefaut" : null
+  }, {
+    "id" : null,
+    "titre" : "Sexe",
+    "description" : "Sexe ",
+    "etat" : true,
+    "dateCreation" : null,
+    "dateModification" : null,
+    "type" : "String",
+    "valeurParDefaut" : null
+  } ],
+  "categories" : [ {
+    "id" : null,
+    "ordre" : "0",
+    "libelle" : "Conditions Générales",
+    "attributs" : [ {
+      "attribut" : {
+        "id" : null,
+        "titre" : "Age",
+        "description" : "Description age",
+        "etat" : true,
+        "dateCreation" : null,
+        "dateModification" : null,
+        "type" : "Int",
+        "valeurParDefaut" : null
+      },
+      "obligatoire" : true,
+      "ordre" : 1
+    } ]
+  }, {
+    "id" : null,
+    "ordre" : "1",
+    "libelle" : "Conditions Particulières",
+    "attributs" : [ {
+      "attribut" : {
+        "id" : null,
+        "titre" : "Sexe",
+        "description" : "Sexe ",
+        "etat" : true,
+        "dateCreation" : null,
+        "dateModification" : null,
+        "type" : "String",
+        "valeurParDefaut" : null
+      },
+      "obligatoire" : true,
+      "ordre" : 1
+    } ]
+  } ],
+  "docEtats" : [ ],
+  "promotions" : [ ],
+  "id" : null,
+  "code" : "Code2",
+  "codeBarre" : "CodeBarre12",
+  "intitule" : null,
+  "idExemplairesParents" : [ ],
+  "dateCreated" : null,
+  "dateModificated" : null,
+  "personneBeneficiaire" : {
+    "id" : null,
+    "adresse" : "Bastos",
+    "mail" : "dbc@yah.fr",
+    "telephone" : "655454545",
+    "qrcodevalue" : "qrcode2",
+    "personnesRatachees" : [ ]
+  },
+  "personneRattachee" : null,
+  "ordreEtats" : [ {
+    "id" : null,
+    "dateCreation" : null,
+    "dateModification" : null,
+    "dateFinVote" : 1704063600000,
+    "ordre" : 1,
+    "etat" : {
+      "id" : null,
+      "libelle" : "En cours",
+      "dateCreation" : null,
+      "docEtats" : [ ],
+      "description" : "En cours"
+    },
+    "etatsValidations" : [ ]
+  }, {
+    "id" : null,
+    "dateCreation" : null,
+    "dateModification" : null,
+    "dateFinVote" : 1735686000000,
+    "ordre" : 2,
+    "etat" : {
+      "id" : null,
+      "libelle" : "Valide",
+      "dateCreation" : null,
+      "docEtats" : [ ],
+      "description" : "Valide"
+    },
+    "etatsValidations" : [ ]
+  } ],
+  "mouvements" : [ ],
+  "personnesDestinataires" : [ {
+    "personne" : {
+      "id" : null,
+      "adresse" : "Bastos",
+      "mail" : "dbc@yah.fr",
+      "telephone" : "655454545",
+      "qrcodevalue" : "qrcode2",
+      "personnesRatachees" : [ ]
+    },
+    "dateEnvoi" : 1646607600000,
+    "methodeEnvoi" : "EMAIL"
+  } ],
+  "exemplaireAttributs" : [ {
+    "attribut" : {
+      "id" : null,
+      "titre" : "Date de naissance",
+      "description" : "Date de naissance",
+      "etat" : true,
+      "dateCreation" : null,
+      "dateModification" : null,
+      "type" : "Date",
+      "valeurParDefaut" : null
+    },
+    "valeur" : "21/08/1986²²",
+    "dateCreation" : null,
+    "dateModification" : null
+  }, {
+    "attribut" : {
+      "id" : null,
+      "titre" : "Sexe",
+      "description" : "Sexe ",
+      "etat" : true,
+      "dateCreation" : null,
+      "dateModification" : null,
+      "type" : "String",
+      "valeurParDefaut" : null
+    },
+    "valeur" : "MASCULIN",
+    "dateCreation" : null,
+    "dateModification" : null
+  }, {
+    "attribut" : {
+      "id" : null,
+      "titre" : "Age",
+      "description" : "Description age",
+      "etat" : true,
+      "dateCreation" : null,
+      "dateModification" : null,
+      "type" : "Int",
+      "valeurParDefaut" : null
+    },
+    "valeur" : "67",
+    "dateCreation" : null,
+    "dateModification" : null
+  } ]
+}, {
+  "idDocument" : "0190615e-1101-7209-9932-7020bbd556f1",
+  "titre" : "Note intervention personnalisée",
+  "description" : "Document delivre par le medecin ou un infirmier de l'etablissement",
+  "etat" : true,
+  "dateCreation" : null,
+  "dateModification" : null,
+  "typeMouvement" : "Ajout",
+  "afficherPrix" : true,
+  "afficherUnite" : true,
+  "afficherDistributeur" : true,
+  "prixEditable" : true,
+  "contientRessources" : true,
+  "missions" : [ {
+    "id" : null,
+    "libelle" : "Encaissement",
+    "description" : "recu de paiement lié à une mission",
+    "etat" : true,
+    "dateCreation" : null,
+    "dateModification" : null,
+    "service" : {
+      "id" : null,
+      "description" : "bien",
+      "libelle" : "Consultation",
+      "etat" : true,
+      "dateCreation" : null,
+      "dateModification" : null,
+      "codeUnique" : "S1",
+      "localisation" : "douala",
+      "missions" : null,
+      "fileAttente" : null
+    },
+    "roles" : [ ]
+  }, {
+    "id" : null,
+    "libelle" : "Resultat Labo",
+    "description" : "Communiquer les résultats du labo aux patients",
+    "etat" : true,
+    "dateCreation" : null,
+    "dateModification" : null,
+    "service" : {
+      "id" : null,
+      "description" : "bien",
+      "libelle" : "Consultation",
+      "etat" : true,
+      "dateCreation" : null,
+      "dateModification" : null,
+      "codeUnique" : "S1",
+      "localisation" : "douala",
+      "missions" : null,
+      "fileAttente" : null
+    },
+    "roles" : [ ]
+  } ],
+  "precoMouvements" : [ {
+    "id" : null,
+    "libelle" : "Inventaire",
+    "etat" : true,
+    "typeMouvement" : "Neutre",
+    "dateCreation" : null,
+    "dateModification" : null,
+    "precoMouvementsQtes" : [ {
+      "id" : null,
+      "qteMin" : 10,
+      "qteMax" : 100,
+      "montantMin" : 500.0,
+      "montantMax" : 5000.0,
+      "familles" : [ ],
+      "ressource" : {
+        "id" : null,
+        "libelle" : "Paracetamol",
+        "etat" : true,
+        "dateCreation" : null,
+        "dateModification" : null,
+        "quantite" : 4,
+        "seuilAlerte" : 20,
+        "prixEntree" : 1200.0,
+        "prixSortie" : 2000.0,
+        "unites" : "Boite",
+        "precoMouvementsQtes" : null,
+        "promotions" : null
+      },
+      "distributeurs" : [ ]
+    } ]
+  } ],
+  "attributs" : [ {
+    "id" : null,
+    "titre" : "Adresse",
+    "description" : "Adresse postale",
+    "etat" : true,
+    "dateCreation" : null,
+    "dateModification" : null,
+    "type" : "String",
+    "valeurParDefaut" : null
+  }, {
+    "id" : null,
+    "titre" : "Age",
+    "description" : "Description age",
+    "etat" : true,
+    "dateCreation" : null,
+    "dateModification" : null,
+    "type" : "Int",
+    "valeurParDefaut" : null
+  }, {
+    "id" : null,
+    "titre" : "Date de naissance",
+    "description" : "Date de naissance",
+    "etat" : true,
+    "dateCreation" : null,
+    "dateModification" : null,
+    "type" : "Date",
+    "valeurParDefaut" : null
+  }, {
+    "id" : null,
+    "titre" : "Poids",
+    "description" : "Description Poids",
+    "etat" : true,
+    "dateCreation" : null,
+    "dateModification" : null,
+    "type" : "Double",
+    "valeurParDefaut" : null
+  }, {
+    "id" : null,
+    "titre" : "Taille",
+    "description" : "Description Taille",
+    "etat" : true,
+    "dateCreation" : null,
+    "dateModification" : null,
+    "type" : "String",
+    "valeurParDefaut" : null
+  }, {
+    "id" : null,
+    "titre" : "Teint",
+    "description" : "Coloration",
+    "etat" : true,
+    "dateCreation" : null,
+    "dateModification" : null,
+    "type" : "String",
+    "valeurParDefaut" : "Noir"
+  } ],
+  "categories" : [ {
+    "id" : null,
+    "ordre" : "0",
+    "libelle" : "Informations Personnelles",
+    "attributs" : [ {
+      "attribut" : {
+        "id" : null,
+        "titre" : "Taille",
+        "description" : "Description Taille",
+        "etat" : true,
+        "dateCreation" : null,
+        "dateModification" : null,
+        "type" : "String",
+        "valeurParDefaut" : null
+      },
+      "obligatoire" : true,
+      "ordre" : 1
+    }, {
+      "attribut" : {
+        "id" : null,
+        "titre" : "Age",
+        "description" : "Description age",
+        "etat" : true,
+        "dateCreation" : null,
+        "dateModification" : null,
+        "type" : "Int",
+        "valeurParDefaut" : null
+      },
+      "obligatoire" : true,
+      "ordre" : 2
+    }, {
+      "attribut" : {
+        "id" : null,
+        "titre" : "Teint",
+        "description" : "Coloration",
+        "etat" : true,
+        "dateCreation" : null,
+        "dateModification" : null,
+        "type" : "String",
+        "valeurParDefaut" : "Noir"
+      },
+      "obligatoire" : false,
+      "ordre" : 3
+    } ]
+  }, {
+    "id" : null,
+    "ordre" : "1",
+    "libelle" : "Informations Primaires",
+    "attributs" : [ {
+      "attribut" : {
+        "id" : null,
+        "titre" : "Poids",
+        "description" : "Description Poids",
+        "etat" : true,
+        "dateCreation" : null,
+        "dateModification" : null,
+        "type" : "Double",
+        "valeurParDefaut" : null
+      },
+      "obligatoire" : true,
+      "ordre" : 1
+    }, {
+      "attribut" : {
+        "id" : null,
+        "titre" : "Adresse",
+        "description" : "Adresse postale",
+        "etat" : true,
+        "dateCreation" : null,
+        "dateModification" : null,
+        "type" : "String",
+        "valeurParDefaut" : null
+      },
+      "obligatoire" : false,
+      "ordre" : 2
+    }, {
+      "attribut" : {
+        "id" : null,
+        "titre" : "Date de naissance",
+        "description" : "Date de naissance",
+        "etat" : true,
+        "dateCreation" : null,
+        "dateModification" : null,
+        "type" : "Date",
+        "valeurParDefaut" : null
+      },
+      "obligatoire" : true,
+      "ordre" : 3
+    } ]
+  } ],
+  "docEtats" : [ ],
+  "promotions" : [ ],
+  "id" : null,
+  "code" : "Code1",
+  "codeBarre" : "CodeBarre1",
+  "intitule" : null,
+  "idExemplairesParents" : [ "239d9d41-4850-4984-9d81-189cf44d867d" ],
+  "dateCreated" : null,
+  "dateModificated" : null,
+  "personneBeneficiaire" : {
+    "id" : null,
+    "adresse" : "Bastos",
+    "mail" : "abd@yah.fr",
+    "telephone" : "655454545",
+    "qrcodevalue" : "qrcode1",
+    "personnesRatachees" : [ ]
+  },
+  "personneRattachee" : null,
+  "ordreEtats" : [ {
+    "id" : null,
+    "dateCreation" : null,
+    "dateModification" : null,
+    "dateFinVote" : 1735686000000,
+    "ordre" : 1,
+    "etat" : {
+      "id" : null,
+      "libelle" : "En cours",
+      "dateCreation" : null,
+      "docEtats" : [ ],
+      "description" : "En cours"
+    },
+    "etatsValidations" : [ ]
+  } ],
+  "mouvements" : [ {
+    "id" : null,
+    "description" : "sur commande",
+    "quantite" : 10,
+    "prix" : 5000.0,
+    "dateCreation" : null,
+    "datePeremption" : 1735686000000,
+    "precoMouvementsRespecter" : [ {
+      "id" : null,
+      "libelle" : "interdiction Infirmière",
+      "etat" : true,
+      "typeMouvement" : "Neutre",
+      "dateCreation" : null,
+      "dateModification" : null,
+      "precoMouvementsQtes" : [ {
+        "id" : null,
+        "qteMin" : 5,
+        "qteMax" : 50,
+        "montantMin" : 200.0,
+        "montantMax" : 2000.0,
+        "familles" : [ ],
+        "ressource" : {
+          "id" : null,
+          "libelle" : "Imprimante",
+          "etat" : true,
+          "dateCreation" : null,
+          "dateModification" : null,
+          "quantite" : 4,
+          "seuilAlerte" : 2,
+          "prixEntree" : 12000.0,
+          "prixSortie" : 20000.0,
+          "unites" : "Packs",
+          "precoMouvementsQtes" : null,
+          "promotions" : null
+        },
+        "distributeurs" : [ ]
+      }, {
+        "id" : null,
+        "qteMin" : 5,
+        "qteMax" : 50,
+        "montantMin" : 200.0,
+        "montantMax" : 2000.0,
+        "familles" : [ ],
+        "ressource" : {
+          "id" : null,
+          "libelle" : "Souris",
+          "etat" : true,
+          "dateCreation" : null,
+          "dateModification" : null,
+          "quantite" : 40,
+          "seuilAlerte" : 12,
+          "prixEntree" : 25.0,
+          "prixSortie" : 20.0,
+          "unites" : "Packs",
+          "precoMouvementsQtes" : null,
+          "promotions" : null
+        },
+        "distributeurs" : [ ]
+      } ]
+    } ],
+    "precoMouvementsVioler" : [ ],
+    "ressource" : {
+      "id" : null,
+      "libelle" : "Paracetamol",
+      "etat" : true,
+      "dateCreation" : null,
+      "dateModification" : null,
+      "quantite" : 4,
+      "seuilAlerte" : 20,
+      "prixEntree" : 1200.0,
+      "prixSortie" : 2000.0,
+      "unites" : "Boite",
+      "precoMouvementsQtes" : null,
+      "promotions" : null
+    },
+    "distributeur" : {
+      "id" : null,
+      "adresse" : "Bastos",
+      "mail" : "abd@yah.fr",
+      "telephone" : "655454545",
+      "qrcodevalue" : "qrcode1",
+      "personnesRatachees" : [ ],
+      "precomouvementsqtes" : [ ],
+      "raisonSociale" : "ENEO",
+      "code" : "d190615",
+      "promotions" : [ ]
+    }
+  }, {
+    "id" : null,
+    "description" : "sur commande",
+    "quantite" : 20,
+    "prix" : 3000.0,
+    "dateCreation" : null,
+    "datePeremption" : 1735686000000,
+    "precoMouvementsRespecter" : [ {
+      "id" : null,
+      "libelle" : "Vente",
+      "etat" : true,
+      "typeMouvement" : "Reduire",
+      "dateCreation" : null,
+      "dateModification" : null,
+      "precoMouvementsQtes" : [ {
+        "id" : null,
+        "qteMin" : 20,
+        "qteMax" : 200,
+        "montantMin" : 1000.0,
+        "montantMax" : 10000.0,
+        "familles" : [ ],
+        "ressource" : {
+          "id" : null,
+          "libelle" : "Cartouche d'encre",
+          "etat" : true,
+          "dateCreation" : null,
+          "dateModification" : null,
+          "quantite" : 4,
+          "seuilAlerte" : 10,
+          "prixEntree" : 2000.0,
+          "prixSortie" : 3000.0,
+          "unites" : "Boite",
+          "precoMouvementsQtes" : null,
+          "promotions" : null
+        },
+        "distributeurs" : [ ]
+      } ]
+    } ],
+    "precoMouvementsVioler" : [ {
+      "id" : null,
+      "libelle" : "interdiction Infirmière",
+      "etat" : true,
+      "typeMouvement" : "Neutre",
+      "dateCreation" : null,
+      "dateModification" : null,
+      "precoMouvementsQtes" : [ {
+        "id" : null,
+        "qteMin" : 5,
+        "qteMax" : 50,
+        "montantMin" : 200.0,
+        "montantMax" : 2000.0,
+        "familles" : [ ],
+        "ressource" : {
+          "id" : null,
+          "libelle" : "Imprimante",
+          "etat" : true,
+          "dateCreation" : null,
+          "dateModification" : null,
+          "quantite" : 4,
+          "seuilAlerte" : 2,
+          "prixEntree" : 12000.0,
+          "prixSortie" : 20000.0,
+          "unites" : "Packs",
+          "precoMouvementsQtes" : null,
+          "promotions" : null
+        },
+        "distributeurs" : [ ]
+      }, {
+        "id" : null,
+        "qteMin" : 5,
+        "qteMax" : 50,
+        "montantMin" : 200.0,
+        "montantMax" : 2000.0,
+        "familles" : [ ],
+        "ressource" : {
+          "id" : null,
+          "libelle" : "Souris",
+          "etat" : true,
+          "dateCreation" : null,
+          "dateModification" : null,
+          "quantite" : 40,
+          "seuilAlerte" : 12,
+          "prixEntree" : 25.0,
+          "prixSortie" : 20.0,
+          "unites" : "Packs",
+          "precoMouvementsQtes" : null,
+          "promotions" : null
+        },
+        "distributeurs" : [ ]
+      } ]
+    } ],
+    "ressource" : {
+      "id" : null,
+      "libelle" : "Cartouche d'encre",
+      "etat" : true,
+      "dateCreation" : null,
+      "dateModification" : null,
+      "quantite" : 4,
+      "seuilAlerte" : 10,
+      "prixEntree" : 2000.0,
+      "prixSortie" : 3000.0,
+      "unites" : "Boite",
+      "precoMouvementsQtes" : null,
+      "promotions" : null
+    },
+    "distributeur" : {
+      "id" : null,
+      "adresse" : "Bastos",
+      "mail" : "abd@yah.fr",
+      "telephone" : "655454545",
+      "qrcodevalue" : "qrcode1",
+      "personnesRatachees" : [ ],
+      "precomouvementsqtes" : [ ],
+      "raisonSociale" : "ENEO",
+      "code" : "d190615",
+      "promotions" : [ ]
+    }
+  } ],
+  "personnesDestinataires" : [ {
+    "personne" : {
+      "id" : null,
+      "adresse" : "Bastos",
+      "mail" : "abd@yah.fr",
+      "telephone" : "655454545",
+      "qrcodevalue" : "qrcode1",
+      "personnesRatachees" : [ ]
+    },
+    "dateEnvoi" : 1646607600000,
+    "methodeEnvoi" : "EMAIL"
+  }, {
+    "personne" : {
+      "id" : null,
+      "adresse" : "Bastos",
+      "mail" : "sg@sg.fr",
+      "telephone" : "655454545",
+      "qrcodevalue" : "qrcode4",
+      "personnesRatachees" : [ ]
+    },
+    "dateEnvoi" : 1646607600000,
+    "methodeEnvoi" : "EMAIL"
+  } ],
+  "exemplaireAttributs" : [ {
+    "attribut" : {
+      "id" : null,
+      "titre" : "Taille",
+      "description" : "Description Taille",
+      "etat" : true,
+      "dateCreation" : null,
+      "dateModification" : null,
+      "type" : "String",
+      "valeurParDefaut" : null
+    },
+    "valeur" : "179",
+    "dateCreation" : null,
+    "dateModification" : null
+  }, {
+    "attribut" : {
+      "id" : null,
+      "titre" : "Age",
+      "description" : "Description age",
+      "etat" : true,
+      "dateCreation" : null,
+      "dateModification" : null,
+      "type" : "Int",
+      "valeurParDefaut" : null
+    },
+    "valeur" : "42",
+    "dateCreation" : null,
+    "dateModification" : null
+  }, {
+    "attribut" : {
+      "id" : null,
+      "titre" : "Poids",
+      "description" : "Description Poids",
+      "etat" : true,
+      "dateCreation" : null,
+      "dateModification" : null,
+      "type" : "Double",
+      "valeurParDefaut" : null
+    },
+    "valeur" : "82",
+    "dateCreation" : null,
+    "dateModification" : null
+  }, {
+    "attribut" : {
+      "id" : null,
+      "titre" : "Teint",
+      "description" : "Coloration",
+      "etat" : true,
+      "dateCreation" : null,
+      "dateModification" : null,
+      "type" : "String",
+      "valeurParDefaut" : "Noir"
+    },
+    "valeur" : "BRUN",
+    "dateCreation" : null,
+    "dateModification" : null
+  }, {
+    "attribut" : {
+      "id" : null,
+      "titre" : "Adresse",
+      "description" : "Adresse postale",
+      "etat" : true,
+      "dateCreation" : null,
+      "dateModification" : null,
+      "type" : "String",
+      "valeurParDefaut" : null
+    },
+    "valeur" : "YAOUNDE",
+    "dateCreation" : null,
+    "dateModification" : null
+  }, {
+    "attribut" : {
+      "id" : null,
+      "titre" : "Date de naissance",
+      "description" : "Date de naissance",
+      "etat" : true,
+      "dateCreation" : null,
+      "dateModification" : null,
+      "type" : "Date",
+      "valeurParDefaut" : null
+    },
+    "valeur" : "21/12/2000",
+    "dateCreation" : null,
+    "dateModification" : null
+  } ]
+}, {
+  "idDocument" : "0190615e-1101-7209-9932-7020bbd556f3",
+  "titre" : "Note intervention personnalisée",
+  "description" : "Document delivre par le medecin ou un infirmier de l'etablissement",
+  "etat" : true,
+  "dateCreation" : null,
+  "dateModification" : null,
+  "typeMouvement" : "Ajout",
+  "afficherPrix" : true,
+  "afficherUnite" : true,
+  "afficherDistributeur" : true,
+  "prixEditable" : true,
+  "contientRessources" : true,
+  "missions" : [ {
+    "id" : null,
+    "libelle" : "Hospitalisation",
+    "description" : "bon d'entrée et de sortie est une mission",
+    "etat" : true,
+    "dateCreation" : null,
+    "dateModification" : null,
+    "service" : {
+      "id" : null,
+      "description" : "bien",
+      "libelle" : "Laboratoire",
+      "etat" : true,
+      "dateCreation" : null,
+      "dateModification" : null,
+      "codeUnique" : "S2",
+      "localisation" : "douala",
+      "missions" : null,
+      "fileAttente" : null
+    },
+    "roles" : [ ]
+  } ],
+  "precoMouvements" : [ {
+    "id" : null,
+    "libelle" : "Achat",
+    "etat" : true,
+    "typeMouvement" : "Ajout",
+    "dateCreation" : null,
+    "dateModification" : null,
+    "precoMouvementsQtes" : [ {
+      "id" : null,
+      "qteMin" : 5,
+      "qteMax" : 50,
+      "montantMin" : 200.0,
+      "montantMax" : 2000.0,
+      "familles" : [ ],
+      "ressource" : {
+        "id" : null,
+        "libelle" : "Scanner",
+        "etat" : true,
+        "dateCreation" : null,
+        "dateModification" : null,
+        "quantite" : 4,
+        "seuilAlerte" : 2,
+        "prixEntree" : 12000.0,
+        "prixSortie" : 20000.0,
+        "unites" : "Packs",
+        "precoMouvementsQtes" : null,
+        "promotions" : null
+      },
+      "distributeurs" : [ ]
+    } ]
+  } ],
+  "attributs" : [ {
+    "id" : null,
+    "titre" : "Teint",
+    "description" : "Coloration",
+    "etat" : true,
+    "dateCreation" : null,
+    "dateModification" : null,
+    "type" : "String",
+    "valeurParDefaut" : "Noir"
+  } ],
+  "categories" : [ {
+    "id" : null,
+    "ordre" : "1",
+    "libelle" : "Informations Personnelles",
+    "attributs" : [ {
+      "attribut" : {
+        "id" : null,
+        "titre" : "Teint",
+        "description" : "Coloration",
+        "etat" : true,
+        "dateCreation" : null,
+        "dateModification" : null,
+        "type" : "String",
+        "valeurParDefaut" : "Noir"
+      },
+      "obligatoire" : true,
+      "ordre" : 1
+    } ]
+  } ],
+  "docEtats" : [ ],
+  "promotions" : [ ],
+  "id" : null,
+  "code" : "Code4",
+  "codeBarre" : "CodeBarre14",
+  "intitule" : null,
+  "idExemplairesParents" : [ ],
+  "dateCreated" : null,
+  "dateModificated" : null,
+  "personneBeneficiaire" : {
+    "id" : null,
+    "adresse" : "Bastos",
+    "mail" : "pnj@gma.com",
+    "telephone" : "655454545",
+    "qrcodevalue" : "qrcode3",
+    "personnesRatachees" : [ ]
+  },
+  "personneRattachee" : null,
+  "ordreEtats" : [ {
+    "id" : null,
+    "dateCreation" : null,
+    "dateModification" : null,
+    "dateFinVote" : 1735686000000,
+    "ordre" : 4,
+    "etat" : {
+      "id" : null,
+      "libelle" : "En attente",
+      "dateCreation" : null,
+      "docEtats" : [ ],
+      "description" : "En attente"
+    },
+    "etatsValidations" : [ ]
+  } ],
+  "mouvements" : [ {
+    "id" : null,
+    "description" : "achat express",
+    "quantite" : 5,
+    "prix" : 2000.0,
+    "dateCreation" : null,
+    "datePeremption" : null,
+    "precoMouvementsRespecter" : [ ],
+    "precoMouvementsVioler" : [ ],
+    "ressource" : {
+      "id" : null,
+      "libelle" : "Scanner",
+      "etat" : true,
+      "dateCreation" : null,
+      "dateModification" : null,
+      "quantite" : 4,
+      "seuilAlerte" : 2,
+      "prixEntree" : 12000.0,
+      "prixSortie" : 20000.0,
+      "unites" : "Packs",
+      "precoMouvementsQtes" : null,
+      "promotions" : null
+    },
+    "distributeur" : {
+      "id" : null,
+      "adresse" : "Bastos",
+      "mail" : "sg@sg.fr",
+      "telephone" : "655454545",
+      "qrcodevalue" : "qrcode4",
+      "personnesRatachees" : [ ],
+      "precomouvementsqtes" : [ ],
+      "raisonSociale" : "Pharmacam",
+      "code" : "d190614",
+      "promotions" : [ ]
+    }
+  } ],
+  "personnesDestinataires" : [ {
+    "personne" : {
+      "id" : null,
+      "adresse" : "Bastos",
+      "mail" : "pnj@gma.com",
+      "telephone" : "655454545",
+      "qrcodevalue" : "qrcode3",
+      "personnesRatachees" : [ ]
+    },
+    "dateEnvoi" : 1646607600000,
+    "methodeEnvoi" : "EMAIL"
+  }, {
+    "personne" : {
+      "id" : null,
+      "adresse" : "Bastos",
+      "mail" : "sg@sg.fr",
+      "telephone" : "655454545",
+      "qrcodevalue" : "qrcode4",
+      "personnesRatachees" : [ ]
+    },
+    "dateEnvoi" : 1646607600000,
+    "methodeEnvoi" : "EMAIL"
+  } ],
+  "exemplaireAttributs" : [ {
+    "attribut" : {
+      "id" : null,
+      "titre" : "Teint",
+      "description" : "Coloration",
+      "etat" : true,
+      "dateCreation" : null,
+      "dateModification" : null,
+      "type" : "String",
+      "valeurParDefaut" : "Noir"
+    },
+    "valeur" : "Noir",
+    "dateCreation" : null,
+    "dateModification" : null
+  } ]
+}, {
+  "idDocument" : "0190615e-1101-7209-9932-7020bbd556f3",
+  "titre" : "Note intervention personnalisée",
+  "description" : "Document delivre par le medecin ou un infirmier de l'etablissement",
+  "etat" : true,
+  "dateCreation" : null,
+  "dateModification" : null,
+  "typeMouvement" : "Ajout",
+  "afficherPrix" : true,
+  "afficherUnite" : true,
+  "afficherDistributeur" : true,
+  "prixEditable" : true,
+  "contientRessources" : true,
+  "missions" : [ {
+    "id" : null,
+    "libelle" : "Hospitalisation",
+    "description" : "bon d'entrée et de sortie est une mission",
+    "etat" : true,
+    "dateCreation" : null,
+    "dateModification" : null,
+    "service" : {
+      "id" : null,
+      "description" : "bien",
+      "libelle" : "Laboratoire",
+      "etat" : true,
+      "dateCreation" : null,
+      "dateModification" : null,
+      "codeUnique" : "S2",
+      "localisation" : "douala",
+      "missions" : null,
+      "fileAttente" : null
+    },
+    "roles" : [ ]
+  } ],
+  "precoMouvements" : [ {
+    "id" : null,
+    "libelle" : "Achat",
+    "etat" : true,
+    "typeMouvement" : "Ajout",
+    "dateCreation" : null,
+    "dateModification" : null,
+    "precoMouvementsQtes" : [ {
+      "id" : null,
+      "qteMin" : 5,
+      "qteMax" : 50,
+      "montantMin" : 200.0,
+      "montantMax" : 2000.0,
+      "familles" : [ ],
+      "ressource" : {
+        "id" : null,
+        "libelle" : "Scanner",
+        "etat" : true,
+        "dateCreation" : null,
+        "dateModification" : null,
+        "quantite" : 4,
+        "seuilAlerte" : 2,
+        "prixEntree" : 12000.0,
+        "prixSortie" : 20000.0,
+        "unites" : "Packs",
+        "precoMouvementsQtes" : null,
+        "promotions" : null
+      },
+      "distributeurs" : [ ]
+    } ]
+  } ],
+  "attributs" : [ {
+    "id" : null,
+    "titre" : "Teint",
+    "description" : "Coloration",
+    "etat" : true,
+    "dateCreation" : null,
+    "dateModification" : null,
+    "type" : "String",
+    "valeurParDefaut" : "Noir"
+  } ],
+  "categories" : [ {
+    "id" : null,
+    "ordre" : "1",
+    "libelle" : "Informations Personnelles",
+    "attributs" : [ {
+      "attribut" : {
+        "id" : null,
+        "titre" : "Teint",
+        "description" : "Coloration",
+        "etat" : true,
+        "dateCreation" : null,
+        "dateModification" : null,
+        "type" : "String",
+        "valeurParDefaut" : "Noir"
+      },
+      "obligatoire" : true,
+      "ordre" : 1
+    } ]
+  } ],
+  "docEtats" : [ ],
+  "promotions" : [ ],
+  "id" : null,
+  "code" : "Code5",
+  "codeBarre" : "CodeBarre15",
+  "intitule" : null,
+  "idExemplairesParents" : [ ],
+  "dateCreated" : null,
+  "dateModificated" : null,
+  "personneBeneficiaire" : {
+    "id" : null,
+    "adresse" : "Bastos",
+    "mail" : "sg@sg.fr",
+    "telephone" : "655454545",
+    "qrcodevalue" : "qrcode4",
+    "personnesRatachees" : [ ]
+  },
+  "personneRattachee" : null,
+  "ordreEtats" : [ {
+    "id" : null,
+    "dateCreation" : null,
+    "dateModification" : null,
+    "dateFinVote" : 1735686000000,
+    "ordre" : 5,
+    "etat" : {
+      "id" : null,
+      "libelle" : "En cours",
+      "dateCreation" : null,
+      "docEtats" : [ ],
+      "description" : "En cours"
+    },
+    "etatsValidations" : [ ]
+  } ],
+  "mouvements" : [ {
+    "id" : null,
+    "description" : "inventaire",
+    "quantite" : 5,
+    "prix" : 2000.0,
+    "dateCreation" : null,
+    "datePeremption" : null,
+    "precoMouvementsRespecter" : [ ],
+    "precoMouvementsVioler" : [ ],
+    "ressource" : {
+      "id" : null,
+      "libelle" : "Imprimante",
+      "etat" : true,
+      "dateCreation" : null,
+      "dateModification" : null,
+      "quantite" : 4,
+      "seuilAlerte" : 2,
+      "prixEntree" : 12000.0,
+      "prixSortie" : 20000.0,
+      "unites" : "Packs",
+      "precoMouvementsQtes" : null,
+      "promotions" : null
+    },
+    "distributeur" : {
+      "id" : null,
+      "adresse" : "Bastos",
+      "mail" : "sg@sg.fr",
+      "telephone" : "655454545",
+      "qrcodevalue" : "qrcode4",
+      "personnesRatachees" : [ ],
+      "precomouvementsqtes" : [ ],
+      "raisonSociale" : "Pharmacam",
+      "code" : "d190614",
+      "promotions" : [ ]
+    }
+  } ],
+  "personnesDestinataires" : [ ],
+  "exemplaireAttributs" : [ {
+    "attribut" : {
+      "id" : null,
+      "titre" : "Teint",
+      "description" : "Coloration",
+      "etat" : true,
+      "dateCreation" : null,
+      "dateModification" : null,
+      "type" : "String",
+      "valeurParDefaut" : "Noir"
+    },
+    "valeur" : "Noir",
+    "dateCreation" : null,
+    "dateModification" : null
+  } ]
+}, {
+  "idDocument" : "0190615e-1101-7209-9932-7020bbd556f3",
+  "titre" : "Note intervention personnalisée",
+  "description" : "Document delivre par le medecin ou un infirmier de l'etablissement",
+  "etat" : true,
+  "dateCreation" : null,
+  "dateModification" : null,
+  "typeMouvement" : "Ajout",
+  "afficherPrix" : true,
+  "afficherUnite" : true,
+  "afficherDistributeur" : true,
+  "prixEditable" : true,
+  "contientRessources" : true,
+  "missions" : [ {
+    "id" : null,
+    "libelle" : "Hospitalisation",
+    "description" : "bon d'entrée et de sortie est une mission",
+    "etat" : true,
+    "dateCreation" : null,
+    "dateModification" : null,
+    "service" : {
+      "id" : null,
+      "description" : "bien",
+      "libelle" : "Laboratoire",
+      "etat" : true,
+      "dateCreation" : null,
+      "dateModification" : null,
+      "codeUnique" : "S2",
+      "localisation" : "douala",
+      "missions" : null,
+      "fileAttente" : null
+    },
+    "roles" : [ ]
+  } ],
+  "precoMouvements" : [ {
+    "id" : null,
+    "libelle" : "Achat",
+    "etat" : true,
+    "typeMouvement" : "Ajout",
+    "dateCreation" : null,
+    "dateModification" : null,
+    "precoMouvementsQtes" : [ {
+      "id" : null,
+      "qteMin" : 5,
+      "qteMax" : 50,
+      "montantMin" : 200.0,
+      "montantMax" : 2000.0,
+      "familles" : [ ],
+      "ressource" : {
+        "id" : null,
+        "libelle" : "Scanner",
+        "etat" : true,
+        "dateCreation" : null,
+        "dateModification" : null,
+        "quantite" : 4,
+        "seuilAlerte" : 2,
+        "prixEntree" : 12000.0,
+        "prixSortie" : 20000.0,
+        "unites" : "Packs",
+        "precoMouvementsQtes" : null,
+        "promotions" : null
+      },
+      "distributeurs" : [ ]
+    } ]
+  } ],
+  "attributs" : [ {
+    "id" : null,
+    "titre" : "Teint",
+    "description" : "Coloration",
+    "etat" : true,
+    "dateCreation" : null,
+    "dateModification" : null,
+    "type" : "String",
+    "valeurParDefaut" : "Noir"
+  } ],
+  "categories" : [ {
+    "id" : null,
+    "ordre" : "1",
+    "libelle" : "Informations Personnelles",
+    "attributs" : [ {
+      "attribut" : {
+        "id" : null,
+        "titre" : "Teint",
+        "description" : "Coloration",
+        "etat" : true,
+        "dateCreation" : null,
+        "dateModification" : null,
+        "type" : "String",
+        "valeurParDefaut" : "Noir"
+      },
+      "obligatoire" : true,
+      "ordre" : 1
+    } ]
+  } ],
+  "docEtats" : [ ],
+  "promotions" : [ ],
+  "id" : null,
+  "code" : "Code6",
+  "codeBarre" : "CodeBarre16",
+  "intitule" : null,
+  "idExemplairesParents" : [ ],
+  "dateCreated" : null,
+  "dateModificated" : null,
+  "personneBeneficiaire" : {
+    "id" : null,
+    "adresse" : "Bastos",
+    "mail" : "abd@yah.fr",
+    "telephone" : "655454545",
+    "qrcodevalue" : "qrcode1",
+    "personnesRatachees" : [ ]
+  },
+  "personneRattachee" : null,
+  "ordreEtats" : [ {
+    "id" : null,
+    "dateCreation" : null,
+    "dateModification" : null,
+    "dateFinVote" : 1735686000000,
+    "ordre" : 6,
+    "etat" : {
+      "id" : null,
+      "libelle" : "En cours",
+      "dateCreation" : null,
+      "docEtats" : [ ],
+      "description" : "En cours"
+    },
+    "etatsValidations" : [ ]
+  } ],
+  "mouvements" : [ ],
+  "personnesDestinataires" : [ ],
+  "exemplaireAttributs" : [ {
+    "attribut" : {
+      "id" : null,
+      "titre" : "Teint",
+      "description" : "Coloration",
+      "etat" : true,
+      "dateCreation" : null,
+      "dateModification" : null,
+      "type" : "String",
+      "valeurParDefaut" : "Noir"
+    },
+    "valeur" : "Brun",
+    "dateCreation" : null,
+    "dateModification" : null
+  } ]
+} ]

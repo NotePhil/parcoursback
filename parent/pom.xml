@@ -6,7 +6,7 @@
 
     <groupId>cmr.notep</groupId>
     <artifactId>parent</artifactId>
-    <version>1.0-SNAPSHOT</version>
+    <version>1.0-013</version>
     <packaging>pom</packaging>
     <name>parent</name>
 
@@ -26,13 +26,15 @@
         <lombok.version>1.18.26</lombok.version>
         <postgresql.version>42.5.4</postgresql.version>
         <spring-web.version>5.3.24</spring-web.version>
-        <projet.version>1.0-SNAPSHOT</projet.version>
+        <projet.version>1.0-013</projet.version>
         <rest.assured.version>2.3.3</rest.assured.version>
         <dozer.version>5.5.1</dozer.version>
         <spring-context.version>5.3.24</spring-context.version>
+        <maven.model.version>3.6.3</maven.model.version>
     </properties>
     <modules>
         <module>ressources-jpa</module>
+        <module>commun-outil</module>
         <module>commun-service</module>
         <module>composant-business</module>
         <module>ittest</module>
@@ -64,8 +66,25 @@
                 <artifactId>spring-context</artifactId>
                 <version>${spring-context.version}</version>
             </dependency>
+            <dependency>
+                <groupId>org.apache.maven</groupId>
+                <artifactId>maven-model</artifactId>
+                <version>${maven.model.version}</version>
+            </dependency>
         </dependencies>
     </dependencyManagement>
+    <distributionManagement>
+        <repository>
+            <id>github</id>
+            <name>GitHub OWNER Apache Maven Packages for exemplaires services</name>
+            <url>https://maven.pkg.github.com/NotePhil/parcoursback/release</url>
+        </repository>
+        <snapshotRepository>
+            <id>github</id>
+            <name>GitHub OWNER Apache Maven Packages for exemplaires services</name>
+            <url>https://maven.pkg.github.com/NotePhil/parcoursback/snapshot</url>
+        </snapshotRepository>
+    </distributionManagement>
     <build>
         <plugins>
             <plugin>

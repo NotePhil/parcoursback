@@ -6,7 +6,7 @@
     <parent>
         <groupId>cmr.notep</groupId>
         <artifactId>parent</artifactId>
-        <version>1.0-SNAPSHOT</version>
+        <version>1.0-013</version>
     </parent>
 
     <artifactId>composant-business</artifactId>
@@ -14,5 +14,7 @@
     <modules>
         <module>document-interface</module>
         <module>document-service</module>
+        <module>exemplaire-interface</module>
+        <module>exemplaire-service</module>
     </modules>
 </project>

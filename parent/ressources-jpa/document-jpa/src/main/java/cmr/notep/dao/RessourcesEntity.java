@@ -12,7 +12,7 @@ import java.util.List;
 @Getter
 @Setter
 @Entity
-@Table(name = "ressources")
+@Table(name = "ressources", schema = "document")
 public class RessourcesEntity {
     @Id
     @GeneratedValue(generator = "UUID")
@@ -49,12 +49,8 @@ public class RessourcesEntity {
     @Mapping("famille")
     private FamillesEntity famillesEntity;
 
-    @OneToMany(mappedBy = "ressourcesEntity" , fetch = FetchType.LAZY)
-    @Mapping("mouvements")
-    private List<MouvementsEntity> mouvementsEntities;
-
     @ManyToMany
-    @JoinTable(name = "ressourcespromotions" ,
+    @JoinTable(name = "ressourcespromotions" , schema = "document",
             joinColumns = @JoinColumn(name = "ressources_id"),
             inverseJoinColumns = @JoinColumn(name = "promotions_id"))
     @Mapping("promotions")

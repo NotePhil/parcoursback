@@ -14,7 +14,7 @@ import java.util.UUID;
 @Getter
 @Setter
 @Entity
-@Table(name = "roles")
+@Table(name = "roles", schema = "document")
 public class RolesEntity {
     @Id
     @GeneratedValue(generator = "UUID")

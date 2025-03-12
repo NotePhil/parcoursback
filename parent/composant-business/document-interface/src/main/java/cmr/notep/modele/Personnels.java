@@ -5,6 +5,7 @@ import lombok.*;
 
 import java.util.Date;
 import java.util.List;
+import java.util.UUID;
 
 @Data
 @AllArgsConstructor
@@ -20,5 +21,7 @@ public class Personnels {
     private String email;
     private String prenom;
     private String sexe ;
+    private Date dateModification;
     private List<JouerRoles> roles;
+    private List<MouvementCaisses> mouvementcaisses;
 }

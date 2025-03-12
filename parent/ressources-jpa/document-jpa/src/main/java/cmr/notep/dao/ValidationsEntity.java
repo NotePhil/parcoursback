@@ -14,7 +14,7 @@ import java.util.UUID;
 @Getter
 @Setter
 @Entity
-@Table(name = "validations")
+@Table(name = "validations", schema = "document")
 public class ValidationsEntity {
     @Id
     @GeneratedValue(generator = "UUID")

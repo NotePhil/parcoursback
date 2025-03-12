@@ -13,7 +13,7 @@ import java.util.UUID;
 @Getter
 @Setter
 @Entity
-@Table(name = "promotions")
+@Table(name = "promotions", schema = "document")
 public class PromotionsEntity {
 
     @Id
@@ -52,14 +52,14 @@ public class PromotionsEntity {
     private List<RessourcesEntity> ressourcesEntities;
 
     @ManyToMany
-    @JoinTable(name = "famillespromotions" ,
+    @JoinTable(name = "famillespromotions" ,schema = "document",
             joinColumns = @JoinColumn(name = "promotions_id"),
             inverseJoinColumns = @JoinColumn(name = "familles_id"))
     @Mapping("familles")
     private List<FamillesEntity> famillesEntities;
 
     @ManyToMany
-    @JoinTable(name = "documentspromotions" ,
+    @JoinTable(name = "documentspromotions" , schema = "document",
         joinColumns = @JoinColumn(name = "promotions_id"),
         inverseJoinColumns = @JoinColumn(name = "documents_id"))
     @Mapping("documents")

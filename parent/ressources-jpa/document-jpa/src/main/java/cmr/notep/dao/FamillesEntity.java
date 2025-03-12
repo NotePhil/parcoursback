@@ -1,6 +1,5 @@
 package cmr.notep.dao;
 
-import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import lombok.Getter;
 import lombok.Setter;
 import org.dozer.Mapping;
@@ -14,7 +13,7 @@ import java.util.UUID;
 @Getter
 @Setter
 @Entity
-@Table(name = "familles")
+@Table(name = "familles", schema = "document")
 public class FamillesEntity {
     @Id
     @GeneratedValue(generator = "UUID")
@@ -32,8 +31,8 @@ public class FamillesEntity {
     @Column(name = "datemodification")
     private Date dateModification;
 
-    @ManyToMany
-    @JoinTable(name = "sapplique",
+    @ManyToMany(fetch = FetchType.LAZY)
+    @JoinTable(name = "sapplique",schema = "document",
             joinColumns = @JoinColumn(name = "familles_id"),
             inverseJoinColumns = @JoinColumn(name = "precomouvementsqtes_id"))
     @Mapping("precoMouvementsQtes")

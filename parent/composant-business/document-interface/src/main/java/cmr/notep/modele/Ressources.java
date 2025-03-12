@@ -25,6 +25,5 @@ public class Ressources {
     private String unites;
     private List<PrecoMouvementsQtes> precoMouvementsQtes;
     private Familles famille;
-    private List<Mouvements> mouvements;
     private List<Promotions> promotions;
 }

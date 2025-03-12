@@ -5,6 +5,7 @@ import lombok.*;
 
 import java.util.Date;
 import java.util.List;
+import java.util.UUID;
 
 @Data
 @AllArgsConstructor
@@ -17,6 +18,7 @@ public class DocEtats {
     private String id;
     private int ordre;
     private Date dateCreation ;
+    private Date dateModification;
     private Validations validation;
     private List<DocEtats> predecesseurDocEtat;
     private Etats etat;

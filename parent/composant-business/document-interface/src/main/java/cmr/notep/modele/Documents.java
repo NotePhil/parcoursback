@@ -6,15 +6,16 @@ import java.util.List;
 import java.util.UUID;
 
 import lombok.*;
+import lombok.experimental.SuperBuilder;
 
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-@Builder
 @ToString
 @EqualsAndHashCode
+@SuperBuilder
 public class Documents {
-    private String id;
+    private String idDocument;
 
     private String titre;
 
@@ -28,7 +29,7 @@ public class Documents {
 
     private TypeMouvement typeMouvement ;
 
-    private String afficherPrix ;
+    private Boolean afficherPrix ;
 
     private Boolean afficherUnite;
 
@@ -46,4 +47,5 @@ public class Documents {
     private List<Categories> categories ;
     private List<DocEtats> docEtats;
     private List<Promotions> promotions;
+    private List<Exemplaires> exemplaires;
 }

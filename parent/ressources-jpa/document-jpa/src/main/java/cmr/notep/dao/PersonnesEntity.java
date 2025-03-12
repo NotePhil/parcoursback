@@ -1,7 +1,6 @@
 package cmr.notep.dao;
 
-import com.fasterxml.jackson.annotation.JsonBackReference;
-import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import lombok.Getter;
 import lombok.Setter;
 import org.dozer.Mapping;
@@ -15,8 +14,9 @@ import java.util.List;
 @Getter
 @Setter
 @Entity
-@Table(name = "personnes")
-@Inheritance(strategy = InheritanceType.JOINED)
+@Inheritance(strategy = InheritanceType.SINGLE_TABLE)
+@DiscriminatorColumn(name = "person_type", discriminatorType = DiscriminatorType.STRING)
+@Table(name = "personnes", schema = "document")
 public class PersonnesEntity
 {
     @Id
@@ -30,6 +30,9 @@ public class PersonnesEntity
     @Column(name = "mail")
     private String mail ;
 
+    @Column(name = "person_type", insertable = false , updatable = false)
+    private String person_type ;
+
     @Column(name = "telephone")
     private  String telephone ;
 
@@ -40,9 +43,18 @@ public class PersonnesEntity
     @Column(name = "datemodification")
     private Date dateModification;
     @ManyToMany(fetch = FetchType.LAZY)
-    @JoinTable(name = "rattacher" ,
+    @JoinTable(name = "rattacher" ,schema = "document",
             joinColumns = @JoinColumn(name = "personnes_id"),
             inverseJoinColumns = @JoinColumn(name = "rattacher_id"))
     @Mapping("personnesRatachees")
     private List<PersonnesEntity> personnesRatachees = new ArrayList<>();
+
+    @OneToOne(mappedBy = "personnesEntity", cascade = CascadeType.ALL, fetch = FetchType.LAZY, optional = true)
+    @JoinColumn(name = "comptes_id" , referencedColumnName = "id")
+    @Mapping("compte")
+    private ComptesEntity comptesEntity;
+
+    @OneToMany(mappedBy = "personnesEntity", fetch = FetchType.LAZY, cascade = {CascadeType.ALL})
+    @Mapping("exemplaires")
+    private List<ExemplairesEntity> exemplaireEntities;
 }

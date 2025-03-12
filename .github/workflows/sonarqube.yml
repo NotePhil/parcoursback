@@ -1,0 +1,152 @@
+name: CI/CD Pipeline
+
+on:
+  push:
+    branches:
+      - master
+  pull_request:
+    types: [opened, synchronize, reopened]
+
+env:
+  RUN_MAVEN_DEPLOY: true
+
+jobs:
+  sonarQubeScan:
+    name: SonarQube Analysis
+    runs-on: ubuntu-22.04
+
+    steps:
+      # Step 1: Checkout the code
+      - name: Checkout Code
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0  # Fetch all history for accurate versioning
+
+      # Step 2: Set up JDK 17 for Maven builds
+      - name: Set up JDK 17
+        uses: actions/setup-java@v4
+        with:
+          distribution: 'oracle'
+          java-version: '17'
+
+      # Step 3: Cache SonarQube packages to speed up builds
+      - name: Cache SonarQube Packages
+        uses: actions/cache@v3
+        with:
+          path: ~/.sonar/cache
+          key: ${{ runner.os }}-sonar-cache
+          restore-keys: ${{ runner.os }}-sonar-cache
+
+      # Step 4: Run SonarQube analysis
+      - name: SonarQube Scan
+        env:
+          SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}  # Analysis token associated with your project
+        run: |
+          cd parent
+          mvn -B verify org.sonarsource.scanner.maven:sonar-maven-plugin:sonar \
+            -Dsonar.projectKey='NotePhil_parcoursback' \
+            -Dsonar.organization='notephil' \
+            -Dsonar.projectName='parcoursback'
+            
+      # Step 5: Cache Maven packages to speed up builds
+      - name: Cache Maven Packages
+        uses: actions/cache@v3
+        with:
+          path: ~/.m2/repository
+          key: ${{ runner.os }}-m2-${{ hashFiles('**/pom.xml') }}
+          restore-keys: ${{ runner.os }}-m2
+
+
+      # Step 6: Build the project using Maven
+      - name: Build with Maven
+        run: |
+          cd parent &&  mvn clean install -Dmaven.test.skip=true && find . -name "*.jar"
+
+      - name: Deploy  document et exemplaire applications with Maven
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        if: ${{ env.RUN_MAVEN_DEPLOY == 'true' }}
+        run: |
+          cd parent && mvn deploy && find . -name "*.jar"
+
+  dockerBuildAndPush_document_service:
+    name: Build and Push Docker Image for document service
+    runs-on: ubuntu-22.04
+    needs: sonarQubeScan  # Ensure this job runs after the SonarQube analysis
+
+    steps:
+      # Step 7: Checkout code again (if needed)
+      - name: Checkout Code
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      # Step 8: Set up Docker Buildx for building images
+      - name: Set up Docker Buildx
+        uses: docker/setup-buildx-action@v2
+
+      - name: Log in to registry
+        run: echo "${{ secrets.GITHUB_TOKEN }}" | docker login ghcr.io -u Notephil --password-stdin
+
+      - name: Getting microservice version
+        id: get_version
+        run: |
+          version=$(cat parent/composant-business/document-service/pom.xml | grep -m 2 "<version>" | sed -n '2p' | sed -e 's/<\/\?version>//g' -e 's/^[ \t]*//;s/[ \t]*$//')
+          echo "version=${version}" >> $GITHUB_OUTPUT
+
+      # Step 9: Build and push Docker image to the registry (if needed)
+      - name: Build and Push Docker Image
+        uses: docker/build-push-action@v6.9.0
+        with:
+          context: .  # Use the current directory as the build context
+          file: parent/composant-business/document-service/Dockerfile  # Specify the Dockerfile to use
+          tags: ghcr.io/notephil/parcoursback-documents:${{ steps.get_version.outputs.version }}  # Tag for the built image
+          load: true  # Load the image into the Docker daemon (for local use)
+          cache-from: type=gha  # Use GitHub Actions cache as a cache source
+          cache-to: type=gha,mode=max  # Store cache in GitHub Actions for future builds
+          push: true  # Set to true if you want to push to a remote registry
+          build-args: |
+            PARCOURS_PACKAGES_URL=${{ secrets.PARCOURS_PACKAGES_URL }}
+            PARCOURS_MICROSERVICE_VERSION=${{ steps.get_version.outputs.version }}
+            MANAGE_PACKAGE_60J: ${{ secrets.MANAGE_PACKAGE_60J }}
+
+  dockerBuildAndPush_exemplaire_service:
+    name: Build and Push Docker Image for exemplaire service
+    runs-on: ubuntu-22.04
+    needs: sonarQubeScan  # Ensure this job runs after the SonarQube analysis
+
+    steps:
+      # Step 7: Checkout code again (if needed)
+      - name: Checkout Code
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      # Step 8: Set up Docker Buildx for building images
+      - name: Set up Docker Buildx
+        uses: docker/setup-buildx-action@v2
+
+      - name: Log in to registry
+        run: echo "${{ secrets.GITHUB_TOKEN }}" | docker login ghcr.io -u Notephil --password-stdin
+
+      - name: Getting microservice version
+        id: get_version
+        run: |
+          version=$(cat parent/composant-business/exemplaire-service/pom.xml | grep -m 2 "<version>" | sed -n '2p' | sed -e 's/<\/\?version>//g' -e 's/^[ \t]*//;s/[ \t]*$//')
+          echo "version=${version}" >> $GITHUB_OUTPUT
+
+      # Step 9: Build and push Docker image to the registry (if needed)
+      - name: Build and Push Docker Image
+        uses: docker/build-push-action@v6.9.0
+        with:
+          context: .  # Use the current directory as the build context
+          file: parent/composant-business/exemplaire-service/Dockerfile  # Specify the Dockerfile to use
+          tags: ghcr.io/notephil/parcoursback-exemplaire:${{ steps.get_version.outputs.version }}  # Tag for the built image
+          load: true  # Load the image into the Docker daemon (for local use)
+          cache-from: type=gha  # Use GitHub Actions cache as a cache source
+          cache-to: type=gha,mode=max  # Store cache in GitHub Actions for future builds
+          push: true  # Set to true if you want to push to a remote registry
+          build-args: |
+            PARCOURS_PACKAGES_URL=${{ secrets.PARCOURS_PACKAGES_URL }}
+            PARCOURS_MICROSERVICE_VERSION=${{ steps.get_version.outputs.version }}
+            MANAGE_PACKAGE_60J: ${{ secrets.MANAGE_PACKAGE_60J }}

@@ -1,5 +1,6 @@
 package cmr.notep.api;
 
+import cmr.notep.exceptions.ParcoursException;
 import cmr.notep.modele.Distributeurs;
 import org.springframework.http.MediaType;
 import org.springframework.lang.NonNull;
@@ -13,7 +14,7 @@ public interface IDistributeursApi {
             path = "/{idDistributeurs}",
             produces = MediaType.APPLICATION_JSON_VALUE
     )
-    Distributeurs avoirDistributeur (@NonNull @RequestParam(name="idDistributeurs") String idDistributeurs);
+    Distributeurs avoirDistributeur (@NonNull @RequestParam(name="idDistributeurs") String idDistributeurs) throws ParcoursException;
 
     @GetMapping(
             produces = MediaType.APPLICATION_JSON_VALUE

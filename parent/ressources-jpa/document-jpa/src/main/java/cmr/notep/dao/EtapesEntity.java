@@ -13,7 +13,7 @@ import java.util.UUID;
 @Getter
 @Setter
 @Entity
-@Table(name = "etapes")
+@Table(name = "etapes", schema = "document")
 public class EtapesEntity {
 
     @Id
@@ -31,7 +31,7 @@ public class EtapesEntity {
     private Date dateModification;
     @ManyToOne
     @JoinColumn(name = "parcours_id")
-    @Mapping("parcours")
+    @Mapping("parcour")
     private ParcoursEntity parcoursEntity;
 
     @OneToMany(mappedBy = "etapesEntity" , fetch = FetchType.LAZY ,  cascade = {CascadeType.ALL})

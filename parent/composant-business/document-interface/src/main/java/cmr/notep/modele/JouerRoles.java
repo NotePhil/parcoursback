@@ -4,6 +4,7 @@ import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import lombok.*;
 
 import java.util.Date;
+import java.util.UUID;
 
 @Data
 @AllArgsConstructor
@@ -16,6 +17,7 @@ public class JouerRoles {
     private String id;
     private Boolean etat ;
     private Date dateCreation;
+    private Date dateModification;
     private Date dateFin ;
     private Date dateDebut ;
     private Personnels personnel ;

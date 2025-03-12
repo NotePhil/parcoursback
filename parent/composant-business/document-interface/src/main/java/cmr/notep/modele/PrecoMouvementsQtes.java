@@ -4,7 +4,9 @@ import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import lombok.*;
 
+import java.util.Date;
 import java.util.List;
+import java.util.UUID;
 
 @Data
 @AllArgsConstructor
@@ -19,6 +21,8 @@ public class PrecoMouvementsQtes {
     private int qteMax ;
     private double montantMin ;
     private double montantMax ;
+    private Date dateCreation ;
+    private Date dateModification ;
     private PrecoMouvements precoMouvement ;
     private List<Familles> familles;
     private Ressources ressource;

@@ -13,7 +13,9 @@ import lombok.NoArgsConstructor;
 import lombok.Setter;
 import lombok.ToString;
 
+import java.util.Date;
 import java.util.List;
+import java.util.UUID;
 
 @Data
 @AllArgsConstructor
@@ -26,6 +28,8 @@ public class Categories {
     private String id;
     private String ordre;
     private String libelle;
+    private Date dateCreation;
+    private Date dateModification;
     private List<Associer> associer_attributs;
     private Documents document ;
 }

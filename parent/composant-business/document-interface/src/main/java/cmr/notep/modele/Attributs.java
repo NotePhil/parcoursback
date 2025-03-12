@@ -25,7 +25,9 @@ public class Attributs {
 
     private Date dateModification;
 
-    Types type;
+    private Type_attribut type;
+
+    private Types type_element;
 
     private String valeurParDefaut;
 
