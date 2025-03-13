@@ -27,7 +27,6 @@ public class Attributs {
 
     private Type_attribut type;
 
-    private Types type_element;
 
     private String valeurParDefaut;
 
