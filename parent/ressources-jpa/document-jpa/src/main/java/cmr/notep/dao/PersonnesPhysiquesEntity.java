@@ -9,8 +9,6 @@ import java.util.Date;
 
 @Getter
 @Setter
-@Entity
-@DiscriminatorValue("personnesphysique")
 public class PersonnesPhysiquesEntity extends PersonnesEntity{
 
     @Column(name = "nom" , nullable = false)

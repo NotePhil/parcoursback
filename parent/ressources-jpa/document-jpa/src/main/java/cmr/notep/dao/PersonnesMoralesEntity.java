@@ -8,8 +8,6 @@ import java.util.Date;
 
 @Getter
 @Setter
-@Entity
-@DiscriminatorValue("personnesmorales")
 public class PersonnesMoralesEntity extends PersonnesEntity{
 
     @Column(name = "raisonsociale")
