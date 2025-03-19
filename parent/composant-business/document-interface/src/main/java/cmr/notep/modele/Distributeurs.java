@@ -5,7 +5,9 @@ import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import lombok.experimental.SuperBuilder;
+import org.apache.maven.artifact.DefaultArtifact;
 
+import java.util.Date;
 import java.util.List;
 
 @Data
@@ -13,7 +15,8 @@ import java.util.List;
 @NoArgsConstructor
 @SuperBuilder
 public class Distributeurs extends Personnes {
-    private String id;
+
+    private Date dateModification;
     private List<PrecoMouvementsQtes> precomouvementsqtes;
     private String raisonSociale;
     private String code ;
