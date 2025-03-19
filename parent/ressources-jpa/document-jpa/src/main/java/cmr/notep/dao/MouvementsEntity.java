@@ -14,7 +14,7 @@ import java.util.UUID;
 @Getter
 @Setter
 @Entity
-@Table(name = "mouvements")
+@Table(name = "mouvements",schema = "document")
 public class MouvementsEntity {
 
     @Id

@@ -11,7 +11,7 @@ import java.util.Date;
 @Getter
 @Setter
 @Entity
-@Table(name = "deltasoldes")
+@Table(name = "deltasoldes",schema = "document")
 public class DeltaSoldesEntity {
 
     @Id
