@@ -1,6 +1,7 @@
 package cmr.notep.impl;
 
 import cmr.notep.api.IValidationsApi;
+import cmr.notep.business.ValidationsBusiness;
 import cmr.notep.exceptions.ParcoursException;
 import cmr.notep.modele.Validations;
 import org.springframework.context.annotation.Primary;
@@ -13,6 +14,13 @@ import java.util.List;
 @Transactional
 @Primary
 public class ValidationsService implements IValidationsApi {
+
+    private final ValidationsBusiness validationsBusiness ;
+
+    public ValidationsService(ValidationsBusiness validationsBusiness) {
+        this.validationsBusiness = validationsBusiness;
+    }
+
     @Override
     public Validations posterValidation(Validations Validation) {
         return null;
@@ -24,8 +32,8 @@ public class ValidationsService implements IValidationsApi {
     }
 
     @Override
-    public List<Validations> avoirTousValidations() {
-        return null;
+    public List<Validations> avoirToutesValidations() {
+        return validationsBusiness.avoirToutesValidation();
     }
 
     @Override

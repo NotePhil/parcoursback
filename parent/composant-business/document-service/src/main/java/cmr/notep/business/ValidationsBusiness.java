@@ -1,11 +1,17 @@
 package cmr.notep.business;
 
 import cmr.notep.dao.DaoAccessorService;
+import cmr.notep.dao.FamillesEntity;
+import cmr.notep.modele.Familles;
 import cmr.notep.modele.Validations;
+import cmr.notep.repository.FamillesRepository;
 import cmr.notep.repository.ValidationsRepository;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Component;
 import org.springframework.transaction.annotation.Transactional;
+
+import java.util.List;
+import java.util.stream.Collectors;
 
 import static cmr.notep.config.DocumentConfig.dozerMapperBean;
 @Component
@@ -23,4 +29,13 @@ public class ValidationsBusiness {
                 .findById(idValidation)
                 .orElseThrow(()-> new RuntimeException("Validation introuvable")),Validations.class);
     }
+
+    public List<Validations> avoirToutesValidation(){
+
+        return daoAccessorService.getRepository(ValidationsRepository.class).findAll()
+                .stream().map(validations -> dozerMapperBean.map(validations, Validations.class))
+                .collect(Collectors.toList());
+
+    }
+
 }

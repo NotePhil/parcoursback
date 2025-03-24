@@ -26,7 +26,7 @@ public interface IValidationsApi {
     @GetMapping(
             produces = MediaType.APPLICATION_JSON_VALUE
     )
-    List<Validations> avoirTousValidations();
+    List<Validations> avoirToutesValidations();
     @DeleteMapping(
             consumes = MediaType.APPLICATION_JSON_VALUE
     )
