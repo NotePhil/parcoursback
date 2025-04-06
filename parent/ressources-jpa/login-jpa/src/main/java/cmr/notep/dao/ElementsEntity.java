@@ -12,7 +12,7 @@ import java.util.List;
 @Getter
 @Setter
 @Entity
-@Table(name = "elements",schema = "document")
+@Table(name = "elements",schema = "login")
 public class ElementsEntity {
     @Id
     @GeneratedValue(generator = "UUID")

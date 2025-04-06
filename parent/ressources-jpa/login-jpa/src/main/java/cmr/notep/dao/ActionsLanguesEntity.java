@@ -9,7 +9,7 @@ import javax.persistence.*;
 @Getter
 @Setter
 @Entity
-@Table(name = "actionslangues",schema = "document")
+@Table(name = "actionslangues",schema = "login")
 public class ActionsLanguesEntity {
 
     @EmbeddedId

@@ -40,4 +40,11 @@ public class GroupesEntity {
     @JoinColumn(name = "menus_id")
     @Mapping("menus")
     private MenusEntity menus ;
+
+    @ManyToMany(fetch = FetchType.LAZY, cascade = {CascadeType.ALL})
+    @JoinTable(name ="rule_group" ,
+            joinColumns = @JoinColumn(name = "permissions_id") ,
+            inverseJoinColumns = @JoinColumn(name = "groupes_id"))
+    @Mapping("permissions")
+    private List<PermissionsEntity> permissionsEntities ;
 }
