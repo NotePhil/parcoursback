@@ -31,8 +31,8 @@ public class FamillesService implements IFamillesApi {
 
     @Override
     public List<Familles> avoirTousFamilles() {
-        System.out.println("calling avoir tout familles");
-        return famillesBusiness.avoirTousFamilles();
+        List<Familles> list_familles = famillesBusiness.avoirTousFamilles();
+        return list_familles;
     }
 
     @Override

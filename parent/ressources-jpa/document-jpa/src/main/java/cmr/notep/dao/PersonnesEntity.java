@@ -1,6 +1,7 @@
 package cmr.notep.dao;
 
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import lombok.Getter;
 import lombok.Setter;
 import org.dozer.Mapping;
@@ -43,6 +44,7 @@ public class PersonnesEntity
     @Column(name = "datemodification")
     private Date dateModification;
     @ManyToMany(fetch = FetchType.LAZY)
+    @JsonBackReference
     @JoinTable(name = "rattacher" ,schema = "document",
             joinColumns = @JoinColumn(name = "personnes_id"),
             inverseJoinColumns = @JoinColumn(name = "rattacher_id"))

@@ -15,6 +15,7 @@
         <module>common-jpa</module>
         <module>document-jpa</module>
         <module>exemplaire-jpa</module>
+        <module>login-jpa</module>
     </modules>
 
 </project>

@@ -26,9 +26,16 @@ public class FamillesBusiness {
     }
 
     public List<Familles> avoirTousFamilles(){
+
+        List<FamillesEntity> familleslistentities = daoAccessorService.getRepository(FamillesRepository.class).findAll();
+
+        List<Familles> famillesmappees = familleslistentities.stream().map(famille -> dozerMapperBean.map(famille, Familles.class))
+                .toList();
+
         return daoAccessorService.getRepository(FamillesRepository.class).findAll()
                 .stream().map(famille -> dozerMapperBean.map(famille, Familles.class))
                 .collect(Collectors.toList());
+
     }
 
     public Familles posterFamille(Familles famille)
