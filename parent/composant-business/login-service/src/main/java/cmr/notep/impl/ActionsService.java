@@ -1,6 +1,7 @@
 package cmr.notep.impl;
 
 import cmr.notep.api.IActionsApi;
+import cmr.notep.business.ActionsBusiness;
 import cmr.notep.exceptions.ParcoursException;
 import cmr.notep.modele.Actions;
 import org.springframework.context.annotation.Primary;
@@ -13,6 +14,13 @@ import java.util.List;
 @Transactional
 @Primary
 public class ActionsService implements IActionsApi {
+
+    private final ActionsBusiness actionBusiness ;
+
+    public ActionsService(ActionsBusiness actionBusiness) {
+        this.actionBusiness = actionBusiness;
+    }
+
     @Override
     public Actions avoirAction(String idaction) throws ParcoursException {
         return null;
@@ -20,8 +28,7 @@ public class ActionsService implements IActionsApi {
 
     @Override
     public List<Actions> avoirToutesActions() {
-        System.out.println("teste des actions");
-        return List.of();
+        return actionBusiness.avoirToutesActions();
     }
 
     @Override

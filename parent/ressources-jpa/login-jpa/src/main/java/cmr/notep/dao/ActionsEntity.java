@@ -36,7 +36,6 @@ public class ActionsEntity {
     @Column(name = "actionstatus")
     private String actionstatus;
 
-
     @ManyToOne
     @JoinColumn(name = "elementsbase_id")
     @Mapping("elementsbase")
