@@ -56,12 +56,12 @@
             <groupId>net.sf.dozer</groupId>
             <artifactId>dozer</artifactId>
         </dependency>
-<!--        <dependency>-->
-<!--            <groupId>cmr.notep</groupId>-->
-<!--            <artifactId>login-interface</artifactId>-->
-<!--            <version>1.0-013</version>-->
-<!--            <scope>compile</scope>-->
-<!--        </dependency>-->
+        <dependency>
+            <groupId>cmr.notep</groupId>
+            <artifactId>login-interface</artifactId>
+            <version>1.0-013</version>
+            <scope>compile</scope>
+        </dependency>
     </dependencies>
     <build>
         <plugins>

@@ -14,6 +14,8 @@
     <modules>
         <module>document-interface</module>
         <module>document-service</module>
+        <module>login-interface</module>
+        <module>login-service</module>
         <module>exemplaire-interface</module>
         <module>exemplaire-service</module>
     </modules>

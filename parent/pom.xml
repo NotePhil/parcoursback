@@ -39,6 +39,7 @@
         <module>composant-business</module>
         <module>ittest</module>
         <module>composant-business/login-service</module>
+        <module>composant-business/login-interface</module>
     </modules>
     <dependencyManagement>
         <dependencies>

@@ -40,7 +40,7 @@ public class DistributeursBusiness {
 
     public  List<Distributeurs> findByRaisonSociale(String value)
     {
-        return daoAccessorService.getRepository(DistributeursRepository.class).findByRaisonSociale(value)
+        return daoAccessorService.getRepository(DistributeursRepository.class).findAll()
                 .stream().map(cat ->dozerMapperBean.map(cat, Distributeurs.class))
                 .collect(Collectors.toList());
     }
