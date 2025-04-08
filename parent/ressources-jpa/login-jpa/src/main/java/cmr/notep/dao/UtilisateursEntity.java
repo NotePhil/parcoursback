@@ -58,7 +58,7 @@ public class UtilisateursEntity {
     @MapsId
     @JoinColumn(name = "authentification_id")
     @Mapping("authentification")
-    private  AuthentificationEntity authentificationEntity ;
+    private AuthentificationsEntity authentificationEntity ;
 
     @OneToMany(mappedBy = "utilisateursEntity", fetch = FetchType.LAZY, cascade = {CascadeType.ALL})
     @Mapping("actions")

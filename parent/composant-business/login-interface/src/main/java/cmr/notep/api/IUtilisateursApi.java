@@ -13,7 +13,7 @@ import java.util.List;
 public interface IUtilisateursApi {
 
     @GetMapping(
-            path = "/{idAttribut}",
+            path = "/{iduser}",
             produces = MediaType.APPLICATION_JSON_VALUE
     )
     Utilisateurs avoirUser (@NonNull @PathVariable(name = "iduser") String iduser) throws ParcoursException;

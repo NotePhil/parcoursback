@@ -26,7 +26,7 @@ public class ActionsBusiness {
 
     public List<Actions> avoirToutesActions() {
         return daoAccessorService.getRepository(ActionsRepository.class).findAll()
-                .stream().map(attrib -> dozerMapperBean.map(attrib,Actions.class))
+                .stream().map(actions -> dozerMapperBean.map(actions,Actions.class))
                 .collect(Collectors.toList());
     }
 }

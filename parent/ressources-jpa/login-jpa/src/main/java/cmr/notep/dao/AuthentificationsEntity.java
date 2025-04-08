@@ -12,7 +12,7 @@ import java.util.Date;
 @Setter
 @Entity
 @Table(name = "authentification",schema = "login")
-public class AuthentificationEntity {
+public class AuthentificationsEntity {
 
     @Id
     @GeneratedValue(generator = "UUID")

@@ -12,7 +12,7 @@ import java.util.List;
 public interface IActionsApi {
 
     @GetMapping(
-            path = "/{idAttribut}",
+            path = "/{idaction}",
             produces = MediaType.APPLICATION_JSON_VALUE
     )
     Actions avoirAction (@NonNull @PathVariable(name = "idaction") String idaction) throws ParcoursException;

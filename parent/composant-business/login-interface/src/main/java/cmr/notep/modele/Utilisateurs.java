@@ -22,4 +22,7 @@ public class Utilisateurs {
     private Groupes groupe;
     private List<Organisations> organisations;
     private Menus menus;
+    private List<Tokens> tokens;
+    private  Authentifications authentification ;
+    private List<Actions> actions;
 }
