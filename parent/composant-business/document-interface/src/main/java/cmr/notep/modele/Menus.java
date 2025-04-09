@@ -9,9 +9,9 @@ import java.util.Date;
 @AllArgsConstructor
 @NoArgsConstructor
 @Builder
-@JsonIgnoreProperties({"utilisateurs"})
-@ToString(exclude = {"utilisateurs"})
-@EqualsAndHashCode(exclude = {"utilisateurs"})
+@JsonIgnoreProperties({"utilisateur"})
+@ToString(exclude = {"utilisateur"})
+@EqualsAndHashCode(exclude = {"utilisateur"})
 public class Menus {
     private String id;
     private boolean etat;
