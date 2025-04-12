@@ -13,7 +13,7 @@ import javax.persistence.*;
 public class ElementsBaseLanguesEntity {
 
     @EmbeddedId
-    private AssocierEntityID id;
+    private ElementsBaseLanguesEntityID id;
 
     @ManyToOne
     @MapsId("languesId")

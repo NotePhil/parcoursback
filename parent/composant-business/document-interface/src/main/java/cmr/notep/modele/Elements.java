@@ -10,9 +10,6 @@ import java.util.List;
 @AllArgsConstructor
 @NoArgsConstructor
 @Builder
-@JsonIgnoreProperties({"menus"})
-@ToString(exclude = {"menus"})
-@EqualsAndHashCode(exclude = {"menus"})
 public class Elements {
     private String id;
     private String libelle;

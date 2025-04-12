@@ -17,4 +17,5 @@ public class ElementLanguesEntityID implements Serializable {
 
     @Column(name = "elements_id")
     private String elementsId ;
+
 }

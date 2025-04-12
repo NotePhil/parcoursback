@@ -1,6 +1,7 @@
 package cmr.notep.business;
 
 import cmr.notep.dao.DaoAccessorService;
+import cmr.notep.dao.UtilisateursEntity;
 import cmr.notep.modele.Attributs;
 import cmr.notep.modele.Utilisateurs;
 import cmr.notep.repository.AttributsRepository;
@@ -27,8 +28,11 @@ public class UtilisateursBusiness {
     }
 
     public List<Utilisateurs> avoirToutUser() {
-        return daoAccessorService.getRepository(UtilisateursRepository.class).findAll()
-                .stream().map(user -> dozerMapperBean.map(user, Utilisateurs.class))
+
+        List<UtilisateursEntity> userEntity = daoAccessorService.getRepository(UtilisateursRepository.class).findAll() ;
+
+        return userEntity.stream().map(user -> dozerMapperBean.map(user, Utilisateurs.class))
                 .collect(Collectors.toList());
+
     }
 }
