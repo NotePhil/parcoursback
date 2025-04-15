@@ -12,7 +12,7 @@ import java.util.List;
 @Getter
 @Setter
 @Entity
-@Table(name = "menus")
+@Table(name = "menus",schema = "document")
 public class MenusEntity {
 
     @Id
@@ -37,7 +37,7 @@ public class MenusEntity {
     @Mapping("groupe")
     private GroupesEntity groupesEntity ;
 
-    @OneToMany(mappedBy = "menusEntity",cascade = CascadeType.ALL, orphanRemoval = true)
+    @OneToMany(mappedBy = "menusEntity")
     @Mapping("elements")
     private List<ElementsEntity> elementsEntities;
 }

@@ -10,9 +10,9 @@ import java.util.List;
 @AllArgsConstructor
 @NoArgsConstructor
 @Builder
-@JsonIgnoreProperties({"documents","service"})
-@ToString(exclude = {"documents","service"})
-@EqualsAndHashCode(exclude = {"documents","service"})
+@JsonIgnoreProperties({"documents","service,roles"})
+@ToString(exclude = {"documents","service,roles"})
+@EqualsAndHashCode(exclude = {"documents","service,roles"})
 public class Missions {
     private String id ;
     private String libelle ;
@@ -22,5 +22,6 @@ public class Missions {
     private Date dateModification ;
     private List<Documents> documents;
     private Services service;
+    private String idLogin;
     private List<Remplir> roles;
 }

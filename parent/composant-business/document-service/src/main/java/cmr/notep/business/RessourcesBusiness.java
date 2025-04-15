@@ -3,7 +3,6 @@ package cmr.notep.business;
 import cmr.notep.dao.DaoAccessorService;
 import cmr.notep.dao.RessourcesEntity;
 import cmr.notep.modele.Ressources;
-import cmr.notep.modele.RessourcesRequestBuilder;
 import cmr.notep.repository.RessourcesRepository;
 import lombok.extern.slf4j.Slf4j;
 import org.jetbrains.annotations.NotNull;

@@ -11,9 +11,9 @@ import java.util.UUID;
 @AllArgsConstructor
 @NoArgsConstructor
 @Builder
-@JsonIgnoreProperties({"fileAttente"})
-@ToString(exclude = {"fileAttente"})
-@EqualsAndHashCode(exclude = {"fileAttente"})
+@JsonIgnoreProperties({"fileAttente","missions"})
+@ToString(exclude = {"fileAttente","missions"})
+@EqualsAndHashCode(exclude = {"fileAttente","missions"})
 public class Services {
     private String id ;
     private String description;

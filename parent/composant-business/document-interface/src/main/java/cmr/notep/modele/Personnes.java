@@ -24,4 +24,9 @@ public class Personnes {
     private List<Personnes> personnesRatachees = new ArrayList<>();
     private Comptes compte;
     private Exemplaires exemplaires;
+
+
+//    private List<Promotions> promotions;
+//    private Mouvements mouvements;
+//    private List<PrecoMouvementsQtes> precomouvementsqtes;
 }

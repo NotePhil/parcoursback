@@ -12,7 +12,7 @@ import java.util.List;
 @Getter
 @Setter
 @Entity
-@Table(name = "elementsbases")
+@Table(name = "elementsbases",schema = "document")
 public class ElementsBasesEntity {
 
     @Id
@@ -44,7 +44,7 @@ public class ElementsBasesEntity {
     @Mapping("elementsbaselangues")
     private List<ElementsBaseLanguesEntity> elementsBaseLanguesEntities;
 
-    @OneToMany(mappedBy = "elementsBasesEntity",cascade = CascadeType.ALL, orphanRemoval = true)
-    @Mapping("elements")
-    private List<ElementsEntity> elementsEntities;
+    @OneToOne(mappedBy = "elementsBasesEntity",cascade = CascadeType.ALL, orphanRemoval = true)
+    @Mapping("element")
+    private ElementsEntity elementsEntity;
 }

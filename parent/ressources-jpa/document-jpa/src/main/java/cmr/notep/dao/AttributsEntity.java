@@ -34,10 +34,6 @@ public class AttributsEntity {
     @Column(name = "type_attribut", nullable = false)
     private Type_attribut type;
 
-    @Enumerated(EnumType.STRING)
-    @Column(name = "type", nullable = false)
-    private Types type_element;
-
     @Column(name = "valeurpardefaut")
     private String valeurParDefaut;
     @ManyToMany(mappedBy = "attributsEntities")

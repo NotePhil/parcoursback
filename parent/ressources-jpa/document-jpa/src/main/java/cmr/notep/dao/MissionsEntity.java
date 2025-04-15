@@ -36,6 +36,9 @@ public class MissionsEntity {
     @Column(name="datemodification")
     private Date dateModification ;
 
+    @Column(name="idlogin")
+    private String idLogin ;
+
     @ManyToMany(fetch = FetchType.LAZY , cascade = {CascadeType.ALL} )
     @JoinTable(name = "traiter",schema = "document",
         joinColumns = @JoinColumn(name = "missions_id", referencedColumnName = "id"),

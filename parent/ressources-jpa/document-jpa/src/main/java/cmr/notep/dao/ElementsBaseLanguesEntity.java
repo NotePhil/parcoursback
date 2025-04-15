@@ -9,11 +9,11 @@ import javax.persistence.*;
 @Getter
 @Setter
 @Entity
-@Table(name = "elementsbaselanques")
+@Table(name = "elementsbaselanques",schema = "document")
 public class ElementsBaseLanguesEntity {
 
     @EmbeddedId
-    private AssocierEntityID id;
+    private ElementsBaseLanguesEntityID id;
 
     @ManyToOne
     @MapsId("languesId")

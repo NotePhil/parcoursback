@@ -20,16 +20,16 @@ import static cmr.notep.config.DocumentConfig.dozerMapperBean;
 @Transactional
 public class PersonnesBusiness {
     private final DaoAccessorService daoAccessorService;
-    private final DistributeursBusiness distributeursBusiness ;
-    private final PersonnesPhysiqueBusiness personnesPhysiqueBusiness ;
-    private final PersonnesMoraleBusiness personnesMoraleBusiness;
+//    private final DistributeursBusiness distributeursBusiness ;
+//    private final PersonnesPhysiqueBusiness personnesPhysiqueBusiness ;
+//    private final PersonnesMoraleBusiness personnesMoraleBusiness;
 
-    public PersonnesBusiness(DaoAccessorService daoAccessorService, DistributeursBusiness distributeursBusiness, PersonnesPhysiqueBusiness personnesPhysiqueBusiness, PersonnesMoraleBusiness personnesMoraleBusiness)
+    public PersonnesBusiness(DaoAccessorService daoAccessorService)
     {
         this.daoAccessorService = daoAccessorService;
-        this.distributeursBusiness = distributeursBusiness;
-        this.personnesPhysiqueBusiness = personnesPhysiqueBusiness;
-        this.personnesMoraleBusiness = personnesMoraleBusiness;
+//        this.distributeursBusiness = distributeursBusiness;
+//        this.personnesPhysiqueBusiness = personnesPhysiqueBusiness;
+//        this.personnesMoraleBusiness = personnesMoraleBusiness;
     }
 
     public Personnes avoirPersonne(String id) {
@@ -44,34 +44,36 @@ public class PersonnesBusiness {
     {
         List<MacroPersonnes> outputItem = new ArrayList<>();
 
-        List<Distributeurs> distributeurs = this.daoAccessorService.getRepository(PersonnesRepository.class).findByRaisonSocialeOnDistributeurs(value)
-                .stream().map(distibuteur ->dozerMapperBean.map(distibuteur, Distributeurs.class))
-                .toList();
+//        List<Distributeurs> distributeurs = this.daoAccessorService.getRepository(PersonnesRepository.class).findByRaisonSocialeOnDistributeurs(value)
+//                .stream().map(distibuteur ->dozerMapperBean.map(distibuteur, Distributeurs.class))
+//                .toList();
+//
+//        List<PersonnesMorale> personnesmorales = this.daoAccessorService.getRepository(PersonnesRepository.class).findByRaisonSocialeOnPersonneMorale(value)
+//                .stream().map(personnesmorale ->dozerMapperBean.map(personnesmorale, PersonnesMorale.class))
+//                .toList();
+//
+//        List<PersonnesPhysique> personnesphysiques = this.daoAccessorService.getRepository(PersonnesRepository.class).findByNomOrByPrenomOnPersonnePhysique(value)
+//                .stream().map(personnesphysique ->dozerMapperBean.map(personnesphysique, PersonnesPhysique.class))
+//                .toList();
+//
+//        for (Distributeurs distributeur : distributeurs) {
+//            outputItem.add(new MacroPersonnes("Distributeurs", distributeur));
+//        }
+//
+//        for (PersonnesMorale personneMorale : personnesmorales) {
+//            outputItem.add(new MacroPersonnes("Personnes morale", personneMorale));
+//        }
+//
+//        for (PersonnesPhysique personnePhysique : personnesphysiques) {
+//            outputItem.add(new MacroPersonnes("Personnes physique", personnePhysique));
+//        }
+//
+//        if (outputItem.isEmpty())
+//            throw new IllegalStateException("Entrée "+value+" non trouvé!");
 
-        List<PersonnesMorale> personnesmorales = this.daoAccessorService.getRepository(PersonnesRepository.class).findByRaisonSocialeOnPersonneMorale(value)
-                .stream().map(personnesmorale ->dozerMapperBean.map(personnesmorale, PersonnesMorale.class))
-                .toList();
+//        else
 
-        List<PersonnesPhysique> personnesphysiques = this.daoAccessorService.getRepository(PersonnesRepository.class).findByNomOrByPrenomOnPersonnePhysique(value)
-                .stream().map(personnesphysique ->dozerMapperBean.map(personnesphysique, PersonnesPhysique.class))
-                .toList();
-
-        for (Distributeurs distributeur : distributeurs) {
-            outputItem.add(new MacroPersonnes("Distributeurs", distributeur));
-        }
-
-        for (PersonnesMorale personneMorale : personnesmorales) {
-            outputItem.add(new MacroPersonnes("Personnes morale", personneMorale));
-        }
-
-        for (PersonnesPhysique personnePhysique : personnesphysiques) {
-            outputItem.add(new MacroPersonnes("Personnes physique", personnePhysique));
-        }
-
-        if (outputItem.isEmpty())
-            throw new IllegalStateException("Entrée "+value+" non trouvé!");
-
-        else return outputItem;
+            return outputItem;
     }
 
     public List<Personnes> avoirToutPersonnes() {

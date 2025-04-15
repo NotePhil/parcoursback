@@ -1,16 +1,18 @@
 package cmr.notep.modele;
 
-import lombok.AllArgsConstructor;
-import lombok.Builder;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import lombok.*;
 
 import java.util.Date;
+import java.util.List;
 
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
 @Builder
+@JsonIgnoreProperties({"elementsbase"})
+@ToString(exclude = {"elementsbase"})
+@EqualsAndHashCode(exclude = {"elementsbase"})
 public class Actions {
     private String id;
     private String libelle;
@@ -18,5 +20,5 @@ public class Actions {
     private Date dateCreation;
     private Date dateModification;
     private ElementsBases elementsbase;
-    private ActionsLangues actionslangues;
+    private List<ActionsLangues> actionslangues;
 }

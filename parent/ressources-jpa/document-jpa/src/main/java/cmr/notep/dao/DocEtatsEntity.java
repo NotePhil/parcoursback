@@ -34,7 +34,7 @@ public class DocEtatsEntity {
     private ValidationsEntity validationsEntity;
 
     @ManyToMany
-    @JoinTable(name = "docetats_predecesseur", schema = "document",
+    @JoinTable(name = "docetats_predecesseurs", schema = "document",
             joinColumns = @JoinColumn(name = "docetats_id"),
             inverseJoinColumns = @JoinColumn(name = "predecesseur_id"))
     @Mapping("predecesseurDocEtat")

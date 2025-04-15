@@ -11,7 +11,7 @@ import java.util.Date;
 @Getter
 @Setter
 @Entity
-@Table(name = "mouvementcaisses")
+@Table(name = "mouvementcaisses",schema = "document")
 public class MouvementCaissesEntity {
     @Id
     @GeneratedValue(generator = "UUID")

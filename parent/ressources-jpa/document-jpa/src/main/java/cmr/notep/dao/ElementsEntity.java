@@ -12,7 +12,7 @@ import java.util.List;
 @Getter
 @Setter
 @Entity
-@Table(name = "elements")
+@Table(name = "elements",schema = "document")
 public class ElementsEntity {
     @Id
     @GeneratedValue(generator = "UUID")
@@ -41,8 +41,8 @@ public class ElementsEntity {
     @Mapping("menus")
     private MenusEntity menusEntity;
 
-    @ManyToOne
-    @JoinColumn(name = "elementsbases_id")
+    @OneToOne
+    @JoinColumn(name = "elementsbases_id", referencedColumnName = "id")
     @Mapping("elementbase")
     private ElementsBasesEntity elementsBasesEntity;
 }
