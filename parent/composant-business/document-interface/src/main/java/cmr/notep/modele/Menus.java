@@ -4,6 +4,7 @@ import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import lombok.*;
 
 import java.util.Date;
+import java.util.List;
 
 @Data
 @AllArgsConstructor
@@ -18,5 +19,5 @@ public class Menus {
     private Date dateCreation;
     private Utilisateurs utilisateur;
     private Groupes groupe;
-    private Elements elements;
+    private List<Elements> elements;
 }

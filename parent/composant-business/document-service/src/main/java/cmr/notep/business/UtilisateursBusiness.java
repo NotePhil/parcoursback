@@ -28,10 +28,7 @@ public class UtilisateursBusiness {
     }
 
     public List<Utilisateurs> avoirToutUser() {
-
-        List<UtilisateursEntity> userEntity = daoAccessorService.getRepository(UtilisateursRepository.class).findAll() ;
-
-        return userEntity.stream().map(user -> dozerMapperBean.map(user, Utilisateurs.class))
+        return daoAccessorService.getRepository(UtilisateursRepository.class).findAll().stream().map(user -> dozerMapperBean.map(user, Utilisateurs.class))
                 .collect(Collectors.toList());
 
     }
