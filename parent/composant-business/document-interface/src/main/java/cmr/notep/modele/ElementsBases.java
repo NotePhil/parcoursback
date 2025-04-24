@@ -1,9 +1,7 @@
 package cmr.notep.modele;
 
-import lombok.AllArgsConstructor;
-import lombok.Builder;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import lombok.*;
 
 import java.util.Date;
 import java.util.List;
@@ -12,6 +10,9 @@ import java.util.List;
 @AllArgsConstructor
 @NoArgsConstructor
 @Builder
+@JsonIgnoreProperties({"element"})
+@ToString(exclude = {"element"})
+@EqualsAndHashCode(exclude = {"element"})
 public class ElementsBases {
     private String id;
     private String libelle;
@@ -21,5 +22,5 @@ public class ElementsBases {
     private String moduleAngular;
     private List<Actions> actions ;
     private List<ElementsBaseLangues> elementsbaselangues;
-    private List<Elements> elements;
+    private Elements element;
 }

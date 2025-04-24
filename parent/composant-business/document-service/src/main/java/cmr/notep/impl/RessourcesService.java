@@ -30,7 +30,6 @@ public class RessourcesService implements IRessourcesApi {
 
     @Override
     public List<Ressources> avoirToutRessources() {
-        System.out.print("calling ressource\n");
         return ressourcesBusiness.avoirToutRessources();
     }
 

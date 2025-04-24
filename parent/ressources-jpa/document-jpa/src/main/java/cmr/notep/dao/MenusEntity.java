@@ -37,7 +37,7 @@ public class MenusEntity {
     @Mapping("groupe")
     private GroupesEntity groupesEntity ;
 
-    @OneToMany(mappedBy = "menusEntity",cascade = CascadeType.ALL, orphanRemoval = true)
+    @OneToMany(mappedBy = "menusEntity")
     @Mapping("elements")
     private List<ElementsEntity> elementsEntities;
 }

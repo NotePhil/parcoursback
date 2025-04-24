@@ -41,8 +41,8 @@ public class ElementsEntity {
     @Mapping("menus")
     private MenusEntity menusEntity;
 
-    @ManyToOne
-    @JoinColumn(name = "elementsbases_id")
+    @OneToOne
+    @JoinColumn(name = "elementsbases_id", referencedColumnName = "id")
     @Mapping("elementbase")
     private ElementsBasesEntity elementsBasesEntity;
 }
