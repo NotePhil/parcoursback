@@ -23,9 +23,9 @@ public class OrganisationsEntity {
     @Column(name = "raisonsociale")
     private String raisonSociale;
 
-    @ManyToMany(fetch = FetchType.LAZY, cascade = {CascadeType.ALL})
-    @JoinTable(name ="organiser" ,
-    joinColumns = @JoinColumn(name = "organisations_id") ,
+    @ManyToMany(fetch = FetchType.LAZY)
+    @JoinTable(name ="organiser" , schema = "document" ,
+            joinColumns = @JoinColumn(name = "organisations_id") ,
             inverseJoinColumns = @JoinColumn(name = "utilisateurs_id"))
     @Mapping("utilisateurs")
     private List<UtilisateursEntity> utilisateursEntities ;

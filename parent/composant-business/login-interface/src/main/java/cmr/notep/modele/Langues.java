@@ -6,6 +6,7 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import java.util.Date;
+import java.util.List;
 
 @Data
 @AllArgsConstructor
@@ -17,7 +18,7 @@ public class Langues {
     private boolean etat;
     private Date dateSouscription;
     private Date dateModification;
-    private ElementLangues elementslangues;
-    private ElementsBaseLangues elementsbase;
-    private ActionsLangues actionslangues;
+    private List<ElementLangues> elementslangues;
+    private List<ElementsBaseLangues> elementsbase;
+    private List<ActionsLangues> actionslangues;
 }

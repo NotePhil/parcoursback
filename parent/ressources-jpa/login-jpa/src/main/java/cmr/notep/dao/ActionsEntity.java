@@ -33,9 +33,6 @@ public class ActionsEntity {
     @Column(name = "datemodification")
     private Date dateModification;
 
-    @Column(name = "actionstatus")
-    private String actionstatus;
-
     @ManyToOne
     @JoinColumn(name = "elementsbase_id")
     @Mapping("elementsbase")
@@ -44,14 +41,4 @@ public class ActionsEntity {
     @OneToMany(mappedBy = "actionsEntity",fetch = FetchType.LAZY, cascade = {CascadeType.ALL})
     @Mapping("actionslangues")
     private List<ActionsLanguesEntity> actionsLanguesEntities;
-
-    @ManyToOne
-    @JoinColumn(name = "utilisateur_id")
-    @Mapping("utilisateur")
-    private UtilisateursEntity utilisateursEntity;
-
-    @ManyToOne
-    @JoinColumn(name = "historique_id")
-    @Mapping("historique")
-    private HistoriquesEntity historiqueEntity;
 }

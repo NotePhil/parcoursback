@@ -1,14 +1,15 @@
 package cmr.notep.modele;
 
-import lombok.AllArgsConstructor;
-import lombok.Builder;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import lombok.*;
 
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
 @Builder
+@JsonIgnoreProperties({"langue","elementbases"})
+@ToString(exclude = {"langue","elementbases"})
+@EqualsAndHashCode(exclude = {"langue","elementbases"})
 public class ElementsBaseLangues {
     private Langues langue;
     private ElementsBases elementbases;

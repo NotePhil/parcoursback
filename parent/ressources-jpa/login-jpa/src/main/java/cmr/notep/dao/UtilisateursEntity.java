@@ -49,18 +49,4 @@ public class UtilisateursEntity {
     @JoinColumn(name = "menus_id" , referencedColumnName = "id")
     @Mapping("menus")
     private MenusEntity menusEntity;
-
-    @OneToMany(mappedBy = "utilisateursEntity", fetch = FetchType.LAZY, cascade = {CascadeType.ALL})
-    @Mapping("tokens")
-    private List<TokensEntity> tokenEntityList;
-
-    @OneToOne
-    @MapsId
-    @JoinColumn(name = "authentification_id")
-    @Mapping("authentification")
-    private AuthentificationsEntity authentificationEntity ;
-
-    @OneToMany(mappedBy = "utilisateursEntity", fetch = FetchType.LAZY, cascade = {CascadeType.ALL})
-    @Mapping("actions")
-    private List<ActionsEntity> actionsEntityList;
 }

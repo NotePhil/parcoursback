@@ -10,11 +10,11 @@ import java.io.Serializable;
 @Setter
 @Getter
 @Embeddable
-public class AssocierEntityID implements Serializable {
-    @Column(name = "attributs_id")
-    private String attributsId ;
+public class ActionsLanguesEntityID implements Serializable {
 
-    @Column(name = "categories_id")
-    private String categoriesId ;
+    @Column(name = "langues_id")
+    private String languesId ;
 
+    @Column(name = "actions_id")
+    private String actionsId ;
 }

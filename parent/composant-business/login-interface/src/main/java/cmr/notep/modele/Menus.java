@@ -1,21 +1,23 @@
 package cmr.notep.modele;
 
-import lombok.AllArgsConstructor;
-import lombok.Builder;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import lombok.*;
 
 import java.util.Date;
+import java.util.List;
 
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
 @Builder
+@JsonIgnoreProperties({"utilisateur"})
+@ToString(exclude = {"utilisateur"})
+@EqualsAndHashCode(exclude = {"utilisateur"})
 public class Menus {
     private String id;
     private boolean etat;
     private Date dateCreation;
     private Utilisateurs utilisateur;
     private Groupes groupe;
-    private Elements elements;
+    private List<Elements> elements;
 }
