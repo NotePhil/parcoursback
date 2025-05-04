@@ -14,6 +14,7 @@ public class Utilisateurs {
     private String id;
     private String login;
     private String mdp;
+    private String roles;
     private boolean etat;
     private Date dateCreation;
     private Date dateModification;

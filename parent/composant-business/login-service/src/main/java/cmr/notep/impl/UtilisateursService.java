@@ -69,4 +69,11 @@ public class UtilisateursService implements IUtilisateursApi {
 
         else throw  new UsernameNotFoundException("Invalid Credentials") ;
     }
+
+    private String[] getRoles(Utilisateurs user) {
+        if (user.getRoles() == null) {
+            return new String[]{"USER"};
+        }
+        return user.getRoles().split(",");
+    }
 }

@@ -24,6 +24,9 @@ public class UtilisateursEntity {
     @Column(name = "login")
     private String login;
 
+    @Column(name = "roles")
+    private String roles;
+
     @Column(name = "mdp")
     private String mdp;
 

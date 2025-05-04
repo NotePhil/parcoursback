@@ -24,7 +24,8 @@ public class JWTService {
     public String generateToken(UserDetails userDetails)
     {
         Map<String , String> claims = new HashMap<>() ;
-        claims.put("iss" , "parcoursback") ;
+        claims.put("iss" , "http://localhost:8083/auth/realms/baeldung") ;
+        claims.put("scope" , "profile write read") ;
 
         String compact = Jwts.builder().claims(claims).subject(userDetails.getUsername())
                 .issuedAt(Date.from(Instant.now())).expiration(Date.from(Instant.now().plusMillis(VALIDITY)))
