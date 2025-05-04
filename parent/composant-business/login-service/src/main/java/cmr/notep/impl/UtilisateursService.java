@@ -65,11 +65,8 @@ public class UtilisateursService implements IUtilisateursApi {
         Authentication authentication =  authenticationMAnager.
                 authenticate(new UsernamePasswordAuthenticationToken(loginForm.username(),loginForm.password()));
 
-        if (authentication.isAuthenticated())
-        {
-            System.out.println("Test authenticate");
-            return jwtService.generateToken(userDetailsService.loadUserByUsername(loginForm.username()));
-        }
+        if (authentication.isAuthenticated()) return jwtService.generateToken(userDetailsService.loadUserByUsername(loginForm.username()));
+
         else throw  new UsernameNotFoundException("Invalid Credentials") ;
     }
 }

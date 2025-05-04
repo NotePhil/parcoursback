@@ -36,13 +36,13 @@ public class UtilisateursBusiness {
 
     }
 
-    public Utilisateurs posterUser(Utilisateurs user)
-    {
-//        String encodedPassword = passwordEncoder.encode(user.getMdp());
-//        user.setMdp(encodedPassword);
+    public Utilisateurs posterUser(Utilisateurs user) {
+        // Encoder le mot de passe
+        String encodedPassword = passwordEncoder.encode(user.getMdp());
+        user.setMdp(encodedPassword);
 
+        // Mapper et sauvegarder l'utilisateur
         UtilisateursEntity utilisateurEntity = dozerMapperBean.map(user, UtilisateursEntity.class);
-
         UtilisateursEntity savedEntity = daoAccessorService.getRepository(UtilisateursRepository.class).save(utilisateurEntity);
 
         return dozerMapperBean.map(savedEntity, Utilisateurs.class);
