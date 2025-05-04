@@ -2,6 +2,7 @@ package cmr.notep.api;
 
 import cmr.notep.exceptions.ParcoursException;
 import cmr.notep.modele.Actions;
+import cmr.notep.modele.LoginForm;
 import cmr.notep.modele.Utilisateurs;
 import org.springframework.http.MediaType;
 import org.springframework.lang.NonNull;
@@ -9,7 +10,7 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
-@RequestMapping("utilisateurs")
+@RequestMapping("users")
 public interface IUtilisateursApi {
 
     @GetMapping(
@@ -32,6 +33,13 @@ public interface IUtilisateursApi {
             produces = MediaType.APPLICATION_JSON_VALUE,
             consumes = MediaType.APPLICATION_JSON_VALUE
     )
-    Actions posterUser(@NonNull @RequestBody Utilisateurs user);
+    Utilisateurs posterUser(@NonNull @RequestBody Utilisateurs user);
+
+    @PostMapping(
+            path = "/authenticate",
+            produces = MediaType.APPLICATION_JSON_VALUE,
+            consumes = MediaType.APPLICATION_JSON_VALUE
+    )
+    String authenticateAndGetToken(@RequestBody LoginForm loginForm);
 
 }
