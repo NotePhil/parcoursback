@@ -35,15 +35,15 @@ VALUES
 
 INSERT INTO document.attributs (id, titre, description, etat, datecreation, datemodification, type, valeurpardefaut)
 VALUES
-('a1eebc99-9c0b-4ef8-bb6d-6bb9bd380a11', 'Taille', 'Description Taille', TRUE, '2022-01-01', '2022-01-02', 'String', null),
-('a2eebc99-9c0b-4ef8-bb6d-6bb9bd380a12', 'Poids', 'Description Poids', TRUE, '2022-01-01', '2022-01-02', 'Double', null),
-('a1eebc99-9c0b-4ef8-bb6d-6bb9bd380a13', 'Age', 'Description age', TRUE, '2022-01-01', '2022-01-02', 'Int', null),
-('a4eebc99-9c0b-4ef8-bb6d-6bb9bd380a14', 'Sexe', 'Sexe ', TRUE, '2022-01-01', '2022-01-02', 'String', null),
-('a1eebc99-9c0b-4ef8-bb6d-6bb9bd380a15', 'Teint', 'Coloration', TRUE, '2022-01-01', '2022-01-02', 'String', 'Noir'),
-('a6eebc99-9c0b-4ef8-bb6d-6bb9bd380a16', 'Groupe sangin', 'Groupe sangin', TRUE, '2022-01-01', '2022-01-02', 'String', 'A, A+, A-, B, B+, B-, AB, AB+, AB-, O, O+, O-'),
-('a7eebc99-9c0b-4ef8-bb6d-6bb9bd380a17', 'Allergies', 'Allergies connues ', TRUE, '2022-01-01', '2022-01-02', 'String', null),
-('a8eebc99-9c0b-4ef8-bb6d-6bb9bd380a18', 'Nom', 'Nom de la personne', TRUE, '2022-01-01', '2022-01-02', 'String', null),
-('a9eebc99-9c0b-4ef8-bb6d-6bb9bd380a19', 'Adresse', 'Adresse postale', TRUE, '2022-01-01', '2022-01-02', 'String', null),
+('a1eebc99-9c0b-4ef8-bb6d-6bb9bd380a11', 'Taille', 'Description Taille', TRUE, '2022-01-01', '2022-01-02', 'Text', null),
+('a2eebc99-9c0b-4ef8-bb6d-6bb9bd380a12', 'Poids', 'Description Poids', TRUE, '2022-01-01', '2022-01-02', 'Number', null),
+('a1eebc99-9c0b-4ef8-bb6d-6bb9bd380a13', 'Age', 'Description age', TRUE, '2022-01-01', '2022-01-02', 'Text', null),
+('a4eebc99-9c0b-4ef8-bb6d-6bb9bd380a14', 'Sexe', 'Sexe ', TRUE, '2022-01-01', '2022-01-02', 'Text', null),
+('a1eebc99-9c0b-4ef8-bb6d-6bb9bd380a15', 'Teint', 'Coloration', TRUE, '2022-01-01', '2022-01-02', 'Text', 'Noir'),
+('a6eebc99-9c0b-4ef8-bb6d-6bb9bd380a16', 'Groupe sangin', 'Groupe sangin', TRUE, '2022-01-01', '2022-01-02', 'Radio', 'A, A+, A-, B, B+, B-, AB, AB+, AB-, O, O+, O-'),
+('a7eebc99-9c0b-4ef8-bb6d-6bb9bd380a17', 'Allergies', 'Allergies connues ', TRUE, '2022-01-01', '2022-01-02', 'Textarea', null),
+('a8eebc99-9c0b-4ef8-bb6d-6bb9bd380a18', 'Nom', 'Nom de la personne', TRUE, '2022-01-01', '2022-01-02', 'Text', null),
+('a9eebc99-9c0b-4ef8-bb6d-6bb9bd380a19', 'Adresse', 'Adresse postale', TRUE, '2022-01-01', '2022-01-02', 'Text', null),
 ('a2eebc99-9c0b-4ef8-bb6d-6bb9bd380a20', 'Date de naissance', 'Date de naissance', TRUE, '2022-01-01', '2022-01-02', 'Date', null);
 
 -- Insertion dans la table 'categories'
@@ -69,6 +69,7 @@ VALUES
 ('be9ef47f-d5a2-4254-ab79-af860672553e', 'a9eebc99-9c0b-4ef8-bb6d-6bb9bd380a19',2,false),
 ('be9ef47f-d5a2-4254-ab79-af860672553e', 'a2eebc99-9c0b-4ef8-bb6d-6bb9bd380a20',3,true),
 ('be8ef47f-d5a2-4254-ab79-af860672553e', 'a1eebc99-9c0b-4ef8-bb6d-6bb9bd380a13',1,true),
+('be8ef47f-d5a2-4254-ab79-af860672553e', 'a4eebc99-9c0b-4ef8-bb6d-6bb9bd380a14',1,true),
 ('be8ef57f-d5a2-4254-ab79-af860672553e', 'a4eebc99-9c0b-4ef8-bb6d-6bb9bd380a14',1,true),
 ('be8ef56f-d5a2-4254-ab79-af860672553e', 'a1eebc99-9c0b-4ef8-bb6d-6bb9bd380a15',1,true),
 ('be8ef59f-d5a2-4254-ab79-af860672553e', 'a6eebc99-9c0b-4ef8-bb6d-6bb9bd380a16',1,true),
@@ -177,7 +178,12 @@ INSERT INTO document.personnes (id,adresse,mail,telephone,qrcodevalue,datecreati
 ('1979bd79-f71b-498b-b247-e7b9bbb3f600','Bastos','abd@yah.fr','655454545','qrcode1','2022-01-01','2022-01-02'),
 ('d301ff83-2a62-4e6d-aa23-57c7825bcd57','Bastos','dbc@yah.fr','655454545','qrcode2','2022-01-01','2022-01-02'),
 ('0618e585-f82a-4d5f-af1c-54f880d766d3','Bastos','pnj@gma.com','655454545','qrcode3','2022-01-01','2022-01-02'),
-('fdbff692-6b8d-43ab-a196-fcc3114b2daa','Bastos','sg@sg.fr','655454545','qrcode4','2022-01-01','2022-01-02');
+('fdbff692-6b8d-43ab-a196-fcc3114b2daa','Bastos','sg@sg.fr','655454545','qrcode4','2022-01-01','2022-01-02'),
+('4390615e-1101-7209-9932-7020bbd556f1','Douala','tagnewillie@gmail.com','655455487','qrcode6','2022-01-01','2022-01-02'),
+('4390615e-1101-7209-9932-7020bbd556f2','Douala','peteralan@gmail.com','888455487','qrcode7','2022-03-01','2022-01-02'),
+('4390615e-1101-7209-9932-7020bbd556f3','Douala','dombogilles@gmail.com','999455487','qrcode8','2022-04-01','2022-01-02'),
+('0195fe35-0742-7db1-ab55-f16e0c621ac0','Douala','steve@gmail.com','999495487','qrcode9','2022-04-01','2022-01-02'),
+('0195c9e8-bbb7-7418-8c4a-69500c816c5f','Yaoundé','dede@yeoo.fr', '9800994433','qrcode5', '2015-03-31',	'2025-03-25');
 
 -- Insérer les données dans la table 'distributeur' en se basant sur la classe DistributeurEntity
 INSERT INTO document.distributeurs (distributeurs_id, code, raisonsociale, datemodification) VALUES
@@ -198,11 +204,11 @@ INSERT INTO document.roles (id, titre, description, etat, datecreation,datemodif
 ('6130615e-1101-7209-9932-7020bbd556f2','traiteur','Personnel administratif', true, '2022-01-01','2022-01-02'),
 ('6191615e-1101-7209-9932-7020bbd556f3','marcheur','commercial sur le terrain', true, '2022-01-01','2022-01-02');
 
-INSERT INTO document.personnels (id, dateentree, nom, datenaissance, telephone, datesortie, email, prenom, sexe)
+INSERT INTO document.personnels (personnels_id, dateentree, nom, datenaissance, datesortie, prenom, sexe)
 VALUES
-    ('4390615e-1101-7209-9932-7020bbd556f1', CURRENT_DATE, 'Tagne', '2000-04-10', '655455487', NULL, 'tagnewillie@gmail.com', 'Willy', 'M'),
-    ('4390615e-1101-7209-9932-7020bbd556f2', CURRENT_DATE, 'Peter', '2004-08-10', '655455487', NULL, 'peteralan@gmail.com', 'Alan', 'M'),
-    ('4390615e-1101-7209-9932-7020bbd556f3', CURRENT_DATE, 'Dombo', '2002-10-10', '655455487', NULL, 'dombogilles@gmail.com', 'Gilles', 'M');
+    ('4390615e-1101-7209-9932-7020bbd556f1', '2025-04-10', 'Tagne', '2000-04-10', NULL, 'Willy', 'M'),
+    ('4390615e-1101-7209-9932-7020bbd556f2', '2024-05-09', 'Peter', '2004-08-10',  NULL, 'Alan', 'M'),
+    ('4390615e-1101-7209-9932-7020bbd556f3', '2020-11-17', 'Dombo', '2002-10-10',  NULL, 'Gilles', 'M');
 
 -- Insérer les données dans la table 'jouerRole' en se basant sur la classe JouerRoleEntity
 INSERT INTO document.jouerRoles (id,personnels_id, roles_id,datedebut,datefin, datecreation, datemodification) VALUES
@@ -217,7 +223,20 @@ INSERT INTO document.traiter (documents_id,missions_id) values
 ('0190615e-1101-7209-9932-7020bbd556f2','3190615e-1101-7209-9932-7020bbd556f2'),
 ('0190615e-1101-7209-9932-7020bbd556f3','3190615e-1101-7209-9932-7020bbd556f3');
 
+--inserer données dans la table 'personnesPhysiques'
+INSERT INTO document.personnesphysique (personnesphysique_id, nom, prenom, sexe, datenaissance, datemodification) VALUES
+('0195c9e8-bbb7-7418-8c4a-69500c816c5f', 'Phil',	'dede',	'M',	'1999-03-31',	'2025-03-25'),
+('0195fe35-0742-7db1-ab55-f16e0c621ac0', 'Steve',	'dede',	'M',	'1999-03-31',	'2025-03-25');
 
+insert into document.rattacher (personnes_id, rattacher_id) values
+('0195c9e8-bbb7-7418-8c4a-69500c816c5f','0618e585-f82a-4d5f-af1c-54f880d766d3'),
+('d301ff83-2a62-4e6d-aa23-57c7825bcd57','0618e585-f82a-4d5f-af1c-54f880d766d3'),
+('d301ff83-2a62-4e6d-aa23-57c7825bcd57','0195fe35-0742-7db1-ab55-f16e0c621ac0'),
+('0195c9e8-bbb7-7418-8c4a-69500c816c5f','4390615e-1101-7209-9932-7020bbd556f1');
 
+insert  into document.remplir(id,roles_id,missions_id,etat,droitajouter,droitmodifier,droitconsulter,droitvalider,datefin,datedebut,datecreation) values
+('d76fd017-cceb-4926-8705-380b08ad9c6a','5190615e-1101-7209-9932-7020bbd556f1','3190615e-1101-7209-9932-7020bbd556f1',true,true,true,true,true,'2024-01-01','2024-01-01','2022-01-01'),
+('d39bcc09-ffe6-48d1-8582-f1173671d59f','6130615e-1101-7209-9932-7020bbd556f2','3190615e-1101-7209-9932-7020bbd556f2',true,true,true,true,true,'2024-01-01','2024-01-01','2022-01-01'),
+('9183d626-0c1a-4f70-8556-1c417d5feb91','6191615e-1101-7209-9932-7020bbd556f3','3190615e-1101-7209-9932-7020bbd556f3',true,true,true,true,true,'2024-01-01','2024-01-01','2022-01-01');
 
 

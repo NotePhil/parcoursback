@@ -2,6 +2,7 @@ package cmr.notep.exemplaire.clientws;
 
 import cmr.notep.api.IValidationsApi;
 import cmr.notep.exceptions.ParcoursException;
+import cmr.notep.exceptions.enumeration.ParcoursExceptionCodeEnum;
 import cmr.notep.exemplaire.config.ExemplaireConfig;
 import cmr.notep.modele.Etats;
 import cmr.notep.modele.Validations;
@@ -40,7 +41,7 @@ public class ValidationsClientWs implements IValidationsApi {
         GenericWsResponse response = genericWsClientApi.sendRequest(request);
         if (response.getCode() == 200)
             return JacksonHelper.objetFromJson(response.getReponse(), Validations.class);
-        throw new ParcoursException("Erreur lors de la récupération  " + idValidation + " code http : " + response.getReponse() + " reponse : " + response.getReponse());
+        throw new ParcoursException(ParcoursExceptionCodeEnum.INTERNAL_ERROR,"Erreur lors de la récupération  " + idValidation + " code http : " + response.getReponse() + " reponse : " + response.getReponse());
 
     }
 

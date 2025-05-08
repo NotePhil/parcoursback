@@ -6,7 +6,7 @@ import lombok.Setter;
 import org.dozer.Mapping;
 import org.hibernate.annotations.GenericGenerator;
 
-import javax.persistence.*;
+import jakarta.persistence.*;
 import java.util.Date;
 import java.util.Date;
 import java.util.List;
@@ -37,7 +37,7 @@ public class MissionsEntity {
     @Column(name="datemodification")
     private Date dateModification ;
 
-    @ManyToMany(fetch = FetchType.LAZY , cascade = {CascadeType.ALL} )
+    @ManyToMany(fetch = FetchType.LAZY  )
     @JoinTable(name = "traiter",schema = "document",
         joinColumns = @JoinColumn(name = "missions_id", referencedColumnName = "id"),
             inverseJoinColumns = @JoinColumn(name="documents_id", referencedColumnName = "id")
@@ -45,12 +45,12 @@ public class MissionsEntity {
     @Mapping("documents")
     private List<DocumentsEntity> documentsEntities ;
 
-    @ManyToOne(fetch = FetchType.LAZY, cascade = {CascadeType.ALL})
+    @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "services_id")
     @Mapping("service")
     private ServicesEntity servicesEntity ;
 
-    @OneToMany(mappedBy = "missionsEntity", fetch = FetchType.LAZY, cascade = {CascadeType.ALL})
+    @OneToMany(mappedBy = "missionsEntity", fetch = FetchType.LAZY)
     @Mapping("roles")
     List<RemplirEntity> remplirEntities;
 }

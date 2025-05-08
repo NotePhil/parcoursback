@@ -49,6 +49,11 @@
             <groupId>net.sf.dozer</groupId>
             <artifactId>dozer</artifactId>
         </dependency>
+        <dependency>
+            <groupId>cmr.notep</groupId>
+            <artifactId>commun-outil</artifactId>
+            <version>${project.version}</version>
+        </dependency>
     </dependencies>
     <build>
         <plugins>

@@ -2,12 +2,14 @@ package cmr.notep.impl;
 
 import cmr.notep.api.IPersonnesApi;
 import cmr.notep.business.PersonnesBusiness;
+import cmr.notep.exceptions.ParcoursException;
+import cmr.notep.modele.IPersonnes;
 import cmr.notep.modele.Personnes;
 import org.springframework.context.annotation.Primary;
 import org.springframework.lang.NonNull;
 import org.springframework.web.bind.annotation.RestController;
 
-import javax.transaction.Transactional;
+import jakarta.transaction.Transactional;
 import java.util.List;
 
 @RestController
@@ -22,11 +24,15 @@ public class PersonnesService implements IPersonnesApi {
     }
 @Override
     public Personnes avoirPersonne(@NonNull String idPersonnes) {
+    try {
         return personnesBusiness.avoirPersonne(idPersonnes);
+    } catch (ParcoursException e) {
+        throw new RuntimeException(e);
     }
+}
 
     //@Override
-    public List<Personnes> avoirToutPersonnes() {
+    public List<IPersonnes> avoirToutPersonnes() {
         return personnesBusiness.avoirToutPersonnes();
     }
 

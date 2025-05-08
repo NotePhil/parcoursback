@@ -15,8 +15,8 @@ ARG PARCOURS_MICROSERVICE_VERSION
 ARG MANAGE_PACKAGE_60J
 
 RUN curl -v -H "Authorization: Bearer ${MANAGE_PACKAGE_60J}" \
-     -L -o exemplaire-service.jar \
-     "${PARCOURS_PACKAGES_URL}/cmr/notep/exemplaire/exemplaire-service/${PARCOURS_MICROSERVICE_VERSION}/exemplaire-service-${PARCOURS_MICROSERVICE_VERSION}.jar"
+     -L "${PARCOURS_PACKAGES_URL}/cmr/notep/exemplaire/exemplaire-service/${PARCOURS_MICROSERVICE_VERSION}/exemplaire-service-${PARCOURS_MICROSERVICE_VERSION}.jar" \
+        -o exemplaire-service.jar
 
 # Use OpenJDK as the base image for running the application
 FROM openjdk:17-jdk-slim

@@ -1,4 +1,5 @@
 -- DROP DATABASE IF EXISTS parcours;
+--CREATE DATABASE IF NOT EXISTS parcours;
 CREATE SCHEMA IF NOT EXISTS document AUTHORIZATION sa;
 -- generate tables from entities
 CREATE TABLE IF NOT EXISTS document.attributs
@@ -157,17 +158,14 @@ CREATE TABLE IF NOT EXISTS document.parcours
 );
 CREATE TABLE IF NOT EXISTS document.personnels
 (
-    id               VARCHAR(255) NOT NULL,
+    personnels_id               VARCHAR(255) NOT NULL,
     dateentree       DATE,
     nom              VARCHAR(255),
     datenaissance    DATE,
-    telephone        VARCHAR(255),
     datesortie       DATE,
-    email            VARCHAR(255),
     prenom           VARCHAR(255),
     sexe             VARCHAR(255),
-    datemodification DATE,
-    CONSTRAINT pk_personnels PRIMARY KEY (id)
+    CONSTRAINT pk_personnels PRIMARY KEY (personnels_id)
 );
 CREATE TABLE IF NOT EXISTS document.personnes
 (
@@ -254,6 +252,7 @@ CREATE TABLE IF NOT EXISTS document.promotions
 );
 CREATE TABLE IF NOT EXISTS document.remplir
 (
+    id       VARCHAR(255) NOT NULL,
     datefin        DATE,
     datecreation   DATE,
     datedebut      DATE,
@@ -264,7 +263,7 @@ CREATE TABLE IF NOT EXISTS document.remplir
     droitvalider   BOOLEAN,
     roles_id       VARCHAR(255) NOT NULL,
     missions_id    VARCHAR(255) NOT NULL,
-    CONSTRAINT pk_remplir PRIMARY KEY (roles_id, missions_id)
+    CONSTRAINT pk_remplir PRIMARY KEY (id)
 );
 CREATE TABLE IF NOT EXISTS document.ressources
 (
@@ -453,7 +452,7 @@ ALTER TABLE document.traiter
 ALTER TABLE document.traiter
     ADD CONSTRAINT IF NOT EXISTS  fk_traiter_on_missions_entity FOREIGN KEY (missions_id) REFERENCES missions (id);
 ALTER TABLE document.jouerroles
-    ADD CONSTRAINT IF NOT EXISTS  FK_JOUERROLES_ON_PERSONNELS FOREIGN KEY (personnels_id) REFERENCES personnels (id);
+    ADD CONSTRAINT IF NOT EXISTS  FK_JOUERROLES_ON_PERSONNELS FOREIGN KEY (personnels_id) REFERENCES personnels (personnels_id);
 
 ALTER TABLE document.jouerroles
     ADD CONSTRAINT IF NOT EXISTS  FK_JOUERROLES_ON_ROLES FOREIGN KEY (roles_id) REFERENCES roles (id);
@@ -485,10 +484,10 @@ ALTER TABLE document.distributeurs
     ADD CONSTRAINT IF NOT EXISTS  FK_DISTRIBUTEURS_ON_DISTRIBUTEURS FOREIGN KEY (distributeurs_id) REFERENCES personnes (id);
 
 ALTER TABLE document.concerner
-    ADD CONSTRAINT IF NOT EXISTS  fk_concerner_on_distributeurs_entity FOREIGN KEY (precomouvementsqtes_id) REFERENCES distributeurs (distributeurs_id);
+    ADD CONSTRAINT IF NOT EXISTS  fk_concerner_on_distributeurs_entity FOREIGN KEY (precomouvementsqtes_id) REFERENCES precomouvementsqtes (id);
 
 ALTER TABLE document.concerner
-    ADD CONSTRAINT IF NOT EXISTS  fk_concerner_on_preco_mouvements_qtes_entity FOREIGN KEY (distributeurs_id) REFERENCES precomouvementsqtes (id);
+    ADD CONSTRAINT IF NOT EXISTS  fk_concerner_on_preco_mouvements_qtes_entity FOREIGN KEY (distributeurs_id) REFERENCES distributeurs (distributeurs_id);
 
 ALTER TABLE document.associer
     ADD CONSTRAINT IF NOT EXISTS  FK_ASSOCIER_ON_ATTRIBUTS FOREIGN KEY (attributs_id) REFERENCES attributs (id);

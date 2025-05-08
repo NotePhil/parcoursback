@@ -10,7 +10,7 @@ import java.util.List;
 @AllArgsConstructor
 @NoArgsConstructor
 @Builder
-@JsonIgnoreProperties({"documents"})
+@JsonIgnoreProperties(value = {"documents"},ignoreUnknown = true)
 @ToString(exclude = {"documents"})
 @EqualsAndHashCode(exclude = {"documents"})
 public class Attributs {
@@ -25,11 +25,11 @@ public class Attributs {
 
     private Date dateModification;
 
-    Types type;
+    TypeAttribut type;
 
     private String valeurParDefaut;
 
     private List<Documents> documents;
-    //private List<Categories> categories ;
+  //  private List<Associer> categories ;
 
 }

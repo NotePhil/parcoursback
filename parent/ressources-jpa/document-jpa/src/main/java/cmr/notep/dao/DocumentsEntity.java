@@ -5,7 +5,7 @@ import lombok.Setter;
 import org.dozer.Mapping;
 import org.hibernate.annotations.GenericGenerator;
 
-import javax.persistence.*;
+import jakarta.persistence.*;
 import java.util.Date;
 import java.util.List;
 import java.util.UUID;
@@ -55,7 +55,7 @@ public class DocumentsEntity {
     @Column(name="contientressources")
     private Boolean contientRessources;
 
-    @ManyToMany(fetch = FetchType.LAZY, cascade = {CascadeType.ALL})
+    @ManyToMany(fetch = FetchType.LAZY)
     @JoinTable(name = "constituer", schema = "document",
             joinColumns = @JoinColumn(name = "documents_id"),
             inverseJoinColumns = @JoinColumn(name = "attributs_id"))
@@ -63,7 +63,7 @@ public class DocumentsEntity {
     //@Cascade(org.hibernate.annotations.CascadeType.ALL)
     private List<AttributsEntity> attributsEntities ;
 
-    @OneToMany(mappedBy = "documentsEntity", fetch = FetchType.LAZY, cascade = {CascadeType.ALL})
+    @OneToMany(mappedBy = "documentsEntity", fetch = FetchType.LAZY)
     @Mapping("categories")
     private List<CategoriesEntity> categoriesEntities;
 
@@ -71,14 +71,14 @@ public class DocumentsEntity {
     @Mapping("missions")
     private List<MissionsEntity> missionsEntities ;
 
-    @ManyToMany(fetch = FetchType.LAZY, cascade = {CascadeType.ALL})
+    @ManyToMany(fetch = FetchType.LAZY)
     @JoinTable(name = "suivre", schema = "document",
             joinColumns = @JoinColumn(name = "documents_id"),
             inverseJoinColumns = @JoinColumn(name = "precomouvements_id"))
     @Mapping("precoMouvements")
     private List<PrecoMouvementsEntity> precoMouvementsEntities ;
 
-    @OneToMany(mappedBy = "documentsEntity" , fetch = FetchType.LAZY , cascade = {CascadeType.ALL})
+    @OneToMany(mappedBy = "documentsEntity" , fetch = FetchType.LAZY )
     @Mapping("docEtats")
     private List<DocEtatsEntity> docEtatsEntities;
 

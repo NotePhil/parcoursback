@@ -52,32 +52,32 @@
         <dependency>
             <groupId>cmr.notep</groupId>
             <artifactId>document-interface</artifactId>
-            <version>${projet.version}</version>
+            <version>${project.version}</version>
         </dependency>
         <dependency>
             <groupId>cmr.notep.exemplaire</groupId>
             <artifactId>exemplaire-interface</artifactId>
-            <version>${projet.version}</version>
+            <version>${project.version}</version>
         </dependency>
         <dependency>
             <groupId>cmr.notep.exemplaire</groupId>
             <artifactId>exemplaire-jpa</artifactId>
-            <version>${projet.version}</version>
+            <version>${project.version}</version>
         </dependency>
         <dependency>
             <groupId>cmr.notep</groupId>
             <artifactId>common-jpa</artifactId>
-            <version>${projet.version}</version>
+            <version>${project.version}</version>
         </dependency>
         <dependency>
             <groupId>cmr.notep</groupId>
             <artifactId>commun-service</artifactId>
-            <version>${projet.version}</version>
+            <version>${project.version}</version>
         </dependency>
         <dependency>
             <groupId>cmr.notep</groupId>
             <artifactId>commun-outil</artifactId>
-            <version>${projet.version}</version>
+            <version>${project.version}</version>
         </dependency>
     </dependencies>
     <build>

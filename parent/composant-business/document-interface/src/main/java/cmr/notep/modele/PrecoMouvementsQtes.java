@@ -10,7 +10,7 @@ import java.util.List;
 @AllArgsConstructor
 @NoArgsConstructor
 @Builder
-@JsonIgnoreProperties({"precoMouvement"})
+@JsonIgnoreProperties({ "precoMouvement"})
 @ToString(exclude = {"precoMouvement"})
 @EqualsAndHashCode(exclude = {"precoMouvement"})
 public class PrecoMouvementsQtes {
@@ -19,7 +19,7 @@ public class PrecoMouvementsQtes {
     private int qteMax ;
     private double montantMin ;
     private double montantMax ;
-    private PrecoMouvements precoMouvement ;
+    private PrecoMouvements precoMouvement;
     private List<Familles> familles;
     private Ressources ressource;
     private List<Distributeurs> distributeurs;

@@ -1,9 +1,7 @@
 package cmr.notep.modele;
 
-import lombok.AllArgsConstructor;
-import lombok.Builder;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import lombok.*;
 
 import java.util.Date;
 
@@ -11,7 +9,11 @@ import java.util.Date;
 @AllArgsConstructor
 @NoArgsConstructor
 @Builder
+@JsonIgnoreProperties(value = {"mission"}, ignoreUnknown = true)
+@ToString(exclude = { "mission"})
+@EqualsAndHashCode(exclude = { "mission"})
 public class Remplir {
+    private String id;
     private Roles role;
     private Missions mission;
     private Date dateFin ;

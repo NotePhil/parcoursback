@@ -1,6 +1,7 @@
 package cmr.notep.api;
 
 import cmr.notep.exceptions.ParcoursException;
+import cmr.notep.modele.IPersonnes;
 import cmr.notep.modele.Personnes;
 import org.springframework.http.MediaType;
 import org.springframework.lang.NonNull;
@@ -17,22 +18,21 @@ public interface IPersonnesApi {
     )
     Personnes avoirPersonne (@NonNull @RequestParam(name="idPersonne") String idPersonne) throws ParcoursException;
 
-   /*
 
     @GetMapping(
             produces = MediaType.APPLICATION_JSON_VALUE
     )
-    List<Personnes> avoirToutPersonnes();
+    List<IPersonnes> avoirToutPersonnes();
 
-    @DeleteMapping(
+  /*  @DeleteMapping(
             consumes = MediaType.APPLICATION_JSON_VALUE
     )
     void supprimerPersonne(@NonNull @RequestBody Personnes Personnes);
-
+*/
     @PostMapping(
             produces = MediaType.APPLICATION_JSON_VALUE,
             consumes = MediaType.APPLICATION_JSON_VALUE
     )
-    Personnes posterPersonne(@NonNull @RequestBody Personnes Personnes) ;*/
+    Personnes posterPersonne(@NonNull @RequestBody Personnes Personnes) ;
 
 }
