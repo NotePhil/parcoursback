@@ -28,7 +28,7 @@ public class RolesBusiness {
         return dozerMapperBean.map(
                 this.daoAccessorService.getRepository(RolesRepository.class)
                         .findById(id)
-                        .orElseThrow(()->new RuntimeException("role inexistante")), Roles.class);
+                        .orElseThrow(()->new RuntimeException("role inexistant")), Roles.class);
     }
 
     public List<Roles> avoirToutRoles() {
