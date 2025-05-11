@@ -3,7 +3,6 @@ package cmr.notep.impl;
 import cmr.notep.api.IUtilisateursApi;
 import cmr.notep.business.UtilisateursBusiness;
 import cmr.notep.exceptions.ParcoursException;
-import cmr.notep.modele.Actions;
 import cmr.notep.modele.LoginForm;
 import cmr.notep.modele.Utilisateurs;
 import cmr.notep.token.JWTService;

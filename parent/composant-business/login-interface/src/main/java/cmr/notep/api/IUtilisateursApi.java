@@ -1,7 +1,6 @@
 package cmr.notep.api;
 
 import cmr.notep.exceptions.ParcoursException;
-import cmr.notep.modele.Actions;
 import cmr.notep.modele.LoginForm;
 import cmr.notep.modele.Utilisateurs;
 import org.springframework.http.MediaType;
