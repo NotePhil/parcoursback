@@ -4,13 +4,19 @@ import cmr.notep.exceptions.ParcoursException;
 import cmr.notep.modele.LoginForm;
 import cmr.notep.modele.Utilisateurs;
 import org.springframework.http.MediaType;
+import org.springframework.http.ResponseEntity;
 import org.springframework.lang.NonNull;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
 @RequestMapping("users")
 public interface IUtilisateursApi {
+
+    @PreAuthorize("hasRole('ADMIN')")
+    @GetMapping("/admin")
+    public ResponseEntity<String> helloAdmin();
 
     @GetMapping(
             path = "/{iduser}",

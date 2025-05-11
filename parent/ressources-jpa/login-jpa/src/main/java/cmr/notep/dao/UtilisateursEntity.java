@@ -52,4 +52,5 @@ public class UtilisateursEntity {
     @JoinColumn(name = "menus_id" , referencedColumnName = "id")
     @Mapping("menus")
     private MenusEntity menusEntity;
+
 }

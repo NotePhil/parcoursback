@@ -9,6 +9,7 @@ import cmr.notep.token.JWTService;
 import org.jetbrains.annotations.NotNull;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Primary;
+import org.springframework.http.ResponseEntity;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.Authentication;
@@ -39,6 +40,11 @@ public class UtilisateursService implements IUtilisateursApi {
     }
 
     @Override
+    public ResponseEntity<String> helloAdmin() {
+        return ResponseEntity.ok("Hello Admin");
+    }
+
+    @Override
     public Utilisateurs avoirUser(String iduser) throws ParcoursException {
         return null;
     }
@@ -63,6 +69,7 @@ public class UtilisateursService implements IUtilisateursApi {
 
         Authentication authentication =  authenticationMAnager.
                 authenticate(new UsernamePasswordAuthenticationToken(loginForm.username(),loginForm.password()));
+
 
         if (authentication.isAuthenticated()) return jwtService.generateToken(userDetailsService.loadUserByUsername(loginForm.username()));
 
