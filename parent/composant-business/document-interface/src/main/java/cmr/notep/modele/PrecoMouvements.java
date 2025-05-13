@@ -5,6 +5,7 @@ import lombok.*;
 
 import java.util.Date;
 import java.util.List;
+import java.util.UUID;
 
 @Data
 @AllArgsConstructor
@@ -14,13 +15,13 @@ import java.util.List;
 @EqualsAndHashCode(exclude = {"documents"})
 @JsonIgnoreProperties({"documents"})
 public class PrecoMouvements {
-
     private String id ;
     private String libelle ;
     private boolean etat ;
     private TypeMouvement typeMouvement ;
     private Date dateCreation ;
     private Date dateModification ;
+    private List<Mouvements> mouvements ;
     private List<Documents> documents ;
     private List<PrecoMouvementsQtes> precoMouvementsQtes;
 }

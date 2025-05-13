@@ -1,6 +1,8 @@
 package cmr.notep.exemplaire.modele;
 
 import cmr.notep.modele.Documents;
+import cmr.notep.modele.Mouvements;
+import cmr.notep.modele.OrdreEtats;
 import cmr.notep.modele.Personnes;
 import lombok.*;
 import lombok.experimental.SuperBuilder;

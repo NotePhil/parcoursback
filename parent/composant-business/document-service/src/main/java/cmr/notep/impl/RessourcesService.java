@@ -4,6 +4,7 @@ import cmr.notep.api.IRessourcesApi;
 import cmr.notep.business.RessourcesBusiness;
 import cmr.notep.modele.Missions;
 import cmr.notep.modele.Ressources;
+import cmr.notep.modele.RessourcesRequestBuilder;
 import org.springframework.context.annotation.Primary;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -31,6 +32,14 @@ public class RessourcesService implements IRessourcesApi {
     public List<Ressources> avoirToutRessources() {
         System.out.print("calling ressource\n");
         return ressourcesBusiness.avoirToutRessources();
+    }
+
+    @Override
+    public List<Ressources> triRessources(RessourcesRequestBuilder ressourcesRequestBuilder) {
+
+        String request_sort = ressourcesRequestBuilder.QueryBuilder();
+
+        return ressourcesBusiness.triRessource(request_sort);
     }
 
     @Override

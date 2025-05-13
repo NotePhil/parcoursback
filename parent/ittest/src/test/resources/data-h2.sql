@@ -19,9 +19,9 @@ INSERT INTO document.filesattentes (id,  etat, datecreation, datemodification) V
 -- Insertion dans la table service
 INSERT INTO document.services (id, libelle, description, codeunique, etat,localisation, datecreation, datemodification,filesattentes_id)
 VALUES
-('2190615e-1101-7209-9932-7020bbd556f1', 'Consultation', 'bien', 'S1', true, 'douala', '1972-06-12', '1990-03-07','f190615e-1101-7209-9932-7020bbd556f1'),
-('2190615e-1101-7209-9932-7020bbd556f2', 'Laboratoire', 'bien', 'S2', true, 'douala', '1990-08-06', '1990-03-07','f190615e-1101-7209-9932-7020bbd556f2'),
-('2190615e-1101-7209-9932-7020bbd556f3', 'Pharmacie', 'bien', 'S3', true, 'douala', '2000-03-07', '1990-03-07','f190615e-1101-7209-9932-7020bbd556f3');
+('2190615e-1101-7209-9932-7020bbd556f1', 'Consultation', 'bien', 'S1', true, 'douala', '1972-06-12', '1990-03-07'),
+('2190615e-1101-7209-9932-7020bbd556f2', 'Laboratoire', 'bien', 'S2', true, 'douala', '1990-08-06', '1990-03-07'),
+('2190615e-1101-7209-9932-7020bbd556f3', 'Pharmacie', 'bien', 'S3', true, 'douala', '2000-03-07', '1990-03-07');
 
 -- Insertion dans la table mission
 INSERT INTO document.missions (id, libelle, description, etat, datecreation, datemodification, services_id)
@@ -232,11 +232,81 @@ insert into document.rattacher (personnes_id, rattacher_id) values
 ('0195c9e8-bbb7-7418-8c4a-69500c816c5f','0618e585-f82a-4d5f-af1c-54f880d766d3'),
 ('d301ff83-2a62-4e6d-aa23-57c7825bcd57','0618e585-f82a-4d5f-af1c-54f880d766d3'),
 ('d301ff83-2a62-4e6d-aa23-57c7825bcd57','0195fe35-0742-7db1-ab55-f16e0c621ac0'),
-('0195c9e8-bbb7-7418-8c4a-69500c816c5f','4390615e-1101-7209-9932-7020bbd556f1');
+('0195c9e8-bbb7-7418-8c4a-69500c816c5f','4390615e-1101-7209-9932-7020bbd556f1'),
+('1979bd79-f71b-498b-b247-e7b9bbb3f600','d301ff83-2a62-4e6d-aa23-57c7825bcd57'),
+('fdbff692-6b8d-43ab-a196-fcc3114b2daa','0618e585-f82a-4d5f-af1c-54f880d766d3');
 
 insert  into document.remplir(id,roles_id,missions_id,etat,droitajouter,droitmodifier,droitconsulter,droitvalider,datefin,datedebut,datecreation) values
 ('d76fd017-cceb-4926-8705-380b08ad9c6a','5190615e-1101-7209-9932-7020bbd556f1','3190615e-1101-7209-9932-7020bbd556f1',true,true,true,true,true,'2024-01-01','2024-01-01','2022-01-01'),
 ('d39bcc09-ffe6-48d1-8582-f1173671d59f','6130615e-1101-7209-9932-7020bbd556f2','3190615e-1101-7209-9932-7020bbd556f2',true,true,true,true,true,'2024-01-01','2024-01-01','2022-01-01'),
 ('9183d626-0c1a-4f70-8556-1c417d5feb91','6191615e-1101-7209-9932-7020bbd556f3','3190615e-1101-7209-9932-7020bbd556f3',true,true,true,true,true,'2024-01-01','2024-01-01','2022-01-01');
 
+INSERT INTO documentspromotions (documents_id,promotions_id) VALUES
+                                                                 ('0190615e-1101-7209-9932-7020bbd556f1','1979bd79-f81b-498b-b247-e7b9bbb3f600'),
+                                                                 ('0190615e-1101-7209-9932-7020bbd556f8','1979bd79-f81b-498b-b247-e7b9bbb3f602'),
+                                                                 ('0190615e-1101-7209-9932-7020bbd556f5','1979bd79-f81b-498b-b247-e7b9bbb3f601');
 
+INSERT INTO famillespromotions(familles_id,promotions_id) VALUES
+                                                              ('f190615e-1101-7209-9932-7020bbd556f1','1979bd79-f81b-498b-b247-e7b9bbb3f602'),
+                                                              ('f190615e-1101-7209-9932-7020bbd556f3','1979bd79-f81b-498b-b247-e7b9bbb3f601'),
+                                                              ('f190615e-1101-7209-9932-7020bbd556f4','1979bd79-f81b-498b-b247-e7b9bbb3f600');
+
+INSERT INTO ordreetats (id,datecreation,datemodification,datefinvote,ordre,etats_id)  VALUES
+                                                                                          ('97d314a5-84ad-47cd-874d-9c55f0e45790','2022-01-01','2022-01-02','2022-01-02',2,'e190615e-1101-7209-9932-7020bbd556f3'),
+                                                                                          ('97d314a5-84ad-47cd-874d-9c55f0e45791','2022-01-01','2022-01-02','2022-01-02',5,'e190615e-1101-7209-9932-7020bbd556f2'),
+                                                                                          ('97d314a5-84ad-47cd-874d-9c55f0e45792','2022-01-01','2022-01-02','2022-01-02',8,'e190615e-1101-7209-9932-7020bbd556f1');
+
+
+INSERT INTO rattacher (personnes_id,rattacher_id) VALUES
+                                                      ('1979bd79-f71b-498b-b247-e7b9bbb3f600','d301ff83-2a62-4e6d-aa23-57c7825bcd57'),
+                                                      ('fdbff692-6b8d-43ab-a196-fcc3114b2daa','0618e585-f82a-4d5f-af1c-54f880d766d3');
+
+INSERT INTO promotions (id,datedebut,datefin,codeunique,typeremise,valeurremise,datecreation,datemodification,distributeurs_id) VALUES
+                                                                                                                                    ('1979bd79-f81b-498b-b247-e7b9bbb3f600','2022-01-01','2022-01-01','R5','garantie',54.25,'2000-04-10','2022-01-01','1979bd79-f71b-498b-b247-e7b9bbb3f600'),
+                                                                                                                                    ('1979bd79-f81b-498b-b247-e7b9bbb3f601','2022-01-01','2022-01-01','R54','virement',74.25,'2004-08-10','2022-01-01','0618e585-f82a-4d5f-af1c-54f880d766d3'),
+                                                                                                                                    ('1979bd79-f81b-498b-b247-e7b9bbb3f602','2022-01-01','2022-01-01','R45','devoir',95.23,'2002-10-10','2022-01-01','d301ff83-2a62-4e6d-aa23-57c7825bcd57');
+
+INSERT INTO concerner (distributeurs_id,precomouvementsqtes_id) VALUES
+                                                                    ('1979bd79-f71b-498b-b247-e7b9bbb3f600','a97eb081-62f6-4617-ba29-64dc8593a9ff'),
+                                                                    ('0618e585-f82a-4d5f-af1c-54f880d766d3','a87eb081-62f6-4617-ba29-64dc8593a9ff'),
+                                                                    ('d301ff83-2a62-4e6d-aa23-57c7825bcd57','a77eb081-62f6-4617-ba29-64dc8593a9ff');
+
+INSERT INTO violer (mouvements_id,precomouvements_id) VALUES
+                                                          ('97d314f5-84ad-47cd-874d-9c55f0e45790','6290615e-1101-7209-9932-7020bbd556f6'),
+                                                          ('bfee750d-9b8c-4475-9373-08eff9b3ccb7','6290615e-1101-7209-9932-7020bbd556f7'),
+                                                          ('0e7cea07-d09e-4f79-be6c-6dd27aecbce6','6290615e-1101-7209-9932-7020bbd556f8');
+
+INSERT INTO respecter (mouvements_id , precomouvements_id) VALUES
+                                                               ('97d314f5-84ad-47cd-874d-9c55f0e45790','6290615e-1101-7209-9932-7020bbd556f1'),
+                                                               ('bfee750d-9b8c-4475-9373-08eff9b3ccb7','6290615e-1101-7209-9932-7020bbd556f2'),
+                                                               ('0e7cea07-d09e-4f79-be6c-6dd27aecbce6','17ee6932-2fcd-4b93-9c4c-0a4dbf659bff');
+
+INSERT INTO parcours (id , libelle , datecreation, datemodification) VALUES
+                                                                         ('1900bd79-f71b-498b-b247-e7b9bbb3f600', 'Paracetamol','2022-01-02','2022-01-02'),
+                                                                         ('1900bd79-f71b-498b-b247-e7b9bbb3f601','Cartouche d''encre','2020-01-08','2022-01-02'),
+                                                                         ('1900bd79-f71b-498b-b247-e7b9bbb3f602','Scanner','2014-01-04','2022-01-02');
+
+INSERT INTO etapes (id , libelle , etat , datemodification , parcours_id) VALUES
+                                                                              ('1901bd79-f71b-498b-b247-e7b9bbb3f600', 'Paracetamol',true,'2022-01-02','1900bd79-f71b-498b-b247-e7b9bbb3f602'),
+                                                                              ('1901bd79-f71b-498b-b247-e7b9bbb3f601','Cartouche d''encre',true,'2020-01-08','1900bd79-f71b-498b-b247-e7b9bbb3f600'),
+                                                                              ('1901bd79-f71b-498b-b247-e7b9bbb3f602','Scanner',true,'2014-01-04','1900bd79-f71b-498b-b247-e7b9bbb3f601');
+
+INSERT INTO parcours (id , libelle , datecreation, datemodification) VALUES
+                                                                         ('1900bd79-f71b-498b-b247-e7b9bbb3f600', 'Paracetamol','2022-01-02','2022-01-02'),
+                                                                         ('1900bd79-f71b-498b-b247-e7b9bbb3f601','Cartouche d''encre','2020-01-08','2022-01-02'),
+                                                                         ('1900bd79-f71b-498b-b247-e7b9bbb3f602','Scanner','2014-01-04','2022-01-02');
+
+INSERT INTO etapes (id , libelle , etat , datemodification , parcours_id) VALUES
+                                                                              ('1901bd79-f71b-498b-b247-e7b9bbb3f600', 'Paracetamol',true,'2022-01-02','1900bd79-f71b-498b-b247-e7b9bbb3f602'),
+                                                                              ('1901bd79-f71b-498b-b247-e7b9bbb3f601','Cartouche d''encre',true,'2020-01-08','1900bd79-f71b-498b-b247-e7b9bbb3f600'),
+                                                                              ('1901bd79-f71b-498b-b247-e7b9bbb3f602','Scanner',true,'2014-01-04','1900bd79-f71b-498b-b247-e7b9bbb3f601');
+
+INSERT INTO remplir(datefin,datecreation,datedebut,etat,droitajouter,droitmodifier,droitconsulter,droitvalider,roles_id,missions_id) VALUES
+                                                                                                                                         ('2022-01-02','2022-01-02','2022-01-02',true,true,true,true,true,'6130615e-1101-7209-9932-7020bbd556f2','3190615e-1101-7209-9932-7020bbd556f1'),
+                                                                                                                                         ('2022-01-02','2022-01-02','2022-01-02',true,true,true,true,true,'5190615e-1101-7209-9932-7020bbd556f1','3190615e-1101-7209-9932-7020bbd556f2'),
+ ('2022-01-02','2022-01-02','2022-01-02',true,true,true,true,true,'6191615e-1101-7209-9932-7020bbd556f3','3190615e-1101-7209-9932-7020bbd556f3');
+
+INSERT INTO ressourcespromotions (promotions_id,ressources_id) VALUES
+('1979bd79-f81b-498b-b247-e7b9bbb3f600','6190615e-1101-7209-9932-7020bbd556f6'),
+('1979bd79-f81b-498b-b247-e7b9bbb3f601','6190615e-1101-7209-9932-7020bbd556f4'),
+('1979bd79-f81b-498b-b247-e7b9bbb3f602','6190615e-1101-7209-9932-7020bbd556f2');

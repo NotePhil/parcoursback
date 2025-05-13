@@ -1,16 +1,19 @@
 package cmr.notep.modele;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import lombok.*;
 
 import java.util.Date;
 import java.util.List;
+import java.util.UUID;
 
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
 @Builder
-@ToString
-@EqualsAndHashCode
+@JsonIgnoreProperties({"fileAttente"})
+@ToString(exclude = {"fileAttente"})
+@EqualsAndHashCode(exclude = {"fileAttente"})
 public class Services {
     private String id ;
     private String description;

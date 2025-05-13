@@ -21,7 +21,7 @@ public interface IExemplairesApi {
             path = "/{idExemplaire}",
             produces = MediaType.APPLICATION_JSON_VALUE
     )
-    Exemplaires avoirExemplaire(@NonNull @RequestParam(name = "idExemplaire") String idExemplaire) throws ParcoursException;
+    Exemplaires avoirExemplaire(@NonNull @PathVariable(name = "idExemplaire") String idExemplaire) throws ParcoursException;
 
     @GetMapping(
             produces = MediaType.APPLICATION_JSON_VALUE

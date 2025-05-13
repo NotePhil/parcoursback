@@ -1,5 +1,4 @@
 -- DROP DATABASE IF EXISTS parcours;
---CREATE DATABASE IF NOT EXISTS parcours;
 CREATE SCHEMA IF NOT EXISTS document AUTHORIZATION sa;
 -- generate tables from entities
 CREATE TABLE IF NOT EXISTS document.attributs
@@ -68,6 +67,7 @@ CREATE TABLE IF NOT EXISTS document.documents
     afficherdistributeur BOOLEAN,
     prixeditable         BOOLEAN,
     contientressources   BOOLEAN,
+    estencaissable BOOLEAN,
     CONSTRAINT pk_documents PRIMARY KEY (id)
 );
 CREATE TABLE IF NOT EXISTS document.suivre
@@ -167,6 +167,37 @@ CREATE TABLE IF NOT EXISTS document.personnels
     sexe             VARCHAR(255),
     CONSTRAINT pk_personnels PRIMARY KEY (personnels_id)
 );
+CREATE TABLE IF NOT EXISTS document.deltasoldes (
+    id               VARCHAR(255) NOT NULL,
+    montantavant             DOUBLE PRECISION,
+    montantapres             DOUBLE PRECISION,
+    datecreation               date,
+    typemouvement   VARCHAR(255) NOT NULL,
+    comptes_id  VARCHAR(255) NOT NULL,
+    exemplaires_id  VARCHAR(255) NOT NULL,
+    CONSTRAINT pk_deltasoldes PRIMARY KEY (id)
+);
+
+CREATE TABLE IF NOT EXISTS document.comptes (
+    id               VARCHAR(255) NOT NULL,
+    solde               DOUBLE PRECISION,
+    datecreation               date,
+    etat    VARCHAR(255),
+    montantdecouvertmax             DOUBLE PRECISION,
+    libelle VARCHAR(255),
+    personnes_id VARCHAR(255) NOT NULL,
+    CONSTRAINT pk_comptes PRIMARY KEY (id)
+);
+
+CREATE TABLE IF NOT EXISTS document.caisses(
+    id               VARCHAR(255) NOT NULL,
+    libelle VARCHAR(255),
+    solde   DOUBLE PRECISION,
+    type VARCHAR(255),
+    detailJSON VARCHAR(255),
+    CONSTRAINT pk_caisses PRIMARY KEY (id)
+);
+
 CREATE TABLE IF NOT EXISTS document.personnes
 (
     id               VARCHAR(255) NOT NULL,
@@ -176,6 +207,7 @@ CREATE TABLE IF NOT EXISTS document.personnes
     qrcodevalue      VARCHAR(255),
     datecreation     DATE NOT NULL,
     datemodification DATE,
+    comptes_id VARCHAR(255) NOT NULL,
     CONSTRAINT pk_personnes PRIMARY KEY (id)
 );
 
@@ -412,27 +444,24 @@ ALTER TABLE document.promotions
 ALTER TABLE document.documentspromotions
     ADD CONSTRAINT IF NOT EXISTS  fk_doc_on_documents_entity FOREIGN KEY (documents_id) REFERENCES documents (id);
 
-ALTER TABLE document.documentspromotions
-    ADD CONSTRAINT IF NOT EXISTS  fk_doc_on_promotions_entity FOREIGN KEY (promotions_id) REFERENCES promotions (id);
+ALTER TABLE document.famillespromotions
+    ADD CONSTRAINT fk_fam_on_familles_entity FOREIGN KEY (familles_id) REFERENCES familles (id);
 
 ALTER TABLE document.famillespromotions
-    ADD CONSTRAINT IF NOT EXISTS  fk_fam_on_familles_entity FOREIGN KEY (familles_id) REFERENCES familles (id);
-
-ALTER TABLE document.famillespromotions
-    ADD CONSTRAINT IF NOT EXISTS  fk_fam_on_promotions_entity FOREIGN KEY (promotions_id) REFERENCES promotions (id);
+    ADD CONSTRAINT fk_fam_on_promotions_entity FOREIGN KEY (promotions_id) REFERENCES promotions (id);
 ALTER TABLE document.precomouvementsqtes
-    ADD CONSTRAINT IF NOT EXISTS  FK_PRECOMOUVEMENTSQTES_ON_PRECOMOUVEMENTS FOREIGN KEY (precomouvements_id) REFERENCES precomouvements (id);
+    ADD CONSTRAINT FK_PRECOMOUVEMENTSQTES_ON_PRECOMOUVEMENTS FOREIGN KEY (precomouvements_id) REFERENCES precomouvements (id);
 
 ALTER TABLE document.precomouvementsqtes
-    ADD CONSTRAINT IF NOT EXISTS  FK_PRECOMOUVEMENTSQTES_ON_RESSOURCES FOREIGN KEY (ressources_id) REFERENCES ressources (id);
+    ADD CONSTRAINT FK_PRECOMOUVEMENTSQTES_ON_RESSOURCES FOREIGN KEY (ressources_id) REFERENCES ressources (id);
 ALTER TABLE document.personnesphysique
-    ADD CONSTRAINT IF NOT EXISTS  FK_PERSONNESPHYSIQUE_ON_PERSONNESPHYSIQUE FOREIGN KEY (personnesphysique_id) REFERENCES personnes (id);
+    ADD CONSTRAINT FK_PERSONNESPHYSIQUE_ON_PERSONNESPHYSIQUE FOREIGN KEY (personnesphysique_id) REFERENCES personnes (id);
 
 ALTER TABLE document.rattacher
-    ADD CONSTRAINT IF NOT EXISTS  fk_rattacher_on_personnes FOREIGN KEY (personnes_id) REFERENCES personnes (id);
+    ADD CONSTRAINT fk_rattacher_on_personnes FOREIGN KEY (personnes_id) REFERENCES personnes (id);
 
 ALTER TABLE document.rattacher
-    ADD CONSTRAINT IF NOT EXISTS  fk_rattacher_on_personnes_bis FOREIGN KEY (rattacher_id) REFERENCES personnes (id);
+    ADD CONSTRAINT fk_rattacher_on_personnes_bis FOREIGN KEY (rattacher_id) REFERENCES personnes (id);
 
 ALTER TABLE document.personnesmorales
     ADD CONSTRAINT IF NOT EXISTS  FK_PERSONNESMORALES_ON_PERSONNESMORALES FOREIGN KEY (personnesmorales_id) REFERENCES personnes (id);
@@ -444,56 +473,56 @@ ALTER TABLE document.personnesmorales
 --ALTER TABLE document.ordreetats
 --    ADD CONSTRAINT IF NOT EXISTS  FK_ORDREETATS_ON_ETATS FOREIGN KEY (etats_id) REFERENCES etats (id);
 ALTER TABLE document.missions
-    ADD CONSTRAINT IF NOT EXISTS  FK_MISSIONS_ON_SERVICES FOREIGN KEY (services_id) REFERENCES services (id);
+    ADD CONSTRAINT FK_MISSIONS_ON_SERVICES FOREIGN KEY (services_id) REFERENCES services (id);
 
 ALTER TABLE document.traiter
-    ADD CONSTRAINT IF NOT EXISTS  fk_traiter_on_documents_entity FOREIGN KEY (documents_id) REFERENCES documents (id);
+    ADD CONSTRAINT fk_traiter_on_documents_entity FOREIGN KEY (documents_id) REFERENCES documents (id);
 
 ALTER TABLE document.traiter
-    ADD CONSTRAINT IF NOT EXISTS  fk_traiter_on_missions_entity FOREIGN KEY (missions_id) REFERENCES missions (id);
+    ADD CONSTRAINT   fk_traiter_on_missions_entity FOREIGN KEY (missions_id) REFERENCES missions (id);
 ALTER TABLE document.jouerroles
-    ADD CONSTRAINT IF NOT EXISTS  FK_JOUERROLES_ON_PERSONNELS FOREIGN KEY (personnels_id) REFERENCES personnels (personnels_id);
+    ADD CONSTRAINT  FK_JOUERROLES_ON_PERSONNELS FOREIGN KEY (personnels_id) REFERENCES personnels (personnels_id);
 
 ALTER TABLE document.jouerroles
-    ADD CONSTRAINT IF NOT EXISTS  FK_JOUERROLES_ON_ROLES FOREIGN KEY (roles_id) REFERENCES roles (id);
+    ADD CONSTRAINT  FK_JOUERROLES_ON_ROLES FOREIGN KEY (roles_id) REFERENCES roles (id);
 ALTER TABLE document.filesattentes
-    ADD CONSTRAINT IF NOT EXISTS  uc_filesattentes_services UNIQUE (services_id);
+    ADD CONSTRAINT uc_filesattentes_services UNIQUE (services_id);
 
 ALTER TABLE document.filesattentes
-    ADD CONSTRAINT IF NOT EXISTS  FK_FILESATTENTES_ON_SERVICES FOREIGN KEY (services_id) REFERENCES services (id);
+    ADD CONSTRAINT FK_FILESATTENTES_ON_SERVICES FOREIGN KEY (services_id) REFERENCES services (id);
 
 ALTER TABLE document.sapplique
-    ADD CONSTRAINT IF NOT EXISTS  fk_sapplique_on_familles_entity FOREIGN KEY (familles_id) REFERENCES familles (id);
+    ADD CONSTRAINT fk_sapplique_on_familles_entity FOREIGN KEY (familles_id) REFERENCES familles (id);
 
 ALTER TABLE document.sapplique
-    ADD CONSTRAINT IF NOT EXISTS  fk_sapplique_on_preco_mouvements_qtes_entity FOREIGN KEY (precomouvementsqtes_id) REFERENCES precomouvementsqtes (id);
+    ADD CONSTRAINT fk_sapplique_on_preco_mouvements_qtes_entity FOREIGN KEY (precomouvementsqtes_id) REFERENCES precomouvementsqtes (id);
 ALTER TABLE document.etapes
-    ADD CONSTRAINT IF NOT EXISTS  FK_ETAPES_ON_PARCOURS FOREIGN KEY (parcours_id) REFERENCES parcours (id);
+    ADD CONSTRAINT FK_ETAPES_ON_PARCOURS FOREIGN KEY (parcours_id) REFERENCES parcours (id);
 ALTER TABLE document.constituer
-    ADD CONSTRAINT IF NOT EXISTS  fk_con_on_attributs_entity FOREIGN KEY (attributs_id) REFERENCES attributs (id);
+    ADD CONSTRAINT fk_con_on_attributs_entity FOREIGN KEY (attributs_id) REFERENCES attributs (id);
 
 ALTER TABLE document.constituer
-    ADD CONSTRAINT IF NOT EXISTS  fk_con_on_documents_entity FOREIGN KEY (documents_id) REFERENCES documents (id);
+    ADD CONSTRAINT fk_con_on_documents_entity FOREIGN KEY (documents_id) REFERENCES documents (id);
 
 ALTER TABLE document.suivre
-    ADD CONSTRAINT IF NOT EXISTS  fk_suivre_on_documents_entity FOREIGN KEY (documents_id) REFERENCES documents (id);
+    ADD CONSTRAINT fk_suivre_on_documents_entity FOREIGN KEY (documents_id) REFERENCES documents (id);
 
 ALTER TABLE document.suivre
-    ADD CONSTRAINT IF NOT EXISTS  fk_suivre_on_preco_mouvements_entity FOREIGN KEY (precomouvements_id) REFERENCES precomouvements (id);
-ALTER TABLE document.distributeurs
-    ADD CONSTRAINT IF NOT EXISTS  FK_DISTRIBUTEURS_ON_DISTRIBUTEURS FOREIGN KEY (distributeurs_id) REFERENCES personnes (id);
+    ADD CONSTRAINT fk_suivre_on_preco_mouvements_entity FOREIGN KEY (precomouvements_id) REFERENCES precomouvements (id);
+ALTER TABLE distributeurs
+    ADD CONSTRAINT FK_DISTRIBUTEURS_ON_DISTRIBUTEURS FOREIGN KEY (distributeurs_id) REFERENCES personnes (id);
 
 ALTER TABLE document.concerner
-    ADD CONSTRAINT IF NOT EXISTS  fk_concerner_on_distributeurs_entity FOREIGN KEY (precomouvementsqtes_id) REFERENCES precomouvementsqtes (id);
+    ADD CONSTRAINT  fk_concerner_on_distributeurs_entity FOREIGN KEY (precomouvementsqtes_id) REFERENCES precomouvementsqtes (id);
 
 ALTER TABLE document.concerner
-    ADD CONSTRAINT IF NOT EXISTS  fk_concerner_on_preco_mouvements_qtes_entity FOREIGN KEY (distributeurs_id) REFERENCES distributeurs (distributeurs_id);
+    ADD CONSTRAINT  fk_concerner_on_preco_mouvements_qtes_entity FOREIGN KEY (distributeurs_id) REFERENCES distributeurs (distributeurs_id);
 
 ALTER TABLE document.associer
-    ADD CONSTRAINT IF NOT EXISTS  FK_ASSOCIER_ON_ATTRIBUTS FOREIGN KEY (attributs_id) REFERENCES attributs (id);
+    ADD CONSTRAINT FK_ASSOCIER_ON_ATTRIBUTS FOREIGN KEY (attributs_id) REFERENCES attributs (id);
 
 ALTER TABLE document.associer
-    ADD CONSTRAINT IF NOT EXISTS  FK_ASSOCIER_ON_CATEGORIES FOREIGN KEY (categories_id) REFERENCES categories (id);
+    ADD CONSTRAINT FK_ASSOCIER_ON_CATEGORIES FOREIGN KEY (categories_id) REFERENCES categories (id);
 
 ALTER TABLE document.categories
-    ADD CONSTRAINT IF NOT EXISTS  FK_CATEGORIES_ON_DOCUMENTS FOREIGN KEY (documents_id) REFERENCES documents (id);
+    ADD CONSTRAINT FK_CATEGORIES_ON_DOCUMENTS FOREIGN KEY (documents_id) REFERENCES documents (id);

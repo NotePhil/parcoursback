@@ -2,6 +2,7 @@ package cmr.notep.impl;
 
 import cmr.notep.api.IAttributsApi;
 import cmr.notep.business.AttributsBusiness;
+import cmr.notep.exceptions.ParcoursException;
 import cmr.notep.modele.Attributs;
 import lombok.NonNull;
 import org.springframework.context.annotation.Primary;

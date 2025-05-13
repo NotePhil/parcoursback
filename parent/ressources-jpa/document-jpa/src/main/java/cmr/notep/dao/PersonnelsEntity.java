@@ -36,4 +36,9 @@ public class PersonnelsEntity extends PersonnesEntity {
     @OneToMany(mappedBy = "personnelsEntity", fetch = FetchType.LAZY)
     @Mapping("roles")
     List<JouerRolesEntity> jouerRolesEntities;
+
+    @OneToMany(mappedBy = "personnelsEntity", fetch = FetchType.LAZY, cascade = {CascadeType.ALL})
+    @Mapping("mouvementcaisses")
+    List<MouvementCaissesEntity> mouvementCaissesEntities;
+
 }
