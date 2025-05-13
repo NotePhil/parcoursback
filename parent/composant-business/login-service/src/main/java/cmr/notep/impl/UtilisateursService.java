@@ -17,7 +17,9 @@ import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.web.bind.annotation.RestController;
 
 import javax.transaction.Transactional;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 @RestController
 @Transactional
@@ -65,13 +67,20 @@ public class UtilisateursService implements IUtilisateursApi {
     }
 
     @Override
-    public String authenticateAndGetToken(LoginForm loginForm) {
+    public Map<String , Object> authenticateAndGetToken(LoginForm loginForm) {
 
         Authentication authentication =  authenticationMAnager.
                 authenticate(new UsernamePasswordAuthenticationToken(loginForm.username(),loginForm.password()));
 
 
-        if (authentication.isAuthenticated()) return jwtService.generateToken(userDetailsService.loadUserByUsername(loginForm.username()));
+        if (authentication.isAuthenticated())
+        {
+            return utilisateursBusiness.UserToken(
+                    jwtService.generateToken(userDetailsService.loadUserByUsername(loginForm.username())),
+                    loginForm.username()
+            );
+        }
+
 
         else throw  new UsernameNotFoundException("Invalid Credentials") ;
     }

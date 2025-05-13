@@ -10,12 +10,16 @@ import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.Map;
 
 @RequestMapping("users")
 public interface IUtilisateursApi {
 
     @PreAuthorize("hasRole('ADMIN')")
-    @GetMapping("/admin")
+    @GetMapping(
+            path = "/admin",
+            produces = MediaType.APPLICATION_JSON_VALUE
+    )
     public ResponseEntity<String> helloAdmin();
 
     @GetMapping(
@@ -45,6 +49,6 @@ public interface IUtilisateursApi {
             produces = MediaType.APPLICATION_JSON_VALUE,
             consumes = MediaType.APPLICATION_JSON_VALUE
     )
-    String authenticateAndGetToken(@RequestBody LoginForm loginForm);
+    Map<String , Object> authenticateAndGetToken(@NonNull @RequestBody LoginForm loginForm);
 
 }
