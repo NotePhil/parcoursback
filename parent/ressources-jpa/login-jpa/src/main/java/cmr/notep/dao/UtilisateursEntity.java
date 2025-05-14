@@ -21,7 +21,7 @@ public class UtilisateursEntity {
     @Column(name = "id", nullable = false, updatable = false, columnDefinition = "UUID")
     private String id;
 
-    @Column(name = "login")
+    @Column(name = "login",unique = true)
     private String login;
 
     @Column(name = "roles")
