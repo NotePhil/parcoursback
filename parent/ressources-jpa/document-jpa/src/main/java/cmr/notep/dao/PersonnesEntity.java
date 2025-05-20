@@ -14,7 +14,7 @@ import java.util.List;
 @Getter
 @Setter
 @Entity
-@Inheritance(strategy = InheritanceType.SINGLE_TABLE)
+@Inheritance(strategy = InheritanceType.JOINED)
 @DiscriminatorColumn(name = "person_type", discriminatorType = DiscriminatorType.STRING)
 @Table(name = "personnes", schema = "document")
 public class PersonnesEntity

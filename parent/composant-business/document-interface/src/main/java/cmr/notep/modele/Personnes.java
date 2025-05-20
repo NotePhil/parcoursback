@@ -1,8 +1,6 @@
 package cmr.notep.modele;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
-import com.fasterxml.jackson.annotation.JsonSubTypes;
-import com.fasterxml.jackson.annotation.JsonTypeInfo;
 import lombok.*;
 import lombok.experimental.SuperBuilder;
 
@@ -17,6 +15,7 @@ import java.util.List;
 @SuperBuilder
 @JsonIgnoreProperties(ignoreUnknown = true)
 @ToString
+@Getter
 public class Personnes implements Serializable, IPersonnes {
     private String id ;
     private String adresse ;

@@ -6,7 +6,6 @@ import lombok.Getter;
 import lombok.Setter;
 import org.hibernate.annotations.GenericGenerator;
 
-import javax.persistence.*;
 import java.util.Date;
 import java.util.List;
 
@@ -33,7 +32,7 @@ public class AttributsEntity {
 
     @Enumerated(EnumType.STRING)
     @Column(name = "type_attribut", nullable = false)
-    private Type_attribut type;
+    private TypeAttribut type;
 
     @Column(name = "valeurpardefaut")
     private String valeurParDefaut;
