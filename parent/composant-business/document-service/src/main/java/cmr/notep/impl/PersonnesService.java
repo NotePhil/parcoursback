@@ -2,16 +2,19 @@ package cmr.notep.impl;
 
 import cmr.notep.api.IPersonnesApi;
 import cmr.notep.business.PersonnesBusiness;
-import cmr.notep.modele.MacroPersonnes;
+import cmr.notep.exceptions.ParcoursException;
+import cmr.notep.modele.IPersonnes;
 import cmr.notep.modele.Personnes;
-import lombok.NonNull;
+import org.springframework.context.annotation.Primary;
+import org.springframework.lang.NonNull;
 import org.springframework.web.bind.annotation.RestController;
 
-import javax.transaction.Transactional;
+import jakarta.transaction.Transactional;
 import java.util.List;
 
 @RestController
 @Transactional
+@Primary
 public class PersonnesService implements IPersonnesApi {
 
     private final PersonnesBusiness personnesBusiness;
@@ -19,28 +22,26 @@ public class PersonnesService implements IPersonnesApi {
     public PersonnesService(PersonnesBusiness personnesBusiness) {
         this.personnesBusiness = personnesBusiness;
     }
-
-    @Override
-    public Personnes avoirPersonne(@NonNull  String idPersonnes) {
+@Override
+    public Personnes avoirPersonne(@NonNull String idPersonnes) {
+    try {
         return personnesBusiness.avoirPersonne(idPersonnes);
+    } catch (ParcoursException e) {
+        throw new RuntimeException(e);
     }
+}
 
-    @Override
-    public List<MacroPersonnes> avoirParElemnt(@NonNull String value) {
-        return personnesBusiness.avoirParElemnt(value);
-    }
-
-    @Override
-    public List<Personnes> avoirToutPersonnes() {
+    //@Override
+    public List<IPersonnes> avoirToutPersonnes() {
         return personnesBusiness.avoirToutPersonnes();
     }
 
-    @Override
+    //@Override
     public void supprimerPersonne(Personnes Personnes) {
         personnesBusiness.supprimerPersonne(Personnes);
     }
 
-    @Override
+    //@Override
     public Personnes posterPersonne(Personnes Personnes) {
         return personnesBusiness.posterPersonne(Personnes);
     }

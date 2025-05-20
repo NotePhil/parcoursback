@@ -6,7 +6,7 @@ import lombok.Setter;
 import org.dozer.Mapping;
 import org.hibernate.annotations.GenericGenerator;
 
-import javax.persistence.*;
+import jakarta.persistence.*;
 import java.util.Date;
 import java.util.List;
 import java.util.UUID;
@@ -35,15 +35,15 @@ public class RolesEntity {
     private Date dateCreation;
     @Column(name = "datemodification")
     private Date dateModification;
-    @OneToMany(mappedBy = "rolesEntity", fetch = FetchType.LAZY, cascade = {CascadeType.ALL})
+    @OneToMany(mappedBy = "rolesEntity", fetch = FetchType.LAZY)
     @Mapping("personnels")
     private List<JouerRolesEntity> jouerRolesEntities;
 
-    @OneToMany(mappedBy = "rolesEntity", fetch = FetchType.LAZY, cascade = {CascadeType.ALL})
+    @OneToMany(mappedBy = "rolesEntity", fetch = FetchType.LAZY)
     @Mapping("missions")
     private List<RemplirEntity> remplirEntities;
 
-    @OneToMany(mappedBy = "roleEntity" , fetch = FetchType.LAZY, cascade = {CascadeType.ALL})
+    @OneToMany(mappedBy = "roleEntity" , fetch = FetchType.LAZY)
     @Mapping("validations")
     private List<ValidationsEntity> validationsEntities;
 }

@@ -54,17 +54,17 @@
         <dependency>
             <groupId>cmr.notep</groupId>
             <artifactId>document-interface</artifactId>
-            <version>${projet.version}</version>
+            <version>${project.version}</version>
         </dependency>
         <dependency>
             <groupId>cmr.notep</groupId>
             <artifactId>document-jpa</artifactId>
-            <version>${projet.version}</version>
+            <version>${project.version}</version>
         </dependency>
         <dependency>
             <groupId>cmr.notep</groupId>
             <artifactId>common-jpa</artifactId>
-            <version>${projet.version}</version>
+            <version>${project.version}</version>
         </dependency>
         <dependency>
             <groupId>org.jetbrains</groupId>

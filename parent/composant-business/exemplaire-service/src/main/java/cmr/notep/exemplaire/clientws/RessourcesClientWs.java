@@ -2,6 +2,7 @@ package cmr.notep.exemplaire.clientws;
 
 import cmr.notep.api.IRessourcesApi;
 import cmr.notep.exceptions.ParcoursException;
+import cmr.notep.exceptions.enumeration.ParcoursExceptionCodeEnum;
 import cmr.notep.exemplaire.config.ExemplaireConfig;
 import cmr.notep.modele.Ressources;
 import cmr.notep.utile.serialiser.JacksonHelper;
@@ -34,7 +35,7 @@ public class RessourcesClientWs implements IRessourcesApi {
         GenericWsResponse response = genericWsClientApi.sendRequest(request);
         if (response.getCode() == 200)
             return JacksonHelper.objetFromJson(response.getReponse(), Ressources.class);
-        throw new ParcoursException("Erreur lors de la récupération  " + idRessource + " code http : " + response.getReponse() + " reponse : " + response.getReponse());
+        throw new ParcoursException(ParcoursExceptionCodeEnum.INTERNAL_ERROR,"Erreur lors de la récupération  " + idRessource + " code http : " + response.getReponse() + " reponse : " + response.getReponse());
     }
 
     @Override

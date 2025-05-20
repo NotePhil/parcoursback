@@ -5,7 +5,7 @@ import lombok.Setter;
 import org.dozer.Mapping;
 import org.hibernate.annotations.GenericGenerator;
 
-import javax.persistence.*;
+import jakarta.persistence.*;
 import java.util.Date;
 import java.util.List;
 
@@ -34,7 +34,7 @@ public class ServicesEntity {
     private Date dateModification;
     @Column(name = "codeunique", nullable = false , unique = true)
     private String codeUnique;
-    @OneToMany(mappedBy = "servicesEntity", fetch = FetchType.LAZY, cascade = {CascadeType.ALL})
+    @OneToMany(mappedBy = "servicesEntity", fetch = FetchType.LAZY)
     @Mapping("missions")
     private List<MissionsEntity> missionsEntities ;
 

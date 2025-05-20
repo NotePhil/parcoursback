@@ -51,9 +51,8 @@
         </dependency>
         <dependency>
             <groupId>cmr.notep</groupId>
-            <artifactId>document-interface</artifactId>
-            <version>1.0-013</version>
-            <scope>compile</scope>
+            <artifactId>commun-outil</artifactId>
+            <version>${project.version}</version>
         </dependency>
     </dependencies>
     <build>

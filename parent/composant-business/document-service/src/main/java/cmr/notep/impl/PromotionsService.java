@@ -5,7 +5,7 @@ import cmr.notep.business.PromotionsBusiness;
 import cmr.notep.modele.Promotions;
 import org.springframework.web.bind.annotation.RestController;
 
-import javax.transaction.Transactional;
+import jakarta.transaction.Transactional;
 import java.util.List;
 
 @RestController

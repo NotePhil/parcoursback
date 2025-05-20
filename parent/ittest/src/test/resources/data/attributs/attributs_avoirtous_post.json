@@ -1,0 +1,100 @@
+[ {
+  "id" : null,
+  "titre" : "Taille",
+  "description" : "Description Taille",
+  "etat" : true,
+  "dateCreation" : 1640991600000,
+  "dateModification" : null,
+  "type" : "Text",
+  "valeurParDefaut" : null
+}, {
+  "id" : null,
+  "titre" : "Poids",
+  "description" : "Description Poids",
+  "etat" : true,
+  "dateCreation" : 1640991600000,
+  "dateModification" : null,
+  "type" : "Number",
+  "valeurParDefaut" : null
+}, {
+  "id" : null,
+  "titre" : "Age",
+  "description" : "Description age",
+  "etat" : true,
+  "dateCreation" : 1640991600000,
+  "dateModification" : null,
+  "type" : "Text",
+  "valeurParDefaut" : null
+}, {
+  "id" : null,
+  "titre" : "Sexe",
+  "description" : "Sexe ",
+  "etat" : true,
+  "dateCreation" : 1640991600000,
+  "dateModification" : null,
+  "type" : "Text",
+  "valeurParDefaut" : null
+}, {
+  "id" : null,
+  "titre" : "Teint",
+  "description" : "Coloration",
+  "etat" : true,
+  "dateCreation" : 1640991600000,
+  "dateModification" : null,
+  "type" : "Text",
+  "valeurParDefaut" : "Noir"
+}, {
+  "id" : null,
+  "titre" : "Groupe sangin",
+  "description" : "Groupe sangin",
+  "etat" : true,
+  "dateCreation" : 1640991600000,
+  "dateModification" : null,
+  "type" : "Radio",
+  "valeurParDefaut" : "A, A+, A-, B, B+, B-, AB, AB+, AB-, O, O+, O-"
+}, {
+  "id" : null,
+  "titre" : "Allergies",
+  "description" : "Allergies connues ",
+  "etat" : true,
+  "dateCreation" : 1640991600000,
+  "dateModification" : null,
+  "type" : "Textarea",
+  "valeurParDefaut" : null
+}, {
+  "id" : null,
+  "titre" : "Nom",
+  "description" : "Nom de la personne",
+  "etat" : true,
+  "dateCreation" : 1640991600000,
+  "dateModification" : null,
+  "type" : "Text",
+  "valeurParDefaut" : null
+}, {
+  "id" : null,
+  "titre" : "Adresse",
+  "description" : "Adresse postale",
+  "etat" : true,
+  "dateCreation" : 1640991600000,
+  "dateModification" : null,
+  "type" : "Text",
+  "valeurParDefaut" : null
+}, {
+  "id" : null,
+  "titre" : "Date de naissance",
+  "description" : "Date de naissance",
+  "etat" : true,
+  "dateCreation" : 1640991600000,
+  "dateModification" : null,
+  "type" : "Date",
+  "valeurParDefaut" : null
+}, {
+  "id" : null,
+  "titre" : "TitreTest",
+  "description" : "DescriptionTest",
+  "etat" : true,
+  "dateCreation" : 1742513292220,
+  "dateModification" : null,
+  "type" : "Checkbox",
+  "valeurParDefaut" : "valeurParDefaut"
+} ]

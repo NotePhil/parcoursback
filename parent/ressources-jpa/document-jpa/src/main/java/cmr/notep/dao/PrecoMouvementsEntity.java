@@ -6,7 +6,7 @@ import lombok.Setter;
 import org.dozer.Mapping;
 import org.hibernate.annotations.GenericGenerator;
 
-import javax.persistence.*;
+import jakarta.persistence.*;
 import java.util.Date;
 import java.util.List;
 
@@ -39,7 +39,7 @@ public class PrecoMouvementsEntity {
     @Mapping("documents")
     private List<DocumentsEntity> documentsEntities ;
 
-    @OneToMany(mappedBy = "precoMouvementsEntity" , fetch = FetchType.LAZY, cascade = {CascadeType.ALL})
+    @OneToMany(mappedBy = "precoMouvementsEntity" , fetch = FetchType.LAZY)
     @Mapping("precoMouvementsQtes")
     private List<PrecoMouvementsQtesEntity> precoMouvementsQteEntities;
 }

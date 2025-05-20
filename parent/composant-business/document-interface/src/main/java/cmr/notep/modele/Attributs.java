@@ -10,7 +10,7 @@ import java.util.List;
 @AllArgsConstructor
 @NoArgsConstructor
 @Builder
-@JsonIgnoreProperties({"documents"})
+@JsonIgnoreProperties(value = {"documents"},ignoreUnknown = true)
 @ToString(exclude = {"documents"})
 @EqualsAndHashCode(exclude = {"documents"})
 public class Attributs {

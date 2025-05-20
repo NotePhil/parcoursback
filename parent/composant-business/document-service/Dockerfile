@@ -16,10 +16,9 @@ ARG MANAGE_PACKAGE_60J
 
 RUN echo "${MANAGE_PACKAGE_60J}/${PARCOURS_MICROSERVICE_VERSION}"
 
-RUN curl -v -H "Authorization: Bearer ${MANAGE_PACKAGE_60J} "\
-     -L -o document-service.jar \
-     "${PARCOURS_PACKAGES_URL}/cmr/notep/document-service/${PARCOURS_MICROSERVICE_VERSION}/document-service-${PARCOURS_MICROSERVICE_VERSION}.jar"
-
+RUN curl -v -H "Authorization: Bearer ${MANAGE_PACKAGE_60J}"\
+     -L "${PARCOURS_PACKAGES_URL}/cmr/notep/document-service/${PARCOURS_MICROSERVICE_VERSION}/document-service-${PARCOURS_MICROSERVICE_VERSION}.jar"\
+     -o document-service.jar
 # Use OpenJDK as the base image for running the application
 FROM openjdk:17-jdk-slim
 

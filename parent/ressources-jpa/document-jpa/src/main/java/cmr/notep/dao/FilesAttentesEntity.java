@@ -5,7 +5,7 @@ import lombok.Setter;
 import org.dozer.Mapping;
 import org.hibernate.annotations.GenericGenerator;
 
-import javax.persistence.*;
+import jakarta.persistence.*;
 import java.util.Date;
 import java.util.List;
 import java.util.UUID;
@@ -28,7 +28,7 @@ public class FilesAttentesEntity {
     @Column(name = "etat")
     private Boolean etat ;
 
-    @OneToMany(mappedBy = "filesAttentesEntity" , fetch = FetchType.LAZY , cascade = {CascadeType.ALL})
+    @OneToMany(mappedBy = "filesAttentesEntity" , fetch = FetchType.LAZY )
     @Mapping("ticketsfilesattentes")
     private List<TicketsFilesAttentesEntity> ticketsFilesAttentesEntities;
 

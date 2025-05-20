@@ -1,13 +1,14 @@
 package cmr.notep.modele;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
-import lombok.AllArgsConstructor;
-import lombok.Builder;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import com.fasterxml.jackson.annotation.JsonSubTypes;
+import com.fasterxml.jackson.annotation.JsonTypeInfo;
+import lombok.*;
 import lombok.experimental.SuperBuilder;
 
+import java.io.Serializable;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 @Data
@@ -15,18 +16,16 @@ import java.util.List;
 @NoArgsConstructor
 @SuperBuilder
 @JsonIgnoreProperties(ignoreUnknown = true)
-public class Personnes {
+@ToString
+public class Personnes implements Serializable, IPersonnes {
     private String id ;
     private String adresse ;
     private String mail ;
     private  String telephone ;
     private  String qrcodevalue ;
-    private List<Personnes> personnesRatachees = new ArrayList<>();
     private Comptes compte;
     private Exemplaires exemplaires;
-
-
-//    private List<Promotions> promotions;
-//    private Mouvements mouvements;
-//    private List<PrecoMouvementsQtes> precomouvementsqtes;
+    private Date dateCreation;
+    private Date dateModification;
+    private List<IPersonnes> personnesRatachees = new ArrayList<>();
 }

@@ -1,199 +1,556 @@
 [
-  {
-    "id": "1",
-    "libelle": "rachat",
-    "etat": true,
-    "type": "neutre",
-    "precomvtqte": [
-      {
-        "id": "1",
-        "quantiteMin": 10,
-        "quantiteMax": 20,
-        "montantMin": 1000,
-        "montantMax": 7000,
-        "ressource": {
-          "id": "1",
-          "libelle": "transfusion",
-          "etat": true,
-          "quantite": 10,
-          "unite": "UnitesLitre",
-          "prix": 1000,
-          "caracteristique": "souple",
-          "famille": {
-            "id": "4",
-            "libelle": "néonat",
-            "description": "nouveau-né",
-            "etat": false
-          }
-        }
-      },
-      {
-        "id": "2",
-        "quantiteMin": 30,
-        "quantiteMax": 40,
-        "montantMin": 100,
-        "montantMax": 7000,
-        "famille": [
-          { "id": "1", "libelle": "trans", "description": "sang", "etat": true },
+  "java.util.ArrayList",
+  [
+    {
+      "type": "distributeur",
+      "id": "1979bd79-f71b-498b-b247-e7b9bbb3f600",
+      "adresse": "Bastos",
+      "mail": "abd@yah.fr",
+      "telephone": "655454545",
+      "qrcodevalue": "qrcode1",
+      "dateCreation": [
+        "java.util.Date",
+        1640991600000
+      ],
+      "dateModification": null,
+      "personnesRatachees": [
+        "java.util.ArrayList",
+        []
+      ],
+      "precomouvementsqtes": [
+        "java.util.ArrayList",
+        []
+      ],
+      "raisonSociale": "ENEO",
+      "code": "d190615",
+      "promotions": [
+        "java.util.ArrayList",
+        []
+      ]
+    },
+    {
+      "type": "distributeur",
+      "id": "d301ff83-2a62-4e6d-aa23-57c7825bcd57",
+      "adresse": "Bastos",
+      "mail": "dbc@yah.fr",
+      "telephone": "655454545",
+      "qrcodevalue": "qrcode2",
+      "dateCreation": [
+        "java.util.Date",
+        1640991600000
+      ],
+      "dateModification": null,
+      "personnesRatachees": [
+        "java.util.ArrayList",
+        [
           {
-            "id": "2",
-            "libelle": "néonat",
-            "description": "nouveau-né",
-            "etat": false
+            "type": "distributeur",
+            "id": "0618e585-f82a-4d5f-af1c-54f880d766d3",
+            "adresse": "Bastos",
+            "mail": "pnj@gma.com",
+            "telephone": "655454545",
+            "qrcodevalue": "qrcode3",
+            "dateCreation": [
+              "java.util.Date",
+              1640991600000
+            ],
+            "dateModification": null,
+            "personnesRatachees": [
+              "java.util.ArrayList",
+              []
+            ],
+            "precomouvementsqtes": [
+              "java.util.ArrayList",
+              []
+            ],
+            "raisonSociale": "Brasserie",
+            "code": "d190616",
+            "promotions": [
+              "java.util.ArrayList",
+              []
+            ]
           },
           {
-            "id": "3",
-            "libelle": "pediatrie",
-            "description": "enfant",
-            "etat": true
+            "type": "personnePhysique",
+            "id": "0195fe35-0742-7db1-ab55-f16e0c621ac0",
+            "adresse": "Douala",
+            "mail": "steve@gmail.com",
+            "telephone": "999495487",
+            "qrcodevalue": "qrcode9",
+            "dateCreation": [
+              "java.util.Date",
+              1648764000000
+            ],
+            "dateModification": null,
+            "personnesRatachees": [
+              "java.util.ArrayList",
+              []
+            ],
+            "nom": "Steve",
+            "prenom": "dede",
+            "sexe": "M",
+            "dateNaissance": [
+              "java.util.Date",
+              922831200000
+            ]
+          },
+          {
+            "type": "distributeur",
+            "id": "0618e585-f82a-4d5f-af1c-54f880d766d3",
+            "adresse": "Bastos",
+            "mail": "pnj@gma.com",
+            "telephone": "655454545",
+            "qrcodevalue": "qrcode3",
+            "dateCreation": [
+              "java.util.Date",
+              1640991600000
+            ],
+            "dateModification": null,
+            "personnesRatachees": [
+              "java.util.ArrayList",
+              []
+            ],
+            "precomouvementsqtes": [
+              "java.util.ArrayList",
+              []
+            ],
+            "raisonSociale": "Brasserie",
+            "code": "d190616",
+            "promotions": [
+              "java.util.ArrayList",
+              []
+            ]
+          },
+          {
+            "type": "personnePhysique",
+            "id": "0195fe35-0742-7db1-ab55-f16e0c621ac0",
+            "adresse": "Douala",
+            "mail": "steve@gmail.com",
+            "telephone": "999495487",
+            "qrcodevalue": "qrcode9",
+            "dateCreation": [
+              "java.util.Date",
+              1648764000000
+            ],
+            "dateModification": null,
+            "personnesRatachees": [
+              "java.util.ArrayList",
+              []
+            ],
+            "nom": "Steve",
+            "prenom": "dede",
+            "sexe": "M",
+            "dateNaissance": [
+              "java.util.Date",
+              922831200000
+            ]
           }
         ]
-      },
-      {
-        "id": "3",
-        "quantiteMin": 30,
-        "quantiteMax": 40,
-        "montantMin": 100,
-        "montantMax": 7000,
-        "ressource": {
-          "id": "3",
-          "libelle": "pediatrie",
-          "etat": true,
-          "quantite": 30,
-          "unite": "UnitesLitre",
-          "prix": 3000,
-          "caracteristique": "souple",
-          "famille": {
-            "id": "4",
-            "libelle": "néonat",
-            "description": "nouveau-né",
-            "etat": false
-          }
-        }
-      },
-      {
-        "id": "4",
-        "quantiteMin": 30,
-        "quantiteMax": 40,
-        "montantMin": 100,
-        "montantMax": 7000,
-        "ressource": {
-          "id": "2",
-          "libelle": "néonat",
-          "etat": true,
-          "quantite": 20,
-          "unite": "UnitesLitre",
-          "prix": 2000,
-          "caracteristique": "souple",
-          "famille": {
-            "id": "3",
-            "libelle": "pediatrie",
-            "description": "enfant",
-            "etat": true
-          }
-        }
-      }
-    ]
-  },
-  {
-    "id": "2",
-    "libelle": "vente",
-    "etat": true,
-    "type": "reduire",
-    "precomvtqte": [
-      {
-        "id": "1",
-        "quantiteMin": 30,
-        "quantiteMax": 40,
-        "montantMin": 100,
-        "montantMax": 7000,
-        "famille": [
-          { "id": "1", "libelle": "trans", "description": "sang", "etat": true },
+      ],
+      "precomouvementsqtes": [
+        "java.util.ArrayList",
+        []
+      ],
+      "raisonSociale": "UCB",
+      "code": "d190619",
+      "promotions": [
+        "java.util.ArrayList",
+        []
+      ]
+    },
+    {
+      "type": "distributeur",
+      "id": "0618e585-f82a-4d5f-af1c-54f880d766d3",
+      "adresse": "Bastos",
+      "mail": "pnj@gma.com",
+      "telephone": "655454545",
+      "qrcodevalue": "qrcode3",
+      "dateCreation": [
+        "java.util.Date",
+        1640991600000
+      ],
+      "dateModification": null,
+      "personnesRatachees": [
+        "java.util.ArrayList",
+        []
+      ],
+      "precomouvementsqtes": [
+        "java.util.ArrayList",
+        []
+      ],
+      "raisonSociale": "Brasserie",
+      "code": "d190616",
+      "promotions": [
+        "java.util.ArrayList",
+        []
+      ]
+    },
+    {
+      "type": "distributeur",
+      "id": "fdbff692-6b8d-43ab-a196-fcc3114b2daa",
+      "adresse": "Bastos",
+      "mail": "sg@sg.fr",
+      "telephone": "655454545",
+      "qrcodevalue": "qrcode4",
+      "dateCreation": [
+        "java.util.Date",
+        1640991600000
+      ],
+      "dateModification": null,
+      "personnesRatachees": [
+        "java.util.ArrayList",
+        []
+      ],
+      "precomouvementsqtes": [
+        "java.util.ArrayList",
+        []
+      ],
+      "raisonSociale": "Pharmacam",
+      "code": "d190614",
+      "promotions": [
+        "java.util.ArrayList",
+        []
+      ]
+    },
+    {
+      "type": "personnel",
+      "id": "4390615e-1101-7209-9932-7020bbd556f1",
+      "adresse": "Douala",
+      "mail": "tagnewillie@gmail.com",
+      "telephone": "655455487",
+      "qrcodevalue": "qrcode6",
+      "dateCreation": [
+        "java.util.Date",
+        1640991600000
+      ],
+      "dateModification": [
+        "java.util.Date",
+        1641078000000
+      ],
+      "personnesRatachees": [
+        "java.util.ArrayList",
+        []
+      ],
+      "dateEntree": [
+        "java.util.Date",
+        1746482400000
+      ],
+      "nom": "Tagne",
+      "dateNaissance": [
+        "java.util.Date",
+        955317600000
+      ],
+      "dateSortie": null,
+      "prenom": "Willy",
+      "sexe": "M",
+      "roles": [
+        "java.util.ArrayList",
+        [
           {
-            "id": "2",
-            "libelle": "néonat",
-            "description": "nouveau-né",
-            "etat": false
-          },
-          {
-            "id": "3",
-            "libelle": "pediatrie",
-            "description": "enfant",
-            "etat": true
-          }
-        ]
-      }
-    ]
-  },
-  {
-    "id": "3",
-    "libelle": "vente",
-    "etat": true,
-    "type": "reduire",
-    "precomvtqte": [
-      {
-        "id": "1",
-        "quantiteMin": 30,
-        "quantiteMax": 40,
-        "montantMin": 100,
-        "montantMax": 7000,
-        "famille": [
-          { "id": "1", "libelle": "trans", "description": "sang", "etat": true },
-          {
-            "id": "2",
-            "libelle": "néonat",
-            "description": "nouveau-né",
-            "etat": false
-          },
-          {
-            "id": "3",
-            "libelle": "pediatrie",
-            "description": "enfant",
-            "etat": true
-          }
-        ],
-        "ressource": {
-          "id": "1",
-          "libelle": "transfusion",
-          "etat": true,
-          "quantite": 10,
-          "unite": "UnitesLitre",
-          "prix": 1000,
-          "caracteristique": "souple",
-          "famille": {
-            "id": "4",
-            "libelle": "néonat",
-            "description": "nouveau-né",
-            "etat": false
-          }
-        },
-        "distributeur": [
-          {
-            "id": "1",
-            "raisonSocial": "brasserie1",
-            "etat": true,
-            "adresse": "Dla",
-            "telephone": "655554488",
-            "mail": "ngong@yad.fr"
-          },
-          {
-            "id": "2",
-            "raisonSocial": "guinness",
-            "etat": true,
-            "adresse": "Ydé",
-            "telephone": "655554481",
-            "mail": "ngong@yad.fr"
-          },
-          {
-            "id": "3",
-            "raisonSocial": "papeterie yvan",
-            "etat": true,
-            "adresse": "Buéa",
-            "telephone": "655554486",
-            "mail": "ngong@yad.fr"
+            "@class": "cmr.notep.modele.JouerRoles",
+            "id": "d76fd017-cceb-4926-8705-380b08ad9c6a",
+            "etat": null,
+            "dateCreation": [
+              "java.util.Date",
+              1640991600000
+            ],
+            "dateFin": null,
+            "dateDebut": [
+              "java.util.Date",
+              1704063600000
+            ],
+            "role": {
+              "@class": "cmr.notep.modele.Roles",
+              "id": "5190615e-1101-7209-9932-7020bbd556f1",
+              "titre": "vendeur",
+              "description": "personnel au contact du client",
+              "etat": true,
+              "dateCreation": [
+                "java.util.Date",
+                1640991600000
+              ],
+              "validations": [
+                "java.util.ArrayList",
+                []
+              ]
+            }
           }
         ]
-      }
-    ]
-  }
+      ]
+    },
+    {
+      "type": "personnel",
+      "id": "4390615e-1101-7209-9932-7020bbd556f2",
+      "adresse": "Douala",
+      "mail": "peteralan@gmail.com",
+      "telephone": "888455487",
+      "qrcodevalue": "qrcode7",
+      "dateCreation": [
+        "java.util.Date",
+        1646089200000
+      ],
+      "dateModification": [
+        "java.util.Date",
+        1641078000000
+      ],
+      "personnesRatachees": [
+        "java.util.ArrayList",
+        []
+      ],
+      "dateEntree": [
+        "java.util.Date",
+        1746482400000
+      ],
+      "nom": "Peter",
+      "dateNaissance": [
+        "java.util.Date",
+        1092088800000
+      ],
+      "dateSortie": null,
+      "prenom": "Alan",
+      "sexe": "M",
+      "roles": [
+        "java.util.ArrayList",
+        [
+          {
+            "@class": "cmr.notep.modele.JouerRoles",
+            "id": "d39bcc09-ffe6-48d1-8582-f1173671d59f",
+            "etat": null,
+            "dateCreation": [
+              "java.util.Date",
+              1640991600000
+            ],
+            "dateFin": null,
+            "dateDebut": [
+              "java.util.Date",
+              1704063600000
+            ],
+            "role": {
+              "@class": "cmr.notep.modele.Roles",
+              "id": "6130615e-1101-7209-9932-7020bbd556f2",
+              "titre": "traiteur",
+              "description": "Personnel administratif",
+              "etat": true,
+              "dateCreation": [
+                "java.util.Date",
+                1640991600000
+              ],
+              "validations": [
+                "java.util.ArrayList",
+                []
+              ]
+            }
+          }
+        ]
+      ]
+    },
+    {
+      "type": "personnel",
+      "id": "4390615e-1101-7209-9932-7020bbd556f3",
+      "adresse": "Douala",
+      "mail": "dombogilles@gmail.com",
+      "telephone": "999455487",
+      "qrcodevalue": "qrcode8",
+      "dateCreation": [
+        "java.util.Date",
+        1648764000000
+      ],
+      "dateModification": [
+        "java.util.Date",
+        1641078000000
+      ],
+      "personnesRatachees": [
+        "java.util.ArrayList",
+        []
+      ],
+      "dateEntree": [
+        "java.util.Date",
+        1746482400000
+      ],
+      "nom": "Dombo",
+      "dateNaissance": [
+        "java.util.Date",
+        1034200800000
+      ],
+      "dateSortie": null,
+      "prenom": "Gilles",
+      "sexe": "M",
+      "roles": [
+        "java.util.ArrayList",
+        [
+          {
+            "@class": "cmr.notep.modele.JouerRoles",
+            "id": "9183d626-0c1a-4f70-8556-1c417d5feb91",
+            "etat": null,
+            "dateCreation": [
+              "java.util.Date",
+              1640991600000
+            ],
+            "dateFin": null,
+            "dateDebut": [
+              "java.util.Date",
+              1704063600000
+            ],
+            "role": {
+              "@class": "cmr.notep.modele.Roles",
+              "id": "6191615e-1101-7209-9932-7020bbd556f3",
+              "titre": "marcheur",
+              "description": "commercial sur le terrain",
+              "etat": true,
+              "dateCreation": [
+                "java.util.Date",
+                1640991600000
+              ],
+              "validations": [
+                "java.util.ArrayList",
+                []
+              ]
+            }
+          }
+        ]
+      ]
+    },
+    {
+      "type": "personnePhysique",
+      "id": "0195fe35-0742-7db1-ab55-f16e0c621ac0",
+      "adresse": "Douala",
+      "mail": "steve@gmail.com",
+      "telephone": "999495487",
+      "qrcodevalue": "qrcode9",
+      "dateCreation": [
+        "java.util.Date",
+        1648764000000
+      ],
+      "dateModification": null,
+      "personnesRatachees": [
+        "java.util.ArrayList",
+        []
+      ],
+      "nom": "Steve",
+      "prenom": "dede",
+      "sexe": "M",
+      "dateNaissance": [
+        "java.util.Date",
+        922831200000
+      ]
+    },
+    {
+      "type": "personnePhysique",
+      "id": "0195c9e8-bbb7-7418-8c4a-69500c816c5f",
+      "adresse": "Yaoundé",
+      "mail": "dede@yeoo.fr",
+      "telephone": "9800994433",
+      "qrcodevalue": "qrcode5",
+      "dateCreation": [
+        "java.util.Date",
+        1427752800000
+      ],
+      "dateModification": null,
+      "personnesRatachees": [
+        "java.util.ArrayList",
+        [
+          {
+            "type": "distributeur",
+            "id": "0618e585-f82a-4d5f-af1c-54f880d766d3",
+            "adresse": "Bastos",
+            "mail": "pnj@gma.com",
+            "telephone": "655454545",
+            "qrcodevalue": "qrcode3",
+            "dateCreation": [
+              "java.util.Date",
+              1640991600000
+            ],
+            "dateModification": null,
+            "personnesRatachees": [
+              "java.util.ArrayList",
+              []
+            ],
+            "precomouvementsqtes": [
+              "java.util.ArrayList",
+              []
+            ],
+            "raisonSociale": "Brasserie",
+            "code": "d190616",
+            "promotions": [
+              "java.util.ArrayList",
+              []
+            ]
+          },
+          {
+            "type": "personnel",
+            "id": "4390615e-1101-7209-9932-7020bbd556f1",
+            "adresse": "Douala",
+            "mail": "tagnewillie@gmail.com",
+            "telephone": "655455487",
+            "qrcodevalue": "qrcode6",
+            "dateCreation": [
+              "java.util.Date",
+              1640991600000
+            ],
+            "dateModification": [
+              "java.util.Date",
+              1641078000000
+            ],
+            "personnesRatachees": [
+              "java.util.ArrayList",
+              []
+            ],
+            "dateEntree": [
+              "java.util.Date",
+              1746482400000
+            ],
+            "nom": "Tagne",
+            "dateNaissance": [
+              "java.util.Date",
+              955317600000
+            ],
+            "dateSortie": null,
+            "prenom": "Willy",
+            "sexe": "M",
+            "roles": [
+              "java.util.ArrayList",
+              [
+                {
+                  "@class": "cmr.notep.modele.JouerRoles",
+                  "id": "d76fd017-cceb-4926-8705-380b08ad9c6a",
+                  "etat": null,
+                  "dateCreation": [
+                    "java.util.Date",
+                    1640991600000
+                  ],
+                  "dateFin": null,
+                  "dateDebut": [
+                    "java.util.Date",
+                    1704063600000
+                  ],
+                  "role": {
+                    "@class": "cmr.notep.modele.Roles",
+                    "id": "5190615e-1101-7209-9932-7020bbd556f1",
+                    "titre": "vendeur",
+                    "description": "personnel au contact du client",
+                    "etat": true,
+                    "dateCreation": [
+                      "java.util.Date",
+                      1640991600000
+                    ],
+                    "validations": [
+                      "java.util.ArrayList",
+                      []
+                    ]
+                  }
+                }
+              ]
+            ]
+          }
+        ]
+      ],
+      "nom": "Phil",
+      "prenom": "dede",
+      "sexe": "M",
+      "dateNaissance": [
+        "java.util.Date",
+        922831200000
+      ]
+    }
+  ]
 ]

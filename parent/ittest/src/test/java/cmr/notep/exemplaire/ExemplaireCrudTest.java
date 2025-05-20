@@ -4,6 +4,7 @@ import cmr.notep.commun.AbstractIttest;
 import cmr.notep.config.ItTestConfig;
 import cmr.notep.exemplaire.modele.Exemplaires;
 import cmr.notep.modele.Attributs;
+import cmr.notep.modele.TypeAttribut;
 import cmr.notep.modele.Types;
 import cmr.notep.utile.JsonComparator;
 import com.fasterxml.jackson.databind.ObjectMapper;
@@ -30,7 +31,6 @@ public class ExemplaireCrudTest extends AbstractIttest {
 
  List<Exemplaires> exemplairesList = null;
  String dossier= "data/exemplaire";
- ObjectMapper objectMapper = new ObjectMapper();
 //@Test
 @SneakyThrows
  public void testAvoirTousExemplaires() {
@@ -59,8 +59,8 @@ public class ExemplaireCrudTest extends AbstractIttest {
    document.setTitre("TitreTest");
    document.setDescription("DescriptionTest");
    document.setEtat(true);
-   Attributs attribut = Attributs.builder().id("1234").etat(true).titre("TAILLE").description("taille").type(Types.String).build();
-   Attributs attribut1 = Attributs.builder().id("3456").etat(true).titre("SEXES").description("SEXE").type(Types.String).build();
+   Attributs attribut = Attributs.builder().id("1234").etat(true).titre("TAILLE").description("taille").type(TypeAttribut.Text).build();
+   Attributs attribut1 = Attributs.builder().id("3456").etat(true).titre("SEXES").description("SEXE").type(TypeAttribut.Text).build();
    document.setAttributs(List.of(attribut,attribut1));
   // Exemplaires document1 = documentService.posterExemplaire(document);
   // exemplairesList = documentService.avoirTousExemplaires();

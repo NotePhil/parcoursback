@@ -1,6 +1,7 @@
 package cmr.notep.dao;
 
-import cmr.notep.modele.Type_attribut;
+import cmr.notep.modele.TypeAttribut;
+import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.Setter;
 import org.hibernate.annotations.GenericGenerator;
@@ -43,7 +44,7 @@ public class AttributsEntity {
     //@JsonIgnore
    // private List<CategoriesEntity> categories ;
 
-    @OneToMany(mappedBy = "attribut", fetch = FetchType.LAZY, cascade = {CascadeType.ALL})
-    //@Mapping("categories")
+    @OneToMany(mappedBy = "attribut", fetch = FetchType.LAZY, orphanRemoval = true)
+   // @Mapping("categories")
     private List<AssocierEntity> categoriesEntities;
 }

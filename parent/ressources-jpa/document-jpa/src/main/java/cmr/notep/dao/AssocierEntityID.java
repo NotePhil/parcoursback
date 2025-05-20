@@ -1,20 +1,21 @@
 package cmr.notep.dao;
 
-import lombok.Getter;
-import lombok.Setter;
+import lombok.*;
 
-import javax.persistence.Column;
-import javax.persistence.Embeddable;
+import jakarta.persistence.*;
 import java.io.Serializable;
 
 @Setter
 @Getter
 @Embeddable
+@Builder
+@AllArgsConstructor
+@NoArgsConstructor
+@EqualsAndHashCode
 public class AssocierEntityID implements Serializable {
-    @Column(name = "attributs_id")
+
     private String attributsId ;
 
-    @Column(name = "categories_id")
     private String categoriesId ;
 
 }

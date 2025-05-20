@@ -14,9 +14,11 @@ import java.util.Collections;
 @EnableJpaRepositories(basePackages = "cmr.notep.repository")
 public class DocumentConfig {
     public static DozerBeanMapper dozerMapperBean;
+    public static DozerBeanMapper dozerMapperBeanEntity;
     @PostConstruct
     void init(){
         dozerMapperBean = new DozerBeanMapper();
+        dozerMapperBeanEntity = new DozerBeanMapper(Collections.singletonList("dozerEntityMapping.xml"));
     }
 
 }

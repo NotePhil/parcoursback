@@ -1,14 +1,18 @@
 package cmr.notep.business;
 
-import cmr.notep.dao.CategoriesEntity;
-import cmr.notep.dao.DaoAccessorService;
+import cmr.notep.dao.*;
+import cmr.notep.exceptions.ParcoursException;
 import cmr.notep.modele.Categories;
+import cmr.notep.repository.AssocierRepository;
 import cmr.notep.repository.CategoriesRepository;
+import cmr.notep.repository.DocumentsRepository;
 import lombok.extern.slf4j.Slf4j;
+import org.apache.commons.lang3.StringUtils;
 import org.springframework.stereotype.Component;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
+import java.util.Optional;
 import java.util.stream.Collectors;
 
 import static cmr.notep.config.DocumentConfig.dozerMapperBean;
@@ -18,7 +22,6 @@ import static cmr.notep.config.DocumentConfig.dozerMapperBean;
 @Transactional
 public class CategoriesBusiness {
     private final DaoAccessorService daoAccessorService;
-
     public CategoriesBusiness(DaoAccessorService daoAccessorService){
         this.daoAccessorService = daoAccessorService ;
     }
@@ -42,8 +45,52 @@ public class CategoriesBusiness {
                 .deleteById(categories.getId().toString());
     }
 
-    public Categories posterCategorie(Categories categories) {
+    public Categories posterCategorie(Categories categorie) throws ParcoursException {
+        CategoriesEntity categorieEntity = dozerMapperBean.map(categorie, CategoriesEntity.class);
+        if(categorieEntity.getId() == null)
+           enregistrerNouvelleCategorie(categorieEntity);
+
+        List<AssocierEntity> associerEntities = categorieEntity.getAttributsEntities()
+                .stream()
+                .map(attributEntity ->{
+                    if(attributEntity.getId() == null)
+                        if(attributEntity.getAttribut() != null && StringUtils.isNotBlank(attributEntity.getAttribut().getId())
+                            && attributEntity.getCategorie() != null && StringUtils.isNotBlank(attributEntity.getCategorie().getId()))
+                        {
+                            AssocierEntityID associerId = AssocierEntityID.builder()
+                                    .categoriesId(attributEntity.getCategorie().getId())
+                                    .attributsId(attributEntity.getAttribut().getId())
+                                    .build();
+                            attributEntity.setId(associerId);
+                        }
+                    return  this.daoAccessorService.getRepository(AssocierRepository.class)
+                        .save(attributEntity);
+                }).collect(Collectors.toList());
+        categorieEntity.getAttributsEntities().clear();
+        categorieEntity.getAttributsEntities().addAll(associerEntities);
         return dozerMapperBean.map( this.daoAccessorService.getRepository(CategoriesRepository.class)
-                .save(dozerMapperBean.map(categories, CategoriesEntity.class)), Categories.class);
+                .save(categorieEntity), Categories.class);
+    }
+
+    private void enregistrerNouvelleCategorie(CategoriesEntity categorieEntity) throws ParcoursException {
+        log.debug("Enregistrement d'une nouvelle categorie :" + categorieEntity);
+        CategoriesEntity newCategorie = new CategoriesEntity();
+        //copie manuelle des attributs de categorieEntity dans newCategorie
+        //TODO: Utiliser Jackson ou implémenter deepCopy à la place de la copie manuelle
+        newCategorie.setLibelle(categorieEntity.getLibelle());
+        newCategorie.setOrdre(categorieEntity.getOrdre());
+        newCategorie.setDateCreation(categorieEntity.getDateCreation());
+        newCategorie.setDateModification(categorieEntity.getDateModification());
+        Optional<DocumentsEntity> managedDocument = daoAccessorService.getRepository(DocumentsRepository.class).findById(categorieEntity.getDocumentsEntity().getId());
+        if(managedDocument.isPresent())
+            newCategorie.setDocumentsEntity(managedDocument.get());
+       // List<AssocierEntity> associerEntities = categorieEntity.getAttributsEntities();
+
+       // categorieEntity.getAttributsEntities().clear();
+         newCategorie = daoAccessorService.getRepository(CategoriesRepository.class)
+                .save(newCategorie);
+
+        categorieEntity.setId(newCategorie.getId());
+        log.info("Categorie créée avec succès: {}", categorieEntity.getId());
     }
 }
