@@ -1,36 +1,36 @@
 package cmr.notep.api;
 
 import cmr.notep.exceptions.ParcoursException;
-import cmr.notep.modele.Comptes;
+import cmr.notep.modele.Actions;
 import org.springframework.http.MediaType;
 import org.springframework.lang.NonNull;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
-@RequestMapping("comptes")
-public interface IComptes {
+@RequestMapping("actions")
+public interface IActionsApi {
 
     @GetMapping(
-            path = "/{idcomptes}",
+            path = "/{idaction}",
             produces = MediaType.APPLICATION_JSON_VALUE
     )
-    Comptes avoircompte (@NonNull @PathVariable(name = "idcompte") String idcompte) throws ParcoursException;
+    Actions avoirAction (@NonNull @PathVariable(name = "idaction") String idaction) throws ParcoursException;
 
     @GetMapping(
             produces = MediaType.APPLICATION_JSON_VALUE
     )
-    List<Comptes> avoirToutComptes();
+    List<Actions> avoirToutesActions();
 
     @DeleteMapping(
             consumes = MediaType.APPLICATION_JSON_VALUE
     )
-    void supprimerComptes(@NonNull @RequestBody Comptes comptes);
+    void supprimerActions(@NonNull @RequestBody Actions actions);
 
     @PostMapping(
             produces = MediaType.APPLICATION_JSON_VALUE,
             consumes = MediaType.APPLICATION_JSON_VALUE
     )
-    Comptes posterComptes(@NonNull @RequestBody Comptes comptes);
+    Actions posterAction(@NonNull @RequestBody Actions actions);
 
 }
