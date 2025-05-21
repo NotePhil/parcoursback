@@ -10,6 +10,8 @@ import org.springframework.transaction.annotation.Transactional;
 import java.util.List;
 import java.util.stream.Collectors;
 
+import static cmr.notep.config.LoginConfig.dozerMapperBean;
+
 
 @Component
 @Slf4j
