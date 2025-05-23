@@ -3,7 +3,7 @@ package cmr.notep.exemplaire.dao;
 import lombok.*;
 import org.dozer.Mapping;
 
-import jakarta.persistence.*;
+import javax.persistence.*;
 import java.util.Date;
 
 @Getter

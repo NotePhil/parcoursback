@@ -3,7 +3,7 @@ package cmr.notep.dao;
 import lombok.Getter;
 import lombok.Setter;
 
-import jakarta.persistence.*;
+import javax.persistence.*;
 import java.util.Date;
 import java.util.Date;
 

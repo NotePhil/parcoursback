@@ -2,7 +2,7 @@ package cmr.notep.dao;
 
 import lombok.*;
 
-import jakarta.persistence.*;
+import javax.persistence.*;
 import java.io.Serializable;
 
 @Setter
