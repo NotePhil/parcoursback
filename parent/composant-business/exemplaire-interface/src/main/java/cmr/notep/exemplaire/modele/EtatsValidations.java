@@ -1,5 +1,6 @@
 package cmr.notep.exemplaire.modele;
 
+import cmr.notep.modele.OrdreEtats;
 import cmr.notep.modele.Personnels;
 import cmr.notep.modele.Validations;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;

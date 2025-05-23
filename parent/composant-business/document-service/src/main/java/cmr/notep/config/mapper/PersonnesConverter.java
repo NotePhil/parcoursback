@@ -4,7 +4,7 @@ import cmr.notep.dao.*;
 import cmr.notep.modele.*;
 import org.dozer.CustomConverter;
 import org.dozer.DozerBeanMapper;
-import org.hibernate.collection.spi.PersistentBag;
+import org.hibernate.collection.internal.PersistentBag;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -21,7 +21,7 @@ public class PersonnesConverter implements CustomConverter {
     public Object convert(Object existingDestinationFieldValue, Object sourceFieldValue, Class<?> destinationClass, Class<?> sourceClass) {
         if(sourceFieldValue == null) {
             return null;
-        } else if (sourceFieldValue instanceof PersistentBag<?>) {
+        } else if (sourceFieldValue instanceof PersistentBag) {
             List<Object> listReturn = new ArrayList<>();
              ((PersistentBag) sourceFieldValue).iterator().forEachRemaining(item -> listReturn.add(convertOnePerson(item)));
             return listReturn;
