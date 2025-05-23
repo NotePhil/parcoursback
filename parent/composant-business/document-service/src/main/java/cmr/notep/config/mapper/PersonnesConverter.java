@@ -12,7 +12,7 @@ import java.util.List;
 
 public class PersonnesConverter implements CustomConverter {
 
-    private DozerBeanMapper dozerMapperBean;
+    private final DozerBeanMapper dozerMapperBean;
     public PersonnesConverter(DozerBeanMapper dozerMapper) {
         this.dozerMapperBean = dozerMapper;
     }
