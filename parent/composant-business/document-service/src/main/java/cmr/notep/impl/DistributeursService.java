@@ -3,7 +3,7 @@ package cmr.notep.impl;
 import cmr.notep.api.IDistributeursApi;
 import cmr.notep.business.DistributeursBusiness;
 import cmr.notep.modele.Distributeurs;
-import jakarta.transaction.Transactional;
+import javax.transaction.Transactional;
 import lombok.NonNull;
 import org.springframework.context.annotation.Primary;
 import org.springframework.web.bind.annotation.RestController;
