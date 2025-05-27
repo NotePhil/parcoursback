@@ -20,7 +20,7 @@ public interface IFamillesApi {
             path = "/{idFamille}",
             produces = MediaType.APPLICATION_JSON_VALUE
     )
-    Familles avoirFamille(@NonNull @RequestParam(name = "idFamille") String idFamille);
+    Familles avoirFamille(@NonNull @PathVariable(name = "idFamille") String idFamille);
 
     @GetMapping(
             produces = MediaType.APPLICATION_JSON_VALUE
