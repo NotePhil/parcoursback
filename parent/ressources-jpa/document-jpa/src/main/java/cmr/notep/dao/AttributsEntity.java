@@ -1,13 +1,14 @@
 package cmr.notep.dao;
 
 import cmr.notep.modele.TypeAttribut;
-import javax.persistence.*;
+import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.Setter;
 import org.hibernate.annotations.GenericGenerator;
 
 import java.util.Date;
 import java.util.List;
+import jakarta.persistence.*;
 
 @Getter
 @Setter

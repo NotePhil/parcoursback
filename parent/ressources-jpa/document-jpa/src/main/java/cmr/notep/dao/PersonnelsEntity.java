@@ -1,6 +1,6 @@
 package cmr.notep.dao;
 
-import javax.persistence.*;
+import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.Setter;
 import org.dozer.Mapping;

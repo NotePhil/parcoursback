@@ -4,7 +4,7 @@ import lombok.Getter;
 import lombok.Setter;
 import org.dozer.Mapping;
 
-import javax.persistence.*;
+import jakarta.persistence.*;
 import org.hibernate.annotations.GenericGenerator;
 
 import java.util.Date;

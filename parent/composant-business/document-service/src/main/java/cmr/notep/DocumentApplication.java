@@ -3,7 +3,6 @@ package cmr.notep;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.boot.autoconfigure.domain.EntityScan;
-import org.springframework.context.annotation.ComponentScan;
 
 @SpringBootApplication(scanBasePackages = "cmr.notep")
 @EntityScan(basePackages = "cmr.notep")

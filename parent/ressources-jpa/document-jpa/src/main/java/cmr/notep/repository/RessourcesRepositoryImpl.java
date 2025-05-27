@@ -1,9 +1,7 @@
 package cmr.notep.repository;
 
 import cmr.notep.dao.RessourcesEntity;
-import javax.persistence.EntityManager;
-import javax.persistence.PersistenceContext;
-import javax.persistence.Query;
+import jakarta.persistence.*;
 import org.springframework.stereotype.Repository;
 
 

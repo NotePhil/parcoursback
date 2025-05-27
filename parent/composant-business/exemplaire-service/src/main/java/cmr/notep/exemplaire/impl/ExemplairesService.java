@@ -5,10 +5,9 @@ import cmr.notep.exemplaire.api.IExemplairesApi;
 import cmr.notep.exemplaire.business.ExemplairesBusiness;
 import cmr.notep.exemplaire.modele.Exemplaires;
 import lombok.NonNull;
-import org.springframework.stereotype.Component;
 import org.springframework.web.bind.annotation.RestController;
 
-import jakarta.transaction.Transactional;
+import javax.transaction.Transactional;
 import java.util.List;
 @RestController
 @Transactional
