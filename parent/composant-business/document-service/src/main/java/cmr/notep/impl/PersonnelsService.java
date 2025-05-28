@@ -3,10 +3,11 @@ package cmr.notep.impl;
 import cmr.notep.api.IPersonnelsApi;
 import cmr.notep.business.PersonnelsBusiness;
 import cmr.notep.modele.Personnels;
+import jakarta.transaction.Transactional;
 import org.springframework.context.annotation.Primary;
 import org.springframework.web.bind.annotation.RestController;
 
-import javax.transaction.Transactional;
+
 import java.util.List;
 
 @RestController

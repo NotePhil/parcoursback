@@ -3,9 +3,10 @@ package cmr.notep.impl;
 import cmr.notep.api.ITicketsApi;
 import cmr.notep.business.TicketsBusiness;
 import cmr.notep.modele.Tickets;
+import jakarta.transaction.Transactional;
 import org.springframework.web.bind.annotation.RestController;
 
-import javax.transaction.Transactional;
+
 import java.util.List;
 
 @RestController
