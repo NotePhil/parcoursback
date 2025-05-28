@@ -2,13 +2,14 @@ package cmr.notep.dao;
 
 
 
+import jakarta.annotation.PostConstruct;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.ApplicationContext;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Component;
 
 
-import javax.annotation.PostConstruct;
+
 import java.util.Map;
 import java.util.concurrent.ConcurrentHashMap;
 

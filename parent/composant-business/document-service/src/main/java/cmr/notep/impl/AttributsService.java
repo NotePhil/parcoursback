@@ -4,11 +4,12 @@ import cmr.notep.api.IAttributsApi;
 import cmr.notep.business.AttributsBusiness;
 import cmr.notep.exceptions.ParcoursException;
 import cmr.notep.modele.Attributs;
+import jakarta.transaction.Transactional;
 import lombok.NonNull;
 import org.springframework.context.annotation.Primary;
 import org.springframework.web.bind.annotation.RestController;
 
-import javax.transaction.Transactional;
+
 import java.util.List;
 
 @RestController

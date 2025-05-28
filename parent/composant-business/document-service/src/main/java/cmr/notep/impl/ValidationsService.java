@@ -4,11 +4,11 @@ import cmr.notep.api.IValidationsApi;
 import cmr.notep.business.ValidationsBusiness;
 import cmr.notep.exceptions.ParcoursException;
 import cmr.notep.modele.Validations;
-import org.jetbrains.annotations.NotNull;
+import com.sun.istack.NotNull;
+import jakarta.transaction.Transactional;
 import org.springframework.context.annotation.Primary;
 import org.springframework.web.bind.annotation.RestController;
 
-import javax.transaction.Transactional;
 import java.util.List;
 
 @RestController

@@ -5,11 +5,12 @@ import cmr.notep.business.PersonnesBusiness;
 import cmr.notep.exceptions.ParcoursException;
 import cmr.notep.modele.IPersonnes;
 import cmr.notep.modele.Personnes;
+import jakarta.transaction.Transactional;
 import org.springframework.context.annotation.Primary;
 import org.springframework.lang.NonNull;
 import org.springframework.web.bind.annotation.RestController;
 
-import javax.transaction.Transactional;
+
 import java.util.List;
 
 @RestController
