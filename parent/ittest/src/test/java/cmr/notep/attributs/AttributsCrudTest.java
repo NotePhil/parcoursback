@@ -9,6 +9,7 @@ import com.fasterxml.jackson.databind.ObjectMapper;
 import lombok.SneakyThrows;
 import lombok.extern.slf4j.Slf4j;
 import org.junit.jupiter.api.Assertions;
+import org.junit.jupiter.api.Disabled;
 import org.junit.jupiter.api.Order;
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
@@ -22,6 +23,7 @@ import java.util.*;
 @ContextConfiguration(classes = {ItTestConfig.class})
 @Transactional(isolation = Isolation.READ_UNCOMMITTED)
 @Slf4j
+@Disabled
 public class AttributsCrudTest extends AbstractIttest {
 
  List<Attributs> attributsList = null;

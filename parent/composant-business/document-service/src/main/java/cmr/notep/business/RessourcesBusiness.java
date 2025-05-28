@@ -4,7 +4,7 @@ import cmr.notep.dao.DaoAccessorService;
 import cmr.notep.dao.RessourcesEntity;
 import cmr.notep.modele.Ressources;
 import cmr.notep.repository.RessourcesRepository;
-import com.sun.istack.NotNull;
+import lombok.NonNull;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Component;
 import org.springframework.transaction.annotation.Transactional;
@@ -45,7 +45,7 @@ public class RessourcesBusiness {
     }
 
 
-    public List<Ressources> triRessource(@NotNull String request_sort){
+    public List<Ressources> triRessource(@NonNull  String request_sort){
         return daoAccessorService.getRepository(RessourcesRepository.class).triRessources(request_sort)
                 .stream().map(ressources ->dozerMapperBean.map(ressources, Ressources.class))
                 .collect(Collectors.toList());

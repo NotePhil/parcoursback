@@ -5,6 +5,7 @@ import cmr.notep.exceptions.ParcoursException;
 import cmr.notep.exceptions.enumeration.ParcoursExceptionCodeEnum;
 import cmr.notep.exemplaire.config.ExemplaireConfig;
 import cmr.notep.modele.Ressources;
+import cmr.notep.modele.RessourcesRequestBuilder;
 import cmr.notep.utile.serialiser.JacksonHelper;
 import cmr.notep.wstools.api.IGenericWsClientApi;
 import cmr.notep.wstools.modeles.GenericWsRequest;
@@ -40,6 +41,11 @@ public class RessourcesClientWs implements IRessourcesApi {
 
     @Override
     public List<Ressources> avoirToutRessources() {
+        return null;
+    }
+
+    @Override
+    public List<Ressources> triRessources(RessourcesRequestBuilder ressourcesRequestBuilder) {
         return null;
     }
 
