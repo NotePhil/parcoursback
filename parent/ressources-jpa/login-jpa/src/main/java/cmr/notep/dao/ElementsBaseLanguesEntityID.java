@@ -3,8 +3,7 @@ package cmr.notep.dao;
 import lombok.Getter;
 import lombok.Setter;
 
-import javax.persistence.Column;
-import javax.persistence.Embeddable;
+import jakarta.persistence.*;
 import java.io.Serializable;
 
 @Setter
