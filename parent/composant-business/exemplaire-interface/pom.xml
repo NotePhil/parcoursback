@@ -29,10 +29,6 @@
             <version>1.0-013</version>
             <scope>compile</scope>
         </dependency>
-        <dependency>
-            <groupId>jakarta.persistence</groupId>
-            <artifactId>jakarta.persistence-api</artifactId>
-        </dependency>
     </dependencies>
 
     <build>

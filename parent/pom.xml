@@ -31,6 +31,7 @@
         <dozer.version>5.5.1</dozer.version>
         <spring-context.version>5.3.24</spring-context.version>
         <maven.model.version>3.6.3</maven.model.version>
+        <jakarta.persistence.version>3.1.0</jakarta.persistence.version>
     </properties>
     <modules>
         <module>ressources-jpa</module>
@@ -44,7 +45,7 @@
             <dependency>
                 <groupId>jakarta.persistence</groupId>
                 <artifactId>jakarta.persistence-api</artifactId>
-                <version>3.1.0</version>
+                <version>${jakarta.persistence.version}</version>
             </dependency>
             <dependency>
                 <groupId>org.projectlombok</groupId>

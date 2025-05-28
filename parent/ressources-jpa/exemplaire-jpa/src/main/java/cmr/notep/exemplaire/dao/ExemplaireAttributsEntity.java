@@ -3,9 +3,7 @@ package cmr.notep.exemplaire.dao;
 
 import lombok.Getter;
 import lombok.Setter;
-
-import javax.persistence.Column;
-import javax.persistence.Embeddable;
+import jakarta.persistence.*;
 import java.util.Date;
 
 @Getter
