@@ -1,10 +1,10 @@
 package cmr.notep.exemplaire.dao;
 
+import jakarta.persistence.Table;
 import lombok.Getter;
 import lombok.Setter;
 import org.dozer.Mapping;
 import org.hibernate.annotations.GenericGenerator;
-
 import jakarta.persistence.*;
 import java.util.Date;
 import java.util.List;

@@ -46,6 +46,11 @@ public class ValidationsClientWs implements IValidationsApi {
     }
 
     @Override
+    public List<Validations> avoirToutesValidations() {
+        return null;
+    }
+
+   // @Override
     public List<Validations> avoirTousValidations() {
         return null;
     }

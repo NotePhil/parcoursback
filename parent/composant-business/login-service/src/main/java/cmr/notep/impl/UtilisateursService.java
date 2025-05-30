@@ -6,7 +6,8 @@ import cmr.notep.exceptions.ParcoursException;
 import cmr.notep.modele.LoginForm;
 import cmr.notep.modele.Utilisateurs;
 import cmr.notep.token.JWTService;
-import org.jetbrains.annotations.NotNull;
+import jakarta.transaction.Transactional;
+import lombok.NonNull;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Primary;
 import org.springframework.http.ResponseEntity;
@@ -16,7 +17,7 @@ import org.springframework.security.core.Authentication;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.web.bind.annotation.RestController;
 
-import javax.transaction.Transactional;
+
 import java.util.List;
 import java.util.Map;
 
@@ -61,12 +62,12 @@ public class UtilisateursService implements IUtilisateursApi {
     }
 
     @Override
-    public Utilisateurs posterUser(@NotNull Utilisateurs user) {
+    public Utilisateurs posterUser(@NonNull Utilisateurs user) {
         return utilisateursBusiness.posterUser(user);
     }
 
     @Override
-    public Map<String , Object> authenticateAndGetToken(@NotNull LoginForm loginForm) {
+    public Map<String , Object> authenticateAndGetToken(@NonNull LoginForm loginForm) {
 
         Authentication authentication =  authenticationMAnager.
                 authenticate(new UsernamePasswordAuthenticationToken(loginForm.username(),loginForm.password()));

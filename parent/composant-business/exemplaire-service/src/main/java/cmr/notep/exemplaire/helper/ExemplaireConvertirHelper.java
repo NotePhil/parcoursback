@@ -4,6 +4,8 @@ import cmr.notep.api.*;
 import cmr.notep.exceptions.ParcoursException;
 import cmr.notep.exemplaire.modele.*;
 import cmr.notep.modele.Documents;
+import cmr.notep.modele.Mouvements;
+import cmr.notep.modele.OrdreEtats;
 import cmr.notep.modele.PrecoMouvements;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.util.CollectionUtils;
@@ -60,7 +62,7 @@ public class ExemplaireConvertirHelper {
         }).toList();
     }
 
-    private static List<Mouvements> convertirListeMouvemntsInterneEnMouvements(IPrecoMouvementsApi precoMouvementsApi, IRessourcesApi ressourcesApi, IDistributeursApi distributeursApi,  List<MouvementsInterne> mouvementsInternes) {
+    private static List<Mouvements> convertirListeMouvemntsInterneEnMouvements(IPrecoMouvementsApi precoMouvementsApi, IRessourcesApi ressourcesApi, IDistributeursApi distributeursApi, List<MouvementsInterne> mouvementsInternes) {
         if(CollectionUtils.isEmpty(mouvementsInternes))
             return new ArrayList<>();
         return mouvementsInternes.stream().map(mouvementInterne -> {
@@ -122,7 +124,7 @@ public class ExemplaireConvertirHelper {
         }).toList();
     }
 
-    private static List<OrdreEtats> convertirListeOrdreEtatsInterneEnOrdreEtats(IEtatsApi etatsApi,IPersonnelsApi personnelsApi, IValidationsApi validationsApi,List<OrdreEtatsInterne> ordreEtatsInternes) throws ParcoursException {
+    private static List<OrdreEtats> convertirListeOrdreEtatsInterneEnOrdreEtats(IEtatsApi etatsApi, IPersonnelsApi personnelsApi, IValidationsApi validationsApi, List<OrdreEtatsInterne> ordreEtatsInternes) throws ParcoursException {
         if(CollectionUtils.isEmpty(ordreEtatsInternes))
             return new ArrayList<>();
         return ordreEtatsInternes.stream().map(ordreEtatInterne -> {

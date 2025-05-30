@@ -4,10 +4,10 @@ import cmr.notep.api.IActionsApi;
 import cmr.notep.business.ActionsBusiness;
 import cmr.notep.exceptions.ParcoursException;
 import cmr.notep.modele.Actions;
+import jakarta.transaction.Transactional;
 import org.springframework.context.annotation.Primary;
 import org.springframework.web.bind.annotation.RestController;
 
-import javax.transaction.Transactional;
 import java.util.List;
 
 @RestController
