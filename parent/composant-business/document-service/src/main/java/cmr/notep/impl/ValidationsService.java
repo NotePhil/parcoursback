@@ -5,7 +5,7 @@ import cmr.notep.business.ValidationsBusiness;
 import cmr.notep.exceptions.ParcoursException;
 import cmr.notep.modele.Validations;
 import jakarta.transaction.Transactional;
-import lombok.NonNull;
+import org.antlr.v4.runtime.misc.NotNull;
 import org.springframework.context.annotation.Primary;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -28,7 +28,7 @@ public class ValidationsService implements IValidationsApi {
     }
 
     @Override
-    public Validations avoirValidation(@NonNull String idValidation) throws ParcoursException {
+    public Validations avoirValidation(@NotNull String idValidation) throws ParcoursException {
         return validationsBusiness.avoirValidation(idValidation);
     }
 

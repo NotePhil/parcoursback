@@ -34,7 +34,7 @@ public class SecurityConfiguration {
     public SecurityFilterChain securityFilterChain(HttpSecurity http) throws Exception {
         return http.csrf(AbstractHttpConfigurer::disable).
                 authorizeHttpRequests(registry -> {
-                    registry.regexMatchers("/users/authenticate","/users/admin").permitAll();
+                    registry.requestMatchers("/users/authenticate","/users/admin").permitAll();
                     registry.anyRequest().hasRole("ADMIN");
                 })
                 .sessionManagement(session -> session.sessionCreationPolicy(SessionCreationPolicy.STATELESS))

@@ -7,7 +7,6 @@ import cmr.notep.modele.Actions;
 import jakarta.transaction.Transactional;
 import org.springframework.context.annotation.Primary;
 import org.springframework.web.bind.annotation.RestController;
-
 import java.util.List;
 
 @RestController

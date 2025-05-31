@@ -1,12 +1,11 @@
 package cmr.notep.config;
 
+import jakarta.annotation.PostConstruct;
 import org.dozer.DozerBeanMapper;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
 import org.springframework.transaction.annotation.EnableTransactionManagement;
 
-import javax.annotation.PostConstruct;
-import java.util.Arrays;
 import java.util.Collections;
 
 @Configuration
