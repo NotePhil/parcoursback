@@ -4,9 +4,13 @@ import cmr.notep.api.ICaisses;
 import cmr.notep.business.CaissesBusiness;
 import cmr.notep.exceptions.ParcoursException;
 import cmr.notep.modele.Caisses;
+import jakarta.transaction.Transactional;
+import org.springframework.web.bind.annotation.RestController;
 
 import java.util.List;
 
+@RestController
+@Transactional
 public class CaissesService implements ICaisses {
 
     private final CaissesBusiness caissesBusiness ;
@@ -17,7 +21,7 @@ public class CaissesService implements ICaisses {
 
     @Override
     public Caisses avoircaisse(String idcaisse) throws ParcoursException {
-        return null;
+        return caissesBusiness.avoirCaisse(idcaisse);
     }
 
     @Override
@@ -32,6 +36,6 @@ public class CaissesService implements ICaisses {
 
     @Override
     public Caisses postercaisse(Caisses caisse) {
-        return null;
+        return caissesBusiness.posterCaisse(caisse);
     }
 }

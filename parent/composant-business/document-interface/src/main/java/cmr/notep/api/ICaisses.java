@@ -12,7 +12,7 @@ import java.util.List;
 public interface ICaisses {
 
     @GetMapping(
-            path = "/{idcaisses}",
+            path = "/{idcaisse}",
             produces = MediaType.APPLICATION_JSON_VALUE
     )
     Caisses avoircaisse (@NonNull @PathVariable(name = "idcaisse") String idcaisse) throws ParcoursException;

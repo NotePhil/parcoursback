@@ -9,6 +9,7 @@ import jakarta.persistence.*;
 @Setter
 @Entity
 @DiscriminatorValue("personnesmorales")
+@Table(name = "personnesmorales", schema = "document")
 public class PersonnesMoralesEntity extends PersonnesEntity{
 
     @Column(name = "raisonsociale")
