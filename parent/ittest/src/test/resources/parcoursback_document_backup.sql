@@ -5,7 +5,7 @@
 -- Dumped from database version 16.3
 -- Dumped by pg_dump version 16.3
 
--- Started on 2025-06-04 23:40:42
+-- Started on 2025-06-08 06:58:42
 
 SET statement_timeout = 0;
 SET lock_timeout = 0;
@@ -19,7 +19,7 @@ SET client_min_messages = warning;
 SET row_security = off;
 
 --
--- TOC entry 5344 (class 1262 OID 28060)
+-- TOC entry 5337 (class 1262 OID 28060)
 -- Name: parcoursbackv2; Type: DATABASE; Schema: -; Owner: postgres
 --
 
@@ -52,7 +52,7 @@ CREATE SCHEMA document;
 ALTER SCHEMA document OWNER TO pg_database_owner;
 
 --
--- TOC entry 5345 (class 0 OID 0)
+-- TOC entry 5338 (class 0 OID 0)
 -- Dependencies: 5
 -- Name: SCHEMA document; Type: COMMENT; Schema: -; Owner: pg_database_owner
 --
@@ -65,7 +65,7 @@ SET default_tablespace = '';
 SET default_table_access_method = heap;
 
 --
--- TOC entry 259 (class 1259 OID 28677)
+-- TOC entry 258 (class 1259 OID 28677)
 -- Name: actions; Type: TABLE; Schema: document; Owner: postgres
 --
 
@@ -82,7 +82,7 @@ CREATE TABLE document.actions (
 ALTER TABLE document.actions OWNER TO postgres;
 
 --
--- TOC entry 261 (class 1259 OID 28691)
+-- TOC entry 260 (class 1259 OID 28691)
 -- Name: actionslangues; Type: TABLE; Schema: document; Owner: postgres
 --
 
@@ -226,12 +226,12 @@ CREATE TABLE document.deltasoldes (
 ALTER TABLE document.deltasoldes OWNER TO postgres;
 
 --
--- TOC entry 295 (class 1259 OID 46356)
+-- TOC entry 294 (class 1259 OID 46356)
 -- Name: distributeurs; Type: TABLE; Schema: document; Owner: postgres
 --
 
 CREATE TABLE document.distributeurs (
-    id character varying(255) NOT NULL,
+    distributeurs_id character varying(255) NOT NULL,
     datemodification date,
     code character varying(255),
     raisonsociale character varying(255)
@@ -310,7 +310,7 @@ CREATE TABLE document.documentspromotions (
 ALTER TABLE document.documentspromotions OWNER TO postgres;
 
 --
--- TOC entry 265 (class 1259 OID 28713)
+-- TOC entry 264 (class 1259 OID 28713)
 -- Name: elements; Type: TABLE; Schema: document; Owner: postgres
 --
 
@@ -328,7 +328,7 @@ CREATE TABLE document.elements (
 ALTER TABLE document.elements OWNER TO postgres;
 
 --
--- TOC entry 263 (class 1259 OID 28703)
+-- TOC entry 262 (class 1259 OID 28703)
 -- Name: elementsbaselanques; Type: TABLE; Schema: document; Owner: postgres
 --
 
@@ -342,7 +342,7 @@ CREATE TABLE document.elementsbaselanques (
 ALTER TABLE document.elementsbaselanques OWNER TO postgres;
 
 --
--- TOC entry 260 (class 1259 OID 28684)
+-- TOC entry 259 (class 1259 OID 28684)
 -- Name: elementsbases; Type: TABLE; Schema: document; Owner: postgres
 --
 
@@ -360,7 +360,7 @@ CREATE TABLE document.elementsbases (
 ALTER TABLE document.elementsbases OWNER TO postgres;
 
 --
--- TOC entry 264 (class 1259 OID 28708)
+-- TOC entry 263 (class 1259 OID 28708)
 -- Name: elementslangues; Type: TABLE; Schema: document; Owner: postgres
 --
 
@@ -466,7 +466,7 @@ CREATE TABLE document.filesattentes (
 ALTER TABLE document.filesattentes OWNER TO postgres;
 
 --
--- TOC entry 270 (class 1259 OID 28746)
+-- TOC entry 269 (class 1259 OID 28746)
 -- Name: groupes; Type: TABLE; Schema: document; Owner: postgres
 --
 
@@ -502,7 +502,7 @@ CREATE TABLE document.jouerroles (
 ALTER TABLE document.jouerroles OWNER TO postgres;
 
 --
--- TOC entry 262 (class 1259 OID 28696)
+-- TOC entry 261 (class 1259 OID 28696)
 -- Name: langues; Type: TABLE; Schema: document; Owner: postgres
 --
 
@@ -518,7 +518,7 @@ CREATE TABLE document.langues (
 ALTER TABLE document.langues OWNER TO postgres;
 
 --
--- TOC entry 266 (class 1259 OID 28720)
+-- TOC entry 265 (class 1259 OID 28720)
 -- Name: menus; Type: TABLE; Schema: document; Owner: postgres
 --
 
@@ -614,7 +614,7 @@ CREATE TABLE document.ordreetats (
 ALTER TABLE document.ordreetats OWNER TO postgres;
 
 --
--- TOC entry 268 (class 1259 OID 28734)
+-- TOC entry 267 (class 1259 OID 28734)
 -- Name: organisations; Type: TABLE; Schema: document; Owner: postgres
 --
 
@@ -627,7 +627,7 @@ CREATE TABLE document.organisations (
 ALTER TABLE document.organisations OWNER TO postgres;
 
 --
--- TOC entry 269 (class 1259 OID 28741)
+-- TOC entry 268 (class 1259 OID 28741)
 -- Name: organiser; Type: TABLE; Schema: document; Owner: postgres
 --
 
@@ -655,7 +655,7 @@ CREATE TABLE document.parcours (
 ALTER TABLE document.parcours OWNER TO postgres;
 
 --
--- TOC entry 296 (class 1259 OID 46404)
+-- TOC entry 295 (class 1259 OID 46404)
 -- Name: personnels; Type: TABLE; Schema: document; Owner: postgres
 --
 
@@ -694,7 +694,6 @@ CREATE TABLE document.personnes (
     datenaissance date,
     datecreation date,
     datemodification date,
-    person_type character varying(255) NOT NULL,
     comptes_id character varying(255)
 );
 
@@ -702,37 +701,12 @@ CREATE TABLE document.personnes (
 ALTER TABLE document.personnes OWNER TO postgres;
 
 --
--- TOC entry 242 (class 1259 OID 28194)
--- Name: personnes_s; Type: TABLE; Schema: document; Owner: postgres
---
-
-CREATE TABLE document.personnes_s (
-    id character varying(255) NOT NULL,
-    adresse character varying(255),
-    mail character varying(255),
-    telephone character varying(255),
-    qrcodevalue character varying(255),
-    code character varying(255),
-    raisonsociale character varying(255),
-    nom character varying(255) NOT NULL,
-    prenom character varying(255),
-    sexe character varying(255),
-    datenaissance date NOT NULL,
-    datecreation date NOT NULL,
-    datemodification date,
-    person_type character varying(255) NOT NULL
-);
-
-
-ALTER TABLE document.personnes_s OWNER TO postgres;
-
---
--- TOC entry 294 (class 1259 OID 46344)
+-- TOC entry 293 (class 1259 OID 46344)
 -- Name: personnesmorales; Type: TABLE; Schema: document; Owner: postgres
 --
 
 CREATE TABLE document.personnesmorales (
-    id character varying(255) NOT NULL,
+    personnesmorales_id character varying(255) NOT NULL,
     raisonsociale character varying(255),
     code character varying(255)
 );
@@ -741,12 +715,12 @@ CREATE TABLE document.personnesmorales (
 ALTER TABLE document.personnesmorales OWNER TO postgres;
 
 --
--- TOC entry 293 (class 1259 OID 46332)
+-- TOC entry 292 (class 1259 OID 46332)
 -- Name: personnesphysique; Type: TABLE; Schema: document; Owner: postgres
 --
 
 CREATE TABLE document.personnesphysique (
-    id character varying(255) NOT NULL,
+    personnesphysique_id character varying(255) NOT NULL,
     nom character varying(255) NOT NULL,
     prenom character varying(255),
     sexe character varying(255),
@@ -758,7 +732,7 @@ CREATE TABLE document.personnesphysique (
 ALTER TABLE document.personnesphysique OWNER TO postgres;
 
 --
--- TOC entry 243 (class 1259 OID 28199)
+-- TOC entry 242 (class 1259 OID 28199)
 -- Name: precomouvements; Type: TABLE; Schema: document; Owner: postgres
 --
 
@@ -775,7 +749,7 @@ CREATE TABLE document.precomouvements (
 ALTER TABLE document.precomouvements OWNER TO postgres;
 
 --
--- TOC entry 244 (class 1259 OID 28204)
+-- TOC entry 243 (class 1259 OID 28204)
 -- Name: precomouvementsqtes; Type: TABLE; Schema: document; Owner: postgres
 --
 
@@ -795,7 +769,7 @@ CREATE TABLE document.precomouvementsqtes (
 ALTER TABLE document.precomouvementsqtes OWNER TO postgres;
 
 --
--- TOC entry 245 (class 1259 OID 28209)
+-- TOC entry 244 (class 1259 OID 28209)
 -- Name: promotions; Type: TABLE; Schema: document; Owner: postgres
 --
 
@@ -815,7 +789,7 @@ CREATE TABLE document.promotions (
 ALTER TABLE document.promotions OWNER TO postgres;
 
 --
--- TOC entry 246 (class 1259 OID 28214)
+-- TOC entry 245 (class 1259 OID 28214)
 -- Name: rattacher; Type: TABLE; Schema: document; Owner: postgres
 --
 
@@ -828,7 +802,7 @@ CREATE TABLE document.rattacher (
 ALTER TABLE document.rattacher OWNER TO postgres;
 
 --
--- TOC entry 297 (class 1259 OID 46418)
+-- TOC entry 296 (class 1259 OID 46418)
 -- Name: remplir; Type: TABLE; Schema: document; Owner: postgres
 --
 
@@ -850,7 +824,7 @@ CREATE TABLE document.remplir (
 ALTER TABLE document.remplir OWNER TO postgres;
 
 --
--- TOC entry 247 (class 1259 OID 28224)
+-- TOC entry 246 (class 1259 OID 28224)
 -- Name: respecter; Type: TABLE; Schema: document; Owner: postgres
 --
 
@@ -863,7 +837,7 @@ CREATE TABLE document.respecter (
 ALTER TABLE document.respecter OWNER TO postgres;
 
 --
--- TOC entry 248 (class 1259 OID 28229)
+-- TOC entry 247 (class 1259 OID 28229)
 -- Name: ressources; Type: TABLE; Schema: document; Owner: postgres
 --
 
@@ -886,7 +860,7 @@ CREATE TABLE document.ressources (
 ALTER TABLE document.ressources OWNER TO postgres;
 
 --
--- TOC entry 249 (class 1259 OID 28234)
+-- TOC entry 248 (class 1259 OID 28234)
 -- Name: ressourcespromotions; Type: TABLE; Schema: document; Owner: postgres
 --
 
@@ -899,7 +873,7 @@ CREATE TABLE document.ressourcespromotions (
 ALTER TABLE document.ressourcespromotions OWNER TO postgres;
 
 --
--- TOC entry 250 (class 1259 OID 28239)
+-- TOC entry 249 (class 1259 OID 28239)
 -- Name: roles; Type: TABLE; Schema: document; Owner: postgres
 --
 
@@ -916,7 +890,7 @@ CREATE TABLE document.roles (
 ALTER TABLE document.roles OWNER TO postgres;
 
 --
--- TOC entry 251 (class 1259 OID 28244)
+-- TOC entry 250 (class 1259 OID 28244)
 -- Name: sapplique; Type: TABLE; Schema: document; Owner: postgres
 --
 
@@ -929,7 +903,7 @@ CREATE TABLE document.sapplique (
 ALTER TABLE document.sapplique OWNER TO postgres;
 
 --
--- TOC entry 252 (class 1259 OID 28249)
+-- TOC entry 251 (class 1259 OID 28249)
 -- Name: services; Type: TABLE; Schema: document; Owner: postgres
 --
 
@@ -949,7 +923,7 @@ CREATE TABLE document.services (
 ALTER TABLE document.services OWNER TO postgres;
 
 --
--- TOC entry 253 (class 1259 OID 28254)
+-- TOC entry 252 (class 1259 OID 28254)
 -- Name: suivre; Type: TABLE; Schema: document; Owner: postgres
 --
 
@@ -962,7 +936,7 @@ CREATE TABLE document.suivre (
 ALTER TABLE document.suivre OWNER TO postgres;
 
 --
--- TOC entry 254 (class 1259 OID 28259)
+-- TOC entry 253 (class 1259 OID 28259)
 -- Name: tickets; Type: TABLE; Schema: document; Owner: postgres
 --
 
@@ -977,7 +951,7 @@ CREATE TABLE document.tickets (
 ALTER TABLE document.tickets OWNER TO postgres;
 
 --
--- TOC entry 255 (class 1259 OID 28264)
+-- TOC entry 254 (class 1259 OID 28264)
 -- Name: ticketsfilesattentes; Type: TABLE; Schema: document; Owner: postgres
 --
 
@@ -993,7 +967,7 @@ CREATE TABLE document.ticketsfilesattentes (
 ALTER TABLE document.ticketsfilesattentes OWNER TO postgres;
 
 --
--- TOC entry 256 (class 1259 OID 28269)
+-- TOC entry 255 (class 1259 OID 28269)
 -- Name: traiter; Type: TABLE; Schema: document; Owner: postgres
 --
 
@@ -1006,7 +980,7 @@ CREATE TABLE document.traiter (
 ALTER TABLE document.traiter OWNER TO postgres;
 
 --
--- TOC entry 267 (class 1259 OID 28727)
+-- TOC entry 266 (class 1259 OID 28727)
 -- Name: utilisateurs; Type: TABLE; Schema: document; Owner: postgres
 --
 
@@ -1025,7 +999,7 @@ CREATE TABLE document.utilisateurs (
 ALTER TABLE document.utilisateurs OWNER TO postgres;
 
 --
--- TOC entry 257 (class 1259 OID 28274)
+-- TOC entry 256 (class 1259 OID 28274)
 -- Name: validations; Type: TABLE; Schema: document; Owner: postgres
 --
 
@@ -1045,7 +1019,7 @@ CREATE TABLE document.validations (
 ALTER TABLE document.validations OWNER TO postgres;
 
 --
--- TOC entry 258 (class 1259 OID 28279)
+-- TOC entry 257 (class 1259 OID 28279)
 -- Name: violer; Type: TABLE; Schema: document; Owner: postgres
 --
 
@@ -1058,8 +1032,8 @@ CREATE TABLE document.violer (
 ALTER TABLE document.violer OWNER TO postgres;
 
 --
--- TOC entry 5322 (class 0 OID 28677)
--- Dependencies: 259
+-- TOC entry 5315 (class 0 OID 28677)
+-- Dependencies: 258
 -- Data for Name: actions; Type: TABLE DATA; Schema: document; Owner: postgres
 --
 
@@ -1071,8 +1045,8 @@ INSERT INTO document.actions (id, libelle, etat, datecreation, datemodification,
 
 
 --
--- TOC entry 5324 (class 0 OID 28691)
--- Dependencies: 261
+-- TOC entry 5317 (class 0 OID 28691)
+-- Dependencies: 260
 -- Data for Name: actionslangues; Type: TABLE DATA; Schema: document; Owner: postgres
 --
 
@@ -1084,7 +1058,7 @@ INSERT INTO document.actionslangues (langues_id, actions_id, valeurlibelle) VALU
 
 
 --
--- TOC entry 5280 (class 0 OID 28061)
+-- TOC entry 5274 (class 0 OID 28061)
 -- Dependencies: 217
 -- Data for Name: associer; Type: TABLE DATA; Schema: document; Owner: postgres
 --
@@ -1105,7 +1079,7 @@ INSERT INTO document.associer (obligatoire, ordre, attributs_id, categories_id) 
 
 
 --
--- TOC entry 5281 (class 0 OID 28066)
+-- TOC entry 5275 (class 0 OID 28066)
 -- Dependencies: 218
 -- Data for Name: attributs; Type: TABLE DATA; Schema: document; Owner: postgres
 --
@@ -1137,7 +1111,7 @@ INSERT INTO document.attributs (id, titre, description, etat, datecreation, date
 
 
 --
--- TOC entry 5282 (class 0 OID 28072)
+-- TOC entry 5276 (class 0 OID 28072)
 -- Dependencies: 219
 -- Data for Name: caisses; Type: TABLE DATA; Schema: document; Owner: postgres
 --
@@ -1149,7 +1123,7 @@ INSERT INTO document.caisses (id, libelle, solde, type, detailjson) VALUES ('f0a
 
 
 --
--- TOC entry 5283 (class 0 OID 28077)
+-- TOC entry 5277 (class 0 OID 28077)
 -- Dependencies: 220
 -- Data for Name: categories; Type: TABLE DATA; Schema: document; Owner: postgres
 --
@@ -1166,7 +1140,7 @@ INSERT INTO document.categories (id, ordre, libelle, etat, datecreation, datemod
 
 
 --
--- TOC entry 5284 (class 0 OID 28083)
+-- TOC entry 5278 (class 0 OID 28083)
 -- Dependencies: 221
 -- Data for Name: comptes; Type: TABLE DATA; Schema: document; Owner: postgres
 --
@@ -1183,7 +1157,7 @@ INSERT INTO document.comptes (id, datecreation, etat, montantdecouvertmax, libel
 
 
 --
--- TOC entry 5285 (class 0 OID 28088)
+-- TOC entry 5279 (class 0 OID 28088)
 -- Dependencies: 222
 -- Data for Name: concerner; Type: TABLE DATA; Schema: document; Owner: postgres
 --
@@ -1191,7 +1165,7 @@ INSERT INTO document.comptes (id, datecreation, etat, montantdecouvertmax, libel
 
 
 --
--- TOC entry 5286 (class 0 OID 28093)
+-- TOC entry 5280 (class 0 OID 28093)
 -- Dependencies: 223
 -- Data for Name: constituer; Type: TABLE DATA; Schema: document; Owner: postgres
 --
@@ -1214,7 +1188,7 @@ INSERT INTO document.constituer (attributs_id, documents_id) VALUES ('a2eebc99-9
 
 
 --
--- TOC entry 5287 (class 0 OID 28098)
+-- TOC entry 5281 (class 0 OID 28098)
 -- Dependencies: 224
 -- Data for Name: deltasoldes; Type: TABLE DATA; Schema: document; Owner: postgres
 --
@@ -1228,19 +1202,19 @@ INSERT INTO document.deltasoldes (id, montantavant, montantapres, datecreation, 
 
 
 --
--- TOC entry 5336 (class 0 OID 46356)
--- Dependencies: 295
+-- TOC entry 5329 (class 0 OID 46356)
+-- Dependencies: 294
 -- Data for Name: distributeurs; Type: TABLE DATA; Schema: document; Owner: postgres
 --
 
-INSERT INTO document.distributeurs (id, datemodification, code, raisonsociale) VALUES ('99999999-2222-3333-4444-999999999999', '2025-06-01', 'D001', 'Distributeur Alpha') ON CONFLICT DO NOTHING;
-INSERT INTO document.distributeurs (id, datemodification, code, raisonsociale) VALUES ('aaaaaaaa-3333-4444-5555-aaaaaaaaaaaa', '2025-06-02', 'D002', 'Distributeur Beta') ON CONFLICT DO NOTHING;
-INSERT INTO document.distributeurs (id, datemodification, code, raisonsociale) VALUES ('bbbbbbbb-4444-5555-6666-bbbbbbbbbbbb', '2025-06-03', 'D003', 'Distributeur Gamma') ON CONFLICT DO NOTHING;
-INSERT INTO document.distributeurs (id, datemodification, code, raisonsociale) VALUES ('c3d4e5f6-7890-ab12-c3d4-e5f67890abcd', '2025-06-04', 'D004', 'Distributeur Delta') ON CONFLICT DO NOTHING;
+INSERT INTO document.distributeurs (distributeurs_id, datemodification, code, raisonsociale) VALUES ('99999999-2222-3333-4444-999999999999', '2025-06-01', 'D001', 'Distributeur Alpha') ON CONFLICT DO NOTHING;
+INSERT INTO document.distributeurs (distributeurs_id, datemodification, code, raisonsociale) VALUES ('aaaaaaaa-3333-4444-5555-aaaaaaaaaaaa', '2025-06-02', 'D002', 'Distributeur Beta') ON CONFLICT DO NOTHING;
+INSERT INTO document.distributeurs (distributeurs_id, datemodification, code, raisonsociale) VALUES ('bbbbbbbb-4444-5555-6666-bbbbbbbbbbbb', '2025-06-03', 'D003', 'Distributeur Gamma') ON CONFLICT DO NOTHING;
+INSERT INTO document.distributeurs (distributeurs_id, datemodification, code, raisonsociale) VALUES ('c3d4e5f6-7890-ab12-c3d4-e5f67890abcd', '2025-06-04', 'D004', 'Distributeur Delta') ON CONFLICT DO NOTHING;
 
 
 --
--- TOC entry 5288 (class 0 OID 28103)
+-- TOC entry 5282 (class 0 OID 28103)
 -- Dependencies: 225
 -- Data for Name: docetats; Type: TABLE DATA; Schema: document; Owner: postgres
 --
@@ -1253,7 +1227,7 @@ INSERT INTO document.docetats (id, ordre, datecreation, datemodification, valida
 
 
 --
--- TOC entry 5289 (class 0 OID 28108)
+-- TOC entry 5283 (class 0 OID 28108)
 -- Dependencies: 226
 -- Data for Name: docetats_predecesseurs; Type: TABLE DATA; Schema: document; Owner: postgres
 --
@@ -1263,7 +1237,7 @@ INSERT INTO document.docetats_predecesseurs (docetats_id, predecesseur_id) VALUE
 
 
 --
--- TOC entry 5290 (class 0 OID 28113)
+-- TOC entry 5284 (class 0 OID 28113)
 -- Dependencies: 227
 -- Data for Name: documents; Type: TABLE DATA; Schema: document; Owner: postgres
 --
@@ -1279,7 +1253,7 @@ INSERT INTO document.documents (id, titre, description, etat, datecreation, date
 
 
 --
--- TOC entry 5291 (class 0 OID 28118)
+-- TOC entry 5285 (class 0 OID 28118)
 -- Dependencies: 228
 -- Data for Name: documentspromotions; Type: TABLE DATA; Schema: document; Owner: postgres
 --
@@ -1290,8 +1264,8 @@ INSERT INTO document.documentspromotions (documents_id, promotions_id) VALUES ('
 
 
 --
--- TOC entry 5328 (class 0 OID 28713)
--- Dependencies: 265
+-- TOC entry 5321 (class 0 OID 28713)
+-- Dependencies: 264
 -- Data for Name: elements; Type: TABLE DATA; Schema: document; Owner: postgres
 --
 
@@ -1303,8 +1277,8 @@ INSERT INTO document.elements (id, libelle, etat, datesouscription, datemodifica
 
 
 --
--- TOC entry 5326 (class 0 OID 28703)
--- Dependencies: 263
+-- TOC entry 5319 (class 0 OID 28703)
+-- Dependencies: 262
 -- Data for Name: elementsbaselanques; Type: TABLE DATA; Schema: document; Owner: postgres
 --
 
@@ -1316,8 +1290,8 @@ INSERT INTO document.elementsbaselanques (langues_id, elementsbases_id, valeurli
 
 
 --
--- TOC entry 5323 (class 0 OID 28684)
--- Dependencies: 260
+-- TOC entry 5316 (class 0 OID 28684)
+-- Dependencies: 259
 -- Data for Name: elementsbases; Type: TABLE DATA; Schema: document; Owner: postgres
 --
 
@@ -1329,8 +1303,8 @@ INSERT INTO document.elementsbases (id, libelle, etat, datesouscription, datemod
 
 
 --
--- TOC entry 5327 (class 0 OID 28708)
--- Dependencies: 264
+-- TOC entry 5320 (class 0 OID 28708)
+-- Dependencies: 263
 -- Data for Name: elementslangues; Type: TABLE DATA; Schema: document; Owner: postgres
 --
 
@@ -1342,7 +1316,7 @@ INSERT INTO document.elementslangues (langues_id, elements_id, valeurlibelle) VA
 
 
 --
--- TOC entry 5292 (class 0 OID 28123)
+-- TOC entry 5286 (class 0 OID 28123)
 -- Dependencies: 229
 -- Data for Name: etapes; Type: TABLE DATA; Schema: document; Owner: postgres
 --
@@ -1353,7 +1327,7 @@ INSERT INTO document.etapes (id, libelle, etat, datemodification, parcours_id) V
 
 
 --
--- TOC entry 5293 (class 0 OID 28128)
+-- TOC entry 5287 (class 0 OID 28128)
 -- Dependencies: 230
 -- Data for Name: etats; Type: TABLE DATA; Schema: document; Owner: postgres
 --
@@ -1365,7 +1339,7 @@ INSERT INTO document.etats (id, libelle, description, datecreation, datemodifica
 
 
 --
--- TOC entry 5294 (class 0 OID 28133)
+-- TOC entry 5288 (class 0 OID 28133)
 -- Dependencies: 231
 -- Data for Name: exemplaires; Type: TABLE DATA; Schema: document; Owner: postgres
 --
@@ -1379,7 +1353,7 @@ INSERT INTO document.exemplaires (id, personnes_id, documents_id) VALUES ('a1f1e
 
 
 --
--- TOC entry 5295 (class 0 OID 28138)
+-- TOC entry 5289 (class 0 OID 28138)
 -- Dependencies: 232
 -- Data for Name: familles; Type: TABLE DATA; Schema: document; Owner: postgres
 --
@@ -1391,7 +1365,7 @@ INSERT INTO document.familles (id, libelle, description, etat, datecreation, dat
 
 
 --
--- TOC entry 5296 (class 0 OID 28143)
+-- TOC entry 5290 (class 0 OID 28143)
 -- Dependencies: 233
 -- Data for Name: famillespromotions; Type: TABLE DATA; Schema: document; Owner: postgres
 --
@@ -1402,7 +1376,7 @@ INSERT INTO document.famillespromotions (familles_id, promotions_id) VALUES ('f1
 
 
 --
--- TOC entry 5297 (class 0 OID 28148)
+-- TOC entry 5291 (class 0 OID 28148)
 -- Dependencies: 234
 -- Data for Name: filesattentes; Type: TABLE DATA; Schema: document; Owner: postgres
 --
@@ -1413,8 +1387,8 @@ INSERT INTO document.filesattentes (id, datecreation, datemodification, etat, se
 
 
 --
--- TOC entry 5333 (class 0 OID 28746)
--- Dependencies: 270
+-- TOC entry 5326 (class 0 OID 28746)
+-- Dependencies: 269
 -- Data for Name: groupes; Type: TABLE DATA; Schema: document; Owner: postgres
 --
 
@@ -1427,7 +1401,7 @@ INSERT INTO document.groupes (id, libelle, etat, datecreation, datemodification,
 
 
 --
--- TOC entry 5298 (class 0 OID 28153)
+-- TOC entry 5292 (class 0 OID 28153)
 -- Dependencies: 235
 -- Data for Name: jouerroles; Type: TABLE DATA; Schema: document; Owner: postgres
 --
@@ -1438,8 +1412,8 @@ INSERT INTO document.jouerroles (id, etat, datecreation, datemodification, datef
 
 
 --
--- TOC entry 5325 (class 0 OID 28696)
--- Dependencies: 262
+-- TOC entry 5318 (class 0 OID 28696)
+-- Dependencies: 261
 -- Data for Name: langues; Type: TABLE DATA; Schema: document; Owner: postgres
 --
 
@@ -1451,8 +1425,8 @@ INSERT INTO document.langues (id, libelle, etat, datesouscription, datemodificat
 
 
 --
--- TOC entry 5329 (class 0 OID 28720)
--- Dependencies: 266
+-- TOC entry 5322 (class 0 OID 28720)
+-- Dependencies: 265
 -- Data for Name: menus; Type: TABLE DATA; Schema: document; Owner: postgres
 --
 
@@ -1465,7 +1439,7 @@ INSERT INTO document.menus (id, etat, datecreation, utilisateurs_id, groupes_id)
 
 
 --
--- TOC entry 5299 (class 0 OID 28158)
+-- TOC entry 5293 (class 0 OID 28158)
 -- Dependencies: 236
 -- Data for Name: missions; Type: TABLE DATA; Schema: document; Owner: postgres
 --
@@ -1479,7 +1453,7 @@ INSERT INTO document.missions (id, libelle, description, etat, datecreation, dat
 
 
 --
--- TOC entry 5300 (class 0 OID 28163)
+-- TOC entry 5294 (class 0 OID 28163)
 -- Dependencies: 237
 -- Data for Name: mouvementcaisses; Type: TABLE DATA; Schema: document; Owner: postgres
 --
@@ -1493,7 +1467,7 @@ INSERT INTO document.mouvementcaisses (id, montant, moyenpaiement, referencepaie
 
 
 --
--- TOC entry 5301 (class 0 OID 28168)
+-- TOC entry 5295 (class 0 OID 28168)
 -- Dependencies: 238
 -- Data for Name: mouvements; Type: TABLE DATA; Schema: document; Owner: postgres
 --
@@ -1505,7 +1479,7 @@ INSERT INTO document.mouvements (id, description, quantite, prix, datecreation, 
 
 
 --
--- TOC entry 5302 (class 0 OID 28173)
+-- TOC entry 5296 (class 0 OID 28173)
 -- Dependencies: 239
 -- Data for Name: ordreetats; Type: TABLE DATA; Schema: document; Owner: postgres
 --
@@ -1516,8 +1490,8 @@ INSERT INTO document.ordreetats (id, datecreation, datemodification, datefinvote
 
 
 --
--- TOC entry 5331 (class 0 OID 28734)
--- Dependencies: 268
+-- TOC entry 5324 (class 0 OID 28734)
+-- Dependencies: 267
 -- Data for Name: organisations; Type: TABLE DATA; Schema: document; Owner: postgres
 --
 
@@ -1529,8 +1503,8 @@ INSERT INTO document.organisations (id, raisonsociale) VALUES ('e5ghi63d-4d5e-4d
 
 
 --
--- TOC entry 5332 (class 0 OID 28741)
--- Dependencies: 269
+-- TOC entry 5325 (class 0 OID 28741)
+-- Dependencies: 268
 -- Data for Name: organiser; Type: TABLE DATA; Schema: document; Owner: postgres
 --
 
@@ -1543,7 +1517,7 @@ INSERT INTO document.organiser (organisations_id, utilisateurs_id) VALUES ('b2fc
 
 
 --
--- TOC entry 5303 (class 0 OID 28178)
+-- TOC entry 5297 (class 0 OID 28178)
 -- Dependencies: 240
 -- Data for Name: parcours; Type: TABLE DATA; Schema: document; Owner: postgres
 --
@@ -1554,8 +1528,8 @@ INSERT INTO document.parcours (id, libelle, datecreation, datemodification) VALU
 
 
 --
--- TOC entry 5337 (class 0 OID 46404)
--- Dependencies: 296
+-- TOC entry 5330 (class 0 OID 46404)
+-- Dependencies: 295
 -- Data for Name: personnels; Type: TABLE DATA; Schema: document; Owner: postgres
 --
 
@@ -1565,76 +1539,68 @@ INSERT INTO document.personnels (personnels_id, dateentree, nom, datenaissance, 
 
 
 --
--- TOC entry 5304 (class 0 OID 28188)
+-- TOC entry 5298 (class 0 OID 28188)
 -- Dependencies: 241
 -- Data for Name: personnes; Type: TABLE DATA; Schema: document; Owner: postgres
 --
 
-INSERT INTO document.personnes (id, adresse, mail, telephone, qrcodevalue, code, raisonsociale, nom, prenom, sexe, datenaissance, datecreation, datemodification, person_type, comptes_id) VALUES ('0001ff83-2a62-4e6d-aa23-57c7825bcd57', NULL, NULL, NULL, NULL, '47', 'Sportif', NULL, NULL, NULL, NULL, '1990-03-07', '2022-01-01', 'personnesmorales', '00012f83-2a62-4e6d-aa23-57c7825bcd57') ON CONFLICT DO NOTHING;
-INSERT INTO document.personnes (id, adresse, mail, telephone, qrcodevalue, code, raisonsociale, nom, prenom, sexe, datenaissance, datecreation, datemodification, person_type, comptes_id) VALUES ('0018e585-f82a-4d5f-af1c-54f880d766d3', NULL, NULL, NULL, NULL, '45', 'armee', NULL, NULL, NULL, NULL, '1990-03-07', '2022-01-01', 'personnesmorales', '1518e585-f82a-4d5f-af1c-54f880d766d3') ON CONFLICT DO NOTHING;
-INSERT INTO document.personnes (id, adresse, mail, telephone, qrcodevalue, code, raisonsociale, nom, prenom, sexe, datenaissance, datecreation, datemodification, person_type, comptes_id) VALUES ('0079bd79-f71b-498b-b247-e7b9bbb3f600', NULL, NULL, NULL, NULL, '43', 'GOSPEL', NULL, NULL, NULL, NULL, '1990-03-07', '2022-01-01', 'personnesmorales', '1179bd79-f71b-498b-b247-e7b9bbb3f600') ON CONFLICT DO NOTHING;
-INSERT INTO document.personnes (id, adresse, mail, telephone, qrcodevalue, code, raisonsociale, nom, prenom, sexe, datenaissance, datecreation, datemodification, person_type, comptes_id) VALUES ('0618e585-f82a-4d5f-af1c-54f880d766d3', NULL, NULL, NULL, NULL, 'd190616', 'Brasserie', NULL, NULL, NULL, NULL, '1990-03-07', '2022-01-01', 'distributeurs', 'f0a7b6c5-d4e3f2a1-7b9c-7d6e-5f4a3b2c1e0d') ON CONFLICT DO NOTHING;
-INSERT INTO document.personnes (id, adresse, mail, telephone, qrcodevalue, code, raisonsociale, nom, prenom, sexe, datenaissance, datecreation, datemodification, person_type, comptes_id) VALUES ('0618e585-f82a-4d5f-af2c-04f880d766d3', NULL, NULL, NULL, NULL, 'd190614', 'Pharmacam', NULL, NULL, NULL, NULL, '1990-03-07', '2022-01-01', 'distributeurs', 'd9e2f1c2-8b3a-4f6c-7d5e-1a7b8a7c6d5e') ON CONFLICT DO NOTHING;
-INSERT INTO document.personnes (id, adresse, mail, telephone, qrcodevalue, code, raisonsociale, nom, prenom, sexe, datenaissance, datecreation, datemodification, person_type, comptes_id) VALUES ('0618e585-f82a-4d5f-af2c-54f880d766d3', NULL, NULL, NULL, NULL, 'd190619', 'UCB', NULL, NULL, NULL, NULL, '1990-03-07', '2022-01-01', 'distributeurs', 'a1f8e3b0-4c6d-4e5e-7b7a-2a8b9b9c8d6f') ON CONFLICT DO NOTHING;
-INSERT INTO document.personnes (id, adresse, mail, telephone, qrcodevalue, code, raisonsociale, nom, prenom, sexe, datenaissance, datecreation, datemodification, person_type, comptes_id) VALUES ('1979bd79-f71b-498b-b247-e7b9bbb3f600', NULL, NULL, NULL, NULL, 'd190615', 'ENEO', NULL, NULL, NULL, NULL, '1990-03-07', '2022-01-01', 'distributeurs', 'b3a7c8d6-1e2f-3d4c-7b6a-9e8f0a7b6c5d') ON CONFLICT DO NOTHING;
-INSERT INTO document.personnes (id, adresse, mail, telephone, qrcodevalue, code, raisonsociale, nom, prenom, sexe, datenaissance, datecreation, datemodification, person_type, comptes_id) VALUES ('fdbff692-6b8d-43ab-a196-fcc3114b2daa', NULL, NULL, NULL, NULL, NULL, NULL, 'Nkoabang', 'pnjerrtt@gma.com', 'Masculin', '2022-01-01', '1990-03-07', '2022-01-02', 'personnesphysique', 'adbff692-418d-43ab-a196-fcc3114b2daa') ON CONFLICT DO NOTHING;
-INSERT INTO document.personnes (id, adresse, mail, telephone, qrcodevalue, code, raisonsociale, nom, prenom, sexe, datenaissance, datecreation, datemodification, person_type, comptes_id) VALUES ('d301ff83-2a62-4e6d-aa23-57c7825bcd57', NULL, NULL, NULL, NULL, NULL, NULL, 'Essos', 'nayat@gma.com', 'Masculin', '2022-01-01', '1990-03-07', '2022-01-02', 'distributeurs', 'd301ff83-1b62-4e6d-aa23-57c7825bcd57') ON CONFLICT DO NOTHING;
-INSERT INTO document.personnes (id, adresse, mail, telephone, qrcodevalue, code, raisonsociale, nom, prenom, sexe, datenaissance, datecreation, datemodification, person_type, comptes_id) VALUES ('11111111-aaaa-bbbb-cccc-111111111111', '12 rue des Fleurs', 'alice@email.com', '0600000001', 'QR001', NULL, NULL, 'Dupont', 'Alice', 'F', '1992-05-10', '2025-06-04', NULL, 'personnesphysique', NULL) ON CONFLICT DO NOTHING;
-INSERT INTO document.personnes (id, adresse, mail, telephone, qrcodevalue, code, raisonsociale, nom, prenom, sexe, datenaissance, datecreation, datemodification, person_type, comptes_id) VALUES ('22222222-bbbb-cccc-dddd-222222222222', '34 avenue Victor Hugo', 'bob@email.com', '0600000002', 'QR002', NULL, NULL, 'Martin', 'Bob', 'M', '1988-11-23', '2025-06-04', NULL, 'personnesphysique', NULL) ON CONFLICT DO NOTHING;
-INSERT INTO document.personnes (id, adresse, mail, telephone, qrcodevalue, code, raisonsociale, nom, prenom, sexe, datenaissance, datecreation, datemodification, person_type, comptes_id) VALUES ('33333333-cccc-dddd-eeee-333333333333', '56 boulevard St Michel', 'carole@email.com', '0600000003', 'QR003', NULL, NULL, 'Durand', 'Carole', 'F', '1979-07-15', '2025-06-04', NULL, 'personnesphysique', NULL) ON CONFLICT DO NOTHING;
-INSERT INTO document.personnes (id, adresse, mail, telephone, qrcodevalue, code, raisonsociale, nom, prenom, sexe, datenaissance, datecreation, datemodification, person_type, comptes_id) VALUES ('44444444-dddd-eeee-ffff-444444444444', '78 impasse des Lilas', 'daniel@email.com', '0600000004', 'QR004', NULL, NULL, 'Petit', 'Daniel', 'M', '1995-02-28', '2025-06-04', NULL, 'personnesphysique', NULL) ON CONFLICT DO NOTHING;
-INSERT INTO document.personnes (id, adresse, mail, telephone, qrcodevalue, code, raisonsociale, nom, prenom, sexe, datenaissance, datecreation, datemodification, person_type, comptes_id) VALUES ('55555555-eeee-ffff-0000-555555555555', '1 rue de Entreprise', 'contact@ent1.com', '0700000001', 'QR005', 'ENT001', 'Entreprise Alpha', NULL, NULL, NULL, NULL, '2025-06-04', NULL, 'personnesmorales', NULL) ON CONFLICT DO NOTHING;
-INSERT INTO document.personnes (id, adresse, mail, telephone, qrcodevalue, code, raisonsociale, nom, prenom, sexe, datenaissance, datecreation, datemodification, person_type, comptes_id) VALUES ('66666666-ffff-0000-1111-666666666666', '2 avenue du Progrès', 'contact@ent2.com', '0700000002', 'QR006', 'ENT002', 'Entreprise Beta', NULL, NULL, NULL, NULL, '2025-06-04', NULL, 'personnesmorales', NULL) ON CONFLICT DO NOTHING;
-INSERT INTO document.personnes (id, adresse, mail, telephone, qrcodevalue, code, raisonsociale, nom, prenom, sexe, datenaissance, datecreation, datemodification, person_type, comptes_id) VALUES ('77777777-0000-1111-2222-777777777777', '3 boulevard des Affaires', 'contact@ent3.com', '0700000003', 'QR007', 'ENT003', 'Entreprise Gamma', NULL, NULL, NULL, NULL, '2025-06-04', NULL, 'personnesmorales', NULL) ON CONFLICT DO NOTHING;
-INSERT INTO document.personnes (id, adresse, mail, telephone, qrcodevalue, code, raisonsociale, nom, prenom, sexe, datenaissance, datecreation, datemodification, person_type, comptes_id) VALUES ('88888888-1111-2222-3333-888888888888', '4 place de la Victoire', 'contact@ent4.com', '0700000004', 'QR008', 'ENT004', 'Entreprise Delta', NULL, NULL, NULL, NULL, '2025-06-04', NULL, 'personnesmorales', NULL) ON CONFLICT DO NOTHING;
-INSERT INTO document.personnes (id, adresse, mail, telephone, qrcodevalue, code, raisonsociale, nom, prenom, sexe, datenaissance, datecreation, datemodification, person_type, comptes_id) VALUES ('99999999-2222-3333-4444-999999999999', '5 rue du Commerce', 'contact@dist1.com', '0800000001', 'QR009', 'DIST001', 'Distributeur Un', NULL, NULL, NULL, NULL, '2025-06-04', NULL, 'distributeurs', NULL) ON CONFLICT DO NOTHING;
-INSERT INTO document.personnes (id, adresse, mail, telephone, qrcodevalue, code, raisonsociale, nom, prenom, sexe, datenaissance, datecreation, datemodification, person_type, comptes_id) VALUES ('aaaaaaaa-3333-4444-5555-aaaaaaaaaaaa', '6 avenue des Ventes', 'contact@dist2.com', '0800000002', 'QR010', 'DIST002', 'Distributeur Deux', NULL, NULL, NULL, NULL, '2025-06-04', NULL, 'distributeurs', NULL) ON CONFLICT DO NOTHING;
-INSERT INTO document.personnes (id, adresse, mail, telephone, qrcodevalue, code, raisonsociale, nom, prenom, sexe, datenaissance, datecreation, datemodification, person_type, comptes_id) VALUES ('bbbbbbbb-4444-5555-6666-bbbbbbbbbbbb', '7 boulevard Distribution', 'contact@dist3.com', '0800000003', 'QR011', 'DIST003', 'Distributeur Trois', NULL, NULL, NULL, NULL, '2025-06-04', NULL, 'distributeurs', NULL) ON CONFLICT DO NOTHING;
-INSERT INTO document.personnes (id, adresse, mail, telephone, qrcodevalue, code, raisonsociale, nom, prenom, sexe, datenaissance, datecreation, datemodification, person_type, comptes_id) VALUES ('cccccccc-5555-6666-7777-cccccccccccc', '8 place du Marché', 'contact@dist4.com', '0800000004', 'QR012', 'DIST004', 'Distributeur Quatre', NULL, NULL, NULL, NULL, '2025-06-04', NULL, 'distributeurs', NULL) ON CONFLICT DO NOTHING;
-INSERT INTO document.personnes (id, adresse, mail, telephone, qrcodevalue, code, raisonsociale, nom, prenom, sexe, datenaissance, datecreation, datemodification, person_type, comptes_id) VALUES ('a1b2c3d4-e5f6-7890-ab12-c3d4e5f67890', '9 rue Générale', 'eve@email.com', '0600000005', 'QR013', NULL, NULL, 'Lemoine', 'Eve', 'F', '1998-12-12', '2025-06-04', NULL, 'personnesphysique', NULL) ON CONFLICT DO NOTHING;
-INSERT INTO document.personnes (id, adresse, mail, telephone, qrcodevalue, code, raisonsociale, nom, prenom, sexe, datenaissance, datecreation, datemodification, person_type, comptes_id) VALUES ('b2c3d4e5-f678-90ab-12c3-d4e5f67890ab', '10 avenue Libre', 'contact@ent5.com', '0700000005', 'QR014', 'ENT005', 'Entreprise Epsilon', NULL, NULL, NULL, NULL, '2025-06-04', NULL, 'personnesmorales', NULL) ON CONFLICT DO NOTHING;
-INSERT INTO document.personnes (id, adresse, mail, telephone, qrcodevalue, code, raisonsociale, nom, prenom, sexe, datenaissance, datecreation, datemodification, person_type, comptes_id) VALUES ('c3d4e5f6-7890-ab12-c3d4-e5f67890abcd', '11 boulevard Sud', 'contact@dist5.com', '0800000005', 'QR015', 'DIST005', 'Distributeur Cinq', NULL, NULL, NULL, NULL, '2025-06-04', NULL, 'distributeurs', NULL) ON CONFLICT DO NOTHING;
-INSERT INTO document.personnes (id, adresse, mail, telephone, qrcodevalue, code, raisonsociale, nom, prenom, sexe, datenaissance, datecreation, datemodification, person_type, comptes_id) VALUES ('d4e5f678-90ab-12c3-d4e5-f67890abcdea', '12 place Centrale', 'contact@ent6.com', '0700000006', 'QR016', 'ENT006', 'Entreprise Zeta', NULL, NULL, NULL, NULL, '2025-06-04', NULL, 'personnesmorales', NULL) ON CONFLICT DO NOTHING;
-INSERT INTO document.personnes (id, adresse, mail, telephone, qrcodevalue, code, raisonsociale, nom, prenom, sexe, datenaissance, datecreation, datemodification, person_type, comptes_id) VALUES ('4390615e-1101-7209-9932-7020bbd556f1', NULL, 'tagnewillie@gmail.com', '655455487', NULL, NULL, NULL, NULL, NULL, NULL, NULL, '2024-07-27', NULL, 'personnels', NULL) ON CONFLICT DO NOTHING;
-INSERT INTO document.personnes (id, adresse, mail, telephone, qrcodevalue, code, raisonsociale, nom, prenom, sexe, datenaissance, datecreation, datemodification, person_type, comptes_id) VALUES ('4390615e-1101-7209-9932-7020bbd556f2', NULL, 'peteralan@gmail.com', '655455487', NULL, NULL, NULL, NULL, NULL, NULL, NULL, '2024-07-27', NULL, 'personnels', NULL) ON CONFLICT DO NOTHING;
-INSERT INTO document.personnes (id, adresse, mail, telephone, qrcodevalue, code, raisonsociale, nom, prenom, sexe, datenaissance, datecreation, datemodification, person_type, comptes_id) VALUES ('4390615e-1101-7209-9932-7020bbd556f3', NULL, 'dombogilles@gmail.com', '655455487', NULL, NULL, NULL, NULL, NULL, NULL, NULL, '2024-07-27', NULL, 'personnels', NULL) ON CONFLICT DO NOTHING;
+INSERT INTO document.personnes (id, adresse, mail, telephone, qrcodevalue, code, raisonsociale, nom, prenom, sexe, datenaissance, datecreation, datemodification, comptes_id) VALUES ('0001ff83-2a62-4e6d-aa23-57c7825bcd57', NULL, NULL, NULL, NULL, '47', 'Sportif', NULL, NULL, NULL, NULL, '1990-03-07', '2022-01-01', '00012f83-2a62-4e6d-aa23-57c7825bcd57') ON CONFLICT DO NOTHING;
+INSERT INTO document.personnes (id, adresse, mail, telephone, qrcodevalue, code, raisonsociale, nom, prenom, sexe, datenaissance, datecreation, datemodification, comptes_id) VALUES ('0018e585-f82a-4d5f-af1c-54f880d766d3', NULL, NULL, NULL, NULL, '45', 'armee', NULL, NULL, NULL, NULL, '1990-03-07', '2022-01-01', '1518e585-f82a-4d5f-af1c-54f880d766d3') ON CONFLICT DO NOTHING;
+INSERT INTO document.personnes (id, adresse, mail, telephone, qrcodevalue, code, raisonsociale, nom, prenom, sexe, datenaissance, datecreation, datemodification, comptes_id) VALUES ('0079bd79-f71b-498b-b247-e7b9bbb3f600', NULL, NULL, NULL, NULL, '43', 'GOSPEL', NULL, NULL, NULL, NULL, '1990-03-07', '2022-01-01', '1179bd79-f71b-498b-b247-e7b9bbb3f600') ON CONFLICT DO NOTHING;
+INSERT INTO document.personnes (id, adresse, mail, telephone, qrcodevalue, code, raisonsociale, nom, prenom, sexe, datenaissance, datecreation, datemodification, comptes_id) VALUES ('0618e585-f82a-4d5f-af1c-54f880d766d3', NULL, NULL, NULL, NULL, 'd190616', 'Brasserie', NULL, NULL, NULL, NULL, '1990-03-07', '2022-01-01', 'f0a7b6c5-d4e3f2a1-7b9c-7d6e-5f4a3b2c1e0d') ON CONFLICT DO NOTHING;
+INSERT INTO document.personnes (id, adresse, mail, telephone, qrcodevalue, code, raisonsociale, nom, prenom, sexe, datenaissance, datecreation, datemodification, comptes_id) VALUES ('0618e585-f82a-4d5f-af2c-04f880d766d3', NULL, NULL, NULL, NULL, 'd190614', 'Pharmacam', NULL, NULL, NULL, NULL, '1990-03-07', '2022-01-01', 'd9e2f1c2-8b3a-4f6c-7d5e-1a7b8a7c6d5e') ON CONFLICT DO NOTHING;
+INSERT INTO document.personnes (id, adresse, mail, telephone, qrcodevalue, code, raisonsociale, nom, prenom, sexe, datenaissance, datecreation, datemodification, comptes_id) VALUES ('0618e585-f82a-4d5f-af2c-54f880d766d3', NULL, NULL, NULL, NULL, 'd190619', 'UCB', NULL, NULL, NULL, NULL, '1990-03-07', '2022-01-01', 'a1f8e3b0-4c6d-4e5e-7b7a-2a8b9b9c8d6f') ON CONFLICT DO NOTHING;
+INSERT INTO document.personnes (id, adresse, mail, telephone, qrcodevalue, code, raisonsociale, nom, prenom, sexe, datenaissance, datecreation, datemodification, comptes_id) VALUES ('1979bd79-f71b-498b-b247-e7b9bbb3f600', NULL, NULL, NULL, NULL, 'd190615', 'ENEO', NULL, NULL, NULL, NULL, '1990-03-07', '2022-01-01', 'b3a7c8d6-1e2f-3d4c-7b6a-9e8f0a7b6c5d') ON CONFLICT DO NOTHING;
+INSERT INTO document.personnes (id, adresse, mail, telephone, qrcodevalue, code, raisonsociale, nom, prenom, sexe, datenaissance, datecreation, datemodification, comptes_id) VALUES ('fdbff692-6b8d-43ab-a196-fcc3114b2daa', NULL, NULL, NULL, NULL, NULL, NULL, 'Nkoabang', 'pnjerrtt@gma.com', 'Masculin', '2022-01-01', '1990-03-07', '2022-01-02', 'adbff692-418d-43ab-a196-fcc3114b2daa') ON CONFLICT DO NOTHING;
+INSERT INTO document.personnes (id, adresse, mail, telephone, qrcodevalue, code, raisonsociale, nom, prenom, sexe, datenaissance, datecreation, datemodification, comptes_id) VALUES ('d301ff83-2a62-4e6d-aa23-57c7825bcd57', NULL, NULL, NULL, NULL, NULL, NULL, 'Essos', 'nayat@gma.com', 'Masculin', '2022-01-01', '1990-03-07', '2022-01-02', 'd301ff83-1b62-4e6d-aa23-57c7825bcd57') ON CONFLICT DO NOTHING;
+INSERT INTO document.personnes (id, adresse, mail, telephone, qrcodevalue, code, raisonsociale, nom, prenom, sexe, datenaissance, datecreation, datemodification, comptes_id) VALUES ('11111111-aaaa-bbbb-cccc-111111111111', '12 rue des Fleurs', 'alice@email.com', '0600000001', 'QR001', NULL, NULL, 'Dupont', 'Alice', 'F', '1992-05-10', '2025-06-04', NULL, NULL) ON CONFLICT DO NOTHING;
+INSERT INTO document.personnes (id, adresse, mail, telephone, qrcodevalue, code, raisonsociale, nom, prenom, sexe, datenaissance, datecreation, datemodification, comptes_id) VALUES ('22222222-bbbb-cccc-dddd-222222222222', '34 avenue Victor Hugo', 'bob@email.com', '0600000002', 'QR002', NULL, NULL, 'Martin', 'Bob', 'M', '1988-11-23', '2025-06-04', NULL, NULL) ON CONFLICT DO NOTHING;
+INSERT INTO document.personnes (id, adresse, mail, telephone, qrcodevalue, code, raisonsociale, nom, prenom, sexe, datenaissance, datecreation, datemodification, comptes_id) VALUES ('33333333-cccc-dddd-eeee-333333333333', '56 boulevard St Michel', 'carole@email.com', '0600000003', 'QR003', NULL, NULL, 'Durand', 'Carole', 'F', '1979-07-15', '2025-06-04', NULL, NULL) ON CONFLICT DO NOTHING;
+INSERT INTO document.personnes (id, adresse, mail, telephone, qrcodevalue, code, raisonsociale, nom, prenom, sexe, datenaissance, datecreation, datemodification, comptes_id) VALUES ('44444444-dddd-eeee-ffff-444444444444', '78 impasse des Lilas', 'daniel@email.com', '0600000004', 'QR004', NULL, NULL, 'Petit', 'Daniel', 'M', '1995-02-28', '2025-06-04', NULL, NULL) ON CONFLICT DO NOTHING;
+INSERT INTO document.personnes (id, adresse, mail, telephone, qrcodevalue, code, raisonsociale, nom, prenom, sexe, datenaissance, datecreation, datemodification, comptes_id) VALUES ('55555555-eeee-ffff-0000-555555555555', '1 rue de Entreprise', 'contact@ent1.com', '0700000001', 'QR005', 'ENT001', 'Entreprise Alpha', NULL, NULL, NULL, NULL, '2025-06-04', NULL, NULL) ON CONFLICT DO NOTHING;
+INSERT INTO document.personnes (id, adresse, mail, telephone, qrcodevalue, code, raisonsociale, nom, prenom, sexe, datenaissance, datecreation, datemodification, comptes_id) VALUES ('66666666-ffff-0000-1111-666666666666', '2 avenue du Progrès', 'contact@ent2.com', '0700000002', 'QR006', 'ENT002', 'Entreprise Beta', NULL, NULL, NULL, NULL, '2025-06-04', NULL, NULL) ON CONFLICT DO NOTHING;
+INSERT INTO document.personnes (id, adresse, mail, telephone, qrcodevalue, code, raisonsociale, nom, prenom, sexe, datenaissance, datecreation, datemodification, comptes_id) VALUES ('77777777-0000-1111-2222-777777777777', '3 boulevard des Affaires', 'contact@ent3.com', '0700000003', 'QR007', 'ENT003', 'Entreprise Gamma', NULL, NULL, NULL, NULL, '2025-06-04', NULL, NULL) ON CONFLICT DO NOTHING;
+INSERT INTO document.personnes (id, adresse, mail, telephone, qrcodevalue, code, raisonsociale, nom, prenom, sexe, datenaissance, datecreation, datemodification, comptes_id) VALUES ('88888888-1111-2222-3333-888888888888', '4 place de la Victoire', 'contact@ent4.com', '0700000004', 'QR008', 'ENT004', 'Entreprise Delta', NULL, NULL, NULL, NULL, '2025-06-04', NULL, NULL) ON CONFLICT DO NOTHING;
+INSERT INTO document.personnes (id, adresse, mail, telephone, qrcodevalue, code, raisonsociale, nom, prenom, sexe, datenaissance, datecreation, datemodification, comptes_id) VALUES ('99999999-2222-3333-4444-999999999999', '5 rue du Commerce', 'contact@dist1.com', '0800000001', 'QR009', 'DIST001', 'Distributeur Un', NULL, NULL, NULL, NULL, '2025-06-04', NULL, NULL) ON CONFLICT DO NOTHING;
+INSERT INTO document.personnes (id, adresse, mail, telephone, qrcodevalue, code, raisonsociale, nom, prenom, sexe, datenaissance, datecreation, datemodification, comptes_id) VALUES ('aaaaaaaa-3333-4444-5555-aaaaaaaaaaaa', '6 avenue des Ventes', 'contact@dist2.com', '0800000002', 'QR010', 'DIST002', 'Distributeur Deux', NULL, NULL, NULL, NULL, '2025-06-04', NULL, NULL) ON CONFLICT DO NOTHING;
+INSERT INTO document.personnes (id, adresse, mail, telephone, qrcodevalue, code, raisonsociale, nom, prenom, sexe, datenaissance, datecreation, datemodification, comptes_id) VALUES ('bbbbbbbb-4444-5555-6666-bbbbbbbbbbbb', '7 boulevard Distribution', 'contact@dist3.com', '0800000003', 'QR011', 'DIST003', 'Distributeur Trois', NULL, NULL, NULL, NULL, '2025-06-04', NULL, NULL) ON CONFLICT DO NOTHING;
+INSERT INTO document.personnes (id, adresse, mail, telephone, qrcodevalue, code, raisonsociale, nom, prenom, sexe, datenaissance, datecreation, datemodification, comptes_id) VALUES ('cccccccc-5555-6666-7777-cccccccccccc', '8 place du Marché', 'contact@dist4.com', '0800000004', 'QR012', 'DIST004', 'Distributeur Quatre', NULL, NULL, NULL, NULL, '2025-06-04', NULL, NULL) ON CONFLICT DO NOTHING;
+INSERT INTO document.personnes (id, adresse, mail, telephone, qrcodevalue, code, raisonsociale, nom, prenom, sexe, datenaissance, datecreation, datemodification, comptes_id) VALUES ('a1b2c3d4-e5f6-7890-ab12-c3d4e5f67890', '9 rue Générale', 'eve@email.com', '0600000005', 'QR013', NULL, NULL, 'Lemoine', 'Eve', 'F', '1998-12-12', '2025-06-04', NULL, NULL) ON CONFLICT DO NOTHING;
+INSERT INTO document.personnes (id, adresse, mail, telephone, qrcodevalue, code, raisonsociale, nom, prenom, sexe, datenaissance, datecreation, datemodification, comptes_id) VALUES ('b2c3d4e5-f678-90ab-12c3-d4e5f67890ab', '10 avenue Libre', 'contact@ent5.com', '0700000005', 'QR014', 'ENT005', 'Entreprise Epsilon', NULL, NULL, NULL, NULL, '2025-06-04', NULL, NULL) ON CONFLICT DO NOTHING;
+INSERT INTO document.personnes (id, adresse, mail, telephone, qrcodevalue, code, raisonsociale, nom, prenom, sexe, datenaissance, datecreation, datemodification, comptes_id) VALUES ('c3d4e5f6-7890-ab12-c3d4-e5f67890abcd', '11 boulevard Sud', 'contact@dist5.com', '0800000005', 'QR015', 'DIST005', 'Distributeur Cinq', NULL, NULL, NULL, NULL, '2025-06-04', NULL, NULL) ON CONFLICT DO NOTHING;
+INSERT INTO document.personnes (id, adresse, mail, telephone, qrcodevalue, code, raisonsociale, nom, prenom, sexe, datenaissance, datecreation, datemodification, comptes_id) VALUES ('d4e5f678-90ab-12c3-d4e5-f67890abcdea', '12 place Centrale', 'contact@ent6.com', '0700000006', 'QR016', 'ENT006', 'Entreprise Zeta', NULL, NULL, NULL, NULL, '2025-06-04', NULL, NULL) ON CONFLICT DO NOTHING;
+INSERT INTO document.personnes (id, adresse, mail, telephone, qrcodevalue, code, raisonsociale, nom, prenom, sexe, datenaissance, datecreation, datemodification, comptes_id) VALUES ('4390615e-1101-7209-9932-7020bbd556f1', NULL, 'tagnewillie@gmail.com', '655455487', NULL, NULL, NULL, NULL, NULL, NULL, NULL, '2024-07-27', NULL, NULL) ON CONFLICT DO NOTHING;
+INSERT INTO document.personnes (id, adresse, mail, telephone, qrcodevalue, code, raisonsociale, nom, prenom, sexe, datenaissance, datecreation, datemodification, comptes_id) VALUES ('4390615e-1101-7209-9932-7020bbd556f2', NULL, 'peteralan@gmail.com', '655455487', NULL, NULL, NULL, NULL, NULL, NULL, NULL, '2024-07-27', NULL, NULL) ON CONFLICT DO NOTHING;
+INSERT INTO document.personnes (id, adresse, mail, telephone, qrcodevalue, code, raisonsociale, nom, prenom, sexe, datenaissance, datecreation, datemodification, comptes_id) VALUES ('4390615e-1101-7209-9932-7020bbd556f3', NULL, 'dombogilles@gmail.com', '655455487', NULL, NULL, NULL, NULL, NULL, NULL, NULL, '2024-07-27', NULL, NULL) ON CONFLICT DO NOTHING;
 
 
 --
--- TOC entry 5305 (class 0 OID 28194)
--- Dependencies: 242
--- Data for Name: personnes_s; Type: TABLE DATA; Schema: document; Owner: postgres
---
-
-
-
---
--- TOC entry 5335 (class 0 OID 46344)
--- Dependencies: 294
+-- TOC entry 5328 (class 0 OID 46344)
+-- Dependencies: 293
 -- Data for Name: personnesmorales; Type: TABLE DATA; Schema: document; Owner: postgres
 --
 
-INSERT INTO document.personnesmorales (id, raisonsociale, code) VALUES ('77777777-0000-1111-2222-777777777777', 'Entreprise Alpha', 'ENT001') ON CONFLICT DO NOTHING;
-INSERT INTO document.personnesmorales (id, raisonsociale, code) VALUES ('88888888-1111-2222-3333-888888888888', 'Entreprise Beta', 'ENT002') ON CONFLICT DO NOTHING;
-INSERT INTO document.personnesmorales (id, raisonsociale, code) VALUES ('b2c3d4e5-f678-90ab-12c3-d4e5f67890ab', 'Entreprise Gamma', 'ENT003') ON CONFLICT DO NOTHING;
-INSERT INTO document.personnesmorales (id, raisonsociale, code) VALUES ('d4e5f678-90ab-12c3-d4e5-f67890abcdea', 'Entreprise Delta', 'ENT004') ON CONFLICT DO NOTHING;
+INSERT INTO document.personnesmorales (personnesmorales_id, raisonsociale, code) VALUES ('77777777-0000-1111-2222-777777777777', 'Entreprise Alpha', 'ENT001') ON CONFLICT DO NOTHING;
+INSERT INTO document.personnesmorales (personnesmorales_id, raisonsociale, code) VALUES ('88888888-1111-2222-3333-888888888888', 'Entreprise Beta', 'ENT002') ON CONFLICT DO NOTHING;
+INSERT INTO document.personnesmorales (personnesmorales_id, raisonsociale, code) VALUES ('b2c3d4e5-f678-90ab-12c3-d4e5f67890ab', 'Entreprise Gamma', 'ENT003') ON CONFLICT DO NOTHING;
+INSERT INTO document.personnesmorales (personnesmorales_id, raisonsociale, code) VALUES ('d4e5f678-90ab-12c3-d4e5-f67890abcdea', 'Entreprise Delta', 'ENT004') ON CONFLICT DO NOTHING;
 
 
 --
--- TOC entry 5334 (class 0 OID 46332)
--- Dependencies: 293
+-- TOC entry 5327 (class 0 OID 46332)
+-- Dependencies: 292
 -- Data for Name: personnesphysique; Type: TABLE DATA; Schema: document; Owner: postgres
 --
 
-INSERT INTO document.personnesphysique (id, nom, prenom, sexe, datenaissance, datemodification) VALUES ('11111111-aaaa-bbbb-cccc-111111111111', 'Dupont', 'Alice', 'F', '1992-05-10', '2025-06-01') ON CONFLICT DO NOTHING;
-INSERT INTO document.personnesphysique (id, nom, prenom, sexe, datenaissance, datemodification) VALUES ('22222222-bbbb-cccc-dddd-222222222222', 'Martin', 'Bob', 'M', '1988-11-23', '2025-06-02') ON CONFLICT DO NOTHING;
-INSERT INTO document.personnesphysique (id, nom, prenom, sexe, datenaissance, datemodification) VALUES ('33333333-cccc-dddd-eeee-333333333333', 'Durand', 'Carole', 'F', '1979-07-15', '2025-06-03') ON CONFLICT DO NOTHING;
-INSERT INTO document.personnesphysique (id, nom, prenom, sexe, datenaissance, datemodification) VALUES ('44444444-dddd-eeee-ffff-444444444444', 'Petit', 'Daniel', 'M', '1995-02-28', '2025-06-04') ON CONFLICT DO NOTHING;
+INSERT INTO document.personnesphysique (personnesphysique_id, nom, prenom, sexe, datenaissance, datemodification) VALUES ('11111111-aaaa-bbbb-cccc-111111111111', 'Dupont', 'Alice', 'F', '1992-05-10', '2025-06-01') ON CONFLICT DO NOTHING;
+INSERT INTO document.personnesphysique (personnesphysique_id, nom, prenom, sexe, datenaissance, datemodification) VALUES ('22222222-bbbb-cccc-dddd-222222222222', 'Martin', 'Bob', 'M', '1988-11-23', '2025-06-02') ON CONFLICT DO NOTHING;
+INSERT INTO document.personnesphysique (personnesphysique_id, nom, prenom, sexe, datenaissance, datemodification) VALUES ('33333333-cccc-dddd-eeee-333333333333', 'Durand', 'Carole', 'F', '1979-07-15', '2025-06-03') ON CONFLICT DO NOTHING;
+INSERT INTO document.personnesphysique (personnesphysique_id, nom, prenom, sexe, datenaissance, datemodification) VALUES ('44444444-dddd-eeee-ffff-444444444444', 'Petit', 'Daniel', 'M', '1995-02-28', '2025-06-04') ON CONFLICT DO NOTHING;
 
 
 --
--- TOC entry 5306 (class 0 OID 28199)
--- Dependencies: 243
+-- TOC entry 5299 (class 0 OID 28199)
+-- Dependencies: 242
 -- Data for Name: precomouvements; Type: TABLE DATA; Schema: document; Owner: postgres
 --
 
@@ -1649,8 +1615,8 @@ INSERT INTO document.precomouvements (id, libelle, etat, datecreation, datemodif
 
 
 --
--- TOC entry 5307 (class 0 OID 28204)
--- Dependencies: 244
+-- TOC entry 5300 (class 0 OID 28204)
+-- Dependencies: 243
 -- Data for Name: precomouvementsqtes; Type: TABLE DATA; Schema: document; Owner: postgres
 --
 
@@ -1666,8 +1632,8 @@ INSERT INTO document.precomouvementsqtes (id, qtemin, qtemax, montantmin, montan
 
 
 --
--- TOC entry 5308 (class 0 OID 28209)
--- Dependencies: 245
+-- TOC entry 5301 (class 0 OID 28209)
+-- Dependencies: 244
 -- Data for Name: promotions; Type: TABLE DATA; Schema: document; Owner: postgres
 --
 
@@ -1677,8 +1643,8 @@ INSERT INTO document.promotions (id, datedebut, datefin, codeunique, typeremise,
 
 
 --
--- TOC entry 5309 (class 0 OID 28214)
--- Dependencies: 246
+-- TOC entry 5302 (class 0 OID 28214)
+-- Dependencies: 245
 -- Data for Name: rattacher; Type: TABLE DATA; Schema: document; Owner: postgres
 --
 
@@ -1687,8 +1653,8 @@ INSERT INTO document.rattacher (personnes_id, rattacher_id) VALUES ('fdbff692-6b
 
 
 --
--- TOC entry 5338 (class 0 OID 46418)
--- Dependencies: 297
+-- TOC entry 5331 (class 0 OID 46418)
+-- Dependencies: 296
 -- Data for Name: remplir; Type: TABLE DATA; Schema: document; Owner: postgres
 --
 
@@ -1698,8 +1664,8 @@ INSERT INTO document.remplir (id, roles_id, missions_id, datefin, datecreation, 
 
 
 --
--- TOC entry 5310 (class 0 OID 28224)
--- Dependencies: 247
+-- TOC entry 5303 (class 0 OID 28224)
+-- Dependencies: 246
 -- Data for Name: respecter; Type: TABLE DATA; Schema: document; Owner: postgres
 --
 
@@ -1709,8 +1675,8 @@ INSERT INTO document.respecter (mouvements_id, precomouvements_id) VALUES ('0e7c
 
 
 --
--- TOC entry 5311 (class 0 OID 28229)
--- Dependencies: 248
+-- TOC entry 5304 (class 0 OID 28229)
+-- Dependencies: 247
 -- Data for Name: ressources; Type: TABLE DATA; Schema: document; Owner: postgres
 --
 
@@ -1735,8 +1701,8 @@ INSERT INTO document.ressources (id, libelle, description, etat, datecreation, d
 
 
 --
--- TOC entry 5312 (class 0 OID 28234)
--- Dependencies: 249
+-- TOC entry 5305 (class 0 OID 28234)
+-- Dependencies: 248
 -- Data for Name: ressourcespromotions; Type: TABLE DATA; Schema: document; Owner: postgres
 --
 
@@ -1746,8 +1712,8 @@ INSERT INTO document.ressourcespromotions (promotions_id, ressources_id) VALUES 
 
 
 --
--- TOC entry 5313 (class 0 OID 28239)
--- Dependencies: 250
+-- TOC entry 5306 (class 0 OID 28239)
+-- Dependencies: 249
 -- Data for Name: roles; Type: TABLE DATA; Schema: document; Owner: postgres
 --
 
@@ -1757,8 +1723,8 @@ INSERT INTO document.roles (id, titre, description, etat, datecreation, datemodi
 
 
 --
--- TOC entry 5314 (class 0 OID 28244)
--- Dependencies: 251
+-- TOC entry 5307 (class 0 OID 28244)
+-- Dependencies: 250
 -- Data for Name: sapplique; Type: TABLE DATA; Schema: document; Owner: postgres
 --
 
@@ -1773,8 +1739,8 @@ INSERT INTO document.sapplique (familles_id, precomouvementsqtes_id) VALUES ('f1
 
 
 --
--- TOC entry 5315 (class 0 OID 28249)
--- Dependencies: 252
+-- TOC entry 5308 (class 0 OID 28249)
+-- Dependencies: 251
 -- Data for Name: services; Type: TABLE DATA; Schema: document; Owner: postgres
 --
 
@@ -1784,8 +1750,8 @@ INSERT INTO document.services (id, description, libelle, localisation, etat, dat
 
 
 --
--- TOC entry 5316 (class 0 OID 28254)
--- Dependencies: 253
+-- TOC entry 5309 (class 0 OID 28254)
+-- Dependencies: 252
 -- Data for Name: suivre; Type: TABLE DATA; Schema: document; Owner: postgres
 --
 
@@ -1800,8 +1766,8 @@ INSERT INTO document.suivre (documents_id, precomouvements_id) VALUES ('0190615e
 
 
 --
--- TOC entry 5317 (class 0 OID 28259)
--- Dependencies: 254
+-- TOC entry 5310 (class 0 OID 28259)
+-- Dependencies: 253
 -- Data for Name: tickets; Type: TABLE DATA; Schema: document; Owner: postgres
 --
 
@@ -1814,8 +1780,8 @@ INSERT INTO document.tickets (id, codecourt, datecreation, datemodification) VAL
 
 
 --
--- TOC entry 5318 (class 0 OID 28264)
--- Dependencies: 255
+-- TOC entry 5311 (class 0 OID 28264)
+-- Dependencies: 254
 -- Data for Name: ticketsfilesattentes; Type: TABLE DATA; Schema: document; Owner: postgres
 --
 
@@ -1828,8 +1794,8 @@ INSERT INTO document.ticketsfilesattentes (id, etat, dateaffectation, tickets_id
 
 
 --
--- TOC entry 5319 (class 0 OID 28269)
--- Dependencies: 256
+-- TOC entry 5312 (class 0 OID 28269)
+-- Dependencies: 255
 -- Data for Name: traiter; Type: TABLE DATA; Schema: document; Owner: postgres
 --
 
@@ -1840,8 +1806,8 @@ INSERT INTO document.traiter (documents_id, missions_id) VALUES ('0190615e-1101-
 
 
 --
--- TOC entry 5330 (class 0 OID 28727)
--- Dependencies: 267
+-- TOC entry 5323 (class 0 OID 28727)
+-- Dependencies: 266
 -- Data for Name: utilisateurs; Type: TABLE DATA; Schema: document; Owner: postgres
 --
 
@@ -1854,8 +1820,8 @@ INSERT INTO document.utilisateurs (id, login, mdp, etat, datecreation, datemodif
 
 
 --
--- TOC entry 5320 (class 0 OID 28274)
--- Dependencies: 257
+-- TOC entry 5313 (class 0 OID 28274)
+-- Dependencies: 256
 -- Data for Name: validations; Type: TABLE DATA; Schema: document; Owner: postgres
 --
 
@@ -1867,8 +1833,8 @@ INSERT INTO document.validations (id, code, etat, datecreation, datemodification
 
 
 --
--- TOC entry 5321 (class 0 OID 28279)
--- Dependencies: 258
+-- TOC entry 5314 (class 0 OID 28279)
+-- Dependencies: 257
 -- Data for Name: violer; Type: TABLE DATA; Schema: document; Owner: postgres
 --
 
@@ -1878,7 +1844,7 @@ INSERT INTO document.violer (mouvements_id, precomouvements_id) VALUES ('0e7cea0
 
 
 --
--- TOC entry 5028 (class 2606 OID 28683)
+-- TOC entry 5022 (class 2606 OID 28683)
 -- Name: actions actions_pkey; Type: CONSTRAINT; Schema: document; Owner: postgres
 --
 
@@ -1887,16 +1853,16 @@ ALTER TABLE ONLY document.actions
 
 
 --
--- TOC entry 5058 (class 2606 OID 46362)
+-- TOC entry 5052 (class 2606 OID 46362)
 -- Name: distributeurs distributeurs_pkey; Type: CONSTRAINT; Schema: document; Owner: postgres
 --
 
 ALTER TABLE ONLY document.distributeurs
-    ADD CONSTRAINT distributeurs_pkey PRIMARY KEY (id);
+    ADD CONSTRAINT distributeurs_pkey PRIMARY KEY (distributeurs_id);
 
 
 --
--- TOC entry 5040 (class 2606 OID 28719)
+-- TOC entry 5034 (class 2606 OID 28719)
 -- Name: elements elements_pkey; Type: CONSTRAINT; Schema: document; Owner: postgres
 --
 
@@ -1905,7 +1871,7 @@ ALTER TABLE ONLY document.elements
 
 
 --
--- TOC entry 5030 (class 2606 OID 28690)
+-- TOC entry 5024 (class 2606 OID 28690)
 -- Name: elementsbases elementsbases_pkey; Type: CONSTRAINT; Schema: document; Owner: postgres
 --
 
@@ -1914,7 +1880,7 @@ ALTER TABLE ONLY document.elementsbases
 
 
 --
--- TOC entry 5052 (class 2606 OID 28752)
+-- TOC entry 5046 (class 2606 OID 28752)
 -- Name: groupes groupes_pkey; Type: CONSTRAINT; Schema: document; Owner: postgres
 --
 
@@ -1923,7 +1889,7 @@ ALTER TABLE ONLY document.groupes
 
 
 --
--- TOC entry 5034 (class 2606 OID 28702)
+-- TOC entry 5028 (class 2606 OID 28702)
 -- Name: langues langues_pkey; Type: CONSTRAINT; Schema: document; Owner: postgres
 --
 
@@ -1932,7 +1898,7 @@ ALTER TABLE ONLY document.langues
 
 
 --
--- TOC entry 5044 (class 2606 OID 28726)
+-- TOC entry 5038 (class 2606 OID 28726)
 -- Name: menus menus_pkey; Type: CONSTRAINT; Schema: document; Owner: postgres
 --
 
@@ -1941,7 +1907,7 @@ ALTER TABLE ONLY document.menus
 
 
 --
--- TOC entry 5048 (class 2606 OID 28740)
+-- TOC entry 5042 (class 2606 OID 28740)
 -- Name: organisations organisations_pkey; Type: CONSTRAINT; Schema: document; Owner: postgres
 --
 
@@ -1950,7 +1916,7 @@ ALTER TABLE ONLY document.organisations
 
 
 --
--- TOC entry 5060 (class 2606 OID 46410)
+-- TOC entry 5054 (class 2606 OID 46410)
 -- Name: personnels personnels_pkey; Type: CONSTRAINT; Schema: document; Owner: postgres
 --
 
@@ -1959,25 +1925,25 @@ ALTER TABLE ONLY document.personnels
 
 
 --
--- TOC entry 5056 (class 2606 OID 46350)
+-- TOC entry 5050 (class 2606 OID 46350)
 -- Name: personnesmorales personnesmorales_pkey; Type: CONSTRAINT; Schema: document; Owner: postgres
 --
 
 ALTER TABLE ONLY document.personnesmorales
-    ADD CONSTRAINT personnesmorales_pkey PRIMARY KEY (id);
+    ADD CONSTRAINT personnesmorales_pkey PRIMARY KEY (personnesmorales_id);
 
 
 --
--- TOC entry 5054 (class 2606 OID 46338)
+-- TOC entry 5048 (class 2606 OID 46338)
 -- Name: personnesphysique personnesphysique_pkey; Type: CONSTRAINT; Schema: document; Owner: postgres
 --
 
 ALTER TABLE ONLY document.personnesphysique
-    ADD CONSTRAINT personnesphysique_pkey PRIMARY KEY (id);
+    ADD CONSTRAINT personnesphysique_pkey PRIMARY KEY (personnesphysique_id);
 
 
 --
--- TOC entry 5032 (class 2606 OID 28837)
+-- TOC entry 5026 (class 2606 OID 28837)
 -- Name: actionslangues pk_actionslangues; Type: CONSTRAINT; Schema: document; Owner: postgres
 --
 
@@ -1986,7 +1952,7 @@ ALTER TABLE ONLY document.actionslangues
 
 
 --
--- TOC entry 4936 (class 2606 OID 28285)
+-- TOC entry 4932 (class 2606 OID 28285)
 -- Name: associer pk_associer; Type: CONSTRAINT; Schema: document; Owner: postgres
 --
 
@@ -1995,7 +1961,7 @@ ALTER TABLE ONLY document.associer
 
 
 --
--- TOC entry 4938 (class 2606 OID 28287)
+-- TOC entry 4934 (class 2606 OID 28287)
 -- Name: attributs pk_attributs; Type: CONSTRAINT; Schema: document; Owner: postgres
 --
 
@@ -2004,7 +1970,7 @@ ALTER TABLE ONLY document.attributs
 
 
 --
--- TOC entry 4940 (class 2606 OID 28289)
+-- TOC entry 4936 (class 2606 OID 28289)
 -- Name: caisses pk_caisses; Type: CONSTRAINT; Schema: document; Owner: postgres
 --
 
@@ -2013,7 +1979,7 @@ ALTER TABLE ONLY document.caisses
 
 
 --
--- TOC entry 4942 (class 2606 OID 28291)
+-- TOC entry 4938 (class 2606 OID 28291)
 -- Name: categories pk_categories; Type: CONSTRAINT; Schema: document; Owner: postgres
 --
 
@@ -2022,7 +1988,7 @@ ALTER TABLE ONLY document.categories
 
 
 --
--- TOC entry 5042 (class 2606 OID 28791)
+-- TOC entry 5036 (class 2606 OID 28791)
 -- Name: elements pk_composite_elements; Type: CONSTRAINT; Schema: document; Owner: postgres
 --
 
@@ -2031,7 +1997,7 @@ ALTER TABLE ONLY document.elements
 
 
 --
--- TOC entry 4944 (class 2606 OID 28293)
+-- TOC entry 4940 (class 2606 OID 28293)
 -- Name: comptes pk_comptes; Type: CONSTRAINT; Schema: document; Owner: postgres
 --
 
@@ -2040,7 +2006,7 @@ ALTER TABLE ONLY document.comptes
 
 
 --
--- TOC entry 4946 (class 2606 OID 28295)
+-- TOC entry 4942 (class 2606 OID 28295)
 -- Name: concerner pk_concerner; Type: CONSTRAINT; Schema: document; Owner: postgres
 --
 
@@ -2049,7 +2015,7 @@ ALTER TABLE ONLY document.concerner
 
 
 --
--- TOC entry 4948 (class 2606 OID 28297)
+-- TOC entry 4944 (class 2606 OID 28297)
 -- Name: constituer pk_constituer; Type: CONSTRAINT; Schema: document; Owner: postgres
 --
 
@@ -2058,7 +2024,7 @@ ALTER TABLE ONLY document.constituer
 
 
 --
--- TOC entry 4950 (class 2606 OID 28299)
+-- TOC entry 4946 (class 2606 OID 28299)
 -- Name: deltasoldes pk_deltasoldes; Type: CONSTRAINT; Schema: document; Owner: postgres
 --
 
@@ -2067,7 +2033,7 @@ ALTER TABLE ONLY document.deltasoldes
 
 
 --
--- TOC entry 4952 (class 2606 OID 28301)
+-- TOC entry 4948 (class 2606 OID 28301)
 -- Name: docetats pk_docetats; Type: CONSTRAINT; Schema: document; Owner: postgres
 --
 
@@ -2076,7 +2042,7 @@ ALTER TABLE ONLY document.docetats
 
 
 --
--- TOC entry 4954 (class 2606 OID 28303)
+-- TOC entry 4950 (class 2606 OID 28303)
 -- Name: docetats_predecesseurs pk_docetats_predecesseurs; Type: CONSTRAINT; Schema: document; Owner: postgres
 --
 
@@ -2085,7 +2051,7 @@ ALTER TABLE ONLY document.docetats_predecesseurs
 
 
 --
--- TOC entry 4956 (class 2606 OID 28305)
+-- TOC entry 4952 (class 2606 OID 28305)
 -- Name: documents pk_documents; Type: CONSTRAINT; Schema: document; Owner: postgres
 --
 
@@ -2094,7 +2060,7 @@ ALTER TABLE ONLY document.documents
 
 
 --
--- TOC entry 4958 (class 2606 OID 28674)
+-- TOC entry 4954 (class 2606 OID 28674)
 -- Name: documentspromotions pk_documentspromotions; Type: CONSTRAINT; Schema: document; Owner: postgres
 --
 
@@ -2103,7 +2069,7 @@ ALTER TABLE ONLY document.documentspromotions
 
 
 --
--- TOC entry 5036 (class 2606 OID 28825)
+-- TOC entry 5030 (class 2606 OID 28825)
 -- Name: elementsbaselanques pk_elementsbaseslangues; Type: CONSTRAINT; Schema: document; Owner: postgres
 --
 
@@ -2112,7 +2078,7 @@ ALTER TABLE ONLY document.elementsbaselanques
 
 
 --
--- TOC entry 5038 (class 2606 OID 28813)
+-- TOC entry 5032 (class 2606 OID 28813)
 -- Name: elementslangues pk_elementslangues; Type: CONSTRAINT; Schema: document; Owner: postgres
 --
 
@@ -2121,7 +2087,7 @@ ALTER TABLE ONLY document.elementslangues
 
 
 --
--- TOC entry 4960 (class 2606 OID 28307)
+-- TOC entry 4956 (class 2606 OID 28307)
 -- Name: etapes pk_etapes; Type: CONSTRAINT; Schema: document; Owner: postgres
 --
 
@@ -2130,7 +2096,7 @@ ALTER TABLE ONLY document.etapes
 
 
 --
--- TOC entry 4962 (class 2606 OID 28309)
+-- TOC entry 4958 (class 2606 OID 28309)
 -- Name: etats pk_etats; Type: CONSTRAINT; Schema: document; Owner: postgres
 --
 
@@ -2139,7 +2105,7 @@ ALTER TABLE ONLY document.etats
 
 
 --
--- TOC entry 4964 (class 2606 OID 28311)
+-- TOC entry 4960 (class 2606 OID 28311)
 -- Name: exemplaires pk_exemplaires; Type: CONSTRAINT; Schema: document; Owner: postgres
 --
 
@@ -2148,7 +2114,7 @@ ALTER TABLE ONLY document.exemplaires
 
 
 --
--- TOC entry 4966 (class 2606 OID 28313)
+-- TOC entry 4962 (class 2606 OID 28313)
 -- Name: familles pk_familles; Type: CONSTRAINT; Schema: document; Owner: postgres
 --
 
@@ -2157,7 +2123,7 @@ ALTER TABLE ONLY document.familles
 
 
 --
--- TOC entry 4968 (class 2606 OID 28315)
+-- TOC entry 4964 (class 2606 OID 28315)
 -- Name: famillespromotions pk_famillespromotions; Type: CONSTRAINT; Schema: document; Owner: postgres
 --
 
@@ -2166,7 +2132,7 @@ ALTER TABLE ONLY document.famillespromotions
 
 
 --
--- TOC entry 4970 (class 2606 OID 28317)
+-- TOC entry 4966 (class 2606 OID 28317)
 -- Name: filesattentes pk_filesattentes; Type: CONSTRAINT; Schema: document; Owner: postgres
 --
 
@@ -2175,7 +2141,7 @@ ALTER TABLE ONLY document.filesattentes
 
 
 --
--- TOC entry 4974 (class 2606 OID 28319)
+-- TOC entry 4970 (class 2606 OID 28319)
 -- Name: jouerroles pk_jouerroles; Type: CONSTRAINT; Schema: document; Owner: postgres
 --
 
@@ -2184,7 +2150,7 @@ ALTER TABLE ONLY document.jouerroles
 
 
 --
--- TOC entry 4976 (class 2606 OID 28321)
+-- TOC entry 4972 (class 2606 OID 28321)
 -- Name: missions pk_missions; Type: CONSTRAINT; Schema: document; Owner: postgres
 --
 
@@ -2193,7 +2159,7 @@ ALTER TABLE ONLY document.missions
 
 
 --
--- TOC entry 4978 (class 2606 OID 28323)
+-- TOC entry 4974 (class 2606 OID 28323)
 -- Name: mouvementcaisses pk_mouvementcaisses; Type: CONSTRAINT; Schema: document; Owner: postgres
 --
 
@@ -2202,7 +2168,7 @@ ALTER TABLE ONLY document.mouvementcaisses
 
 
 --
--- TOC entry 4980 (class 2606 OID 28325)
+-- TOC entry 4976 (class 2606 OID 28325)
 -- Name: mouvements pk_mouvements; Type: CONSTRAINT; Schema: document; Owner: postgres
 --
 
@@ -2211,7 +2177,7 @@ ALTER TABLE ONLY document.mouvements
 
 
 --
--- TOC entry 4982 (class 2606 OID 28327)
+-- TOC entry 4978 (class 2606 OID 28327)
 -- Name: ordreetats pk_ordreetats; Type: CONSTRAINT; Schema: document; Owner: postgres
 --
 
@@ -2220,7 +2186,7 @@ ALTER TABLE ONLY document.ordreetats
 
 
 --
--- TOC entry 5050 (class 2606 OID 28769)
+-- TOC entry 5044 (class 2606 OID 28769)
 -- Name: organiser pk_organiser; Type: CONSTRAINT; Schema: document; Owner: postgres
 --
 
@@ -2229,7 +2195,7 @@ ALTER TABLE ONLY document.organiser
 
 
 --
--- TOC entry 4984 (class 2606 OID 28329)
+-- TOC entry 4980 (class 2606 OID 28329)
 -- Name: parcours pk_parcours; Type: CONSTRAINT; Schema: document; Owner: postgres
 --
 
@@ -2238,7 +2204,7 @@ ALTER TABLE ONLY document.parcours
 
 
 --
--- TOC entry 4986 (class 2606 OID 28333)
+-- TOC entry 4982 (class 2606 OID 28333)
 -- Name: personnes pk_personnes; Type: CONSTRAINT; Schema: document; Owner: postgres
 --
 
@@ -2247,16 +2213,7 @@ ALTER TABLE ONLY document.personnes
 
 
 --
--- TOC entry 4988 (class 2606 OID 28335)
--- Name: personnes_s pk_personnes_s; Type: CONSTRAINT; Schema: document; Owner: postgres
---
-
-ALTER TABLE ONLY document.personnes_s
-    ADD CONSTRAINT pk_personnes_s PRIMARY KEY (id);
-
-
---
--- TOC entry 4990 (class 2606 OID 28337)
+-- TOC entry 4984 (class 2606 OID 28337)
 -- Name: precomouvements pk_precomouvements; Type: CONSTRAINT; Schema: document; Owner: postgres
 --
 
@@ -2265,7 +2222,7 @@ ALTER TABLE ONLY document.precomouvements
 
 
 --
--- TOC entry 4992 (class 2606 OID 28339)
+-- TOC entry 4986 (class 2606 OID 28339)
 -- Name: precomouvementsqtes pk_precomouvementsqtes; Type: CONSTRAINT; Schema: document; Owner: postgres
 --
 
@@ -2274,7 +2231,7 @@ ALTER TABLE ONLY document.precomouvementsqtes
 
 
 --
--- TOC entry 4994 (class 2606 OID 28341)
+-- TOC entry 4988 (class 2606 OID 28341)
 -- Name: promotions pk_promotions; Type: CONSTRAINT; Schema: document; Owner: postgres
 --
 
@@ -2283,7 +2240,7 @@ ALTER TABLE ONLY document.promotions
 
 
 --
--- TOC entry 4998 (class 2606 OID 28343)
+-- TOC entry 4992 (class 2606 OID 28343)
 -- Name: rattacher pk_rattacher; Type: CONSTRAINT; Schema: document; Owner: postgres
 --
 
@@ -2292,7 +2249,7 @@ ALTER TABLE ONLY document.rattacher
 
 
 --
--- TOC entry 5000 (class 2606 OID 28347)
+-- TOC entry 4994 (class 2606 OID 28347)
 -- Name: respecter pk_respecter; Type: CONSTRAINT; Schema: document; Owner: postgres
 --
 
@@ -2301,7 +2258,7 @@ ALTER TABLE ONLY document.respecter
 
 
 --
--- TOC entry 5002 (class 2606 OID 28349)
+-- TOC entry 4996 (class 2606 OID 28349)
 -- Name: ressources pk_ressources; Type: CONSTRAINT; Schema: document; Owner: postgres
 --
 
@@ -2310,7 +2267,7 @@ ALTER TABLE ONLY document.ressources
 
 
 --
--- TOC entry 5004 (class 2606 OID 28351)
+-- TOC entry 4998 (class 2606 OID 28351)
 -- Name: ressourcespromotions pk_ressourcespromotions; Type: CONSTRAINT; Schema: document; Owner: postgres
 --
 
@@ -2319,7 +2276,7 @@ ALTER TABLE ONLY document.ressourcespromotions
 
 
 --
--- TOC entry 5006 (class 2606 OID 28353)
+-- TOC entry 5000 (class 2606 OID 28353)
 -- Name: roles pk_roles; Type: CONSTRAINT; Schema: document; Owner: postgres
 --
 
@@ -2328,7 +2285,7 @@ ALTER TABLE ONLY document.roles
 
 
 --
--- TOC entry 5008 (class 2606 OID 28355)
+-- TOC entry 5002 (class 2606 OID 28355)
 -- Name: sapplique pk_sapplique; Type: CONSTRAINT; Schema: document; Owner: postgres
 --
 
@@ -2337,7 +2294,7 @@ ALTER TABLE ONLY document.sapplique
 
 
 --
--- TOC entry 5010 (class 2606 OID 28357)
+-- TOC entry 5004 (class 2606 OID 28357)
 -- Name: services pk_services; Type: CONSTRAINT; Schema: document; Owner: postgres
 --
 
@@ -2346,7 +2303,7 @@ ALTER TABLE ONLY document.services
 
 
 --
--- TOC entry 5016 (class 2606 OID 28359)
+-- TOC entry 5010 (class 2606 OID 28359)
 -- Name: suivre pk_suivre; Type: CONSTRAINT; Schema: document; Owner: postgres
 --
 
@@ -2355,7 +2312,7 @@ ALTER TABLE ONLY document.suivre
 
 
 --
--- TOC entry 5018 (class 2606 OID 28361)
+-- TOC entry 5012 (class 2606 OID 28361)
 -- Name: tickets pk_tickets; Type: CONSTRAINT; Schema: document; Owner: postgres
 --
 
@@ -2364,7 +2321,7 @@ ALTER TABLE ONLY document.tickets
 
 
 --
--- TOC entry 5020 (class 2606 OID 28363)
+-- TOC entry 5014 (class 2606 OID 28363)
 -- Name: ticketsfilesattentes pk_ticketsfilesattentes; Type: CONSTRAINT; Schema: document; Owner: postgres
 --
 
@@ -2373,7 +2330,7 @@ ALTER TABLE ONLY document.ticketsfilesattentes
 
 
 --
--- TOC entry 5022 (class 2606 OID 28676)
+-- TOC entry 5016 (class 2606 OID 28676)
 -- Name: traiter pk_traiter; Type: CONSTRAINT; Schema: document; Owner: postgres
 --
 
@@ -2382,7 +2339,7 @@ ALTER TABLE ONLY document.traiter
 
 
 --
--- TOC entry 5024 (class 2606 OID 28365)
+-- TOC entry 5018 (class 2606 OID 28365)
 -- Name: validations pk_validations; Type: CONSTRAINT; Schema: document; Owner: postgres
 --
 
@@ -2391,7 +2348,7 @@ ALTER TABLE ONLY document.validations
 
 
 --
--- TOC entry 5026 (class 2606 OID 28367)
+-- TOC entry 5020 (class 2606 OID 28367)
 -- Name: violer pk_violer; Type: CONSTRAINT; Schema: document; Owner: postgres
 --
 
@@ -2400,7 +2357,7 @@ ALTER TABLE ONLY document.violer
 
 
 --
--- TOC entry 5062 (class 2606 OID 46424)
+-- TOC entry 5056 (class 2606 OID 46424)
 -- Name: remplir remplir_pkey; Type: CONSTRAINT; Schema: document; Owner: postgres
 --
 
@@ -2409,7 +2366,7 @@ ALTER TABLE ONLY document.remplir
 
 
 --
--- TOC entry 4972 (class 2606 OID 28369)
+-- TOC entry 4968 (class 2606 OID 28369)
 -- Name: filesattentes uc_filesattentes_services; Type: CONSTRAINT; Schema: document; Owner: postgres
 --
 
@@ -2418,7 +2375,7 @@ ALTER TABLE ONLY document.filesattentes
 
 
 --
--- TOC entry 4996 (class 2606 OID 28371)
+-- TOC entry 4990 (class 2606 OID 28371)
 -- Name: promotions uc_promotions_codeunique; Type: CONSTRAINT; Schema: document; Owner: postgres
 --
 
@@ -2427,7 +2384,7 @@ ALTER TABLE ONLY document.promotions
 
 
 --
--- TOC entry 5012 (class 2606 OID 28373)
+-- TOC entry 5006 (class 2606 OID 28373)
 -- Name: services uc_services_codeunique; Type: CONSTRAINT; Schema: document; Owner: postgres
 --
 
@@ -2436,7 +2393,7 @@ ALTER TABLE ONLY document.services
 
 
 --
--- TOC entry 5014 (class 2606 OID 28375)
+-- TOC entry 5008 (class 2606 OID 28375)
 -- Name: services uc_services_filesattentes; Type: CONSTRAINT; Schema: document; Owner: postgres
 --
 
@@ -2445,7 +2402,7 @@ ALTER TABLE ONLY document.services
 
 
 --
--- TOC entry 5046 (class 2606 OID 28733)
+-- TOC entry 5040 (class 2606 OID 28733)
 -- Name: utilisateurs utilisateurs_pkey; Type: CONSTRAINT; Schema: document; Owner: postgres
 --
 
@@ -2454,16 +2411,16 @@ ALTER TABLE ONLY document.utilisateurs
 
 
 --
--- TOC entry 5135 (class 2606 OID 46363)
+-- TOC entry 5129 (class 2606 OID 46363)
 -- Name: distributeurs distributeurs_id_fkey; Type: FK CONSTRAINT; Schema: document; Owner: postgres
 --
 
 ALTER TABLE ONLY document.distributeurs
-    ADD CONSTRAINT distributeurs_id_fkey FOREIGN KEY (id) REFERENCES document.personnes(id);
+    ADD CONSTRAINT distributeurs_id_fkey FOREIGN KEY (distributeurs_id) REFERENCES document.personnes(id);
 
 
 --
--- TOC entry 5118 (class 2606 OID 28826)
+-- TOC entry 5112 (class 2606 OID 28826)
 -- Name: actionslangues fk_actions_actionslangues; Type: FK CONSTRAINT; Schema: document; Owner: postgres
 --
 
@@ -2472,7 +2429,7 @@ ALTER TABLE ONLY document.actionslangues
 
 
 --
--- TOC entry 5116 (class 2606 OID 28838)
+-- TOC entry 5110 (class 2606 OID 28838)
 -- Name: actions fk_actions_elementbases; Type: FK CONSTRAINT; Schema: document; Owner: postgres
 --
 
@@ -2481,7 +2438,7 @@ ALTER TABLE ONLY document.actions
 
 
 --
--- TOC entry 5063 (class 2606 OID 28376)
+-- TOC entry 5057 (class 2606 OID 28376)
 -- Name: associer fk_associer_on_attributs; Type: FK CONSTRAINT; Schema: document; Owner: postgres
 --
 
@@ -2490,7 +2447,7 @@ ALTER TABLE ONLY document.associer
 
 
 --
--- TOC entry 5064 (class 2606 OID 28381)
+-- TOC entry 5058 (class 2606 OID 28381)
 -- Name: associer fk_associer_on_categories; Type: FK CONSTRAINT; Schema: document; Owner: postgres
 --
 
@@ -2499,7 +2456,7 @@ ALTER TABLE ONLY document.associer
 
 
 --
--- TOC entry 5065 (class 2606 OID 28386)
+-- TOC entry 5059 (class 2606 OID 28386)
 -- Name: categories fk_categories_on_documents; Type: FK CONSTRAINT; Schema: document; Owner: postgres
 --
 
@@ -2508,7 +2465,7 @@ ALTER TABLE ONLY document.categories
 
 
 --
--- TOC entry 5066 (class 2606 OID 28391)
+-- TOC entry 5060 (class 2606 OID 28391)
 -- Name: comptes fk_comptes_personnes; Type: FK CONSTRAINT; Schema: document; Owner: postgres
 --
 
@@ -2517,7 +2474,7 @@ ALTER TABLE ONLY document.comptes
 
 
 --
--- TOC entry 5069 (class 2606 OID 28396)
+-- TOC entry 5063 (class 2606 OID 28396)
 -- Name: constituer fk_con_on_attributs_entity; Type: FK CONSTRAINT; Schema: document; Owner: postgres
 --
 
@@ -2526,7 +2483,7 @@ ALTER TABLE ONLY document.constituer
 
 
 --
--- TOC entry 5070 (class 2606 OID 28401)
+-- TOC entry 5064 (class 2606 OID 28401)
 -- Name: constituer fk_con_on_documents_entity; Type: FK CONSTRAINT; Schema: document; Owner: postgres
 --
 
@@ -2535,7 +2492,7 @@ ALTER TABLE ONLY document.constituer
 
 
 --
--- TOC entry 5067 (class 2606 OID 28406)
+-- TOC entry 5061 (class 2606 OID 28406)
 -- Name: concerner fk_concerner_on_distributeurs_entity; Type: FK CONSTRAINT; Schema: document; Owner: postgres
 --
 
@@ -2544,7 +2501,7 @@ ALTER TABLE ONLY document.concerner
 
 
 --
--- TOC entry 5068 (class 2606 OID 28411)
+-- TOC entry 5062 (class 2606 OID 28411)
 -- Name: concerner fk_concerner_on_preco_mouvements_qtes_entity; Type: FK CONSTRAINT; Schema: document; Owner: postgres
 --
 
@@ -2553,7 +2510,7 @@ ALTER TABLE ONLY document.concerner
 
 
 --
--- TOC entry 5071 (class 2606 OID 28416)
+-- TOC entry 5065 (class 2606 OID 28416)
 -- Name: deltasoldes fk_deltasoldes_comptes; Type: FK CONSTRAINT; Schema: document; Owner: postgres
 --
 
@@ -2562,7 +2519,7 @@ ALTER TABLE ONLY document.deltasoldes
 
 
 --
--- TOC entry 5072 (class 2606 OID 28421)
+-- TOC entry 5066 (class 2606 OID 28421)
 -- Name: deltasoldes fk_deltasoldes_exemplaires; Type: FK CONSTRAINT; Schema: document; Owner: postgres
 --
 
@@ -2571,7 +2528,7 @@ ALTER TABLE ONLY document.deltasoldes
 
 
 --
--- TOC entry 5092 (class 2606 OID 28843)
+-- TOC entry 5086 (class 2606 OID 28843)
 -- Name: mouvements fk_distributeurs_mouvements; Type: FK CONSTRAINT; Schema: document; Owner: postgres
 --
 
@@ -2580,7 +2537,7 @@ ALTER TABLE ONLY document.mouvements
 
 
 --
--- TOC entry 5098 (class 2606 OID 28848)
+-- TOC entry 5092 (class 2606 OID 28848)
 -- Name: promotions fk_distributeurs_promotions; Type: FK CONSTRAINT; Schema: document; Owner: postgres
 --
 
@@ -2589,7 +2546,7 @@ ALTER TABLE ONLY document.promotions
 
 
 --
--- TOC entry 5079 (class 2606 OID 28426)
+-- TOC entry 5073 (class 2606 OID 28426)
 -- Name: documentspromotions fk_doc_on_documents_entity; Type: FK CONSTRAINT; Schema: document; Owner: postgres
 --
 
@@ -2598,7 +2555,7 @@ ALTER TABLE ONLY document.documentspromotions
 
 
 --
--- TOC entry 5080 (class 2606 OID 28431)
+-- TOC entry 5074 (class 2606 OID 28431)
 -- Name: documentspromotions fk_doc_on_promotions_entity; Type: FK CONSTRAINT; Schema: document; Owner: postgres
 --
 
@@ -2607,7 +2564,7 @@ ALTER TABLE ONLY document.documentspromotions
 
 
 --
--- TOC entry 5073 (class 2606 OID 28436)
+-- TOC entry 5067 (class 2606 OID 28436)
 -- Name: docetats fk_docetats_on_documents; Type: FK CONSTRAINT; Schema: document; Owner: postgres
 --
 
@@ -2616,7 +2573,7 @@ ALTER TABLE ONLY document.docetats
 
 
 --
--- TOC entry 5074 (class 2606 OID 28441)
+-- TOC entry 5068 (class 2606 OID 28441)
 -- Name: docetats fk_docetats_on_etapes; Type: FK CONSTRAINT; Schema: document; Owner: postgres
 --
 
@@ -2625,7 +2582,7 @@ ALTER TABLE ONLY document.docetats
 
 
 --
--- TOC entry 5075 (class 2606 OID 28446)
+-- TOC entry 5069 (class 2606 OID 28446)
 -- Name: docetats fk_docetats_on_etats; Type: FK CONSTRAINT; Schema: document; Owner: postgres
 --
 
@@ -2634,7 +2591,7 @@ ALTER TABLE ONLY document.docetats
 
 
 --
--- TOC entry 5076 (class 2606 OID 28451)
+-- TOC entry 5070 (class 2606 OID 28451)
 -- Name: docetats fk_docetats_on_validations; Type: FK CONSTRAINT; Schema: document; Owner: postgres
 --
 
@@ -2643,7 +2600,7 @@ ALTER TABLE ONLY document.docetats
 
 
 --
--- TOC entry 5077 (class 2606 OID 28456)
+-- TOC entry 5071 (class 2606 OID 28456)
 -- Name: docetats_predecesseurs fk_docetats_predecesseurs_on_docetats; Type: FK CONSTRAINT; Schema: document; Owner: postgres
 --
 
@@ -2652,7 +2609,7 @@ ALTER TABLE ONLY document.docetats_predecesseurs
 
 
 --
--- TOC entry 5078 (class 2606 OID 28461)
+-- TOC entry 5072 (class 2606 OID 28461)
 -- Name: docetats_predecesseurs fk_docetats_predecesseurs_suivant_on_docetats; Type: FK CONSTRAINT; Schema: document; Owner: postgres
 --
 
@@ -2661,7 +2618,7 @@ ALTER TABLE ONLY document.docetats_predecesseurs
 
 
 --
--- TOC entry 5117 (class 2606 OID 45540)
+-- TOC entry 5111 (class 2606 OID 45540)
 -- Name: elementsbases fk_element; Type: FK CONSTRAINT; Schema: document; Owner: postgres
 --
 
@@ -2670,7 +2627,7 @@ ALTER TABLE ONLY document.elementsbases
 
 
 --
--- TOC entry 5122 (class 2606 OID 28807)
+-- TOC entry 5116 (class 2606 OID 28807)
 -- Name: elementslangues fk_elements_elementslangues; Type: FK CONSTRAINT; Schema: document; Owner: postgres
 --
 
@@ -2679,7 +2636,7 @@ ALTER TABLE ONLY document.elementslangues
 
 
 --
--- TOC entry 5124 (class 2606 OID 28797)
+-- TOC entry 5118 (class 2606 OID 28797)
 -- Name: elements fk_elementsbase_elements; Type: FK CONSTRAINT; Schema: document; Owner: postgres
 --
 
@@ -2688,7 +2645,7 @@ ALTER TABLE ONLY document.elements
 
 
 --
--- TOC entry 5120 (class 2606 OID 28814)
+-- TOC entry 5114 (class 2606 OID 28814)
 -- Name: elementsbaselanques fk_elementsbase_elementsbaselangues; Type: FK CONSTRAINT; Schema: document; Owner: postgres
 --
 
@@ -2697,7 +2654,7 @@ ALTER TABLE ONLY document.elementsbaselanques
 
 
 --
--- TOC entry 5081 (class 2606 OID 28466)
+-- TOC entry 5075 (class 2606 OID 28466)
 -- Name: etapes fk_etapes_on_parcours; Type: FK CONSTRAINT; Schema: document; Owner: postgres
 --
 
@@ -2706,7 +2663,7 @@ ALTER TABLE ONLY document.etapes
 
 
 --
--- TOC entry 5082 (class 2606 OID 36869)
+-- TOC entry 5076 (class 2606 OID 36869)
 -- Name: exemplaires fk_exemplaire_documents; Type: FK CONSTRAINT; Schema: document; Owner: postgres
 --
 
@@ -2715,7 +2672,7 @@ ALTER TABLE ONLY document.exemplaires
 
 
 --
--- TOC entry 5083 (class 2606 OID 28471)
+-- TOC entry 5077 (class 2606 OID 28471)
 -- Name: exemplaires fk_exemplaires_personnes; Type: FK CONSTRAINT; Schema: document; Owner: postgres
 --
 
@@ -2724,7 +2681,7 @@ ALTER TABLE ONLY document.exemplaires
 
 
 --
--- TOC entry 5084 (class 2606 OID 28476)
+-- TOC entry 5078 (class 2606 OID 28476)
 -- Name: famillespromotions fk_fam_on_familles_entity; Type: FK CONSTRAINT; Schema: document; Owner: postgres
 --
 
@@ -2733,7 +2690,7 @@ ALTER TABLE ONLY document.famillespromotions
 
 
 --
--- TOC entry 5085 (class 2606 OID 28481)
+-- TOC entry 5079 (class 2606 OID 28481)
 -- Name: famillespromotions fk_fam_on_promotions_entity; Type: FK CONSTRAINT; Schema: document; Owner: postgres
 --
 
@@ -2742,7 +2699,7 @@ ALTER TABLE ONLY document.famillespromotions
 
 
 --
--- TOC entry 5086 (class 2606 OID 28486)
+-- TOC entry 5080 (class 2606 OID 28486)
 -- Name: filesattentes fk_filesattentes_on_services; Type: FK CONSTRAINT; Schema: document; Owner: postgres
 --
 
@@ -2751,7 +2708,7 @@ ALTER TABLE ONLY document.filesattentes
 
 
 --
--- TOC entry 5126 (class 2606 OID 28785)
+-- TOC entry 5120 (class 2606 OID 28785)
 -- Name: menus fk_groupes_menus; Type: FK CONSTRAINT; Schema: document; Owner: postgres
 --
 
@@ -2760,7 +2717,7 @@ ALTER TABLE ONLY document.menus
 
 
 --
--- TOC entry 5128 (class 2606 OID 28770)
+-- TOC entry 5122 (class 2606 OID 28770)
 -- Name: utilisateurs fk_groupes_utilisateurs; Type: FK CONSTRAINT; Schema: document; Owner: postgres
 --
 
@@ -2769,7 +2726,7 @@ ALTER TABLE ONLY document.utilisateurs
 
 
 --
--- TOC entry 5087 (class 2606 OID 28496)
+-- TOC entry 5081 (class 2606 OID 28496)
 -- Name: jouerroles fk_jouerroles_on_roles; Type: FK CONSTRAINT; Schema: document; Owner: postgres
 --
 
@@ -2778,7 +2735,7 @@ ALTER TABLE ONLY document.jouerroles
 
 
 --
--- TOC entry 5119 (class 2606 OID 28831)
+-- TOC entry 5113 (class 2606 OID 28831)
 -- Name: actionslangues fk_langues_actionslangues; Type: FK CONSTRAINT; Schema: document; Owner: postgres
 --
 
@@ -2787,7 +2744,7 @@ ALTER TABLE ONLY document.actionslangues
 
 
 --
--- TOC entry 5121 (class 2606 OID 28819)
+-- TOC entry 5115 (class 2606 OID 28819)
 -- Name: elementsbaselanques fk_langues_elementsbaselangues; Type: FK CONSTRAINT; Schema: document; Owner: postgres
 --
 
@@ -2796,7 +2753,7 @@ ALTER TABLE ONLY document.elementsbaselanques
 
 
 --
--- TOC entry 5123 (class 2606 OID 28802)
+-- TOC entry 5117 (class 2606 OID 28802)
 -- Name: elementslangues fk_langues_elementslangues; Type: FK CONSTRAINT; Schema: document; Owner: postgres
 --
 
@@ -2805,7 +2762,7 @@ ALTER TABLE ONLY document.elementslangues
 
 
 --
--- TOC entry 5125 (class 2606 OID 28792)
+-- TOC entry 5119 (class 2606 OID 28792)
 -- Name: elements fk_menus_elements; Type: FK CONSTRAINT; Schema: document; Owner: postgres
 --
 
@@ -2814,7 +2771,7 @@ ALTER TABLE ONLY document.elements
 
 
 --
--- TOC entry 5132 (class 2606 OID 28753)
+-- TOC entry 5126 (class 2606 OID 28753)
 -- Name: groupes fk_menus_groupes; Type: FK CONSTRAINT; Schema: document; Owner: postgres
 --
 
@@ -2823,7 +2780,7 @@ ALTER TABLE ONLY document.groupes
 
 
 --
--- TOC entry 5129 (class 2606 OID 28775)
+-- TOC entry 5123 (class 2606 OID 28775)
 -- Name: utilisateurs fk_menus_utilisateurs; Type: FK CONSTRAINT; Schema: document; Owner: postgres
 --
 
@@ -2832,7 +2789,7 @@ ALTER TABLE ONLY document.utilisateurs
 
 
 --
--- TOC entry 5088 (class 2606 OID 28501)
+-- TOC entry 5082 (class 2606 OID 28501)
 -- Name: missions fk_missions_on_services; Type: FK CONSTRAINT; Schema: document; Owner: postgres
 --
 
@@ -2841,7 +2798,7 @@ ALTER TABLE ONLY document.missions
 
 
 --
--- TOC entry 5089 (class 2606 OID 28506)
+-- TOC entry 5083 (class 2606 OID 28506)
 -- Name: mouvementcaisses fk_mouvementcaisses_caisses; Type: FK CONSTRAINT; Schema: document; Owner: postgres
 --
 
@@ -2850,7 +2807,7 @@ ALTER TABLE ONLY document.mouvementcaisses
 
 
 --
--- TOC entry 5090 (class 2606 OID 28511)
+-- TOC entry 5084 (class 2606 OID 28511)
 -- Name: mouvementcaisses fk_mouvementcaisses_comptes; Type: FK CONSTRAINT; Schema: document; Owner: postgres
 --
 
@@ -2859,7 +2816,7 @@ ALTER TABLE ONLY document.mouvementcaisses
 
 
 --
--- TOC entry 5093 (class 2606 OID 28521)
+-- TOC entry 5087 (class 2606 OID 28521)
 -- Name: mouvements fk_mouvements_on_ressources; Type: FK CONSTRAINT; Schema: document; Owner: postgres
 --
 
@@ -2868,7 +2825,7 @@ ALTER TABLE ONLY document.mouvements
 
 
 --
--- TOC entry 5091 (class 2606 OID 28526)
+-- TOC entry 5085 (class 2606 OID 28526)
 -- Name: mouvementcaisses fk_mouvementscaisses_exemplaires; Type: FK CONSTRAINT; Schema: document; Owner: postgres
 --
 
@@ -2877,7 +2834,7 @@ ALTER TABLE ONLY document.mouvementcaisses
 
 
 --
--- TOC entry 5094 (class 2606 OID 28531)
+-- TOC entry 5088 (class 2606 OID 28531)
 -- Name: ordreetats fk_ordreetats_on_etats; Type: FK CONSTRAINT; Schema: document; Owner: postgres
 --
 
@@ -2886,7 +2843,7 @@ ALTER TABLE ONLY document.ordreetats
 
 
 --
--- TOC entry 5130 (class 2606 OID 28758)
+-- TOC entry 5124 (class 2606 OID 28758)
 -- Name: organiser fk_organisation_organiser; Type: FK CONSTRAINT; Schema: document; Owner: postgres
 --
 
@@ -2895,7 +2852,7 @@ ALTER TABLE ONLY document.organiser
 
 
 --
--- TOC entry 5136 (class 2606 OID 46411)
+-- TOC entry 5130 (class 2606 OID 46411)
 -- Name: personnels fk_personnels_personnes; Type: FK CONSTRAINT; Schema: document; Owner: postgres
 --
 
@@ -2904,7 +2861,7 @@ ALTER TABLE ONLY document.personnels
 
 
 --
--- TOC entry 5095 (class 2606 OID 28536)
+-- TOC entry 5089 (class 2606 OID 28536)
 -- Name: personnes fk_personnes_comptes; Type: FK CONSTRAINT; Schema: document; Owner: postgres
 --
 
@@ -2913,7 +2870,7 @@ ALTER TABLE ONLY document.personnes
 
 
 --
--- TOC entry 5096 (class 2606 OID 28541)
+-- TOC entry 5090 (class 2606 OID 28541)
 -- Name: precomouvementsqtes fk_precomouvementsqtes_on_precomouvements; Type: FK CONSTRAINT; Schema: document; Owner: postgres
 --
 
@@ -2922,7 +2879,7 @@ ALTER TABLE ONLY document.precomouvementsqtes
 
 
 --
--- TOC entry 5097 (class 2606 OID 28546)
+-- TOC entry 5091 (class 2606 OID 28546)
 -- Name: precomouvementsqtes fk_precomouvementsqtes_on_ressources; Type: FK CONSTRAINT; Schema: document; Owner: postgres
 --
 
@@ -2931,7 +2888,7 @@ ALTER TABLE ONLY document.precomouvementsqtes
 
 
 --
--- TOC entry 5102 (class 2606 OID 28561)
+-- TOC entry 5096 (class 2606 OID 28561)
 -- Name: ressourcespromotions fk_res_on_promotions_entity; Type: FK CONSTRAINT; Schema: document; Owner: postgres
 --
 
@@ -2940,7 +2897,7 @@ ALTER TABLE ONLY document.ressourcespromotions
 
 
 --
--- TOC entry 5103 (class 2606 OID 28566)
+-- TOC entry 5097 (class 2606 OID 28566)
 -- Name: ressourcespromotions fk_res_on_ressources_entity; Type: FK CONSTRAINT; Schema: document; Owner: postgres
 --
 
@@ -2949,7 +2906,7 @@ ALTER TABLE ONLY document.ressourcespromotions
 
 
 --
--- TOC entry 5099 (class 2606 OID 28571)
+-- TOC entry 5093 (class 2606 OID 28571)
 -- Name: respecter fk_respecter_on_mouvements_entity; Type: FK CONSTRAINT; Schema: document; Owner: postgres
 --
 
@@ -2958,7 +2915,7 @@ ALTER TABLE ONLY document.respecter
 
 
 --
--- TOC entry 5100 (class 2606 OID 28576)
+-- TOC entry 5094 (class 2606 OID 28576)
 -- Name: respecter fk_respecter_on_preco_mouvements_entity; Type: FK CONSTRAINT; Schema: document; Owner: postgres
 --
 
@@ -2967,7 +2924,7 @@ ALTER TABLE ONLY document.respecter
 
 
 --
--- TOC entry 5101 (class 2606 OID 28581)
+-- TOC entry 5095 (class 2606 OID 28581)
 -- Name: ressources fk_ressources_on_familles; Type: FK CONSTRAINT; Schema: document; Owner: postgres
 --
 
@@ -2976,7 +2933,7 @@ ALTER TABLE ONLY document.ressources
 
 
 --
--- TOC entry 5104 (class 2606 OID 28586)
+-- TOC entry 5098 (class 2606 OID 28586)
 -- Name: sapplique fk_sapplique_on_familles_entity; Type: FK CONSTRAINT; Schema: document; Owner: postgres
 --
 
@@ -2985,7 +2942,7 @@ ALTER TABLE ONLY document.sapplique
 
 
 --
--- TOC entry 5105 (class 2606 OID 28591)
+-- TOC entry 5099 (class 2606 OID 28591)
 -- Name: sapplique fk_sapplique_on_preco_mouvements_qtes_entity; Type: FK CONSTRAINT; Schema: document; Owner: postgres
 --
 
@@ -2994,7 +2951,7 @@ ALTER TABLE ONLY document.sapplique
 
 
 --
--- TOC entry 5106 (class 2606 OID 28596)
+-- TOC entry 5100 (class 2606 OID 28596)
 -- Name: services fk_services_on_filesattentes; Type: FK CONSTRAINT; Schema: document; Owner: postgres
 --
 
@@ -3003,7 +2960,7 @@ ALTER TABLE ONLY document.services
 
 
 --
--- TOC entry 5107 (class 2606 OID 28601)
+-- TOC entry 5101 (class 2606 OID 28601)
 -- Name: suivre fk_suivre_on_documents_entity; Type: FK CONSTRAINT; Schema: document; Owner: postgres
 --
 
@@ -3012,7 +2969,7 @@ ALTER TABLE ONLY document.suivre
 
 
 --
--- TOC entry 5108 (class 2606 OID 28606)
+-- TOC entry 5102 (class 2606 OID 28606)
 -- Name: suivre fk_suivre_on_preco_mouvements_entity; Type: FK CONSTRAINT; Schema: document; Owner: postgres
 --
 
@@ -3021,7 +2978,7 @@ ALTER TABLE ONLY document.suivre
 
 
 --
--- TOC entry 5109 (class 2606 OID 28611)
+-- TOC entry 5103 (class 2606 OID 28611)
 -- Name: ticketsfilesattentes fk_ticketsfilesattentes_on_filesattentes; Type: FK CONSTRAINT; Schema: document; Owner: postgres
 --
 
@@ -3030,7 +2987,7 @@ ALTER TABLE ONLY document.ticketsfilesattentes
 
 
 --
--- TOC entry 5110 (class 2606 OID 28616)
+-- TOC entry 5104 (class 2606 OID 28616)
 -- Name: ticketsfilesattentes fk_ticketsfilesattentes_on_tickets; Type: FK CONSTRAINT; Schema: document; Owner: postgres
 --
 
@@ -3039,7 +2996,7 @@ ALTER TABLE ONLY document.ticketsfilesattentes
 
 
 --
--- TOC entry 5111 (class 2606 OID 28621)
+-- TOC entry 5105 (class 2606 OID 28621)
 -- Name: traiter fk_traiter_on_documents_entity; Type: FK CONSTRAINT; Schema: document; Owner: postgres
 --
 
@@ -3048,7 +3005,7 @@ ALTER TABLE ONLY document.traiter
 
 
 --
--- TOC entry 5112 (class 2606 OID 28626)
+-- TOC entry 5106 (class 2606 OID 28626)
 -- Name: traiter fk_traiter_on_missions_entity; Type: FK CONSTRAINT; Schema: document; Owner: postgres
 --
 
@@ -3057,7 +3014,7 @@ ALTER TABLE ONLY document.traiter
 
 
 --
--- TOC entry 5127 (class 2606 OID 28780)
+-- TOC entry 5121 (class 2606 OID 28780)
 -- Name: menus fk_utilisateur_menus; Type: FK CONSTRAINT; Schema: document; Owner: postgres
 --
 
@@ -3066,7 +3023,7 @@ ALTER TABLE ONLY document.menus
 
 
 --
--- TOC entry 5131 (class 2606 OID 28763)
+-- TOC entry 5125 (class 2606 OID 28763)
 -- Name: organiser fk_utilisateurs_organiser; Type: FK CONSTRAINT; Schema: document; Owner: postgres
 --
 
@@ -3075,7 +3032,7 @@ ALTER TABLE ONLY document.organiser
 
 
 --
--- TOC entry 5113 (class 2606 OID 28631)
+-- TOC entry 5107 (class 2606 OID 28631)
 -- Name: validations fk_validations_on_roles; Type: FK CONSTRAINT; Schema: document; Owner: postgres
 --
 
@@ -3084,7 +3041,7 @@ ALTER TABLE ONLY document.validations
 
 
 --
--- TOC entry 5114 (class 2606 OID 28636)
+-- TOC entry 5108 (class 2606 OID 28636)
 -- Name: violer fk_violer_on_mouvements_entity; Type: FK CONSTRAINT; Schema: document; Owner: postgres
 --
 
@@ -3093,7 +3050,7 @@ ALTER TABLE ONLY document.violer
 
 
 --
--- TOC entry 5115 (class 2606 OID 28641)
+-- TOC entry 5109 (class 2606 OID 28641)
 -- Name: violer fk_violer_on_preco_mouvements_entity; Type: FK CONSTRAINT; Schema: document; Owner: postgres
 --
 
@@ -3102,24 +3059,24 @@ ALTER TABLE ONLY document.violer
 
 
 --
--- TOC entry 5134 (class 2606 OID 46351)
+-- TOC entry 5128 (class 2606 OID 46351)
 -- Name: personnesmorales personnesmorales_id_fkey; Type: FK CONSTRAINT; Schema: document; Owner: postgres
 --
 
 ALTER TABLE ONLY document.personnesmorales
-    ADD CONSTRAINT personnesmorales_id_fkey FOREIGN KEY (id) REFERENCES document.personnes(id);
+    ADD CONSTRAINT personnesmorales_id_fkey FOREIGN KEY (personnesmorales_id) REFERENCES document.personnes(id);
 
 
 --
--- TOC entry 5133 (class 2606 OID 46339)
+-- TOC entry 5127 (class 2606 OID 46339)
 -- Name: personnesphysique personnesphysique_id_fkey; Type: FK CONSTRAINT; Schema: document; Owner: postgres
 --
 
 ALTER TABLE ONLY document.personnesphysique
-    ADD CONSTRAINT personnesphysique_id_fkey FOREIGN KEY (id) REFERENCES document.personnes(id);
+    ADD CONSTRAINT personnesphysique_id_fkey FOREIGN KEY (personnesphysique_id) REFERENCES document.personnes(id);
 
 
--- Completed on 2025-06-04 23:40:43
+-- Completed on 2025-06-08 06:58:42
 
 --
 -- PostgreSQL database dump complete
