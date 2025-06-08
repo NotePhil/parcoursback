@@ -20,6 +20,7 @@ public class Personnes implements Serializable, IPersonnes {
     private String id ;
     private String adresse ;
     private String mail ;
+    private String person_type ;
     private  String telephone ;
     private  String qrcodevalue ;
     private Comptes compte;

@@ -13,6 +13,7 @@ import java.util.List;
 @EqualsAndHashCode(callSuper = true)
 @SuperBuilder
 public class Personnels extends Personnes {
+    private String personnels_id;
     private Date dateEntree ;
     private String nom;
     private  Date dateNaissance ;
@@ -20,4 +21,5 @@ public class Personnels extends Personnes {
     private String prenom;
     private String sexe ;
     private List<JouerRoles> roles;
+    private List<MouvementCaisses> mouvementcaisses;
 }

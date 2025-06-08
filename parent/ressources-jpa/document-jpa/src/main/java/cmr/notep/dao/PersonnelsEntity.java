@@ -12,6 +12,7 @@ import java.util.List;
 @Setter
 @Entity
 @PrimaryKeyJoinColumn(name = "personnels_id")
+@DiscriminatorValue("personnels")
 @Table(name = "personnels", schema = "document")
 public class PersonnelsEntity extends PersonnesEntity {
 

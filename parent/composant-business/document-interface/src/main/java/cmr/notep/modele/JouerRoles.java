@@ -1,6 +1,5 @@
 package cmr.notep.modele;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import lombok.*;
 
@@ -17,6 +16,7 @@ public class JouerRoles {
     private String id;
     private Boolean etat ;
     private Date dateCreation;
+    private Date dateModification;
     private Date dateFin ;
     private Date dateDebut ;
     private Personnels personnel ;
