@@ -14,7 +14,6 @@ import java.util.List;
 @Setter
 @Entity
 @Inheritance(strategy = InheritanceType.JOINED)
-@DiscriminatorColumn(name = "person_type", discriminatorType = DiscriminatorType.STRING)
 @Table(name = "personnes", schema = "document")
 public class PersonnesEntity
 {
@@ -28,9 +27,6 @@ public class PersonnesEntity
 
     @Column(name = "mail")
     private String mail ;
-
-    @Column(name = "person_type", insertable = false , updatable = false)
-    private String person_type ;
 
     @Column(name = "telephone")
     private  String telephone ;

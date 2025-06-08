@@ -8,7 +8,7 @@ import jakarta.persistence.*;
 @Getter
 @Setter
 @Entity
-@DiscriminatorValue("personnesmorales")
+@PrimaryKeyJoinColumn(name = "personnesmorales_id")
 @Table(name = "personnesmorales", schema = "document")
 public class PersonnesMoralesEntity extends PersonnesEntity{
 

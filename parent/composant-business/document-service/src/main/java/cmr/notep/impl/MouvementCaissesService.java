@@ -4,9 +4,15 @@ import cmr.notep.api.IMouvementCaisses;
 import cmr.notep.business.MouvementCaissesBusiness;
 import cmr.notep.exceptions.ParcoursException;
 import cmr.notep.modele.MouvementCaisses;
+import jakarta.transaction.Transactional;
+import org.springframework.context.annotation.Primary;
+import org.springframework.web.bind.annotation.RestController;
 
 import java.util.List;
 
+@RestController
+@Transactional
+@Primary
 public class MouvementCaissesService implements IMouvementCaisses {
 
     private final MouvementCaissesBusiness mouvcaisse ;

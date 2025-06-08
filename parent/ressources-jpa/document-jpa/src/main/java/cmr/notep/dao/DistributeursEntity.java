@@ -11,7 +11,7 @@ import java.util.List;
 @Getter
 @Setter
 @Entity
-@DiscriminatorValue("distributeurs")
+@PrimaryKeyJoinColumn(name = "distributeurs_id")
 @Table(name = "distributeurs", schema = "document")
 public class DistributeursEntity extends PersonnesEntity {
 

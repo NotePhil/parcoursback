@@ -23,7 +23,7 @@ public class EtatsService implements IEtatsApi {
 
     @Override
     public Etats posterEtat(Etats Etat) {
-        return null;
+        return etatsBusiness.posterEtat(Etat);
     }
 
     @Override
@@ -33,7 +33,7 @@ public class EtatsService implements IEtatsApi {
 
     @Override
     public List<Etats> avoirTousEtats() {
-        return null;
+        return etatsBusiness.avoirTousEtats();
     }
 
     @Override
