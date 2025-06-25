@@ -51,19 +51,12 @@ public class UtilisateursBusiness {
         return dozerMapperBean.map(savedEntity, Utilisateurs.class);
     }
 
-    public Map<String , Object> UserToken (String token , String login)
+    public Utilisateurs avoirUser (String login)
     {
-
-        Map<String , Object> result = new HashMap<>();
-
-        Utilisateurs user = dozerMapperBean.map(
+        return dozerMapperBean.map(
                 this.daoAccessorService.getRepository(UtilisateursRepository.class)
                         .findByLogin(login)
                         .orElseThrow(()->new RuntimeException("Utilisateur non trouvé")),Utilisateurs.class);
 
-        result.put("User" , user) ;
-        result.put("Token" , token);
-
-        return result;
     }
 }
