@@ -24,6 +24,12 @@ public class UtilisateursEntity {
     @Column(name = "login",unique = true)
     private String login;
 
+    @Column(name = "nom")
+    private String nom;
+
+    @Column(name = "prenom")
+    private String prenom;
+
     @Column(name = "roles")
     private String roles;
 
@@ -48,9 +54,8 @@ public class UtilisateursEntity {
     @Mapping("organisations")
     private List<OrganisationsEntity> organisationsEntityList ;
 
-    @OneToOne
-    @JoinColumn(name = "menus_id" , referencedColumnName = "id")
+    @OneToMany(mappedBy = "utilisateursEntity", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
     @Mapping("menus")
-    private MenusEntity menusEntity;
+    private List<MenusEntity> menusEntities;
 
 }

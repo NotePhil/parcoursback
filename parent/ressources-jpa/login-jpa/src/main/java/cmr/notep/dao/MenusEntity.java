@@ -27,8 +27,8 @@ public class MenusEntity {
     @Column(name = "datecreation")
     private Date dateCreation;
 
-    @OneToOne(mappedBy = "menusEntity" ,cascade = CascadeType.ALL, fetch = FetchType.LAZY)
-    @JoinColumn(name = "utilisateurs_id" , referencedColumnName = "id")
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "utilisateurs_id", referencedColumnName = "id")
     @Mapping("utilisateur")
     private UtilisateursEntity utilisateursEntity ;
 

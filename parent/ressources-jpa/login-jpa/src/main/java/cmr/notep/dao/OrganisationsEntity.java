@@ -24,7 +24,7 @@ public class OrganisationsEntity {
     private String raisonSociale;
 
     @ManyToMany(fetch = FetchType.LAZY)
-    @JoinTable(name ="organiser" , schema = "document" ,
+    @JoinTable(name ="organiser" , schema = "login" ,
             joinColumns = @JoinColumn(name = "organisations_id") ,
             inverseJoinColumns = @JoinColumn(name = "utilisateurs_id"))
     @Mapping("utilisateurs")

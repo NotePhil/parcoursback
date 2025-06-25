@@ -12,11 +12,14 @@ import java.util.List;
 public class Utilisateurs {
     private String id;
     private String login;
+    private String nom;
+    private String prenom;
+    private String roles;
     private String mdp;
     private boolean etat;
     private Date dateCreation;
     private Date dateModification;
     private Groupes groupe;
     private List<Organisations> organisations;
-    private Menus menus;
+    private List<Menus> menus;
 }

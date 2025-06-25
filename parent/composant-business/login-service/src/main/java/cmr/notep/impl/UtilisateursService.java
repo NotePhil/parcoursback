@@ -81,7 +81,6 @@ public class UtilisateursService implements IUtilisateursApi {
             );
         }
 
-
         else throw  new UsernameNotFoundException("Invalid Credentials") ;
     }
 
