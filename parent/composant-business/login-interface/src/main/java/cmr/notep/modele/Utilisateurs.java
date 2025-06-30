@@ -21,5 +21,5 @@ public class Utilisateurs {
     private Date dateModification;
     private Groupes groupe;
     private List<Organisations> organisations;
-    private List<Menus> menus;
+    private List<Menus> menu;
 }

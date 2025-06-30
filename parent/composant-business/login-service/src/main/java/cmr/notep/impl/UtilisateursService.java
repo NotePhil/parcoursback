@@ -48,8 +48,8 @@ public class UtilisateursService implements IUtilisateursApi {
     }
 
     @Override
-    public Utilisateurs avoirUser(String iduser) throws ParcoursException {
-        return null;
+    public Utilisateurs avoirUser(@org.jetbrains.annotations.NotNull String iduser) throws ParcoursException {
+        return utilisateursBusiness.avoirUserById(iduser);
     }
 
     @Override
@@ -76,13 +76,13 @@ public class UtilisateursService implements IUtilisateursApi {
 
         if (authentication.isAuthenticated())
         {
-            Utilisateurs user = utilisateursBusiness.avoirUser(loginForm.username()) ;
+            Utilisateurs user = utilisateursBusiness.avoirUserByLogin(loginForm.username()) ;
             String token = jwtService.generateToken(userDetailsService.loadUserByUsername(loginForm.username()));
 
             Map<String , Object> result = new HashMap<>();
 
             result.put("User" , user) ;
-            result.put("Token" , token);
+            result.put("token" , token);
             return result;
         }
 

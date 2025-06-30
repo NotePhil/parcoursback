@@ -16,6 +16,7 @@ import java.util.List;
 public class Menus {
     private String id;
     private boolean etat;
+    private String langue;
     private Date dateCreation;
     private Utilisateurs utilisateur;
     private Groupes groupe;

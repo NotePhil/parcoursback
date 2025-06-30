@@ -24,6 +24,9 @@ public class MenusEntity {
     @Column(name = "etat")
     private boolean etat;
 
+    @Column(name = "langue")
+    private String langue;
+
     @Column(name = "datecreation")
     private Date dateCreation;
 
