@@ -5,7 +5,7 @@
 -- Dumped from database version 16.3
 -- Dumped by pg_dump version 16.3
 
--- Started on 2025-06-25 08:57:06
+-- Started on 2025-06-30 21:50:18
 
 SET statement_timeout = 0;
 SET lock_timeout = 0;
@@ -19,7 +19,7 @@ SET client_min_messages = warning;
 SET row_security = off;
 
 --
--- TOC entry 5093 (class 1262 OID 28060)
+-- TOC entry 5102 (class 1262 OID 28060)
 -- Name: parcoursbackv2; Type: DATABASE; Schema: -; Owner: postgres
 --
 
@@ -98,7 +98,8 @@ CREATE TABLE login.elements (
     datesouscription date,
     datemodification date,
     menus_id character varying(255),
-    elementsbases_id character varying(255)
+    elementsbases_id character varying(255),
+    fonctionnalites_id character varying(255)
 );
 
 
@@ -151,6 +152,22 @@ CREATE TABLE login.elementslangues (
 ALTER TABLE login.elementslangues OWNER TO postgres;
 
 --
+-- TOC entry 297 (class 1259 OID 46425)
+-- Name: fonctionnalites; Type: TABLE; Schema: login; Owner: postgres
+--
+
+CREATE TABLE login.fonctionnalites (
+    id character varying(255) NOT NULL,
+    fonction character varying(255),
+    icone character varying(255),
+    actif boolean,
+    menus_id character varying(255)
+);
+
+
+ALTER TABLE login.fonctionnalites OWNER TO postgres;
+
+--
 -- TOC entry 285 (class 1259 OID 45669)
 -- Name: groupes; Type: TABLE; Schema: login; Owner: postgres
 --
@@ -193,7 +210,8 @@ CREATE TABLE login.menus (
     etat boolean,
     datecreation date,
     utilisateurs_id character varying(255),
-    groupes_id character varying(255)
+    groupes_id character varying(255),
+    langue character varying(255)[]
 );
 
 
@@ -267,7 +285,7 @@ CREATE TABLE login.utilisateurs (
 ALTER TABLE login.utilisateurs OWNER TO postgres;
 
 --
--- TOC entry 5075 (class 0 OID 45547)
+-- TOC entry 5083 (class 0 OID 45547)
 -- Dependencies: 279
 -- Data for Name: actions; Type: TABLE DATA; Schema: login; Owner: postgres
 --
@@ -280,7 +298,7 @@ INSERT INTO login.actions (id, libelle, etat, datecreation, datemodification, el
 
 
 --
--- TOC entry 5076 (class 0 OID 45552)
+-- TOC entry 5084 (class 0 OID 45552)
 -- Dependencies: 280
 -- Data for Name: actionslangues; Type: TABLE DATA; Schema: login; Owner: postgres
 --
@@ -293,20 +311,20 @@ INSERT INTO login.actionslangues (langues_id, actions_id, valeurlibelle) VALUES 
 
 
 --
--- TOC entry 5077 (class 0 OID 45619)
+-- TOC entry 5085 (class 0 OID 45619)
 -- Dependencies: 281
 -- Data for Name: elements; Type: TABLE DATA; Schema: login; Owner: postgres
 --
 
-INSERT INTO login.elements (id, libelle, etat, datesouscription, datemodification, menus_id, elementsbases_id) VALUES ('z6qrs7yo-5y6z-42d4-1940-3p2q1r0s9t8u', 'Tableau de bord principal', true, '2024-01-01', '2024-01-01', 'p6ghi7oe-5o6p-483a-3940-3f2g1h0i9j8k', 'u1lmn2tj-0t1u-4d8f-6495-8k7l6m5n4o3p') ON CONFLICT DO NOTHING;
-INSERT INTO login.elements (id, libelle, etat, datesouscription, datemodification, menus_id, elementsbases_id) VALUES ('a7rst8zp-6z7a-43e5-0859-2q1r0s9t8u7v', 'Ajouter un utilisateur', true, '2024-01-01', '2024-01-01', 'q7hij8pf-6p7q-494b-2859-2g1h0i9j8k7l', 'v2mno3uk-1u2v-4e90-5304-7l6m5n4o3p2q') ON CONFLICT DO NOTHING;
-INSERT INTO login.elements (id, libelle, etat, datesouscription, datemodification, menus_id, elementsbases_id) VALUES ('b8stu9aq-7a8b-44f6-7768-1r0s9t8u7v6w', 'Supprimer un groupe', true, '2024-01-01', '2024-01-01', 'r8ijk9qg-7q8r-4a5c-1768-1h0i9j8k7l6m', 'w3nop4vl-2v3w-4fa1-4213-6m5n4o3p2q1r') ON CONFLICT DO NOTHING;
-INSERT INTO login.elements (id, libelle, etat, datesouscription, datemodification, menus_id, elementsbases_id) VALUES ('c9tuv0br-8b9c-4507-6677-0s9t8u7v6w5x', 'Modifier un menu', true, '2024-01-01', '2024-01-01', 's9jkl0rh-8r9s-4b6d-0677-0i9j8k7l6m5n', 'x4opq5wm-3w4x-40b2-3122-5n4o3p2q1r0s') ON CONFLICT DO NOTHING;
-INSERT INTO login.elements (id, libelle, etat, datesouscription, datemodification, menus_id, elementsbases_id) VALUES ('d0uvw1cs-9c0d-4618-5586-9t8u7v6w5x4y', 'Afficher les éléments', true, '2024-01-01', '2024-01-01', 't0klm1si-9s0t-4c7e-7586-9j8k7l6m5n4o', 'y5pqr6xn-4x5y-41c3-2031-4o3p2q1r0s9t') ON CONFLICT DO NOTHING;
+INSERT INTO login.elements (id, libelle, etat, datesouscription, datemodification, menus_id, elementsbases_id, fonctionnalites_id) VALUES ('z6qrs7yo-5y6z-42d4-1940-3p2q1r0s9t8u', 'Tableau de bord principal', true, '2024-01-01', '2024-01-01', 'p6ghi7oe-5o6p-483a-3940-3f2g1h0i9j8k', 'u1lmn2tj-0t1u-4d8f-6495-8k7l6m5n4o3p', NULL) ON CONFLICT DO NOTHING;
+INSERT INTO login.elements (id, libelle, etat, datesouscription, datemodification, menus_id, elementsbases_id, fonctionnalites_id) VALUES ('a7rst8zp-6z7a-43e5-0859-2q1r0s9t8u7v', 'Ajouter un utilisateur', true, '2024-01-01', '2024-01-01', 'q7hij8pf-6p7q-494b-2859-2g1h0i9j8k7l', 'v2mno3uk-1u2v-4e90-5304-7l6m5n4o3p2q', NULL) ON CONFLICT DO NOTHING;
+INSERT INTO login.elements (id, libelle, etat, datesouscription, datemodification, menus_id, elementsbases_id, fonctionnalites_id) VALUES ('b8stu9aq-7a8b-44f6-7768-1r0s9t8u7v6w', 'Supprimer un groupe', true, '2024-01-01', '2024-01-01', 'r8ijk9qg-7q8r-4a5c-1768-1h0i9j8k7l6m', 'w3nop4vl-2v3w-4fa1-4213-6m5n4o3p2q1r', NULL) ON CONFLICT DO NOTHING;
+INSERT INTO login.elements (id, libelle, etat, datesouscription, datemodification, menus_id, elementsbases_id, fonctionnalites_id) VALUES ('c9tuv0br-8b9c-4507-6677-0s9t8u7v6w5x', 'Modifier un menu', true, '2024-01-01', '2024-01-01', 's9jkl0rh-8r9s-4b6d-0677-0i9j8k7l6m5n', 'x4opq5wm-3w4x-40b2-3122-5n4o3p2q1r0s', NULL) ON CONFLICT DO NOTHING;
+INSERT INTO login.elements (id, libelle, etat, datesouscription, datemodification, menus_id, elementsbases_id, fonctionnalites_id) VALUES ('d0uvw1cs-9c0d-4618-5586-9t8u7v6w5x4y', 'Afficher les éléments', true, '2024-01-01', '2024-01-01', 't0klm1si-9s0t-4c7e-7586-9j8k7l6m5n4o', 'y5pqr6xn-4x5y-41c3-2031-4o3p2q1r0s9t', NULL) ON CONFLICT DO NOTHING;
 
 
 --
--- TOC entry 5078 (class 0 OID 45624)
+-- TOC entry 5086 (class 0 OID 45624)
 -- Dependencies: 282
 -- Data for Name: elementsbaselanques; Type: TABLE DATA; Schema: login; Owner: postgres
 --
@@ -319,7 +337,7 @@ INSERT INTO login.elementsbaselanques (langues_id, elementsbases_id, valeurlibel
 
 
 --
--- TOC entry 5079 (class 0 OID 45629)
+-- TOC entry 5087 (class 0 OID 45629)
 -- Dependencies: 283
 -- Data for Name: elementsbases; Type: TABLE DATA; Schema: login; Owner: postgres
 --
@@ -332,7 +350,7 @@ INSERT INTO login.elementsbases (id, libelle, etat, datesouscription, datemodifi
 
 
 --
--- TOC entry 5080 (class 0 OID 45634)
+-- TOC entry 5088 (class 0 OID 45634)
 -- Dependencies: 284
 -- Data for Name: elementslangues; Type: TABLE DATA; Schema: login; Owner: postgres
 --
@@ -345,7 +363,15 @@ INSERT INTO login.elementslangues (langues_id, elements_id, valeurlibelle) VALUE
 
 
 --
--- TOC entry 5081 (class 0 OID 45669)
+-- TOC entry 5096 (class 0 OID 46425)
+-- Dependencies: 297
+-- Data for Name: fonctionnalites; Type: TABLE DATA; Schema: login; Owner: postgres
+--
+
+
+
+--
+-- TOC entry 5089 (class 0 OID 45669)
 -- Dependencies: 285
 -- Data for Name: groupes; Type: TABLE DATA; Schema: login; Owner: postgres
 --
@@ -360,7 +386,7 @@ INSERT INTO login.groupes (id, libelle, etat, datecreation, datemodification, me
 
 
 --
--- TOC entry 5082 (class 0 OID 45679)
+-- TOC entry 5090 (class 0 OID 45679)
 -- Dependencies: 286
 -- Data for Name: langues; Type: TABLE DATA; Schema: login; Owner: postgres
 --
@@ -373,22 +399,22 @@ INSERT INTO login.langues (id, libelle, etat, datesouscription, datemodification
 
 
 --
--- TOC entry 5083 (class 0 OID 45684)
+-- TOC entry 5091 (class 0 OID 45684)
 -- Dependencies: 287
 -- Data for Name: menus; Type: TABLE DATA; Schema: login; Owner: postgres
 --
 
-INSERT INTO login.menus (id, etat, datecreation, utilisateurs_id, groupes_id) VALUES ('p6ghi7oe-5o6p-483a-3940-3f2g1h0i9j8k', true, '2024-01-01', 'k1yzabc2j-0j1k-43e5-8415-8a7b6c5d4e3f', 'f6jkl74e-5e6f-4e90-596a-3b2a1e0d9c8a') ON CONFLICT DO NOTHING;
-INSERT INTO login.menus (id, etat, datecreation, utilisateurs_id, groupes_id) VALUES ('q7hij8pf-6p7q-494b-2859-2g1h0i9j8k7l', true, '2024-01-01', 'l2bcd3ka-1k2l-44f6-9304-7b6c5d4e3f2g', 'g7mno85f-6f7g-4fa1-4859-2a1e0d9c8a7b') ON CONFLICT DO NOTHING;
-INSERT INTO login.menus (id, etat, datecreation, utilisateurs_id, groupes_id) VALUES ('r8ijk9qg-7q8r-4a5c-1768-1h0i9j8k7l6m', true, '2024-01-01', 'm3cde4lb-2l3m-4507-0213-6c5d4e3f2g1h', 'h8pqr96g-7g8h-40b2-5748-1e0d9c8a7b6c') ON CONFLICT DO NOTHING;
-INSERT INTO login.menus (id, etat, datecreation, utilisateurs_id, groupes_id) VALUES ('s9jkl0rh-8r9s-4b6d-0677-0i9j8k7l6m5n', true, '2024-01-01', 'n4efg5mc-3m4n-4618-1122-5d4e3f2g1h0i', 'i9stu07h-8h9i-41c3-6637-0d9c8a7b6c5d') ON CONFLICT DO NOTHING;
-INSERT INTO login.menus (id, etat, datecreation, utilisateurs_id, groupes_id) VALUES ('p6ghi7oe-5o6p-483a-3940-3f2g1h779j8k', true, '2024-01-01', '0190615e-1101-7209-9932-7020bbd55714', 'f6jkl74e-5e6f-4e90-596a-3b2a1e0a7c8a') ON CONFLICT DO NOTHING;
-INSERT INTO login.menus (id, etat, datecreation, utilisateurs_id, groupes_id) VALUES ('b2c3d4e5-f6a7-8901-bcde-2345678901fa', true, '2025-05-10', 'e9285758-0c3a-46ae-947e-9af343ac5f62', 'a1b2c3d4-e5f6-7890-abcd-1234567890ef') ON CONFLICT DO NOTHING;
-INSERT INTO login.menus (id, etat, datecreation, utilisateurs_id, groupes_id) VALUES ('t0klm1si-9s0t-4c7e-7586-9j8k7l6m5n4o', true, '2024-01-01', 'o5fgh6nd-4n5o-4729-2031-4e3f2g1h0i9j', 'j0vwx18i-9i0j-42d4-7526-9c8a7b6c5d4e') ON CONFLICT DO NOTHING;
+INSERT INTO login.menus (id, etat, datecreation, utilisateurs_id, groupes_id, langue) VALUES ('q7hij8pf-6p7q-494b-2859-2g1h0i9j8k7l', true, '2024-01-01', 'l2bcd3ka-1k2l-44f6-9304-7b6c5d4e3f2g', 'g7mno85f-6f7g-4fa1-4859-2a1e0d9c8a7b', NULL) ON CONFLICT DO NOTHING;
+INSERT INTO login.menus (id, etat, datecreation, utilisateurs_id, groupes_id, langue) VALUES ('r8ijk9qg-7q8r-4a5c-1768-1h0i9j8k7l6m', true, '2024-01-01', 'm3cde4lb-2l3m-4507-0213-6c5d4e3f2g1h', 'h8pqr96g-7g8h-40b2-5748-1e0d9c8a7b6c', NULL) ON CONFLICT DO NOTHING;
+INSERT INTO login.menus (id, etat, datecreation, utilisateurs_id, groupes_id, langue) VALUES ('s9jkl0rh-8r9s-4b6d-0677-0i9j8k7l6m5n', true, '2024-01-01', 'n4efg5mc-3m4n-4618-1122-5d4e3f2g1h0i', 'i9stu07h-8h9i-41c3-6637-0d9c8a7b6c5d', NULL) ON CONFLICT DO NOTHING;
+INSERT INTO login.menus (id, etat, datecreation, utilisateurs_id, groupes_id, langue) VALUES ('b2c3d4e5-f6a7-8901-bcde-2345678901fa', true, '2025-05-10', 'e9285758-0c3a-46ae-947e-9af343ac5f62', 'a1b2c3d4-e5f6-7890-abcd-1234567890ef', NULL) ON CONFLICT DO NOTHING;
+INSERT INTO login.menus (id, etat, datecreation, utilisateurs_id, groupes_id, langue) VALUES ('t0klm1si-9s0t-4c7e-7586-9j8k7l6m5n4o', true, '2024-01-01', 'o5fgh6nd-4n5o-4729-2031-4e3f2g1h0i9j', 'j0vwx18i-9i0j-42d4-7526-9c8a7b6c5d4e', NULL) ON CONFLICT DO NOTHING;
+INSERT INTO login.menus (id, etat, datecreation, utilisateurs_id, groupes_id, langue) VALUES ('p6ghi7oe-5o6p-483a-3940-3f2g1h0i9j8k', true, '2024-01-01', 'e9285758-0c3a-46ae-947e-9af343ac5f62', 'f6jkl74e-5e6f-4e90-596a-3b2a1e0d9c8a', NULL) ON CONFLICT DO NOTHING;
+INSERT INTO login.menus (id, etat, datecreation, utilisateurs_id, groupes_id, langue) VALUES ('p6ghi7oe-5o6p-483a-3940-3f2g1h779j8k', true, '2024-01-01', 'e9285758-0c3a-46ae-947e-9af343ac5f62', 'f6jkl74e-5e6f-4e90-596a-3b2a1e0a7c8a', NULL) ON CONFLICT DO NOTHING;
 
 
 --
--- TOC entry 5084 (class 0 OID 45709)
+-- TOC entry 5092 (class 0 OID 45709)
 -- Dependencies: 288
 -- Data for Name: organisations; Type: TABLE DATA; Schema: login; Owner: postgres
 --
@@ -402,7 +428,7 @@ INSERT INTO login.organisations (id, raisonsociale) VALUES ('c3d4e5f6-a7b8-9012-
 
 
 --
--- TOC entry 5085 (class 0 OID 45714)
+-- TOC entry 5093 (class 0 OID 45714)
 -- Dependencies: 289
 -- Data for Name: organiser; Type: TABLE DATA; Schema: login; Owner: postgres
 --
@@ -415,7 +441,7 @@ INSERT INTO login.organiser (organisations_id, utilisateurs_id) VALUES ('a1eebc9
 
 
 --
--- TOC entry 5086 (class 0 OID 45750)
+-- TOC entry 5094 (class 0 OID 45750)
 -- Dependencies: 290
 -- Data for Name: promotions; Type: TABLE DATA; Schema: login; Owner: postgres
 --
@@ -426,7 +452,7 @@ INSERT INTO login.promotions (id, datedebut, datefin, codeunique, typeremise, va
 
 
 --
--- TOC entry 5087 (class 0 OID 45815)
+-- TOC entry 5095 (class 0 OID 45815)
 -- Dependencies: 291
 -- Data for Name: utilisateurs; Type: TABLE DATA; Schema: login; Owner: postgres
 --
@@ -441,7 +467,7 @@ INSERT INTO login.utilisateurs (id, login, mdp, etat, datecreation, datemodifica
 
 
 --
--- TOC entry 4885 (class 2606 OID 45831)
+-- TOC entry 4889 (class 2606 OID 45831)
 -- Name: actions actions_pkey; Type: CONSTRAINT; Schema: login; Owner: postgres
 --
 
@@ -450,7 +476,7 @@ ALTER TABLE ONLY login.actions
 
 
 --
--- TOC entry 4889 (class 2606 OID 45833)
+-- TOC entry 4893 (class 2606 OID 45833)
 -- Name: elements elements_pkey; Type: CONSTRAINT; Schema: login; Owner: postgres
 --
 
@@ -459,7 +485,7 @@ ALTER TABLE ONLY login.elements
 
 
 --
--- TOC entry 4895 (class 2606 OID 45835)
+-- TOC entry 4899 (class 2606 OID 45835)
 -- Name: elementsbases elementsbases_pkey; Type: CONSTRAINT; Schema: login; Owner: postgres
 --
 
@@ -468,7 +494,16 @@ ALTER TABLE ONLY login.elementsbases
 
 
 --
--- TOC entry 4899 (class 2606 OID 45837)
+-- TOC entry 4921 (class 2606 OID 46431)
+-- Name: fonctionnalites fonctionnalites_pkey; Type: CONSTRAINT; Schema: login; Owner: postgres
+--
+
+ALTER TABLE ONLY login.fonctionnalites
+    ADD CONSTRAINT fonctionnalites_pkey PRIMARY KEY (id);
+
+
+--
+-- TOC entry 4903 (class 2606 OID 45837)
 -- Name: groupes groupes_pkey; Type: CONSTRAINT; Schema: login; Owner: postgres
 --
 
@@ -477,7 +512,7 @@ ALTER TABLE ONLY login.groupes
 
 
 --
--- TOC entry 4901 (class 2606 OID 45839)
+-- TOC entry 4905 (class 2606 OID 45839)
 -- Name: langues langues_pkey; Type: CONSTRAINT; Schema: login; Owner: postgres
 --
 
@@ -486,7 +521,7 @@ ALTER TABLE ONLY login.langues
 
 
 --
--- TOC entry 4903 (class 2606 OID 45841)
+-- TOC entry 4907 (class 2606 OID 45841)
 -- Name: menus menus_pkey; Type: CONSTRAINT; Schema: login; Owner: postgres
 --
 
@@ -495,7 +530,7 @@ ALTER TABLE ONLY login.menus
 
 
 --
--- TOC entry 4905 (class 2606 OID 45843)
+-- TOC entry 4909 (class 2606 OID 45843)
 -- Name: organisations organisations_pkey; Type: CONSTRAINT; Schema: login; Owner: postgres
 --
 
@@ -504,7 +539,7 @@ ALTER TABLE ONLY login.organisations
 
 
 --
--- TOC entry 4887 (class 2606 OID 45845)
+-- TOC entry 4891 (class 2606 OID 45845)
 -- Name: actionslangues pk_actionslangues; Type: CONSTRAINT; Schema: login; Owner: postgres
 --
 
@@ -513,7 +548,7 @@ ALTER TABLE ONLY login.actionslangues
 
 
 --
--- TOC entry 4891 (class 2606 OID 45855)
+-- TOC entry 4895 (class 2606 OID 45855)
 -- Name: elements pk_composite_elements; Type: CONSTRAINT; Schema: login; Owner: postgres
 --
 
@@ -522,7 +557,7 @@ ALTER TABLE ONLY login.elements
 
 
 --
--- TOC entry 4893 (class 2606 OID 45873)
+-- TOC entry 4897 (class 2606 OID 45873)
 -- Name: elementsbaselanques pk_elementsbaseslangues; Type: CONSTRAINT; Schema: login; Owner: postgres
 --
 
@@ -531,7 +566,7 @@ ALTER TABLE ONLY login.elementsbaselanques
 
 
 --
--- TOC entry 4897 (class 2606 OID 45875)
+-- TOC entry 4901 (class 2606 OID 45875)
 -- Name: elementslangues pk_elementslangues; Type: CONSTRAINT; Schema: login; Owner: postgres
 --
 
@@ -540,7 +575,7 @@ ALTER TABLE ONLY login.elementslangues
 
 
 --
--- TOC entry 4907 (class 2606 OID 45899)
+-- TOC entry 4911 (class 2606 OID 45899)
 -- Name: organiser pk_organiser; Type: CONSTRAINT; Schema: login; Owner: postgres
 --
 
@@ -549,7 +584,7 @@ ALTER TABLE ONLY login.organiser
 
 
 --
--- TOC entry 4909 (class 2606 OID 45913)
+-- TOC entry 4913 (class 2606 OID 45913)
 -- Name: promotions pk_promotions; Type: CONSTRAINT; Schema: login; Owner: postgres
 --
 
@@ -558,7 +593,7 @@ ALTER TABLE ONLY login.promotions
 
 
 --
--- TOC entry 4911 (class 2606 OID 45945)
+-- TOC entry 4915 (class 2606 OID 45945)
 -- Name: promotions uc_promotions_codeunique; Type: CONSTRAINT; Schema: login; Owner: postgres
 --
 
@@ -567,7 +602,7 @@ ALTER TABLE ONLY login.promotions
 
 
 --
--- TOC entry 4913 (class 2606 OID 46331)
+-- TOC entry 4917 (class 2606 OID 46331)
 -- Name: utilisateurs uniq_login; Type: CONSTRAINT; Schema: login; Owner: postgres
 --
 
@@ -576,7 +611,7 @@ ALTER TABLE ONLY login.utilisateurs
 
 
 --
--- TOC entry 4915 (class 2606 OID 45951)
+-- TOC entry 4919 (class 2606 OID 45951)
 -- Name: utilisateurs utilisateurs_pkey; Type: CONSTRAINT; Schema: login; Owner: postgres
 --
 
@@ -585,7 +620,7 @@ ALTER TABLE ONLY login.utilisateurs
 
 
 --
--- TOC entry 4917 (class 2606 OID 45952)
+-- TOC entry 4923 (class 2606 OID 45952)
 -- Name: actionslangues fk_actions_actionslangues; Type: FK CONSTRAINT; Schema: login; Owner: postgres
 --
 
@@ -594,7 +629,7 @@ ALTER TABLE ONLY login.actionslangues
 
 
 --
--- TOC entry 4916 (class 2606 OID 45957)
+-- TOC entry 4922 (class 2606 OID 45957)
 -- Name: actions fk_actions_elementbases; Type: FK CONSTRAINT; Schema: login; Owner: postgres
 --
 
@@ -603,7 +638,7 @@ ALTER TABLE ONLY login.actions
 
 
 --
--- TOC entry 4923 (class 2606 OID 46062)
+-- TOC entry 4930 (class 2606 OID 46062)
 -- Name: elementsbases fk_element; Type: FK CONSTRAINT; Schema: login; Owner: postgres
 --
 
@@ -612,7 +647,7 @@ ALTER TABLE ONLY login.elementsbases
 
 
 --
--- TOC entry 4924 (class 2606 OID 46067)
+-- TOC entry 4931 (class 2606 OID 46067)
 -- Name: elementslangues fk_elements_elementslangues; Type: FK CONSTRAINT; Schema: login; Owner: postgres
 --
 
@@ -621,7 +656,16 @@ ALTER TABLE ONLY login.elementslangues
 
 
 --
--- TOC entry 4919 (class 2606 OID 46072)
+-- TOC entry 4925 (class 2606 OID 46437)
+-- Name: elements fk_elements_fonctionnalites; Type: FK CONSTRAINT; Schema: login; Owner: postgres
+--
+
+ALTER TABLE ONLY login.elements
+    ADD CONSTRAINT fk_elements_fonctionnalites FOREIGN KEY (fonctionnalites_id) REFERENCES login.fonctionnalites(id) ON DELETE SET NULL;
+
+
+--
+-- TOC entry 4926 (class 2606 OID 46072)
 -- Name: elements fk_elementsbase_elements; Type: FK CONSTRAINT; Schema: login; Owner: postgres
 --
 
@@ -630,7 +674,7 @@ ALTER TABLE ONLY login.elements
 
 
 --
--- TOC entry 4921 (class 2606 OID 46077)
+-- TOC entry 4928 (class 2606 OID 46077)
 -- Name: elementsbaselanques fk_elementsbase_elementsbaselangues; Type: FK CONSTRAINT; Schema: login; Owner: postgres
 --
 
@@ -639,7 +683,16 @@ ALTER TABLE ONLY login.elementsbaselanques
 
 
 --
--- TOC entry 4927 (class 2606 OID 46112)
+-- TOC entry 4939 (class 2606 OID 46432)
+-- Name: fonctionnalites fk_fonctionnalites_menus; Type: FK CONSTRAINT; Schema: login; Owner: postgres
+--
+
+ALTER TABLE ONLY login.fonctionnalites
+    ADD CONSTRAINT fk_fonctionnalites_menus FOREIGN KEY (menus_id) REFERENCES login.menus(id) ON DELETE SET NULL;
+
+
+--
+-- TOC entry 4934 (class 2606 OID 46112)
 -- Name: menus fk_groupes_menus; Type: FK CONSTRAINT; Schema: login; Owner: postgres
 --
 
@@ -648,7 +701,7 @@ ALTER TABLE ONLY login.menus
 
 
 --
--- TOC entry 4931 (class 2606 OID 46117)
+-- TOC entry 4938 (class 2606 OID 46117)
 -- Name: utilisateurs fk_groupes_utilisateurs; Type: FK CONSTRAINT; Schema: login; Owner: postgres
 --
 
@@ -657,7 +710,7 @@ ALTER TABLE ONLY login.utilisateurs
 
 
 --
--- TOC entry 4918 (class 2606 OID 46132)
+-- TOC entry 4924 (class 2606 OID 46132)
 -- Name: actionslangues fk_langues_actionslangues; Type: FK CONSTRAINT; Schema: login; Owner: postgres
 --
 
@@ -666,7 +719,7 @@ ALTER TABLE ONLY login.actionslangues
 
 
 --
--- TOC entry 4922 (class 2606 OID 46137)
+-- TOC entry 4929 (class 2606 OID 46137)
 -- Name: elementsbaselanques fk_langues_elementsbaselangues; Type: FK CONSTRAINT; Schema: login; Owner: postgres
 --
 
@@ -675,7 +728,7 @@ ALTER TABLE ONLY login.elementsbaselanques
 
 
 --
--- TOC entry 4925 (class 2606 OID 46142)
+-- TOC entry 4932 (class 2606 OID 46142)
 -- Name: elementslangues fk_langues_elementslangues; Type: FK CONSTRAINT; Schema: login; Owner: postgres
 --
 
@@ -684,7 +737,7 @@ ALTER TABLE ONLY login.elementslangues
 
 
 --
--- TOC entry 4920 (class 2606 OID 46147)
+-- TOC entry 4927 (class 2606 OID 46147)
 -- Name: elements fk_menus_elements; Type: FK CONSTRAINT; Schema: login; Owner: postgres
 --
 
@@ -693,7 +746,7 @@ ALTER TABLE ONLY login.elements
 
 
 --
--- TOC entry 4926 (class 2606 OID 46152)
+-- TOC entry 4933 (class 2606 OID 46152)
 -- Name: groupes fk_menus_groupes; Type: FK CONSTRAINT; Schema: login; Owner: postgres
 --
 
@@ -702,7 +755,7 @@ ALTER TABLE ONLY login.groupes
 
 
 --
--- TOC entry 4929 (class 2606 OID 46197)
+-- TOC entry 4936 (class 2606 OID 46197)
 -- Name: organiser fk_organisation_organiser; Type: FK CONSTRAINT; Schema: login; Owner: postgres
 --
 
@@ -711,7 +764,7 @@ ALTER TABLE ONLY login.organiser
 
 
 --
--- TOC entry 4928 (class 2606 OID 46297)
+-- TOC entry 4935 (class 2606 OID 46297)
 -- Name: menus fk_utilisateur_menus; Type: FK CONSTRAINT; Schema: login; Owner: postgres
 --
 
@@ -720,7 +773,7 @@ ALTER TABLE ONLY login.menus
 
 
 --
--- TOC entry 4930 (class 2606 OID 46302)
+-- TOC entry 4937 (class 2606 OID 46302)
 -- Name: organiser fk_utilisateurs_organiser; Type: FK CONSTRAINT; Schema: login; Owner: postgres
 --
 
@@ -728,7 +781,7 @@ ALTER TABLE ONLY login.organiser
     ADD CONSTRAINT fk_utilisateurs_organiser FOREIGN KEY (utilisateurs_id) REFERENCES login.utilisateurs(id);
 
 
--- Completed on 2025-06-25 08:57:07
+-- Completed on 2025-06-30 21:50:18
 
 --
 -- PostgreSQL database dump complete
