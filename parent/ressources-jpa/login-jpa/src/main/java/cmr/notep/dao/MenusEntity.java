@@ -43,4 +43,8 @@ public class MenusEntity {
     @OneToMany(mappedBy = "menusEntity")
     @Mapping("elements")
     private List<ElementsEntity> elementsEntities;
+
+    @OneToMany(mappedBy = "menusEntity")
+    @Mapping("fonctionnalites")
+    private List<FonctionnalitesEntity> fonctionnalitesEntities;
 }

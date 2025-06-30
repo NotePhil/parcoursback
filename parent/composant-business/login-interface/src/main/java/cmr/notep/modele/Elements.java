@@ -10,9 +10,9 @@ import java.util.List;
 @AllArgsConstructor
 @NoArgsConstructor
 @Builder
-@JsonIgnoreProperties({"menus"})
-@ToString(exclude = {"menus"})
-@EqualsAndHashCode(exclude = {"menus"})
+@JsonIgnoreProperties({"menus","fonctionnalite"})
+@ToString(exclude = {"menus","fonctionnalite"})
+@EqualsAndHashCode(exclude = {"menus","fonctionnalite"})
 public class Elements {
     private String id;
     private String libelle;
@@ -22,4 +22,5 @@ public class Elements {
     private List<ElementLangues> elementslangues;
     private Menus menus;
     private ElementsBases elementbase;
+    private Fonctionnalites fonctionnalite;
 }

@@ -45,4 +45,9 @@ public class ElementsEntity {
     @JoinColumn(name = "elementsbases_id", referencedColumnName = "id")
     @Mapping("elementbase")
     private ElementsBasesEntity elementsBasesEntity;
+
+    @ManyToOne
+    @JoinColumn(name = "fonctionnalites_id")
+    @Mapping("fonctionnalite")
+    private FonctionnalitesEntity fonctionnalitesEntity;
 }
