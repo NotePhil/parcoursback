@@ -30,19 +30,20 @@ public class MenusEntity {
     @Column(name = "datecreation")
     private Date dateCreation;
 
-    @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "utilisateurs_id", referencedColumnName = "id")
+    @OneToOne
+    @JoinColumn(name = "user_id", referencedColumnName = "id")
     @Mapping("utilisateur")
     private UtilisateursEntity utilisateursEntity ;
 
-    @OneToOne
-    @JoinColumn(name = "groupes_id")
+    @ManyToOne
+    @JoinColumn(name = "groupe_id")
     @Mapping("groupe")
     private GroupesEntity groupesEntity ;
 
-    @OneToMany(mappedBy = "menusEntity")
-    @Mapping("elements")
-    private List<ElementsEntity> elementsEntities;
+    @OneToOne
+    @JoinColumn(name = "element_id", referencedColumnName = "id")
+    @Mapping("element")
+    private ElementsEntity elementsEntity;
 
     @OneToMany(mappedBy = "menusEntity")
     @Mapping("fonctionnalites")

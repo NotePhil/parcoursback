@@ -54,8 +54,8 @@ public class UtilisateursEntity {
     @Mapping("organisations")
     private List<OrganisationsEntity> organisationsEntityList ;
 
-    @OneToMany(mappedBy = "utilisateursEntity", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
-    @Mapping("menus")
-    private List<MenusEntity> menusEntities;
-
+    @OneToOne
+    @JoinColumn(name = "menu_id", referencedColumnName = "id")
+    @Mapping("menu")
+    private MenusEntity menusEntity;
 }

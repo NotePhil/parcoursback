@@ -36,9 +36,9 @@ public class ElementsEntity {
     @Mapping("elementslangues")
     private List<ElementLanguesEntity> elementLanguesEntities ;
 
-    @ManyToOne
-    @JoinColumn(name = "menus_id")
-    @Mapping("menus")
+    @OneToOne
+    @JoinColumn(name = "menu_id", referencedColumnName = "id")
+    @Mapping("menu")
     private MenusEntity menusEntity;
 
     @OneToOne

@@ -20,7 +20,7 @@ public class Elements {
     private Date dateSouscription;
     private Date dateModification;
     private List<ElementLangues> elementslangues;
-    private Menus menus;
+    private Menus menu;
     private ElementsBases elementbase;
     private Fonctionnalites fonctionnalite;
 }

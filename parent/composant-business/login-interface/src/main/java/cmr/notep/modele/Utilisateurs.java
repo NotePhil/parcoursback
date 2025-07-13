@@ -1,6 +1,5 @@
 package cmr.notep.modele;
 
-import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.*;
 
 import java.util.Date;
@@ -22,13 +21,5 @@ public class Utilisateurs {
     private Date dateModification;
     private Groupes groupe;
     private List<Organisations> organisations;
-    private List<Menus> menus;
-
-    @JsonProperty("menu")
-    public Menus getFirstMenu() {
-        if (menus != null && !menus.isEmpty()) {
-            return menus.get(0); // retourne le premier élément
-        }
-        return null;
-    }
+    private Menus menu;
 }

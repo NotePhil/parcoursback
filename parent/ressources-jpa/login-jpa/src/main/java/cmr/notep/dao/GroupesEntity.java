@@ -37,8 +37,7 @@ public class GroupesEntity {
     @Mapping("utilisateurs")
     private List<UtilisateursEntity> utilisateursEntities ;
 
-    @OneToOne(mappedBy = "groupesEntity",fetch = FetchType.LAZY, cascade = {CascadeType.ALL})
-    @JoinColumn(name = "menus_id")
+    @OneToMany(mappedBy = "groupesEntity")
     @Mapping("menus")
-    private MenusEntity menus ;
+    private List<MenusEntity> menusEntities;
 }

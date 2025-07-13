@@ -20,5 +20,5 @@ public class Groupes {
     private Date dateCreation;
     private Date dateModification;
     private List<Utilisateurs> utilisateurs;
-    private Menus menus ;
+    private List<Menus> menus ;
 }
