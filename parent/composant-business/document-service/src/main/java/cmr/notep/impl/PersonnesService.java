@@ -3,7 +3,6 @@ package cmr.notep.impl;
 import cmr.notep.api.IPersonnesApi;
 import cmr.notep.business.PersonnesBusiness;
 import cmr.notep.exceptions.ParcoursException;
-import cmr.notep.modele.IPersonnes;
 import cmr.notep.modele.Personnes;
 import jakarta.transaction.Transactional;
 import org.springframework.context.annotation.Primary;
@@ -23,27 +22,24 @@ public class PersonnesService implements IPersonnesApi {
     public PersonnesService(PersonnesBusiness personnesBusiness) {
         this.personnesBusiness = personnesBusiness;
     }
-@Override
+
+    @Override
     public Personnes avoirPersonne(@NonNull String idPersonnes) {
-    try {
-        return personnesBusiness.avoirPersonne(idPersonnes);
-    } catch (ParcoursException e) {
-        throw new RuntimeException(e);
-    }
+        try {
+            return personnesBusiness.avoirPersonne(idPersonnes);
+        } catch (ParcoursException e) {
+            throw new RuntimeException(e);
+        }
 }
 
-    //@Override
-    public List<IPersonnes> avoirToutPersonnes() {
+    @Override
+    public List<Personnes> avoirToutPersonnes() {
         return personnesBusiness.avoirToutPersonnes();
     }
 
-    //@Override
-    public void supprimerPersonne(Personnes Personnes) {
-        personnesBusiness.supprimerPersonne(Personnes);
-    }
-
-    //@Override
+    @Override
     public Personnes posterPersonne(Personnes Personnes) {
         return personnesBusiness.posterPersonne(Personnes);
     }
+
 }

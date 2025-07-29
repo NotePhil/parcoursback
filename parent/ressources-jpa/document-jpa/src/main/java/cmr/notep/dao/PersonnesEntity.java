@@ -28,6 +28,9 @@ public class PersonnesEntity
     @Column(name = "mail")
     private String mail ;
 
+    @Column(name = "type")
+    private String type ;
+
     @Column(name = "telephone")
     private  String telephone ;
 

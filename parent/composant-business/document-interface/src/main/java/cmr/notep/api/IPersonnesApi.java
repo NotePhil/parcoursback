@@ -3,6 +3,7 @@ package cmr.notep.api;
 import cmr.notep.exceptions.ParcoursException;
 import cmr.notep.modele.IPersonnes;
 import cmr.notep.modele.Personnes;
+import cmr.notep.modele.PersonnesPhysique;
 import org.springframework.http.MediaType;
 import org.springframework.lang.NonNull;
 import org.springframework.web.bind.annotation.*;
@@ -22,13 +23,8 @@ public interface IPersonnesApi {
     @GetMapping(
             produces = MediaType.APPLICATION_JSON_VALUE
     )
-    List<IPersonnes> avoirToutPersonnes();
+    List<Personnes> avoirToutPersonnes();
 
-  /*  @DeleteMapping(
-            consumes = MediaType.APPLICATION_JSON_VALUE
-    )
-    void supprimerPersonne(@NonNull @RequestBody Personnes Personnes);
-*/
     @PostMapping(
             produces = MediaType.APPLICATION_JSON_VALUE,
             consumes = MediaType.APPLICATION_JSON_VALUE

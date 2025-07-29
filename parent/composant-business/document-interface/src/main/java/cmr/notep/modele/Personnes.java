@@ -1,6 +1,5 @@
 package cmr.notep.modele;
 
-import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import lombok.*;
 import lombok.experimental.SuperBuilder;
 
@@ -22,6 +21,7 @@ public class Personnes implements Serializable, IPersonnes {
     private  String telephone ;
     private  String qrcodevalue ;
     private Comptes compte;
+    private String type;
     private Exemplaires exemplaires;
     private Date dateCreation;
     private Date dateModification;
