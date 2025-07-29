@@ -3,6 +3,7 @@ package cmr.notep.exemplaire.business;
 import cmr.notep.api.*;
 import cmr.notep.dao.DaoAccessorService;
 import cmr.notep.exceptions.ParcoursException;
+import cmr.notep.exceptions.enumeration.ParcoursExceptionCodeEnum;
 import cmr.notep.exemplaire.dao.ExemplairesEntity;
 import cmr.notep.exemplaire.helper.ExemplaireConvertirHelper;
 import cmr.notep.exemplaire.modele.*;
@@ -66,7 +67,7 @@ public class ExemplairesBusiness {
     private ExemplairesInterne avoirExemplaireInterne(String idExemplaire) throws ParcoursException {
         return dozerMapperBean.map(this.daoAccessorService.getRepository(ExemplairesRepository.class)
                 .findById(idExemplaire)
-                .orElseThrow(()-> new ParcoursException("Attribut introuvable")), ExemplairesInterne.class);
+                .orElseThrow(()-> new ParcoursException(ParcoursExceptionCodeEnum.INTERNAL_ERROR,"Attribut introuvable")), ExemplairesInterne.class);
     }
     public Exemplaires avoirExemplaire(String idExemplaire) throws ParcoursException {
         ExemplairesInterne exemplairesInterne = avoirExemplaireInterne(idExemplaire);

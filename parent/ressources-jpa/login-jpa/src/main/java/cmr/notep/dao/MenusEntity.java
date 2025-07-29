@@ -5,7 +5,7 @@ import lombok.Setter;
 import org.dozer.Mapping;
 import org.hibernate.annotations.GenericGenerator;
 
-import javax.persistence.*;
+import jakarta.persistence.*;
 import java.util.Date;
 import java.util.List;
 
@@ -24,20 +24,28 @@ public class MenusEntity {
     @Column(name = "etat")
     private boolean etat;
 
+    @Column(name = "langue")
+    private String langue;
+
     @Column(name = "datecreation")
     private Date dateCreation;
 
-    @OneToOne(mappedBy = "menusEntity" ,cascade = CascadeType.ALL, fetch = FetchType.LAZY)
-    @JoinColumn(name = "utilisateurs_id" , referencedColumnName = "id")
+    @OneToOne
+    @JoinColumn(name = "user_id", referencedColumnName = "id")
     @Mapping("utilisateur")
     private UtilisateursEntity utilisateursEntity ;
 
-    @OneToOne
-    @JoinColumn(name = "groupes_id")
+    @ManyToOne
+    @JoinColumn(name = "groupe_id")
     @Mapping("groupe")
     private GroupesEntity groupesEntity ;
 
+    @OneToOne
+    @JoinColumn(name = "element_id", referencedColumnName = "id")
+    @Mapping("element")
+    private ElementsEntity elementsEntity;
+
     @OneToMany(mappedBy = "menusEntity")
-    @Mapping("elements")
-    private List<ElementsEntity> elementsEntities;
+    @Mapping("fonctionnalites")
+    private List<FonctionnalitesEntity> fonctionnalitesEntities;
 }

@@ -2,6 +2,7 @@ package cmr.notep.exemplaire.clientws;
 
 import cmr.notep.api.IEtatsApi;
 import cmr.notep.exceptions.ParcoursException;
+import cmr.notep.exceptions.enumeration.ParcoursExceptionCodeEnum;
 import cmr.notep.exemplaire.config.ExemplaireConfig;
 import cmr.notep.modele.Attributs;
 import cmr.notep.modele.Etats;
@@ -39,7 +40,7 @@ public class EtatsClientWs implements IEtatsApi {
         GenericWsResponse response = genericWsClientApi.sendRequest(request);
         if (response.getCode() == 200)
             return JacksonHelper.objetFromJson(response.getReponse(), Etats.class);
-        throw new ParcoursException("Erreur lors de la récupération  " + idEtat + " code http : " + response.getReponse() + " reponse : " + response.getReponse());
+        throw new ParcoursException(ParcoursExceptionCodeEnum.INTERNAL_ERROR,"Erreur lors de la récupération  " + idEtat + " code http : " + response.getReponse() + " reponse : " + response.getReponse());
 
     }
 

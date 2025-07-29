@@ -5,7 +5,7 @@ import lombok.Setter;
 import org.dozer.Mapping;
 import org.hibernate.annotations.GenericGenerator;
 
-import javax.persistence.*;
+import jakarta.persistence.*;
 import java.util.Date;
 import java.util.List;
 
@@ -36,13 +36,18 @@ public class ElementsEntity {
     @Mapping("elementslangues")
     private List<ElementLanguesEntity> elementLanguesEntities ;
 
-    @ManyToOne
-    @JoinColumn(name = "menus_id")
-    @Mapping("menus")
+    @OneToOne
+    @JoinColumn(name = "menu_id", referencedColumnName = "id")
+    @Mapping("menu")
     private MenusEntity menusEntity;
 
     @OneToOne
     @JoinColumn(name = "elementsbases_id", referencedColumnName = "id")
     @Mapping("elementbase")
     private ElementsBasesEntity elementsBasesEntity;
+
+    @ManyToOne
+    @JoinColumn(name = "fonctionnalites_id")
+    @Mapping("fonctionnalite")
+    private FonctionnalitesEntity fonctionnalitesEntity;
 }

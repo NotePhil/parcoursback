@@ -10,14 +10,16 @@ import java.util.List;
 @AllArgsConstructor
 @NoArgsConstructor
 @Builder
-@JsonIgnoreProperties({"utilisateur"})
-@ToString(exclude = {"utilisateur"})
-@EqualsAndHashCode(exclude = {"utilisateur"})
+@JsonIgnoreProperties({"utilisateur","elements"})
+@ToString(exclude = {"utilisateur","elements"})
+@EqualsAndHashCode(exclude = {"utilisateur","elements"})
 public class Menus {
     private String id;
     private boolean etat;
+    private String langue;
     private Date dateCreation;
     private Utilisateurs utilisateur;
     private Groupes groupe;
-    private List<Elements> elements;
+    private Elements element;
+    private List<Fonctionnalites> fonctionnalites;
 }

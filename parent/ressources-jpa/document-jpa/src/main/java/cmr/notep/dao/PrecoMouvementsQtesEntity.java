@@ -1,12 +1,12 @@
 package cmr.notep.dao;
 
+import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.Setter;
 import org.dozer.Mapping;
 import org.hibernate.annotations.GenericGenerator;
 
-import javax.persistence.*;
-import java.util.Date;
+
 import java.util.Date;
 import java.util.List;
 
@@ -32,8 +32,8 @@ public class PrecoMouvementsQtesEntity {
     private Date dateCreation ;
     @Column(name="datemodification")
     private Date dateModification ;
-    @ManyToOne
-    @JoinColumn(name = "precomouvements_id" , nullable = false)
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "precomouvements_id")
     @Mapping("precoMouvement")
     private PrecoMouvementsEntity precoMouvementsEntity ;
 

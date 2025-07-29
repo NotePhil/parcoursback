@@ -1,15 +1,19 @@
 package cmr.notep.utile;
 
-import cmr.notep.modele.Documents;
+import cmr.notep.modele.*;
 import cmr.notep.utile.tri.GenericTri;
+import com.fasterxml.jackson.core.StreamReadFeature;
 import com.fasterxml.jackson.core.util.DefaultIndenter;
 import com.fasterxml.jackson.core.util.DefaultPrettyPrinter;
+import com.fasterxml.jackson.databind.DeserializationFeature;
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.SerializationFeature;
+import com.fasterxml.jackson.databind.jsontype.NamedType;
 import com.fasterxml.jackson.databind.node.ObjectNode;
 import difflib.DiffUtils;
 import difflib.Patch;
+import lombok.extern.slf4j.Slf4j;
 
 import java.io.*;
 import java.net.URL;
@@ -20,7 +24,7 @@ import java.nio.file.Paths;
 import java.util.*;
 import java.util.concurrent.atomic.AtomicBoolean;
 import java.util.stream.Collectors;
-
+@Slf4j
 public class JsonComparator {
 
     public static final String SRC_TEST_RESOURCES = "src/test/resources/";
@@ -48,13 +52,13 @@ public class JsonComparator {
             boolean areEqual = compareJsonNode(objetResultAttendu, objetResultObtenu,pathJson, urlJSonAttendu,fieldsToExclude);
 
             if (areEqual) {
-                System.out.println("Les fichiers JSON sont identiques.");
+                log.info("Les fichiers JSON sont identiques.");
             } else {
-                System.out.println("Les fichiers JSON sont différents.");
+                log.info("Les fichiers JSON sont différents.");
             }
             return areEqual;
         } catch (Exception e) {
-            e.printStackTrace();
+            log.error("Erreur lors de la comparaison des fichiers JSON.", e);
             return false;
         }
     }
@@ -112,7 +116,17 @@ public class JsonComparator {
         DefaultPrettyPrinter dpp = new DefaultPrettyPrinter();
         dpp.indentArraysWith(DefaultIndenter.SYSTEM_LINEFEED_INSTANCE);
         dpp.indentObjectsWith(DefaultIndenter.SYSTEM_LINEFEED_INSTANCE);
+       // objectMapper.configure(DeserializationFeature.FAIL_ON_UNKNOWN_PROPERTIES, false);
+       // objectMapper.configure(DeserializationFeature.FAIL_ON_IGNORED_PROPERTIES, false);
+       // objectMapper.configure(DeserializationFeature.FAIL_ON_INVALID_SUBTYPE, false);
         //objectMapper.enable(SerializationFeature.INDENT_OUTPUT);
+        objectMapper.enable(StreamReadFeature.INCLUDE_SOURCE_IN_LOCATION.mappedFeature());
+        objectMapper.registerSubtypes(
+                new NamedType(Personnes.class,  "personne"),
+                new NamedType(Distributeurs.class, "distributeur"),
+                new NamedType(PersonnesPhysique.class, "personnePhysique"),
+                new NamedType(Personnels.class, "personnel")
+        );
         return objectMapper.setDefaultPrettyPrinter(dpp);
     }
 

@@ -1,6 +1,7 @@
 package cmr.notep.business;
 
 
+import java.util.Date;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -38,6 +39,7 @@ public class MissionsBusiness {
     }
 
     public Missions posterMission (Missions missions){
+        missions.setDateCreation(new Date());
         return dozerMapperBean.map(
                 this.daoAccessorService.getRepository(MissionsRepository.class)
                         .save(dozerMapperBean.map(missions, MissionsEntity.class)),

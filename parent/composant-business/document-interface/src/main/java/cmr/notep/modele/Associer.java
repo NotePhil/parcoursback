@@ -7,14 +7,13 @@ import lombok.*;
 @AllArgsConstructor
 @NoArgsConstructor
 @Builder
-@ToString(exclude = {"attribut","categorie"})
-@EqualsAndHashCode(exclude = {"attribut","categorie"})
-@JsonIgnoreProperties({"attribut","categorie"})
+@ToString(exclude = {"categorie"})
+@EqualsAndHashCode(exclude = {"categorie"})
+@JsonIgnoreProperties({"categorie"})
 public class Associer {
-
+    private  AssocierId id;
     private  Attributs attribut ;
-
-    private Categories categorie;
+    private  Categories categorie ;
 
     private boolean obligatoire ;
 

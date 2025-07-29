@@ -4,10 +4,11 @@ import cmr.notep.api.IEtatsApi;
 import cmr.notep.business.EtatsBusiness;
 import cmr.notep.exceptions.ParcoursException;
 import cmr.notep.modele.Etats;
+import jakarta.transaction.Transactional;
 import org.springframework.context.annotation.Primary;
 import org.springframework.web.bind.annotation.RestController;
 
-import javax.transaction.Transactional;
+
 import java.util.List;
 
 @RestController
@@ -22,7 +23,7 @@ public class EtatsService implements IEtatsApi {
 
     @Override
     public Etats posterEtat(Etats Etat) {
-        return null;
+        return etatsBusiness.posterEtat(Etat);
     }
 
     @Override
@@ -32,7 +33,7 @@ public class EtatsService implements IEtatsApi {
 
     @Override
     public List<Etats> avoirTousEtats() {
-        return null;
+        return etatsBusiness.avoirTousEtats();
     }
 
     @Override

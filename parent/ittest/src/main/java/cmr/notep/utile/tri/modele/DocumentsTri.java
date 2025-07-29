@@ -11,7 +11,7 @@ public class DocumentsTri implements IGenericTri<Documents[]>{
     @Override
     public Documents[] sort(Documents[] documents) {
         Arrays.stream(documents).forEach(document -> {
-            if(!document.getAttributs().isEmpty()){
+            if(document.getAttributs()!= null && !document.getAttributs().isEmpty()){
                 document.getAttributs().sort(Comparator.comparing(attribut -> attribut.getTitre().toLowerCase()));
             }
         });

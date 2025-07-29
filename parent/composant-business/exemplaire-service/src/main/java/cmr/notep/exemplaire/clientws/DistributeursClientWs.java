@@ -2,6 +2,7 @@ package cmr.notep.exemplaire.clientws;
 
 import cmr.notep.api.IDistributeursApi;
 import cmr.notep.exceptions.ParcoursException;
+import cmr.notep.exceptions.enumeration.ParcoursExceptionCodeEnum;
 import cmr.notep.exemplaire.config.ExemplaireConfig;
 import cmr.notep.modele.Attributs;
 import cmr.notep.modele.Distributeurs;
@@ -34,7 +35,7 @@ public class DistributeursClientWs implements IDistributeursApi {
         GenericWsResponse response = genericWsClientApi.sendRequest(request);
         if (response.getCode() == 200)
             return JacksonHelper.objetFromJson(response.getReponse(), Distributeurs.class);
-        throw new ParcoursException("Erreur lors de la récupération du document " + idDistributeur + " code http : " + response.getReponse() + " reponse : " + response.getReponse());
+        throw new ParcoursException(ParcoursExceptionCodeEnum.INTERNAL_ERROR,"Erreur lors de la récupération du document " + idDistributeur + " code http : " + response.getReponse() + " reponse : " + response.getReponse());
     }
 
     @Override

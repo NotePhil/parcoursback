@@ -5,7 +5,7 @@ import cmr.notep.dao.RessourcesEntity;
 import cmr.notep.modele.Ressources;
 import cmr.notep.repository.RessourcesRepository;
 import lombok.extern.slf4j.Slf4j;
-import org.jetbrains.annotations.NotNull;
+import org.antlr.v4.runtime.misc.NotNull;
 import org.springframework.stereotype.Component;
 import org.springframework.transaction.annotation.Transactional;
 

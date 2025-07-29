@@ -6,6 +6,8 @@ import static cmr.notep.config.DocumentConfig.*;
 import java.util.List;
 import java.util.stream.Collectors;
 
+import cmr.notep.exceptions.ParcoursException;
+import cmr.notep.modele.Categories;
 import org.springframework.stereotype.Component;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -14,6 +16,7 @@ import cmr.notep.dao.DocumentsEntity;
 import cmr.notep.modele.Documents;
 import cmr.notep.repository.DocumentsRepository;
 import lombok.extern.slf4j.Slf4j;
+import org.springframework.util.CollectionUtils;
 
 @Component
 @Slf4j
@@ -21,11 +24,12 @@ import lombok.extern.slf4j.Slf4j;
 public class DocumentsBusiness {
     private final DaoAccessorService daoAccessorService;
     
-
+    private final CategoriesBusiness categoriesBusiness;
     //private final BusinessEntityHelper businessEntityHelper; , BusinessEntityHelper businessEntityHelper
 
-    public DocumentsBusiness(DaoAccessorService daoAccessorService) {
+    public DocumentsBusiness(DaoAccessorService daoAccessorService, CategoriesBusiness categoriesBusiness) {
         this.daoAccessorService = daoAccessorService;
+        this.categoriesBusiness = categoriesBusiness;
     }
 
     public List<Documents> avoirTousDocuments() {
@@ -42,7 +46,19 @@ public class DocumentsBusiness {
      */
     public Documents posterDocument(Documents document){
         log.debug("[posterDocument] poster un document");
-
+        if(!CollectionUtils.isEmpty(document.getCategories())) {
+            List<Categories> categoriesList = document.getCategories().stream().map(categorie -> {
+                try {
+                    log.debug("[posterDocument] idDocument : " + document.getIdDocument() + "poster une categorie " + categorie);
+                    categorie.setDocument(document);
+                    return categoriesBusiness.posterCategorie(categorie);
+                } catch (ParcoursException e) {
+                    throw new RuntimeException(e);
+                }
+            }).collect(Collectors.toList());
+            document.getCategories().clear();
+            document.getCategories().addAll(categoriesList);
+        }
         return dozerMapperBean.map(
                 this.daoAccessorService.getRepository(DocumentsRepository.class)
                 .save(dozerMapperBean.map(document, DocumentsEntity.class)),

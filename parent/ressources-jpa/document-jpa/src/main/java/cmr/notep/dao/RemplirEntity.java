@@ -4,7 +4,9 @@ import lombok.Getter;
 import lombok.Setter;
 import org.dozer.Mapping;
 
-import javax.persistence.*;
+import jakarta.persistence.*;
+import org.hibernate.annotations.GenericGenerator;
+
 import java.util.Date;
 
 @Getter
@@ -13,17 +15,18 @@ import java.util.Date;
 @Table(name = "remplir", schema = "document")
 public class RemplirEntity{
 
-    @EmbeddedId
-    private RemplirEntityID id;
+    @Id
+    @GeneratedValue(generator = "UUID")
+    @GenericGenerator(name = "UUID", strategy = "org.hibernate.id.UUIDGenerator")
+    @Column(name = "id", nullable = false, updatable = false, columnDefinition = "UUID")
+    private String id;
 
     @ManyToOne
-    @MapsId("roleId")
     @JoinColumn(name = "roles_id", referencedColumnName = "id")
     @Mapping("role")
     private RolesEntity rolesEntity;
 
     @ManyToOne
-    @MapsId("missionId")
     @JoinColumn(name = "missions_id", referencedColumnName = "id")
     @Mapping("mission")
     private MissionsEntity missionsEntity;

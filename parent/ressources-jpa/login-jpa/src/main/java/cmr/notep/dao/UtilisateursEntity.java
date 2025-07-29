@@ -5,7 +5,7 @@ import lombok.Setter;
 import org.dozer.Mapping;
 import org.hibernate.annotations.GenericGenerator;
 
-import javax.persistence.*;
+import jakarta.persistence.*;
 import java.util.Date;
 import java.util.List;
 
@@ -23,6 +23,12 @@ public class UtilisateursEntity {
 
     @Column(name = "login",unique = true)
     private String login;
+
+    @Column(name = "nom")
+    private String nom;
+
+    @Column(name = "prenom")
+    private String prenom;
 
     @Column(name = "roles")
     private String roles;
@@ -49,8 +55,7 @@ public class UtilisateursEntity {
     private List<OrganisationsEntity> organisationsEntityList ;
 
     @OneToOne
-    @JoinColumn(name = "menus_id" , referencedColumnName = "id")
-    @Mapping("menus")
+    @JoinColumn(name = "menu_id", referencedColumnName = "id")
+    @Mapping("menu")
     private MenusEntity menusEntity;
-
 }

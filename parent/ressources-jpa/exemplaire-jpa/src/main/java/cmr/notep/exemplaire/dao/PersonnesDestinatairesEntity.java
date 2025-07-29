@@ -1,10 +1,9 @@
 package cmr.notep.exemplaire.dao;
 
+import jakarta.persistence.*;
 import lombok.*;
 import org.dozer.Mapping;
 
-import javax.persistence.Column;
-import javax.persistence.Embeddable;
 import java.util.Date;
 
 @Getter

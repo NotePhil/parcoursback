@@ -1,17 +1,18 @@
 package cmr.notep.dao;
 
+import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.Setter;
 import org.dozer.Mapping;
 
-import javax.persistence.*;
 import java.util.Date;
 import java.util.List;
 
 @Getter
 @Setter
 @Entity
-@DiscriminatorValue("distributeurs")
+@PrimaryKeyJoinColumn(name = "distributeurs_id")
+@Table(name = "distributeurs", schema = "document")
 public class DistributeursEntity extends PersonnesEntity {
 
     @Column(name = "datemodification")

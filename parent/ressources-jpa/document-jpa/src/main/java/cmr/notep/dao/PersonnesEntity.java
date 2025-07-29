@@ -1,13 +1,11 @@
 package cmr.notep.dao;
 
 
-import com.fasterxml.jackson.annotation.JsonBackReference;
+import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.Setter;
 import org.dozer.Mapping;
 import org.hibernate.annotations.GenericGenerator;
-
-import javax.persistence.*;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
@@ -15,8 +13,7 @@ import java.util.List;
 @Getter
 @Setter
 @Entity
-@Inheritance(strategy = InheritanceType.SINGLE_TABLE)
-@DiscriminatorColumn(name = "person_type", discriminatorType = DiscriminatorType.STRING)
+@Inheritance(strategy = InheritanceType.JOINED)
 @Table(name = "personnes", schema = "document")
 public class PersonnesEntity
 {
@@ -31,8 +28,8 @@ public class PersonnesEntity
     @Column(name = "mail")
     private String mail ;
 
-    @Column(name = "person_type", insertable = false , updatable = false)
-    private String person_type ;
+    @Column(name = "type")
+    private String type ;
 
     @Column(name = "telephone")
     private  String telephone ;
@@ -44,7 +41,6 @@ public class PersonnesEntity
     @Column(name = "datemodification")
     private Date dateModification;
     @ManyToMany(fetch = FetchType.LAZY)
-    @JsonBackReference
     @JoinTable(name = "rattacher" ,schema = "document",
             joinColumns = @JoinColumn(name = "personnes_id"),
             inverseJoinColumns = @JoinColumn(name = "rattacher_id"))

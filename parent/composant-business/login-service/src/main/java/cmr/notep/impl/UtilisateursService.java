@@ -6,7 +6,8 @@ import cmr.notep.exceptions.ParcoursException;
 import cmr.notep.modele.LoginForm;
 import cmr.notep.modele.Utilisateurs;
 import cmr.notep.token.JWTService;
-import org.jetbrains.annotations.NotNull;
+import jakarta.transaction.Transactional;
+import org.antlr.v4.runtime.misc.NotNull;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Primary;
 import org.springframework.http.ResponseEntity;
@@ -16,7 +17,7 @@ import org.springframework.security.core.Authentication;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.web.bind.annotation.RestController;
 
-import javax.transaction.Transactional;
+
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -47,8 +48,8 @@ public class UtilisateursService implements IUtilisateursApi {
     }
 
     @Override
-    public Utilisateurs avoirUser(String iduser) throws ParcoursException {
-        return null;
+    public Utilisateurs avoirUser(@org.jetbrains.annotations.NotNull String iduser) throws ParcoursException {
+        return utilisateursBusiness.avoirUserById(iduser);
     }
 
     @Override
@@ -67,7 +68,7 @@ public class UtilisateursService implements IUtilisateursApi {
     }
 
     @Override
-    public Map<String , Object> authenticateAndGetToken(LoginForm loginForm) {
+    public Map<String , Object> authenticateAndGetToken(@NotNull LoginForm loginForm) {
 
         Authentication authentication =  authenticationMAnager.
                 authenticate(new UsernamePasswordAuthenticationToken(loginForm.username(),loginForm.password()));
@@ -75,12 +76,15 @@ public class UtilisateursService implements IUtilisateursApi {
 
         if (authentication.isAuthenticated())
         {
-            return utilisateursBusiness.UserToken(
-                    jwtService.generateToken(userDetailsService.loadUserByUsername(loginForm.username())),
-                    loginForm.username()
-            );
-        }
+            Utilisateurs user = utilisateursBusiness.avoirUserByLogin(loginForm.username()) ;
+            String token = jwtService.generateToken(userDetailsService.loadUserByUsername(loginForm.username()));
 
+            Map<String , Object> result = new HashMap<>();
+
+            result.put("User" , user) ;
+            result.put("token" , token);
+            return result;
+        }
 
         else throw  new UsernameNotFoundException("Invalid Credentials") ;
     }

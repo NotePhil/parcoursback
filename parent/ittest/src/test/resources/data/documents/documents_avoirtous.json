@@ -1,5 +1,5 @@
 [ {
-  "idDocument" : "0190615e-1101-7209-9932-7020bbd556f6",
+  "idDocument" : null,
   "titre" : "Bon de commande",
   "description" : "Document delivre par le chef service",
   "etat" : true,
@@ -55,7 +55,7 @@
     "etat" : true,
     "dateCreation" : null,
     "dateModification" : null,
-    "type" : "String",
+    "type" : "Text",
     "valeurParDefaut" : null
   } ],
   "categories" : [ {
@@ -63,6 +63,7 @@
     "ordre" : "0",
     "libelle" : "Conditions Générales",
     "attributs" : [ {
+      "id" : null,
       "attribut" : {
         "id" : null,
         "titre" : "Nom",
@@ -70,7 +71,7 @@
         "etat" : true,
         "dateCreation" : null,
         "dateModification" : null,
-        "type" : "String",
+        "type" : "Text",
         "valeurParDefaut" : null
       },
       "obligatoire" : true,
@@ -80,7 +81,7 @@
   "docEtats" : [ ],
   "promotions" : [ ]
 }, {
-  "idDocument" : "0190615e-1101-7209-9932-7020bbd556f7",
+  "idDocument" : null,
   "titre" : "Bon de livraison",
   "description" : "Document delivre par ",
   "etat" : true,
@@ -133,7 +134,6 @@
           "prixEntree" : 1200.0,
           "prixSortie" : 2000.0,
           "unites" : "Packs",
-          "precoMouvementsQtes" : [ ],
           "promotions" : [ ]
         }, {
           "id" : null,
@@ -146,7 +146,6 @@
           "prixEntree" : 1200.0,
           "prixSortie" : 2000.0,
           "unites" : "Boite",
-          "precoMouvementsQtes" : [ ],
           "promotions" : [ ]
         }, {
           "id" : null,
@@ -159,7 +158,6 @@
           "prixEntree" : 1200.0,
           "prixSortie" : 2000.0,
           "unites" : "Boite",
-          "precoMouvementsQtes" : [ ],
           "promotions" : [ ]
         }, {
           "id" : null,
@@ -172,7 +170,6 @@
           "prixEntree" : 1200.0,
           "prixSortie" : 2000.0,
           "unites" : "Packs",
-          "precoMouvementsQtes" : [ ],
           "promotions" : [ ]
         } ],
         "promotions" : [ ]
@@ -203,7 +200,6 @@
           "prixEntree" : 100.0,
           "prixSortie" : 200.0,
           "unites" : "Boite",
-          "precoMouvementsQtes" : [ ],
           "promotions" : [ ]
         }, {
           "id" : null,
@@ -216,7 +212,6 @@
           "prixEntree" : 90.0,
           "prixSortie" : 230.0,
           "unites" : "Boite",
-          "precoMouvementsQtes" : [ ],
           "promotions" : [ ]
         }, {
           "id" : null,
@@ -229,7 +224,6 @@
           "prixEntree" : 1200.0,
           "prixSortie" : 2000.0,
           "unites" : "Boite",
-          "precoMouvementsQtes" : [ ],
           "promotions" : [ ]
         }, {
           "id" : null,
@@ -242,7 +236,6 @@
           "prixEntree" : 1200.0,
           "prixSortie" : 2000.0,
           "unites" : "Boite",
-          "precoMouvementsQtes" : [ ],
           "promotions" : [ ]
         }, {
           "id" : null,
@@ -255,7 +248,6 @@
           "prixEntree" : 1200.0,
           "prixSortie" : 2000.0,
           "unites" : "Litre",
-          "precoMouvementsQtes" : [ ],
           "promotions" : [ ]
         }, {
           "id" : null,
@@ -268,7 +260,6 @@
           "prixEntree" : 1200.0,
           "prixSortie" : 2000.0,
           "unites" : "Boite",
-          "precoMouvementsQtes" : [ ],
           "promotions" : [ ]
         } ],
         "promotions" : [ ]
@@ -293,7 +284,7 @@
     "etat" : true,
     "dateCreation" : null,
     "dateModification" : null,
-    "type" : "String",
+    "type" : "Text",
     "valeurParDefaut" : null
   } ],
   "categories" : [ {
@@ -301,6 +292,7 @@
     "ordre" : "0",
     "libelle" : "Catégorie par Defaut",
     "attributs" : [ {
+      "id" : null,
       "attribut" : {
         "id" : null,
         "titre" : "Adresse",
@@ -308,7 +300,7 @@
         "etat" : true,
         "dateCreation" : null,
         "dateModification" : null,
-        "type" : "String",
+        "type" : "Text",
         "valeurParDefaut" : null
       },
       "obligatoire" : true,
@@ -318,7 +310,7 @@
   "docEtats" : [ ],
   "promotions" : [ ]
 }, {
-  "idDocument" : "0190615e-1101-7209-9932-7020bbd556f8",
+  "idDocument" : null,
   "titre" : "Fiche de selection",
   "description" : "Document delivre par le magasinier",
   "etat" : true,
@@ -338,173 +330,7 @@
     "typeMouvement" : "Reduire",
     "dateCreation" : null,
     "dateModification" : null,
-    "precoMouvementsQtes" : [ {
-      "id" : null,
-      "qteMin" : 5,
-      "qteMax" : 50,
-      "montantMin" : 200.0,
-      "montantMax" : 2000.0,
-      "familles" : [ {
-        "id" : null,
-        "libelle" : "BioMedical",
-        "description" : "BioMedical",
-        "etat" : "true",
-        "dateCreation" : null,
-        "dateModification" : null,
-        "ressources" : [ {
-          "id" : null,
-          "libelle" : "Seringue",
-          "etat" : true,
-          "dateCreation" : null,
-          "dateModification" : null,
-          "quantite" : 42,
-          "seuilAlerte" : 20,
-          "prixEntree" : 100.0,
-          "prixSortie" : 200.0,
-          "unites" : "Boite",
-          "precoMouvementsQtes" : [ ],
-          "promotions" : [ ]
-        }, {
-          "id" : null,
-          "libelle" : "Perfuseur",
-          "etat" : true,
-          "dateCreation" : null,
-          "dateModification" : null,
-          "quantite" : 5,
-          "seuilAlerte" : 20,
-          "prixEntree" : 90.0,
-          "prixSortie" : 230.0,
-          "unites" : "Boite",
-          "precoMouvementsQtes" : [ ],
-          "promotions" : [ ]
-        }, {
-          "id" : null,
-          "libelle" : "Gants",
-          "etat" : true,
-          "dateCreation" : null,
-          "dateModification" : null,
-          "quantite" : 4,
-          "seuilAlerte" : 20,
-          "prixEntree" : 1200.0,
-          "prixSortie" : 2000.0,
-          "unites" : "Boite",
-          "precoMouvementsQtes" : [ ],
-          "promotions" : [ ]
-        }, {
-          "id" : null,
-          "libelle" : "Masque",
-          "etat" : true,
-          "dateCreation" : null,
-          "dateModification" : null,
-          "quantite" : 4,
-          "seuilAlerte" : 20,
-          "prixEntree" : 1200.0,
-          "prixSortie" : 2000.0,
-          "unites" : "Boite",
-          "precoMouvementsQtes" : [ ],
-          "promotions" : [ ]
-        }, {
-          "id" : null,
-          "libelle" : "Gel Hydroalcoolique",
-          "etat" : true,
-          "dateCreation" : null,
-          "dateModification" : null,
-          "quantite" : 54,
-          "seuilAlerte" : 200,
-          "prixEntree" : 1200.0,
-          "prixSortie" : 2000.0,
-          "unites" : "Litre",
-          "precoMouvementsQtes" : [ ],
-          "promotions" : [ ]
-        }, {
-          "id" : null,
-          "libelle" : "Coton",
-          "etat" : true,
-          "dateCreation" : null,
-          "dateModification" : null,
-          "quantite" : 44,
-          "seuilAlerte" : 230,
-          "prixEntree" : 1200.0,
-          "prixSortie" : 2000.0,
-          "unites" : "Boite",
-          "precoMouvementsQtes" : [ ],
-          "promotions" : [ ]
-        } ],
-        "promotions" : [ ]
-      }, {
-        "id" : null,
-        "libelle" : "Accessoires",
-        "description" : "Accessoires",
-        "etat" : "true",
-        "dateCreation" : null,
-        "dateModification" : null,
-        "ressources" : [ {
-          "id" : null,
-          "libelle" : "Papier",
-          "etat" : true,
-          "dateCreation" : null,
-          "dateModification" : null,
-          "quantite" : 24,
-          "seuilAlerte" : 20,
-          "prixEntree" : 1200.0,
-          "prixSortie" : 2000.0,
-          "unites" : "Packs",
-          "precoMouvementsQtes" : [ ],
-          "promotions" : [ ]
-        }, {
-          "id" : null,
-          "libelle" : "Encre",
-          "etat" : true,
-          "dateCreation" : null,
-          "dateModification" : null,
-          "quantite" : 4,
-          "seuilAlerte" : 20,
-          "prixEntree" : 1200.0,
-          "prixSortie" : 2000.0,
-          "unites" : "Boite",
-          "precoMouvementsQtes" : [ ],
-          "promotions" : [ ]
-        }, {
-          "id" : null,
-          "libelle" : "Toner",
-          "etat" : true,
-          "dateCreation" : null,
-          "dateModification" : null,
-          "quantite" : 4,
-          "seuilAlerte" : 20,
-          "prixEntree" : 1200.0,
-          "prixSortie" : 2000.0,
-          "unites" : "Boite",
-          "precoMouvementsQtes" : [ ],
-          "promotions" : [ ]
-        }, {
-          "id" : null,
-          "libelle" : "Cahier",
-          "etat" : true,
-          "dateCreation" : null,
-          "dateModification" : null,
-          "quantite" : 4,
-          "seuilAlerte" : 20,
-          "prixEntree" : 1200.0,
-          "prixSortie" : 2000.0,
-          "unites" : "Packs",
-          "precoMouvementsQtes" : [ ],
-          "promotions" : [ ]
-        } ],
-        "promotions" : [ ]
-      } ],
-      "ressource" : null,
-      "distributeurs" : [ ]
-    }, {
-      "id" : null,
-      "qteMin" : 5,
-      "qteMax" : 50,
-      "montantMin" : 200.0,
-      "montantMax" : 2000.0,
-      "familles" : [ ],
-      "ressource" : null,
-      "distributeurs" : [ ]
-    } ]
+    "precoMouvementsQtes" : null
   } ],
   "attributs" : [ {
     "id" : null,
@@ -520,7 +346,7 @@
   "docEtats" : [ ],
   "promotions" : [ ]
 }, {
-  "idDocument" : "0190615e-1101-7209-9932-7020bbd556f3",
+  "idDocument" : null,
   "titre" : "Fiche de soin",
   "description" : "Document delivre par le medecin ou un infirmier de l'etablissement",
   "etat" : true,
@@ -551,7 +377,25 @@
       "missions" : null,
       "fileAttente" : null
     },
-    "roles" : [ ]
+    "roles" : [ {
+      "id" : null,
+      "role" : {
+        "id" : null,
+        "titre" : "marcheur",
+        "description" : "commercial sur le terrain",
+        "etat" : true,
+        "dateCreation" : null,
+        "validations" : [ ]
+      },
+      "dateFin" : 1704063600000,
+      "dateCreation" : null,
+      "dateDebut" : 1704063600000,
+      "etat" : true,
+      "droitAjouter" : true,
+      "droitModifier" : true,
+      "droitConsulter" : true,
+      "droitDeValider" : true
+    } ]
   } ],
   "precoMouvements" : [ {
     "id" : null,
@@ -578,7 +422,6 @@
         "prixEntree" : 12000.0,
         "prixSortie" : 20000.0,
         "unites" : "Packs",
-        "precoMouvementsQtes" : null,
         "promotions" : null
       },
       "distributeurs" : [ ]
@@ -591,7 +434,7 @@
     "etat" : true,
     "dateCreation" : null,
     "dateModification" : null,
-    "type" : "String",
+    "type" : "Text",
     "valeurParDefaut" : "Noir"
   } ],
   "categories" : [ {
@@ -599,6 +442,7 @@
     "ordre" : "1",
     "libelle" : "Informations Personnelles",
     "attributs" : [ {
+      "id" : null,
       "attribut" : {
         "id" : null,
         "titre" : "Teint",
@@ -606,7 +450,7 @@
         "etat" : true,
         "dateCreation" : null,
         "dateModification" : null,
-        "type" : "String",
+        "type" : "Text",
         "valeurParDefaut" : "Noir"
       },
       "obligatoire" : true,
@@ -616,7 +460,7 @@
   "docEtats" : [ ],
   "promotions" : [ ]
 }, {
-  "idDocument" : "0190615e-1101-7209-9932-7020bbd556f2",
+  "idDocument" : null,
   "titre" : "Fiche de suivi",
   "description" : "Document delivre par le medecin ou un infirmier de l'etablissement",
   "etat" : true,
@@ -647,7 +491,25 @@
       "missions" : null,
       "fileAttente" : null
     },
-    "roles" : [ ]
+    "roles" : [ {
+      "id" : null,
+      "role" : {
+        "id" : null,
+        "titre" : "traiteur",
+        "description" : "Personnel administratif",
+        "etat" : true,
+        "dateCreation" : null,
+        "validations" : [ ]
+      },
+      "dateFin" : 1704063600000,
+      "dateCreation" : null,
+      "dateDebut" : 1704063600000,
+      "etat" : true,
+      "droitAjouter" : true,
+      "droitModifier" : true,
+      "droitConsulter" : true,
+      "droitDeValider" : true
+    } ]
   } ],
   "precoMouvements" : [ {
     "id" : null,
@@ -674,7 +536,6 @@
         "prixEntree" : 2000.0,
         "prixSortie" : 3000.0,
         "unites" : "Boite",
-        "precoMouvementsQtes" : null,
         "promotions" : null
       },
       "distributeurs" : [ ]
@@ -687,7 +548,7 @@
     "etat" : true,
     "dateCreation" : null,
     "dateModification" : null,
-    "type" : "Int",
+    "type" : "Text",
     "valeurParDefaut" : null
   }, {
     "id" : null,
@@ -705,7 +566,7 @@
     "etat" : true,
     "dateCreation" : null,
     "dateModification" : null,
-    "type" : "String",
+    "type" : "Text",
     "valeurParDefaut" : null
   } ],
   "categories" : [ {
@@ -713,6 +574,7 @@
     "ordre" : "0",
     "libelle" : "Conditions Générales",
     "attributs" : [ {
+      "id" : null,
       "attribut" : {
         "id" : null,
         "titre" : "Age",
@@ -720,7 +582,21 @@
         "etat" : true,
         "dateCreation" : null,
         "dateModification" : null,
-        "type" : "Int",
+        "type" : "Text",
+        "valeurParDefaut" : null
+      },
+      "obligatoire" : true,
+      "ordre" : 1
+    }, {
+      "id" : null,
+      "attribut" : {
+        "id" : null,
+        "titre" : "Sexe",
+        "description" : "Sexe ",
+        "etat" : true,
+        "dateCreation" : null,
+        "dateModification" : null,
+        "type" : "Text",
         "valeurParDefaut" : null
       },
       "obligatoire" : true,
@@ -731,6 +607,7 @@
     "ordre" : "1",
     "libelle" : "Conditions Particulières",
     "attributs" : [ {
+      "id" : null,
       "attribut" : {
         "id" : null,
         "titre" : "Sexe",
@@ -738,7 +615,7 @@
         "etat" : true,
         "dateCreation" : null,
         "dateModification" : null,
-        "type" : "String",
+        "type" : "Text",
         "valeurParDefaut" : null
       },
       "obligatoire" : true,
@@ -748,7 +625,7 @@
   "docEtats" : [ ],
   "promotions" : [ ]
 }, {
-  "idDocument" : "0190615e-1101-7209-9932-7020bbd556f4",
+  "idDocument" : null,
   "titre" : "Formulaire de sortie",
   "description" : "Document delivre par le medecin ou un infirmier de l'etablissement",
   "etat" : true,
@@ -786,7 +663,6 @@
         "prixEntree" : 12000.0,
         "prixSortie" : 20000.0,
         "unites" : "Packs",
-        "precoMouvementsQtes" : null,
         "promotions" : null
       },
       "distributeurs" : [ ]
@@ -808,7 +684,6 @@
         "prixEntree" : 25.0,
         "prixSortie" : 20.0,
         "unites" : "Packs",
-        "precoMouvementsQtes" : null,
         "promotions" : null
       },
       "distributeurs" : [ ]
@@ -821,7 +696,7 @@
     "etat" : true,
     "dateCreation" : null,
     "dateModification" : null,
-    "type" : "String",
+    "type" : "Radio",
     "valeurParDefaut" : "A, A+, A-, B, B+, B-, AB, AB+, AB-, O, O+, O-"
   } ],
   "categories" : [ {
@@ -829,6 +704,7 @@
     "ordre" : "1",
     "libelle" : "Informations Primaires",
     "attributs" : [ {
+      "id" : null,
       "attribut" : {
         "id" : null,
         "titre" : "Groupe sangin",
@@ -836,7 +712,7 @@
         "etat" : true,
         "dateCreation" : null,
         "dateModification" : null,
-        "type" : "String",
+        "type" : "Radio",
         "valeurParDefaut" : "A, A+, A-, B, B+, B-, AB, AB+, AB-, O, O+, O-"
       },
       "obligatoire" : true,
@@ -846,7 +722,7 @@
   "docEtats" : [ ],
   "promotions" : [ ]
 }, {
-  "idDocument" : "0190615e-1101-7209-9932-7020bbd556f1",
+  "idDocument" : null,
   "titre" : "Note intervention",
   "description" : "Document delivre par le medecin ou un infirmier de l'etablissement",
   "etat" : true,
@@ -877,7 +753,25 @@
       "missions" : null,
       "fileAttente" : null
     },
-    "roles" : [ ]
+    "roles" : [ {
+      "id" : null,
+      "role" : {
+        "id" : null,
+        "titre" : "vendeur",
+        "description" : "personnel au contact du client",
+        "etat" : true,
+        "dateCreation" : null,
+        "validations" : [ ]
+      },
+      "dateFin" : 1704063600000,
+      "dateCreation" : null,
+      "dateDebut" : 1704063600000,
+      "etat" : true,
+      "droitAjouter" : true,
+      "droitModifier" : true,
+      "droitConsulter" : true,
+      "droitDeValider" : true
+    } ]
   }, {
     "id" : null,
     "libelle" : "Resultat Labo",
@@ -897,7 +791,25 @@
       "missions" : null,
       "fileAttente" : null
     },
-    "roles" : [ ]
+    "roles" : [ {
+      "id" : null,
+      "role" : {
+        "id" : null,
+        "titre" : "traiteur",
+        "description" : "Personnel administratif",
+        "etat" : true,
+        "dateCreation" : null,
+        "validations" : [ ]
+      },
+      "dateFin" : 1704063600000,
+      "dateCreation" : null,
+      "dateDebut" : 1704063600000,
+      "etat" : true,
+      "droitAjouter" : true,
+      "droitModifier" : true,
+      "droitConsulter" : true,
+      "droitDeValider" : true
+    } ]
   } ],
   "precoMouvements" : [ {
     "id" : null,
@@ -924,7 +836,6 @@
         "prixEntree" : 1200.0,
         "prixSortie" : 2000.0,
         "unites" : "Boite",
-        "precoMouvementsQtes" : null,
         "promotions" : null
       },
       "distributeurs" : [ ]
@@ -937,7 +848,7 @@
     "etat" : true,
     "dateCreation" : null,
     "dateModification" : null,
-    "type" : "String",
+    "type" : "Text",
     "valeurParDefaut" : null
   }, {
     "id" : null,
@@ -946,7 +857,7 @@
     "etat" : true,
     "dateCreation" : null,
     "dateModification" : null,
-    "type" : "Int",
+    "type" : "Text",
     "valeurParDefaut" : null
   }, {
     "id" : null,
@@ -964,7 +875,7 @@
     "etat" : true,
     "dateCreation" : null,
     "dateModification" : null,
-    "type" : "Double",
+    "type" : "Number",
     "valeurParDefaut" : null
   }, {
     "id" : null,
@@ -973,7 +884,7 @@
     "etat" : true,
     "dateCreation" : null,
     "dateModification" : null,
-    "type" : "String",
+    "type" : "Text",
     "valeurParDefaut" : null
   }, {
     "id" : null,
@@ -982,7 +893,7 @@
     "etat" : true,
     "dateCreation" : null,
     "dateModification" : null,
-    "type" : "String",
+    "type" : "Text",
     "valeurParDefaut" : "Noir"
   } ],
   "categories" : [ {
@@ -990,6 +901,7 @@
     "ordre" : "0",
     "libelle" : "Informations Personnelles",
     "attributs" : [ {
+      "id" : null,
       "attribut" : {
         "id" : null,
         "titre" : "Taille",
@@ -997,12 +909,13 @@
         "etat" : true,
         "dateCreation" : null,
         "dateModification" : null,
-        "type" : "String",
+        "type" : "Text",
         "valeurParDefaut" : null
       },
       "obligatoire" : true,
       "ordre" : 1
     }, {
+      "id" : null,
       "attribut" : {
         "id" : null,
         "titre" : "Age",
@@ -1010,12 +923,13 @@
         "etat" : true,
         "dateCreation" : null,
         "dateModification" : null,
-        "type" : "Int",
+        "type" : "Text",
         "valeurParDefaut" : null
       },
       "obligatoire" : true,
       "ordre" : 2
     }, {
+      "id" : null,
       "attribut" : {
         "id" : null,
         "titre" : "Teint",
@@ -1023,7 +937,7 @@
         "etat" : true,
         "dateCreation" : null,
         "dateModification" : null,
-        "type" : "String",
+        "type" : "Text",
         "valeurParDefaut" : "Noir"
       },
       "obligatoire" : false,
@@ -1034,6 +948,7 @@
     "ordre" : "1",
     "libelle" : "Informations Primaires",
     "attributs" : [ {
+      "id" : null,
       "attribut" : {
         "id" : null,
         "titre" : "Poids",
@@ -1041,12 +956,13 @@
         "etat" : true,
         "dateCreation" : null,
         "dateModification" : null,
-        "type" : "Double",
+        "type" : "Number",
         "valeurParDefaut" : null
       },
       "obligatoire" : true,
       "ordre" : 1
     }, {
+      "id" : null,
       "attribut" : {
         "id" : null,
         "titre" : "Adresse",
@@ -1054,12 +970,13 @@
         "etat" : true,
         "dateCreation" : null,
         "dateModification" : null,
-        "type" : "String",
+        "type" : "Text",
         "valeurParDefaut" : null
       },
       "obligatoire" : false,
       "ordre" : 2
     }, {
+      "id" : null,
       "attribut" : {
         "id" : null,
         "titre" : "Date de naissance",
@@ -1077,7 +994,7 @@
   "docEtats" : [ ],
   "promotions" : [ ]
 }, {
-  "idDocument" : "0190615e-1101-7209-9932-7020bbd556f5",
+  "idDocument" : null,
   "titre" : "ordonnance",
   "description" : "Document delivre par le medecin ou un infirmier de l'etablissement",
   "etat" : true,
@@ -1106,7 +1023,7 @@
     "etat" : true,
     "dateCreation" : null,
     "dateModification" : null,
-    "type" : "String",
+    "type" : "Textarea",
     "valeurParDefaut" : null
   } ],
   "categories" : [ {
@@ -1114,6 +1031,7 @@
     "ordre" : "1",
     "libelle" : "Conditions Générales",
     "attributs" : [ {
+      "id" : null,
       "attribut" : {
         "id" : null,
         "titre" : "Allergies",
@@ -1121,7 +1039,7 @@
         "etat" : true,
         "dateCreation" : null,
         "dateModification" : null,
-        "type" : "String",
+        "type" : "Textarea",
         "valeurParDefaut" : null
       },
       "obligatoire" : true,

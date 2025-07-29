@@ -1,16 +1,18 @@
 package cmr.notep.business;
 
-import cmr.notep.dao.DaoAccessorService;
-import cmr.notep.dao.PersonnesEntity;
+import cmr.notep.dao.*;
+import cmr.notep.exceptions.ParcoursException;
+import cmr.notep.exceptions.enumeration.ParcoursExceptionCodeEnum;
 import cmr.notep.modele.*;
-import cmr.notep.repository.PersonnesRepository;
+import cmr.notep.repository.*;
+import lombok.NonNull;
 import lombok.extern.slf4j.Slf4j;
-import org.jetbrains.annotations.NotNull;
+import org.apache.commons.lang3.tuple.Pair;
+import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Component;
 import org.springframework.transaction.annotation.Transactional;
 
-import java.util.ArrayList;
-import java.util.List;
+import java.util.*;
 import java.util.stream.Collectors;
 
 import static cmr.notep.config.DocumentConfig.dozerMapperBean;
@@ -20,80 +22,94 @@ import static cmr.notep.config.DocumentConfig.dozerMapperBean;
 @Transactional
 public class PersonnesBusiness {
     private final DaoAccessorService daoAccessorService;
-//    private final DistributeursBusiness distributeursBusiness ;
-//    private final PersonnesPhysiqueBusiness personnesPhysiqueBusiness ;
-//    private final PersonnesMoraleBusiness personnesMoraleBusiness;
 
-    public PersonnesBusiness(DaoAccessorService daoAccessorService)
-    {
+    public PersonnesBusiness(DaoAccessorService daoAccessorService) {
         this.daoAccessorService = daoAccessorService;
-//        this.distributeursBusiness = distributeursBusiness;
-//        this.personnesPhysiqueBusiness = personnesPhysiqueBusiness;
-//        this.personnesMoraleBusiness = personnesMoraleBusiness;
     }
 
-    public Personnes avoirPersonne(String id) {
-        System.out.println("Recherche de personnes");
-        return dozerMapperBean.map(
-                this.daoAccessorService.getRepository(PersonnesRepository.class)
-                        .findById(id)
-                        .orElseThrow(()->new RuntimeException("Personne inexistante")), Personnes.class);
-    }
+    public Personnes avoirPersonne(@NonNull String id) throws ParcoursException {
 
-    public List<MacroPersonnes> avoirParElemnt(String value)
-    {
-        List<MacroPersonnes> outputItem = new ArrayList<>();
+        List<Pair<Class<?>, Class<?>>> repositories = List.of(
+                Pair.of(PersonnePhysiqueRepository.class, PersonnesPhysique.class),
+                Pair.of(PersonneMoraleRepository.class, PersonnesMorale.class),
+                Pair.of(DistributeursRepository.class, Distributeurs.class),
+                Pair.of(PersonnelsRepository.class, Personnels.class)
+        );
 
-//        List<Distributeurs> distributeurs = this.daoAccessorService.getRepository(PersonnesRepository.class).findByRaisonSocialeOnDistributeurs(value)
-//                .stream().map(distibuteur ->dozerMapperBean.map(distibuteur, Distributeurs.class))
-//                .toList();
-//
-//        List<PersonnesMorale> personnesmorales = this.daoAccessorService.getRepository(PersonnesRepository.class).findByRaisonSocialeOnPersonneMorale(value)
-//                .stream().map(personnesmorale ->dozerMapperBean.map(personnesmorale, PersonnesMorale.class))
-//                .toList();
-//
-//        List<PersonnesPhysique> personnesphysiques = this.daoAccessorService.getRepository(PersonnesRepository.class).findByNomOrByPrenomOnPersonnePhysique(value)
-//                .stream().map(personnesphysique ->dozerMapperBean.map(personnesphysique, PersonnesPhysique.class))
-//                .toList();
-//
-//        for (Distributeurs distributeur : distributeurs) {
-//            outputItem.add(new MacroPersonnes("Distributeurs", distributeur));
-//        }
-//
-//        for (PersonnesMorale personneMorale : personnesmorales) {
-//            outputItem.add(new MacroPersonnes("Personnes morale", personneMorale));
-//        }
-//
-//        for (PersonnesPhysique personnePhysique : personnesphysiques) {
-//            outputItem.add(new MacroPersonnes("Personnes physique", personnePhysique));
-//        }
-//
-//        if (outputItem.isEmpty())
-//            throw new IllegalStateException("Entrée "+value+" non trouvé!");
+        for (Pair<Class<?>, Class<?>> repoAndClass : repositories) {
+            JpaRepository<?, String> repo = (JpaRepository<?, String>) this.daoAccessorService.getRepository(repoAndClass.getLeft());
+            Optional<?> entityOpt = repo.findById(id);
+            if (entityOpt.isPresent()) {
+                return (Personnes) dozerMapperBean.map(entityOpt.get(), repoAndClass.getRight());
+            }
+        }
 
-//        else
+        throw new ParcoursException(ParcoursExceptionCodeEnum.NOT_FOUND, "Personne inexistante");
 
-            return outputItem;
     }
 
     public List<Personnes> avoirToutPersonnes() {
 
-        List<PersonnesEntity> list_personnes_entity = daoAccessorService.getRepository(PersonnesRepository.class).findAll() ;
+        List<Pair<Class<?>, Class<?>>> repoClasses = List.of(
+                Pair.of(PersonnePhysiqueRepository.class, PersonnesPhysique.class),
+                Pair.of(PersonneMoraleRepository.class, PersonnesMorale.class),
+                Pair.of(DistributeursRepository.class, Distributeurs.class),
+                Pair.of(PersonnelsRepository.class, Personnels.class)
+        );
 
-        List<Personnes> list_persones = list_personnes_entity.stream().map(cat ->dozerMapperBean.map(cat, Personnes.class))
-                .collect(Collectors.toList());
+        List<Personnes> personnesList = new ArrayList<>();
 
-        return list_persones;
+        for (Pair<Class<?>, Class<?>> repoAndClass : repoClasses){
+
+            JpaRepository<?, String> repo = (JpaRepository<?, String>) this.daoAccessorService.getRepository(repoAndClass.getLeft());
+
+            List<?> entities = repo.findAll().stream().map(entity -> dozerMapperBean.map(entity , repoAndClass.getRight()))
+                    .collect(Collectors.toUnmodifiableList());
+
+            personnesList.addAll((Collection<? extends Personnes>) entities);
+
+        }
+
+        return personnesList ;
     }
 
-    public void supprimerPersonne(@NotNull Personnes Personnes)
+    public void supprimerPersonne(Personnes personne)
     {
-//        daoAccessorService.getRepository(PersonnesRepository.class)
-//                .deleteById(String.valueOf(Personnes.getId()));
+        daoAccessorService.getRepository(PersonnesRepository.class)
+                .deleteById(String.valueOf(personne.getId()));
     }
 
-    public Personnes posterPersonne(Personnes Personnes) {
-        return dozerMapperBean.map( this.daoAccessorService.getRepository(PersonnesRepository.class)
-                .save(dozerMapperBean.map(Personnes, PersonnesEntity.class)), Personnes.class);
+    public Personnes posterPersonne(Personnes personne) {
+        return dozerMapperBean.map(
+                this.daoAccessorService.getRepository(PersonnesRepository.class)
+                        .save(dozerMapperBean.map(personne, PersonnesEntity.class)),
+                Personnes.class
+        );
+    }
+
+    private Personnes mapPersonnesEntityToPersonnes(PersonnesEntity personnesEntity) {
+        if(personnesEntity instanceof DistributeursEntity)
+            return dozerMapperBean.map(personnesEntity, Distributeurs.class);
+        else if (personnesEntity instanceof PersonnesPhysiquesEntity)
+            return dozerMapperBean.map(personnesEntity, PersonnesPhysique.class);
+        else if (personnesEntity instanceof PersonnesMoralesEntity)
+            return dozerMapperBean.map(personnesEntity, PersonnesMorale.class);
+        else if (personnesEntity instanceof PersonnelsEntity)
+            return dozerMapperBean.map(personnesEntity, Personnels.class);
+        else
+            return dozerMapperBean.map(personnesEntity, Personnes.class);
+    }
+
+    private PersonnesEntity mapPersonnesToPersonnesEntity(Personnes personnes) {
+        if(personnes instanceof Distributeurs)
+            return dozerMapperBean.map(personnes, DistributeursEntity.class);
+        else if (personnes instanceof PersonnesPhysique)
+            return dozerMapperBean.map(personnes, PersonnesPhysiquesEntity.class);
+        else if (personnes instanceof PersonnesMorale)
+            return dozerMapperBean.map(personnes, PersonnesMoralesEntity.class);
+        else if (personnes instanceof Personnels)
+            return dozerMapperBean.map(personnes, PersonnelsEntity.class);
+        else
+            return dozerMapperBean.map(personnes, PersonnesEntity.class);
     }
 }

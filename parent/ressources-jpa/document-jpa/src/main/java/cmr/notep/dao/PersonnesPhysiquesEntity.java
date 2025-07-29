@@ -3,14 +3,14 @@ package cmr.notep.dao;
 import lombok.Getter;
 import lombok.Setter;
 
-import javax.persistence.*;
-import java.util.Date;
+import jakarta.persistence.*;
 import java.util.Date;
 
 @Getter
 @Setter
 @Entity
-@DiscriminatorValue("personnesphysique")
+@PrimaryKeyJoinColumn(name = "personnesphysique_id")
+@Table(name = "personnesphysique", schema = "document")
 public class PersonnesPhysiquesEntity extends PersonnesEntity{
 
     @Column(name = "nom" , nullable = false)

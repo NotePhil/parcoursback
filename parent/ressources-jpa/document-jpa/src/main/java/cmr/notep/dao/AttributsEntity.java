@@ -1,13 +1,14 @@
 package cmr.notep.dao;
 
-import cmr.notep.modele.Type_attribut;
+import cmr.notep.modele.TypeAttribut;
+import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.Setter;
 import org.hibernate.annotations.GenericGenerator;
 
-import javax.persistence.*;
 import java.util.Date;
 import java.util.List;
+import jakarta.persistence.*;
 
 @Getter
 @Setter
@@ -32,7 +33,7 @@ public class AttributsEntity {
 
     @Enumerated(EnumType.STRING)
     @Column(name = "type_attribut", nullable = false)
-    private Type_attribut type;
+    private TypeAttribut type;
 
     @Column(name = "valeurpardefaut")
     private String valeurParDefaut;
@@ -43,7 +44,7 @@ public class AttributsEntity {
     //@JsonIgnore
    // private List<CategoriesEntity> categories ;
 
-    @OneToMany(mappedBy = "attribut", fetch = FetchType.LAZY, cascade = {CascadeType.ALL})
-    //@Mapping("categories")
+    @OneToMany(mappedBy = "attribut", fetch = FetchType.LAZY, orphanRemoval = true)
+   // @Mapping("categories")
     private List<AssocierEntity> categoriesEntities;
 }

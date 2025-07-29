@@ -24,12 +24,12 @@ public interface IDistributeursApi {
     @DeleteMapping(
             consumes = MediaType.APPLICATION_JSON_VALUE
     )
-    void supprimerDistributeur(@NonNull @RequestBody Distributeurs Distributeurs);
+    void supprimerDistributeur(@NonNull @RequestBody Distributeurs distributeur);
 
     @PostMapping(
             produces = MediaType.APPLICATION_JSON_VALUE,
             consumes = MediaType.APPLICATION_JSON_VALUE
     )
-    Distributeurs posterDistributeur(@NonNull @RequestBody Distributeurs Distributeurs) ;
+    Distributeurs posterDistributeur(@NonNull @RequestBody Distributeurs distributeur) ;
 
 }

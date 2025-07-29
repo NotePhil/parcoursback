@@ -10,10 +10,8 @@ import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Component;
 import org.springframework.transaction.annotation.Transactional;
 
-import java.util.HashMap;
+
 import java.util.List;
-import java.util.Map;
-import java.util.Objects;
 import java.util.stream.Collectors;
 
 import static cmr.notep.config.LoginConfig.dozerMapperBean;
@@ -51,19 +49,20 @@ public class UtilisateursBusiness {
         return dozerMapperBean.map(savedEntity, Utilisateurs.class);
     }
 
-    public Map<String , Object> UserToken (String token , String login)
+    public Utilisateurs avoirUserByLogin (String login)
     {
-
-        Map<String , Object> result = new HashMap<>();
-
-        Utilisateurs user = dozerMapperBean.map(
+        return dozerMapperBean.map(
                 this.daoAccessorService.getRepository(UtilisateursRepository.class)
                         .findByLogin(login)
                         .orElseThrow(()->new RuntimeException("Utilisateur non trouvé")),Utilisateurs.class);
 
-        result.put("User" , user) ;
-        result.put("Token" , token);
+    }
 
-        return result;
+    public Utilisateurs avoirUserById(String id) {
+        return dozerMapperBean.map(
+                this.daoAccessorService.getRepository(UtilisateursRepository.class)
+                        .findById(id)
+                        .orElseThrow(()->new RuntimeException("Utilisateur non trouvé")),Utilisateurs.class);
+
     }
 }

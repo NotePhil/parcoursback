@@ -1,6 +1,7 @@
 package cmr.notep.wstools.impl;
 
 import cmr.notep.exceptions.ParcoursException;
+import cmr.notep.exceptions.enumeration.ParcoursExceptionCodeEnum;
 import cmr.notep.wstools.api.IGenericWsClientApi;
 import cmr.notep.wstools.helper.GenericClientWsHelper;
 import cmr.notep.wstools.helper.GetHttpClientHelper;
@@ -28,9 +29,9 @@ public class GenericWsClientImpl implements IGenericWsClientApi {
         try {
            return GenericClientWsHelper.construireReponse(client.send(requete, HttpResponse.BodyHandlers.ofString()));
         } catch (IOException e) {
-            throw new ParcoursException("IOException lors de l'appel ws " + request.getUrl(), e);
+            throw new ParcoursException(ParcoursExceptionCodeEnum.INTERNAL_ERROR ,"IOException lors de l'appel ws " + request.getUrl(), e);
         } catch (InterruptedException e) {
-            throw new ParcoursException("InterruptedException lors de l'appel ws " + request.getUrl(), e);
+            throw new ParcoursException(ParcoursExceptionCodeEnum.INTERNAL_ERROR ,"InterruptedException lors de l'appel ws " + request.getUrl(), e);
         }
     }
 }

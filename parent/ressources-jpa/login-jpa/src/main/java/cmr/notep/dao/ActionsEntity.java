@@ -5,7 +5,7 @@ import lombok.Setter;
 import org.dozer.Mapping;
 import org.hibernate.annotations.GenericGenerator;
 
-import javax.persistence.*;
+import jakarta.persistence.*;
 import java.util.Date;
 import java.util.List;
 
@@ -33,6 +33,10 @@ public class ActionsEntity {
     @Column(name = "datemodification")
     private Date dateModification;
 
+    @Column(name = "actionstatus")
+    private String actionstatus;
+
+
     @ManyToOne
     @JoinColumn(name = "elementsbase_id")
     @Mapping("elementsbase")
@@ -41,4 +45,9 @@ public class ActionsEntity {
     @OneToMany(mappedBy = "actionsEntity",fetch = FetchType.LAZY, cascade = {CascadeType.ALL})
     @Mapping("actionslangues")
     private List<ActionsLanguesEntity> actionsLanguesEntities;
+
+    @ManyToOne
+    @JoinColumn(name = "utilisateur_id")
+    @Mapping("utilisateur")
+    private UtilisateursEntity utilisateursEntity;
 }

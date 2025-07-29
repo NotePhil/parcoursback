@@ -54,23 +54,37 @@
         <dependency>
             <groupId>cmr.notep</groupId>
             <artifactId>document-interface</artifactId>
-            <version>${projet.version}</version>
+            <version>${project.version}</version>
         </dependency>
         <dependency>
             <groupId>cmr.notep</groupId>
             <artifactId>document-jpa</artifactId>
-            <version>${projet.version}</version>
+            <version>${project.version}</version>
         </dependency>
         <dependency>
             <groupId>cmr.notep</groupId>
             <artifactId>common-jpa</artifactId>
-            <version>${projet.version}</version>
+            <version>${project.version}</version>
         </dependency>
         <dependency>
-            <groupId>org.jetbrains</groupId>
-            <artifactId>annotations</artifactId>
-            <version>24.1.0</version>
-            <scope>compile</scope>
+            <groupId>jakarta.persistence</groupId>
+            <artifactId>jakarta.persistence-api</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>jakarta.activation</groupId>
+            <artifactId>jakarta.activation-api</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>jakarta.transaction</groupId>
+            <artifactId>jakarta.transaction-api</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>jakarta.annotation</groupId>
+            <artifactId>jakarta.annotation-api</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>jakarta.inject</groupId>
+            <artifactId>jakarta.inject-api</artifactId>
         </dependency>
     </dependencies>
     <build>
