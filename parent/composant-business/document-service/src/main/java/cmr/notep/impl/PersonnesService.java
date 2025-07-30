@@ -2,6 +2,8 @@ package cmr.notep.impl;
 
 import cmr.notep.api.IPersonnesApi;
 import cmr.notep.business.PersonnesBusiness;
+import cmr.notep.business.PersonnesMoraleBusiness;
+import cmr.notep.business.PersonnesPhysiqueBusiness;
 import cmr.notep.exceptions.ParcoursException;
 import cmr.notep.modele.Personnes;
 import jakarta.transaction.Transactional;
@@ -18,9 +20,13 @@ import java.util.List;
 public class PersonnesService implements IPersonnesApi {
 
     private final PersonnesBusiness personnesBusiness;
+    private final PersonnesPhysiqueBusiness personnesPhysiqueBusiness;
+    private final PersonnesMoraleBusiness personnesMoraleBusiness;
 
-    public PersonnesService(PersonnesBusiness personnesBusiness) {
+    public PersonnesService(PersonnesBusiness personnesBusiness, PersonnesPhysiqueBusiness personnesPhysiqueBusiness, PersonnesMoraleBusiness personnesMoraleBusiness) {
         this.personnesBusiness = personnesBusiness;
+        this.personnesPhysiqueBusiness = personnesPhysiqueBusiness;
+        this.personnesMoraleBusiness = personnesMoraleBusiness;
     }
 
     @Override
@@ -30,7 +36,11 @@ public class PersonnesService implements IPersonnesApi {
         } catch (ParcoursException e) {
             throw new RuntimeException(e);
         }
-}
+    }
+
+    public List<Personnes> avoirToutePersonnePhyMor() throws ParcoursException {
+        return personnesBusiness.avoirToutePersonnePhyMor();
+    }
 
     @Override
     public List<Personnes> avoirToutPersonnes() {

@@ -27,7 +27,7 @@ public class PersonnesPhysiqueBusiness {
         return dozerMapperBean.map(
                 this.daoAccessorService.getRepository(PersonnePhysiqueRepository.class)
                         .findById(id)
-                        .orElseThrow(()->new RuntimeException("Distributeurs inexistante")), PersonnesPhysique.class);}
+                        .orElseThrow(()->new RuntimeException("Personne inexistante")), PersonnesPhysique.class);}
 
     public List<PersonnesPhysique> avoirListPersonnePhysiquesByelmnt(String value)
     {

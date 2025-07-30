@@ -1,6 +1,5 @@
 package cmr.notep.business;
 
-import cmr.notep.api.IPersonnelsApi;
 import cmr.notep.dao.DaoAccessorService;
 import cmr.notep.dao.PersonnelsEntity;
 import cmr.notep.modele.Personnels;
@@ -29,7 +28,7 @@ public class PersonnelsBusiness  {
         return dozerMapperBean.map(
                 this.daoAccessorService.getRepository(PersonnelsRepository.class)
                         .findById(id)
-                        .orElseThrow(()->new RuntimeException("personnel inexistante")), Personnels.class);
+                        .orElseThrow(()->new RuntimeException("Personnel inexistant")), Personnels.class);
     }
 
     public List<Personnels> avoirToutPersonnels() {
