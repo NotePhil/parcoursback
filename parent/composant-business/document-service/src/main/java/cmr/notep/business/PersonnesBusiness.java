@@ -27,27 +27,6 @@ public class PersonnesBusiness {
         this.daoAccessorService = daoAccessorService;
     }
 
-    public List<Personnes> avoirToutePersonnePhyMor(){
-        List<Pair<Class<?>, Class<?>>> repoClasses = List.of(
-                Pair.of(PersonnePhysiqueRepository.class, PersonnesPhysique.class),
-                Pair.of(PersonneMoraleRepository.class, PersonnesMorale.class)
-        );
-
-        List<Personnes> personnesList = new ArrayList<>();
-
-        for (Pair<Class<?>, Class<?>> repoAndClass : repoClasses){
-
-            JpaRepository<?, String> repo = (JpaRepository<?, String>) this.daoAccessorService.getRepository(repoAndClass.getLeft());
-
-            List<?> entities = repo.findAll().stream().map(entity -> dozerMapperBean.map(entity , repoAndClass.getRight()))
-                    .collect(Collectors.toUnmodifiableList());
-
-            personnesList.addAll((Collection<? extends Personnes>) entities);
-
-        }
-
-        return personnesList ;
-    }
 
     public Personnes avoirPersonne(@NonNull String id) throws ParcoursException {
 

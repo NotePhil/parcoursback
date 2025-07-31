@@ -31,4 +31,17 @@ public interface IPersonnesApi {
     )
     Personnes posterPersonne(@NonNull @RequestBody Personnes Personnes) ;
 
+    @GetMapping(
+            path = "/patient",
+            produces = MediaType.APPLICATION_JSON_VALUE
+    )
+    List<PersonnesPhysique> avoirToutPatient();
+
+    @GetMapping(
+            path = "/patient/{idPersonne}",
+            produces = MediaType.APPLICATION_JSON_VALUE
+    )
+    PersonnesPhysique avoirPatient (@NonNull @RequestParam(name="idPersonne") String idPersonne) throws ParcoursException;
+
+
 }

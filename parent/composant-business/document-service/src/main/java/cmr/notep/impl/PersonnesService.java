@@ -6,6 +6,7 @@ import cmr.notep.business.PersonnesMoraleBusiness;
 import cmr.notep.business.PersonnesPhysiqueBusiness;
 import cmr.notep.exceptions.ParcoursException;
 import cmr.notep.modele.Personnes;
+import cmr.notep.modele.PersonnesPhysique;
 import jakarta.transaction.Transactional;
 import org.springframework.context.annotation.Primary;
 import org.springframework.lang.NonNull;
@@ -38,8 +39,15 @@ public class PersonnesService implements IPersonnesApi {
         }
     }
 
-    public List<Personnes> avoirToutePersonnePhyMor() throws ParcoursException {
-        return personnesBusiness.avoirToutePersonnePhyMor();
+    @Override
+    public List<PersonnesPhysique> avoirToutPatient()
+    {
+        return this.personnesPhysiqueBusiness.avoirToutPersonnesPhysique();
+    }
+
+    @Override
+    public PersonnesPhysique avoirPatient (@NonNull String idPersonnes) {
+        return this.personnesPhysiqueBusiness.avoirPersonnePhysique(idPersonnes);
     }
 
     @Override
