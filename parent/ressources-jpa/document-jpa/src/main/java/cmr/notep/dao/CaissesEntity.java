@@ -24,6 +24,9 @@ public class CaissesEntity {
     @Column(name="libelle",nullable = false)
     private String libelle ;
 
+    @Column(name="etat",nullable = false)
+    private String etat ;
+
     @Column(name="solde",nullable = false)
     private double solde ;
 

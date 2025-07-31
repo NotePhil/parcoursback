@@ -13,7 +13,7 @@ import java.util.List;
 @JsonIgnoreProperties({"menus","fonctionnalite"})
 @ToString(exclude = {"menus","fonctionnalite"})
 @EqualsAndHashCode(exclude = {"menus","fonctionnalite"})
-public class Elements {
+public class Element {
     private String id;
     private String libelle;
     private boolean etat;

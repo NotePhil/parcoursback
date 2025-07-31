@@ -14,7 +14,7 @@ import java.util.Date;
 @EqualsAndHashCode(exclude = { "mission"})
 public class Remplir {
     private String id;
-    private Roles role;
+    private Role role;
     private Missions mission;
     private Date dateFin ;
     private Date dateCreation;

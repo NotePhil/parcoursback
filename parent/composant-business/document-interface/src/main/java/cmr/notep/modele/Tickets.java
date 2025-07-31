@@ -17,6 +17,8 @@ import java.util.Date;
 public class Tickets {
     private String id;
     private String codecourt;
+    private Personnes personne;
+    private String statut ;
     private Date dateCreation;
     private Date dateModification;
     private List<TicketsFilesAttentes> ticketsfilesattentes;

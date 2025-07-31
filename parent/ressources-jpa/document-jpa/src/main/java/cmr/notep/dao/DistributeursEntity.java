@@ -20,7 +20,8 @@ public class DistributeursEntity extends PersonnesEntity {
     @Column(name = "code")
     private String code ;
     @Column(name = "raisonsociale")
-    private String raisonSociale;
+    private String raisonSocial;
+
 
     @OneToMany(mappedBy = "distributeursEntity" , fetch = FetchType.LAZY , cascade = {CascadeType.ALL})
     @Mapping("mouvements")

@@ -14,6 +14,7 @@ import java.util.List;
 public class Caisses {
     private String id;
     private String libelle ;
+    private boolean etat ;
     private double solde ;
     private String type ;
     private String detailJSON ;

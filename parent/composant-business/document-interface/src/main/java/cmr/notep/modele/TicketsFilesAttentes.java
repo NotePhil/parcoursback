@@ -17,5 +17,5 @@ public class TicketsFilesAttentes {
     private Boolean etat ;
     private Date dateAffectation;
     private Tickets ticket;
-    private FilesAttentes filesAttente;
+    private FilesAttentes fileAttente;
 }

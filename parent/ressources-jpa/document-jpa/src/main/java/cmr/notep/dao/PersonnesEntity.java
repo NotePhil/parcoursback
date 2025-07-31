@@ -28,6 +28,9 @@ public class PersonnesEntity
     @Column(name = "mail")
     private String mail ;
 
+    @Column(name = "etat")
+    private boolean etat;
+
     @Column(name = "type")
     private String type ;
 
@@ -51,6 +54,11 @@ public class PersonnesEntity
     @JoinColumn(name = "comptes_id" , referencedColumnName = "id")
     @Mapping("compte")
     private ComptesEntity comptesEntity;
+
+    @OneToOne
+    @JoinColumn(name = "ticket_id" , referencedColumnName = "id")
+    @Mapping("ticket")
+    private TicketsEntity ticketsEntity;
 
     @OneToMany(mappedBy = "personnesEntity", fetch = FetchType.LAZY, cascade = {CascadeType.ALL})
     @Mapping("exemplaires")

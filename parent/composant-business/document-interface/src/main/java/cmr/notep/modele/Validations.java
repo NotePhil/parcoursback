@@ -18,8 +18,9 @@ public class Validations {
     private String id;
     private String code ;
     private String etat ;
+    private String libelle;
     private Date dateCreation;
-    private Roles role;
+    private Role role;
     private Date dateModification;
     private String typeVote ;
     private int dureeVote ;

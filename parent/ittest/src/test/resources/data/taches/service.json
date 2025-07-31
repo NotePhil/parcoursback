@@ -260,7 +260,7 @@
               1704063600000
             ],
             "role": {
-              "@class": "cmr.notep.modele.Roles",
+              "@class": "cmr.notep.modele.Role",
               "id": "5190615e-1101-7209-9932-7020bbd556f1",
               "titre": "vendeur",
               "description": "personnel au contact du client",
@@ -326,7 +326,7 @@
               1704063600000
             ],
             "role": {
-              "@class": "cmr.notep.modele.Roles",
+              "@class": "cmr.notep.modele.Role",
               "id": "6130615e-1101-7209-9932-7020bbd556f2",
               "titre": "traiteur",
               "description": "Personnel administratif",
@@ -392,7 +392,7 @@
               1704063600000
             ],
             "role": {
-              "@class": "cmr.notep.modele.Roles",
+              "@class": "cmr.notep.modele.Role",
               "id": "6191615e-1101-7209-9932-7020bbd556f3",
               "titre": "marcheur",
               "description": "commercial sur le terrain",
@@ -524,7 +524,7 @@
                     1704063600000
                   ],
                   "role": {
-                    "@class": "cmr.notep.modele.Roles",
+                    "@class": "cmr.notep.modele.Role",
                     "id": "5190615e-1101-7209-9932-7020bbd556f1",
                     "titre": "vendeur",
                     "description": "personnel au contact du client",

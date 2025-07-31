@@ -22,5 +22,5 @@ public class ElementsBases {
     private String moduleAngular;
     private List<Actions> actions ;
     private List<ElementsBaseLangues> elementsbaselangues;
-    private Elements element;
+    private Element element;
 }

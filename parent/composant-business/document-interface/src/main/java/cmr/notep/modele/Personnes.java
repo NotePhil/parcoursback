@@ -1,5 +1,7 @@
 package cmr.notep.modele;
 
+import com.fasterxml.jackson.annotation.JsonSubTypes;
+import com.fasterxml.jackson.annotation.JsonTypeInfo;
 import lombok.*;
 import lombok.experimental.SuperBuilder;
 
@@ -14,14 +16,27 @@ import java.util.List;
 @SuperBuilder
 @ToString
 @Getter
+@JsonTypeInfo(
+        use = JsonTypeInfo.Id.NAME,
+        include = JsonTypeInfo.As.PROPERTY,
+        property = "type"
+)
+@JsonSubTypes({
+        @JsonSubTypes.Type(value = PersonnesPhysique.class, name = "physique"),
+        @JsonSubTypes.Type(value = PersonnesMorale.class, name = "morale"),
+        @JsonSubTypes.Type(value = Personnels.class, name = "personnel"),
+        @JsonSubTypes.Type(value = Distributeurs.class, name = "distributeur"),
+})
 public class Personnes implements Serializable, IPersonnes {
     private String id ;
     private String adresse ;
     private String mail ;
+    private boolean etat;
     private  String telephone ;
     private  String qrcodevalue ;
     private Comptes compte;
     private String type;
+    private Tickets ticket;
     private Exemplaires exemplaires;
     private Date dateCreation;
     private Date dateModification;

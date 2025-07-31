@@ -2,7 +2,7 @@ package cmr.notep.impl;
 
 import cmr.notep.api.IRolesApi;
 import cmr.notep.business.RolesBusiness;
-import cmr.notep.modele.Roles;
+import cmr.notep.modele.Role;
 import jakarta.transaction.Transactional;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -20,23 +20,23 @@ public class RolesService implements IRolesApi {
     }
 
     @Override
-    public Roles posterRole(Roles Role) {
+    public Role posterRole(Role Role) {
         return rolesBusiness.posterRole(Role);
     }
 
     @Override
-    public Roles avoirRole(String idRole) {
+    public Role avoirRole(String idRole) {
         return rolesBusiness.avoirRole(idRole);
     }
 
     @Override
-    public List<Roles> avoirTousRoles() {
+    public List<Role> avoirTousRoles() {
         System.out.print("tester avoir role");
         return rolesBusiness.avoirToutRoles();
     }
 
     @Override
-    public void SupprimerRole(Roles Role) {
+    public void SupprimerRole(Role Role) {
         rolesBusiness.supprimerRole(Role);
     }
 }

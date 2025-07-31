@@ -18,5 +18,5 @@ public class Fonctionnalites {
     private String icone;
     private boolean actif;
     private Menus menus;
-    private List<Elements> elements;
+    private List<Element> elements;
 }

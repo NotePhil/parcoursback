@@ -1,35 +1,35 @@
 package cmr.notep.api;
 
-
 import cmr.notep.exceptions.ParcoursException;
-import cmr.notep.modele.PrecoMouvements;
+import cmr.notep.modele.Parcours;
 import org.springframework.http.MediaType;
 import org.springframework.lang.NonNull;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
-@RequestMapping("precomvt")
-public interface IPrecoMouvementsApi {
+@RequestMapping("parcours")
+public interface IParcoursApi {
+
     @GetMapping(
-            path = "/{idPrecoMouvements}",
+            path = "/{idparcour}",
             produces = MediaType.APPLICATION_JSON_VALUE
     )
-    PrecoMouvements avoirPrecoMouvement (@NonNull @RequestParam(name="idPrecomouvements") String idPrecomouvements) throws ParcoursException;
+    Parcours avoirParcour (@NonNull @PathVariable(name = "idparcour") String idparcour) throws ParcoursException;
 
     @GetMapping(
             produces = MediaType.APPLICATION_JSON_VALUE
     )
-    List<PrecoMouvements> avoirToutPrecoMouvement();
+    List<Parcours> avoirToutesparcour();
 
     @DeleteMapping(
             consumes = MediaType.APPLICATION_JSON_VALUE
     )
-    void supprimerPrecoMouvements(@NonNull @RequestBody PrecoMouvements precoMouvements);
+    void supprimerparcour(@NonNull @RequestBody Parcours parcours);
 
     @PostMapping(
             produces = MediaType.APPLICATION_JSON_VALUE,
             consumes = MediaType.APPLICATION_JSON_VALUE
     )
-    PrecoMouvements posterPrecoMouvements(@NonNull @RequestBody PrecoMouvements precoMouvements) ;
+    Parcours posterparcours(@NonNull @RequestBody Parcours parcours);
 }

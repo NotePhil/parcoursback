@@ -14,7 +14,7 @@ import java.util.List;
 public class Distributeurs extends Personnes {
     private String id;
     private List<PrecoMouvementsQtes> precomouvementsqtes;
-    private String raisonSociale;
+    private String raisonSocial;
     private String code ;
     private List<Promotions> promotions;
     private Mouvements mouvements; 

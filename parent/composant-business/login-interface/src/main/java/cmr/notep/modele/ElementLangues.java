@@ -12,6 +12,6 @@ import lombok.*;
 @EqualsAndHashCode(exclude = {"element","langue"})
 public class ElementLangues {
     private Langues langue;
-    private Elements  element ;
+    private Element  element ;
     private String valeurLibelle ;
 }

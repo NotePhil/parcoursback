@@ -20,5 +20,5 @@ public class JouerRoles {
     private Date dateFin ;
     private Date dateDebut ;
     private Personnels personnel ;
-    private Roles role ;
+    private Role role ;
 }

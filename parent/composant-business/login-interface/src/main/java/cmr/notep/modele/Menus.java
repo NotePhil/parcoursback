@@ -20,6 +20,6 @@ public class Menus {
     private Date dateCreation;
     private Utilisateurs utilisateur;
     private Groupes groupe;
-    private Elements element;
+    private Element element;
     private List<Fonctionnalites> fonctionnalites;
 }

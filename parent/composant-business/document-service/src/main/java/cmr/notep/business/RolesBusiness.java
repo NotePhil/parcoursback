@@ -2,7 +2,7 @@ package cmr.notep.business;
 
 import cmr.notep.dao.DaoAccessorService;
 import cmr.notep.dao.RolesEntity;
-import cmr.notep.modele.Roles;
+import cmr.notep.modele.Role;
 import cmr.notep.repository.RolesRepository;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Component;
@@ -24,27 +24,27 @@ public class RolesBusiness {
         this.daoAccessorService = daoAccessorService;
     }
 
-    public Roles avoirRole(String id) {
+    public Role avoirRole(String id) {
         return dozerMapperBean.map(
                 this.daoAccessorService.getRepository(RolesRepository.class)
                         .findById(id)
-                        .orElseThrow(()->new RuntimeException("role inexistant")), Roles.class);
+                        .orElseThrow(()->new RuntimeException("role inexistant")), Role.class);
     }
 
-    public List<Roles> avoirToutRoles() {
+    public List<Role> avoirToutRoles() {
         return daoAccessorService.getRepository(RolesRepository.class).findAll()
-                .stream().map(role ->dozerMapperBean.map(role, Roles.class))
+                .stream().map(role ->dozerMapperBean.map(role, Role.class))
                 .collect(Collectors.toList());
     }
 
-    public void supprimerRole(Roles Roles)
+    public void supprimerRole(Role Role)
     {
         daoAccessorService.getRepository(RolesRepository.class)
-                .deleteById(Roles.getId().toString());
+                .deleteById(Role.getId().toString());
     }
 
-    public Roles posterRole(Roles Roles) {
+    public Role posterRole(Role Role) {
         return dozerMapperBean.map( this.daoAccessorService.getRepository(RolesRepository.class)
-                .save(dozerMapperBean.map(Roles, RolesEntity.class)), Roles.class);
+                .save(dozerMapperBean.map(Role, RolesEntity.class)), Role.class);
     }
 }
