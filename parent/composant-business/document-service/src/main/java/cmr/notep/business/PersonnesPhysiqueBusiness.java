@@ -1,7 +1,11 @@
 package cmr.notep.business;
 
 import cmr.notep.dao.DaoAccessorService;
+import cmr.notep.dao.ParcoursEntity;
+import cmr.notep.dao.PersonnesPhysiquesEntity;
+import cmr.notep.modele.Parcours;
 import cmr.notep.modele.PersonnesPhysique;
+import cmr.notep.repository.ParcoursRepository;
 import cmr.notep.repository.PersonnePhysiqueRepository;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Component;
@@ -42,5 +46,13 @@ public class PersonnesPhysiqueBusiness {
                 .stream().map(personnesphysique ->dozerMapperBean.map(personnesphysique, PersonnesPhysique.class))
                 .toList();
 
+    }
+
+    public PersonnesPhysique posterPatient (PersonnesPhysique Personnes){
+        return dozerMapperBean.map(
+                this.daoAccessorService.getRepository(PersonnePhysiqueRepository.class)
+                        .save(dozerMapperBean.map(Personnes, PersonnesPhysiquesEntity.class)),
+                PersonnesPhysique.class
+        );
     }
 }

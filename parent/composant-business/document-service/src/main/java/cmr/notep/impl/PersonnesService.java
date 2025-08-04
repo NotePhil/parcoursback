@@ -51,6 +51,11 @@ public class PersonnesService implements IPersonnesApi {
     }
 
     @Override
+    public Personnes posterPatient(PersonnesPhysique Personnes) {
+        return this.personnesPhysiqueBusiness.posterPatient(Personnes);
+    }
+
+    @Override
     public List<Personnes> avoirToutPersonnes() {
         return personnesBusiness.avoirToutPersonnes();
     }
