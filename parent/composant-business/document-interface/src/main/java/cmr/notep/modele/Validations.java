@@ -11,9 +11,6 @@ import java.util.UUID;
 @AllArgsConstructor
 @NoArgsConstructor
 @Builder
-@JsonIgnoreProperties({"role"})
-@ToString(exclude = {"role"})
-@EqualsAndHashCode(exclude = {"role"})
 public class Validations {
     private String id;
     private String code ;
