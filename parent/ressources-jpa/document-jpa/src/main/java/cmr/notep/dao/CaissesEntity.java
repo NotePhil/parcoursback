@@ -25,7 +25,7 @@ public class CaissesEntity {
     private String libelle ;
 
     @Column(name="etat",nullable = false)
-    private String etat ;
+    private boolean etat ;
 
     @Column(name="solde",nullable = false)
     private double solde ;
@@ -33,7 +33,7 @@ public class CaissesEntity {
     @Column(name="type",nullable = false)
     private String type ;
 
-    @Column(name="detailjson",nullable = false)
+    @Column(name="detailjson")
     private String detailJSON ;
 
     @OneToMany(mappedBy = "caissesEntity", fetch = FetchType.LAZY, cascade = {CascadeType.ALL})

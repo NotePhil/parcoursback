@@ -1,5 +1,6 @@
 package cmr.notep.modele;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonSubTypes;
 import com.fasterxml.jackson.annotation.JsonTypeInfo;
 import lombok.*;
@@ -27,6 +28,7 @@ import java.util.List;
         @JsonSubTypes.Type(value = Personnels.class, name = "personnel"),
         @JsonSubTypes.Type(value = Distributeurs.class, name = "distributeur"),
 })
+
 public class Personnes implements Serializable, IPersonnes {
     private String id ;
     private String adresse ;
