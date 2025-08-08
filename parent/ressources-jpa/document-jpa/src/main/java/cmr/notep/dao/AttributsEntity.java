@@ -4,6 +4,7 @@ import cmr.notep.modele.TypeAttribut;
 import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.Setter;
+import org.dozer.Mapping;
 import org.hibernate.annotations.GenericGenerator;
 
 import java.util.Date;
@@ -20,14 +21,19 @@ public class AttributsEntity {
     @GenericGenerator(name = "UUID", strategy = "org.hibernate.id.UUIDGenerator")
     @Column(name = "id", nullable = false, updatable = false, columnDefinition = "UUID")
     private String id;
+
     @Column(name = "titre", nullable = false)
     private String titre;
+
     @Column(name = "description")
     private String description;
+
     @Column(name = "etat")
     private Boolean etat;
-    @Column(name = "datecreation", updatable = false)
+
+    @Column(name = "datecreation")
     private Date dateCreation;
+
     @Column(name = "datemodification")
     private Date dateModification;
 
@@ -36,8 +42,10 @@ public class AttributsEntity {
     private TypeAttribut type;
 
     @Column(name = "valeurpardefaut")
-    private String valeurParDefaut;
+    private String valeursParDefaut;
+
     @ManyToMany(mappedBy = "attributsEntities")
+    @Mapping("documents")
     private List<DocumentsEntity> documentsEntities;
     //@ManyToMany(mappedBy = "attributsEntities")
     //@Mapping("categories")
@@ -45,6 +53,6 @@ public class AttributsEntity {
    // private List<CategoriesEntity> categories ;
 
     @OneToMany(mappedBy = "attribut", fetch = FetchType.LAZY, orphanRemoval = true)
-   // @Mapping("categories")
+    @Mapping("categories")
     private List<AssocierEntity> categoriesEntities;
 }

@@ -28,9 +28,9 @@ public class Attributs {
     private TypeAttribut type;
 
 
-    private String valeurParDefaut;
+    private String valeursParDefaut;
 
     private List<Documents> documents;
-    //private List<Categories> categories ;
+    private List<Categories> categories ;
 
 }

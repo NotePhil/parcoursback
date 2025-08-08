@@ -2,7 +2,6 @@ package cmr.notep.impl;
 
 import cmr.notep.api.IAttributsApi;
 import cmr.notep.business.AttributsBusiness;
-import cmr.notep.exceptions.ParcoursException;
 import cmr.notep.modele.Attributs;
 import jakarta.transaction.Transactional;
 import lombok.NonNull;
@@ -24,7 +23,7 @@ public class AttributsService implements IAttributsApi {
     }
 
     @Override
-    public Attributs avoirAttribut(@NonNull String idAttribut) { return attribBusiness.avoirAttribut(idAttribut);}
+    public Attributs avoirAttribut( String idAttribut) { return attribBusiness.avoirAttribut(idAttribut);}
 
     @Override
     public List<Attributs> avoirToutAttribut(){return attribBusiness.avoirToutAttribut();}
