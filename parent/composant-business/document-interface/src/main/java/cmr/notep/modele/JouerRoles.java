@@ -8,9 +8,9 @@ import java.util.Date;
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-@ToString(exclude = {"personnel"})
-@EqualsAndHashCode(exclude = {"personnel"})
-@JsonIgnoreProperties({"personnel"})
+@ToString(exclude = {"personnel","role"})
+@EqualsAndHashCode(exclude = {"personnel","role"})
+@JsonIgnoreProperties({"personnel","role"})
 @Builder
 public class JouerRoles {
     private String id;
