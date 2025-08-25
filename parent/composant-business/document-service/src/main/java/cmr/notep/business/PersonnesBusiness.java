@@ -4,6 +4,7 @@ import cmr.notep.dao.*;
 import cmr.notep.exceptions.ParcoursException;
 import cmr.notep.exceptions.enumeration.ParcoursExceptionCodeEnum;
 import cmr.notep.modele.*;
+import cmr.notep.repository.PersonnePhysiqueRepository;
 import cmr.notep.repository.PersonnesRepository;
 import lombok.NonNull;
 import lombok.extern.slf4j.Slf4j;
@@ -42,6 +43,12 @@ public class PersonnesBusiness {
                 .collect(Collectors.toList());
     }
 
+    public List<IPersonnes> avoirToutPersonnesPhysiques() {
+        return daoAccessorService.getRepository(PersonnePhysiqueRepository.class).findAll()
+                .stream().map(personnePhysique ->dozerMapperBean.map(personnePhysique, PersonnesPhysique.class))
+                .collect(Collectors.toList());
+    }
+
     public void supprimerPersonne(Personnes personne)
     {
         daoAccessorService.getRepository(PersonnesRepository.class)
@@ -77,5 +84,10 @@ public class PersonnesBusiness {
             return dozerMapperBean.map(personnes, PersonnelsEntity.class);
         else
             return dozerMapperBean.map(personnes, PersonnesEntity.class);
+    }
+
+    public PersonnesPhysique posterPersonnePhysique(PersonnesPhysique personnesPhysique) {
+        return dozerMapperBean.map( this.daoAccessorService.getRepository(PersonnePhysiqueRepository.class)
+                .save(dozerMapperBean.map(personnesPhysique, PersonnesPhysiquesEntity.class)), PersonnesPhysique.class);
     }
 }

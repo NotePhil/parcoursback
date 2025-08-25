@@ -11,4 +11,20 @@
             <b>personnesRatachees</b>
         </field>
     </mapping>
+    <mapping>
+        <class-a>cmr.notep.dao.PersonnesPhysiquesEntity</class-a>
+        <class-b>cmr.notep.modele.PersonnesPhysique</class-b>
+        <field custom-converter="cmr.notep.config.mapper.PersonnesConverter">
+            <a>personnesRatachees</a>
+            <b>personnesRatachees</b>
+        </field>
+    </mapping>
+    <mapping>
+        <class-a>cmr.notep.dao.PersonnelsEntity</class-a>
+        <class-b>cmr.notep.modele.Personnels</class-b>
+        <field custom-converter="cmr.notep.config.mapper.PersonnesConverter">
+            <a>personnesRatachees</a>
+            <b>personnesRatachees</b>
+        </field>
+    </mapping>
 </mappings>
