@@ -1,6 +1,7 @@
 package cmr.notep.api;
 
 import cmr.notep.exceptions.ParcoursException;
+import cmr.notep.modele.IPersonnes;
 import cmr.notep.modele.Personnes;
 import cmr.notep.modele.PersonnesPhysique;
 import org.springframework.http.MediaType;
@@ -22,7 +23,25 @@ public interface IPersonnesApi {
     @GetMapping(
             produces = MediaType.APPLICATION_JSON_VALUE
     )
-    List<Personnes> avoirToutPersonnes();
+    List<IPersonnes> avoirToutPersonnes();
+
+    @GetMapping(
+            path = "/personnesphysique",
+            produces = MediaType.APPLICATION_JSON_VALUE
+    )
+    List<IPersonnes> avoirToutPersonnesPhysiques();
+
+  /*  @DeleteMapping(
+            consumes = MediaType.APPLICATION_JSON_VALUE
+    )
+    void supprimerPersonne(@NonNull @RequestBody Personnes Personnes);
+*/
+    @PostMapping(
+            path = "/personnesphysique",
+            produces = MediaType.APPLICATION_JSON_VALUE,
+            consumes = MediaType.APPLICATION_JSON_VALUE
+    )
+    PersonnesPhysique posterPersonnePhysique(@NonNull @RequestBody PersonnesPhysique Personnes) ;
 
     @PostMapping(
             produces = MediaType.APPLICATION_JSON_VALUE,
@@ -30,22 +49,4 @@ public interface IPersonnesApi {
     )
     Personnes posterPersonne(@NonNull @RequestBody Personnes Personnes) ;
 
-    @GetMapping(
-            path = "/personnesphysique",
-            produces = MediaType.APPLICATION_JSON_VALUE
-    )
-    List<PersonnesPhysique> avoirToutPatient();
-
-    @GetMapping(
-            path = "/personnesphysique/{idPersonne}",
-            produces = MediaType.APPLICATION_JSON_VALUE
-    )
-    PersonnesPhysique avoirPatient (@NonNull @RequestParam(name="idPersonne") String idPersonne) throws ParcoursException;
-
-    @PostMapping(
-            path = "/personnesphysique",
-            produces = MediaType.APPLICATION_JSON_VALUE,
-            consumes = MediaType.APPLICATION_JSON_VALUE
-    )
-    Personnes posterPatient(@NonNull @RequestBody PersonnesPhysique Personnes) ;
 }

@@ -2,17 +2,14 @@ package cmr.notep.impl;
 
 import cmr.notep.api.IPersonnesApi;
 import cmr.notep.business.PersonnesBusiness;
-import cmr.notep.business.PersonnesMoraleBusiness;
-import cmr.notep.business.PersonnesPhysiqueBusiness;
 import cmr.notep.exceptions.ParcoursException;
+import cmr.notep.modele.IPersonnes;
 import cmr.notep.modele.Personnes;
-import cmr.notep.modele.PersonnesPhysique;
-import jakarta.transaction.Transactional;
 import org.springframework.context.annotation.Primary;
 import org.springframework.lang.NonNull;
 import org.springframework.web.bind.annotation.RestController;
 
-
+import jakarta.transaction.Transactional;
 import java.util.List;
 
 @RestController
@@ -21,16 +18,11 @@ import java.util.List;
 public class PersonnesService implements IPersonnesApi {
 
     private final PersonnesBusiness personnesBusiness;
-    private final PersonnesPhysiqueBusiness personnesPhysiqueBusiness;
-    private final PersonnesMoraleBusiness personnesMoraleBusiness;
 
-    public PersonnesService(PersonnesBusiness personnesBusiness, PersonnesPhysiqueBusiness personnesPhysiqueBusiness, PersonnesMoraleBusiness personnesMoraleBusiness) {
+    public PersonnesService(PersonnesBusiness personnesBusiness) {
         this.personnesBusiness = personnesBusiness;
-        this.personnesPhysiqueBusiness = personnesPhysiqueBusiness;
-        this.personnesMoraleBusiness = personnesMoraleBusiness;
     }
-
-    @Override
+@Override
     public Personnes avoirPersonne(@NonNull String idPersonnes) {
         try {
             return personnesBusiness.avoirPersonne(idPersonnes);
@@ -39,30 +31,28 @@ public class PersonnesService implements IPersonnesApi {
         }
     }
 
-    @Override
-    public List<PersonnesPhysique> avoirToutPatient()
-    {
-        return this.personnesPhysiqueBusiness.avoirToutPersonnesPhysique();
-    }
-
-    @Override
-    public PersonnesPhysique avoirPatient (@NonNull String idPersonnes) {
-        return this.personnesPhysiqueBusiness.avoirPersonnePhysique(idPersonnes);
-    }
-
-    @Override
-    public Personnes posterPatient(PersonnesPhysique Personnes) {
-        return this.personnesPhysiqueBusiness.posterPatient(Personnes);
-    }
-
-    @Override
-    public List<Personnes> avoirToutPersonnes() {
+    //@Override
+    public List<IPersonnes> avoirToutPersonnes() {
         return personnesBusiness.avoirToutPersonnes();
     }
 
     @Override
+    public List<IPersonnes> avoirToutPersonnesPhysiques() {
+        return  personnesBusiness.avoirToutPersonnesPhysiques();
+    }
+
+    @Override
+    public PersonnesPhysique posterPersonnePhysique(PersonnesPhysique personnesPhysique) {
+        return personnesBusiness.posterPersonnePhysique(personnesPhysique);
+    }
+
+    //@Override
+    public void supprimerPersonne(Personnes Personnes) {
+        personnesBusiness.supprimerPersonne(Personnes);
+    }
+
+    //@Override
     public Personnes posterPersonne(Personnes Personnes) {
         return personnesBusiness.posterPersonne(Personnes);
     }
-
 }

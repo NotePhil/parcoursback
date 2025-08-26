@@ -4,15 +4,15 @@ import cmr.notep.dao.*;
 import cmr.notep.exceptions.ParcoursException;
 import cmr.notep.exceptions.enumeration.ParcoursExceptionCodeEnum;
 import cmr.notep.modele.*;
-import cmr.notep.repository.*;
+import cmr.notep.repository.PersonnePhysiqueRepository;
+import cmr.notep.repository.PersonnesRepository;
 import lombok.NonNull;
 import lombok.extern.slf4j.Slf4j;
-import org.apache.commons.lang3.tuple.Pair;
-import org.springframework.data.jpa.repository.JpaRepository;
+import org.dozer.DozerBeanMapper;
 import org.springframework.stereotype.Component;
 import org.springframework.transaction.annotation.Transactional;
 
-import java.util.*;
+import java.util.List;
 import java.util.stream.Collectors;
 
 import static cmr.notep.config.DocumentConfig.dozerMapperBean;
@@ -22,56 +22,31 @@ import static cmr.notep.config.DocumentConfig.dozerMapperBean;
 @Transactional
 public class PersonnesBusiness {
     private final DaoAccessorService daoAccessorService;
+    private final DozerBeanMapper dozerMapperBean;
 
-    public PersonnesBusiness(DaoAccessorService daoAccessorService) {
+    public PersonnesBusiness(DaoAccessorService daoAccessorService, DozerBeanMapper dozerMapperBean) {
         this.daoAccessorService = daoAccessorService;
+        this.dozerMapperBean = dozerMapperBean;
     }
-
 
     public Personnes avoirPersonne(@NonNull String id) throws ParcoursException {
-
-        List<Pair<Class<?>, Class<?>>> repositories = List.of(
-                Pair.of(PersonnePhysiqueRepository.class, PersonnesPhysique.class),
-                Pair.of(PersonneMoraleRepository.class, PersonnesMorale.class),
-                Pair.of(DistributeursRepository.class, Distributeurs.class),
-                Pair.of(PersonnelsRepository.class, Personnels.class)
-        );
-
-        for (Pair<Class<?>, Class<?>> repoAndClass : repositories) {
-            JpaRepository<?, String> repo = (JpaRepository<?, String>) this.daoAccessorService.getRepository(repoAndClass.getLeft());
-            Optional<?> entityOpt = repo.findById(id);
-            if (entityOpt.isPresent()) {
-                return (Personnes) dozerMapperBean.map(entityOpt.get(), repoAndClass.getRight());
-            }
-        }
-
-        throw new ParcoursException(ParcoursExceptionCodeEnum.NOT_FOUND, "Personne inexistante");
+        PersonnesEntity personnesEntity = this.daoAccessorService.getRepository(PersonnesRepository.class)
+                .findById(id)
+                .orElseThrow(() -> new ParcoursException(ParcoursExceptionCodeEnum.NOT_FOUND,"Personne ou Distributeur inexistant"));
+        return mapPersonnesEntityToPersonnes(personnesEntity);
 
     }
 
-    public List<Personnes> avoirToutPersonnes() {
+    public List<IPersonnes> avoirToutPersonnes() {
+        return daoAccessorService.getRepository(PersonnesRepository.class).findAll()
+                .stream().map(personne ->mapPersonnesEntityToPersonnes(personne))
+                .collect(Collectors.toList());
+    }
 
-        List<Pair<Class<?>, Class<?>>> repoClasses = List.of(
-                Pair.of(PersonnePhysiqueRepository.class, PersonnesPhysique.class),
-                Pair.of(PersonneMoraleRepository.class, PersonnesMorale.class),
-                Pair.of(DistributeursRepository.class, Distributeurs.class),
-                Pair.of(PersonnelsRepository.class, Personnels.class)
-        );
-
-        List<Personnes> personnesList = new ArrayList<>();
-
-        for (Pair<Class<?>, Class<?>> repoAndClass : repoClasses){
-
-            JpaRepository<?, String> repo = (JpaRepository<?, String>) this.daoAccessorService.getRepository(repoAndClass.getLeft());
-
-            List<?> entities = repo.findAll().stream().map(entity -> dozerMapperBean.map(entity , repoAndClass.getRight()))
-                    .collect(Collectors.toUnmodifiableList());
-
-            personnesList.addAll((Collection<? extends Personnes>) entities);
-
-        }
-
-        return personnesList ;
+    public List<IPersonnes> avoirToutPersonnesPhysiques() {
+        return daoAccessorService.getRepository(PersonnePhysiqueRepository.class).findAll()
+                .stream().map(personnePhysique ->dozerMapperBean.map(personnePhysique, PersonnesPhysique.class))
+                .collect(Collectors.toList());
     }
 
     public void supprimerPersonne(Personnes personne)
@@ -81,11 +56,8 @@ public class PersonnesBusiness {
     }
 
     public Personnes posterPersonne(Personnes personne) {
-        return dozerMapperBean.map(
-                this.daoAccessorService.getRepository(PersonnesRepository.class)
-                        .save(dozerMapperBean.map(personne, PersonnesEntity.class)),
-                Personnes.class
-        );
+        return mapPersonnesEntityToPersonnes( this.daoAccessorService.getRepository(PersonnesRepository.class)
+                .save(mapPersonnesToPersonnesEntity(personne)));
     }
 
     private Personnes mapPersonnesEntityToPersonnes(PersonnesEntity personnesEntity) {
@@ -112,5 +84,10 @@ public class PersonnesBusiness {
             return dozerMapperBean.map(personnes, PersonnelsEntity.class);
         else
             return dozerMapperBean.map(personnes, PersonnesEntity.class);
+    }
+
+    public PersonnesPhysique posterPersonnePhysique(PersonnesPhysique personnesPhysique) {
+        return dozerMapperBean.map( this.daoAccessorService.getRepository(PersonnePhysiqueRepository.class)
+                .save(dozerMapperBean.map(personnesPhysique, PersonnesPhysiquesEntity.class)), PersonnesPhysique.class);
     }
 }
