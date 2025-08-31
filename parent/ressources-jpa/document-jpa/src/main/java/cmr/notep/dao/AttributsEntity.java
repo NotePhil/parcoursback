@@ -9,7 +9,6 @@ import org.hibernate.annotations.GenericGenerator;
 
 import java.util.Date;
 import java.util.List;
-import jakarta.persistence.*;
 
 @Getter
 @Setter
