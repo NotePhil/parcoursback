@@ -5,20 +5,20 @@ import lombok.*;
 
 import java.util.Date;
 import java.util.List;
+import java.util.UUID;
 
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
 @Builder
-@ToString(exclude = {"document"})
-@EqualsAndHashCode(exclude = {"document"})
-@JsonIgnoreProperties({"document"})
-public class Categories {
+@JsonIgnoreProperties({"parcour"})
+@ToString(exclude = {"parcour"})
+@EqualsAndHashCode(exclude = {"parcour"})
+public class Etapes {
     private String id;
-    private String ordre;
     private String libelle;
-    private Date dateCreation;
+    private String etat;
     private Date dateModification;
-    private List<Associer> associer_attributs;
-    private Documents document ;
+    private Parcours parcour;
+    private List<DocEtats> docEtats;
 }

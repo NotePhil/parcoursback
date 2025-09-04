@@ -5,15 +5,21 @@ import lombok.*;
 
 import java.util.List;
 
+import java.util.Date;
+
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
 @Builder
-@ToString(exclude = {"ticketsfilesattentes"})
-@EqualsAndHashCode(exclude = {"ticketsfilesattentes"})
-@JsonIgnoreProperties({"ticketsfilesattentes"})
+@ToString(exclude = {"personne","ticketsfilesattentes"})
+@EqualsAndHashCode(exclude = {"personne","ticketsfilesattentes"})
+@JsonIgnoreProperties({"personne","ticketsfilesattentes"})
 public class Tickets {
     private String id;
     private String codecourt;
+    private Personnes personne;
+    private String statut ;
+    private Date dateCreation;
+    private Date dateModification;
     private List<TicketsFilesAttentes> ticketsfilesattentes;
 }

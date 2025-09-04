@@ -28,6 +28,12 @@ public class PersonnesEntity
     @Column(name = "mail")
     private String mail ;
 
+    @Column(name = "etat")
+    private boolean etat;
+
+    @Column(name = "type")
+    private String type ;
+
     @Column(name = "telephone")
     private  String telephone ;
 
@@ -43,4 +49,18 @@ public class PersonnesEntity
             inverseJoinColumns = @JoinColumn(name = "rattacher_id"))
     @Mapping("personnesRatachees")
     private List<PersonnesEntity> personnesRatachees = new ArrayList<>();
+
+    @OneToOne(mappedBy = "personnesEntity", cascade = CascadeType.ALL, fetch = FetchType.LAZY, optional = true)
+    @JoinColumn(name = "comptes_id" , referencedColumnName = "id")
+    @Mapping("compte")
+    private ComptesEntity comptesEntity;
+
+    @OneToOne
+    @JoinColumn(name = "ticket_id" , referencedColumnName = "id")
+    @Mapping("ticket")
+    private TicketsEntity ticketsEntity;
+
+    @OneToMany(mappedBy = "personnesEntity", fetch = FetchType.LAZY, cascade = {CascadeType.ALL})
+    @Mapping("exemplaires")
+    private List<ExemplairesEntity> exemplaireEntities;
 }

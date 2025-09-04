@@ -23,6 +23,15 @@ public class TicketsEntity {
 
     @Column(name = "codecourt")
     private String codecourt;
+
+    @Column(name = "statut")
+    private String statut;
+
+    @OneToOne(mappedBy = "ticketsEntity", cascade = CascadeType.ALL, fetch = FetchType.LAZY, optional = true)
+    @JoinColumn(name = "personne_id" , referencedColumnName = "id")
+    @Mapping("personne")
+    private PersonnesEntity personnesEntity;
+
     @Column(name = "datecreation", updatable = false)
     private Date dateCreation;
     @Column(name = "datemodification")

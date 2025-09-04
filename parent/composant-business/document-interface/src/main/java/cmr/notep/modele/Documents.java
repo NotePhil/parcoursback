@@ -47,4 +47,5 @@ public class Documents {
     private List<Categories> categories ;
     private List<DocEtats> docEtats;
     private List<Promotions> promotions;
+    private List<Exemplaires> exemplaires;
 }
