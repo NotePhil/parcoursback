@@ -8,7 +8,6 @@ import org.hibernate.annotations.GenericGenerator;
 import jakarta.persistence.*;
 import java.util.Date;
 import java.util.List;
-import java.util.UUID;
 
 @Getter
 @Setter

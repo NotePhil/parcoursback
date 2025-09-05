@@ -9,6 +9,9 @@ import java.util.Date;
 @AllArgsConstructor
 @NoArgsConstructor
 @Builder
+@ToString(exclude = {"personnel","role"})
+@EqualsAndHashCode(exclude = {"personnel","role"})
+@JsonIgnoreProperties({"personnel","role"})
 public class JouerRoles {
     private String id;
     private Boolean etat ;
