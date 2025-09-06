@@ -11,9 +11,9 @@ import java.util.Date;
 @AllArgsConstructor
 @NoArgsConstructor
 @Builder
-@ToString(exclude = {"personne","ticketsfilesattentes"})
-@EqualsAndHashCode(exclude = {"personne","ticketsfilesattentes"})
-@JsonIgnoreProperties({"personne","ticketsfilesattentes"})
+@ToString(exclude = {"personne"})
+@EqualsAndHashCode(exclude = {"personne"})
+@JsonIgnoreProperties({"personne"})
 public class Tickets {
     private String id;
     private String codecourt;

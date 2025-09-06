@@ -35,6 +35,7 @@ public class TicketsEntity {
     private Date dateCreation;
     @Column(name = "datemodification")
     private Date dateModification;
+
     @OneToMany(mappedBy = "ticketsEntity" , fetch = FetchType.LAZY )
     @Mapping("ticketsfilesattentes")
     private List<TicketsFilesAttentesEntity> ticketsFilesAttentesEntities;

@@ -2,7 +2,6 @@ package cmr.notep.modele;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import lombok.*;
-import org.dozer.Mapping;
 
 import java.util.Date;
 

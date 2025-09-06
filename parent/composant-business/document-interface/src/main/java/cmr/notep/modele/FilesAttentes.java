@@ -16,6 +16,6 @@ public class FilesAttentes {
     private Date dateCreation;
     private Date dateModification;
     private Boolean etat ;
-    private Services service;
     private List<TicketsFilesAttentes> ticketsfilesattentes;
+    private Services service;
 }

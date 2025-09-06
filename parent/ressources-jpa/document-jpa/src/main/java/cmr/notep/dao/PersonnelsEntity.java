@@ -33,7 +33,7 @@ public class PersonnelsEntity extends PersonnesEntity {
     @Column(name = "sexe")
     private String sexe ;
 
-    @OneToMany(mappedBy = "personnelsEntity")
+    @OneToMany(mappedBy = "personnelsEntity", fetch = FetchType.LAZY)
     @Mapping("jouerroles")
     List<JouerRolesEntity> jouerRolesEntities;
 
