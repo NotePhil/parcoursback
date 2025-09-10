@@ -21,7 +21,8 @@ public class Missions {
     private boolean etat ;
     private Date dateCreation ;
     private Date dateModification ;
+    private String idLogin ;
     private List<Documents> documents;
     private Services service;
-    private List<Remplir> roles;
+    private List<Remplir> remplirs;
 }

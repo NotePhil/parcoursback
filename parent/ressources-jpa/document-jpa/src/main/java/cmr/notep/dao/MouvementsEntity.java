@@ -38,14 +38,14 @@ public class MouvementsEntity {
     @Column(name = "datemodification")
     private Date dateModification;
     @ManyToMany(fetch = FetchType.LAZY, cascade = {CascadeType.ALL})
-    @JoinTable(name = "respecter" ,
+    @JoinTable(name = "respecter" , schema = "document",
             joinColumns = @JoinColumn(name = "mouvements_id"),
             inverseJoinColumns = @JoinColumn(name = "precomouvements_id"))
     @Mapping("precoMouvementsRespecter")
     private List<PrecoMouvementsEntity> precoMouvementsRespecterEntityties;
 
     @ManyToMany(fetch = FetchType.LAZY, cascade = {CascadeType.ALL})
-    @JoinTable(name = "violer" ,
+    @JoinTable(name = "violer" , schema = "document",
             joinColumns = @JoinColumn(name = "mouvements_id"),
             inverseJoinColumns = @JoinColumn(name = "precomouvements_id"))
     @Mapping("precoMouvementsVioler")

@@ -54,6 +54,6 @@ public class MissionsEntity {
     private ServicesEntity servicesEntity ;
 
     @OneToMany(mappedBy = "missionsEntity", fetch = FetchType.LAZY)
-    @Mapping("roles")
+    @Mapping("remplirs")
     List<RemplirEntity> remplirEntities;
 }

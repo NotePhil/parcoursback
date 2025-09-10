@@ -3,6 +3,7 @@ package cmr.notep.modele;
 import lombok.*;
 import lombok.experimental.SuperBuilder;
 
+import java.util.Date;
 import java.util.List;
 
 @Data
@@ -12,10 +13,10 @@ import java.util.List;
 @EqualsAndHashCode(callSuper = true)
 @SuperBuilder
 public class Distributeurs extends Personnes {
-    private String id;
-    private List<PrecoMouvementsQtes> precomouvementsqtes;
-    private String raisonSociale;
+    private Date dateModification;
     private String code ;
+    private String raisonSociale;
+    private List<Mouvements> mouvements;
+    private List<PrecoMouvementsQtes> precomouvementsqtes;
     private List<Promotions> promotions;
-    private Mouvements mouvements;
 }

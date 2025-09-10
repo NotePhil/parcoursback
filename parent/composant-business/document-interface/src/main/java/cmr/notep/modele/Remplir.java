@@ -9,9 +9,9 @@ import java.util.Date;
 @AllArgsConstructor
 @NoArgsConstructor
 @Builder
-@JsonIgnoreProperties(value = {"mission"}, ignoreUnknown = true)
-@ToString(exclude = { "mission"})
-@EqualsAndHashCode(exclude = { "mission"})
+@JsonIgnoreProperties(value = {"mission","role"})
+@ToString(exclude = { "mission","role"})
+@EqualsAndHashCode(exclude = { "mission","role"})
 public class Remplir {
     private String id;
     private Roles role;

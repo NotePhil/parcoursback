@@ -1,5 +1,6 @@
 package cmr.notep.modele;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import lombok.*;
 
 import java.util.Date;
@@ -9,6 +10,9 @@ import java.util.List;
 @AllArgsConstructor
 @NoArgsConstructor
 @Builder
+@JsonIgnoreProperties(value = {"jouerroles"}, ignoreUnknown = true)
+@ToString(exclude = { "jouerroles"})
+@EqualsAndHashCode(exclude = { "jouerroles"})
 public class Roles {
     private String id;
     private String titre;

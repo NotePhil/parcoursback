@@ -28,14 +28,6 @@
         </field>
     </mapping>
 <!--    <mapping>-->
-<!--        <class-a>cmr.notep.dao.TicketsFilesAttentesEntity</class-a>-->
-<!--        <class-b>cmr.notep.modele.TicketsFilesAttentes</class-b>-->
-<!--        <field>-->
-<!--            <a>filesAttentesEntity</a>-->
-<!--            <b>fileAttente</b>-->
-<!--        </field>-->
-<!--    </mapping>-->
-<!--    <mapping>-->
 <!--        <class-a>cmr.notep.dao.TicketsEntity</class-a>-->
 <!--        <class-b>cmr.notep.modele.Tickets</class-b>-->
 <!--        <field>-->

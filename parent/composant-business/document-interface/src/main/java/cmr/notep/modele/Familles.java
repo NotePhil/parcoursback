@@ -17,7 +17,7 @@ public class Familles {
     private String id ;
     private String libelle;
     private String description;
-    private String etat ;
+    private Boolean etat ;
     private Date dateCreation;
     private Date dateModification;
     private List<PrecoMouvementsQtes> precoMouvementsQtes;

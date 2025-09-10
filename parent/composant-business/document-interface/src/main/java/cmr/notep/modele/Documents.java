@@ -37,14 +37,20 @@ public class Documents {
 
     private Boolean prixEditable;
 
+    private Boolean estencaissable;
+
     private Boolean contientRessources;
+
+    private List<Attributs> attributs ;
+
+    private List<Categories> categories ;
 
     public List<Missions> missions ;
 
     private List<PrecoMouvements> precoMouvements ;
 
-    private List<Attributs> attributs ;
-    private List<Categories> categories ;
+
+
     private List<DocEtats> docEtats;
     private List<Promotions> promotions;
     private List<Exemplaires> exemplaires;

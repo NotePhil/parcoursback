@@ -38,15 +38,15 @@ public class PersonnelsBusiness  {
                 .collect(Collectors.toList());
     }
 
-    public void supprimerPersonnel(Personnels Personnels)
+    public void supprimerPersonnel(Personnels personnel)
     {
         daoAccessorService.getRepository(PersonnelsRepository.class)
-                .deleteById(Personnels.getId().toString());
+                .deleteById(personnel.getId().toString());
     }
 
-    public Personnels posterPersonnel(Personnels Personnels) {
+    public Personnels posterPersonnel(Personnels personnel) {
         return dozerMapperBean.map( this.daoAccessorService.getRepository(PersonnelsRepository.class)
-                .save(dozerMapperBean.map(Personnels, PersonnelsEntity.class)), Personnels.class);
+                .save(dozerMapperBean.map(personnel, PersonnelsEntity.class)), Personnels.class);
     }
 
 
