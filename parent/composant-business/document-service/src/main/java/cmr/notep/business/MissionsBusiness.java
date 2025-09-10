@@ -46,4 +46,22 @@ public class MissionsBusiness {
                 Missions.class
         );
     }
+
+    public void supprimerMission(Missions mission) {
+        daoAccessorService.getRepository(MissionsRepository.class)
+                .deleteById(mission.getId().toString());
+    }
+
+    public Missions modifierMission(Missions mission) {
+        // Vérifier que la mission existe avant de la modifier
+        this.daoAccessorService.getRepository(MissionsRepository.class)
+                .findById(mission.getId().toString())
+                .orElseThrow(() -> new RuntimeException("Mission non enregistrée"));
+
+        mission.setDateModification(new Date());
+        return dozerMapperBean.map(
+                this.daoAccessorService.getRepository(MissionsRepository.class)
+                        .save(dozerMapperBean.map(mission, MissionsEntity.class)),
+                Missions.class);
+    }
 }

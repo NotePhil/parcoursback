@@ -47,4 +47,21 @@ public class FamillesBusiness {
                         .orElseThrow(()->new RuntimeException("Famille non trouvé")),Familles.class);
 
     }
+
+    public void supprimerFamille(Familles famille) {
+        daoAccessorService.getRepository(FamillesRepository.class)
+                .deleteById(famille.getId().toString());
+    }
+
+    public Familles modifierFamille(Familles famille) {
+        // Vérifier que la famille existe avant de la modifier
+        this.daoAccessorService.getRepository(FamillesRepository.class)
+                .findById(famille.getId().toString())
+                .orElseThrow(() -> new RuntimeException("Famille non trouvée"));
+
+        return dozerMapperBean.map(
+                this.daoAccessorService.getRepository(FamillesRepository.class)
+                        .save(dozerMapperBean.map(famille, FamillesEntity.class)),
+                Familles.class);
+    }
 }

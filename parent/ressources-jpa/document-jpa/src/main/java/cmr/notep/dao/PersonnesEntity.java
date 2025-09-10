@@ -4,6 +4,8 @@ import lombok.Getter;
 import lombok.Setter;
 import org.dozer.Mapping;
 import org.hibernate.annotations.GenericGenerator;
+import org.hibernate.annotations.CreationTimestamp;
+import org.hibernate.annotations.UpdateTimestamp;
 
 import jakarta.persistence.*;
 import java.util.ArrayList;
@@ -33,9 +35,15 @@ public class PersonnesEntity
 
     @Column(name = "qrcodevalue")
     private  String qrcodevalue ;
-    @Column(name = "datecreation")
+
+    @Column(name = "datecreation", columnDefinition = "TIMESTAMP")
+    @Temporal(TemporalType.TIMESTAMP)
+    @CreationTimestamp
     private Date dateCreation;
-    @Column(name = "datemodification")
+
+    @Column(name = "datemodification", columnDefinition = "TIMESTAMP")
+    @Temporal(TemporalType.TIMESTAMP)
+    @UpdateTimestamp
     private Date dateModification;
     @ManyToMany(fetch = FetchType.LAZY)
     @JoinTable(name = "rattacher" ,schema = "document",
@@ -43,4 +51,16 @@ public class PersonnesEntity
             inverseJoinColumns = @JoinColumn(name = "rattacher_id"))
     @Mapping("personnesRatachees")
     private List<PersonnesEntity> personnesRatachees = new ArrayList<>();
+
+    @PrePersist
+    protected void onCreate() {
+        if (dateCreation == null) {
+            dateCreation = new Date();
+        }
+    }
+
+    @PreUpdate
+    protected void onUpdate() {
+        dateModification = new Date();
+    }
 }

@@ -47,4 +47,16 @@ public class DistributeursBusiness {
         return dozerMapperBean.map( this.daoAccessorService.getRepository(DistributeursRepository.class)
                 .save(dozerMapperBean.map(Distributeurs, DistributeursEntity.class)), Distributeurs.class);
     }
+
+    public Distributeurs modifierDistributeur(Distributeurs distributeur) {
+        // Vérifier que le distributeur existe avant de le modifier
+        this.daoAccessorService.getRepository(DistributeursRepository.class)
+                .findById(distributeur.getId().toString())
+                .orElseThrow(() -> new RuntimeException("Distributeur inexistant"));
+
+        return dozerMapperBean.map(
+                this.daoAccessorService.getRepository(DistributeursRepository.class)
+                        .save(dozerMapperBean.map(distributeur, DistributeursEntity.class)),
+                Distributeurs.class);
+    }
 }

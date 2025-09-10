@@ -1,6 +1,5 @@
 package cmr.notep.business;
 
-import cmr.notep.api.IPersonnelsApi;
 import cmr.notep.dao.DaoAccessorService;
 import cmr.notep.dao.PersonnelsEntity;
 import cmr.notep.modele.Personnels;
@@ -44,9 +43,9 @@ public class PersonnelsBusiness  {
                 .deleteById(Personnels.getId().toString());
     }
 
-    public Personnels posterPersonnel(Personnels Personnels) {
+    public Personnels posterPersonnel(Personnels personnel) {
         return dozerMapperBean.map( this.daoAccessorService.getRepository(PersonnelsRepository.class)
-                .save(dozerMapperBean.map(Personnels, PersonnelsEntity.class)), Personnels.class);
+                .save(dozerMapperBean.map(personnel, PersonnelsEntity.class)), Personnels.class);
     }
 
 
