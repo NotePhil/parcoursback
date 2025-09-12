@@ -44,8 +44,8 @@ public class DocumentsService implements IDocumentsApi {
     }
 
     @Override
-    public void assignEtatDocument(AssignEtatDocument assignetatdocument) {
-        documentsBusiness.assignEtatDoc(assignetatdocument.getEtat() ,
+    public Documents assignEtatDocument(AssignEtatDocument assignetatdocument) {
+        return documentsBusiness.assignEtatDoc(assignetatdocument.getEtat() ,
                 assignetatdocument.getDocument());
     }
 }

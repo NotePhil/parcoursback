@@ -39,5 +39,5 @@ public interface IDocumentsApi {
             produces = MediaType.APPLICATION_JSON_VALUE,
             consumes = MediaType.APPLICATION_JSON_VALUE
     )
-    void assignEtatDocument(@NonNull @RequestBody AssignEtatDocument assignetatdocument);
+    Documents assignEtatDocument(@NonNull @RequestBody AssignEtatDocument assignetatdocument);
 }

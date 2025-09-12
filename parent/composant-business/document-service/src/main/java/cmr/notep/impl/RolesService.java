@@ -42,8 +42,8 @@ public class RolesService implements IRolesApi {
     }
 
     @Override
-    public void assignValidationRole(AssignValidationRoleRequest assignValidationRoleRequest) {
-        rolesBusiness.assignValidationRole(
+    public Roles assignValidationRole(AssignValidationRoleRequest assignValidationRoleRequest) {
+        return rolesBusiness.assignValidationRole(
                 assignValidationRoleRequest.getValidation(),  assignValidationRoleRequest.getRole());
     }
 }

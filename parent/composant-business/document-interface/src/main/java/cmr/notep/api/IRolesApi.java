@@ -38,5 +38,5 @@ public interface IRolesApi {
             produces = MediaType.APPLICATION_JSON_VALUE,
             consumes = MediaType.APPLICATION_JSON_VALUE
     )
-    void assignValidationRole(@NonNull @RequestBody AssignValidationRoleRequest assign);
+    Roles assignValidationRole(@NonNull @RequestBody AssignValidationRoleRequest assign);
 }
