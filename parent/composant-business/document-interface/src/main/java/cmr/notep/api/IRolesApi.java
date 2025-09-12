@@ -1,6 +1,8 @@
 package cmr.notep.api;
 
+import cmr.notep.modele.AssignValidationRoleRequest;
 import cmr.notep.modele.Roles;
+import cmr.notep.modele.Validations;
 import org.springframework.http.MediaType;
 import org.springframework.lang.NonNull;
 import org.springframework.web.bind.annotation.*;
@@ -31,5 +33,10 @@ public interface IRolesApi {
     )
     void SupprimerRole(@NonNull @RequestBody Roles Role);
 
-
+    @PostMapping(
+            path = "/assignvalidation/",
+            produces = MediaType.APPLICATION_JSON_VALUE,
+            consumes = MediaType.APPLICATION_JSON_VALUE
+    )
+    void assignValidationRole(@NonNull @RequestBody AssignValidationRoleRequest assign);
 }

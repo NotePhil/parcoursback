@@ -1,6 +1,8 @@
 package cmr.notep.api;
 
 import cmr.notep.exceptions.ParcoursException;
+import cmr.notep.modele.AssignEtatDocument;
+import cmr.notep.modele.AssignValidationRoleRequest;
 import cmr.notep.modele.Documents;
 import org.springframework.http.MediaType;
 import org.springframework.lang.NonNull;
@@ -31,4 +33,11 @@ public interface IDocumentsApi {
             consumes = MediaType.APPLICATION_JSON_VALUE
     )
     Boolean SupprimerDocument(@NonNull @RequestBody Documents document);
+
+    @PostMapping(
+            path = "/assignetat/",
+            produces = MediaType.APPLICATION_JSON_VALUE,
+            consumes = MediaType.APPLICATION_JSON_VALUE
+    )
+    void assignEtatDocument(@NonNull @RequestBody AssignEtatDocument assignetatdocument);
 }

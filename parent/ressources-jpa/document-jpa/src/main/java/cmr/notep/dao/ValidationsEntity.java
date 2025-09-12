@@ -25,6 +25,9 @@ public class ValidationsEntity {
     @Column(name = "code")
     private String code ;
 
+    @Column(name = "libelle")
+    private String libelle ;
+
     @Column(name = "etat")
     private String etat ;
 

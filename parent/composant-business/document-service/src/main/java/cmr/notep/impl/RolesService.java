@@ -2,7 +2,9 @@ package cmr.notep.impl;
 
 import cmr.notep.api.IRolesApi;
 import cmr.notep.business.RolesBusiness;
+import cmr.notep.modele.AssignValidationRoleRequest;
 import cmr.notep.modele.Roles;
+import cmr.notep.modele.Validations;
 import org.springframework.web.bind.annotation.RestController;
 
 import jakarta.transaction.Transactional;
@@ -37,5 +39,11 @@ public class RolesService implements IRolesApi {
     @Override
     public void SupprimerRole(Roles Role) {
         rolesBusiness.supprimerRole(Role);
+    }
+
+    @Override
+    public void assignValidationRole(AssignValidationRoleRequest assignValidationRoleRequest) {
+        rolesBusiness.assignValidationRole(
+                assignValidationRoleRequest.getValidation(),  assignValidationRoleRequest.getRole());
     }
 }

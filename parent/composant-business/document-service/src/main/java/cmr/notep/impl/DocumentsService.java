@@ -2,6 +2,7 @@ package cmr.notep.impl;
 
 import cmr.notep.api.IDocumentsApi;
 import cmr.notep.business.DocumentsBusiness;
+import cmr.notep.modele.AssignEtatDocument;
 import cmr.notep.modele.Documents;
 import org.springframework.context.annotation.Primary;
 import org.springframework.lang.NonNull;
@@ -40,5 +41,11 @@ public class DocumentsService implements IDocumentsApi {
     @Override
     public Boolean SupprimerDocument(@NonNull Documents document) {
         return null;
+    }
+
+    @Override
+    public void assignEtatDocument(AssignEtatDocument assignetatdocument) {
+        documentsBusiness.assignEtatDoc(assignetatdocument.getEtat() ,
+                assignetatdocument.getDocument());
     }
 }
