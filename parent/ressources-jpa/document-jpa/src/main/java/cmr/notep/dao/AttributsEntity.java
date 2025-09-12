@@ -30,8 +30,8 @@ public class AttributsEntity {
     @Column(name = "datemodification")
     private Date dateModification;
     @Enumerated(EnumType.STRING)
-    @Column(name = "type", nullable = false)
-    private TypeAttribut type;
+    @Column(name = "type_attribut", nullable = false)
+    private TypeAttribut type_attribut;
     @Column(name = "valeurpardefaut")
     private String valeurParDefaut;
     @ManyToMany(mappedBy = "attributsEntities")

@@ -5,7 +5,6 @@ import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
@@ -13,14 +12,10 @@ import java.util.List;
 @AllArgsConstructor
 @NoArgsConstructor
 @Builder
-public class DocEtats {
+public class Parcours {
     private String id;
-    private int ordre;
-    private Date dateCreation ;
+    private String libelle;
+    private Date dateCreation;
     private Date dateModification;
-    private Validations validation;
-    private List<DocEtats> predecesseurDocEtat = new ArrayList<>();
-    private Etats etat;
-    private Documents document;
-    private  Etapes etape;
+    private List<Etapes> etapes;
 }
