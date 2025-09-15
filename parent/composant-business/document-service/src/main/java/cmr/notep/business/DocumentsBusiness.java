@@ -5,6 +5,7 @@ import static cmr.notep.config.DocumentConfig.*;
 
 import java.util.Date;
 import java.util.List;
+import java.util.Optional;
 import java.util.stream.Collectors;
 
 import cmr.notep.dao.DocEtatsEntity;
@@ -76,22 +77,22 @@ public class DocumentsBusiness {
         log.debug("[assignEtatDoc] assigner un état au document");
 
         if (etat == null || document == null) {
-            throw new IllegalArgumentException("Etat et Document doivent existés");
+            throw new IllegalArgumentException("Etat et Document doivent être non nuls");
         }
 
-        EtatsEntity etatEntity = dozerMapperBean.map(
-                this.daoAccessorService.getRepository(EtatsRepository.class).findById(etat.getId()),
-                EtatsEntity.class);
-        DocumentsEntity documentEntity = dozerMapperBean.map(
-                this.daoAccessorService.getRepository(DocumentsRepository.class).findById(document.getIdDocument()),
-                DocumentsEntity.class);
-
-        if (etatEntity == null) {
+        Optional<EtatsEntity> optionalEtatEntity = this.daoAccessorService.getRepository(EtatsRepository.class)
+                .findById(etat.getId());
+        if (optionalEtatEntity.isEmpty()) {
             throw new RuntimeException("Etat non trouvé en base : " + etat.getId());
         }
-        if (documentEntity == null) {
+        EtatsEntity etatEntity = optionalEtatEntity.get();
+
+        Optional<DocumentsEntity> optionalDocumentEntity = this.daoAccessorService.getRepository(DocumentsRepository.class)
+                .findById(document.getIdDocument());
+        if (optionalDocumentEntity.isEmpty()) {
             throw new RuntimeException("Document non trouvé en base : " + document.getIdDocument());
         }
+        DocumentsEntity documentEntity = optionalDocumentEntity.get();
 
         boolean exists = documentEntity.getDocEtatsEntities().stream()
                 .anyMatch(de -> de.getEtatsEntity().getId().equals(etatEntity.getId()));
@@ -101,15 +102,15 @@ public class DocumentsBusiness {
         }
 
         DocEtatsEntity newDocEtat = new DocEtatsEntity();
-        newDocEtat.setDocumentsEntity(documentEntity);
         newDocEtat.setEtatsEntity(etatEntity);
+        newDocEtat.setDocumentsEntity(documentEntity);
         newDocEtat.setDateCreation(new Date());
 
-        documentEntity.getDocEtatsEntities().add(newDocEtat);
+       documentEntity.getDocEtatsEntities().add(newDocEtat);
 
-        DocumentsEntity savedDocument = this.daoAccessorService.getRepository(DocumentsRepository.class).save(documentEntity);
+       DocumentsEntity savedDocument = this.daoAccessorService.getRepository(DocumentsRepository.class).save(documentEntity);
 
-        return dozerMapperBean.map(savedDocument, Documents.class);
+       return dozerMapperBean.map(savedDocument, Documents.class);
     }
 
     public Documents avoirDocument(String idDoc) {
