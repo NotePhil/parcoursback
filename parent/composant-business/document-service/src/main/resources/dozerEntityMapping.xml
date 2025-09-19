@@ -20,6 +20,14 @@
         </field>
     </mapping>
     <mapping>
+        <class-a>cmr.notep.dao.TicketsEntity</class-a>
+        <class-b>cmr.notep.modele.Tickets</class-b>
+        <field>
+            <a>personnesEntity</a>
+            <b>personne</b>
+        </field>
+    </mapping>
+    <mapping>
         <class-a>cmr.notep.dao.PersonnelsEntity</class-a>
         <class-b>cmr.notep.modele.Personnels</class-b>
         <field custom-converter="cmr.notep.config.mapper.PersonnesConverter">
