@@ -26,8 +26,7 @@ public class TicketsEntity {
     @Column(name = "statut")
     private String statut;
 
-    @OneToOne(mappedBy = "ticketsEntity", cascade = CascadeType.ALL, fetch = FetchType.LAZY, optional = true)
-    @JoinColumn(name = "personne_id" , referencedColumnName = "id")
+    @OneToOne(mappedBy = "ticketsEntity")
     @Mapping("personne")
     private PersonnesEntity personnesEntity;
 

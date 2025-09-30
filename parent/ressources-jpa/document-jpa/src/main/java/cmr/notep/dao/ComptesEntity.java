@@ -37,8 +37,7 @@ public class ComptesEntity {
     @Column(name="libelle",nullable = false)
     private String libelle ;
 
-    @OneToOne
-    @JoinColumn(name = "personnes_id" , referencedColumnName = "id")
+    @OneToOne(mappedBy = "comptesEntity")
     @Mapping("personne")
     private PersonnesEntity personnesEntity;
 

@@ -24,7 +24,7 @@ import java.util.List;
         property = "type"
 )
 @JsonSubTypes({
-        @JsonSubTypes.Type(value = PersonnesPhysique.class, name = "personnePhysique"),
+        @JsonSubTypes.Type(value = PersonnesPhysique.class, name = "personnesphysique"),
         @JsonSubTypes.Type(value = PersonnesMorale.class, name = "personneMorale"),
         @JsonSubTypes.Type(value = Personnels.class, name = "personnel"),
         @JsonSubTypes.Type(value = Distributeurs.class, name = "distributeur"),

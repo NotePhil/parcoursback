@@ -50,12 +50,12 @@ public class PersonnesEntity
     @Mapping("personnesRatachees")
     private List<PersonnesEntity> personnesRatachees = new ArrayList<>();
 
-    @OneToOne(mappedBy = "personnesEntity", cascade = CascadeType.ALL, fetch = FetchType.LAZY, optional = true)
+    @OneToOne( cascade = CascadeType.ALL, fetch = FetchType.LAZY, optional = true)
     @JoinColumn(name = "comptes_id" , referencedColumnName = "id")
     @Mapping("compte")
     private ComptesEntity comptesEntity;
 
-    @OneToOne
+    @OneToOne( cascade = CascadeType.ALL, fetch = FetchType.LAZY, optional = true)
     @JoinColumn(name = "ticket_id" , referencedColumnName = "id")
     @Mapping("ticket")
     private TicketsEntity ticketsEntity;
