@@ -7,6 +7,7 @@ import cmr.notep.exemplaire.config.ExemplaireConfig;
 import cmr.notep.modele.Documents;
 import cmr.notep.modele.IPersonnes;
 import cmr.notep.modele.Personnes;
+import cmr.notep.modele.PersonnesPhysique;
 import cmr.notep.utile.serialiser.JacksonHelper;
 import cmr.notep.wstools.api.IGenericWsClientApi;
 import cmr.notep.wstools.modeles.GenericWsRequest;
@@ -28,6 +29,16 @@ public class PersonnesClientWs implements IPersonnesApi {
     public PersonnesClientWs(IGenericWsClientApi genericWsClientApi, ExemplaireConfig exemplaireConfig) {
         this.genericWsClientApi = genericWsClientApi;
         this.exemplaireConfig = exemplaireConfig;
+    }
+
+    @Override
+    public List<IPersonnes> avoirToutPersonnesPhysiques() {
+        return List.of();
+    }
+
+    @Override
+    public PersonnesPhysique posterPersonnePhysique(PersonnesPhysique Personnes) {
+        return null;
     }
 
     @Override
