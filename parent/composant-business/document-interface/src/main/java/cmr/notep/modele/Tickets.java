@@ -3,6 +3,7 @@ package cmr.notep.modele;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import lombok.*;
 
+import java.util.Date;
 import java.util.List;
 
 @Data
@@ -14,6 +15,9 @@ import java.util.List;
 @JsonIgnoreProperties({"ticketsfilesattentes"})
 public class Tickets {
     private String id;
-    private String codecourt;
+    private String idUnique;
     private List<TicketsFilesAttentes> ticketsfilesattentes;
+    private PersonnesPhysique personnesPhysique;
+    private String statut;
+    private Date dateCreation;
 }

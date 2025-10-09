@@ -314,9 +314,11 @@ CREATE TABLE IF NOT EXISTS document.services
 CREATE TABLE IF NOT EXISTS document.tickets
 (
     id               VARCHAR(255) NOT NULL,
-    codecourt        VARCHAR(255),
+    idunique        VARCHAR(255),
     datecreation     DATE,
     datemodification DATE,
+    statut           VARCHAR(255),
+    personnesphysique_id VARCHAR(255),
     CONSTRAINT pk_tickets PRIMARY KEY (id)
 );
 CREATE TABLE IF NOT EXISTS document.ticketsfilesattentes
@@ -393,7 +395,8 @@ ALTER TABLE document.services
     ADD CONSTRAINT  FK_SERVICES_ON_FILESATTENTES FOREIGN KEY (filesattentes_id) REFERENCES document.filesattentes (id);
 ALTER TABLE document.ressources
     ADD CONSTRAINT  FK_RESSOURCES_ON_FAMILLES FOREIGN KEY (familles_id) REFERENCES document.familles (id);
-
+ALTER TABLE document.tickets
+    ADD CONSTRAINT  FK_PERSONNES_ON_TICKETS FOREIGN KEY (personnesphysique_id) REFERENCES document.personnesphysique (personnesphysique_id);
 ALTER TABLE document.ressourcespromotions
     ADD CONSTRAINT  fk_res_on_promotions_entity FOREIGN KEY (promotions_id) REFERENCES document.promotions (id);
 
