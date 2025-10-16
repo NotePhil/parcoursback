@@ -85,10 +85,5 @@ public class PersonnelsBusiness  {
             rolesBusiness.avoirRole(jouerRole.getRolesEntity().getId());
         return this.daoAccessorService.getRepository(JouerRolesRepository.class)
                 .save(jouerRole);
-    public Personnels posterPersonnel(Personnels personnel) {
-        return dozerMapperBean.map( this.daoAccessorService.getRepository(PersonnelsRepository.class)
-                .save(dozerMapperBean.map(personnel, PersonnelsEntity.class)), Personnels.class);
     }
-
-
 }

@@ -32,8 +32,8 @@ public class PersonnesService implements IPersonnesApi {
         }
     }
 
-    //@Override
-    public List<IPersonnes> avoirToutPersonnes() {
+    @Override
+    public List<Personnes> avoirToutPersonnes() {
         return personnesBusiness.avoirToutPersonnes();
     }
 

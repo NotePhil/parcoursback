@@ -27,16 +27,16 @@
             <b>personnesRatachees</b>
         </field>
         <field custom-converter="cmr.notep.config.mapper.PersonnesConverter">
-            <a>comptesEntity</a>
-            <b>compte</b>
+            <a>ComptesEntity</a>
+            <b>Compte</b>
         </field>
         <field custom-converter="cmr.notep.config.mapper.PersonnesConverter">
             <a>TicketsEntity</a>
-            <b>ticket</b>
+            <b>Ticket</b>
         </field>
         <field custom-converter="cmr.notep.config.mapper.PersonnesConverter">
-            <a>exemplaireEntities</a>
-            <b>exemplaires</b>
+            <a>ExemplaireEntities</a>
+            <b>Exemplaires</b>
         </field>
     </mapping>
     <mapping>

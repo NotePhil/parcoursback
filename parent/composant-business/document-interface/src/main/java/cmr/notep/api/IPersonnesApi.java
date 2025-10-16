@@ -23,7 +23,7 @@ public interface IPersonnesApi {
     @GetMapping(
             produces = MediaType.APPLICATION_JSON_VALUE
     )
-    List<IPersonnes> avoirToutPersonnes();
+    List<Personnes> avoirToutPersonnes();
 
     @GetMapping(
             path = "/personnesphysique",

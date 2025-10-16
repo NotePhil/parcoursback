@@ -1,6 +1,7 @@
 package cmr.notep.modele;
 
 import com.fasterxml.jackson.annotation.JsonFormat;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import lombok.*;
 import lombok.experimental.SuperBuilder;
 
@@ -24,5 +25,5 @@ public class Personnels extends Personnes {
     private Date dateSortie;
     private String prenom;
     private String sexe ;
-    private List<JouerRoles> jouerroles;
+    private List<JouerRoles> roles;
 }
