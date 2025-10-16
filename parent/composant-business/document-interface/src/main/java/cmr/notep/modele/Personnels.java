@@ -25,5 +25,5 @@ public class Personnels extends Personnes {
     private Date dateSortie;
     private String prenom;
     private String sexe ;
-    private List<JouerRoles> roles;
+    private List<JouerRoles> jouerroles;
 }

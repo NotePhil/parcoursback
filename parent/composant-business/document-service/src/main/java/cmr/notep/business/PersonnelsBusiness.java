@@ -57,11 +57,11 @@ public class PersonnelsBusiness  {
         //sauvegarder le personnel
         PersonnelsEntity entitySaved = this.daoAccessorService.getRepository(PersonnelsRepository.class)
                 .save(dozerMapperBean.map(personnel, PersonnelsEntity.class));
-        if(!CollectionUtils.isEmpty(personnel.getRoles())){
+        if(!CollectionUtils.isEmpty(personnel.getJouerroles())){
             entitySaved.setJouerRolesEntities(new ArrayList<>());
             PersonnelsEntity finalEntitySaved = entitySaved;
             entitySaved.getJouerRolesEntities().addAll(
-                    personnel.getRoles().stream()
+                    personnel.getJouerroles().stream()
                             .map(jouerRole -> {
                                 JouerRolesEntity jouerRolesEntity = dozerMapperBean.map(jouerRole, JouerRolesEntity.class);
                                 jouerRolesEntity.setPersonnelsEntity(finalEntitySaved);
