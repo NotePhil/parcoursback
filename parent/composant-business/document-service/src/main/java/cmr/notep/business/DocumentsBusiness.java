@@ -72,4 +72,36 @@ public class DocumentsBusiness {
                         .findById(idDoc)
                         .orElseThrow(()->new RuntimeException("Document non trouvé")),Documents.class);
     }
+
+    public void supprimerDocument(Documents document) {
+        log.debug("[supprimerDocument] Suppression du document avec l'ID : " + document.getIdDocument());
+        this.daoAccessorService.getRepository(DocumentsRepository.class)
+                .deleteById(document.getIdDocument().toString());
+    }
+
+    public Documents modifierDocument(Documents document) {
+        log.debug("[modifierDocument] Modification du document avec l'ID : " + document.getIdDocument());
+        // Vérifier que le document existe avant de le modifier
+        this.daoAccessorService.getRepository(DocumentsRepository.class)
+                .findById(document.getIdDocument().toString())
+                .orElseThrow(() -> new RuntimeException("Document non trouvé"));
+
+        if(!CollectionUtils.isEmpty(document.getCategories())) {
+            List<Categories> categoriesList = document.getCategories().stream().map(categorie -> {
+                try {
+                    log.debug("[modifierDocument] idDocument : " + document.getIdDocument() + " modifier une categorie " + categorie);
+                    categorie.setDocument(document);
+                    return categoriesBusiness.posterCategorie(categorie);
+                } catch (ParcoursException e) {
+                    throw new RuntimeException(e);
+                }
+            }).collect(Collectors.toList());
+            document.getCategories().clear();
+            document.getCategories().addAll(categoriesList);
+        }
+        return dozerMapperBean.map(
+                this.daoAccessorService.getRepository(DocumentsRepository.class)
+                        .save(dozerMapperBean.map(document, DocumentsEntity.class)),
+                Documents.class);
+    }
 }

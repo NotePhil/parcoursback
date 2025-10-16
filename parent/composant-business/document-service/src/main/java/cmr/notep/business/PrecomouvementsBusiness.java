@@ -42,4 +42,21 @@ public class PrecomouvementsBusiness {
                 PrecoMouvements.class
         );
     }
+
+    public void supprimerPrecomouvement(PrecoMouvements precomouvement) {
+        daoAccessorService.getRepository(PrecoMouvementsRepository.class)
+                .deleteById(precomouvement.getId().toString());
+    }
+
+    public PrecoMouvements modifierPrecomouvement(PrecoMouvements precomouvement) {
+        // Vérifier que le précomouvement existe avant de le modifier
+        this.daoAccessorService.getRepository(PrecoMouvementsRepository.class)
+                .findById(precomouvement.getId().toString())
+                .orElseThrow(() -> new RuntimeException("Précomouvement non enregistré"));
+
+        return dozerMapperBean.map(
+                this.daoAccessorService.getRepository(PrecoMouvementsRepository.class)
+                        .save(dozerMapperBean.map(precomouvement, PrecoMouvementsEntity.class)),
+                PrecoMouvements.class);
+    }
 }

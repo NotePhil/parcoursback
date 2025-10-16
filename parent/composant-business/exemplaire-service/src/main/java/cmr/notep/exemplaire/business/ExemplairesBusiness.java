@@ -85,8 +85,24 @@ public class ExemplairesBusiness {
                 personnelsApi, validationsApi,  etatsApi,exemplairesInterne);
     }
 
+    public void supprimerExemplaire(@NonNull Exemplaires exemplaire) {
+        log.debug("[supprimerExemplaire] Suppression de l'exemplaire avec l'ID : " + exemplaire.getId());
+        this.daoAccessorService.getRepository(ExemplairesRepository.class)
+                .deleteById(exemplaire.getId().toString());
+    }
 
+    public Exemplaires modifierExemplaire(@NonNull Exemplaires exemplaire) throws ParcoursException {
+        log.debug("[modifierExemplaire] Modification de l'exemplaire avec l'ID : " + exemplaire.getId());
+        // Vérifier que l'exemplaire existe avant de le modifier
+        this.daoAccessorService.getRepository(ExemplairesRepository.class)
+                .findById(exemplaire.getId().toString())
+                .orElseThrow(() -> new ParcoursException(ParcoursExceptionCodeEnum.NOT_FOUND, "Exemplaire introuvable"));
 
-
-
+        ExemplairesInterne exemplairesInterne = ExemplaireConvertirHelper.convertirExemplaireEnExemplaireInternes(exemplaire);
+        exemplairesInterne = dozerMapperBean.map(daoAccessorService.getRepository(ExemplairesRepository.class)
+                .save(dozerMapperBean.map(exemplairesInterne, ExemplairesEntity.class)), ExemplairesInterne.class);
+        return ExemplaireConvertirHelper.convertirExemplaireInterneEnExemplaire(documentsApi, personnesApi, attributsApi,
+                precoMouvementsApi, ressourcesApi, distributeursApi,
+                personnelsApi, validationsApi, etatsApi, exemplairesInterne);
+    }
 }

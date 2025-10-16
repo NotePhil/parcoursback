@@ -6,6 +6,7 @@ import lombok.Setter;
 import jakarta.persistence.*;
 import java.util.Date;
 import java.util.Date;
+import java.util.List;
 
 @Getter
 @Setter
@@ -27,4 +28,6 @@ public class PersonnesPhysiquesEntity extends PersonnesEntity{
     private Date dateNaissance ;
     @Column(name = "datemodification")
     private Date dateModification;
+    @OneToMany(mappedBy = "personnesPhysique")
+    private List<TicketsEntity> ticketsEntities;
 }

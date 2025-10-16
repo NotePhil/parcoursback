@@ -39,9 +39,15 @@ public class PersonnesEntity
 
     @Column(name = "qrcodevalue")
     private  String qrcodevalue ;
-    @Column(name = "datecreation")
+
+    @Column(name = "datecreation", columnDefinition = "TIMESTAMP")
+    @Temporal(TemporalType.TIMESTAMP)
+    @CreationTimestamp
     private Date dateCreation;
-    @Column(name = "datemodification")
+
+    @Column(name = "datemodification", columnDefinition = "TIMESTAMP")
+    @Temporal(TemporalType.TIMESTAMP)
+    @UpdateTimestamp
     private Date dateModification;
     @ManyToMany(fetch = FetchType.LAZY)
     @JoinTable(name = "rattacher" ,schema = "document",
@@ -50,17 +56,15 @@ public class PersonnesEntity
     @Mapping("personnesRatachees")
     private List<PersonnesEntity> personnesRatachees = new ArrayList<>();
 
-    @OneToOne( cascade = CascadeType.ALL, fetch = FetchType.LAZY, optional = true)
-    @JoinColumn(name = "comptes_id" , referencedColumnName = "id")
-    @Mapping("compte")
-    private ComptesEntity comptesEntity;
+    @PrePersist
+    protected void onCreate() {
+        if (dateCreation == null) {
+            dateCreation = new Date();
+        }
+    }
 
-    @OneToOne( cascade = CascadeType.ALL, fetch = FetchType.LAZY, optional = true)
-    @JoinColumn(name = "ticket_id" , referencedColumnName = "id")
-    @Mapping("ticket")
-    private TicketsEntity ticketsEntity;
-
-    @OneToMany(mappedBy = "personnesEntity", fetch = FetchType.LAZY, cascade = {CascadeType.ALL})
-    @Mapping("exemplaires")
-    private List<ExemplairesEntity> exemplaireEntities;
+    @PreUpdate
+    protected void onUpdate() {
+        dateModification = new Date();
+    }
 }
