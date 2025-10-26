@@ -28,6 +28,7 @@ public interface IPersonnelsApi {
             produces = MediaType.APPLICATION_JSON_VALUE
     )
     List<Personnels> avoirTousPersonnels();
+
     @DeleteMapping(
             consumes = MediaType.APPLICATION_JSON_VALUE
     )

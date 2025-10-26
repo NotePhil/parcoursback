@@ -25,11 +25,12 @@ public class Attributs {
 
     private Date dateModification;
 
-    TypeAttribut type_attribut;
+    private TypeAttribut type;
 
-    private String valeurParDefaut;
+
+    private String valeursParDefaut;
 
     private List<Documents> documents;
-  //  private List<Associer> categories ;
+    private List<Categories> categories ;
 
 }

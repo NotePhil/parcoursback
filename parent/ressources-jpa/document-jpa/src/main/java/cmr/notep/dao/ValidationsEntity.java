@@ -1,6 +1,5 @@
 package cmr.notep.dao;
 
-import ch.qos.logback.core.spi.CyclicBufferTracker;
 import lombok.Getter;
 import lombok.Setter;
 import org.dozer.Mapping;
@@ -9,7 +8,6 @@ import org.hibernate.annotations.GenericGenerator;
 import jakarta.persistence.*;
 import java.util.Date;
 import java.util.List;
-import java.util.UUID;
 
 @Getter
 @Setter

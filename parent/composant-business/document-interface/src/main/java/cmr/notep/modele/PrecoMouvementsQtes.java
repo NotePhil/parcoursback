@@ -1,24 +1,26 @@
 package cmr.notep.modele;
 
-import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import lombok.*;
 
+import java.util.Date;
 import java.util.List;
 
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
 @Builder
-@JsonIgnoreProperties({ "precoMouvement"})
-@ToString(exclude = {"precoMouvement"})
-@EqualsAndHashCode(exclude = {"precoMouvement"})
+@JsonIgnoreProperties({ "precoMouvement","distributeurs"})
+@ToString(exclude = {"precoMouvement","distributeurs"})
+@EqualsAndHashCode(exclude = {"precoMouvement","distributeurs"})
 public class PrecoMouvementsQtes {
     private String id ;
     private int qteMin ;
     private int qteMax ;
     private double montantMin ;
     private double montantMax ;
+    private Date dateCreation ;
+    private Date dateModification ;
     private PrecoMouvements precoMouvement;
     private List<Familles> familles;
     private Ressources ressource;

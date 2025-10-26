@@ -8,7 +8,6 @@ import org.hibernate.annotations.GenericGenerator;
 import jakarta.persistence.*;
 import java.util.Date;
 import java.util.List;
-import java.util.UUID;
 
 @Getter
 @Setter
@@ -37,8 +36,9 @@ public class DocumentsEntity {
     @Column(name = "datemodification")
     private Date dateModification;
 
+    @Enumerated(EnumType.STRING)
     @Column(name = "typemouvement")
-    private String typeMouvement ;
+    private TypeMouvement typeMouvement ;
 
     @Column(name = "afficherprix")
     private Boolean afficherPrix ;
@@ -54,6 +54,9 @@ public class DocumentsEntity {
 
     @Column(name="contientressources")
     private Boolean contientRessources;
+
+    @Column(name="estencaissable")
+    private Boolean estencaissable;
 
     @ManyToMany(fetch = FetchType.LAZY)
     @JoinTable(name = "constituer", schema = "document",
@@ -85,4 +88,8 @@ public class DocumentsEntity {
     @ManyToMany(mappedBy = "documentsEntities")
     @Mapping("promotions")
     private List<PromotionsEntity> promotionsEntities;
+
+    @OneToMany(mappedBy = "documentsEntity", fetch = FetchType.LAZY, cascade = {CascadeType.ALL})
+    @Mapping("exemplaires")
+    private List<ExemplairesEntity> exemplaireEntities;
 }

@@ -5,18 +5,18 @@ import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-import java.util.Date;
 import java.util.List;
-import java.util.UUID;
 
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
 @Builder
-public class Parcours {
+public class Caisses {
     private String id;
-    private String libelle;
-    private Date dateCreation;
-    private Date dateModification;
-    private List<Etapes> etapes;
+    private String libelle ;
+    private boolean etat ;
+    private double solde ;
+    private String type ;
+    private String detailJSON ;
+    private List<MouvementCaisses> mouvementcaisses;
 }

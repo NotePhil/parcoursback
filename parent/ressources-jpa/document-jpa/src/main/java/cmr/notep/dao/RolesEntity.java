@@ -36,11 +36,11 @@ public class RolesEntity {
     @Column(name = "datemodification")
     private Date dateModification;
     @OneToMany(mappedBy = "rolesEntity", fetch = FetchType.LAZY)
-    @Mapping("personnels")
+    @Mapping("jouerroles")
     private List<JouerRolesEntity> jouerRolesEntities;
 
     @OneToMany(mappedBy = "rolesEntity", fetch = FetchType.LAZY)
-    @Mapping("missions")
+    @Mapping("remplirs")
     private List<RemplirEntity> remplirEntities;
 
     @OneToMany(mappedBy = "roleEntity" , fetch = FetchType.LAZY)

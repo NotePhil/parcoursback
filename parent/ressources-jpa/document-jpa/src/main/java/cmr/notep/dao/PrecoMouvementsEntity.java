@@ -33,7 +33,8 @@ public class PrecoMouvementsEntity {
     private Date dateModification ;
 
     @Column(name="typemouvement")
-    private String typeMouvement ;
+    @Enumerated(EnumType.STRING)
+    private TypeMouvement typeMouvement ;
 
     @ManyToMany(mappedBy = "precoMouvementsEntities")
     @Mapping("documents")

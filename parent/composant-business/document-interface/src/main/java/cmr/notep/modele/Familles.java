@@ -10,14 +10,14 @@ import java.util.List;
 @AllArgsConstructor
 @NoArgsConstructor
 @Builder
-@JsonIgnoreProperties({"precoMouvementsQtes"})
-@ToString(exclude = {"precoMouvementsQtes"})
-@EqualsAndHashCode(exclude = {"precoMouvementsQtes"})
+@JsonIgnoreProperties({"ressources","precoMouvementsQtes"})
+@ToString(exclude = {"ressources","precoMouvementsQtes"})
+@EqualsAndHashCode(exclude = {"ressources","precoMouvementsQtes"})
 public class Familles {
     private String id ;
     private String libelle;
     private String description;
-    private String etat ;
+    private Boolean etat ;
     private Date dateCreation;
     private Date dateModification;
     private List<PrecoMouvementsQtes> precoMouvementsQtes;

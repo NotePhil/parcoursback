@@ -1,14 +1,11 @@
 package cmr.notep.modele;
 
-import cmr.notep.modele.Distributeurs;
-import cmr.notep.modele.PrecoMouvements;
-import cmr.notep.modele.Ressources;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import lombok.*;
 
+import java.util.*;
 import java.util.Date;
-import java.util.Date;
-import java.util.List;
+
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
@@ -17,7 +14,7 @@ import java.util.List;
 @ToString(exclude = {"ressource","distributeur","precoMouvementsRespecter","precoMouvementsVioler"})
 @EqualsAndHashCode(exclude = {"ressource","distributeur","precoMouvementsRespecter","precoMouvementsVioler"})
 public class Mouvements {
-    private  String id ;
+    private String id ;
     private  String description ;
     private int quantite ;
     private double prix ;
@@ -28,5 +25,5 @@ public class Mouvements {
     private List<PrecoMouvements> precoMouvementsVioler;
     private Ressources ressource;
     private Distributeurs distributeur;
-    private Exemplaires exemplaire;
+
 }

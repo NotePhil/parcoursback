@@ -37,7 +37,7 @@ public class PersonnesBusiness {
 
     }
 
-    public List<IPersonnes> avoirToutPersonnes() {
+    public List<Personnes> avoirToutPersonnes() {
         return daoAccessorService.getRepository(PersonnesRepository.class).findAll()
                 .stream().map(personne ->mapPersonnesEntityToPersonnes(personne))
                 .collect(Collectors.toList());

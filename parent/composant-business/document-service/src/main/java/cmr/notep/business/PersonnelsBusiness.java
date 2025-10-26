@@ -1,5 +1,6 @@
 package cmr.notep.business;
 
+import cmr.notep.api.IPersonnelsApi;
 import cmr.notep.dao.DaoAccessorService;
 import cmr.notep.dao.JouerRolesEntity;
 import cmr.notep.dao.PersonnelsEntity;
@@ -45,10 +46,10 @@ public class PersonnelsBusiness  {
                 .collect(Collectors.toList());
     }
 
-    public void supprimerPersonnel(Personnels Personnels)
+    public void supprimerPersonnel(Personnels personnel)
     {
         daoAccessorService.getRepository(PersonnelsRepository.class)
-                .deleteById(Personnels.getId().toString());
+                .deleteById(personnel.getId().toString());
     }
 
     public Personnels posterPersonnel(Personnels personnel) {
@@ -56,11 +57,11 @@ public class PersonnelsBusiness  {
         //sauvegarder le personnel
         PersonnelsEntity entitySaved = this.daoAccessorService.getRepository(PersonnelsRepository.class)
                 .save(dozerMapperBean.map(personnel, PersonnelsEntity.class));
-        if(!CollectionUtils.isEmpty(personnel.getRoles())){
+        if(!CollectionUtils.isEmpty(personnel.getJouerroles())){
             entitySaved.setJouerRolesEntities(new ArrayList<>());
             PersonnelsEntity finalEntitySaved = entitySaved;
             entitySaved.getJouerRolesEntities().addAll(
-                    personnel.getRoles().stream()
+                    personnel.getJouerroles().stream()
                             .map(jouerRole -> {
                                 JouerRolesEntity jouerRolesEntity = dozerMapperBean.map(jouerRole, JouerRolesEntity.class);
                                 jouerRolesEntity.setPersonnelsEntity(finalEntitySaved);
@@ -85,6 +86,4 @@ public class PersonnelsBusiness  {
         return this.daoAccessorService.getRepository(JouerRolesRepository.class)
                 .save(jouerRole);
     }
-
-
 }

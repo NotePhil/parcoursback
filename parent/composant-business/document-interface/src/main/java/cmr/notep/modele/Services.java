@@ -10,9 +10,9 @@ import java.util.List;
 @AllArgsConstructor
 @NoArgsConstructor
 @Builder
-@ToString(exclude = {"missions", "fileAttente"})
-@EqualsAndHashCode(exclude = {"missions", "fileAttente"})
-@JsonIgnoreProperties({"missions", "fileAttente"})
+@ToString(exclude = {"fileAttente"})
+@EqualsAndHashCode(exclude = {"fileAttente"})
+@JsonIgnoreProperties({"fileAttente"})
 public class Services {
     private String id ;
     private String description;

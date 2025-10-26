@@ -4,6 +4,7 @@ import cmr.notep.modele.TypeAttribut;
 import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.Setter;
+import org.dozer.Mapping;
 import org.hibernate.annotations.GenericGenerator;
 
 import java.util.Date;
@@ -31,10 +32,12 @@ public class AttributsEntity {
     private Date dateModification;
     @Enumerated(EnumType.STRING)
     @Column(name = "type_attribut", nullable = false)
-    private TypeAttribut type_attribut;
+    private TypeAttribut type;
     @Column(name = "valeurpardefaut")
-    private String valeurParDefaut;
+    private String valeursParDefaut;
+
     @ManyToMany(mappedBy = "attributsEntities")
+    @Mapping("documents")
     private List<DocumentsEntity> documentsEntities;
     //@ManyToMany(mappedBy = "attributsEntities")
     //@Mapping("categories")
@@ -42,6 +45,6 @@ public class AttributsEntity {
    // private List<CategoriesEntity> categories ;
 
     @OneToMany(mappedBy = "attribut", fetch = FetchType.LAZY, orphanRemoval = true)
-   // @Mapping("categories")
+    @Mapping("categories")
     private List<AssocierEntity> categoriesEntities;
 }

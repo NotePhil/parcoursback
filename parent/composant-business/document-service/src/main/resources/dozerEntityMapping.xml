@@ -26,5 +26,41 @@
             <a>personnesRatachees</a>
             <b>personnesRatachees</b>
         </field>
+        <field custom-converter="cmr.notep.config.mapper.PersonnesConverter">
+            <a>ComptesEntity</a>
+            <b>Compte</b>
+        </field>
+        <field custom-converter="cmr.notep.config.mapper.PersonnesConverter">
+            <a>TicketsEntity</a>
+            <b>Ticket</b>
+        </field>
+        <field custom-converter="cmr.notep.config.mapper.PersonnesConverter">
+            <a>ExemplaireEntities</a>
+            <b>Exemplaires</b>
+        </field>
     </mapping>
+<!--    <mapping>-->
+<!--        <class-a>cmr.notep.dao.TicketsEntity</class-a>-->
+<!--        <class-b>cmr.notep.modele.Tickets</class-b>-->
+<!--        <field>-->
+<!--            <a>personnesEntity</a>-->
+<!--            <b>personne</b>-->
+<!--        </field>-->
+<!--    </mapping>-->
+<!--    <mapping>-->
+<!--        <class-a>cmr.notep.dao.PersonnelsEntity</class-a>-->
+<!--        <class-b>cmr.notep.modele.Personnels</class-b>-->
+<!--        <field custom-converter="cmr.notep.config.mapper.PersonnesConverter">-->
+<!--            <a>TicketsEntity</a>-->
+<!--            <b>Tickets</b>-->
+<!--        </field>-->
+<!--    </mapping>-->
+<!--    <mapping>-->
+<!--        <class-a>cmr.notep.dao.PersonnelsEntity</class-a>-->
+<!--        <class-b>cmr.notep.modele.Personnels</class-b>-->
+<!--        <field custom-converter="cmr.notep.config.mapper.PersonnesConverter">-->
+<!--            <a>comptesEntity</a>-->
+<!--            <b>compte</b>-->
+<!--        </field>-->
+<!--    </mapping>-->
 </mappings>

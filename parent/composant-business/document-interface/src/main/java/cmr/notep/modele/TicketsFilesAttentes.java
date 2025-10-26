@@ -2,7 +2,6 @@ package cmr.notep.modele;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import lombok.*;
-import org.dozer.Mapping;
 
 import java.util.Date;
 
@@ -10,13 +9,13 @@ import java.util.Date;
 @AllArgsConstructor
 @NoArgsConstructor
 @Builder
-@JsonIgnoreProperties({"filesAttente"})
-@ToString(exclude = {"filesAttente"})
-@EqualsAndHashCode(exclude = {"filesAttente"})
+@JsonIgnoreProperties({"fileAttente","ticket"})
+@ToString(exclude = {"fileAttente","ticket"})
+@EqualsAndHashCode(exclude = {"fileAttente","ticket"})
 public class TicketsFilesAttentes {
     private String id;
     private Boolean etat ;
     private Date dateAffectation;
     private Tickets ticket;
-    private FilesAttentes filesAttente;
+    private FilesAttentes fileAttente;
 }
