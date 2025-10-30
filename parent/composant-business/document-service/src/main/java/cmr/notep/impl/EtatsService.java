@@ -21,8 +21,8 @@ public class EtatsService implements IEtatsApi {
     }
 
     @Override
-    public Etats posterEtat(Etats Etat) {
-        return null;
+    public Etats posterEtat(Etats etat) {
+        return this.etatsBusiness.posterEtat(etat);
     }
 
     @Override
@@ -32,11 +32,11 @@ public class EtatsService implements IEtatsApi {
 
     @Override
     public List<Etats> avoirTousEtats() {
-        return null;
+        return this.etatsBusiness.avoirToutEtats();
     }
 
     @Override
-    public void SupprimerEtat(Etats Etat) {
-
+    public void SupprimerEtat(Etats etat) {
+        this.etatsBusiness.supprimerEtat(etat);
     }
 }
