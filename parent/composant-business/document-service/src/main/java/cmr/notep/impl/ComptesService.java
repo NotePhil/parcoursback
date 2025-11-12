@@ -9,25 +9,25 @@ import java.util.List;
 
 public class ComptesService implements IComptesApi {
 
-    private final ComptesBusiness compteBusiness ;
+    private final ComptesBusiness comptesBusiness;
 
-    public ComptesService(ComptesBusiness compteBusiness) {
-        this.compteBusiness = compteBusiness ;
+    public ComptesService(ComptesBusiness comptesBusiness) {
+        this.comptesBusiness = comptesBusiness ;
     }
 
     @Override
-    public Comptes avoirComptes(@NonNull String idCompte) { return compteBusiness.avoirCompte(idCompte);}
+    public Comptes avoirCompte(@NonNull String idCompte) { return comptesBusiness.avoirCompte(idCompte);}
 
     @Override
-    public List<Comptes> avoirToutCompte(){return compteBusiness.avoirToutComptes();}
+    public List<Comptes> avoirTousComptes(){return comptesBusiness.avoirTousComptes();}
 
     @Override
     public void supprimerCompte(@NonNull Comptes compte){
-        compteBusiness.supprimerCompte(compte);
+        comptesBusiness.supprimerCompte(compte);
     }
 
     @Override
     public Comptes posterCompte(@NonNull Comptes comptes) {
-        return compteBusiness.posterCompte(comptes);
+        return comptesBusiness.posterCompte(comptes);
     }
 }

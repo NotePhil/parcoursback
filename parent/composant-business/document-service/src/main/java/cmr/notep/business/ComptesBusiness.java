@@ -1,8 +1,8 @@
 package cmr.notep.business;
 
+import cmr.notep.dao.ComptesEntity;
 import cmr.notep.dao.DaoAccessorService;
 import cmr.notep.modele.Comptes;
-import cmr.notep.repository.AttributsRepository;
 import cmr.notep.repository.ComptesRepository;
 
 import java.util.List;
@@ -25,7 +25,7 @@ public class ComptesBusiness {
                 .orElseThrow(()-> new RuntimeException("Compte introuvable")),Comptes.class);
     }
 
-    public List<Comptes> avoirToutComptes() {
+    public List<Comptes> avoirTousComptes() {
         return daoAccessorService.getRepository(ComptesRepository.class).findAll()
                 .stream().map(compte -> dozerMapperBean.map(compte,Comptes.class))
                 .collect(Collectors.toList());
@@ -38,7 +38,7 @@ public class ComptesBusiness {
     }
 
     public Comptes posterCompte(Comptes compte) {
-        return dozerMapperBean.map( this.daoAccessorService.getRepository(ComptesRepository.class)
-                .save(dozerMapperBean.map(compte, ComptesEntity.class)), Comptes.class );
+        return dozerMapperBean.map(this.daoAccessorService.getRepository(ComptesRepository.class)
+                .save(dozerMapperBean.map(compte, ComptesEntity.class)), Comptes.class);
     }
 }

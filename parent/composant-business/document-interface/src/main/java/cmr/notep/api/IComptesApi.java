@@ -15,12 +15,12 @@ public interface IComptesApi {
             path = "/{idCompte}",
             produces = MediaType.APPLICATION_JSON_VALUE
     )
-    Comptes avoirComptes (@NonNull @PathVariable(name = "idCompte") String idComptes) throws ParcoursException;
+    Comptes avoirCompte (@NonNull @PathVariable(name = "idCompte") String idCompte) throws ParcoursException;
 
     @GetMapping(
             produces = MediaType.APPLICATION_JSON_VALUE
     )
-    List<Comptes> avoirToutComptes();
+    List<Comptes> avoirTousComptes();
 
     @DeleteMapping(
             consumes = MediaType.APPLICATION_JSON_VALUE

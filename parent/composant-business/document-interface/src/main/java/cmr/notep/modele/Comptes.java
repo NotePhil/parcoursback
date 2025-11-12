@@ -1,10 +1,18 @@
 package cmr.notep.modele;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import lombok.*;
+
 import java.util.Date;
-import java.util.List;
 
+@Data
+@AllArgsConstructor
+@NoArgsConstructor
+@Builder
+@JsonIgnoreProperties(value = {"documents"},ignoreUnknown = true)
+//@ToString(exclude = {"documents"})
+//@EqualsAndHashCode(exclude = {"documents"})
 public class Comptes {
-
     private String id;
     private int solde;
     private String libelle;
