@@ -57,6 +57,12 @@
             <artifactId>maven-model</artifactId>
             <scope>compile</scope>
         </dependency>
+        <dependency>
+            <groupId>cmr.notep</groupId>
+            <artifactId>document-jpa</artifactId>
+            <version>1.0-013</version>
+            <scope>compile</scope>
+        </dependency>
     </dependencies>
 
     <build>

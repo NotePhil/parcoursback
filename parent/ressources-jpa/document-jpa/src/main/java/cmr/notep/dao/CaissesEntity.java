@@ -4,8 +4,12 @@ import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.Setter;
 import org.hibernate.annotations.GenericGenerator;
+import org.hibernate.annotations.JdbcType;
+import org.hibernate.annotations.JdbcTypeCode;
+import org.hibernate.type.SqlTypes;
 
 
+import java.sql.SQLType;
 import java.util.List;
 
 @Getter
@@ -32,8 +36,9 @@ public class CaissesEntity {
     @Column(name="type",nullable = false)
     private String type ;
 
-    @Column(name="detailsJson")
-    private DetailsJson detailsJson ;
+    @JdbcTypeCode(SqlTypes.JSON)
+    @Column(name="detailjson", columnDefinition = "jsonb")
+    private DetailsJson detailjson ;
 
     //@OneToMany(mappedBy = "caissesEntity", fetch = FetchType.LAZY, cascade = {CascadeType.ALL})
     //@Mapping("mouvementcaisses")

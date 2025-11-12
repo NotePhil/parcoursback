@@ -40,7 +40,7 @@ public class AttributsBusiness {
     public void supprimerAttribut(Attributs attrib)
     {
         daoAccessorService.getRepository(AttributsRepository.class)
-                .deleteById(attrib.getId().toString());
+                .deleteById(attrib.getId());
     }
 
     public Attributs posterAttribut(Attributs attributs) {

@@ -85,6 +85,12 @@
                 <version>3.3.4</version> <!-- ✅ dernière version stable (oct. 2025) -->
             </dependency>
 
+            <dependency>
+                <groupId>org.springframework.boot</groupId>
+                <artifactId>spring-boot-starter-security</artifactId>
+                <version>3.3.4</version>
+            </dependency>
+
             <!-- JPA / Hibernate -->
             <dependency>
                 <groupId>org.springframework.boot</groupId>
