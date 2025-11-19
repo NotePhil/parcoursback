@@ -3,10 +3,14 @@ package cmr.notep.impl;
 import cmr.notep.api.IComptesApi;
 import cmr.notep.business.ComptesBusiness;
 import cmr.notep.modele.Comptes;
+import jakarta.transaction.Transactional;
 import lombok.NonNull;
+import org.springframework.web.bind.annotation.RestController;
 
 import java.util.List;
 
+@RestController
+@Transactional
 public class ComptesService implements IComptesApi {
 
     private final ComptesBusiness comptesBusiness;
