@@ -3,11 +3,17 @@ package cmr.notep.business;
 
 import static cmr.notep.config.DocumentConfig.*;
 
+import java.util.Date;
 import java.util.List;
+import java.util.Optional;
 import java.util.stream.Collectors;
 
+import cmr.notep.dao.DocEtatsEntity;
+import cmr.notep.dao.EtatsEntity;
 import cmr.notep.exceptions.ParcoursException;
 import cmr.notep.modele.Categories;
+import cmr.notep.modele.Etats;
+import cmr.notep.repository.EtatsRepository;
 import org.springframework.stereotype.Component;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -63,6 +69,48 @@ public class DocumentsBusiness {
                 this.daoAccessorService.getRepository(DocumentsRepository.class)
                 .save(dozerMapperBean.map(document, DocumentsEntity.class)),
                 Documents.class);
+    }
+
+    public Documents assignEtatDoc(Etats etat ,  Documents document)
+    {
+
+        log.debug("[assignEtatDoc] assigner un état au document");
+
+        if (etat == null || document == null) {
+            throw new IllegalArgumentException("Etat et Document doivent être non nuls");
+        }
+
+        Optional<EtatsEntity> optionalEtatEntity = this.daoAccessorService.getRepository(EtatsRepository.class)
+                .findById(etat.getId());
+        if (optionalEtatEntity.isEmpty()) {
+            throw new RuntimeException("Etat non trouvé en base : " + etat.getId());
+        }
+        EtatsEntity etatEntity = optionalEtatEntity.get();
+
+        Optional<DocumentsEntity> optionalDocumentEntity = this.daoAccessorService.getRepository(DocumentsRepository.class)
+                .findById(document.getIdDocument());
+        if (optionalDocumentEntity.isEmpty()) {
+            throw new RuntimeException("Document non trouvé en base : " + document.getIdDocument());
+        }
+        DocumentsEntity documentEntity = optionalDocumentEntity.get();
+
+        boolean exists = documentEntity.getDocEtatsEntities().stream()
+                .anyMatch(de -> de.getEtatsEntity().getId().equals(etatEntity.getId()));
+        if (exists) {
+            log.debug("[assignEtatDoc] Etat déjà assigné au document");
+            return dozerMapperBean.map(documentEntity, Documents.class);
+        }
+
+        DocEtatsEntity newDocEtat = new DocEtatsEntity();
+        newDocEtat.setEtatsEntity(etatEntity);
+        newDocEtat.setDocumentsEntity(documentEntity);
+        newDocEtat.setDateCreation(new Date());
+
+       documentEntity.getDocEtatsEntities().add(newDocEtat);
+
+       DocumentsEntity savedDocument = this.daoAccessorService.getRepository(DocumentsRepository.class).save(documentEntity);
+
+       return dozerMapperBean.map(savedDocument, Documents.class);
     }
 
     public Documents avoirDocument(String idDoc) {
