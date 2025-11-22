@@ -12,9 +12,6 @@ import java.util.List;
 @AllArgsConstructor
 @NoArgsConstructor
 @SuperBuilder
-@JsonIgnoreProperties(value = {"jouerroles"})
-@ToString(exclude = { "jouerroles"})
-@EqualsAndHashCode(exclude = { "jouerroles"}, callSuper = false)
 public class Personnels extends Personnes {
     @JsonFormat(pattern = "yyyy-MM-dd", timezone = "Europe/Paris")
     private Date dateEntree ;

@@ -79,6 +79,8 @@ public class PersonnelsBusiness  {
         return dozerMapperBean.map( entitySaved, Personnels.class);
     }
 
+
+
     private JouerRolesEntity enregistrerJouerRole(JouerRolesEntity jouerRole) {
         //TODO faire les controles sur les différents attributs de l'objet jouerRole
         if(jouerRole.getRolesEntity().getId() != null)
