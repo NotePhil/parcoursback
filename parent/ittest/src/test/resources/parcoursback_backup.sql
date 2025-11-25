@@ -1118,8 +1118,8 @@ INSERT INTO document.attributs VALUES ('36bb8723-4a93-4f01-ad1a-874640f550b2', '
 -- Data for Name: caisses; Type: TABLE DATA; Schema: document; Owner: postgres
 --
 
-INSERT INTO document.caisses VALUES ('a1f8e3b0-4c6d-4e5e-ab7a-2a8b9b9c8d6f', 'Caisse principale', 10000, 'Caisse', '{"description": "Caisse principale"}', true) ON CONFLICT DO NOTHING;
-INSERT INTO document.caisses VALUES ('b3a7c8d6-1e2f-3d4c-cb6a-9e8f0a7b6c5d', 'Caisse en ligne', 7500, 'Caisse', '{"description": "Caisse en ligne"}', true) ON CONFLICT DO NOTHING;
+INSERT INTO document.caisses VALUES ('a1f8e3b0-4c6d-4e5e-ab7a-2a8b9b9c8d6f', 'Caisse principale', 10000, 'Caisse', '{"x10000": "12", "x5000":"3"}', true) ON CONFLICT DO NOTHING;
+INSERT INTO document.caisses VALUES ('b3a7c8d6-1e2f-3d4c-cb6a-9e8f0a7b6c5d', 'Caisse en ligne', 7500, 'Caisse', '{"x10000": "12", "x5000":"3"}', true) ON CONFLICT DO NOTHING;
 INSERT INTO document.caisses VALUES ('d9e2f1c2-8b3a-4f6c-bd5e-1a7b8a7c6d5e', 'Caisse secondaire3', 5000, 'Caisse', NULL, true) ON CONFLICT DO NOTHING;
 INSERT INTO document.caisses VALUES ('f0a7b6c5-d4e3f2a1-8d9c-7d6e-5f4a3b2c1e0d', 'Caisse mobile3', 3000, 'Caisse', NULL, true) ON CONFLICT DO NOTHING;
 
