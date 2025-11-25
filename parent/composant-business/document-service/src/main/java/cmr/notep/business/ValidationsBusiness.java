@@ -1,6 +1,7 @@
 package cmr.notep.business;
 
 import cmr.notep.dao.DaoAccessorService;
+import cmr.notep.dao.ValidationsEntity;
 import cmr.notep.modele.Validations;
 import cmr.notep.repository.ValidationsRepository;
 import lombok.extern.slf4j.Slf4j;
@@ -35,25 +36,13 @@ public class ValidationsBusiness {
 
     public void supprimerValidation(Validations validation) {
         daoAccessorService.getRepository(ValidationsRepository.class)
-                .deleteById(validation.getId().toString());
+                .deleteById(validation.getId());
     }
 
     public Validations posterValidation(Validations validation) {
         return dozerMapperBean.map(
                 this.daoAccessorService.getRepository(ValidationsRepository.class)
-                        .save(dozerMapperBean.map(validation, cmr.notep.dao.ValidationsEntity.class)),
-                Validations.class);
-    }
-
-    public Validations modifierValidation(Validations validation) {
-        // Vérifier que la validation existe avant de la modifier
-        this.daoAccessorService.getRepository(ValidationsRepository.class)
-                .findById(validation.getId().toString())
-                .orElseThrow(() -> new RuntimeException("Validation introuvable"));
-
-        return dozerMapperBean.map(
-                this.daoAccessorService.getRepository(ValidationsRepository.class)
-                        .save(dozerMapperBean.map(validation, cmr.notep.dao.ValidationsEntity.class)),
+                        .save(dozerMapperBean.map(validation, ValidationsEntity.class)),
                 Validations.class);
     }
 }

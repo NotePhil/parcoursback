@@ -1,7 +1,6 @@
 package cmr.notep.api;
 
 import cmr.notep.exceptions.ParcoursException;
-import cmr.notep.modele.Attributs;
 import cmr.notep.modele.Caisses;
 import org.springframework.http.MediaType;
 import org.springframework.lang.NonNull;

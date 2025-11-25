@@ -27,10 +27,11 @@ public interface IValidationsApi {
             produces = MediaType.APPLICATION_JSON_VALUE
     )
     List<Validations> avoirTousValidations();
+
     @DeleteMapping(
             consumes = MediaType.APPLICATION_JSON_VALUE
     )
-    void SupprimerValidation(@NonNull @RequestBody Validations Validation);
+    void supprimerValidation(@NonNull @RequestBody Validations Validation);
 
 
 }
