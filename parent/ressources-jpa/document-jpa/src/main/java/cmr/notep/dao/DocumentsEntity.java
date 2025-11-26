@@ -55,6 +55,9 @@ public class DocumentsEntity {
     @Column(name="contientressources")
     private Boolean contientRessources;
 
+    @Column(name="estEncaissable")
+    private Boolean estEncaissable;
+
     @ManyToMany(fetch = FetchType.LAZY)
     @JoinTable(name = "constituer", schema = "document",
             joinColumns = @JoinColumn(name = "documents_id"),

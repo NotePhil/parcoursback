@@ -286,12 +286,12 @@ CREATE TABLE document.documents (
     datecreation date,
     datemodification date,
     typemouvement character varying(255),
-    afficherprix character varying(255),
+    afficherprix boolean,
     afficherunite boolean,
     afficherdistributeur boolean,
     prixeditable boolean,
     contientressources boolean,
-    estencaissable boolean
+    estEncaissable boolean
 );
 
 
