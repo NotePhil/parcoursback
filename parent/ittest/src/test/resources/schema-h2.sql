@@ -133,7 +133,7 @@ CREATE TABLE IF NOT EXISTS document.documents (
     afficherdistributeur BOOLEAN,
     prixeditable BOOLEAN,
     contientressources BOOLEAN,
-    estEncaissable BOOLEAN,
+    estencaissable BOOLEAN,
     CONSTRAINT pk_documents PRIMARY KEY (id)
 );
 

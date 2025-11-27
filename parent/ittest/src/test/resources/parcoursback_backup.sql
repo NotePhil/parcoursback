@@ -291,7 +291,7 @@ CREATE TABLE document.documents (
     afficherdistributeur boolean,
     prixeditable boolean,
     contientressources boolean,
-    estEncaissable boolean
+    estencaissable boolean
 );
 
 
