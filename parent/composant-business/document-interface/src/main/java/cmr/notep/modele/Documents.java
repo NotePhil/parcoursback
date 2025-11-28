@@ -41,6 +41,8 @@ public class Documents {
 
     private Boolean contientRessources;
 
+    private Boolean estencaissable;
+
     public List<Missions> missions ;
 
     private List<PrecoMouvements> precoMouvements ;
