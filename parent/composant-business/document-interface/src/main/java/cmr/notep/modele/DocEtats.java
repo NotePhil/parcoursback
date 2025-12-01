@@ -1,8 +1,7 @@
 package cmr.notep.modele;
 
-import lombok.*;
-import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import lombok.*;
 
 import java.util.ArrayList;
 import java.util.Date;

@@ -5,15 +5,17 @@ import java.util.Date;
 import java.util.List;
 import java.util.UUID;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import lombok.*;
 import lombok.experimental.SuperBuilder;
 
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-@ToString
-@EqualsAndHashCode
 @SuperBuilder
+@ToString(exclude = {"docEtats"})
+@EqualsAndHashCode(exclude = {"docEtats"})
+@JsonIgnoreProperties(value = {"docEtats"}, ignoreUnknown = true)
 public class Documents {
     private String idDocument;
 
@@ -38,6 +40,8 @@ public class Documents {
     private Boolean prixEditable;
 
     private Boolean contientRessources;
+
+    private Boolean estencaissable;
 
     public List<Missions> missions ;
 
