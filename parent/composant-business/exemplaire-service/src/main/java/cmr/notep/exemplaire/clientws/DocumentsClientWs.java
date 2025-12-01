@@ -4,6 +4,7 @@ import cmr.notep.api.IDocumentsApi;
 import cmr.notep.exceptions.ParcoursException;
 import cmr.notep.exceptions.enumeration.ParcoursExceptionCodeEnum;
 import cmr.notep.exemplaire.config.ExemplaireConfig;
+import cmr.notep.modele.AssignEtatDocument;
 import cmr.notep.modele.Documents;
 import cmr.notep.utile.serialiser.JacksonHelper;
 import cmr.notep.wstools.api.IGenericWsClientApi;
@@ -52,6 +53,11 @@ public class DocumentsClientWs implements IDocumentsApi {
 
     @Override
     public Boolean SupprimerDocument(Documents document) {
+        return null;
+    }
+
+    @Override
+    public Documents assignEtatDocument(AssignEtatDocument assignetatdocument) {
         return null;
     }
 }

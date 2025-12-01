@@ -51,7 +51,8 @@ public class ValidationsClientWs implements IValidationsApi {
     }
 
     @Override
-    public void SupprimerValidation(Validations Validation) {
+    public void supprimerValidation(Validations Validation) {
 
     }
+
 }

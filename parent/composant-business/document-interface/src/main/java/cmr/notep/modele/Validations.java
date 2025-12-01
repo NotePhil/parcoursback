@@ -1,9 +1,7 @@
 package cmr.notep.modele;
 
-import lombok.AllArgsConstructor;
-import lombok.Builder;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import lombok.*;
 
 import java.util.Date;
 import java.util.List;
@@ -11,9 +9,13 @@ import java.util.List;
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
+@ToString(exclude = {"docetats"})
+@EqualsAndHashCode(exclude = {"docetats"})
+@JsonIgnoreProperties(value = {"docetats"}, ignoreUnknown = true)
 @Builder
 public class Validations {
     private String id;
+    private String libelle ;
     private String code ;
     private String etat ;
     private Date dateCreation;

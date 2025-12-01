@@ -25,11 +25,51 @@ public class Attributs {
 
     private Date dateModification;
 
-    TypeAttribut type;
+    TypeAttribut type_attribut;
 
     private String valeurParDefaut;
 
     private List<Documents> documents;
-  //  private List<Associer> categories ;
+    //  private List<Associer> categories ;
+
+    public String getId() {
+        return id;
+    }
+
+    public String getTitre() {
+        return titre;
+    }
+
+    public String getDescription() {
+        return description;
+    }
+
+    public boolean isEtat() {
+        return etat;
+    }
+
+    public Date getDateCreation() {
+        return dateCreation;
+    }
+
+    public TypeAttribut getType_attribut() {
+        return type_attribut;
+    }
+
+    public void setType(TypeAttribut type_attribut) {
+        this.type_attribut = type_attribut;
+    }
+
+    public Date getDateModification() {
+        return dateModification;
+    }
+
+    public String getValeurParDefaut() {
+        return valeurParDefaut;
+    }
+
+    public List<Documents> getDocuments() {
+        return documents;
+    }
 
 }

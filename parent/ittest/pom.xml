@@ -7,6 +7,7 @@
         <groupId>cmr.notep</groupId>
         <artifactId>parent</artifactId>
         <version>1.0-013</version>
+        <relativePath>../pom.xml</relativePath>
     </parent>
     <properties>
         <maven-enforcer-plugin.version>3.3.0</maven-enforcer-plugin.version>
@@ -40,6 +41,14 @@
             <artifactId>exemplaire-service</artifactId>
             <version>${project.version}</version>
             <classifier>ittest</classifier>
+        </dependency>
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-web</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-data-jpa</artifactId>
         </dependency>
         <dependency>
             <groupId>org.springframework.boot</groupId>

@@ -4,7 +4,6 @@ import cmr.notep.commun.AbstractIttest;
 import cmr.notep.config.ItTestConfig;
 import cmr.notep.modele.*;
 import cmr.notep.utile.JsonComparator;
-import com.fasterxml.jackson.databind.ObjectMapper;
 import lombok.SneakyThrows;
 import lombok.extern.slf4j.Slf4j;
 import org.dozer.DozerBeanMapper;
@@ -107,11 +106,11 @@ public class DocumentCrudTest extends AbstractIttest {
         //categorie = categorieService.posterCategorie(categorie);
         newDocument2.getCategories().add(categorie);
         //suppression de l'attribut dans la catégorie
-        Attributs attribut3 = newDocument2.getCategories().get(0).getAttributs().get(1).getAttribut();
-        newDocument2.getCategories().get(0).getAttributs().remove(1);
+        Attributs attribut3 = newDocument2.getCategories().getFirst().getAttributs().get(1).getAttribut();
+        newDocument2.getCategories().getFirst().getAttributs().remove(1);
         Attributs attribut2 = attributService.avoirAttribut("a8eebc99-9c0b-4ef8-bb6d-6bb9bd380a18");
         Associer associer2 = Associer.builder().attribut(attribut2).categorie(newDocument2.getCategories().get(0)).ordre(100).build();
-        newDocument2.getCategories().get(0).getAttributs().add(associer2);
+        newDocument2.getCategories().getFirst().getAttributs().add(associer2);
         //suppression de l'attribut dans constituer
         newDocument2.getAttributs().remove(attribut3);
         newDocument2.getAttributs().add(attribut2);

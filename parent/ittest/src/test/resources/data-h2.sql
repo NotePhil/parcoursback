@@ -33,7 +33,7 @@ VALUES
 ('3190615e-1101-7209-9932-7020bbd556f5', 'Consultation Spécialiste', 'Consultation faite par un médecin', true, '2000-03-07', '1990-03-07', '2190615e-1101-7209-9932-7020bbd556f3'),
 ('3190615e-1101-7209-9932-7020bbd556f6', 'Consultation', 'Consultation faite par une infirmière', true, '2000-03-07', '1990-03-07', '2190615e-1101-7209-9932-7020bbd556f3');
 
-INSERT INTO document.attributs (id, titre, description, etat, datecreation, datemodification, type, valeurpardefaut)
+INSERT INTO document.attributs (id, titre, description, etat, datecreation, datemodification, type_attribut, valeurpardefaut)
 VALUES
 ('a1eebc99-9c0b-4ef8-bb6d-6bb9bd380a11', 'Taille', 'Description Taille', TRUE, '2022-01-01', '2022-01-02', 'Text', null),
 ('a2eebc99-9c0b-4ef8-bb6d-6bb9bd380a12', 'Poids', 'Description Poids', TRUE, '2022-01-01', '2022-01-02', 'Number', null),
@@ -44,7 +44,11 @@ VALUES
 ('a7eebc99-9c0b-4ef8-bb6d-6bb9bd380a17', 'Allergies', 'Allergies connues ', TRUE, '2022-01-01', '2022-01-02', 'Textarea', null),
 ('a8eebc99-9c0b-4ef8-bb6d-6bb9bd380a18', 'Nom', 'Nom de la personne', TRUE, '2022-01-01', '2022-01-02', 'Text', null),
 ('a9eebc99-9c0b-4ef8-bb6d-6bb9bd380a19', 'Adresse', 'Adresse postale', TRUE, '2022-01-01', '2022-01-02', 'Text', null),
-('a2eebc99-9c0b-4ef8-bb6d-6bb9bd380a20', 'Date de naissance', 'Date de naissance', TRUE, '2022-01-01', '2022-01-02', 'Date', null);
+('a2eebc99-9c0b-4ef8-bb6d-6bb9bd380a20', 'Date de naissance', 'Date de naissance', TRUE, '2022-01-01', '2022-01-02', 'Date', null),
+('cd302436-268f-46e7-8e61-df356bd8625d', 'desciptionbetabetalambda', 'taille en description2', true, NULL, NULL, 'Number', null),
+('8bc12e32-86d3-4da2-b49e-1054bf6c8798', 'desciptionbetabetalambdgghgjhja', 'bienfghgj,', true, NULL, NULL, 'Number', null),
+('beebfb6e-7046-471a-8d0d-a4fdb4e7aa43', 'desciptionbetabetalambdgghgjhja', 'bienfghgj,', true, NULL, NULL, 'Number', null),
+('36bb8723-4a93-4f01-ad1a-874640f550b2', 'desciptionbetabetalambdgghgjhja', 'bienfghgj,', true, NULL, NULL, 'Number', '5');
 
 -- Insertion dans la table 'categories'
 INSERT INTO document.categories (id, libelle, ordre, etat, datecreation, datemodification,documents_id)

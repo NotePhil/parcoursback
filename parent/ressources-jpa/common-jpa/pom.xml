@@ -5,11 +5,11 @@
     <modelVersion>4.0.0</modelVersion>
     <parent>
         <groupId>cmr.notep</groupId>
-        <artifactId>ressources-jpa</artifactId>
+        <artifactId>parent</artifactId>
         <version>1.0-013</version>
+        <relativePath>../../pom.xml</relativePath>
     </parent>
 
-    <groupId>cmr.notep</groupId>
     <artifactId>common-jpa</artifactId>
     <version>1.0-013</version>
 
@@ -20,7 +20,16 @@
         </dependency>
         <dependency>
             <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-web</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-data-jpa</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-test</artifactId>
+            <scope>test</scope>
         </dependency>
         <dependency>
             <groupId>jakarta.annotation</groupId>
