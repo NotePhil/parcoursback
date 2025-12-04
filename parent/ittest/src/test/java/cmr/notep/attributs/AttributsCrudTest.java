@@ -55,7 +55,7 @@ public class AttributsCrudTest extends AbstractIttest {
      attribut.setEtat(true);
     attribut.setTitre("TitreTest");
     attribut.setDescription("DescriptionTest");
-    attribut.setType(TypeAttribut.Checkbox);
+    attribut.setType_attribut(TypeAttribut.Checkbox);
     attribut.setValeurParDefaut("valeurParDefaut");
 
    //Attributs attribut = Attributs.builder().id("1234").etat(true).titre("TAILLE").description("taille").type(Types.String).build();

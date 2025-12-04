@@ -31,7 +31,7 @@ public class AttributsEntity {
     private Date dateModification;
     @Enumerated(EnumType.STRING)
     @Column(name = "type", nullable = false)
-    private TypeAttribut type;
+    private TypeAttribut type_attribut;
     @Column(name = "valeurpardefaut")
     private String valeurParDefaut;
     @ManyToMany(mappedBy = "attributsEntities")
@@ -41,7 +41,7 @@ public class AttributsEntity {
     //@JsonIgnore
    // private List<CategoriesEntity> categories ;
 
-    @OneToMany(mappedBy = "attribut", fetch = FetchType.LAZY, orphanRemoval = true)
+    @OneToMany(mappedBy = "attribut", fetch = FetchType.LAZY)
    // @Mapping("categories")
     private List<AssocierEntity> categoriesEntities;
 }

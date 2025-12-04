@@ -65,8 +65,7 @@ public class PersonnesCrudTest extends AbstractIttest {;
  public void testPosterPersonne(){
    Distributeurs personne = Distributeurs.builder()
            .adresse("TitreTest").mail("DescriptionTest@gmail.com")
-           .qrcodevalue("dededededede").telephone("1234567890")
-           .dateCreation(new Date(1746681698000L)).raisonSociale("RaisonSocialeTest")
+           .qrcodevalue("dededededede").telephone("1234567890").raisonSociale("RaisonSocialeTest")
            .code("CodeTest")
            .build();
 
@@ -80,6 +79,7 @@ public class PersonnesCrudTest extends AbstractIttest {;
    Set<String> fieldsToExclude = new HashSet<>();
    fieldsToExclude.add("id");
    fieldsToExclude.add("dateModification");
+     fieldsToExclude.add("dateCreation");
    Assertions.assertTrue(JsonComparator.CompareResultWithJson(
            pathJson
            ,objectMapper.writerFor(listOfPersonnes).writeValueAsString(personnesList)

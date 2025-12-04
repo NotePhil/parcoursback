@@ -5,7 +5,7 @@
   "etat" : true,
   "dateCreation" : null,
   "dateModification" : null,
-  "type" : "Text",
+  "type_attribut" : "Text",
   "valeurParDefaut" : null
 }, {
   "id" : null,
@@ -14,7 +14,7 @@
   "etat" : true,
   "dateCreation" : null,
   "dateModification" : null,
-  "type" : "Text",
+  "type_attribut" : "Text",
   "valeurParDefaut" : null
 }, {
   "id" : null,
@@ -23,7 +23,7 @@
   "etat" : true,
   "dateCreation" : null,
   "dateModification" : null,
-  "type" : "Text",
+  "type_attribut" : "Text",
   "valeurParDefaut" : "Noir"
 }, {
   "id" : null,
@@ -32,7 +32,7 @@
   "etat" : true,
   "dateCreation" : null,
   "dateModification" : null,
-  "type" : "Number",
+  "type_attribut" : "Number",
   "valeurParDefaut" : null
 }, {
   "id" : null,
@@ -41,7 +41,7 @@
   "etat" : true,
   "dateCreation" : null,
   "dateModification" : null,
-  "type" : "Date",
+  "type_attribut" : "Date",
   "valeurParDefaut" : null
 }, {
   "id" : null,
@@ -50,7 +50,7 @@
   "etat" : true,
   "dateCreation" : null,
   "dateModification" : null,
-  "type" : "Text",
+  "type_attribut" : "Text",
   "valeurParDefaut" : null
 }, {
   "id" : null,
@@ -59,7 +59,7 @@
   "etat" : true,
   "dateCreation" : null,
   "dateModification" : null,
-  "type" : "Radio",
+  "type_attribut" : "Radio",
   "valeurParDefaut" : "A, A+, A-, B, B+, B-, AB, AB+, AB-, O, O+, O-"
 }, {
   "id" : null,
@@ -68,7 +68,7 @@
   "etat" : true,
   "dateCreation" : null,
   "dateModification" : null,
-  "type" : "Textarea",
+  "type_attribut" : "Textarea",
   "valeurParDefaut" : null
 }, {
   "id" : null,
@@ -77,7 +77,7 @@
   "etat" : true,
   "dateCreation" : null,
   "dateModification" : null,
-  "type" : "Text",
+  "type_attribut" : "Text",
   "valeurParDefaut" : null
 }, {
   "id" : null,
@@ -86,6 +86,6 @@
   "etat" : true,
   "dateCreation" : null,
   "dateModification" : null,
-  "type" : "Text",
+  "type_attribut" : "Text",
   "valeurParDefaut" : null
 } ]

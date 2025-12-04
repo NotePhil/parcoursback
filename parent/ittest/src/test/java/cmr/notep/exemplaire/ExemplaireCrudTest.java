@@ -59,8 +59,8 @@ public class ExemplaireCrudTest extends AbstractIttest {
    document.setTitre("TitreTest");
    document.setDescription("DescriptionTest");
    document.setEtat(true);
-   Attributs attribut = Attributs.builder().id("1234").etat(true).titre("TAILLE").description("taille").type(TypeAttribut.Text).build();
-   Attributs attribut1 = Attributs.builder().id("3456").etat(true).titre("SEXES").description("SEXE").type(TypeAttribut.Text).build();
+   Attributs attribut = Attributs.builder().id("1234").etat(true).titre("TAILLE").description("taille").type_attribut(TypeAttribut.Text).build();
+   Attributs attribut1 = Attributs.builder().id("3456").etat(true).titre("SEXES").description("SEXE").type_attribut(TypeAttribut.Text).build();
    document.setAttributs(List.of(attribut,attribut1));
   // Exemplaires document1 = documentService.posterExemplaire(document);
   // exemplairesList = documentService.avoirTousExemplaires();

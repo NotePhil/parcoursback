@@ -55,7 +55,7 @@
     "etat" : true,
     "dateCreation" : null,
     "dateModification" : null,
-    "type" : "Text",
+    "type_attribut" : "Text",
     "valeurParDefaut" : null
   } ],
   "categories" : [ {
@@ -71,7 +71,7 @@
         "etat" : true,
         "dateCreation" : null,
         "dateModification" : null,
-        "type" : "Text",
+        "type_attribut" : "Text",
         "valeurParDefaut" : null
       },
       "obligatoire" : true,
@@ -284,7 +284,7 @@
     "etat" : true,
     "dateCreation" : null,
     "dateModification" : null,
-    "type" : "Text",
+    "type_attribut" : "Text",
     "valeurParDefaut" : null
   } ],
   "categories" : [ {
@@ -300,7 +300,7 @@
         "etat" : true,
         "dateCreation" : null,
         "dateModification" : null,
-        "type" : "Text",
+        "type_attribut" : "Text",
         "valeurParDefaut" : null
       },
       "obligatoire" : true,
@@ -339,7 +339,7 @@
     "etat" : true,
     "dateCreation" : null,
     "dateModification" : null,
-    "type" : "Date",
+    "type_attribut" : "Date",
     "valeurParDefaut" : null
   } ],
   "categories" : [ ],
@@ -373,9 +373,7 @@
       "dateCreation" : null,
       "dateModification" : null,
       "codeUnique" : "S2",
-      "localisation" : "douala",
-      "missions" : null,
-      "fileAttente" : null
+      "localisation" : "douala"
     },
     "roles" : [ {
       "id" : null,
@@ -434,7 +432,7 @@
     "etat" : true,
     "dateCreation" : null,
     "dateModification" : null,
-    "type" : "Text",
+    "type_attribut" : "Text",
     "valeurParDefaut" : "Noir"
   } ],
   "categories" : [ {
@@ -450,7 +448,7 @@
         "etat" : true,
         "dateCreation" : null,
         "dateModification" : null,
-        "type" : "Text",
+        "type_attribut" : "Text",
         "valeurParDefaut" : "Noir"
       },
       "obligatoire" : true,
@@ -487,9 +485,7 @@
       "dateCreation" : null,
       "dateModification" : null,
       "codeUnique" : "S1",
-      "localisation" : "douala",
-      "missions" : null,
-      "fileAttente" : null
+      "localisation" : "douala"
     },
     "roles" : [ {
       "id" : null,
@@ -548,7 +544,7 @@
     "etat" : true,
     "dateCreation" : null,
     "dateModification" : null,
-    "type" : "Text",
+    "type_attribut" : "Text",
     "valeurParDefaut" : null
   }, {
     "id" : null,
@@ -557,7 +553,7 @@
     "etat" : true,
     "dateCreation" : null,
     "dateModification" : null,
-    "type" : "Date",
+    "type_attribut" : "Date",
     "valeurParDefaut" : null
   }, {
     "id" : null,
@@ -566,7 +562,7 @@
     "etat" : true,
     "dateCreation" : null,
     "dateModification" : null,
-    "type" : "Text",
+    "type_attribut" : "Text",
     "valeurParDefaut" : null
   } ],
   "categories" : [ {
@@ -582,7 +578,7 @@
         "etat" : true,
         "dateCreation" : null,
         "dateModification" : null,
-        "type" : "Text",
+        "type_attribut" : "Text",
         "valeurParDefaut" : null
       },
       "obligatoire" : true,
@@ -596,7 +592,7 @@
         "etat" : true,
         "dateCreation" : null,
         "dateModification" : null,
-        "type" : "Text",
+        "type_attribut" : "Text",
         "valeurParDefaut" : null
       },
       "obligatoire" : true,
@@ -615,7 +611,7 @@
         "etat" : true,
         "dateCreation" : null,
         "dateModification" : null,
-        "type" : "Text",
+        "type_attribut" : "Text",
         "valeurParDefaut" : null
       },
       "obligatoire" : true,
@@ -696,7 +692,7 @@
     "etat" : true,
     "dateCreation" : null,
     "dateModification" : null,
-    "type" : "Radio",
+    "type_attribut" : "Radio",
     "valeurParDefaut" : "A, A+, A-, B, B+, B-, AB, AB+, AB-, O, O+, O-"
   } ],
   "categories" : [ {
@@ -712,7 +708,7 @@
         "etat" : true,
         "dateCreation" : null,
         "dateModification" : null,
-        "type" : "Radio",
+        "type_attribut" : "Radio",
         "valeurParDefaut" : "A, A+, A-, B, B+, B-, AB, AB+, AB-, O, O+, O-"
       },
       "obligatoire" : true,
@@ -749,9 +745,7 @@
       "dateCreation" : null,
       "dateModification" : null,
       "codeUnique" : "S1",
-      "localisation" : "douala",
-      "missions" : null,
-      "fileAttente" : null
+      "localisation" : "douala"
     },
     "roles" : [ {
       "id" : null,
@@ -787,9 +781,7 @@
       "dateCreation" : null,
       "dateModification" : null,
       "codeUnique" : "S1",
-      "localisation" : "douala",
-      "missions" : null,
-      "fileAttente" : null
+      "localisation" : "douala"
     },
     "roles" : [ {
       "id" : null,
@@ -848,7 +840,7 @@
     "etat" : true,
     "dateCreation" : null,
     "dateModification" : null,
-    "type" : "Text",
+    "type_attribut" : "Text",
     "valeurParDefaut" : null
   }, {
     "id" : null,
@@ -857,7 +849,7 @@
     "etat" : true,
     "dateCreation" : null,
     "dateModification" : null,
-    "type" : "Text",
+    "type_attribut" : "Text",
     "valeurParDefaut" : null
   }, {
     "id" : null,
@@ -866,7 +858,7 @@
     "etat" : true,
     "dateCreation" : null,
     "dateModification" : null,
-    "type" : "Date",
+    "type_attribut" : "Date",
     "valeurParDefaut" : null
   }, {
     "id" : null,
@@ -875,7 +867,7 @@
     "etat" : true,
     "dateCreation" : null,
     "dateModification" : null,
-    "type" : "Number",
+    "type_attribut" : "Number",
     "valeurParDefaut" : null
   }, {
     "id" : null,
@@ -884,7 +876,7 @@
     "etat" : true,
     "dateCreation" : null,
     "dateModification" : null,
-    "type" : "Text",
+    "type_attribut" : "Text",
     "valeurParDefaut" : null
   }, {
     "id" : null,
@@ -893,7 +885,7 @@
     "etat" : true,
     "dateCreation" : null,
     "dateModification" : null,
-    "type" : "Text",
+    "type_attribut" : "Text",
     "valeurParDefaut" : "Noir"
   } ],
   "categories" : [ {
@@ -909,7 +901,7 @@
         "etat" : true,
         "dateCreation" : null,
         "dateModification" : null,
-        "type" : "Text",
+        "type_attribut" : "Text",
         "valeurParDefaut" : null
       },
       "obligatoire" : true,
@@ -923,7 +915,7 @@
         "etat" : true,
         "dateCreation" : null,
         "dateModification" : null,
-        "type" : "Text",
+        "type_attribut" : "Text",
         "valeurParDefaut" : null
       },
       "obligatoire" : true,
@@ -937,7 +929,7 @@
         "etat" : true,
         "dateCreation" : null,
         "dateModification" : null,
-        "type" : "Text",
+        "type_attribut" : "Text",
         "valeurParDefaut" : "Noir"
       },
       "obligatoire" : false,
@@ -956,7 +948,7 @@
         "etat" : true,
         "dateCreation" : null,
         "dateModification" : null,
-        "type" : "Number",
+        "type_attribut" : "Number",
         "valeurParDefaut" : null
       },
       "obligatoire" : true,
@@ -970,7 +962,7 @@
         "etat" : true,
         "dateCreation" : null,
         "dateModification" : null,
-        "type" : "Text",
+        "type_attribut" : "Text",
         "valeurParDefaut" : null
       },
       "obligatoire" : false,
@@ -984,7 +976,7 @@
         "etat" : true,
         "dateCreation" : null,
         "dateModification" : null,
-        "type" : "Date",
+        "type_attribut" : "Date",
         "valeurParDefaut" : null
       },
       "obligatoire" : true,
@@ -1023,7 +1015,7 @@
     "etat" : true,
     "dateCreation" : null,
     "dateModification" : null,
-    "type" : "Textarea",
+    "type_attribut" : "Textarea",
     "valeurParDefaut" : null
   } ],
   "categories" : [ {
@@ -1039,7 +1031,7 @@
         "etat" : true,
         "dateCreation" : null,
         "dateModification" : null,
-        "type" : "Textarea",
+        "type_attribut" : "Textarea",
         "valeurParDefaut" : null
       },
       "obligatoire" : true,
