@@ -14,7 +14,7 @@ public interface ICategoriesApi {
             path = "/{idCategories}",
             produces = MediaType.APPLICATION_JSON_VALUE
     )
-    Categories avoirCategorie (@NonNull @RequestParam(name="idCategories") String idCategorie) throws ParcoursException;
+    Categories avoirCategorie (@NonNull @PathVariable(name="idCategories") String idCategorie) throws ParcoursException;
 
     @GetMapping(
             produces = MediaType.APPLICATION_JSON_VALUE

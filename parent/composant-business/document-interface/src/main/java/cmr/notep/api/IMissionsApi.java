@@ -14,7 +14,7 @@ public interface IMissionsApi {
             path = "/{idMission}",
             produces = MediaType.APPLICATION_JSON_VALUE
     )
-    Missions avoirMissions (@NonNull @RequestParam(name="idMission") String idMission);
+    Missions avoirMissions (@NonNull @PathVariable(name="idMission") String idMission);
 
     @GetMapping(
             produces = MediaType.APPLICATION_JSON_VALUE

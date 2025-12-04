@@ -21,7 +21,7 @@ public interface IValidationsApi {
             path = "/{idValidation}",
             produces = MediaType.APPLICATION_JSON_VALUE
     )
-    Validations avoirValidation(@NonNull @RequestParam(name = "idValidation") String idValidation) throws ParcoursException;
+    Validations avoirValidation(@NonNull @PathVariable(name = "idValidation") String idValidation) throws ParcoursException;
 
     @GetMapping(
             produces = MediaType.APPLICATION_JSON_VALUE

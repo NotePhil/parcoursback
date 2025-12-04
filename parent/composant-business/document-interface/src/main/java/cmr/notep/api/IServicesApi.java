@@ -13,7 +13,7 @@ public interface IServicesApi {
     @GetMapping(
             path = "/{idService}",
             produces = MediaType.APPLICATION_JSON_VALUE
-    )Services avoirServices (@NonNull @RequestParam(name="idService") String idService) throws Throwable;
+    )Services avoirServices (@NonNull @PathVariable(name="idService") String idService) throws Throwable;
 
     @GetMapping(
             produces = MediaType.APPLICATION_JSON_VALUE

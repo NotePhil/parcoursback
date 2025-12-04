@@ -22,7 +22,7 @@ public interface IPersonnelsApi {
             path = "/{idPersonnel}",
             produces = MediaType.APPLICATION_JSON_VALUE
     )
-    Personnels avoirPersonnel(@NonNull @RequestParam(name = "idPersonnel") String idPersonnel) throws ParcoursException;
+    Personnels avoirPersonnel(@NonNull @PathVariable(name = "idPersonnel") String idPersonnel) throws ParcoursException;
 
     @GetMapping(
             produces = MediaType.APPLICATION_JSON_VALUE

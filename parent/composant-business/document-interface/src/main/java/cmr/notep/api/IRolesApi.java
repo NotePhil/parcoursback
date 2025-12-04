@@ -20,7 +20,7 @@ public interface IRolesApi {
             path = "/{idRole}",
             produces = MediaType.APPLICATION_JSON_VALUE
     )
-    Roles avoirRole(@NonNull @RequestParam(name = "idRole") String idRole);
+    Roles avoirRole(@NonNull @PathVariable(name = "idRole") String idRole);
 
     @GetMapping(
             produces = MediaType.APPLICATION_JSON_VALUE

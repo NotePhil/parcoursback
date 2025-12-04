@@ -15,7 +15,7 @@ public interface IPrecoMouvementsApi {
             path = "/{idPrecoMouvements}",
             produces = MediaType.APPLICATION_JSON_VALUE
     )
-    PrecoMouvements avoirPrecoMouvement (@NonNull @RequestParam(name="idPrecomouvements") String idPrecomouvements) throws ParcoursException;
+    PrecoMouvements avoirPrecoMouvement (@NonNull @PathVariable(name="idPrecomouvements") String idPrecomouvements) throws ParcoursException;
 
     @GetMapping(
             produces = MediaType.APPLICATION_JSON_VALUE

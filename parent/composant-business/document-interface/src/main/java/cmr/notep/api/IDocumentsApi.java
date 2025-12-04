@@ -21,7 +21,7 @@ public interface IDocumentsApi {
             path = "/{idDoc}",
             produces = MediaType.APPLICATION_JSON_VALUE
     )
-    Documents avoirDocument(@NonNull @RequestParam(name = "idDoc") String idDoc) throws ParcoursException;
+    Documents avoirDocument(@NonNull @PathVariable(name = "idDoc") String idDoc) throws ParcoursException;
 
     @GetMapping(
             produces = MediaType.APPLICATION_JSON_VALUE

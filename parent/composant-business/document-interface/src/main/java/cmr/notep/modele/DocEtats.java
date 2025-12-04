@@ -1,9 +1,7 @@
 package cmr.notep.modele;
 
-import lombok.AllArgsConstructor;
-import lombok.Builder;
-import lombok.Data;
-import lombok.NoArgsConstructor;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import lombok.*;
 
 import java.util.Date;
 import java.util.List;
@@ -12,6 +10,9 @@ import java.util.List;
 @AllArgsConstructor
 @NoArgsConstructor
 @Builder
+@JsonIgnoreProperties(value = {"document"},ignoreUnknown = true)
+@ToString(exclude = {"document"})
+@EqualsAndHashCode(exclude = {"document"})
 public class DocEtats {
     private String id;
     private int ordre;

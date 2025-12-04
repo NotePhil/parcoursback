@@ -14,7 +14,7 @@ public interface ITicketsApi {
             path = "/{idTickets}",
             produces = MediaType.APPLICATION_JSON_VALUE
     )
-    Tickets avoirTicket (@NonNull @RequestParam(name="idTickets") String idTickets);
+    Tickets avoirTicket (@NonNull @PathVariable(name="idTickets") String idTickets);
 
     @GetMapping(
             produces = MediaType.APPLICATION_JSON_VALUE

@@ -14,7 +14,7 @@ public interface IPromotionsApi {
             path = "/{idPromotions}",
             produces = MediaType.APPLICATION_JSON_VALUE
     )
-    Promotions avoirPromotion (@NonNull @RequestParam(name="idPromotions") String idPromotions);
+    Promotions avoirPromotion (@NonNull @PathVariable(name="idPromotions") String idPromotions);
 
     @GetMapping(
             produces = MediaType.APPLICATION_JSON_VALUE
