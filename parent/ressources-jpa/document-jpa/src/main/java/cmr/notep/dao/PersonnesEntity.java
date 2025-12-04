@@ -36,7 +36,7 @@ public class PersonnesEntity
     @Column(name = "qrcodevalue")
     private  String qrcodevalue ;
 
-    @Column(name = "datecreation", columnDefinition = "TIMESTAMP")
+    @Column(name = "datecreation", columnDefinition = "TIMESTAMP", updatable = false)
     @Temporal(TemporalType.TIMESTAMP)
     @CreationTimestamp
     private Date dateCreation;
