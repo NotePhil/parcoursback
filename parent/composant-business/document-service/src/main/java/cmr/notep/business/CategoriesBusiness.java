@@ -54,12 +54,12 @@ public class CategoriesBusiness {
                 .stream()
                 .map(attributEntity ->{
                     if(attributEntity.getId() == null)
-                        if(attributEntity.getAttribut() != null && StringUtils.isNotBlank(attributEntity.getAttribut().getId())
+                        if(attributEntity.getAttribut() != null && StringUtils.isNotBlank(attributEntity.getAttribut().getId().toString())
                             && attributEntity.getCategorie() != null && StringUtils.isNotBlank(attributEntity.getCategorie().getId()))
                         {
                             AssocierEntityID associerId = AssocierEntityID.builder()
                                     .categoriesId(attributEntity.getCategorie().getId())
-                                    .attributsId(attributEntity.getAttribut().getId())
+                                    .attributsId(attributEntity.getAttribut().getId().toString())
                                     .build();
                             attributEntity.setId(associerId);
                         }

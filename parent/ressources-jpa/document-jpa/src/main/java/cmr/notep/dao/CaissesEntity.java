@@ -1,16 +1,15 @@
 package cmr.notep.dao;
 
+import cmr.notep.modele.DetailsJson;
 import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.Setter;
 import org.hibernate.annotations.GenericGenerator;
-import org.hibernate.annotations.JdbcType;
+import org.hibernate.annotations.UuidGenerator;
 import org.hibernate.annotations.JdbcTypeCode;
 import org.hibernate.type.SqlTypes;
 
-
-import java.sql.SQLType;
-import java.util.List;
+import java.util.UUID;
 
 @Getter
 @Setter
@@ -44,4 +43,3 @@ public class CaissesEntity {
     //@Mapping("mouvementcaisses")
     //private List<MouvementCaissesEntity> mouvementCaissesEntities;
 }
-

@@ -31,15 +31,6 @@ public class PersonnesClientWs implements IPersonnesApi {
         this.exemplaireConfig = exemplaireConfig;
     }
 
-    @Override
-    public List<IPersonnes> avoirToutPersonnesPhysiques() {
-        return List.of();
-    }
-
-    @Override
-    public PersonnesPhysique posterPersonnePhysique(PersonnesPhysique Personnes) {
-        return null;
-    }
 
     @Override
     public Personnes avoirPersonne(String idPersonne) throws ParcoursException {

@@ -1,6 +1,5 @@
 package cmr.notep.dao;
 
-import ch.qos.logback.core.spi.CyclicBufferTracker;
 import lombok.Getter;
 import lombok.Setter;
 import org.dozer.Mapping;

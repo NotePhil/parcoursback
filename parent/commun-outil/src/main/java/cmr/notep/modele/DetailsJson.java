@@ -1,4 +1,4 @@
-package cmr.notep.dao;
+package cmr.notep.modele;
 
 import lombok.Getter;
 import lombok.Setter;
