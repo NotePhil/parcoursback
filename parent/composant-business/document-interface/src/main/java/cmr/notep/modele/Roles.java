@@ -9,9 +9,9 @@ import java.util.List;
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-@ToString(exclude = {"personnels", "missions","validations"})
-@EqualsAndHashCode(exclude = {"personnels", "missions","validations"})
-@JsonIgnoreProperties(value = {"personnels", "missions","validations"}, ignoreUnknown = true)
+@ToString(exclude = {"personnels","validations"})
+@EqualsAndHashCode(exclude = {"personnels","validations"})
+@JsonIgnoreProperties(value = {"personnels","validations"}, ignoreUnknown = true)
 @Builder
 public class Roles {
     private String id;

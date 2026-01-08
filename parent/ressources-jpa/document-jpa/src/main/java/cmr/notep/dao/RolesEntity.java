@@ -4,7 +4,8 @@ package cmr.notep.dao;
 import lombok.Getter;
 import lombok.Setter;
 import org.dozer.Mapping;
-import org.hibernate.annotations.GenericGenerator;
+import org.hibernate.annotations.CreationTimestamp;
+import org.hibernate.annotations.UuidGenerator;
 
 import jakarta.persistence.*;
 import java.util.Date;
@@ -18,7 +19,7 @@ import java.util.UUID;
 public class RolesEntity {
     @Id
     @GeneratedValue(generator = "UUID")
-    @GenericGenerator(name = "UUID", strategy = "org.hibernate.id.UUIDGenerator")
+    @UuidGenerator
     @Column(name = "id", nullable = false, updatable = false, columnDefinition = "UUID")
     private String id;
 
@@ -32,6 +33,7 @@ public class RolesEntity {
     private Boolean etat ;
 
     @Column(name = "datecreation", updatable = false)
+    @CreationTimestamp
     private Date dateCreation;
     @Column(name = "datemodification")
     private Date dateModification;

@@ -5,7 +5,8 @@ import lombok.Setter;
 import org.dozer.Mapping;
 
 import jakarta.persistence.*;
-import org.hibernate.annotations.GenericGenerator;
+import org.hibernate.annotations.CreationTimestamp;
+import org.hibernate.annotations.UuidGenerator;
 
 import java.util.Date;
 
@@ -17,7 +18,7 @@ public class RemplirEntity{
 
     @Id
     @GeneratedValue(generator = "UUID")
-    @GenericGenerator(name = "UUID", strategy = "org.hibernate.id.UUIDGenerator")
+    @UuidGenerator
     @Column(name = "id", nullable = false, updatable = false, columnDefinition = "UUID")
     private String id;
 
@@ -35,6 +36,7 @@ public class RemplirEntity{
     private Date dateFin ;
 
     @Column(name = "datecreation", updatable = false)
+    @CreationTimestamp
     private Date dateCreation;
 
     @Column(name = "datedebut")
