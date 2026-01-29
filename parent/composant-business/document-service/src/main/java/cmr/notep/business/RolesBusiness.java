@@ -63,6 +63,13 @@ public class RolesBusiness {
             roleEntity = dozerMapperBean.map(Roles, RolesEntity.class);
         }
 
+        gererMissionRole(Roles, roleEntity);
+
+        RolesEntity savedRole = this.daoAccessorService.getRepository(RolesRepository.class).save(roleEntity);
+        return dozerMapperBean.map(savedRole, Roles.class);
+    }
+
+    private void gererMissionRole(Roles Roles, RolesEntity roleEntity) {
         // Gérer les missions
         List<Remplir> missions = Roles.getMissions();
         if (missions != null) {
@@ -105,9 +112,6 @@ public class RolesBusiness {
                 }
             }
         }
-
-        RolesEntity savedRole = this.daoAccessorService.getRepository(RolesRepository.class).save(roleEntity);
-        return dozerMapperBean.map(savedRole, Roles.class);
     }
 
     public Roles assignValidationRole(Validations validation, Roles role)

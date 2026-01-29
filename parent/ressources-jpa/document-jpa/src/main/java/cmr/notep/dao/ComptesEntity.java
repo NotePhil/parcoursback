@@ -20,7 +20,7 @@ public class ComptesEntity {
     @Column(name = "libelle", nullable = false)
     private String libelle;
     @Column(name = "montantdecouvertmax")
-    private int montantdecouvertmax;
+    private int montantDecouvertMax;
     @Column(name = "solde")
     private int solde;
     @Column(name = "etat")

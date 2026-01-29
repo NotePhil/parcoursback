@@ -23,7 +23,9 @@ public class ComptesService implements IComptesApi {
     public Comptes avoirCompte(@NonNull String idCompte) { return comptesBusiness.avoirCompte(idCompte);}
 
     @Override
-    public List<Comptes> avoirTousComptes(){return comptesBusiness.avoirTousComptes();}
+    public List<Comptes> avoirTousComptes(){
+        return comptesBusiness.avoirTousComptes();
+    }
 
     @Override
     public void supprimerCompte(@NonNull Comptes compte){
