@@ -1014,6 +1014,7 @@ CREATE TABLE document.validations (
     datemodification date,
     typevote character varying(255),
     dureevote integer,
+    quota integer,
     typevalidation character varying(255),
     roles_id character varying(255),
     libelle character varying(255)
