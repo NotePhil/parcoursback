@@ -38,6 +38,8 @@ public class ValidationsEntity {
     private String typeVote ;
     @Column(name = "dureevote")
     private int dureeVote ;
+    @Column(name = "quota")
+    private int quota ;
     @Column(name = "typevalidation")
     private String typeValidation ;
 

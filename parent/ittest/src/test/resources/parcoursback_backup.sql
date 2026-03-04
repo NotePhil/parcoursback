@@ -1147,19 +1147,19 @@ INSERT INTO document.categories VALUES ('be8ef59f-d5a4-4254-ab99-af860672553e', 
 -- Data for Name: comptes; Type: TABLE DATA; Schema: document; Owner: postgres
 --
 
-INSERT INTO document.comptes VALUES ('00012f83-2a62-4e6d-aa23-57c7825bcd57', '2024-08-19', 'actif', 2000, 'Compte entreprise', '11111111-aaaa-bbbb-cccc-111111111111', 102.32) ON CONFLICT DO NOTHING;
-INSERT INTO document.comptes VALUES ('1179bd79-f71b-498b-b247-e7b9bbb3f600', '2024-08-19', 'inactif', 0, 'Compte jeunesse', '44444444-dddd-eeee-ffff-444444444444', 3553.2) ON CONFLICT DO NOTHING;
-INSERT INTO document.comptes VALUES ('1518e585-f82a-4d5f-af1c-54f880d766d3', '2024-08-19', 'actif', 2000, 'Compte entreprise', '33333333-cccc-dddd-eeee-333333333333', 646583.32) ON CONFLICT DO NOTHING;
-INSERT INTO document.comptes VALUES ('a1f8e3b0-4c6d-4e5e-7b7a-2a8b9b9c8d6f', '2024-08-19', 'actif', 500, 'Compte courant', 'bbbbbbbb-4444-5555-6666-bbbbbbbbbbbb', 14785) ON CONFLICT DO NOTHING;
-INSERT INTO document.comptes VALUES ('adbff692-418d-43ab-a196-fcc3114b2daa', '2024-08-19', 'actif', 500, 'Compte courant', '99999999-2222-3333-4444-999999999999', 31656.325) ON CONFLICT DO NOTHING;
-INSERT INTO document.comptes VALUES ('b3a7c8d6-1e2f-3d4c-7b6a-9e8f0a7b6c5d', '2024-08-19', 'inactif', 0, 'Compte jeunesse', '8a9b710a-a7fb-44ca-9587-b427b163cdab', 789654.23) ON CONFLICT DO NOTHING;
-INSERT INTO document.comptes VALUES ('d301ff83-1b62-4e6d-aa23-57c7825bcd57', '2024-08-19', 'actif', 1000, 'Épargne', '1e8b6f56-7525-45bf-aa7b-96c0a9ae4198', 1153548.35) ON CONFLICT DO NOTHING;
-INSERT INTO document.comptes VALUES ('d9e2f1c2-8b3a-4f6c-7d5e-1a7b8a7c6d5e', '2024-08-19', 'actif', 1000, 'Épargne', '4390615e-1101-7209-9932-7020bbd556f1', 635663.254) ON CONFLICT DO NOTHING;
-INSERT INTO document.comptes VALUES ('f0a7b6c5-d4e3f2a1-7b9c-7d6e-5f4a3b2c1e0d', '2024-08-19', 'actif', 2000, 'Compte entreprise', '6b7894b5-1b07-487a-b8fe-d14ab61c1b2e', 655318.369) ON CONFLICT DO NOTHING;
-INSERT INTO document.comptes VALUES ('a1234567-89ab-cdef-0123-456789abcdef', '2025-08-09', 'actif', 1000, 'Compte Personnel 1', '4390615e-1101-7209-9932-7020bbd556f3', 0) ON CONFLICT DO NOTHING;
-INSERT INTO document.comptes VALUES ('b2345678-9abc-def0-1234-56789abcdef0', '2025-08-09', 'actif', 1500, 'Compte Personnel 2', '4390615e-1101-7209-9932-7020bbd556f2', 0) ON CONFLICT DO NOTHING;
-INSERT INTO document.comptes VALUES ('a1111111-1111-1111-1111-111111111111', '2025-08-09', 'actif', 1000, 'Compte Personnel 1', '22222222-bbbb-cccc-dddd-222222222222', 0) ON CONFLICT DO NOTHING;
-INSERT INTO document.comptes VALUES ('b2222222-2222-2222-2222-222222222222', '2025-08-09', 'actif', 1500, 'Compte Personnel 2', '3b277afa-98fc-4b0f-9b16-1d2fb4aa8ec6', 0) ON CONFLICT DO NOTHING;
+INSERT INTO document.comptes VALUES ('00012f83-2a62-4e6d-aa23-57c7825bcd57', '2024-08-19', 'true', 2000, 'Compte entreprise', '11111111-aaaa-bbbb-cccc-111111111111', 102.32) ON CONFLICT DO NOTHING;
+INSERT INTO document.comptes VALUES ('1179bd79-f71b-498b-b247-e7b9bbb3f600', '2024-08-19', 'false', 0, 'Compte jeunesse', '44444444-dddd-eeee-ffff-444444444444', 3553.2) ON CONFLICT DO NOTHING;
+INSERT INTO document.comptes VALUES ('1518e585-f82a-4d5f-af1c-54f880d766d3', '2024-08-19', 'true', 2000, 'Compte entreprise', '33333333-cccc-dddd-eeee-333333333333', 646583.32) ON CONFLICT DO NOTHING;
+INSERT INTO document.comptes VALUES ('a1f8e3b0-4c6d-4e5e-7b7a-2a8b9b9c8d6f', '2024-08-19', 'true', 500, 'Compte courant', 'bbbbbbbb-4444-5555-6666-bbbbbbbbbbbb', 14785) ON CONFLICT DO NOTHING;
+INSERT INTO document.comptes VALUES ('adbff692-418d-43ab-a196-fcc3114b2daa', '2024-08-19', 'true', 500, 'Compte courant', '99999999-2222-3333-4444-999999999999', 31656.325) ON CONFLICT DO NOTHING;
+INSERT INTO document.comptes VALUES ('b3a7c8d6-1e2f-3d4c-7b6a-9e8f0a7b6c5d', '2024-08-19', 'false', 0, 'Compte jeunesse', '8a9b710a-a7fb-44ca-9587-b427b163cdab', 789654.23) ON CONFLICT DO NOTHING;
+INSERT INTO document.comptes VALUES ('d301ff83-1b62-4e6d-aa23-57c7825bcd57', '2024-08-19', 'true', 1000, 'Épargne', '1e8b6f56-7525-45bf-aa7b-96c0a9ae4198', 1153548.35) ON CONFLICT DO NOTHING;
+INSERT INTO document.comptes VALUES ('d9e2f1c2-8b3a-4f6c-7d5e-1a7b8a7c6d5e', '2024-08-19', 'true', 1000, 'Épargne', '4390615e-1101-7209-9932-7020bbd556f1', 635663.254) ON CONFLICT DO NOTHING;
+INSERT INTO document.comptes VALUES ('f0a7b6c5-d4e3f2a1-7b9c-7d6e-5f4a3b2c1e0d', '2024-08-19', 'true', 2000, 'Compte entreprise', '6b7894b5-1b07-487a-b8fe-d14ab61c1b2e', 655318.369) ON CONFLICT DO NOTHING;
+INSERT INTO document.comptes VALUES ('a1234567-89ab-cdef-0123-456789abcdef', '2025-08-09', 'false', 1000, 'Compte Personnel 1', '4390615e-1101-7209-9932-7020bbd556f3', 0) ON CONFLICT DO NOTHING;
+INSERT INTO document.comptes VALUES ('b2345678-9abc-def0-1234-56789abcdef0', '2025-08-09', 'true', 1500, 'Compte Personnel 2', '4390615e-1101-7209-9932-7020bbd556f2', 0) ON CONFLICT DO NOTHING;
+INSERT INTO document.comptes VALUES ('a1111111-1111-1111-1111-111111111111', '2025-08-09', 'true', 1000, 'Compte Personnel 1', '22222222-bbbb-cccc-dddd-222222222222', 0) ON CONFLICT DO NOTHING;
+INSERT INTO document.comptes VALUES ('b2222222-2222-2222-2222-222222222222', '2025-08-09', 'false', 1500, 'Compte Personnel 2', '3b277afa-98fc-4b0f-9b16-1d2fb4aa8ec6', 0) ON CONFLICT DO NOTHING;
 
 
 --

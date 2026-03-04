@@ -23,6 +23,7 @@ public class Validations {
     private Date dateModification;
     private String typeVote ;
     private int dureeVote ;
+    private int quota ;
     private String typeValidation ;
     private List<DocEtats> docetats;
 }
