@@ -1829,12 +1829,12 @@ INSERT INTO document.utilisateurs VALUES ('o5fgh6nd-4n5o-4729-2031-4e3f2g1h0i9j'
 -- Data for Name: validations; Type: TABLE DATA; Schema: document; Owner: postgres
 --
 
-INSERT INTO document.validations VALUES ('1901bd80-f71b-498b-b247-e7b9bbb3f602', 'o78', 'attente', '2022-03-02', '2022-10-02', 'multiple', 14, 'prioritaire', '5190615e-1101-7209-9932-7020bbd556f1', 'en cours') ON CONFLICT DO NOTHING;
-INSERT INTO document.validations VALUES ('1901bd80-f71b-498b-b247-e7b9bbb3f601', 'o89', 'suppression', '2002-01-02', '2022-11-02', 'multiple', 2, 'prioritaire', '6130615e-1101-7209-9932-7020bbd556f2', 'Resultat mise à jour') ON CONFLICT DO NOTHING;
-INSERT INTO document.validations VALUES ('1901bd80-f71b-498b-b247-e7b9bbb3f604', 'o84', 'traitement', '2020-11-15', '2024-05-02', 'multiple', 40, 'prioritaire', '6191615e-1101-7209-9932-7020bbd556f3', 'en cours') ON CONFLICT DO NOTHING;
-INSERT INTO document.validations VALUES ('1901bd80-f71b-498b-b247-e7b9bbb3f603', 'o82', 'traitement', '2023-10-25', '2022-10-02', 'Unitaire', 22, 'Transmission', '5190615e-1101-7209-9932-7020bbd556f1', 'Consultation38') ON CONFLICT DO NOTHING;
-INSERT INTO document.validations VALUES ('ddd8446a-be11-457c-a7c8-436467b09a79', 'o8278', 'true', '2025-08-07', '2022-10-02', 'Majoritaire', 0, 'Traitement', '6191615e-1101-7209-9932-7020bbd556f3', 'Consultation38') ON CONFLICT DO NOTHING;
-INSERT INTO document.validations VALUES ('1901bd80-f71b-498b-b247-e7b9bbb3f600', 'o85', 'traitement', '2014-01-12', '2022-02-02', 'multiple', 5, 'rechargeable', '5190615e-1101-7209-9932-7020bbd556f1', 'Mise en attente') ON CONFLICT DO NOTHING;
+INSERT INTO document.validations VALUES ('1901bd80-f71b-498b-b247-e7b9bbb3f602', 'o78', 'attente', '2022-03-02', '2022-10-02', 'multiple', 14, 7, 'prioritaire', '5190615e-1101-7209-9932-7020bbd556f1', 'en cours') ON CONFLICT DO NOTHING;
+INSERT INTO document.validations VALUES ('1901bd80-f71b-498b-b247-e7b9bbb3f601', 'o89', 'suppression', '2002-01-02', '2022-11-02', 'multiple', 2, 7, 'prioritaire', '6130615e-1101-7209-9932-7020bbd556f2', 'Resultat mise à jour') ON CONFLICT DO NOTHING;
+INSERT INTO document.validations VALUES ('1901bd80-f71b-498b-b247-e7b9bbb3f604', 'o84', 'traitement', '2020-11-15', '2024-05-02', 'multiple', 40, 7, 'prioritaire', '6191615e-1101-7209-9932-7020bbd556f3', 'en cours') ON CONFLICT DO NOTHING;
+INSERT INTO document.validations VALUES ('1901bd80-f71b-498b-b247-e7b9bbb3f603', 'o82', 'traitement', '2023-10-25', '2022-10-02', 'Unitaire', 22, 7, 'Transmission', '5190615e-1101-7209-9932-7020bbd556f1', 'Consultation38') ON CONFLICT DO NOTHING;
+INSERT INTO document.validations VALUES ('ddd8446a-be11-457c-a7c8-436467b09a79', 'o8278', 'true', '2025-08-07', '2022-10-02', 'Majoritaire', 0, 7, 'Traitement', '6191615e-1101-7209-9932-7020bbd556f3', 'Consultation38') ON CONFLICT DO NOTHING;
+INSERT INTO document.validations VALUES ('1901bd80-f71b-498b-b247-e7b9bbb3f600', 'o85', 'traitement', '2014-01-12', '2022-02-02', 'multiple', 5, 7, 'rechargeable', '5190615e-1101-7209-9932-7020bbd556f1', 'Mise en attente') ON CONFLICT DO NOTHING;
 
 
 --

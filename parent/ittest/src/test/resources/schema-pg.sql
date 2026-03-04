@@ -339,6 +339,7 @@ CREATE TABLE IF NOT EXISTS document.validations
     datemodification DATE,
     typevote         VARCHAR(255),
     dureevote        INTEGER,
+    quota            INTEGER,
     typevalidation   VARCHAR(255),
     roles_id         VARCHAR(255),
     CONSTRAINT pk_validations PRIMARY KEY (id)
