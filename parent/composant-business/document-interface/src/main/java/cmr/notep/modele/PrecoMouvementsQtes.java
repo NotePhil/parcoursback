@@ -19,6 +19,8 @@ public class PrecoMouvementsQtes {
     private int qteMax ;
     private double montantMin ;
     private double montantMax ;
+    private java.util.Date dateCreation;
+    private java.util.Date dateModification;
     private PrecoMouvements precoMouvement;
     private List<Familles> familles;
     private Ressources ressource;

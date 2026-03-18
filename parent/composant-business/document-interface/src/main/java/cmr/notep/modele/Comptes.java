@@ -9,15 +9,14 @@ import java.util.Date;
 @AllArgsConstructor
 @NoArgsConstructor
 @Builder
-@JsonIgnoreProperties(value = {"documents"},ignoreUnknown = true)
-//@ToString(exclude = {"documents"})
-//@EqualsAndHashCode(exclude = {"documents"})
+@JsonIgnoreProperties(value = {"beneficiaire"},ignoreUnknown = true)
 public class Comptes {
     private String id;
-    private int solde;
     private String libelle;
+    private Integer montantDecouvertMax;
+    private Integer solde;
+    private Boolean etat;
     private Date dateCreation;
+    private Date dateModification;
     private PersonnesPhysique beneficiaire;
-    private int montantDecouvertMax;
-    private boolean etat;
 }
