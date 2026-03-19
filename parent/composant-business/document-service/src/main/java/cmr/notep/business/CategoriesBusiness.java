@@ -8,6 +8,7 @@ import cmr.notep.repository.CategoriesRepository;
 import cmr.notep.repository.DocumentsRepository;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.lang3.StringUtils;
+import org.dozer.DozerBeanMapper;
 import org.springframework.stereotype.Component;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -15,15 +16,17 @@ import java.util.List;
 import java.util.Optional;
 import java.util.stream.Collectors;
 
-import static cmr.notep.config.DocumentConfig.dozerMapperBean;
 
 @Component
 @Slf4j
 @Transactional
 public class CategoriesBusiness {
     private final DaoAccessorService daoAccessorService;
-    public CategoriesBusiness(DaoAccessorService daoAccessorService){
+    private final DozerBeanMapper dozerMapperBean;
+
+    public CategoriesBusiness(DaoAccessorService daoAccessorService, DozerBeanMapper dozerMapperBean){
         this.daoAccessorService = daoAccessorService ;
+        this.dozerMapperBean = dozerMapperBean;
     }
 
     public Categories avoirCategorie(String id) {
