@@ -11,6 +11,7 @@ import cmr.notep.repository.ValidationsRepository;
 import cmr.notep.repository.RemplirRepository;
 import cmr.notep.repository.MissionsRepository;
 import lombok.extern.slf4j.Slf4j;
+import org.dozer.DozerBeanMapper;
 import org.springframework.stereotype.Component;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -19,7 +20,6 @@ import java.util.List;
 import java.util.UUID;
 import java.util.stream.Collectors;
 
-import static cmr.notep.config.DocumentConfig.dozerMapperBean;
 
 @Component
 @Slf4j
@@ -27,9 +27,11 @@ import static cmr.notep.config.DocumentConfig.dozerMapperBean;
 public class RolesBusiness {
 
     private final DaoAccessorService daoAccessorService;
+    private final DozerBeanMapper dozerMapperBean;
 
-    public RolesBusiness(DaoAccessorService daoAccessorService) {
+    public RolesBusiness(DaoAccessorService daoAccessorService, DozerBeanMapper dozerMapperBean) {
         this.daoAccessorService = daoAccessorService;
+        this.dozerMapperBean = dozerMapperBean;
     }
 
     public Roles avoirRole(String id) {

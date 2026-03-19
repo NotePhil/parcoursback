@@ -5,12 +5,12 @@ import cmr.notep.dao.DaoAccessorService;
 import cmr.notep.modele.Caisses;
 import cmr.notep.repository.CaissesRepository;
 import lombok.extern.slf4j.Slf4j;
+import org.dozer.DozerBeanMapper;
 import org.springframework.stereotype.Component;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 
-import static cmr.notep.config.DocumentConfig.dozerMapperBean;
 
 @Component
 @Slf4j
@@ -18,9 +18,11 @@ import static cmr.notep.config.DocumentConfig.dozerMapperBean;
 public class CaissesBusiness {
 
     private final DaoAccessorService daoAccessorService ;
+    private final DozerBeanMapper dozerMapperBean;
 
-    public CaissesBusiness(DaoAccessorService daoAccessorService) {
+    public CaissesBusiness(DaoAccessorService daoAccessorService, DozerBeanMapper dozerMapperBean) {
         this.daoAccessorService = daoAccessorService;
+        this.dozerMapperBean = dozerMapperBean;
     }
 
     public Caisses avoirCaisse(String idCaisse) {

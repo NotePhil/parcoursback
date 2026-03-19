@@ -1,8 +1,6 @@
 package cmr.notep.business;
 
 
-import static cmr.notep.config.DocumentConfig.*;
-
 import java.util.Date;
 import java.util.List;
 import java.util.Optional;
@@ -14,6 +12,7 @@ import cmr.notep.exceptions.ParcoursException;
 import cmr.notep.modele.Categories;
 import cmr.notep.modele.Etats;
 import cmr.notep.repository.EtatsRepository;
+import org.dozer.DozerBeanMapper;
 import org.springframework.stereotype.Component;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -31,11 +30,13 @@ public class DocumentsBusiness {
     private final DaoAccessorService daoAccessorService;
     
     private final CategoriesBusiness categoriesBusiness;
+    private final DozerBeanMapper dozerMapperBean;
     //private final BusinessEntityHelper businessEntityHelper; , BusinessEntityHelper businessEntityHelper
 
-    public DocumentsBusiness(DaoAccessorService daoAccessorService, CategoriesBusiness categoriesBusiness) {
+    public DocumentsBusiness(DaoAccessorService daoAccessorService, CategoriesBusiness categoriesBusiness, DozerBeanMapper dozerMapperBean) {
         this.daoAccessorService = daoAccessorService;
         this.categoriesBusiness = categoriesBusiness;
+        this.dozerMapperBean = dozerMapperBean;
     }
 
     public List<Documents> avoirTousDocuments() {
