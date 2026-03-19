@@ -3,6 +3,7 @@ package cmr.notep.dao;
 import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.Setter;
+import org.dozer.Mapping;
 import org.hibernate.annotations.GenericGenerator;
 
 import java.util.Date;
@@ -30,7 +31,9 @@ public class ComptesEntity {
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "personnes_id")
+    @Mapping("beneficiaire")
     private PersonnesEntity personnesEntity;
 
 
 }
+
