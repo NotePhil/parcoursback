@@ -5,22 +5,23 @@ import cmr.notep.dao.ValidationsEntity;
 import cmr.notep.modele.Validations;
 import cmr.notep.repository.ValidationsRepository;
 import lombok.extern.slf4j.Slf4j;
+import org.dozer.DozerBeanMapper;
 import org.springframework.stereotype.Component;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
-import java.util.UUID;
 import java.util.stream.Collectors;
 
-import static cmr.notep.config.DocumentConfig.dozerMapperBean;
 @Component
 @Slf4j
 @Transactional
 public class ValidationsBusiness {
     private final DaoAccessorService daoAccessorService ;
+    private final DozerBeanMapper dozerMapperBean;
 
-    public ValidationsBusiness(DaoAccessorService daoAccessorService) {
+    public ValidationsBusiness(DaoAccessorService daoAccessorService, DozerBeanMapper dozerMapperBean) {
         this.daoAccessorService = daoAccessorService;
+        this.dozerMapperBean = dozerMapperBean;
     }
 
     public Validations avoirValidation(String idValidation) {

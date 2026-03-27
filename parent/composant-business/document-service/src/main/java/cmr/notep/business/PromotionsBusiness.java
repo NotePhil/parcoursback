@@ -5,13 +5,13 @@ import cmr.notep.dao.PromotionsEntity;
 import cmr.notep.modele.Promotions;
 import cmr.notep.repository.PromotionsRepository;
 import lombok.extern.slf4j.Slf4j;
+import org.dozer.DozerBeanMapper;
 import org.springframework.stereotype.Component;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 import java.util.stream.Collectors;
 
-import static cmr.notep.config.DocumentConfig.dozerMapperBean;
 
 @Component
 @Slf4j
@@ -19,9 +19,11 @@ import static cmr.notep.config.DocumentConfig.dozerMapperBean;
 public class PromotionsBusiness {
 
     private final DaoAccessorService daoAccessorService;
+    private final DozerBeanMapper dozerMapperBean;
 
-    public PromotionsBusiness(DaoAccessorService daoAccessorService) {
+    public PromotionsBusiness(DaoAccessorService daoAccessorService, DozerBeanMapper dozerMapperBean) {
         this.daoAccessorService = daoAccessorService;
+        this.dozerMapperBean = dozerMapperBean;
     }
 
     public Promotions avoirPromotion(String id) {

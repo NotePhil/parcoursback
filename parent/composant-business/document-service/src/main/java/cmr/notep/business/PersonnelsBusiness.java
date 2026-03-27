@@ -8,6 +8,7 @@ import cmr.notep.modele.Personnels;
 import cmr.notep.repository.JouerRolesRepository;
 import cmr.notep.repository.PersonnelsRepository;
 import lombok.extern.slf4j.Slf4j;
+import org.dozer.DozerBeanMapper;
 import org.springframework.stereotype.Component;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.util.CollectionUtils;
@@ -17,7 +18,6 @@ import java.util.Collections;
 import java.util.List;
 import java.util.stream.Collectors;
 
-import static cmr.notep.config.DocumentConfig.dozerMapperBean;
 
 @Component
 @Slf4j
@@ -26,10 +26,12 @@ public class PersonnelsBusiness  {
 
     private final DaoAccessorService daoAccessorService;
     private final RolesBusiness rolesBusiness;
+    private final DozerBeanMapper dozerMapperBean;
 
-    public PersonnelsBusiness(DaoAccessorService daoAccessorService, RolesBusiness rolesBusiness) {
+    public PersonnelsBusiness(DaoAccessorService daoAccessorService, RolesBusiness rolesBusiness, DozerBeanMapper dozerMapperBean) {
         this.daoAccessorService = daoAccessorService;
         this.rolesBusiness = rolesBusiness;
+        this.dozerMapperBean = dozerMapperBean;
     }
 
     public Personnels avoirPersonnel(String id) {

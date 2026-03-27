@@ -8,13 +8,13 @@ import java.util.stream.Collectors;
 import cmr.notep.dao.MissionsEntity;
 import cmr.notep.modele.Missions;
 import cmr.notep.repository.MissionsRepository;
+import org.dozer.DozerBeanMapper;
 import org.springframework.stereotype.Component;
 import org.springframework.transaction.annotation.Transactional;
 
 import cmr.notep.dao.DaoAccessorService;
 import lombok.extern.slf4j.Slf4j;
 
-import static cmr.notep.config.DocumentConfig.dozerMapperBean;
 
 @Component
 @Slf4j
@@ -22,8 +22,11 @@ import static cmr.notep.config.DocumentConfig.dozerMapperBean;
 
 public class MissionsBusiness {
     private final DaoAccessorService daoAccessorService ;
+    private final DozerBeanMapper dozerMapperBean;
 
-    public MissionsBusiness(DaoAccessorService daoAccessorService) { this.daoAccessorService = daoAccessorService ;}
+    public MissionsBusiness(DaoAccessorService daoAccessorService, DozerBeanMapper dozerMapperBean) { this.daoAccessorService = daoAccessorService ;
+        this.dozerMapperBean = dozerMapperBean;
+    }
 
     public List <Missions> avoirTousMission()
     {

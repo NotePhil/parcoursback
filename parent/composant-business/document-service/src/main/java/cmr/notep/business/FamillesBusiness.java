@@ -5,6 +5,7 @@ import cmr.notep.dao.FamillesEntity;
 import cmr.notep.modele.Familles;
 import cmr.notep.repository.FamillesRepository;
 import lombok.extern.slf4j.Slf4j;
+import org.dozer.DozerBeanMapper;
 import org.springframework.stereotype.Component;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -12,7 +13,6 @@ import java.util.List;
 import java.util.UUID;
 import java.util.stream.Collectors;
 
-import static cmr.notep.config.DocumentConfig.dozerMapperBean;
 
 @Component
 @Slf4j
@@ -20,10 +20,12 @@ import static cmr.notep.config.DocumentConfig.dozerMapperBean;
 public class FamillesBusiness {
 
     private final DaoAccessorService daoAccessorService ;
+    private final DozerBeanMapper dozerMapperBean;
 
 
-    public FamillesBusiness(DaoAccessorService daoAccessorService) {
+    public FamillesBusiness(DaoAccessorService daoAccessorService, DozerBeanMapper dozerMapperBean) {
         this.daoAccessorService = daoAccessorService;
+        this.dozerMapperBean = dozerMapperBean;
     }
 
     public List<Familles> avoirTousFamilles(){

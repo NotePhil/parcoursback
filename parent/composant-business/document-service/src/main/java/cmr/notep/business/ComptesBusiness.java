@@ -6,12 +6,12 @@ import cmr.notep.modele.Comptes;
 import cmr.notep.repository.ComptesRepository;
 import jakarta.transaction.Transactional;
 import lombok.extern.slf4j.Slf4j;
+import org.dozer.DozerBeanMapper;
 import org.springframework.stereotype.Component;
 
 import java.util.List;
 import java.util.stream.Collectors;
 
-import static cmr.notep.config.DocumentConfig.dozerMapperBean;
 
 @Component
 @Transactional
@@ -19,10 +19,12 @@ import static cmr.notep.config.DocumentConfig.dozerMapperBean;
 public class ComptesBusiness {
 
     private final DaoAccessorService daoAccessorService ;
+    private final DozerBeanMapper dozerMapperBean;
 
-    public ComptesBusiness(DaoAccessorService daoAccessorService)
+    public ComptesBusiness(DaoAccessorService daoAccessorService, DozerBeanMapper dozerMapperBean)
     {
         this.daoAccessorService = daoAccessorService;
+        this.dozerMapperBean = dozerMapperBean;
     }
 
     public Comptes avoirCompte(String idCompte) {

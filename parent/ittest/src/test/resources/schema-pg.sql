@@ -10,7 +10,7 @@ CREATE TABLE IF NOT EXISTS document.attributs
     etat             BOOLEAN DEFAULT TRUE,
     datecreation     DATE,
     datemodification DATE,
-    type             VARCHAR(255) NOT NULL,
+    type_attribut             VARCHAR(255) NOT NULL,
     valeurpardefaut  VARCHAR(255),
     CONSTRAINT pk_attributs PRIMARY KEY (id)
 );
@@ -68,6 +68,7 @@ CREATE TABLE IF NOT EXISTS document.documents
     afficherdistributeur BOOLEAN,
     prixeditable         BOOLEAN,
     contientressources   BOOLEAN,
+    estencaissable BOOLEAN,
     CONSTRAINT pk_documents PRIMARY KEY (id)
 );
 CREATE TABLE IF NOT EXISTS document.suivre
@@ -334,6 +335,7 @@ CREATE TABLE IF NOT EXISTS document.validations
 (
     id               VARCHAR(255) NOT NULL,
     code             VARCHAR(255),
+    libelle          VARCHAR(255),
     etat             VARCHAR(255),
     datecreation     DATE,
     datemodification DATE,

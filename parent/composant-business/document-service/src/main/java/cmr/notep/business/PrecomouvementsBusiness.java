@@ -6,21 +6,24 @@ import java.util.stream.Collectors;
 import cmr.notep.dao.PrecoMouvementsEntity;
 import cmr.notep.modele.PrecoMouvements;
 import cmr.notep.repository.PrecoMouvementsRepository;
+import org.dozer.DozerBeanMapper;
 import org.springframework.stereotype.Component;
 import org.springframework.transaction.annotation.Transactional;
 
 import cmr.notep.dao.DaoAccessorService;
 import lombok.extern.slf4j.Slf4j;
 
-import static cmr.notep.config.DocumentConfig.dozerMapperBean;
 
 @Component
 @Slf4j
 @Transactional
 public class PrecomouvementsBusiness {
     private final DaoAccessorService daoAccessorService ;
+    private final DozerBeanMapper dozerMapperBean;
 
-    public PrecomouvementsBusiness(DaoAccessorService daoAccessorService) { this.daoAccessorService = daoAccessorService ;}
+    public PrecomouvementsBusiness(DaoAccessorService daoAccessorService, DozerBeanMapper dozerMapperBean) { this.daoAccessorService = daoAccessorService ;
+        this.dozerMapperBean = dozerMapperBean;
+    }
 
     public List <PrecoMouvements> avoirTousPrecouvement()
     {
