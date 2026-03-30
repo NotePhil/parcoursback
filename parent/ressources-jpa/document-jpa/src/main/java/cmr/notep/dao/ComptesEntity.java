@@ -32,8 +32,6 @@ public class ComptesEntity {
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "personnes_id")
     @Mapping("beneficiaire")
-    private PersonnesEntity personnesEntity;
-
-
+    private PersonnesPhysiquesEntity personnesPhysiquesEntity;
 }
 
