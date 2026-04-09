@@ -7,6 +7,7 @@ import cmr.notep.modele.MouvementSoldeCaisse;
 import cmr.notep.repository.CaissesRepository;
 import cmr.notep.repository.MouvementSoldeCaissesRepository;
 import lombok.extern.slf4j.Slf4j;
+import org.dozer.DozerBeanMapper;
 import org.springframework.stereotype.Component;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -14,7 +15,6 @@ import java.util.Date;
 import java.util.List;
 import java.util.stream.Collectors;
 
-import static cmr.notep.config.DocumentConfig.dozerMapperBean;
 
 /**
  * Service métier pour gérer les transactions de soldes des caisses
@@ -27,9 +27,11 @@ import static cmr.notep.config.DocumentConfig.dozerMapperBean;
 public class SoldeCaissesTransactionBusiness {
 
     private final DaoAccessorService daoAccessorService;
+    private final DozerBeanMapper dozerMapperBean;
 
-    public SoldeCaissesTransactionBusiness(DaoAccessorService daoAccessorService) {
+    public SoldeCaissesTransactionBusiness(DaoAccessorService daoAccessorService, DozerBeanMapper dozerBeanMapper) {
         this.daoAccessorService = daoAccessorService;
+        this.dozerMapperBean = dozerBeanMapper;
     }
 
     /**

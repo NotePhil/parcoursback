@@ -228,9 +228,9 @@ INSERT INTO document.traiter (documents_id,missions_id) values
 ('0190615e-1101-7209-9932-7020bbd556f3','3190615e-1101-7209-9932-7020bbd556f3');
 
 --inserer données dans la table 'personnesPhysiques'
-INSERT INTO document.personnesphysique (personnesphysique_id, nom, prenom, sexe, datenaissance, datemodification) VALUES
-('0195c9e8-bbb7-7418-8c4a-69500c816c5f', 'Phil',	'dede',	'M',	'1999-03-31',	'2025-03-25'),
-('0195fe35-0742-7db1-ab55-f16e0c621ac0', 'Steve',	'dede',	'M',	'1999-03-31',	'2025-03-25');
+INSERT INTO document.personnesphysique (personnesphysique_id, nom, prenom, sexe, datenaissance) VALUES
+('0195c9e8-bbb7-7418-8c4a-69500c816c5f', 'Phil',	'dede',	'M',	'1999-03-31'),
+('0195fe35-0742-7db1-ab55-f16e0c621ac0', 'Steve',	'dede',	'M',	'1999-03-31');
 
 insert into document.rattacher (personnes_id, rattacher_id) values
 ('0195c9e8-bbb7-7418-8c4a-69500c816c5f','0618e585-f82a-4d5f-af1c-54f880d766d3'),

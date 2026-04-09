@@ -7,6 +7,7 @@ import cmr.notep.modele.MouvementSoldeRessource;
 import cmr.notep.repository.MouvementSoldeRessourcesRepository;
 import cmr.notep.repository.RessourcesRepository;
 import lombok.extern.slf4j.Slf4j;
+import org.dozer.DozerBeanMapper;
 import org.springframework.stereotype.Component;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -14,7 +15,6 @@ import java.util.Date;
 import java.util.List;
 import java.util.stream.Collectors;
 
-import static cmr.notep.config.DocumentConfig.dozerMapperBean;
 
 /**
  * Service métier pour gérer les transactions de soldes des ressources
@@ -27,15 +27,17 @@ import static cmr.notep.config.DocumentConfig.dozerMapperBean;
 public class SoldeRessourcesTransactionBusiness {
 
     private final DaoAccessorService daoAccessorService;
+    private final DozerBeanMapper dozerMapperBean;
 
-    public SoldeRessourcesTransactionBusiness(DaoAccessorService daoAccessorService) {
+    public SoldeRessourcesTransactionBusiness(DaoAccessorService daoAccessorService, DozerBeanMapper dozerMapperBean) {
         this.daoAccessorService = daoAccessorService;
+        this.dozerMapperBean = dozerMapperBean;
     }
 
     /**
      * Enregistrer une transaction de mouvement pour une ressource
      * @param ressourcesId ID de la ressource
-     * @param mouvement Détails du mouvement (type, quantité, motif, etc.)
+     * @param quantiteMouvementee Détails du mouvement (type, quantité, motif, etc.)
      * @param createdBy Utilisateur qui crée la transaction
      * @return La transaction enregistrée
      */

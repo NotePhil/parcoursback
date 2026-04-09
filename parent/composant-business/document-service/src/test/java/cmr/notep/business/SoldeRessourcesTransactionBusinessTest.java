@@ -11,6 +11,7 @@ import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.DisplayName;
 import org.mockito.Mock;
 import org.mockito.MockitoAnnotations;
+import org.dozer.DozerBeanMapper;
 
 import java.util.Optional;
 
@@ -33,12 +34,15 @@ public class SoldeRessourcesTransactionBusinessTest {
     @Mock
     private MouvementSoldeRessourcesRepository mouvementRepository;
 
+    @Mock
+    private DozerBeanMapper dozerMapperBean;
+
     private RessourcesEntity ressource;
 
     @BeforeEach
     void setUp() {
         MockitoAnnotations.openMocks(this);
-        soldeRessourcesTransactionBusiness = new SoldeRessourcesTransactionBusiness(daoAccessorService);
+        soldeRessourcesTransactionBusiness = new SoldeRessourcesTransactionBusiness(daoAccessorService,dozerMapperBean);
 
         // Configuration de la ressource de test
         ressource = new RessourcesEntity();

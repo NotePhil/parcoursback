@@ -9,6 +9,7 @@ public enum ParcoursExceptionCodeEnum {
     OPERATION_INTERDITE("Operation is not allowed"),
     INTERFACE_NON_RESPECTEE("Interface contract not respected"),
     INTERNAL_ERROR("Internal server error"),
+    INVALID_TRANSACTION("Invalid transaction"),
     INVALID_INPUT("Invalid input data"),
     INVALID_TOKEN("Invalid activation token"),
     INVALID_OPERATION("Invalid operation"),

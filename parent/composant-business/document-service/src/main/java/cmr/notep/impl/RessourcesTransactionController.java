@@ -3,6 +3,7 @@ package cmr.notep.impl;
 import cmr.notep.api.IRessourcesTransactionApi;
 import cmr.notep.business.SoldeRessourcesTransactionBusiness;
 import cmr.notep.exceptions.ParcoursException;
+import cmr.notep.exceptions.enumeration.ParcoursExceptionCodeEnum;
 import cmr.notep.modele.MouvementSoldeRessource;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.web.bind.annotation.*;
@@ -34,7 +35,7 @@ public class RessourcesTransactionController implements IRessourcesTransactionAp
                     mouvement.getCreatedBy()
             );
         } catch (RuntimeException e) {
-            throw new ParcoursException(e.getMessage(), e);
+            throw new ParcoursException(ParcoursExceptionCodeEnum.INVALID_TRANSACTION, e.getMessage());
         }
     }
 
@@ -43,7 +44,7 @@ public class RessourcesTransactionController implements IRessourcesTransactionAp
         try {
             return soldeRessourcesTransactionBusiness.validerMouvement(idMouvement, valideeBy);
         } catch (RuntimeException e) {
-            throw new ParcoursException(e.getMessage(), e);
+            throw new ParcoursException(ParcoursExceptionCodeEnum.INVALID_TRANSACTION, e.getMessage());
         }
     }
 
@@ -52,7 +53,7 @@ public class RessourcesTransactionController implements IRessourcesTransactionAp
         try {
             soldeRessourcesTransactionBusiness.rejeterMouvement(idMouvement, raison);
         } catch (RuntimeException e) {
-            throw new ParcoursException(e.getMessage(), e);
+            throw new ParcoursException(ParcoursExceptionCodeEnum.INVALID_TRANSACTION, e.getMessage());
         }
     }
 
@@ -61,7 +62,7 @@ public class RessourcesTransactionController implements IRessourcesTransactionAp
         try {
             return soldeRessourcesTransactionBusiness.obtenirHistorique(idRessource);
         } catch (RuntimeException e) {
-            throw new ParcoursException(e.getMessage(), e);
+            throw new ParcoursException(ParcoursExceptionCodeEnum.INVALID_TRANSACTION, e.getMessage());
         }
     }
 
@@ -70,7 +71,7 @@ public class RessourcesTransactionController implements IRessourcesTransactionAp
         try {
             return soldeRessourcesTransactionBusiness.obtenirMouvementsEnAttente(idRessource);
         } catch (RuntimeException e) {
-            throw new ParcoursException(e.getMessage(), e);
+            throw new ParcoursException(ParcoursExceptionCodeEnum.INVALID_TRANSACTION, e.getMessage());
         }
     }
 }

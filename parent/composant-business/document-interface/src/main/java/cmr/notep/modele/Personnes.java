@@ -1,15 +1,11 @@
 package cmr.notep.modele;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
-import com.fasterxml.jackson.annotation.JsonSubTypes;
-import com.fasterxml.jackson.annotation.JsonTypeInfo;
 import lombok.*;
 import lombok.experimental.SuperBuilder;
 
 import java.io.Serializable;
-import java.util.ArrayList;
-import java.util.Date;
-import java.util.List;
+import java.util.*;
 
 @Data
 @AllArgsConstructor
@@ -25,5 +21,5 @@ public class Personnes implements Serializable, IPersonnes {
     private  String qrcodevalue ;
     private Date dateCreation;
     private Date dateModification;
-    private List<IPersonnes> personnesRatachees = new ArrayList<>();
+    private Set<IPersonnes> personnesRatachees = new HashSet<>();
 }

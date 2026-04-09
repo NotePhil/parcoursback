@@ -56,28 +56,43 @@ public class PersonnelsBusiness  {
     public Personnels posterPersonnel(Personnels personnel) {
         //faire les controles sur les différents attributs de l'objet personnel
         //sauvegarder le personnel
-        PersonnelsEntity entitySaved = this.daoAccessorService.getRepository(PersonnelsRepository.class)
-                .save(dozerMapperBean.map(personnel, PersonnelsEntity.class));
-        if(!CollectionUtils.isEmpty(personnel.getRoles())){
+        PersonnelsRepository personnelsRepo = this.daoAccessorService.getRepository(PersonnelsRepository.class);
+        JouerRolesRepository jouerRolesRepo = this.daoAccessorService.getRepository(JouerRolesRepository.class);
+
+        PersonnelsEntity entitySaved;
+        if (personnel.getId() != null && personnelsRepo.existsById(personnel.getId())) {
+            // Mise à jour : charger l'entité existante pour préserver dateCreation
+            entitySaved = personnelsRepo.findById(personnel.getId())
+                    .orElseThrow(() -> new RuntimeException("Personnel introuvable : " + personnel.getId()));
+            dozerMapperBean.map(personnel, entitySaved);
+        } else {
+            // Création
+            entitySaved = dozerMapperBean.map(personnel, PersonnelsEntity.class);
+        }
+        entitySaved = personnelsRepo.save(entitySaved);
+
+        // Supprimer les anciens rôles avant d'enregistrer les nouveaux
+        jouerRolesRepo.deleteByPersonnelsEntityId(entitySaved.getId());
+        jouerRolesRepo.flush();
+
+        if (!CollectionUtils.isEmpty(personnel.getRoles())) {
             entitySaved.setJouerRolesEntities(new ArrayList<>());
             PersonnelsEntity finalEntitySaved = entitySaved;
             entitySaved.getJouerRolesEntities().addAll(
                     personnel.getRoles().stream()
                             .map(jouerRole -> {
                                 JouerRolesEntity jouerRolesEntity = dozerMapperBean.map(jouerRole, JouerRolesEntity.class);
+                                jouerRolesEntity.setId(null); // forcer la création d'un nouvel enregistrement
                                 jouerRolesEntity.setPersonnelsEntity(finalEntitySaved);
-                                //if(jouerRolesEntity.getId() == null)
-                                    jouerRolesEntity =  enregistrerJouerRole(jouerRolesEntity);
-
+                                jouerRolesEntity = enregistrerJouerRole(jouerRolesEntity);
                                 return jouerRolesEntity;
                             })
                             .collect(Collectors.toList())
             );
-            entitySaved = this.daoAccessorService.getRepository(PersonnelsRepository.class)
-                    .save(entitySaved);
+            entitySaved = personnelsRepo.save(entitySaved);
         }
 
-        return dozerMapperBean.map( entitySaved, Personnels.class);
+        return dozerMapperBean.map(entitySaved, Personnels.class);
     }
 
     private JouerRolesEntity enregistrerJouerRole(JouerRolesEntity jouerRole) {
