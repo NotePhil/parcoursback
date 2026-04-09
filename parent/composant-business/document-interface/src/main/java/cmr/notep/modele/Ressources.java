@@ -15,6 +15,7 @@ import java.util.List;
 public class Ressources {
     private String id ;
     private String libelle;
+    private String description;
     private Boolean etat;
     private Date dateCreation;
     private Date dateModification;

@@ -15,7 +15,8 @@ import java.util.List;
 public class Etats {
     private String id;
     private String libelle;
-    private Date dateCreation;
-    private List<DocEtats> docEtats;
     private String description;
+    private Date dateCreation;
+    private Date dateModification;
+    private List<DocEtats> docEtats;
 }

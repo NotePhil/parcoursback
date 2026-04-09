@@ -16,8 +16,9 @@ import java.util.List;
 public class Tickets {
     private String id;
     private String idUnique;
-    private List<TicketsFilesAttentes> ticketsfilesattentes;
-    private PersonnesPhysique personnesPhysique;
-    private String statut;
     private Date dateCreation;
+    private Date dateModification;
+    private String statut;
+    private List<TicketsFilesAttentes> ticketsFilesAttentes;
+    private PersonnesPhysique personnesPhysique;
 }

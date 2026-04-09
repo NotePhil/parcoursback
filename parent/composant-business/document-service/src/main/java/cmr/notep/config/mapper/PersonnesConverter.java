@@ -7,7 +7,9 @@ import org.dozer.DozerBeanMapper;
 import org.hibernate.collection.spi.PersistentBag;
 
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 
 public class PersonnesConverter implements CustomConverter {
@@ -22,7 +24,7 @@ public class PersonnesConverter implements CustomConverter {
         if(sourceFieldValue == null) {
             return null;
         } else if (sourceFieldValue instanceof PersistentBag<?>) {
-            List<Object> listReturn = new ArrayList<>();
+            Set<Object> listReturn = new HashSet<>();
              ((PersistentBag) sourceFieldValue).iterator().forEachRemaining(item -> listReturn.add(convertOnePerson(item)));
             return listReturn;
         }

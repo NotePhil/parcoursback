@@ -9,10 +9,8 @@ import org.hibernate.annotations.CreationTimestamp;
 import org.hibernate.annotations.UpdateTimestamp;
 
 import jakarta.persistence.*;
-import java.util.ArrayList;
-import java.util.Date;
-import java.util.List;
-import java.util.UUID;
+
+import java.util.*;
 
 @Getter
 @Setter
@@ -38,7 +36,7 @@ public class PersonnesEntity
     @Column(name = "qrcodevalue")
     private  String qrcodevalue ;
 
-    @Column(name = "datecreation", columnDefinition = "TIMESTAMP")
+    @Column(name = "datecreation", columnDefinition = "TIMESTAMP", updatable = false)
     @Temporal(TemporalType.TIMESTAMP)
     @CreationTimestamp
     private Date dateCreation;
@@ -52,7 +50,7 @@ public class PersonnesEntity
             joinColumns = @JoinColumn(name = "personnes_id"),
             inverseJoinColumns = @JoinColumn(name = "rattacher_id"))
     @Mapping("personnesRatachees")
-    private List<PersonnesEntity> personnesRatachees = new ArrayList<>();
+    private Set<PersonnesEntity> personnesRatachees = new HashSet<>();
 
     @PrePersist
     protected void onCreate() {

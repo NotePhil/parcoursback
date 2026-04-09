@@ -13,8 +13,9 @@ import java.util.List;
 @SuperBuilder
 public class Distributeurs extends Personnes {
     private String id;
-    private List<PrecoMouvementsQtes> precomouvementsqtes;
+    private String code;
     private String raisonSociale;
-    private String code ;
+    private java.util.Date dateModification;
+    private List<PrecoMouvementsQtes> precoMouvementsQtes;
     private List<Promotions> promotions;
 }
