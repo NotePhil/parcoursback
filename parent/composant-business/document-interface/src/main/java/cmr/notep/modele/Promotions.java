@@ -22,6 +22,7 @@ public class Promotions {
     private String typeRemise;
     private Double valeurRemise;
     private Date dateCreation;
+    private Date dateModification;
     private Distributeurs distributeur;
     private List<Ressources> ressources;
     private List <Familles> familles;

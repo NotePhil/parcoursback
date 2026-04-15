@@ -8,6 +8,7 @@ import org.hibernate.annotations.GenericGenerator;
 import jakarta.persistence.*;
 import java.util.Date;
 import java.util.List;
+import java.util.stream.Collectors;
 
 @Getter
 @Setter
@@ -30,7 +31,7 @@ public class RessourcesEntity {
     @Column(name = "datemodification")
     private Date dateModification;
     @Column(name = "quantite")
-    private Integer quantite ;
+    private Integer quantite;
     @Column(name = "seuilalerte")
     private Integer seuilAlerte;
     @Column(name = "prixentree")
@@ -55,4 +56,14 @@ public class RessourcesEntity {
             inverseJoinColumns = @JoinColumn(name = "promotions_id"))
     @Mapping("promotions")
     private List<PromotionsEntity> promotionsEntities;
+
+    /**
+     * Ne pas modifier directement quantite.
+     * Utiliser les services transactionnels pour les modifications.
+     */
+    @Transient
+    @Mapping("solde")
+    public Integer getSolde() {
+        return this.quantite;
+    }
 }

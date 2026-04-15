@@ -1,5 +1,6 @@
 package cmr.notep.modele;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
 import lombok.*;
 import lombok.experimental.SuperBuilder;
 
@@ -15,5 +16,6 @@ public class PersonnesPhysique extends Personnes {
     private String nom ;
     private String prenom;
     private String sexe ;
+    @JsonFormat(pattern = "yyyy-MM-dd", timezone = "Europe/Paris")
     private Date dateNaissance ;
 }

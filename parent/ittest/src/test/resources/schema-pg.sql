@@ -191,7 +191,6 @@ CREATE TABLE IF NOT EXISTS document.personnesmorales
     personnesmorales_id VARCHAR(255) NOT NULL,
     raisonsociale       VARCHAR(255),
     code                VARCHAR(255),
-    datemodification    DATE,
     CONSTRAINT pk_personnesmorales PRIMARY KEY (personnesmorales_id)
 );
 CREATE TABLE IF NOT EXISTS document.personnesphysique
@@ -201,7 +200,6 @@ CREATE TABLE IF NOT EXISTS document.personnesphysique
     prenom               VARCHAR(255),
     sexe                 VARCHAR(255),
     datenaissance        date         NOT NULL,
-    datemodification     DATE,
     CONSTRAINT pk_personnesphysique PRIMARY KEY (personnesphysique_id)
 );
 CREATE TABLE IF NOT EXISTS document.precomouvements

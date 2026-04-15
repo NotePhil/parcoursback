@@ -18,6 +18,7 @@ public class JouerRoles {
     private String id;
     private Boolean etat ;
     private Date dateCreation;
+    private Date dateModification;
     @JsonFormat(pattern = "yyyy-MM-dd", timezone = "Europe/Paris")
     private Date dateFin ;
     @JsonFormat(pattern = "yyyy-MM-dd", timezone = "Europe/Paris")
