@@ -59,16 +59,8 @@ public class PersonnelsBusiness  {
         PersonnelsRepository personnelsRepo = this.daoAccessorService.getRepository(PersonnelsRepository.class);
         JouerRolesRepository jouerRolesRepo = this.daoAccessorService.getRepository(JouerRolesRepository.class);
 
-        PersonnelsEntity entitySaved;
-        if (personnel.getId() != null && personnelsRepo.existsById(personnel.getId())) {
-            // Mise à jour : charger l'entité existante pour préserver dateCreation
-            entitySaved = personnelsRepo.findById(personnel.getId())
-                    .orElseThrow(() -> new RuntimeException("Personnel introuvable : " + personnel.getId()));
-            dozerMapperBean.map(personnel, entitySaved);
-        } else {
-            // Création
-            entitySaved = dozerMapperBean.map(personnel, PersonnelsEntity.class);
-        }
+        PersonnelsEntity entitySaved = dozerMapperBean.map(personnel, PersonnelsEntity.class);
+
         entitySaved = personnelsRepo.save(entitySaved);
 
         // Supprimer les anciens rôles avant d'enregistrer les nouveaux

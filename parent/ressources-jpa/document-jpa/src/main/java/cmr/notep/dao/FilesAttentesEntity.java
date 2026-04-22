@@ -29,7 +29,7 @@ public class FilesAttentesEntity {
     private Boolean etat ;
 
     @OneToMany(mappedBy = "filesAttentesEntity" , fetch = FetchType.LAZY )
-    @Mapping("ticketsfilesattentes")
+    @Mapping("ticketsFilesAttentes")
     private List<TicketsFilesAttentesEntity> ticketsFilesAttentesEntities;
 
     @OneToOne

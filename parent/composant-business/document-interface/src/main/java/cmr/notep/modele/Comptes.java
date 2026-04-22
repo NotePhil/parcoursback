@@ -9,7 +9,6 @@ import java.util.Date;
 @AllArgsConstructor
 @NoArgsConstructor
 @Builder
-@JsonIgnoreProperties(value = {"beneficiaire"},ignoreUnknown = true)
 public class Comptes {
     private String id;
     private String libelle;
@@ -18,5 +17,5 @@ public class Comptes {
     private Boolean etat;
     private Date dateCreation;
     private Date dateModification;
-    private PersonnesPhysique beneficiaire;
+    private Personnes beneficiaire;
 }

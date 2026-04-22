@@ -196,7 +196,7 @@ CREATE TABLE IF NOT EXISTS document.personnesmorales
 CREATE TABLE IF NOT EXISTS document.personnesphysique
 (
     personnesphysique_id VARCHAR(255)         NOT NULL,
-    nom                  VARCHAR(255) NOT NULL,
+    nom                  VARCHAR(255)         NOT NULL,
     prenom               VARCHAR(255),
     sexe                 VARCHAR(255),
     datenaissance        date         NOT NULL,
@@ -363,6 +363,29 @@ CREATE TABLE IF NOT EXISTS document.docetats_predecesseurs
     CONSTRAINT pk_docetats_predecesseurs PRIMARY KEY (docetats_id, predecesseur_id)
 );
 
+-- Tables manquantes par rapport au backup
+CREATE TABLE IF NOT EXISTS document.caisses
+(
+    id               VARCHAR(255) NOT NULL,
+    libelle          VARCHAR(255),
+    solde            DOUBLE PRECISION,
+    type             VARCHAR(255),
+    detailjson       VARCHAR(255),
+    etat             BOOLEAN,
+    CONSTRAINT pk_caisses PRIMARY KEY (id)
+);
+CREATE TABLE IF NOT EXISTS document.comptes
+(
+    id                    VARCHAR(255) NOT NULL,
+    datecreation          DATE,
+    etat                  VARCHAR(255),
+    montantdecouvertmax   DOUBLE PRECISION,
+    libelle               VARCHAR(255),
+    personnes_id          VARCHAR(255),
+    solde                 DOUBLE PRECISION,
+    CONSTRAINT pk_comptes PRIMARY KEY (id)
+);
+
 ALTER TABLE document.docetats_predecesseurs
     ADD CONSTRAINT  FK_DOCETATS_PREDECESSEURS_ON_DOCETATS FOREIGN KEY (docetats_id) REFERENCES document.docetats (id);
 ALTER TABLE document.docetats_predecesseurs
@@ -504,3 +527,7 @@ ALTER TABLE document.associer
 
 ALTER TABLE document.categories
     ADD CONSTRAINT  FK_CATEGORIES_ON_DOCUMENTS FOREIGN KEY (documents_id) REFERENCES document.documents (id);
+
+-- FK pour les tables ajoutées
+ALTER TABLE document.comptes
+    ADD CONSTRAINT  FK_COMPTES_ON_PERSONNES FOREIGN KEY (personnes_id) REFERENCES document.personnes (id);
