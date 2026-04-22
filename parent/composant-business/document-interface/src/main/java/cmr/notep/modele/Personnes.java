@@ -11,8 +11,9 @@ import java.util.*;
 @AllArgsConstructor
 @NoArgsConstructor
 @SuperBuilder
-@JsonIgnoreProperties(ignoreUnknown = true)
-@ToString
+@EqualsAndHashCode(exclude = {"docEtats"})
+@JsonIgnoreProperties(value = {"comptes"}, ignoreUnknown = true)
+@ToString(exclude = {"comptes"})
 public class Personnes implements Serializable, IPersonnes {
     private String id ;
     private String adresse ;
@@ -21,5 +22,6 @@ public class Personnes implements Serializable, IPersonnes {
     private  String qrcodevalue ;
     private Date dateCreation;
     private Date dateModification;
+    private List<Comptes> comptes;
     private Set<IPersonnes> personnesRatachees = new HashSet<>();
 }

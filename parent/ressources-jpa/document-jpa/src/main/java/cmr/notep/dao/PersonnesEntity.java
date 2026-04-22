@@ -45,6 +45,10 @@ public class PersonnesEntity
     @Temporal(TemporalType.TIMESTAMP)
     @UpdateTimestamp
     private Date dateModification;
+    @OneToMany(mappedBy = "personnesEntity",  fetch = FetchType.LAZY)
+    @Mapping("comptes")
+    private List<ComptesEntity> comptesEntities;
+
     @ManyToMany(fetch = FetchType.LAZY)
     @JoinTable(name = "rattacher" ,schema = "document",
             joinColumns = @JoinColumn(name = "personnes_id"),

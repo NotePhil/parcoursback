@@ -30,8 +30,9 @@ public class ComptesEntity {
     private Date dateCreation;
 
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "personnes_id")
+    @JoinColumn(name = "personnes_id", nullable = false)
     @Mapping("beneficiaire")
-    private PersonnesPhysiquesEntity personnesPhysiquesEntity;
-}
+    private PersonnesEntity personnesEntity;
 
+
+}
