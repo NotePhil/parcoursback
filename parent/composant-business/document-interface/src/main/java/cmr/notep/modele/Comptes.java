@@ -17,5 +17,5 @@ public class Comptes {
     private Boolean etat;
     private Date dateCreation;
     private Date dateModification;
-    private Personnes beneficiaire;
+    private IPersonnes beneficiaire;
 }

@@ -11,7 +11,7 @@ import java.util.*;
 @AllArgsConstructor
 @NoArgsConstructor
 @SuperBuilder
-@EqualsAndHashCode(exclude = {"docEtats"})
+@EqualsAndHashCode(exclude = {"comptes"})
 @JsonIgnoreProperties(value = {"comptes"}, ignoreUnknown = true)
 @ToString(exclude = {"comptes"})
 public class Personnes implements Serializable, IPersonnes {
