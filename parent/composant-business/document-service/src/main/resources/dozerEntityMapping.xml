@@ -27,4 +27,12 @@
             <b>personnesRatachees</b>
         </field>
     </mapping>
+    <mapping>
+        <class-a>cmr.notep.dao.ComptesEntity</class-a>
+        <class-b>cmr.notep.modele.Comptes</class-b>
+        <field custom-converter="cmr.notep.config.mapper.PersonnesConverter">
+            <a>personnesEntity</a>
+            <b>beneficiaire</b>
+        </field>
+    </mapping>
 </mappings>

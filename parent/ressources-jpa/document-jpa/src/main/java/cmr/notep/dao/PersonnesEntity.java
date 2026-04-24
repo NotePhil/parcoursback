@@ -46,7 +46,6 @@ public class PersonnesEntity
     @UpdateTimestamp
     private Date dateModification;
     @OneToMany(mappedBy = "personnesEntity",  fetch = FetchType.LAZY)
-    @Mapping("")
     private List<ComptesEntity> comptesEntities;
 
     @ManyToMany(fetch = FetchType.LAZY)
