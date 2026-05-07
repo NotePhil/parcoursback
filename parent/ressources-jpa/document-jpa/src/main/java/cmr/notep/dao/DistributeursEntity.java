@@ -3,6 +3,8 @@ package cmr.notep.dao;
 import lombok.Getter;
 import lombok.Setter;
 import org.dozer.Mapping;
+import org.hibernate.annotations.UpdateTimestamp;
+import org.hibernate.annotations.CreationTimestamp;
 
 import jakarta.persistence.*;
 import java.util.Date;
@@ -15,7 +17,9 @@ import java.util.List;
 @Table(name = "distributeurs", schema = "document")
 public class DistributeursEntity extends PersonnesEntity {
 
-    @Column(name = "datemodification")
+    @Column(name = "datemodification", columnDefinition = "TIMESTAMP")
+    @Temporal(TemporalType.TIMESTAMP)
+    @UpdateTimestamp
     private Date dateModification;
     @Column(name = "code")
     private String code ;

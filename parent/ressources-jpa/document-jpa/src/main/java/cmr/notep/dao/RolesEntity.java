@@ -4,6 +4,8 @@ package cmr.notep.dao;
 import lombok.Getter;
 import lombok.Setter;
 import org.dozer.Mapping;
+import org.hibernate.annotations.UpdateTimestamp;
+import org.hibernate.annotations.CreationTimestamp;
 import org.hibernate.annotations.CreationTimestamp;
 import org.hibernate.annotations.UuidGenerator;
 
@@ -35,7 +37,9 @@ public class RolesEntity {
     @Column(name = "datecreation", updatable = false)
     @CreationTimestamp
     private Date dateCreation;
-    @Column(name = "datemodification")
+    @Column(name = "datemodification", columnDefinition = "TIMESTAMP")
+    @Temporal(TemporalType.TIMESTAMP)
+    @UpdateTimestamp
     private Date dateModification;
     @OneToMany(mappedBy = "rolesEntity", fetch = FetchType.LAZY)
     @Mapping("personnels")

@@ -3,6 +3,8 @@ package cmr.notep.dao;
 import lombok.Getter;
 import lombok.Setter;
 import org.dozer.Mapping;
+import org.hibernate.annotations.UpdateTimestamp;
+import org.hibernate.annotations.CreationTimestamp;
 import org.hibernate.annotations.GenericGenerator;
 import org.hibernate.annotations.UuidGenerator;
 
@@ -32,10 +34,14 @@ public class DocumentsEntity {
     @Column(name = "etat")
     private Boolean etat;
 
-    @Column(name = "datecreation", updatable = false)
+    @Column(name = "datecreation", columnDefinition = "TIMESTAMP", updatable = false)
+    @Temporal(TemporalType.TIMESTAMP)
+    @CreationTimestamp
     private Date dateCreation;
 
-    @Column(name = "datemodification")
+    @Column(name = "datemodification", columnDefinition = "TIMESTAMP")
+    @Temporal(TemporalType.TIMESTAMP)
+    @UpdateTimestamp
     private Date dateModification;
 
     @Column(name = "typemouvement")

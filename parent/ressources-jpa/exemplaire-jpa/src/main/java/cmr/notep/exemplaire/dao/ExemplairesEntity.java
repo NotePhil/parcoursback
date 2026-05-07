@@ -1,7 +1,8 @@
 package cmr.notep.exemplaire.dao;
 
 import lombok.*;
-import org.dozer.Mapping;
+import org.hibernate.annotations.UpdateTimestamp;
+import org.hibernate.annotations.CreationTimestamp;
 import org.hibernate.annotations.GenericGenerator;
 
 import jakarta.persistence.*;
@@ -32,7 +33,9 @@ public class ExemplairesEntity {
     private String documentId;
     @Column(name = "datecreation", updatable = false,nullable = false)
     private Date dateCreation;
-    @Column(name = "datemodification")
+    @Column(name = "datemodification", columnDefinition = "TIMESTAMP")
+    @Temporal(TemporalType.TIMESTAMP)
+    @UpdateTimestamp
     private Date dateModification;
     //liste des id des exemplaires qui ont servi à la creation de cet exemplaire
     @ElementCollection

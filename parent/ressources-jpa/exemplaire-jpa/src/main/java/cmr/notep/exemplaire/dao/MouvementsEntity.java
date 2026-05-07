@@ -3,6 +3,8 @@ package cmr.notep.exemplaire.dao;
 import lombok.Getter;
 import lombok.Setter;
 import org.dozer.Mapping;
+import org.hibernate.annotations.UpdateTimestamp;
+import org.hibernate.annotations.CreationTimestamp;
 import org.hibernate.annotations.GenericGenerator;
 
 import jakarta.persistence.*;
@@ -35,7 +37,9 @@ public class MouvementsEntity {
 
     @Column(name = "dateperemption")
     private Date datePeremption ;
-    @Column(name = "datemodification")
+    @Column(name = "datemodification", columnDefinition = "TIMESTAMP")
+    @Temporal(TemporalType.TIMESTAMP)
+    @UpdateTimestamp
     private Date dateModification;
     //PrecoMouvementsEntity
     @ElementCollection

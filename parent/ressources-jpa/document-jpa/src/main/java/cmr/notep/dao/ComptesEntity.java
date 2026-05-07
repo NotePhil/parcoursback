@@ -4,6 +4,8 @@ import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.Setter;
 import org.dozer.Mapping;
+import org.hibernate.annotations.UpdateTimestamp;
+import org.hibernate.annotations.CreationTimestamp;
 import org.hibernate.annotations.GenericGenerator;
 
 import java.util.Date;
@@ -26,7 +28,9 @@ public class ComptesEntity {
     private int solde;
     @Column(name = "etat")
     private Boolean etat;
-    @Column(name = "datecreation", updatable = false)
+    @Column(name = "datecreation", columnDefinition = "TIMESTAMP", updatable = false)
+    @Temporal(TemporalType.TIMESTAMP)
+    @CreationTimestamp
     private Date dateCreation;
 
     @ManyToOne(fetch = FetchType.LAZY)

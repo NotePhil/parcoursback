@@ -4,7 +4,9 @@ import cmr.notep.modele.TypeAttribut;
 import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.Setter;
+import org.hibernate.annotations.CreationTimestamp;
 import org.hibernate.annotations.GenericGenerator;
+import org.hibernate.annotations.UpdateTimestamp;
 
 import java.util.Date;
 import java.util.List;
@@ -25,9 +27,13 @@ public class AttributsEntity {
     private String description;
     @Column(name = "etat")
     private Boolean etat;
-    @Column(name = "datecreation", updatable = false)
+    @Column(name = "datecreation", columnDefinition = "TIMESTAMP", updatable = false)
+    @Temporal(TemporalType.TIMESTAMP)
+    @CreationTimestamp
     private Date dateCreation;
-    @Column(name = "datemodification")
+    @Column(name = "datemodification", columnDefinition = "TIMESTAMP")
+    @Temporal(TemporalType.TIMESTAMP)
+    @UpdateTimestamp
     private Date dateModification;
     @Enumerated(EnumType.STRING)
     @Column(name = "type_attribut", nullable = false)
@@ -41,7 +47,7 @@ public class AttributsEntity {
     //@JsonIgnore
    // private List<CategoriesEntity> categories ;
 
-    @OneToMany(mappedBy = "attribut", fetch = FetchType.LAZY, orphanRemoval = true)
+    @OneToMany(mappedBy = "attribut", fetch = FetchType.LAZY)
    // @Mapping("categories")
     private List<AssocierEntity> categoriesEntities;
 }

@@ -243,4 +243,78 @@ insert  into document.remplir(id,roles_id,missions_id,etat,droitajouter,droitmod
 ('d39bcc09-ffe6-48d1-8582-f1173671d59f','6130615e-1101-7209-9932-7020bbd556f2','3190615e-1101-7209-9932-7020bbd556f2',true,true,true,true,true,'2024-01-01','2024-01-01','2022-01-01'),
 ('9183d626-0c1a-4f70-8556-1c417d5feb91','6191615e-1101-7209-9932-7020bbd556f3','3190615e-1101-7209-9932-7020bbd556f3',true,true,true,true,true,'2024-01-01','2024-01-01','2022-01-01');
 
+-- Insertion dans la table parcours
+INSERT INTO document.parcours (id, libelle, datecreation, datemodification) VALUES
+('1900bd79-f71b-498b-b247-e7b9bbb3f600', 'Paracetamol', '2022-01-02', '2022-01-02'),
+('1900bd79-f71b-498b-b247-e7b9bbb3f601', 'Cartouche d''encre', '2020-01-08', '2022-01-02'),
+('1900bd79-f71b-498b-b247-e7b9bbb3f602', 'Scanner', '2014-01-04', '2022-01-02');
+
+-- Insertion dans la table etapes
+INSERT INTO document.etapes (id, libelle, etat, datemodification, parcours_id) VALUES
+('1901bd79-f71b-498b-b247-e7b9bbb3f600', 'Paracetamol', 'true', '2022-01-02', '1900bd79-f71b-498b-b247-e7b9bbb3f602'),
+('1901bd79-f71b-498b-b247-e7b9bbb3f601', 'Cartouche d''encre', 'true', '2020-01-08', '1900bd79-f71b-498b-b247-e7b9bbb3f600'),
+('1901bd79-f71b-498b-b247-e7b9bbb3f602', 'Scanner', 'true', '2014-01-04', '1900bd79-f71b-498b-b247-e7b9bbb3f601');
+
+-- Insertion dans la table validations
+INSERT INTO document.validations (id, code, libelle, etat, datecreation, datemodification, typevote, dureevote, quota, typevalidation, roles_id) VALUES
+('1901bd80-f71b-498b-b247-e7b9bbb3f600', 'o85', 'Mise en attente', 'traitement', '2014-01-12', '2022-02-02', 'multiple', 5, 7, 'rechargeable', '5190615e-1101-7209-9932-7020bbd556f1'),
+('1901bd80-f71b-498b-b247-e7b9bbb3f601', 'o89', 'Resultat mise a jour', 'suppression', '2002-01-02', '2022-11-02', 'multiple', 2, 7, 'prioritaire', '6130615e-1101-7209-9932-7020bbd556f2'),
+('1901bd80-f71b-498b-b247-e7b9bbb3f602', 'o78', 'en cours', 'attente', '2022-03-02', '2022-10-02', 'multiple', 14, 7, 'prioritaire', '5190615e-1101-7209-9932-7020bbd556f1'),
+('1901bd80-f71b-498b-b247-e7b9bbb3f603', 'o82', 'Consultation', 'traitement', '2023-10-25', '2022-10-02', 'Unitaire', 22, 7, 'Transmission', '5190615e-1101-7209-9932-7020bbd556f1'),
+('1901bd80-f71b-498b-b247-e7b9bbb3f604', 'o84', 'en cours', 'traitement', '2020-11-15', '2024-05-02', 'multiple', 40, 7, 'prioritaire', '6191615e-1101-7209-9932-7020bbd556f3');
+
+-- Insertion dans la table docetats
+INSERT INTO document.docetats (id, ordre, datecreation, datemodification, validations_id, etats_id, documents_id, etapes_id) VALUES
+('be8ef4af-d5a2-4254-cd79-af860672553e', 15, '2022-03-02', '2022-10-02', '1901bd80-f71b-498b-b247-e7b9bbb3f602', 'e190615e-1101-7209-9932-7020bbd556f1', '0190615e-1101-7209-9932-7020bbd556f1', '1901bd79-f71b-498b-b247-e7b9bbb3f600'),
+('be8ef4af-d5a2-4254-cd79-af860672554e', 10, '2002-01-02', '2022-11-02', '1901bd80-f71b-498b-b247-e7b9bbb3f601', 'e190615e-1101-7209-9932-7020bbd556f2', '0190615e-1101-7209-9932-7020bbd556f2', '1901bd79-f71b-498b-b247-e7b9bbb3f601'),
+('be8ef4af-d5a2-4254-cd79-af860672555e', 11, '2014-01-12', '2022-02-02', '1901bd80-f71b-498b-b247-e7b9bbb3f600', 'e190615e-1101-7209-9932-7020bbd556f3', '0190615e-1101-7209-9932-7020bbd556f3', '1901bd79-f71b-498b-b247-e7b9bbb3f602');
+
+-- Insertion dans la table docetats_predecesseurs
+INSERT INTO document.docetats_predecesseurs (docetats_id, predecesseur_id) VALUES
+('be8ef4af-d5a2-4254-cd79-af860672553e', 'be8ef4af-d5a2-4254-cd79-af860672555e'),
+('be8ef4af-d5a2-4254-cd79-af860672554e', 'be8ef4af-d5a2-4254-cd79-af860672555e');
+
+-- Insertion dans la table tickets
+INSERT INTO document.tickets (id, idunique, datecreation, datemodification, statut, personnesphysique_id) VALUES
+('be8ef47f-d5a2-4254-cd79-af860672553e', 'rr15', '2022-03-02', '2022-10-02', NULL, '0195c9e8-bbb7-7418-8c4a-69500c816c5f'),
+('be8ef47f-d5a2-4254-cd79-af860672554e', 'rr10', '2002-01-02', '2022-11-02', NULL, '0195fe35-0742-7db1-ab55-f16e0c621ac0'),
+('be8ef47f-d5a2-4254-cd79-af860672555e', 'rr11', '2014-01-12', '2022-02-02', NULL, '0195c9e8-bbb7-7418-8c4a-69500c816c5f'),
+('be8ef47f-d5a2-4254-cd79-af860672556e', 'rr12', '2023-10-25', '2024-03-02', NULL, '0195fe35-0742-7db1-ab55-f16e0c621ac0'),
+('c1a2b3d4-e5f6-4a78-9b0c-1234d56789ef', 'TCKT001', '2025-08-08', '2025-08-08', 'Ouvert', '0195c9e8-bbb7-7418-8c4a-69500c816c5f'),
+('d2b3c4e5-f6a7-5b89-0c1d-2345e67890fa', 'TCKT002', '2025-08-05', '2025-08-08', 'En cours', '0195fe35-0742-7db1-ab55-f16e0c621ac0');
+
+-- Insertion dans la table ticketsfilesattentes
+INSERT INTO document.ticketsfilesattentes (id, etat, dateaffectation, tickets_id, filesattentes_id) VALUES
+('be8ef47f-d7a2-4254-cd79-af860672553e', true, '2024-11-04', 'be8ef47f-d5a2-4254-cd79-af860672553e', 'f190615e-1101-7209-9932-7020bbd556f1'),
+('be8ef47f-d7a2-4254-cd79-af860672554e', false, '2022-12-04', 'be8ef47f-d5a2-4254-cd79-af860672554e', 'f190615e-1101-7209-9932-7020bbd556f2'),
+('be8ef47f-d7a2-4254-cd79-af860672555e', false, '2020-11-04', 'be8ef47f-d5a2-4254-cd79-af860672555e', 'f190615e-1101-7209-9932-7020bbd556f3'),
+('be8ef47f-d7a2-4254-cd79-af860672556e', false, '2021-04-04', 'be8ef47f-d5a2-4254-cd79-af860672556e', 'f190615e-1101-7209-9932-7020bbd556f3');
+
+-- Insertion dans la table promotions
+INSERT INTO document.promotions (id, datedebut, datefin, codeunique, typeremise, valeurremise, datecreation, datemodification, distributeurs_id) VALUES
+('1979bd79-f81b-498b-b247-e7b9bbb3f600', '2022-01-01', '2022-01-01', 'R5', 'garantie', 54.25, '2000-04-10', '2022-01-01', '1979bd79-f71b-498b-b247-e7b9bbb3f600'),
+('1979bd79-f81b-498b-b247-e7b9bbb3f601', '2022-01-01', '2022-01-01', 'R54', 'virement', 74.25, '2004-08-10', '2022-01-01', 'd301ff83-2a62-4e6d-aa23-57c7825bcd57'),
+('1979bd79-f81b-498b-b247-e7b9bbb3f602', '2022-01-01', '2022-01-01', 'R45', 'devoir', 95.23, '2002-10-10', '2022-01-01', '0618e585-f82a-4d5f-af1c-54f880d766d3');
+
+-- Insertion dans la table documentspromotions
+INSERT INTO document.documentspromotions (documents_id, promotions_id) VALUES
+('0190615e-1101-7209-9932-7020bbd556f1', '1979bd79-f81b-498b-b247-e7b9bbb3f600'),
+('0190615e-1101-7209-9932-7020bbd556f8', '1979bd79-f81b-498b-b247-e7b9bbb3f602'),
+('0190615e-1101-7209-9932-7020bbd556f5', '1979bd79-f81b-498b-b247-e7b9bbb3f601');
+
+-- Insertion dans la table famillespromotions
+INSERT INTO document.famillespromotions (familles_id, promotions_id) VALUES
+('f190615e-1101-7209-9932-7020bbd556f1', '1979bd79-f81b-498b-b247-e7b9bbb3f602'),
+('f190615e-1101-7209-9932-7020bbd556f3', '1979bd79-f81b-498b-b247-e7b9bbb3f601'),
+('f190615e-1101-7209-9932-7020bbd556f4', '1979bd79-f81b-498b-b247-e7b9bbb3f600');
+
+-- Insertion dans la table ressourcespromotions
+INSERT INTO document.ressourcespromotions (promotions_id, ressources_id) VALUES
+('1979bd79-f81b-498b-b247-e7b9bbb3f600', '6190615e-1101-7209-9932-7020bbd556f6'),
+('1979bd79-f81b-498b-b247-e7b9bbb3f601', '6190615e-1101-7209-9932-7020bbd556f4'),
+('1979bd79-f81b-498b-b247-e7b9bbb3f602', '6190615e-1101-7209-9932-7020bbd556f2');
+
+
+
+
 
