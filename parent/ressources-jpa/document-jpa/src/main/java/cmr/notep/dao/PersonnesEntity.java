@@ -3,6 +3,8 @@ package cmr.notep.dao;
 import lombok.Getter;
 import lombok.Setter;
 import org.dozer.Mapping;
+import org.hibernate.annotations.UpdateTimestamp;
+import org.hibernate.annotations.CreationTimestamp;
 import org.hibernate.annotations.GenericGenerator;
 import org.hibernate.annotations.UuidGenerator;
 import org.hibernate.annotations.CreationTimestamp;
@@ -46,7 +48,6 @@ public class PersonnesEntity
     @UpdateTimestamp
     private Date dateModification;
     @OneToMany(mappedBy = "personnesEntity",  fetch = FetchType.LAZY)
-    @Mapping("comptes")
     private List<ComptesEntity> comptesEntities;
 
     @ManyToMany(fetch = FetchType.LAZY)

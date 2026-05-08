@@ -3,6 +3,8 @@ package cmr.notep.dao;
 import lombok.Getter;
 import lombok.Setter;
 import org.dozer.Mapping;
+import org.hibernate.annotations.UpdateTimestamp;
+import org.hibernate.annotations.CreationTimestamp;
 
 import jakarta.persistence.*;
 import org.hibernate.annotations.CreationTimestamp;

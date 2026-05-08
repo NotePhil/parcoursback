@@ -17,7 +17,9 @@ public class ExemplaireAttributsEntity {
     private String valeur;
     @Column(name = "datecreation", updatable = false,nullable = false)
     private Date dateCreation;
-    @Column(name = "datemodification")
+    @Column(name = "datemodification", columnDefinition = "TIMESTAMP")
+    @Temporal(TemporalType.TIMESTAMP)
+    @UpdateTimestamp
     private Date dateModification;
     public ExemplaireAttributsEntity() {
     }
