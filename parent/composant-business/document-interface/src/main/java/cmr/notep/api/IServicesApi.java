@@ -1,5 +1,6 @@
 package cmr.notep.api;
 
+import cmr.notep.exceptions.ParcoursException;
 import cmr.notep.modele.Services;
 import org.springframework.http.MediaType;
 import org.springframework.lang.NonNull;
@@ -30,5 +31,5 @@ public interface IServicesApi {
             produces = MediaType.APPLICATION_JSON_VALUE,
             consumes = MediaType.APPLICATION_JSON_VALUE
     )
-    Services PosterServices(@NonNull @RequestBody Services service) ;
+    Services PosterServices(@NonNull @RequestBody Services service) throws ParcoursException;
 }

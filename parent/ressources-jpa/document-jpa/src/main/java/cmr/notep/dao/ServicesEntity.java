@@ -1,12 +1,11 @@
 package cmr.notep.dao;
 
+import jakarta.persistence.Table;
 import lombok.Getter;
 import lombok.Setter;
 import org.dozer.Mapping;
-import org.hibernate.annotations.UpdateTimestamp;
+import org.hibernate.annotations.*;
 import org.hibernate.annotations.CreationTimestamp;
-import org.hibernate.annotations.CreationTimestamp;
-import org.hibernate.annotations.GenericGenerator;
 
 import jakarta.persistence.*;
 import org.hibernate.annotations.UpdateTimestamp;
@@ -42,6 +41,7 @@ public class ServicesEntity {
     @UpdateTimestamp
     private Date dateModification;
     @Column(name = "codeunique", nullable = false , unique = true)
+    @ColumnTransformer(write = "UPPER(?)")
     private String codeUnique;
     @OneToMany(mappedBy = "servicesEntity", fetch = FetchType.LAZY)
     @Mapping("missions")
