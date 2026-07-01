@@ -16,7 +16,8 @@ public enum ParcoursExceptionCodeEnum {
     EMAIL_NOT_SENT("The activation email could not be sent."),
     INVALID_STATE("The user is not in a valid state for this operation."),
     MAPPING_FAILED("User entity mapping failed"),
-    TOKEN_EXPIRED("Token Expired");
+    TOKEN_EXPIRED("Token Expired"),
+    DUPLICATE_KEY("A record with this key already exists");
 
     private final String message;
 

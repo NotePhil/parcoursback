@@ -3,15 +3,19 @@ package cmr.notep.impl;
 
 import cmr.notep.api.IServicesApi;
 import cmr.notep.business.ServicesBusiness;
+import cmr.notep.exceptions.ParcoursException;
+import cmr.notep.exceptions.enumeration.ParcoursExceptionCodeEnum;
 import cmr.notep.modele.Services;
 import lombok.NonNull;
+import org.hibernate.exception.ConstraintViolationException;
+import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.web.bind.annotation.RestController;
 
 import jakarta.transaction.Transactional;
 import java.util.List;
 
 @RestController
-@Transactional
+//@Transactional
 public class ServicesService implements IServicesApi {
 
     private final ServicesBusiness servicesBusiness ;
@@ -36,7 +40,12 @@ public class ServicesService implements IServicesApi {
     }
 
     @Override
-    public Services PosterServices(Services service) {
-        return servicesBusiness.posterService(service);
+    public Services PosterServices(Services service) throws ParcoursException {
+      try {
+            return servicesBusiness.posterService(service);
+      }
+     catch (DataIntegrityViolationException e) {
+        throw new ParcoursException(ParcoursExceptionCodeEnum.DUPLICATE_KEY, "la valeur d'une clé dupliquée");
+      }
     }
 }
