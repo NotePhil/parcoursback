@@ -10,9 +10,9 @@ import java.util.List;
 @AllArgsConstructor
 @NoArgsConstructor
 @Builder
-@ToString(exclude = {"ticketsfilesattentes"})
-@EqualsAndHashCode(exclude = {"ticketsfilesattentes"})
-@JsonIgnoreProperties({"ticketsfilesattentes"})
+@ToString(exclude = {"ticketsFilesAttentes"})
+@EqualsAndHashCode(exclude = {"ticketsFilesAttentes"})
+@JsonIgnoreProperties({"ticketsFilesAttentes"})
 public class Tickets {
     private String id;
     private String idUnique;
