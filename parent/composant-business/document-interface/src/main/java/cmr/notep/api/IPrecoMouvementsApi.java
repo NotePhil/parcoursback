@@ -9,7 +9,7 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
-@RequestMapping("precomouvements")
+@RequestMapping("precoMouvements")
 public interface IPrecoMouvementsApi {
     @GetMapping(
             path = "/{idPrecoMouvements}",

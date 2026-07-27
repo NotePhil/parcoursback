@@ -3,6 +3,7 @@ package cmr.notep.api;
 import cmr.notep.exceptions.ParcoursException;
 import cmr.notep.modele.Categories;
 import org.springframework.http.MediaType;
+import org.springframework.http.ResponseEntity;
 import org.springframework.lang.NonNull;
 import org.springframework.web.bind.annotation.*;
 
@@ -30,6 +31,6 @@ public interface ICategoriesApi {
             produces = MediaType.APPLICATION_JSON_VALUE,
             consumes = MediaType.APPLICATION_JSON_VALUE
     )
-    Categories posterCategorie(@NonNull @RequestBody Categories categorie) throws ParcoursException;
+    ResponseEntity<Categories> posterCategorie(@NonNull @RequestBody Categories categorie) throws ParcoursException;
 
 }

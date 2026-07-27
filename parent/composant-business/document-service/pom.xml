@@ -99,33 +99,16 @@
                 <version>3.3.1</version>
                 <executions>
                     <execution>
+                        <id>repackage</id>
                         <goals>
                             <goal>repackage</goal>
                         </goals>
                         <configuration>
                             <classifier>parcours</classifier>
-                            <mainClass>
-                                cmr.notep.document.DocumentApplication
-                            </mainClass>
+                            <mainClass>cmr.notep.document.DocumentApplication</mainClass>
                         </configuration>
                     </execution>
                 </executions>
-            </plugin>
-            <plugin>
-                <groupId>org.apache.maven.plugins</groupId>
-                <artifactId>maven-jar-plugin</artifactId>
-               <executions>
-                   <execution>
-                       <id>deps-ittest</id>
-                       <phase>package</phase>
-                          <goals>
-                            <goal>jar</goal>
-                          </goals>
-                            <configuration>
-                                <classifier>ittest</classifier>
-                            </configuration>
-                   </execution>
-               </executions>
             </plugin>
         </plugins>
     </build>

@@ -5,22 +5,18 @@ import cmr.notep.config.ItTestConfig;
 import cmr.notep.modele.Attributs;
 import cmr.notep.modele.TypeAttribut;
 import cmr.notep.utile.JsonComparator;
-import com.fasterxml.jackson.databind.ObjectMapper;
 import lombok.SneakyThrows;
 import lombok.extern.slf4j.Slf4j;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Order;
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
-import org.springframework.test.context.ContextConfiguration;
-import org.springframework.transaction.annotation.Isolation;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.*;
 
-@SpringBootTest
-@ContextConfiguration(classes = {ItTestConfig.class})
-@Transactional(isolation = Isolation.READ_UNCOMMITTED)
+@SpringBootTest(classes = {ItTestConfig.class})
+@Transactional()
 @Slf4j
 public class AttributsCrudTest extends AbstractIttest {
 

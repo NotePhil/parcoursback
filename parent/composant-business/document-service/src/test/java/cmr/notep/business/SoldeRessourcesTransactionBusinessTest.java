@@ -50,6 +50,21 @@ public class SoldeRessourcesTransactionBusinessTest {
         ressource.setLibelle("Ressource Test");
         ressource.setQuantite(100);
         ressource.setEtat(true);
+
+        // Mock de mapping générique pour éviter les null lors des assertions
+        when(dozerMapperBean.map(any(MouvementSoldeRessourcesEntity.class), eq(MouvementSoldeRessource.class)))
+                .thenAnswer(invocation -> {
+                    MouvementSoldeRessourcesEntity src = invocation.getArgument(0);
+                    MouvementSoldeRessource dst = new MouvementSoldeRessource();
+                    dst.setId(src.getId());
+                    dst.setStatut(src.getStatut());
+                    dst.setValidee(src.getValidee());
+                    dst.setValideeBy(src.getValideeBy());
+                    dst.setQuantiteInitiale(src.getQuantiteInitiale());
+                    dst.setQuantiteMouvementee(src.getQuantiteMouvementee());
+                    dst.setQuantiteFinale(src.getQuantiteFinale());
+                    return dst;
+                });
     }
 
     @Test
@@ -85,7 +100,7 @@ public class SoldeRessourcesTransactionBusinessTest {
         assertNotNull(mouvement);
         assertEquals("mouvement-001", mouvement.getId());
         assertEquals("EN_ATTENTE", mouvement.getStatut());
-        assertEquals(false, mouvement.getValidee());
+        assertFalse(mouvement.getValidee());
     }
 
     @Test
@@ -187,7 +202,7 @@ public class SoldeRessourcesTransactionBusinessTest {
 
         // Assertions
         assertNotNull(resultat);
-        assertEquals(true, resultat.getValidee());
+        assertTrue(resultat.getValidee());
         assertEquals("VALIDEE", resultat.getStatut());
         assertEquals("manager@test.com", resultat.getValideeBy());
     }
@@ -196,15 +211,15 @@ public class SoldeRessourcesTransactionBusinessTest {
     @DisplayName("Ne pas pouvoir valider deux fois un mouvement")
     void testValiderDeuxFoisMouvement() {
         // Setup
-        MouvementSoldeRessourcesEntity mouvementDejuValide = new MouvementSoldeRessourcesEntity();
-        mouvementDejuValide.setId("mouvement-001");
-        mouvementDejuValide.setStatut("VALIDEE");
-        mouvementDejuValide.setValidee(true);
+        MouvementSoldeRessourcesEntity mouvementDejaValide = new MouvementSoldeRessourcesEntity();
+        mouvementDejaValide.setId("mouvement-001");
+        mouvementDejaValide.setStatut("VALIDEE");
+        mouvementDejaValide.setValidee(true);
 
         when(daoAccessorService.getRepository(MouvementSoldeRessourcesRepository.class))
                 .thenReturn(mouvementRepository);
         when(mouvementRepository.findById("mouvement-001"))
-                .thenReturn(Optional.of(mouvementDejuValide));
+                .thenReturn(Optional.of(mouvementDejaValide));
 
         // Execution & Assertion
         RuntimeException exception = assertThrows(RuntimeException.class, () -> {

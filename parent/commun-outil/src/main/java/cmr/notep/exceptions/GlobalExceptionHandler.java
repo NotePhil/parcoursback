@@ -34,6 +34,7 @@ public class GlobalExceptionHandler {
             case OPERATION_INTERDITE -> HttpStatus.FORBIDDEN;
             case INTERFACE_NON_RESPECTEE -> HttpStatus.BAD_REQUEST;
             case DUPLICATE_KEY -> HttpStatus.CONFLICT;
+            case RELATION_SYNC_FAILED -> HttpStatus.BAD_REQUEST;
             default -> HttpStatus.INTERNAL_SERVER_ERROR;
         };
     }

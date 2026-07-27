@@ -17,7 +17,9 @@ public enum ParcoursExceptionCodeEnum {
     INVALID_STATE("The user is not in a valid state for this operation."),
     MAPPING_FAILED("User entity mapping failed"),
     TOKEN_EXPIRED("Token Expired"),
-    DUPLICATE_KEY("A record with this key already exists");
+    DUPLICATE_KEY("A record with this key already exists"),
+    OPERATION_CATEGORIE_EMPTY_DELETE("Suppression de la catégorie reçue sans attributs associés"),
+    RELATION_SYNC_FAILED("Failed to synchronize relationship: check foreign key constraints and data integrity");
 
     private final String message;
 

@@ -1,0 +1,723 @@
+{
+    "id": "3",
+    "passWord": "oijfsdv2fdg3f5",
+    "login": "dombogilles@gmail.com",
+    "user": {
+        "id": "3",
+        "nom": "Dombo",
+        "prenom": "Gilles",
+        "telephone": "655455487",
+        "mail": "dombogilles@gmail.com",
+        "sexe": "M",
+        "dateNaissance": "2002-10-09T22:00:00.000Z",
+        "dateEntree": "2026-05-31T14:54:06.498Z",
+        "type": "personnel",
+        "roles": [
+            {
+                "role": {
+                    "id": "3",
+                    "titre": "marcheur",
+                    "description": "commercial sur le terrain",
+                    "etat": true,
+                    "dateCreation": "2000-07-02T22:00:00.000Z"
+                },
+                "status": true,
+                "dateDebut": "2026-05-31T14:54:06.498Z",
+                "dateFin": "2026-05-31T14:54:06.498Z"
+            }
+        ],
+        "qrCodeValue": "hello"
+    },
+    "groupe": {
+        "id": "1",
+        "libelle": "admin",
+        "etat": "ras",
+        "menu": {
+                "langue": "fr",
+                "fonctionnalites": [
+                    {
+                        "fonction": "Personne",
+                        "icone": "fas fa-user-cog",
+                        "actif": "menu-close",
+                        "elements": [
+                            {
+                                "nom": "Créer",
+                                "lien": "./patients/patient-nouveau",
+                                "bouton": "false",
+                                "action": [
+                                    {
+                                        "nom": "Creer",
+                                        "lien": "",
+                                        "bouton": "true",
+                                        "type": "global"
+                                    }
+                                ]
+                            },
+                            {
+                                "nom": "Rechercher",
+                                "lien": "./patients/list-patients",
+                                "bouton": "false",
+                                "action": [
+                                    {
+                                        "nom": "Detail",
+                                        "lien": "../detail-patients",
+                                        "bouton": "false"
+                                    },
+                                    {
+                                        "nom": "Orientation",
+                                        "lien": "",
+                                        "bouton": "true",
+                                        "type": "global"
+                                    },
+                                    {
+                                        "nom": "Modifier",
+                                        "lien": "../patient-nouveau",
+                                        "bouton": "false"
+                                    }
+                                ]
+                            }
+                        ]
+                    },
+                    {
+                        "fonction": "Personnel",
+                        "icone": "fas fa-user-cog",
+                        "actif": "",
+                        "elements": [
+                            {
+                                "nom": "Créer",
+                                "lien": "./personnels/nouveau-personnel",
+                                "bouton": "false",
+                                "action": [
+                                    {
+                                        "nom": "Creer",
+                                        "lien": "",
+                                        "bouton": "true",
+                                        "type": "global"
+                                    }
+                                ]
+                            },
+                            {
+                                "nom": "Rechercher",
+                                "lien": "./personnels/list-personnels",
+                                "bouton": "false",
+                                "action": [
+                                    {
+                                        "nom": "Modifier",
+                                        "lien": "../nouveau-personnel",
+                                        "bouton": "false"
+                                    },
+                                    {
+                                        "nom": "Roles",
+                                        "lien": "../affecte-role-personnel",
+                                        "bouton": "false"
+                                    },
+                                    {
+                                        "nom": "Groupe",
+                                        "lien": "",
+                                        "bouton": "true",
+                                        "type": "global"
+                                    },
+                                    {
+                                        "nom": "Detail",
+                                        "lien": "../detail-personnels",
+                                        "bouton": "false"
+                                    },
+                                    {
+                                        "nom": "Creer",
+                                        "lien": "",
+                                        "bouton": "true",
+                                        "type": "global"
+                                    }
+                                ]
+                            }
+                        ]
+                    },
+                    {
+                        "fonction": "Service",
+                        "icone": "fas fa-user-cog",
+                        "actif": "",
+                        "elements": [
+                            {
+                                "nom": "Créer",
+                                "lien": "./services/service-nouveau",
+                                "bouton": "false",
+                                "action": [
+                                    {
+                                        "nom": "Créer",
+                                        "lien": "",
+                                        "bouton": "true",
+                                        "type": "global"
+                                    }
+                                ]
+                            },
+                            {
+                                "nom": "Rechercher",
+                                "lien": "./services/list-services",
+                                "bouton": "false",
+                                "action": [
+                                    {
+                                        "nom": "Modifier",
+                                        "lien": "../service-nouveau",
+                                        "bouton": "false"
+                                    },
+                                    {
+                                        "nom": "Créer",
+                                        "lien": "",
+                                        "bouton": "true",
+                                        "type": "global"
+                                    }
+                                ]
+                            }
+                        ]
+                    },
+                    {
+                        "fonction": "Validation",
+                        "icone": "fas fa-user-cog",
+                        "actif": "",
+                        "elements": [
+                            {
+                                "nom": "Créer",
+                                "lien": "./validations/nouvelle-validation",
+                                "bouton": "false",
+                                "action": [
+                                    {
+                                        "nom": "Créer",
+                                        "lien": "",
+                                        "bouton": "true",
+                                        "type": "global"
+                                    }
+                                ]
+                            },
+                            {
+                                "nom": "Rechercher",
+                                "lien": "./validations/list-validations",
+                                "bouton": "false",
+                                "action": [
+                                    {
+                                        "nom": "Modifier",
+                                        "lien": "../nouvelle-validation",
+                                        "bouton": "false"
+                                    },
+                                    {
+                                        "nom": "Créer",
+                                        "lien": "",
+                                        "bouton": "true",
+                                        "type": "global"
+                                    }
+                                ]
+                            }
+                        ]
+                    },
+                    {
+                        "fonction": "Ticket",
+                        "icone": "fas fa-chart-pie",
+                        "actif": "",
+                        "elements": [
+                            {
+                                "nom": "Rechercher",
+                                "lien": "./tickets/list-tickets",
+                                "bouton": "false",
+                                "action": [
+                                    {
+                                        "nom": "Imprimer",
+                                        "lien": "",
+                                        "bouton": "true"
+                                    }
+                                ]
+                            },
+                            {
+                                "nom": "Afficher le panneau",
+                                "lien": "tickets/panneau-tickets",
+                                "bouton": "false"
+                            }
+                        ]
+                    },
+                    {
+                        "fonction": "Attribut",
+                        "icone": "fas fa-user-cog",
+                        "actif": "",
+                        "elements": [
+                            {
+                                "nom": "Créer",
+                                "lien": "./attributs/attribut-nouveau",
+                                "bouton": "false",
+                                "action": [
+                                    {
+                                        "nom": "Creer",
+                                        "lien": "",
+                                        "bouton": "true",
+                                        "type": "global"
+                                    }
+                                ]
+                            },
+                            {
+                                "nom": "Rechercher",
+                                "lien": "./attributs/list-attributs",
+                                "bouton": "false",
+                                "action": [
+                                    {
+                                        "nom": "Modifier",
+                                        "lien": "../attribut-nouveau",
+                                        "bouton": "false"
+                                    }
+                                ]
+                            }
+                        ]
+                    },
+                    {
+                        "fonction": "Caisse",
+                        "icone": "fas fa-user-cog",
+                        "actif": "",
+                        "elements": [
+                            {
+                                "nom": "Créer",
+                                "lien": "./caisses/caisse-nouveau",
+                                "bouton": "false",
+                                "action": [
+                                    {
+                                        "nom": "Créer",
+                                        "lien": "",
+                                        "bouton": "true",
+                                        "type": "global"
+                                    }
+                                ]
+                            },
+                            {
+                                "nom": "Rechercher",
+                                "lien": "./caisses/list-caisses",
+                                "bouton": "false",
+                                "action": [
+                                    {
+                                        "nom": "Modifier",
+                                        "lien": "../caisse-nouveau",
+                                        "bouton": "false"
+                                    },
+                                    {
+                                        "nom": "Ecart",
+                                        "lien": "../caisse-ecart",
+                                        "bouton": "false"
+                                    }
+                                ]
+                            }
+                        ]
+                    },
+                    {
+                        "fonction": "Compte",
+                        "icone": "fas fa-user-cog",
+                        "actif": "",
+                        "elements": [
+                            {
+                                "nom": "Créer",
+                                "lien": "./comptes/compte-nouveau",
+                                "bouton": "false",
+                                "action": [
+                                    {
+                                        "nom": "Créer",
+                                        "lien": "",
+                                        "bouton": "true",
+                                        "type": "global"
+                                    }
+                                ]
+                            },
+                            {
+                                "nom": "Rechercher",
+                                "lien": "./comptes/list-comptes",
+                                "bouton": "false",
+                                "action": [
+                                    {
+                                        "nom": "Modifier",
+                                        "lien": "../compte-nouveau",
+                                        "bouton": "false"
+                                    }
+                                ]
+                            }
+                        ]
+                    },
+                    {
+                        "fonction": "Mission",
+                        "icone": "fas fa-user-cog",
+                        "actif": "",
+                        "elements": [
+                            {
+                                "nom": "Créer",
+                                "lien": "./missions/mission-nouveau",
+                                "bouton": "false",
+                                "action": [
+                                    {
+                                        "nom": "Creer",
+                                        "lien": "",
+                                        "bouton": "true",
+                                        "type": "global"
+                                    }
+                                ]
+                            },
+                            {
+                                "nom": "Rechercher",
+                                "lien": "./missions/list-missions",
+                                "bouton": "false",
+                                "action": [
+                                    {
+                                        "nom": "Modifier",
+                                        "lien": "../mission-nouveau",
+                                        "bouton": "true"
+                                    }
+                                ]
+                            },
+                            {
+                                "nom": "Execute",
+                                "lien": "./missions/executer-missions",
+                                "bouton": "false",
+                                "action": [
+                                    {
+                                        "nom": "Detail",
+                                        "lien": "../view-exemplaire",
+                                        "bouton": "true"
+                                    },
+                                    {
+                                        "nom": "Modifier",
+                                        "lien": "../exemplaire-nouveau/modify",
+                                        "bouton": "true"
+                                    },
+                                    {
+                                        "nom": "Previsualiser",
+                                        "lien": "../previsualisation-exemplaire",
+                                        "bouton": "true"
+                                    }
+                                ]
+                            },
+                            {
+                                "nom": "liste des exemplaires",
+                                "lien": "./missions/list-exemplaire",
+                                "bouton": "false",
+                                "action": [
+                                    {
+                                        "nom": "Detail",
+                                        "lien": "../view-exemplaire",
+                                        "bouton": "true"
+                                    },
+                                    {
+                                        "nom": "Modifier",
+                                        "lien": "../exemplaire-nouveau/modify",
+                                        "bouton": "true"
+                                    },
+                                    {
+                                        "nom": "Previsualiser",
+                                        "lien": "../previsualisation-exemplaire",
+                                        "bouton": "true"
+                                    }
+                                ]
+                            },
+                            {
+                                "nom": "Historique des documents",
+                                "lien": "./missions/page-intermedaire",
+                                "bouton": "false"
+                            }
+                        ]
+                    },
+                    {
+                        "fonction": "Documents",
+                        "icone": "fas fa-user-cog",
+                        "actif": "",
+                        "elements": [
+                            {
+                                "nom": "Créer model documents",
+                                "lien": "./documents/document-nouveau",
+                                "bouton": "false",
+                                "action": [
+                                    {
+                                        "nom": "Creer",
+                                        "lien": "",
+                                        "bouton": "true",
+                                        "type": "global"
+                                    }
+                                ]
+                            },
+                            {
+                                "nom": "Rechercher",
+                                "lien": "./documents/list-documents",
+                                "bouton": "false",
+                                "action": [
+                                    {
+                                        "nom": "Modifier",
+                                        "lien": "../document-nouveau",
+                                        "bouton": "false"
+                                    },
+                                    {
+                                        "nom": "Vue",
+                                        "lien": "../view-document",
+                                        "bouton": "false"
+                                    }
+                                ]
+                            }
+                        ]
+                    },
+                    {
+                        "fonction": "Famille",
+                        "icone": "fas fa-user-cog",
+                        "actif": "",
+                        "elements": [
+                            {
+                                "nom": "Créer",
+                                "lien": "familles/famille-nouvelle",
+                                "bouton": "false",
+                                "action": [
+                                    {
+                                        "nom": "Creer",
+                                        "lien": "",
+                                        "bouton": "true",
+                                        "type": "global"
+                                    }
+                                ]
+                            },
+                            {
+                                "nom": "Rechercher",
+                                "lien": "./familles/list-familles",
+                                "bouton": "false",
+                                "action": [
+                                    {
+                                        "nom": "Modifier",
+                                        "lien": "../famille-nouvelle",
+                                        "bouton": "false"
+                                    }
+                                ]
+                            }
+                        ]
+                    },
+                    {
+                        "fonction": "Role",
+                        "icone": "fas fa-user-cog",
+                        "actif": "",
+                        "elements": [
+                            {
+                                "nom": "Créer",
+                                "lien": "roles/role-nouveau",
+                                "bouton": "false",
+                                "action": [
+                                    {
+                                        "nom": "Creer",
+                                        "lien": "",
+                                        "bouton": "true",
+                                        "type": "global"
+                                    }
+                                ]
+                            },
+                            {
+                                "nom": "Rechercher",
+                                "lien": "./roles/list-roles",
+                                "bouton": "false",
+                                "action": [
+                                    {
+                                        "nom": "Modifier",
+                                        "lien": "../role-nouveau",
+                                        "bouton": "false"
+                                    },
+                                    {
+                                        "nom": "Affecter Mission",
+                                        "lien": "../affecte-mission-role",
+                                        "bouton": "false"
+                                    }
+                                ]
+                            }
+                        ]
+                    },
+                    {
+                        "fonction": "Ressource",
+                        "icone": "fas fa-user-cog",
+                        "actif": "",
+                        "elements": [
+                            {
+                                "nom": "Créer",
+                                "lien": "ressources/ressource-nouvelle",
+                                "bouton": "false",
+                                "action": [
+                                    {
+                                        "nom": "Creer",
+                                        "lien": "",
+                                        "bouton": "true",
+                                        "type": "global"
+                                    }
+                                ]
+                            },
+                            {
+                                "nom": "Rechercher",
+                                "lien": "./ressources/list-ressources",
+                                "bouton": "false",
+                                "action": [
+                                    {
+                                        "nom": "Modifier",
+                                        "lien": "../ressource-nouvelle",
+                                        "bouton": "false"
+                                    }
+                                ]
+                            }
+                        ]
+                    },
+                    {
+                        "fonction": "Promo",
+                        "icone": "fas fa-user-cog",
+                        "actif": "",
+                        "elements": [
+                            {
+                                "nom": "Créer",
+                                "lien": "./promo/promo-nouveau",
+                                "bouton": "false",
+                                "action": [
+                                    {
+                                        "nom": "Creer",
+                                        "lien": "",
+                                        "bouton": "true",
+                                        "type": "global"
+                                    }
+                                ]
+                            },
+                            {
+                                "nom": "Rechercher",
+                                "lien": "./promo/list-promo",
+                                "bouton": "false",
+                                "action": [
+                                    {
+                                        "nom": "Modifier",
+                                        "lien": "../promo-nouveau",
+                                        "bouton": "false"
+                                    }
+                                ]
+                            }
+                        ]
+                    },
+                    {
+                        "fonction": "Préconisations",
+                        "icone": "fas fa-user-cog",
+                        "actif": "",
+                        "elements": [
+                            {
+                                "nom": "Créer",
+                                "lien": "precoMouvements/precomvt-nouvelle",
+                                "bouton": "false",
+                                "action": [
+                                    {
+                                        "nom": "Creer",
+                                        "lien": "",
+                                        "bouton": "true",
+                                        "type": "global"
+                                    }
+                                ]
+                            },
+                            {
+                                "nom": "Rechercher",
+                                "lien": "./precoMouvements/list-precomvts",
+                                "bouton": "false",
+                                "action": [
+                                    {
+                                        "nom": "Modifier",
+                                        "lien": "../precomvt-nouvelle",
+                                        "bouton": "false"
+                                    },
+                                    {
+                                        "nom": "patient.table.actions.link3",
+                                        "lien": "",
+                                        "bouton": "true"
+                                    }
+                                ]
+                            }
+                        ]
+                    },
+                    {
+                        "fonction": "Distributeur",
+                        "icone": "fas fa-user-cog",
+                        "actif": "",
+                        "elements": [
+                            {
+                                "nom": "Créer",
+                                "lien": "distributeurs/distributeur-nouveau",
+                                "bouton": "false",
+                                "action": [
+                                    {
+                                        "nom": "Creer",
+                                        "lien": "",
+                                        "bouton": "true",
+                                        "type": "global"
+                                    }
+                                ]
+                            },
+                            {
+                                "nom": "Rechercher",
+                                "lien": "./distributeurs/list-distributeurs",
+                                "bouton": "false",
+                                "action": [
+                                    {
+                                        "nom": "Modifier",
+                                        "lien": "../distributeur-nouveau",
+                                        "bouton": "false"
+                                    }
+                                ]
+                            }
+                        ]
+                    },
+                    {
+                        "fonction": "Parcours",
+                        "icone": "fas fa-user-cog",
+                        "actif": "",
+                        "elements": [
+                            {
+                                "nom": "Créer",
+                                "lien": "parcours/nouveau-parcours",
+                                "bouton": "false",
+                                "action": [
+                                    {
+                                        "nom": "Creer",
+                                        "lien": "",
+                                        "bouton": "true",
+                                        "type": "global"
+                                    }
+                                ]
+                            },
+                            {
+                                "nom": "Rechercher",
+                                "lien": "./parcours/list-parcours",
+                                "bouton": "false",
+                                "action": [
+                                    {
+                                        "nom": "Modifier",
+                                        "lien": "../nouveau-parcours",
+                                        "bouton": "false"
+                                    }
+                                ]
+                            }
+                        ]
+                    },
+                    {
+                        "fonction": "Etats",
+                        "icone": "fas fa-user-cog",
+                        "actif": "",
+                        "elements": [
+                            {
+                                "nom": "Créer",
+                                "lien": "etats/etat-nouveau",
+                                "bouton": "false",
+                                "action": [
+                                    {
+                                        "nom": "Creer",
+                                        "lien": "",
+                                        "bouton": "true",
+                                        "type": "global"
+                                    }
+                                ]
+                            },
+                            {
+                                "nom": "rechercher",
+                                "lien": "./etats/list-etats",
+                                "bouton": "false",
+                                "action": [
+                                    {
+                                        "nom": "Modifier",
+                                        "lien": "../etat-nouveau",
+                                        "bouton": "false"
+                                    }
+                                ]
+                            }
+                        ]
+                    }
+                ]
+            }
+    }
+}

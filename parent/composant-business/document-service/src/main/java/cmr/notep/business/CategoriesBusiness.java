@@ -2,16 +2,18 @@ package cmr.notep.business;
 
 import cmr.notep.dao.*;
 import cmr.notep.exceptions.ParcoursException;
+import cmr.notep.exceptions.enumeration.ParcoursExceptionCodeEnum;
+import cmr.notep.modele.Associer;
 import cmr.notep.modele.Categories;
 import cmr.notep.repository.AssocierRepository;
 import cmr.notep.repository.CategoriesRepository;
-import cmr.notep.repository.DocumentsRepository;
+import cmr.notep.util.BeanCopyUtils;
 import lombok.extern.slf4j.Slf4j;
-import org.apache.commons.lang3.StringUtils;
 import org.dozer.DozerBeanMapper;
 import org.springframework.stereotype.Component;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 import java.util.stream.Collectors;
@@ -42,58 +44,130 @@ public class CategoriesBusiness {
                 .collect(Collectors.toList());
     }
 
-    public void supprimerCategory(Categories categories)
+    public void supprimerCategory(Categories categories) throws ParcoursException
     {
-        daoAccessorService.getRepository(CategoriesRepository.class)
-                .deleteById(categories.getId().toString());
+        CategoriesRepository categorieRepo = daoAccessorService.getRepository(CategoriesRepository.class);
+
+        // Récupérer la catégorie avec ses associations
+        CategoriesEntity categorieEntity = categorieRepo.findById(categories.getId())
+                .orElseThrow(() -> new RuntimeException("Catégorie non trouvée : " + categories.getId()));
+
+        supprimerCategoryEntity(categorieEntity, categorieRepo);
     }
 
-    public Categories posterCategorie(Categories categorie) throws ParcoursException {
-        CategoriesEntity categorieEntity = dozerMapperBean.map(categorie, CategoriesEntity.class);
-        if(categorieEntity.getId() == null)
-           enregistrerNouvelleCategorie(categorieEntity);
+    private void supprimerCategoryEntity(CategoriesEntity categorieEntity, CategoriesRepository categorieRepo) {
+        // Supprimer toutes les associations avec les attributs
+        try {
+            if (categorieEntity.getAttributsEntities() != null && !categorieEntity.getAttributsEntities().isEmpty()) {
+                AssocierRepository associerRepo = daoAccessorService.getRepository(AssocierRepository.class);
+                for (AssocierEntity existing : new ArrayList<>(categorieEntity.getAttributsEntities())) {
+                    associerRepo.delete(existing);
+                }
+                categorieEntity.getAttributsEntities().clear();
+            }
+        } catch (Exception e) {
+            throw new ParcoursException(ParcoursExceptionCodeEnum.RELATION_SYNC_FAILED,
+                    "Impossible de supprimer les associations de la catégorie: " + e.getMessage(), e);
+        }
 
-        List<AssocierEntity> associerEntities = categorieEntity.getAttributsEntities()
-                .stream()
-                .map(attributEntity ->{
-                    if(attributEntity.getId() == null)
-                        if(attributEntity.getAttribut() != null && StringUtils.isNotBlank(attributEntity.getAttribut().getId().toString())
-                            && attributEntity.getCategorie() != null && StringUtils.isNotBlank(attributEntity.getCategorie().getId()))
-                        {
-                            AssocierEntityID associerId = AssocierEntityID.builder()
-                                    .categoriesId(attributEntity.getCategorie().getId())
-                                    .attributsId(attributEntity.getAttribut().getId().toString())
-                                    .build();
-                            attributEntity.setId(associerId);
-                        }
-                    return  this.daoAccessorService.getRepository(AssocierRepository.class)
-                        .save(attributEntity);
-                }).collect(Collectors.toList());
-        categorieEntity.getAttributsEntities().clear();
-        categorieEntity.getAttributsEntities().addAll(associerEntities);
-        return dozerMapperBean.map( this.daoAccessorService.getRepository(CategoriesRepository.class)
-                .save(categorieEntity), Categories.class);
+        // Supprimer la catégorie
+        categorieRepo.deleteById(categorieEntity.getId());
     }
 
-    private void enregistrerNouvelleCategorie(CategoriesEntity categorieEntity) throws ParcoursException {
-        log.debug("Enregistrement d'une nouvelle categorie :" + categorieEntity);
-        CategoriesEntity newCategorie = new CategoriesEntity();
-        //copie manuelle des attributs de categorieEntity dans newCategorie
-        //TODO: Utiliser Jackson ou implémenter deepCopy à la place de la copie manuelle
-        newCategorie.setLibelle(categorieEntity.getLibelle());
-        newCategorie.setOrdre(categorieEntity.getOrdre());
-        newCategorie.setDateCreation(categorieEntity.getDateCreation());
-        newCategorie.setDateModification(categorieEntity.getDateModification());
-        Optional<DocumentsEntity> managedDocument = daoAccessorService.getRepository(DocumentsRepository.class).findById(categorieEntity.getDocumentsEntity().getId());
-        if(managedDocument.isPresent())
-            newCategorie.setDocumentsEntity(managedDocument.get());
-       // List<AssocierEntity> associerEntities = categorieEntity.getAttributsEntities();
+    public Optional<Categories> posterCategorie(Categories categorie) throws ParcoursException {
+        CategoriesRepository categorieRepo = daoAccessorService.getRepository(CategoriesRepository.class);
+        CategoriesEntity categorieEntity;
 
-       // categorieEntity.getAttributsEntities().clear();
-         newCategorie = daoAccessorService.getRepository(CategoriesRepository.class)
-                .save(newCategorie);
+        if (categorie.getId() != null) {
+            categorieEntity = categorieRepo.findById(categorie.getId())
+                    .orElseThrow(() -> new ParcoursException(ParcoursExceptionCodeEnum.NOT_FOUND,"Catégorie non trouvée : " + categorie.getId()));
+            // au lieu de dozerMapperBean.map(categorie, categorieEntity) nous copions uniquement les propriétés scalaires
+            BeanCopyUtils.copyPropertiesExcludingCollections(categorie, categorieEntity);
+            if (categorie.getAttributs() == null || categorie.getAttributs().isEmpty()) {
+                // Liste vide sur une catégorie existante → suppression + 204 No Content
+                supprimerCategoryEntity(categorieEntity, categorieRepo);
+                return Optional.empty();
+            }
+        } else {
+            if(categorie.getAttributs() == null || categorie.getAttributs().isEmpty())
+                throw new ParcoursException(ParcoursExceptionCodeEnum.OPERATION_INTERDITE,
+                        "Une catégorie doit avoir au moins un attribut associé.");
+            CategoriesEntity newCategorieEntity = dozerMapperBean.map(categorie, CategoriesEntity.class);
+            newCategorieEntity.getAttributsEntities().clear();
+            newCategorieEntity = categorieRepo.save(newCategorieEntity);
+            categorieEntity = dozerMapperBean.map(categorie, CategoriesEntity.class);
+            categorieEntity.setId(newCategorieEntity.getId());
+        }
 
-        categorieEntity.setId(newCategorie.getId());
-        log.info("Categorie créée avec succès: {}", categorieEntity.getId());
+        gererAttributsCategorie(categorie, categorieEntity);
+
+        categorieEntity = categorieRepo.save(categorieEntity);
+        return Optional.of(dozerMapperBean.map(categorieEntity, Categories.class));
+    }
+
+    private void gererCategorieVide(CategoriesEntity categorieEntity) {
+        AssocierRepository associerRepo = daoAccessorService.getRepository(AssocierRepository.class);
+        try {
+            if(categorieEntity.getAttributsEntities() != null && !categorieEntity.getAttributsEntities().isEmpty()){
+                for (AssocierEntity existing : new ArrayList<>(categorieEntity.getAttributsEntities())){
+                    associerRepo.delete(existing);
+                }
+                categorieEntity.getAttributsEntities().clear();
+                daoAccessorService.getRepository(CategoriesRepository.class).save(categorieEntity);
+            }
+        }catch (Exception e){
+            log.warn("Impossible de vider les attributs de la catégorie: {}", e.getMessage());
+        }
+    }
+
+    private void gererAttributsCategorie(Categories categorie, CategoriesEntity categorieEntity) throws ParcoursException {
+        // Synchroniser les attributs
+        AssocierRepository associerRepo = daoAccessorService.getRepository(AssocierRepository.class);
+        List<AssocierEntity> existingAssocier = categorieEntity.getAttributsEntities() != null
+                ? new ArrayList<>(categorieEntity.getAttributsEntities())
+                : new ArrayList<>();
+
+        // Supprimer ceux non présents dans la nouvelle liste
+        for (AssocierEntity existing : new ArrayList<>(existingAssocier)) {
+            boolean found = categorie.getAttributs().stream()
+                    .anyMatch(attr -> attr.getId() != null &&
+                              attr.getId().getAttributsId().equalsIgnoreCase(existing.getId().getAttributsId()));
+            if (!found) {
+                try {
+                    associerRepo.delete(existing);
+                    categorieEntity.getAttributsEntities().remove(existing);
+                } catch (Exception e) {
+                    throw new ParcoursException(ParcoursExceptionCodeEnum.RELATION_SYNC_FAILED,
+                            "Impossible de supprimer l'attribut associé: " + e.getMessage(), e);
+                }
+            }
+        }
+
+        if (categorieEntity.getAttributsEntities() == null) {
+            categorieEntity.setAttributsEntities(new ArrayList<>());
+        }
+
+        // Ajouter ou mettre à jour les attributs
+        for (Associer attr : categorie.getAttributs()) {
+
+            try {
+                AssocierEntity assocEntity = new AssocierEntity();
+                dozerMapperBean.map(attr, assocEntity);
+                assocEntity.setCategorie(categorieEntity);
+                if (assocEntity.getId() == null) {
+                    assocEntity.setId(AssocierEntityID.builder()
+                            .categoriesId(categorieEntity.getId())
+                            .attributsId(attr.getAttribut().getId())
+                            .build());
+                }
+                AssocierEntity savedAssoc = associerRepo.save(assocEntity);
+                if (!categorieEntity.getAttributsEntities().contains(savedAssoc)) {
+                    categorieEntity.getAttributsEntities().add(savedAssoc);
+                }
+            } catch (Exception e) {
+                throw new ParcoursException(ParcoursExceptionCodeEnum.RELATION_SYNC_FAILED,
+                        "Impossible d'ajouter/modifier l'attribut associé: " + e.getMessage(), e);
+            }
+        }
     }
 }

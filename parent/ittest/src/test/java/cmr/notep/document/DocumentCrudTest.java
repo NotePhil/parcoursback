@@ -21,9 +21,8 @@ import java.util.List;
 import java.util.Set;
 import java.util.concurrent.CompletableFuture;
 
-@SpringBootTest
-@ContextConfiguration(classes = {ItTestConfig.class})
-@Transactional(isolation = Isolation.READ_UNCOMMITTED)
+@SpringBootTest(classes = {ItTestConfig.class})
+@Transactional()
 @Slf4j
 public class DocumentCrudTest extends AbstractIttest {
 
@@ -54,7 +53,7 @@ public class DocumentCrudTest extends AbstractIttest {
  @Order(2)
  public void testPosterDocument(){
    Documents document = new Documents();
-   document.setIdDocument("identifiantTest");
+   //document.setIdDocument("identifiantTest");
    document.setTitre("TitreTest");
    document.setDescription("DescriptionTest");
    document.setEtat(true);
@@ -68,6 +67,7 @@ public class DocumentCrudTest extends AbstractIttest {
    Set<String> fieldsToExclude = new HashSet<>();
    fieldsToExclude.add("id");
    fieldsToExclude.add("dateModification");
+   fieldsToExclude.add("dateCreation");
    fieldsToExclude.add("idDocument");
    Assertions.assertTrue(JsonComparator.CompareResultWithJson(
            pathJson
@@ -82,18 +82,15 @@ public class DocumentCrudTest extends AbstractIttest {
     public void testUpdaterDocument(){
         //verification de la conservation des attributs et categories
         Documents document = documentService.avoirDocument("0190615e-1101-7209-9932-7020bbd556f1");
-        Documents newDocument = Documents.builder().build();
-        DozerBeanMapper mapper = new DozerBeanMapper();
-        mapper.map(document,newDocument);
-        newDocument.setTitre("Notes d'interventions");
-        newDocument.setAfficherDistributeur(false);
-       // Documents document1 = documentService.posterDocument(newDocument);
+
+        document.setTitre("Notes d'interventions");
+        document.setAfficherDistributeur(false);
+        Documents document1 = documentService.posterDocument(document);
         //verification de la mise à jour des attributs et categories
         Documents document2 = documentService.avoirDocument("0190615e-1101-7209-9932-7020bbd556f2");
-        Documents newDocument2 = Documents.builder().build();
-        mapper.map(document2,newDocument2);
+
         //suppression de la categorie Conditions Particulières
-        newDocument2.getCategories().remove(1);
+        document2.getCategories().remove(1);
         Categories categorie = Categories.builder().libelle("CategorieTest ajouté").ordre("1000").build();
 
         //ajout de la categorie CategorieTest ajouté et des attributs
@@ -104,17 +101,17 @@ public class DocumentCrudTest extends AbstractIttest {
 
         categorie.setAttributs(List.of(associer,associer1));
         //categorie = categorieService.posterCategorie(categorie);
-        newDocument2.getCategories().add(categorie);
+        document2.getCategories().add(categorie);
         //suppression de l'attribut dans la catégorie
-        Attributs attribut3 = newDocument2.getCategories().getFirst().getAttributs().get(1).getAttribut();
-        newDocument2.getCategories().getFirst().getAttributs().remove(1);
+        Attributs attribut3 = document2.getCategories().getFirst().getAttributs().get(1).getAttribut();
+        document2.getCategories().getFirst().getAttributs().remove(1);
         Attributs attribut2 = attributService.avoirAttribut("a8eebc99-9c0b-4ef8-bb6d-6bb9bd380a18");
-        Associer associer2 = Associer.builder().attribut(attribut2).categorie(newDocument2.getCategories().get(0)).ordre(100).build();
-        newDocument2.getCategories().getFirst().getAttributs().add(associer2);
+        Associer associer2 = Associer.builder().attribut(attribut2).categorie(document2.getCategories().get(0)).ordre(100).build();
+        document2.getCategories().getFirst().getAttributs().add(associer2);
         //suppression de l'attribut dans constituer
-        newDocument2.getAttributs().remove(attribut3);
-        newDocument2.getAttributs().add(attribut2);
-        Documents document3 = documentService.posterDocument(newDocument2);
+        document2.getAttributs().remove(attribut3);
+        document2.getAttributs().add(attribut2);
+        Documents document3 = documentService.posterDocument(document2);
 
         documentsList = documentService.avoirTousDocuments();
         //documentsList.sort(Comparator.comparing(Documents::getIdDocument));
@@ -164,7 +161,7 @@ public class DocumentCrudTest extends AbstractIttest {
             //Attributs attribut3 = Attributs.builder().id("34567test2").etat(true).titre("SEXES2").description("SEXE2").type(Types.String).build();
             //document2.getAttributs().addAll(List.of(attribut2,attribut3));
             try {
-                Thread.sleep(200);
+                Thread.sleep(100);
             } catch (InterruptedException e) {
                 throw new RuntimeException(e);
             }
@@ -174,7 +171,7 @@ public class DocumentCrudTest extends AbstractIttest {
             Documents document2 = documentsList.get(0);
             document2.setTitre("TitreTest3");
             try {
-                Thread.sleep(100);
+                Thread.sleep(50);
             } catch (InterruptedException e) {
                 throw new RuntimeException(e);
             }

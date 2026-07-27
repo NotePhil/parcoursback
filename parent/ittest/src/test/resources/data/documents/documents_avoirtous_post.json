@@ -11,6 +11,7 @@
   "afficherDistributeur" : true,
   "prixEditable" : true,
   "contientRessources" : true,
+  "estencaissable" : false,
   "missions" : [ ],
   "precoMouvements" : [ {
     "id" : null,
@@ -25,6 +26,8 @@
       "qteMax" : 50,
       "montantMin" : 200.0,
       "montantMax" : 2000.0,
+      "dateCreation" : 1640991600000,
+      "dateModification" : null,
       "familles" : [ {
         "id" : null,
         "libelle" : "Medicaments",
@@ -55,13 +58,16 @@
     "etat" : true,
     "dateCreation" : 1640991600000,
     "dateModification" : null,
-    "type" : "Text",
+    "type_attribut" : "Text",
     "valeurParDefaut" : null
   } ],
   "categories" : [ {
     "id" : null,
     "ordre" : "0",
     "libelle" : "Conditions Générales",
+    "etat" : null,
+    "dateCreation" : 1640991600000,
+    "dateModification" : null,
     "attributs" : [ {
       "id" : null,
       "attribut" : {
@@ -71,14 +77,13 @@
         "etat" : true,
         "dateCreation" : 1640991600000,
         "dateModification" : null,
-        "type" : "Text",
+        "type_attribut" : "Text",
         "valeurParDefaut" : null
       },
       "obligatoire" : true,
       "ordre" : 1
     } ]
   } ],
-  "docEtats" : [ ],
   "promotions" : [ ]
 }, {
   "idDocument" : null,
@@ -93,6 +98,7 @@
   "afficherDistributeur" : true,
   "prixEditable" : true,
   "contientRessources" : true,
+  "estencaissable" : false,
   "missions" : [ ],
   "precoMouvements" : [ {
     "id" : null,
@@ -101,181 +107,7 @@
     "typeMouvement" : "Ajout",
     "dateCreation" : 1640991600000,
     "dateModification" : null,
-    "precoMouvementsQtes" : [ {
-      "id" : null,
-      "qteMin" : 5,
-      "qteMax" : 50,
-      "montantMin" : 200.0,
-      "montantMax" : 2000.0,
-      "familles" : [ {
-        "id" : null,
-        "libelle" : "Consommables Informatiques",
-        "description" : "Consommables Informatiques",
-        "etat" : "true",
-        "dateCreation" : 1640991600000,
-        "dateModification" : null,
-        "ressources" : null,
-        "promotions" : null
-      }, {
-        "id" : null,
-        "libelle" : "Accessoires",
-        "description" : "Accessoires",
-        "etat" : "true",
-        "dateCreation" : 1640991600000,
-        "dateModification" : null,
-        "ressources" : [ {
-          "id" : null,
-          "libelle" : "Papier",
-          "etat" : true,
-          "dateCreation" : 1640991600000,
-          "dateModification" : null,
-          "quantite" : 24,
-          "seuilAlerte" : 20,
-          "prixEntree" : 1200.0,
-          "prixSortie" : 2000.0,
-          "unites" : "Packs",
-          "promotions" : [ ]
-        }, {
-          "id" : null,
-          "libelle" : "Encre",
-          "etat" : true,
-          "dateCreation" : 1640991600000,
-          "dateModification" : null,
-          "quantite" : 4,
-          "seuilAlerte" : 20,
-          "prixEntree" : 1200.0,
-          "prixSortie" : 2000.0,
-          "unites" : "Boite",
-          "promotions" : [ ]
-        }, {
-          "id" : null,
-          "libelle" : "Toner",
-          "etat" : true,
-          "dateCreation" : 1640991600000,
-          "dateModification" : null,
-          "quantite" : 4,
-          "seuilAlerte" : 20,
-          "prixEntree" : 1200.0,
-          "prixSortie" : 2000.0,
-          "unites" : "Boite",
-          "promotions" : [ ]
-        }, {
-          "id" : null,
-          "libelle" : "Cahier",
-          "etat" : true,
-          "dateCreation" : 1640991600000,
-          "dateModification" : null,
-          "quantite" : 4,
-          "seuilAlerte" : 20,
-          "prixEntree" : 1200.0,
-          "prixSortie" : 2000.0,
-          "unites" : "Packs",
-          "promotions" : [ ]
-        } ],
-        "promotions" : [ ]
-      }, {
-        "id" : null,
-        "libelle" : "Medicaments",
-        "description" : "Medicaments",
-        "etat" : "true",
-        "dateCreation" : 1640991600000,
-        "dateModification" : null,
-        "ressources" : null,
-        "promotions" : null
-      }, {
-        "id" : null,
-        "libelle" : "BioMedical",
-        "description" : "BioMedical",
-        "etat" : "true",
-        "dateCreation" : 1640991600000,
-        "dateModification" : null,
-        "ressources" : [ {
-          "id" : null,
-          "libelle" : "Seringue",
-          "etat" : true,
-          "dateCreation" : 1640991600000,
-          "dateModification" : null,
-          "quantite" : 42,
-          "seuilAlerte" : 20,
-          "prixEntree" : 100.0,
-          "prixSortie" : 200.0,
-          "unites" : "Boite",
-          "promotions" : [ ]
-        }, {
-          "id" : null,
-          "libelle" : "Perfuseur",
-          "etat" : true,
-          "dateCreation" : 1640991600000,
-          "dateModification" : null,
-          "quantite" : 5,
-          "seuilAlerte" : 20,
-          "prixEntree" : 90.0,
-          "prixSortie" : 230.0,
-          "unites" : "Boite",
-          "promotions" : [ ]
-        }, {
-          "id" : null,
-          "libelle" : "Gants",
-          "etat" : true,
-          "dateCreation" : 1640991600000,
-          "dateModification" : null,
-          "quantite" : 4,
-          "seuilAlerte" : 20,
-          "prixEntree" : 1200.0,
-          "prixSortie" : 2000.0,
-          "unites" : "Boite",
-          "promotions" : [ ]
-        }, {
-          "id" : null,
-          "libelle" : "Masque",
-          "etat" : true,
-          "dateCreation" : 1640991600000,
-          "dateModification" : null,
-          "quantite" : 4,
-          "seuilAlerte" : 20,
-          "prixEntree" : 1200.0,
-          "prixSortie" : 2000.0,
-          "unites" : "Boite",
-          "promotions" : [ ]
-        }, {
-          "id" : null,
-          "libelle" : "Gel Hydroalcoolique",
-          "etat" : true,
-          "dateCreation" : 1640991600000,
-          "dateModification" : null,
-          "quantite" : 54,
-          "seuilAlerte" : 200,
-          "prixEntree" : 1200.0,
-          "prixSortie" : 2000.0,
-          "unites" : "Litre",
-          "promotions" : [ ]
-        }, {
-          "id" : null,
-          "libelle" : "Coton",
-          "etat" : true,
-          "dateCreation" : 1640991600000,
-          "dateModification" : null,
-          "quantite" : 44,
-          "seuilAlerte" : 230,
-          "prixEntree" : 1200.0,
-          "prixSortie" : 2000.0,
-          "unites" : "Boite",
-          "promotions" : [ ]
-        } ],
-        "promotions" : [ ]
-      }, {
-        "id" : null,
-        "libelle" : "Medicaments",
-        "description" : "Medicaments",
-        "etat" : "true",
-        "dateCreation" : 1640991600000,
-        "dateModification" : null,
-        "ressources" : null,
-        "promotions" : null
-      } ],
-      "ressource" : null,
-      "distributeurs" : [ ]
-    } ]
+    "precoMouvementsQtes" : null
   } ],
   "attributs" : [ {
     "id" : null,
@@ -284,13 +116,16 @@
     "etat" : true,
     "dateCreation" : 1640991600000,
     "dateModification" : null,
-    "type" : "Text",
+    "type_attribut" : "Text",
     "valeurParDefaut" : null
   } ],
   "categories" : [ {
     "id" : null,
     "ordre" : "0",
     "libelle" : "Catégorie par Defaut",
+    "etat" : null,
+    "dateCreation" : 1640991600000,
+    "dateModification" : null,
     "attributs" : [ {
       "id" : null,
       "attribut" : {
@@ -300,14 +135,13 @@
         "etat" : true,
         "dateCreation" : 1640991600000,
         "dateModification" : null,
-        "type" : "Text",
+        "type_attribut" : "Text",
         "valeurParDefaut" : null
       },
       "obligatoire" : true,
       "ordre" : 1
     } ]
   } ],
-  "docEtats" : [ ],
   "promotions" : [ ]
 }, {
   "idDocument" : null,
@@ -322,6 +156,7 @@
   "afficherDistributeur" : true,
   "prixEditable" : true,
   "contientRessources" : true,
+  "estencaissable" : false,
   "missions" : [ ],
   "precoMouvements" : [ {
     "id" : null,
@@ -339,12 +174,20 @@
     "etat" : true,
     "dateCreation" : 1640991600000,
     "dateModification" : null,
-    "type" : "Date",
+    "type_attribut" : "Date",
     "valeurParDefaut" : null
   } ],
   "categories" : [ ],
-  "docEtats" : [ ],
-  "promotions" : [ ]
+  "promotions" : [ {
+    "id" : null,
+    "dateDebut" : 1640991600000,
+    "dateFin" : 1640991600000,
+    "codeUnique" : "R45",
+    "typeRemise" : "devoir",
+    "valeurRemise" : 95.23,
+    "dateCreation" : 1034200800000,
+    "dateModification" : null
+  } ]
 }, {
   "idDocument" : null,
   "titre" : "Fiche de soin",
@@ -358,6 +201,7 @@
   "afficherDistributeur" : true,
   "prixEditable" : true,
   "contientRessources" : true,
+  "estencaissable" : true,
   "missions" : [ {
     "id" : null,
     "libelle" : "Hospitalisation",
@@ -373,29 +217,8 @@
       "dateCreation" : 649893600000,
       "dateModification" : null,
       "codeUnique" : "S2",
-      "localisation" : "douala",
-      "missions" : null,
-      "fileAttente" : null
-    },
-    "roles" : [ {
-      "id" : null,
-      "role" : {
-        "id" : null,
-        "titre" : "marcheur",
-        "description" : "commercial sur le terrain",
-        "etat" : true,
-        "dateCreation" : 1640991600000,
-        "validations" : [ ]
-      },
-      "dateFin" : 1704063600000,
-      "dateCreation" : 1640991600000,
-      "dateDebut" : 1704063600000,
-      "etat" : true,
-      "droitAjouter" : true,
-      "droitModifier" : true,
-      "droitConsulter" : true,
-      "droitDeValider" : true
-    } ]
+      "localisation" : "douala"
+    }
   } ],
   "precoMouvements" : [ {
     "id" : null,
@@ -410,10 +233,13 @@
       "qteMax" : 50,
       "montantMin" : 200.0,
       "montantMax" : 2000.0,
+      "dateCreation" : 1640991600000,
+      "dateModification" : null,
       "familles" : [ ],
       "ressource" : {
         "id" : null,
         "libelle" : "Scanner",
+        "description" : "Scanner",
         "etat" : true,
         "dateCreation" : 1640991600000,
         "dateModification" : null,
@@ -434,13 +260,16 @@
     "etat" : true,
     "dateCreation" : 1640991600000,
     "dateModification" : null,
-    "type" : "Text",
+    "type_attribut" : "Text",
     "valeurParDefaut" : "Noir"
   } ],
   "categories" : [ {
     "id" : null,
     "ordre" : "1",
     "libelle" : "Informations Personnelles",
+    "etat" : null,
+    "dateCreation" : 1640991600000,
+    "dateModification" : null,
     "attributs" : [ {
       "id" : null,
       "attribut" : {
@@ -450,14 +279,13 @@
         "etat" : true,
         "dateCreation" : 1640991600000,
         "dateModification" : null,
-        "type" : "Text",
+        "type_attribut" : "Text",
         "valeurParDefaut" : "Noir"
       },
       "obligatoire" : true,
       "ordre" : 1
     } ]
   } ],
-  "docEtats" : [ ],
   "promotions" : [ ]
 }, {
   "idDocument" : null,
@@ -472,6 +300,7 @@
   "afficherDistributeur" : true,
   "prixEditable" : true,
   "contientRessources" : true,
+  "estencaissable" : true,
   "missions" : [ {
     "id" : null,
     "libelle" : "Resultat Labo",
@@ -487,29 +316,8 @@
       "dateCreation" : 77151600000,
       "dateModification" : null,
       "codeUnique" : "S1",
-      "localisation" : "douala",
-      "missions" : null,
-      "fileAttente" : null
-    },
-    "roles" : [ {
-      "id" : null,
-      "role" : {
-        "id" : null,
-        "titre" : "traiteur",
-        "description" : "Personnel administratif",
-        "etat" : true,
-        "dateCreation" : 1640991600000,
-        "validations" : [ ]
-      },
-      "dateFin" : 1704063600000,
-      "dateCreation" : 1640991600000,
-      "dateDebut" : 1704063600000,
-      "etat" : true,
-      "droitAjouter" : true,
-      "droitModifier" : true,
-      "droitConsulter" : true,
-      "droitDeValider" : true
-    } ]
+      "localisation" : "douala"
+    }
   } ],
   "precoMouvements" : [ {
     "id" : null,
@@ -524,10 +332,13 @@
       "qteMax" : 200,
       "montantMin" : 1000.0,
       "montantMax" : 10000.0,
+      "dateCreation" : 1640991600000,
+      "dateModification" : null,
       "familles" : [ ],
       "ressource" : {
         "id" : null,
         "libelle" : "Cartouche d'encre",
+        "description" : "Cartouche d'encre",
         "etat" : true,
         "dateCreation" : 1640991600000,
         "dateModification" : null,
@@ -548,7 +359,7 @@
     "etat" : true,
     "dateCreation" : 1640991600000,
     "dateModification" : null,
-    "type" : "Text",
+    "type_attribut" : "Text",
     "valeurParDefaut" : null
   }, {
     "id" : null,
@@ -557,7 +368,7 @@
     "etat" : true,
     "dateCreation" : 1640991600000,
     "dateModification" : null,
-    "type" : "Date",
+    "type_attribut" : "Date",
     "valeurParDefaut" : null
   }, {
     "id" : null,
@@ -566,13 +377,16 @@
     "etat" : true,
     "dateCreation" : 1640991600000,
     "dateModification" : null,
-    "type" : "Text",
+    "type_attribut" : "Text",
     "valeurParDefaut" : null
   } ],
   "categories" : [ {
     "id" : null,
     "ordre" : "0",
     "libelle" : "Conditions Générales",
+    "etat" : null,
+    "dateCreation" : 1640991600000,
+    "dateModification" : null,
     "attributs" : [ {
       "id" : null,
       "attribut" : {
@@ -582,7 +396,7 @@
         "etat" : true,
         "dateCreation" : 1640991600000,
         "dateModification" : null,
-        "type" : "Text",
+        "type_attribut" : "Text",
         "valeurParDefaut" : null
       },
       "obligatoire" : true,
@@ -596,7 +410,7 @@
         "etat" : true,
         "dateCreation" : 1640991600000,
         "dateModification" : null,
-        "type" : "Text",
+        "type_attribut" : "Text",
         "valeurParDefaut" : null
       },
       "obligatoire" : true,
@@ -606,6 +420,9 @@
     "id" : null,
     "ordre" : "1",
     "libelle" : "Conditions Particulières",
+    "etat" : null,
+    "dateCreation" : 1640991600000,
+    "dateModification" : null,
     "attributs" : [ {
       "id" : null,
       "attribut" : {
@@ -615,14 +432,13 @@
         "etat" : true,
         "dateCreation" : 1640991600000,
         "dateModification" : null,
-        "type" : "Text",
+        "type_attribut" : "Text",
         "valeurParDefaut" : null
       },
       "obligatoire" : true,
       "ordre" : 1
     } ]
   } ],
-  "docEtats" : [ ],
   "promotions" : [ ]
 }, {
   "idDocument" : null,
@@ -637,6 +453,7 @@
   "afficherDistributeur" : true,
   "prixEditable" : true,
   "contientRessources" : true,
+  "estencaissable" : false,
   "missions" : [ ],
   "precoMouvements" : [ {
     "id" : null,
@@ -645,49 +462,7 @@
     "typeMouvement" : "Neutre",
     "dateCreation" : 1640991600000,
     "dateModification" : null,
-    "precoMouvementsQtes" : [ {
-      "id" : null,
-      "qteMin" : 5,
-      "qteMax" : 50,
-      "montantMin" : 200.0,
-      "montantMax" : 2000.0,
-      "familles" : [ ],
-      "ressource" : {
-        "id" : null,
-        "libelle" : "Imprimante",
-        "etat" : true,
-        "dateCreation" : 1640991600000,
-        "dateModification" : null,
-        "quantite" : 4,
-        "seuilAlerte" : 2,
-        "prixEntree" : 12000.0,
-        "prixSortie" : 20000.0,
-        "unites" : "Packs",
-        "promotions" : null
-      },
-      "distributeurs" : [ ]
-    }, {
-      "id" : null,
-      "qteMin" : 5,
-      "qteMax" : 50,
-      "montantMin" : 200.0,
-      "montantMax" : 2000.0,
-      "familles" : [ ],
-      "ressource" : {
-        "id" : null,
-        "libelle" : "Souris",
-        "etat" : true,
-        "dateCreation" : 1640991600000,
-        "dateModification" : null,
-        "quantite" : 40,
-        "seuilAlerte" : 12,
-        "prixEntree" : 25.0,
-        "prixSortie" : 20.0,
-        "unites" : "Packs",
-        "promotions" : null
-      },
-      "distributeurs" : [ ]
-    } ]
+    "precoMouvementsQtes" : null
   } ],
   "attributs" : [ {
     "id" : null,
@@ -696,13 +471,16 @@
     "etat" : true,
     "dateCreation" : 1640991600000,
     "dateModification" : null,
-    "type" : "Radio",
+    "type_attribut" : "Radio",
     "valeurParDefaut" : "A, A+, A-, B, B+, B-, AB, AB+, AB-, O, O+, O-"
   } ],
   "categories" : [ {
     "id" : null,
     "ordre" : "1",
     "libelle" : "Informations Primaires",
+    "etat" : null,
+    "dateCreation" : 1640991600000,
+    "dateModification" : null,
     "attributs" : [ {
       "id" : null,
       "attribut" : {
@@ -712,14 +490,13 @@
         "etat" : true,
         "dateCreation" : 1640991600000,
         "dateModification" : null,
-        "type" : "Radio",
+        "type_attribut" : "Radio",
         "valeurParDefaut" : "A, A+, A-, B, B+, B-, AB, AB+, AB-, O, O+, O-"
       },
       "obligatoire" : true,
       "ordre" : 1
     } ]
   } ],
-  "docEtats" : [ ],
   "promotions" : [ ]
 }, {
   "idDocument" : null,
@@ -734,6 +511,7 @@
   "afficherDistributeur" : true,
   "prixEditable" : true,
   "contientRessources" : true,
+  "estencaissable" : true,
   "missions" : [ {
     "id" : null,
     "libelle" : "Encaissement",
@@ -749,29 +527,8 @@
       "dateCreation" : 77151600000,
       "dateModification" : null,
       "codeUnique" : "S1",
-      "localisation" : "douala",
-      "missions" : null,
-      "fileAttente" : null
-    },
-    "roles" : [ {
-      "id" : null,
-      "role" : {
-        "id" : null,
-        "titre" : "vendeur",
-        "description" : "personnel au contact du client",
-        "etat" : true,
-        "dateCreation" : 1640991600000,
-        "validations" : [ ]
-      },
-      "dateFin" : 1704063600000,
-      "dateCreation" : 1640991600000,
-      "dateDebut" : 1704063600000,
-      "etat" : true,
-      "droitAjouter" : true,
-      "droitModifier" : true,
-      "droitConsulter" : true,
-      "droitDeValider" : true
-    } ]
+      "localisation" : "douala"
+    }
   }, {
     "id" : null,
     "libelle" : "Resultat Labo",
@@ -787,29 +544,8 @@
       "dateCreation" : 77151600000,
       "dateModification" : null,
       "codeUnique" : "S1",
-      "localisation" : "douala",
-      "missions" : null,
-      "fileAttente" : null
-    },
-    "roles" : [ {
-      "id" : null,
-      "role" : {
-        "id" : null,
-        "titre" : "traiteur",
-        "description" : "Personnel administratif",
-        "etat" : true,
-        "dateCreation" : 1640991600000,
-        "validations" : [ ]
-      },
-      "dateFin" : 1704063600000,
-      "dateCreation" : 1640991600000,
-      "dateDebut" : 1704063600000,
-      "etat" : true,
-      "droitAjouter" : true,
-      "droitModifier" : true,
-      "droitConsulter" : true,
-      "droitDeValider" : true
-    } ]
+      "localisation" : "douala"
+    }
   } ],
   "precoMouvements" : [ {
     "id" : null,
@@ -824,10 +560,13 @@
       "qteMax" : 100,
       "montantMin" : 500.0,
       "montantMax" : 5000.0,
+      "dateCreation" : 1640991600000,
+      "dateModification" : null,
       "familles" : [ ],
       "ressource" : {
         "id" : null,
         "libelle" : "Paracetamol",
+        "description" : "Paracetamol",
         "etat" : true,
         "dateCreation" : 1640991600000,
         "dateModification" : null,
@@ -848,7 +587,7 @@
     "etat" : true,
     "dateCreation" : 1640991600000,
     "dateModification" : null,
-    "type" : "Text",
+    "type_attribut" : "Text",
     "valeurParDefaut" : null
   }, {
     "id" : null,
@@ -857,7 +596,7 @@
     "etat" : true,
     "dateCreation" : 1640991600000,
     "dateModification" : null,
-    "type" : "Text",
+    "type_attribut" : "Text",
     "valeurParDefaut" : null
   }, {
     "id" : null,
@@ -866,7 +605,7 @@
     "etat" : true,
     "dateCreation" : 1640991600000,
     "dateModification" : null,
-    "type" : "Date",
+    "type_attribut" : "Date",
     "valeurParDefaut" : null
   }, {
     "id" : null,
@@ -875,7 +614,7 @@
     "etat" : true,
     "dateCreation" : 1640991600000,
     "dateModification" : null,
-    "type" : "Number",
+    "type_attribut" : "Number",
     "valeurParDefaut" : null
   }, {
     "id" : null,
@@ -884,7 +623,7 @@
     "etat" : true,
     "dateCreation" : 1640991600000,
     "dateModification" : null,
-    "type" : "Text",
+    "type_attribut" : "Text",
     "valeurParDefaut" : null
   }, {
     "id" : null,
@@ -893,13 +632,16 @@
     "etat" : true,
     "dateCreation" : 1640991600000,
     "dateModification" : null,
-    "type" : "Text",
+    "type_attribut" : "Text",
     "valeurParDefaut" : "Noir"
   } ],
   "categories" : [ {
     "id" : null,
     "ordre" : "0",
     "libelle" : "Informations Personnelles",
+    "etat" : null,
+    "dateCreation" : 1640991600000,
+    "dateModification" : null,
     "attributs" : [ {
       "id" : null,
       "attribut" : {
@@ -909,7 +651,7 @@
         "etat" : true,
         "dateCreation" : 1640991600000,
         "dateModification" : null,
-        "type" : "Text",
+        "type_attribut" : "Text",
         "valeurParDefaut" : null
       },
       "obligatoire" : true,
@@ -923,7 +665,7 @@
         "etat" : true,
         "dateCreation" : 1640991600000,
         "dateModification" : null,
-        "type" : "Text",
+        "type_attribut" : "Text",
         "valeurParDefaut" : null
       },
       "obligatoire" : true,
@@ -937,7 +679,7 @@
         "etat" : true,
         "dateCreation" : 1640991600000,
         "dateModification" : null,
-        "type" : "Text",
+        "type_attribut" : "Text",
         "valeurParDefaut" : "Noir"
       },
       "obligatoire" : false,
@@ -947,6 +689,9 @@
     "id" : null,
     "ordre" : "1",
     "libelle" : "Informations Primaires",
+    "etat" : null,
+    "dateCreation" : 1640991600000,
+    "dateModification" : null,
     "attributs" : [ {
       "id" : null,
       "attribut" : {
@@ -956,7 +701,7 @@
         "etat" : true,
         "dateCreation" : 1640991600000,
         "dateModification" : null,
-        "type" : "Number",
+        "type_attribut" : "Number",
         "valeurParDefaut" : null
       },
       "obligatoire" : true,
@@ -970,7 +715,7 @@
         "etat" : true,
         "dateCreation" : 1640991600000,
         "dateModification" : null,
-        "type" : "Text",
+        "type_attribut" : "Text",
         "valeurParDefaut" : null
       },
       "obligatoire" : false,
@@ -984,21 +729,29 @@
         "etat" : true,
         "dateCreation" : 1640991600000,
         "dateModification" : null,
-        "type" : "Date",
+        "type_attribut" : "Date",
         "valeurParDefaut" : null
       },
       "obligatoire" : true,
       "ordre" : 3
     } ]
   } ],
-  "docEtats" : [ ],
-  "promotions" : [ ]
+  "promotions" : [ {
+    "id" : null,
+    "dateDebut" : 1640991600000,
+    "dateFin" : 1640991600000,
+    "codeUnique" : "R5",
+    "typeRemise" : "garantie",
+    "valeurRemise" : 54.25,
+    "dateCreation" : 955317600000,
+    "dateModification" : null
+  } ]
 }, {
   "idDocument" : null,
   "titre" : "TitreTest",
   "description" : "DescriptionTest",
   "etat" : true,
-  "dateCreation" : null,
+  "dateCreation" : 1784450804993,
   "dateModification" : null,
   "typeMouvement" : null,
   "afficherPrix" : null,
@@ -1006,6 +759,7 @@
   "afficherDistributeur" : null,
   "prixEditable" : null,
   "contientRessources" : null,
+  "estencaissable" : null,
   "missions" : null,
   "precoMouvements" : null,
   "attributs" : [ {
@@ -1015,7 +769,7 @@
     "etat" : true,
     "dateCreation" : 1640991600000,
     "dateModification" : null,
-    "type" : "Textarea",
+    "type_attribut" : "Textarea",
     "valeurParDefaut" : null
   }, {
     "id" : null,
@@ -1024,11 +778,10 @@
     "etat" : true,
     "dateCreation" : 1640991600000,
     "dateModification" : null,
-    "type" : "Radio",
+    "type_attribut" : "Radio",
     "valeurParDefaut" : "A, A+, A-, B, B+, B-, AB, AB+, AB-, O, O+, O-"
   } ],
   "categories" : null,
-  "docEtats" : null,
   "promotions" : null
 }, {
   "idDocument" : null,
@@ -1043,6 +796,7 @@
   "afficherDistributeur" : true,
   "prixEditable" : true,
   "contientRessources" : true,
+  "estencaissable" : false,
   "missions" : [ ],
   "precoMouvements" : [ {
     "id" : null,
@@ -1060,13 +814,16 @@
     "etat" : true,
     "dateCreation" : 1640991600000,
     "dateModification" : null,
-    "type" : "Textarea",
+    "type_attribut" : "Textarea",
     "valeurParDefaut" : null
   } ],
   "categories" : [ {
     "id" : null,
     "ordre" : "1",
     "libelle" : "Conditions Générales",
+    "etat" : null,
+    "dateCreation" : 1640991600000,
+    "dateModification" : null,
     "attributs" : [ {
       "id" : null,
       "attribut" : {
@@ -1076,13 +833,21 @@
         "etat" : true,
         "dateCreation" : 1640991600000,
         "dateModification" : null,
-        "type" : "Textarea",
+        "type_attribut" : "Textarea",
         "valeurParDefaut" : null
       },
       "obligatoire" : true,
       "ordre" : 1
     } ]
   } ],
-  "docEtats" : [ ],
-  "promotions" : [ ]
+  "promotions" : [ {
+    "id" : null,
+    "dateDebut" : 1640991600000,
+    "dateFin" : 1640991600000,
+    "codeUnique" : "R54",
+    "typeRemise" : "virement",
+    "valeurRemise" : 74.25,
+    "dateCreation" : 1092088800000,
+    "dateModification" : null
+  } ]
 } ]

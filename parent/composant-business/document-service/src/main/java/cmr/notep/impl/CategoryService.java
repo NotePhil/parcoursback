@@ -4,6 +4,7 @@ import cmr.notep.api.ICategoriesApi;
 import cmr.notep.business.CategoriesBusiness;
 import cmr.notep.exceptions.ParcoursException;
 import cmr.notep.modele.Categories;
+import org.springframework.http.ResponseEntity;
 import org.springframework.lang.NonNull;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -31,6 +32,11 @@ public class CategoryService implements ICategoriesApi {
 
     public void supprimerCategorie(@NonNull Categories categories) { categoriesBusiness.supprimerCategory(categories); }
 
-    public Categories posterCategorie(@NonNull Categories categorie) throws ParcoursException { return categoriesBusiness.posterCategorie(categorie);}
+    @Override
+    public ResponseEntity<Categories> posterCategorie(@NonNull Categories categorie) throws ParcoursException {
+        return categoriesBusiness.posterCategorie(categorie)
+                .map(ResponseEntity::ok)
+                .orElse(ResponseEntity.noContent().build());
+    }
 
 }

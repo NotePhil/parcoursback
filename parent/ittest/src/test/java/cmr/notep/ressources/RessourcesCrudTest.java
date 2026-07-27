@@ -20,9 +20,8 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
-@SpringBootTest
-@ContextConfiguration(classes = {ItTestConfig.class})
-@Transactional(isolation = Isolation.READ_UNCOMMITTED)
+@SpringBootTest(classes = {ItTestConfig.class})
+@Transactional()
 @Slf4j
 public class RessourcesCrudTest extends AbstractIttest {
     List<Ressources> ressourcesList = null;

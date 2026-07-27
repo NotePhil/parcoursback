@@ -3,6 +3,8 @@ package cmr.notep.business;
 import cmr.notep.dao.DaoAccessorService;
 import cmr.notep.dao.JouerRolesEntity;
 import cmr.notep.dao.PersonnelsEntity;
+import cmr.notep.exceptions.ParcoursException;
+import cmr.notep.exceptions.enumeration.ParcoursExceptionCodeEnum;
 import cmr.notep.modele.JouerRoles;
 import cmr.notep.modele.Personnels;
 import cmr.notep.repository.JouerRolesRepository;
@@ -14,7 +16,6 @@ import org.springframework.transaction.annotation.Transactional;
 import org.springframework.util.CollectionUtils;
 
 import java.util.ArrayList;
-import java.util.Collections;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -25,12 +26,10 @@ import java.util.stream.Collectors;
 public class PersonnelsBusiness  {
 
     private final DaoAccessorService daoAccessorService;
-    private final RolesBusiness rolesBusiness;
     private final DozerBeanMapper dozerMapperBean;
 
-    public PersonnelsBusiness(DaoAccessorService daoAccessorService, RolesBusiness rolesBusiness, DozerBeanMapper dozerMapperBean) {
+    public PersonnelsBusiness(DaoAccessorService daoAccessorService, DozerBeanMapper dozerMapperBean) {
         this.daoAccessorService = daoAccessorService;
-        this.rolesBusiness = rolesBusiness;
         this.dozerMapperBean = dozerMapperBean;
     }
 
@@ -53,47 +52,92 @@ public class PersonnelsBusiness  {
                 .deleteById(Personnels.getId().toString());
     }
 
-    public Personnels posterPersonnel(Personnels personnel) {
-        //faire les controles sur les différents attributs de l'objet personnel
-        //sauvegarder le personnel
+    public Personnels posterPersonnel(Personnels personnel) throws ParcoursException {
         PersonnelsRepository personnelsRepo = this.daoAccessorService.getRepository(PersonnelsRepository.class);
-        JouerRolesRepository jouerRolesRepo = this.daoAccessorService.getRepository(JouerRolesRepository.class);
+        PersonnelsEntity entitySaved;
 
-        PersonnelsEntity entitySaved = dozerMapperBean.map(personnel, PersonnelsEntity.class);
-
-        entitySaved = personnelsRepo.save(entitySaved);
-
-        // Supprimer les anciens rôles avant d'enregistrer les nouveaux
-        jouerRolesRepo.deleteByPersonnelsEntityId(entitySaved.getId());
-        jouerRolesRepo.flush();
-
-        if (!CollectionUtils.isEmpty(personnel.getRoles())) {
-            entitySaved.setJouerRolesEntities(new ArrayList<>());
-            PersonnelsEntity finalEntitySaved = entitySaved;
-            entitySaved.getJouerRolesEntities().addAll(
-                    personnel.getRoles().stream()
-                            .map(jouerRole -> {
-                                JouerRolesEntity jouerRolesEntity = dozerMapperBean.map(jouerRole, JouerRolesEntity.class);
-                                jouerRolesEntity.setId(null); // forcer la création d'un nouvel enregistrement
-                                jouerRolesEntity.setPersonnelsEntity(finalEntitySaved);
-                                jouerRolesEntity = enregistrerJouerRole(jouerRolesEntity);
-                                return jouerRolesEntity;
-                            })
-                            .collect(Collectors.toList())
-            );
-            entitySaved = personnelsRepo.save(entitySaved);
+        if (personnel.getId() != null) {
+            entitySaved = personnelsRepo.findById(personnel.getId())
+                    .orElseThrow(() -> new RuntimeException("Personnel non trouvé : " + personnel.getId()));
+            dozerMapperBean.map(personnel, entitySaved);
+        } else {
+            entitySaved = dozerMapperBean.map(personnel, PersonnelsEntity.class);
         }
 
+        gererJouerRoles(personnel, entitySaved);
+
+        entitySaved = personnelsRepo.save(entitySaved);
         return dozerMapperBean.map(entitySaved, Personnels.class);
     }
 
-    private JouerRolesEntity enregistrerJouerRole(JouerRolesEntity jouerRole) {
-        //TODO faire les controles sur les différents attributs de l'objet jouerRole
-        if(jouerRole.getRolesEntity().getId() != null)
-            rolesBusiness.avoirRole(jouerRole.getRolesEntity().getId());
-        return this.daoAccessorService.getRepository(JouerRolesRepository.class)
-                .save(jouerRole);
-    }
+    private void gererJouerRoles(Personnels personnel, PersonnelsEntity entitySaved) throws ParcoursException {
+        List<JouerRoles> rolesList = personnel.getRoles();
+        JouerRolesRepository jouerRolesRepo = this.daoAccessorService.getRepository(JouerRolesRepository.class);
 
+        List<JouerRolesEntity> existingRoles = entitySaved.getJouerRolesEntities() != null
+                ? new ArrayList<>(entitySaved.getJouerRolesEntities())
+                : new ArrayList<>();
+
+        // Si liste absente ou vide => purger tous les rôles
+        if (CollectionUtils.isEmpty(rolesList)) {
+            try {
+                for (JouerRolesEntity existing : existingRoles) {
+                    jouerRolesRepo.delete(existing);
+                }
+                if (entitySaved.getJouerRolesEntities() != null) {
+                    entitySaved.getJouerRolesEntities().clear();
+                }
+            } catch (Exception e) {
+                throw new ParcoursException(ParcoursExceptionCodeEnum.RELATION_SYNC_FAILED,
+                        "Impossible de supprimer les anciens rôles du personnel: " + e.getMessage(), e);
+            }
+            return;
+        }
+
+        List<String> newIds = rolesList.stream()
+                .filter(r -> r.getId() != null)
+                .map(JouerRoles::getId)
+                .collect(Collectors.toList());
+
+        // Supprimer les rôles non présents dans la nouvelle liste
+        for (JouerRolesEntity existing : existingRoles) {
+            if (!newIds.contains(existing.getId())) {
+                try {
+                    jouerRolesRepo.delete(existing);
+                    entitySaved.getJouerRolesEntities().remove(existing);
+                } catch (Exception e) {
+                    throw new ParcoursException(ParcoursExceptionCodeEnum.RELATION_SYNC_FAILED,
+                            "Impossible de supprimer le rôle " + existing.getId() + ": " + e.getMessage(), e);
+                }
+            }
+        }
+
+        if (entitySaved.getJouerRolesEntities() == null) {
+            entitySaved.setJouerRolesEntities(new ArrayList<>());
+        }
+
+        // Ajouter ou mettre à jour les rôles
+        for (JouerRoles role : rolesList) {
+            JouerRolesEntity jouerRolesEntity;
+            if (role.getId() != null) {
+                jouerRolesEntity = jouerRolesRepo.findById(role.getId())
+                        .orElseThrow(() -> new RuntimeException("JouerRole non trouvé : " + role.getId()));
+                dozerMapperBean.map(role, jouerRolesEntity);
+            } else {
+                jouerRolesEntity = dozerMapperBean.map(role, JouerRolesEntity.class);
+                jouerRolesEntity.setId(null);
+            }
+            jouerRolesEntity.setPersonnelsEntity(entitySaved);
+            try {
+                JouerRolesEntity savedRole = jouerRolesRepo.save(jouerRolesEntity);
+                if (!entitySaved.getJouerRolesEntities().contains(savedRole)) {
+                    entitySaved.getJouerRolesEntities().add(savedRole);
+                }
+            } catch (Exception e) {
+                throw new ParcoursException(ParcoursExceptionCodeEnum.RELATION_SYNC_FAILED,
+                        "Impossible d'enregistrer le rôle du personnel: " + e.getMessage(), e);
+            }
+        }
+    }
 
 }

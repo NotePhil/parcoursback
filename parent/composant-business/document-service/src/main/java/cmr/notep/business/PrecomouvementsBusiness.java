@@ -6,6 +6,8 @@ import java.util.stream.Collectors;
 
 import cmr.notep.dao.PrecoMouvementsEntity;
 import cmr.notep.dao.PrecoMouvementsQtesEntity;
+import cmr.notep.exceptions.ParcoursException;
+import cmr.notep.exceptions.enumeration.ParcoursExceptionCodeEnum;
 import cmr.notep.modele.PrecoMouvements;
 import cmr.notep.modele.PrecoMouvementsQtes;
 import cmr.notep.repository.PrecoMouvementsQtesRepository;
@@ -13,6 +15,7 @@ import cmr.notep.repository.PrecoMouvementsRepository;
 import org.dozer.DozerBeanMapper;
 import org.springframework.stereotype.Component;
 import org.springframework.transaction.annotation.Transactional;
+import org.springframework.util.CollectionUtils;
 
 import cmr.notep.dao.DaoAccessorService;
 import lombok.extern.slf4j.Slf4j;
@@ -42,7 +45,7 @@ public class PrecomouvementsBusiness {
                 .orElseThrow(()->new RuntimeException("Missions non enregistré")), PrecoMouvements.class);
     }
 
-    public PrecoMouvements posterPrecomouvement(PrecoMouvements preco) {
+    public PrecoMouvements posterPrecomouvement(PrecoMouvements preco) throws ParcoursException {
         PrecoMouvementsEntity precoEntity;
 
         if (preco.getId() != null) {
@@ -60,26 +63,45 @@ public class PrecomouvementsBusiness {
         return dozerMapperBean.map(saved, PrecoMouvements.class);
     }
 
-    private void gererPrecoMouvementsQtes(PrecoMouvements preco, PrecoMouvementsEntity precoEntity) {
+    private void gererPrecoMouvementsQtes(PrecoMouvements preco, PrecoMouvementsEntity precoEntity) throws ParcoursException {
         List<PrecoMouvementsQtes> qtesList = preco.getPrecoMouvementsQtes();
-        if (qtesList == null) return;
-
         PrecoMouvementsQtesRepository qtesRepo = daoAccessorService.getRepository(PrecoMouvementsQtesRepository.class);
 
         List<PrecoMouvementsQtesEntity> existingQtes = precoEntity.getPrecoMouvementsQteEntities() != null
                 ? new ArrayList<>(precoEntity.getPrecoMouvementsQteEntities())
                 : new ArrayList<>();
 
+        // Si liste absente ou vide => purger toutes les quantités
+        if (CollectionUtils.isEmpty(qtesList)) {
+            try {
+                for (PrecoMouvementsQtesEntity existing : existingQtes) {
+                    qtesRepo.delete(existing);
+                }
+                if (precoEntity.getPrecoMouvementsQteEntities() != null) {
+                    precoEntity.getPrecoMouvementsQteEntities().clear();
+                }
+            } catch (Exception e) {
+                throw new ParcoursException(ParcoursExceptionCodeEnum.RELATION_SYNC_FAILED,
+                        "Impossible de supprimer les quantités du précomouvement: " + e.getMessage(), e);
+            }
+            return;
+        }
+
         List<String> newIds = qtesList.stream()
                 .filter(q -> q.getId() != null)
                 .map(PrecoMouvementsQtes::getId)
-                .collect(Collectors.toList());
+                .toList();
 
         // Supprimer les anciens non présents dans la nouvelle liste
         for (PrecoMouvementsQtesEntity existing : existingQtes) {
             if (!newIds.contains(existing.getId())) {
-                qtesRepo.delete(existing);
-                precoEntity.getPrecoMouvementsQteEntities().remove(existing);
+                try {
+                    qtesRepo.delete(existing);
+                    precoEntity.getPrecoMouvementsQteEntities().remove(existing);
+                } catch (Exception e) {
+                    throw new ParcoursException(ParcoursExceptionCodeEnum.RELATION_SYNC_FAILED,
+                            "Impossible de supprimer la quantité " + existing.getId() + ": " + e.getMessage(), e);
+                }
             }
         }
 
@@ -99,9 +121,14 @@ public class PrecomouvementsBusiness {
                 qteEntity.setId(null);
             }
             qteEntity.setPrecoMouvementsEntity(precoEntity);
-            PrecoMouvementsQtesEntity savedQte = qtesRepo.save(qteEntity);
-            if (!precoEntity.getPrecoMouvementsQteEntities().contains(savedQte)) {
-                precoEntity.getPrecoMouvementsQteEntities().add(savedQte);
+            try {
+                PrecoMouvementsQtesEntity savedQte = qtesRepo.save(qteEntity);
+                if (!precoEntity.getPrecoMouvementsQteEntities().contains(savedQte)) {
+                    precoEntity.getPrecoMouvementsQteEntities().add(savedQte);
+                }
+            } catch (Exception e) {
+                throw new ParcoursException(ParcoursExceptionCodeEnum.RELATION_SYNC_FAILED,
+                        "Impossible d'enregistrer la quantité du précomouvement: " + e.getMessage(), e);
             }
         }
     }

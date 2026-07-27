@@ -30,9 +30,8 @@ import org.springframework.transaction.annotation.Transactional;
 import java.util.*;
 import java.util.concurrent.CompletableFuture;
 
-@SpringBootTest
-@ContextConfiguration(classes = {ItTestConfig.class})
-@Transactional(isolation = Isolation.READ_UNCOMMITTED)
+@SpringBootTest(classes = {ItTestConfig.class})
+@Transactional()
 @Slf4j
 public class PersonnesCrudTest extends AbstractIttest {;
  List<IPersonnes> personnesList = null;

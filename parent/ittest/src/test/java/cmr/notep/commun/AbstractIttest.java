@@ -1,24 +1,16 @@
 package cmr.notep.commun;
 
 import cmr.notep.api.*;
-import cmr.notep.exemplaire.api.IExemplairesApi;
+import cmr.notep.api.IExemplairesApi;
 import cmr.notep.modele.*;
-import com.fasterxml.jackson.annotation.JsonInclude;
-import com.fasterxml.jackson.annotation.JsonTypeInfo;
 import com.fasterxml.jackson.core.StreamReadFeature;
-import com.fasterxml.jackson.core.type.TypeReference;
-import com.fasterxml.jackson.core.util.DefaultIndenter;
 import com.fasterxml.jackson.core.util.DefaultPrettyPrinter;
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.fasterxml.jackson.databind.jsontype.BasicPolymorphicTypeValidator;
 import com.fasterxml.jackson.databind.jsontype.NamedType;
-import com.fasterxml.jackson.databind.jsontype.PolymorphicTypeValidator;
-import org.junit.BeforeClass;
 import org.junit.jupiter.api.BeforeAll;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.test.context.ActiveProfiles;
 
-import java.util.List;
+import org.springframework.test.context.ActiveProfiles;
 
 @ActiveProfiles("ittest")
 public abstract class AbstractIttest {
@@ -38,6 +30,12 @@ public abstract class AbstractIttest {
   protected ICategoriesApi categorieService;
   @Autowired
   protected IRessourcesApi ressourceService;
+  @Autowired
+  protected IPrecoMouvementsApi precoMouvementService;
+  @Autowired
+  protected IMissionsApi missionService;
+  @Autowired
+  protected IPromotionsApi promotionService;
   protected static ObjectMapper objectMapper ;
   @BeforeAll
   public static void onInit(){
