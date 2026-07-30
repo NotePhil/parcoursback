@@ -15,8 +15,8 @@ import java.util.List;
 @EqualsAndHashCode(exclude = {"precoMouvement"})
 public class PrecoMouvementsQtes {
     private String id ;
-    private int qteMin ;
-    private int qteMax ;
+    private double quantiteMin ;
+    private double quantiteMax ;
     private double montantMin ;
     private double montantMax ;
     private java.util.Date dateCreation;

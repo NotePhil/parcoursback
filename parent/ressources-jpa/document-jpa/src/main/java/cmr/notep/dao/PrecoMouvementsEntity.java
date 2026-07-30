@@ -30,8 +30,12 @@ public class PrecoMouvementsEntity {
     private boolean etat ;
 
     @Column(name = "datecreation", updatable = false,nullable = false)
+    @Temporal(TemporalType.TIMESTAMP)
+    @CreationTimestamp
     private Date dateCreation ;
     @Column(name="datemodification")
+    @Temporal(TemporalType.TIMESTAMP)
+    @UpdateTimestamp
     private Date dateModification ;
 
     @Column(name="typemouvement")

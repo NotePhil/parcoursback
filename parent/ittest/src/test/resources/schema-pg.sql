@@ -215,8 +215,8 @@ CREATE TABLE IF NOT EXISTS document.precomouvements
 CREATE TABLE IF NOT EXISTS document.precomouvementsqtes
 (
     id                 VARCHAR(255) NOT NULL,
-    qtemin             INTEGER,
-    qtemax             INTEGER,
+    qtemin             DOUBLE PRECISION,
+    qtemax             DOUBLE PRECISION,
     montantmin         DOUBLE PRECISION,
     montantmax         DOUBLE PRECISION,
     datecreation       DATE,

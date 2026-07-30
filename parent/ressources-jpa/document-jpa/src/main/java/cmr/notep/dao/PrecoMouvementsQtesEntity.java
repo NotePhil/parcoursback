@@ -22,16 +22,22 @@ public class PrecoMouvementsQtesEntity {
     @GenericGenerator(name = "UUID", strategy = "org.hibernate.id.UUIDGenerator")
     @Column(name = "id", nullable = false, updatable = false, columnDefinition = "UUID")
     private String id;
+    @Mapping("quantiteMin")
     @Column(name ="qtemin")
-    private int qteMin ;
+    private double qteMin ;
+    @Mapping("quantiteMax")
     @Column(name ="qtemax")
-    private int qteMax ;
+    private double qteMax ;
     @Column(name =  "montantmin")
     private double montantMin ;
     @Column(name = "montantmax")
     private double montantMax ;
     @Column(name = "datecreation", updatable = false)
+    @Temporal(TemporalType.TIMESTAMP)
+    @CreationTimestamp
     private Date dateCreation ;
+    @Temporal(TemporalType.TIMESTAMP)
+    @UpdateTimestamp
     @Column(name="datemodification")
     private Date dateModification ;
     @ManyToOne(fetch = FetchType.LAZY)
