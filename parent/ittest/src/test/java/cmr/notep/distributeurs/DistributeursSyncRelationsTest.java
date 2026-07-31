@@ -85,8 +85,8 @@ public class DistributeursSyncRelationsTest extends AbstractIttest {
                 .precoMouvementsQtes(List.of(
                         PrecoMouvementsQtes.builder()
                                 .id(UUID.randomUUID().toString())
-                                .qteMin(1)
-                                .qteMax(10)
+                                .quantiteMin(1)
+                                .quantiteMax(10)
                                 .build()
                 ))
                 .promotions(List.of(

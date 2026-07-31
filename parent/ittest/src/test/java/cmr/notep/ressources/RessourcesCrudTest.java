@@ -38,6 +38,7 @@ public class RessourcesCrudTest extends AbstractIttest {
         fieldsToExclude.add("id");
         fieldsToExclude.add("dateModification");
         fieldsToExclude.add("dateCreation");
+        fieldsToExclude.add("version");
         Assertions.assertTrue(JsonComparator.CompareResultWithJson(
                 pathJson
                 ,objectMapper.writeValueAsString(ressourcesList)

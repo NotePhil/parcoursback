@@ -9,11 +9,12 @@ import java.util.List;
 @AllArgsConstructor
 @NoArgsConstructor
 @Builder
-@JsonIgnoreProperties({"famille", "precoMouvementsQtes"})
-@ToString(exclude = {"famille" , "precoMouvementsQtes"})
-@EqualsAndHashCode(exclude = {"famille" , "precoMouvementsQtes"})
+@JsonIgnoreProperties({"precoMouvementsQtes","promotions"})
+@ToString(exclude = {"precoMouvementsQtes","promotions"})
+@EqualsAndHashCode(exclude = {"precoMouvementsQtes","promotions"})
 public class Ressources {
     private String id ;
+    private Integer version;
     private String libelle;
     private String description;
     private Boolean etat;
@@ -23,8 +24,10 @@ public class Ressources {
     private Integer seuilAlerte;
     private Double prixEntree;
     private Double prixSortie;
-    private String unites;
+    private String unite;
+    private String scanBarCode;
     private List<PrecoMouvementsQtes> precoMouvementsQtes;
     private Familles famille;
     private List<Promotions> promotions;
+    private List<Caracteristique> caracteristiques;
 }

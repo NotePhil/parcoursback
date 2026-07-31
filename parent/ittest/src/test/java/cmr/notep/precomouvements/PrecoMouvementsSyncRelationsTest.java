@@ -78,8 +78,8 @@ public class PrecoMouvementsSyncRelationsTest extends AbstractIttest {
                 .dateCreation(new Date())
                 .precoMouvementsQtes(List.of(
                         PrecoMouvementsQtes.builder()
-                                .qteMin(1)
-                                .qteMax(10)
+                                .quantiteMin(1)
+                                .quantiteMax(10)
                                 .montantMin(100.0)
                                 .montantMax(1000.0)
                                 .dateCreation(new Date())
@@ -115,15 +115,15 @@ public class PrecoMouvementsSyncRelationsTest extends AbstractIttest {
                 .dateCreation(new Date())
                 .precoMouvementsQtes(List.of(
                         PrecoMouvementsQtes.builder()
-                                .qteMin(1)
-                                .qteMax(10)
+                                .quantiteMin(1)
+                                .quantiteMax(10)
                                 .montantMin(100.0)
                                 .montantMax(1000.0)
                                 .dateCreation(new Date())
                                 .build(),
                         PrecoMouvementsQtes.builder()
-                                .qteMin(11)
-                                .qteMax(20)
+                                .quantiteMin(11)
+                                .quantiteMax(20)
                                 .montantMin(1001.0)
                                 .montantMax(2000.0)
                                 .dateCreation(new Date())
@@ -140,15 +140,15 @@ public class PrecoMouvementsSyncRelationsTest extends AbstractIttest {
         saved.setPrecoMouvementsQtes(List.of(
                 PrecoMouvementsQtes.builder()
                         .id(qte1Id)  // existing => update
-                        .qteMin(2)
-                        .qteMax(15)
+                        .quantiteMin(2)
+                        .quantiteMax(15)
                         .montantMin(150.0)
                         .montantMax(1500.0)
                         .dateCreation(new Date())
                         .build(),
                 PrecoMouvementsQtes.builder()
-                        .qteMin(21)
-                        .qteMax(30)
+                        .quantiteMin(21)
+                        .quantiteMax(30)
                         .montantMin(2001.0)
                         .montantMax(3000.0)
                         .dateCreation(new Date())
@@ -175,8 +175,8 @@ public class PrecoMouvementsSyncRelationsTest extends AbstractIttest {
                 .dateCreation(new Date())
                 .precoMouvementsQtes(List.of(
                         PrecoMouvementsQtes.builder()
-                                .qteMin(1)
-                                .qteMax(10)
+                                .quantiteMin(1)
+                                .quantiteMax(10)
                                 .montantMin(100.0)
                                 .montantMax(1000.0)
                                 .dateCreation(new Date())
@@ -187,8 +187,8 @@ public class PrecoMouvementsSyncRelationsTest extends AbstractIttest {
         created.setPrecoMouvementsQtes(List.of(
                 PrecoMouvementsQtes.builder()
                         .id("invalid-qte-id")  // ID inexistant sur update
-                        .qteMin(2)
-                        .qteMax(12)
+                        .quantiteMin(2)
+                        .quantiteMax(12)
                         .montantMin(200.0)
                         .montantMax(1200.0)
                         .dateCreation(new Date())
@@ -223,7 +223,7 @@ public class PrecoMouvementsSyncRelationsTest extends AbstractIttest {
                 .seuilAlerte(10)
                 .prixEntree(1200.0)
                 .prixSortie(1500.0)
-                .unites("PCS")
+                .unite("PCS")
                 .famille(Familles.builder().id(familleSaved.getId()).build())
                 .dateCreation(new Date())
                 .build());
@@ -235,8 +235,8 @@ public class PrecoMouvementsSyncRelationsTest extends AbstractIttest {
                 .dateCreation(new Date())
                 .precoMouvementsQtes(List.of(
                         PrecoMouvementsQtes.builder()
-                                .qteMin(5)
-                                .qteMax(25)
+                                .quantiteMin(5)
+                                .quantiteMax(25)
                                 .montantMin(500.0)
                                 .montantMax(2500.0)
                                 .ressource(Ressources.builder().id(ressourceSaved.getId()).build())

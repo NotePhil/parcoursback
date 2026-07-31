@@ -22,6 +22,9 @@ public class RessourcesEntity {
     @GenericGenerator(name = "UUID", strategy = "org.hibernate.id.UUIDGenerator")
     @Column(name = "id", nullable = false, updatable = false, columnDefinition = "UUID")
     private String id;
+    @Version
+    @Column(name = "version")
+    private Integer version;
     @Column(name = "libelle")
     private String libelle;
     @Column(name = "description")
@@ -45,7 +48,9 @@ public class RessourcesEntity {
     @Column(name = "prixsortie")
     private Double prixSortie;
     @Column(name = "unite")
-    private String unites ;
+    private String unite ;
+    @Column(name = "scanbarcode")
+    private String scanBarCode ;
 
     @OneToMany(mappedBy = "ressourcesEntity",  fetch = FetchType.LAZY)
     @Mapping("precoMouvementsQtes")
@@ -62,6 +67,12 @@ public class RessourcesEntity {
             inverseJoinColumns = @JoinColumn(name = "promotions_id"))
     @Mapping("promotions")
     private List<PromotionsEntity> promotionsEntities;
+
+    @ElementCollection
+    @CollectionTable(name = "caracteristiques", schema = "document",
+            joinColumns = @JoinColumn(name = "ressources_id"))
+    @Mapping("caracteristiques")
+    private List<CaracteristiqueEntity> caracteristiquesEntities;
 
     /**
      * Ne pas modifier directement quantite.

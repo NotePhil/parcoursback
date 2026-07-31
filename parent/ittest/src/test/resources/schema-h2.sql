@@ -268,6 +268,7 @@ CREATE TABLE IF NOT EXISTS document.remplir
 CREATE TABLE IF NOT EXISTS document.ressources
 (
     id               VARCHAR(255) NOT NULL,
+    version          INTEGER DEFAULT 0,
     libelle          VARCHAR(255),
     description      VARCHAR(255),
     etat             BOOLEAN,
@@ -278,6 +279,7 @@ CREATE TABLE IF NOT EXISTS document.ressources
     prixentree       DOUBLE PRECISION,
     prixsortie       DOUBLE PRECISION,
     unite            VARCHAR(255),
+    scanBarCode      VARCHAR(255),
     familles_id      VARCHAR(255),
     CONSTRAINT pk_ressources PRIMARY KEY (id)
 );
@@ -362,6 +364,12 @@ CREATE TABLE IF NOT EXISTS document.docetats_predecesseurs
     predecesseur_id VARCHAR(255) NOT NULL,
     CONSTRAINT pk_docetats_predecesseurs PRIMARY KEY (docetats_id, predecesseur_id)
 );
+CREATE TABLE IF NOT EXISTS document.caracteristiques
+(
+    ressources_id VARCHAR(255) NOT NULL,
+    attribut_id   VARCHAR(255) NOT NULL,
+    valeur        VARCHAR(255) NOT NULL
+);
 
 ALTER TABLE document.docetats_predecesseurs
     ADD CONSTRAINT  IF NOT EXISTS   FK_DOCETATS_PREDECESSEURS_ON_DOCETATS FOREIGN KEY (docetats_id) REFERENCES document.docetats (id);
@@ -404,6 +412,12 @@ ALTER TABLE document.ressourcespromotions
 
 ALTER TABLE document.ressourcespromotions
     ADD CONSTRAINT  IF NOT EXISTS   fk_res_on_ressources_entity FOREIGN KEY (ressources_id) REFERENCES document.ressources (id);
+
+ALTER TABLE document.caracteristiques
+    ADD CONSTRAINT  IF NOT EXISTS   FK_CARACTERISTIQUES_ON_RESSOURCES FOREIGN KEY (ressources_id) REFERENCES document.ressources (id);
+
+ALTER TABLE document.caracteristiques
+    ADD CONSTRAINT  IF NOT EXISTS   FK_CARACTERISTIQUES_ON_ATTRIBUTS FOREIGN KEY (attribut_id) REFERENCES document.attributs (id);
 ALTER TABLE document.remplir
     ADD CONSTRAINT  IF NOT EXISTS   FK_REMPLIR_ON_MISSIONS FOREIGN KEY (missions_id) REFERENCES document.missions (id);
 

@@ -45,9 +45,26 @@ public class RessourcesBusiness {
                 .deleteById(Ressources.getId().toString());
     }
 
-    public Ressources posterRessource(Ressources Ressources) {
-        return dozerMapperBean.map( this.daoAccessorService.getRepository(RessourcesRepository.class)
-                .save(dozerMapperBean.map(Ressources, RessourcesEntity.class)), Ressources.class);
+    /**
+     * Créer ou mettre à jour une ressource.
+     * IMPORTANT : la quantité ne peut pas être modifiée via cette méthode une fois la ressource créée.
+     * Toute tentative de modification de la quantité lors d'une mise à jour est ignorée :
+     * la valeur existante en base est systématiquement conservée.
+     * Pour modifier la quantité, utiliser {@link SoldeRessourcesTransactionBusiness}.
+     */
+    public Ressources posterRessource(Ressources ressources) {
+        RessourcesRepository repository = daoAccessorService.getRepository(RessourcesRepository.class);
+        RessourcesEntity entityToSave = dozerMapperBean.map(ressources, RessourcesEntity.class);
+
+        if (ressources.getId() != null && !ressources.getId().isBlank()) {
+            RessourcesEntity existing = repository.findById(ressources.getId())
+                    .orElseThrow(() -> new RuntimeException("ressource inexistante"));
+            // La quantité est protégée : elle ne peut être modifiée que via SoldeRessourcesTransactionBusiness
+            entityToSave.setQuantite(existing.getQuantite());
+            entityToSave.setDateCreation(existing.getDateCreation());
+        }
+
+        return dozerMapperBean.map(repository.save(entityToSave), Ressources.class);
     }
 
 }

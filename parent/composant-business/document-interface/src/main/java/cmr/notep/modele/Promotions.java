@@ -10,9 +10,9 @@ import java.util.Date;
 @AllArgsConstructor
 @NoArgsConstructor
 @Builder
-@JsonIgnoreProperties({"documents","distributeur","ressources","familles"})
-@ToString(exclude = {"documents","distributeur","ressources","familles"})
-@EqualsAndHashCode(exclude = {"documents","distributeur","ressources","familles"})
+@JsonIgnoreProperties({"documents"})
+@ToString(exclude = {"documents"})
+@EqualsAndHashCode(exclude = {"documents"})
 public class Promotions {
 
     private String id;
