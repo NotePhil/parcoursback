@@ -165,7 +165,7 @@ public MouvementSoldeRessource enregistrerEntree(
 @Transactional
 public MouvementSoldeRessource validerMouvement(
         @PathVariable String mouvementId,
-        @RequestParam String valideeBy) {
+        @PathVariable String valideeBy) {
     // Effectuer des vérifications métier avant validation
     return soldeRessourcesTransactionBusiness.validerMouvement(
             mouvementId,

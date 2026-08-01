@@ -30,12 +30,12 @@ public class PromotionsService implements IPromotionsApi {
     }
 
     @Override
-    public void supprimerPromotion(Promotions Promotions) {
-        promotionsBusiness.supprimerPromotion(Promotions);
+    public void supprimerPromotion(Promotions promotions) {
+        promotionsBusiness.supprimerPromotion(promotions);
     }
 
     @Override
-    public Promotions posterPromotion(Promotions Promotions) {
-        return promotionsBusiness.posterPromotion(Promotions);
+    public Promotions posterPromotion(Promotions promotions) {
+        return promotionsBusiness.posterPromotion(promotions);
     }
 }

@@ -32,7 +32,7 @@ public interface IRessourcesTransactionApi {
     )
     MouvementSoldeRessource validerMouvement(
             @NonNull @PathVariable(name = "idMouvement") String idMouvement,
-            @NonNull @RequestParam(name = "valideeBy") String valideeBy
+            @NonNull @PathVariable(name = "valideeBy") String valideeBy
     ) throws ParcoursException;
 
     @PutMapping(
@@ -41,7 +41,7 @@ public interface IRessourcesTransactionApi {
     )
     void rejeterMouvement(
             @NonNull @PathVariable(name = "idMouvement") String idMouvement,
-            @NonNull @RequestParam(name = "raison") String raison
+            @NonNull @PathVariable(name = "raison") String raison
     ) throws ParcoursException;
 
     @GetMapping(

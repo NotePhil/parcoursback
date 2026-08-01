@@ -35,6 +35,8 @@ public abstract class AbstractIttest {
   @Autowired
   protected IMissionsApi missionService;
   @Autowired
+  protected IFamillesApi familleService;
+  @Autowired
   protected IPromotionsApi promotionService;
   protected static ObjectMapper objectMapper ;
   @BeforeAll

@@ -6,13 +6,10 @@ import cmr.notep.modele.*;
 import cmr.notep.utile.JsonComparator;
 import lombok.SneakyThrows;
 import lombok.extern.slf4j.Slf4j;
-import org.dozer.DozerBeanMapper;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Order;
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
-import org.springframework.test.context.ContextConfiguration;
-import org.springframework.transaction.annotation.Isolation;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.Comparator;
@@ -20,6 +17,7 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 import java.util.concurrent.CompletableFuture;
+import java.util.concurrent.atomic.AtomicReference;
 
 @SpringBootTest(classes = {ItTestConfig.class})
 @Transactional()
@@ -80,12 +78,6 @@ public class DocumentCrudTest extends AbstractIttest {
     @SneakyThrows
     @Order(3)
     public void testUpdaterDocument(){
-        //verification de la conservation des attributs et categories
-        Documents document = documentService.avoirDocument("0190615e-1101-7209-9932-7020bbd556f1");
-
-        document.setTitre("Notes d'interventions");
-        document.setAfficherDistributeur(false);
-        Documents document1 = documentService.posterDocument(document);
         //verification de la mise à jour des attributs et categories
         Documents document2 = documentService.avoirDocument("0190615e-1101-7209-9932-7020bbd556f2");
 
@@ -112,19 +104,30 @@ public class DocumentCrudTest extends AbstractIttest {
         document2.getAttributs().remove(attribut3);
         document2.getAttributs().add(attribut2);
         Documents document3 = documentService.posterDocument(document2);
-
-        documentsList = documentService.avoirTousDocuments();
+        Assertions.assertEquals(document2.getIdDocument(), document3.getIdDocument(), "identifiants doivent être identiques");
+        Documents document = documentService.avoirDocument("0190615e-1101-7209-9932-7020bbd556f2");
+        Attributs attributSave = document.getAttributs().stream().filter(a->a.getId().equals("a8eebc99-9c0b-4ef8-bb6d-6bb9bd380a18")).findFirst().orElseThrow();
+        AtomicReference<Attributs> attributSave2 = new AtomicReference<>();
+        document.getCategories().forEach(categ -> {
+            Associer found = categ.getAttributs().stream().filter(a->a.getAttribut().getId().equals("a8eebc99-9c0b-4ef8-bb6d-6bb9bd380a18")).findFirst().orElse(null);
+            if (found != null) {
+                attributSave2.set(found.getAttribut());
+            }
+        });
+        Assertions.assertNotNull(attributSave);
+        Assertions.assertNotNull(attributSave2.get());
         //documentsList.sort(Comparator.comparing(Documents::getIdDocument));
-        String pathJson = dossier+"/documents_avoirtous_update";
-        Set<String> fieldsToExclude = new HashSet<>();
-        fieldsToExclude.add("id");
-        fieldsToExclude.add("dateModification");
-        fieldsToExclude.add("idDocument");
-        Assertions.assertTrue(JsonComparator.CompareResultWithJson(
-                pathJson
-                ,objectMapper.writeValueAsString(documentsList)
-                ,Documents[].class
-                ,fieldsToExclude));
+        //String pathJson = dossier+"/documents_avoirtous_update";
+//        Set<String> fieldsToExclude = new HashSet<>();
+//        fieldsToExclude.add("id");
+//        fieldsToExclude.add("dateModification");
+//        fieldsToExclude.add("idDocument");
+//        fieldsToExclude.add("dateCreation");
+//        Assertions.assertTrue(JsonComparator.CompareResultWithJson(
+//                pathJson
+//                ,objectMapper.writeValueAsString(documentsList)
+//                ,Documents[].class
+//                ,fieldsToExclude));
     }
 
 

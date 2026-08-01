@@ -36,8 +36,11 @@ public class PromotionsEntity {
     @Column(name = "typeremise")
     private String typeRemise;
 
-    @Column(name = "valeurremise")
-    private Double valeurRemise;
+    @Column(name = "montantremise")
+    private Double montantRemise;
+
+    @Column(name = "pourcentageremise")
+    private Double pourcentageRemise;
 
     @Column(name = "datecreation", columnDefinition = "TIMESTAMP", updatable = false)
     @Temporal(TemporalType.TIMESTAMP)

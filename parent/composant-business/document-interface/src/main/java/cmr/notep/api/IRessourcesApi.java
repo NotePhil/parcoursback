@@ -16,7 +16,7 @@ public interface IRessourcesApi {
             path = "/{idRessource}",
             produces = MediaType.APPLICATION_JSON_VALUE
     )
-    Ressources avoirRessource (@NonNull @RequestParam(name="idRessource") String idRessource) throws ParcoursException;
+    Ressources avoirRessource (@NonNull @PathVariable(name="idRessource") String idRessource) throws ParcoursException;
 
     @GetMapping(
             produces = MediaType.APPLICATION_JSON_VALUE

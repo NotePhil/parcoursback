@@ -40,14 +40,14 @@ public class CategoriesEntity {
             joinColumns = @JoinColumn(name = "id_category"),
             inverseJoinColumns = @JoinColumn(name = "id_attribut"))
     @Mapping("attributs")
-    private List<AttributsEntity> attributsEntities ;*/
+    private List<AttributsEntity> attributsEntities , cascade = {CascadeType.PERSIST, CascadeType.MERGE} ;*/
 
-    @ManyToOne(fetch = FetchType.LAZY, cascade = {CascadeType.ALL})
+    @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "documents_id")
     @Mapping("document")
     private DocumentsEntity documentsEntity ;
 
-    @OneToMany(mappedBy = "categorie", fetch = FetchType.LAZY, cascade = {CascadeType.ALL})
+    @OneToMany(mappedBy = "categorie", fetch = FetchType.LAZY)
     @Mapping("attributs")
     private List<AssocierEntity> attributsEntities;
 }

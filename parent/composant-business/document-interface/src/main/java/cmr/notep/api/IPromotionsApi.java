@@ -14,7 +14,7 @@ public interface IPromotionsApi {
             path = "/{idPromotions}",
             produces = MediaType.APPLICATION_JSON_VALUE
     )
-    Promotions avoirPromotion (@NonNull @RequestParam(name="idPromotions") String idPromotions);
+    Promotions avoirPromotion (@NonNull @PathVariable(name="idPromotions") String idPromotions);
 
     @GetMapping(
             produces = MediaType.APPLICATION_JSON_VALUE
@@ -24,12 +24,12 @@ public interface IPromotionsApi {
     @DeleteMapping(
             consumes = MediaType.APPLICATION_JSON_VALUE
     )
-    void supprimerPromotion(@NonNull @RequestBody Promotions Promotions);
+    void supprimerPromotion(@NonNull @RequestBody Promotions promotions);
 
     @PostMapping(
             produces = MediaType.APPLICATION_JSON_VALUE,
             consumes = MediaType.APPLICATION_JSON_VALUE
     )
-    Promotions posterPromotion(@NonNull @RequestBody Promotions Promotions) ;
+    Promotions posterPromotion(@NonNull @RequestBody Promotions promotions) ;
     
 }

@@ -196,6 +196,21 @@ INSERT INTO document.distributeurs (distributeurs_id, code, raisonsociale, datem
 ('d301ff83-2a62-4e6d-aa23-57c7825bcd57','d190619','UCB','2022-01-01'),
 ('fdbff692-6b8d-43ab-a196-fcc3114b2daa','d190614','Pharmacam','2022-01-01');
 
+-- Insertion dans la table promotions
+INSERT INTO document.promotions (id, datedebut, datefin, codeunique, typeremise, pourcentageremise, datecreation, datemodification, distributeurs_id) VALUES
+('7190615e-1101-7209-9932-7020bbd556f1', '2022-01-01', '2022-12-31', 'PROMO-001', 'Pourcentage', 10.0, '2022-01-01', '2022-01-02', '1979bd79-f71b-498b-b247-e7b9bbb3f600'),
+('7190615e-1101-7209-9932-7020bbd556f2', '2022-02-01', '2022-11-30', 'PROMO-002', 'Montant', 500.0, '2022-02-01', '2022-02-02', '0618e585-f82a-4d5f-af1c-54f880d766d3');
+
+INSERT INTO document.famillespromotions (familles_id, promotions_id) VALUES
+('f190615e-1101-7209-9932-7020bbd556f1', '7190615e-1101-7209-9932-7020bbd556f1'),
+('f190615e-1101-7209-9932-7020bbd556f2', '7190615e-1101-7209-9932-7020bbd556f1'),
+('f190615e-1101-7209-9932-7020bbd556f3', '7190615e-1101-7209-9932-7020bbd556f2');
+
+INSERT INTO document.ressourcespromotions (ressources_id, promotions_id) VALUES
+('6190615e-1101-7209-9932-7020bbd556f1', '7190615e-1101-7209-9932-7020bbd556f1'),
+('6190615e-1101-7209-9932-7020bbd556f2', '7190615e-1101-7209-9932-7020bbd556f1'),
+('6190615e-1101-7209-9932-7020bbd556f3', '7190615e-1101-7209-9932-7020bbd556f2');
+
 INSERT INTO document.etats (id, libelle,description, datecreation, datemodification) VALUES
 ('e190615e-1101-7209-9932-7020bbd556f1','En cours','En cours', '2022-01-01', '2022-01-02'),
 ('e190615e-1101-7209-9932-7020bbd556f2','Valide','Valide', '2022-01-01', '2022-01-02'),
@@ -291,7 +306,7 @@ INSERT INTO document.ticketsfilesattentes (id, etat, dateaffectation, tickets_id
 ('be8ef47f-d7a2-4254-cd79-af860672556e', false, '2021-04-04', 'be8ef47f-d5a2-4254-cd79-af860672556e', 'f190615e-1101-7209-9932-7020bbd556f3');
 
 -- Insertion dans la table promotions
-INSERT INTO document.promotions (id, datedebut, datefin, codeunique, typeremise, valeurremise, datecreation, datemodification, distributeurs_id) VALUES
+INSERT INTO document.promotions (id, datedebut, datefin, codeunique, typeremise, pourcentageremise, datecreation, datemodification, distributeurs_id) VALUES
 ('1979bd79-f81b-498b-b247-e7b9bbb3f600', '2022-01-01', '2022-01-01', 'R5', 'garantie', 54.25, '2000-04-10', '2022-01-01', '1979bd79-f71b-498b-b247-e7b9bbb3f600'),
 ('1979bd79-f81b-498b-b247-e7b9bbb3f601', '2022-01-01', '2022-01-01', 'R54', 'virement', 74.25, '2004-08-10', '2022-01-01', 'd301ff83-2a62-4e6d-aa23-57c7825bcd57'),
 ('1979bd79-f81b-498b-b247-e7b9bbb3f602', '2022-01-01', '2022-01-01', 'R45', 'devoir', 95.23, '2002-10-10', '2022-01-01', '0618e585-f82a-4d5f-af1c-54f880d766d3');

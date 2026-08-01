@@ -14,7 +14,7 @@ public interface IDistributeursApi {
             path = "/{idDistributeurs}",
             produces = MediaType.APPLICATION_JSON_VALUE
     )
-    Distributeurs avoirDistributeur (@NonNull @RequestParam(name="idDistributeurs") String idDistributeurs) throws ParcoursException;
+    Distributeurs avoirDistributeur (@NonNull @PathVariable(name="idDistributeurs") String idDistributeurs) throws ParcoursException;
 
     @GetMapping(
             produces = MediaType.APPLICATION_JSON_VALUE

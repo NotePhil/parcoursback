@@ -1,6 +1,7 @@
 package cmr.notep.document;
 
 import cmr.notep.commun.AbstractIttest;
+import cmr.notep.config.ItTestConfig;
 import cmr.notep.modele.*;
 import lombok.SneakyThrows;
 import lombok.extern.slf4j.Slf4j;
@@ -13,7 +14,7 @@ import org.springframework.transaction.annotation.Transactional;
 import java.util.ArrayList;
 import java.util.List;
 
-@SpringBootTest
+@SpringBootTest(classes = {ItTestConfig.class})
 @Transactional
 @Slf4j
 public class DocumentRelationsExtendedTest extends AbstractIttest {
@@ -104,6 +105,7 @@ public class DocumentRelationsExtendedTest extends AbstractIttest {
         int actualPromotions = reloaded.getPromotions() != null ? reloaded.getPromotions().size() : 0;
         int actualDocEtats = reloaded.getDocEtats() != null ? reloaded.getDocEtats().size() : 0;
 
+        Assertions.assertEquals(saved.getIdDocument(),doc.getIdDocument(),"identifiants doivent être identiques");
         Assertions.assertEquals(expectedPreco, actualPreco, "Mismatch PrecoMouvements count");
         Assertions.assertEquals(expectedMissions, actualMissions, "Mismatch Missions count");
         Assertions.assertEquals(expectedPromotions, actualPromotions, "Mismatch Promotions count");

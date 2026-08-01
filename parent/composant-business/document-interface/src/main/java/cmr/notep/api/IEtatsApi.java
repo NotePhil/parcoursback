@@ -21,7 +21,7 @@ public interface IEtatsApi {
             path = "/{idEtat}",
             produces = MediaType.APPLICATION_JSON_VALUE
     )
-    Etats avoirEtat(@NonNull @RequestParam(name = "idEtat") String idEtat) throws ParcoursException;
+    Etats avoirEtat(@NonNull @PathVariable(name = "idEtat") String idEtat) throws ParcoursException;
 
     @GetMapping(
             produces = MediaType.APPLICATION_JSON_VALUE

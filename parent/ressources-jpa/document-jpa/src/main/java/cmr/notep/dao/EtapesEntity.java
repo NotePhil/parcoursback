@@ -39,7 +39,7 @@ public class EtapesEntity {
     @Mapping("parcours")
     private ParcoursEntity parcoursEntity;
 
-    @OneToMany(mappedBy = "etapesEntity" , fetch = FetchType.LAZY ,  cascade = {CascadeType.ALL})
+    @OneToMany(mappedBy = "etapesEntity" , fetch = FetchType.LAZY )
     @Mapping("docEtats")
     private List<DocEtatsEntity> docEtatsEntities;
 

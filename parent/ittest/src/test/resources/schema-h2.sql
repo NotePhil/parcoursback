@@ -244,7 +244,8 @@ CREATE TABLE IF NOT EXISTS document.promotions
     datefin                 DATE,
     codeunique              VARCHAR(255),
     typeremise              VARCHAR(255),
-    valeurremise            DOUBLE PRECISION,
+    pourcentageremise       DOUBLE PRECISION,
+    montantRemise           DOUBLE PRECISION,
     datecreation            DATE,
     datemodification        DATE,
     distributeurs_id VARCHAR(255),
@@ -279,7 +280,7 @@ CREATE TABLE IF NOT EXISTS document.ressources
     prixentree       DOUBLE PRECISION,
     prixsortie       DOUBLE PRECISION,
     unite            VARCHAR(255),
-    scanBarCode      VARCHAR(255),
+    scanbarcode      VARCHAR(255),
     familles_id      VARCHAR(255),
     CONSTRAINT pk_ressources PRIMARY KEY (id)
 );
