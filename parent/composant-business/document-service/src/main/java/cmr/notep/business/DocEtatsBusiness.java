@@ -60,7 +60,7 @@ public class DocEtatsBusiness {
     }
 
     public List<DocEtats> listeDocEtatsParDocument(@NonNull String idDocument) {
-        return docEtatsRepository.findByDocuments_Id(idDocument).stream()
+        return docEtatsRepository.findByDocumentsEntityId(idDocument).stream()
                 .map(docEtatsEntity -> dozerMapperBean
                         .map(docEtatsEntity, DocEtats.class)).collect(Collectors.toList());
     }

@@ -6,5 +6,5 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import java.util.List;
 
 public interface DocEtatsRepository extends JpaRepository<DocEtatsEntity, String> {
-    List<DocEtatsEntity> findByDocuments_Id(String documents_id);
+    List<DocEtatsEntity> findByDocumentsEntityId(String documents_id);
 }
