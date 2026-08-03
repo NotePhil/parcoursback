@@ -1,7 +1,10 @@
 package cmr.notep.commun;
 
 import cmr.notep.api.*;
+import cmr.notep.api.IDocEtatsApi;
+import cmr.notep.api.IEtatsApi;
 import cmr.notep.api.IExemplairesApi;
+import cmr.notep.api.IValidationsApi;
 import cmr.notep.modele.*;
 import com.fasterxml.jackson.core.StreamReadFeature;
 import com.fasterxml.jackson.core.util.DefaultPrettyPrinter;
@@ -17,6 +20,15 @@ public abstract class AbstractIttest {
 
   @Autowired
   protected IDocumentsApi documentService;
+
+  @Autowired
+  protected IDocEtatsApi docEtatService;
+
+  @Autowired
+  protected IEtatsApi etatsService;
+
+  @Autowired
+  protected IValidationsApi validationsService;
 
   @Autowired
   protected IAttributsApi attributService ;

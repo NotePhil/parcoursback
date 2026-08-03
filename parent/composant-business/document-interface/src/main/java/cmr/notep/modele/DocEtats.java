@@ -10,9 +10,9 @@ import java.util.List;
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-@ToString(exclude = {"document"})
-@EqualsAndHashCode(exclude = {"document"})
-@JsonIgnoreProperties(value = {"document"}, ignoreUnknown = true)
+@ToString(exclude = {"document", "etape"})
+@EqualsAndHashCode(exclude = {"document", "etape"})
+@JsonIgnoreProperties(value = {"document", "etape"}, ignoreUnknown = true)
 @Builder
 public class DocEtats {
     private String id;

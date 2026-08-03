@@ -15,7 +15,7 @@ public interface IEtatsApi {
             produces = MediaType.APPLICATION_JSON_VALUE,
             consumes = MediaType.APPLICATION_JSON_VALUE
     )
-    Etats posterEtat(@NonNull @RequestBody Etats Etat);
+    Etats posterEtat(@NonNull @RequestBody Etats etat);
 
     @GetMapping(
             path = "/{idEtat}",
@@ -30,7 +30,7 @@ public interface IEtatsApi {
     @DeleteMapping(
             consumes = MediaType.APPLICATION_JSON_VALUE
     )
-    void SupprimerEtat(@NonNull @RequestBody Etats Etat);
+    void SupprimerEtat(@NonNull @RequestBody Etats etat);
 
 
 }
