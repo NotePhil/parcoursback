@@ -55,7 +55,7 @@ public class CategoriesBusiness {
         supprimerCategoryEntity(categorieEntity, categorieRepo);
     }
 
-    private void supprimerCategoryEntity(CategoriesEntity categorieEntity, CategoriesRepository categorieRepo) {
+    public void supprimerCategoryEntity(CategoriesEntity categorieEntity, CategoriesRepository categorieRepo) {
         // Supprimer toutes les associations avec les attributs
         try {
             if (categorieEntity.getAttributsEntities() != null && !categorieEntity.getAttributsEntities().isEmpty()) {

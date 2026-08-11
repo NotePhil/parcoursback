@@ -50,6 +50,8 @@ public abstract class AbstractIttest {
   protected IFamillesApi familleService;
   @Autowired
   protected IPromotionsApi promotionService;
+  @Autowired
+  protected ICaissesApi caisseService;
   protected static ObjectMapper objectMapper ;
   @BeforeAll
   public static void onInit(){

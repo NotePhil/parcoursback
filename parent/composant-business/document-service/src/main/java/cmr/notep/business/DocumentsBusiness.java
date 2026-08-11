@@ -5,6 +5,7 @@ import java.util.*;
 import java.util.stream.Collectors;
 
 
+import cmr.notep.config.mapper.MapperBean;
 import cmr.notep.dao.*;
 import cmr.notep.exceptions.ParcoursException;
 import cmr.notep.exceptions.enumeration.ParcoursExceptionCodeEnum;
@@ -22,6 +23,7 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.util.CollectionUtils;
 
 import static cmr.notep.util.BeanCopyUtils.copyPropertiesExcludingCollections;
+import static cmr.notep.util.BeanCopyUtils.copyCollectionsWithDozer;
 
 @Component
 @Slf4j
@@ -62,19 +64,17 @@ public class DocumentsBusiness {
             documentEntity = documentsRepo.findById(document.getIdDocument())
                     .orElseThrow(() -> new ParcoursException(cmr.notep.exceptions.enumeration.ParcoursExceptionCodeEnum.NOT_FOUND, "Document non trouvé : " + document.getIdDocument()));
             // Copier uniquement les propriétés scalaires (exclure collections)
-            copyPropertiesExcludingCollections(document, documentEntity);
+            //copyPropertiesExcludingCollections(document, documentEntity);
+            MapperBean.getDozerMapperWithoutList().map(document, documentEntity);
         } else {
             // Nouveau document
-            DocumentsEntity newDocumentEntity = dozerMapperBean.map(document, DocumentsEntity.class);
-            // S'assurer que les collections sont vides pour les gérer explicitement
-            if (newDocumentEntity.getCategoriesEntities() != null) {
-                newDocumentEntity.getCategoriesEntities().clear();
-            }
-            documentsRepo.save(newDocumentEntity);
             documentEntity = dozerMapperBean.map(document, DocumentsEntity.class);
-            documentEntity.setId(newDocumentEntity.getId());
-            //copie des attributs hors collection : id, dateCreation, date modification
-            copyPropertiesExcludingCollections(document,documentEntity);
+            // S'assurer que les collections sont vides pour les gérer explicitement
+            if (documentEntity.getCategoriesEntities() != null) {
+                documentEntity.getCategoriesEntities().clear();
+            }
+            documentsRepo.save(documentEntity);
+            document.setIdDocument(documentEntity.getId());
         }
         
         // Gérer les catégories via le business dédié (synchronisation des entités liées)
@@ -82,12 +82,12 @@ public class DocumentsBusiness {
         
         // Pour les relations ManyToMany sans attributs (ex: attributs) on laisse JPA gérer directement via le mapping Dozer
         // Mapper le modèle vers l'entité pour que JPA prenne en charge les relations simples
-        // Attention : ne pas écraser categoriesEntities déjà synchronisées
-        DocumentsEntity toSave = dozerMapperBean.map(document, DocumentsEntity.class);
-        // Reprendre les categoriesEntities synchronisées sur documentEntity
-        toSave.setCategoriesEntities(documentEntity.getCategoriesEntities());
+        // Attention : ne pas écraser categoriesEntities déjà synchronisées (gérées via gererCategoriesDocument)
+        if(document.getIdDocument() != null){
+            copyCollectionsWithDozer(document, documentEntity, dozerMapperBean, "categories");
+        }
 
-        DocumentsEntity saved = documentsRepo.save(toSave);
+        DocumentsEntity saved = documentsRepo.save(documentEntity);
         return dozerMapperBean.map(saved, Documents.class);
     }
 
@@ -98,16 +98,17 @@ public class DocumentsBusiness {
 
         // Si la liste fournie est vide -> purge complète des catégories liées
         if (CollectionUtils.isEmpty(document.getCategories())) {
-            purgerCategories(documentEntity, categorieRepo);
+            //TODO loger dans un journal spécifique ces suppressions
+            for (CategoriesEntity existing : new ArrayList<>(documentEntity.getCategoriesEntities())) {
+                categoriesBusiness.supprimerCategoryEntity(existing, categorieRepo);
+            }
             return;
         }
         //Ano on si document présent, alors JPA tente de sauvegarder les catégories du  document sans réussir à gérer cette relation avec attribut
-        document.getCategories().stream().forEach(cat -> cat.setDocument(null));
-
         // Appeler le business Categories pour créer/modifier chaque catégorie fournie
         List<Categories> savedCats = document.getCategories().stream().map(cat -> {
             try {
-                cat.setDocument(null);
+                cat.setDocument(document);
                 return categoriesBusiness.posterCategorie(cat).orElse(null);
             } catch (ParcoursException e) {
                 throw new RuntimeException(e);
@@ -125,7 +126,7 @@ public class DocumentsBusiness {
             for (CategoriesEntity existing : new ArrayList<>(documentEntity.getCategoriesEntities())) {
                 if (!wantedIds.contains(existing.getId())) {
                     try {
-                        categorieRepo.delete(existing);
+                        categoriesBusiness.supprimerCategoryEntity(existing, categorieRepo);
                         documentEntity.getCategoriesEntities().remove(existing);
                     } catch (Exception e) {
                         throw new ParcoursException(cmr.notep.exceptions.enumeration.ParcoursExceptionCodeEnum.RELATION_SYNC_FAILED,
@@ -137,36 +138,17 @@ public class DocumentsBusiness {
             documentEntity.setCategoriesEntities(new ArrayList<>());
         }
 
-        // Ajouter les catégories nouvellement créées ou récupérées
-        for (Categories saved : savedCats) {
-            if (saved.getId() == null) continue;
-             CategoriesEntity catEntity = categorieRepo.findById(saved.getId())
-                    .orElseThrow(() -> new RuntimeException("Catégorie introuvable après enregistrement: " + saved.getId()));
-            if (!documentEntity.getCategoriesEntities().contains(catEntity)) {
-                documentEntity.getCategoriesEntities().add(catEntity);
-            }
-        }
-
-        // Mettre à jour la représentation modèle du document (retournera les catégories sauvegardées)
-        document.getCategories().clear();
-        document.getCategories().addAll(savedCats);
-        document.getCategories().stream().forEach(cat -> cat.setDocument(document));
+        // Mise à jour des relations JPA
+        documentEntity.getCategoriesEntities().clear();
+        documentEntity.setCategoriesEntities(savedCats.stream()
+                .map(cat -> {
+                   CategoriesEntity entity = dozerMapperBean.map(cat, CategoriesEntity.class);
+                   entity.setDocumentsEntity(documentEntity);
+                   return entity;
+                })
+                .collect(Collectors.toList()));
     }
 
-    private static void purgerCategories(DocumentsEntity documentEntity, CategoriesRepository categorieRepo) {
-        try {
-            if (documentEntity.getCategoriesEntities() != null && !documentEntity.getCategoriesEntities().isEmpty()) {
-                for (CategoriesEntity existing : new ArrayList<>(documentEntity.getCategoriesEntities())) {
-                    categorieRepo.delete(existing);
-                }
-                documentEntity.getCategoriesEntities().clear();
-            }
-        } catch (Exception e) {
-            throw new ParcoursException(ParcoursExceptionCodeEnum.RELATION_SYNC_FAILED,
-                    "Impossible de purger les catégories du document: " + e.getMessage(), e);
-        }
-        return;
-    }
 
     public Documents assignEtatDoc(Etats etat ,  Documents document)
     {

@@ -59,6 +59,7 @@ CREATE TABLE IF NOT EXISTS document.documents
     id                   VARCHAR(255)         NOT NULL,
     titre                VARCHAR(255) NOT NULL,
     description          VARCHAR(255),
+    formatcode          VARCHAR(255),
     etat                 BOOLEAN,
     datecreation         DATE,
     datemodification     DATE,
@@ -180,7 +181,17 @@ CREATE TABLE IF NOT EXISTS document.personnes
     datemodification DATE,
     CONSTRAINT pk_personnes PRIMARY KEY (id)
 );
-
+CREATE TABLE IF NOT EXISTS document.caisses
+(
+    id               VARCHAR(255) NOT NULL,
+    version          INTEGER DEFAULT 0,
+    libelle          VARCHAR(255),
+    solde            DOUBLE PRECISION,
+    type             VARCHAR(255),
+    detailjson       VARCHAR(255),
+    etat             BOOLEAN,
+    CONSTRAINT pk_caisses PRIMARY KEY (id)
+    );
 CREATE TABLE IF NOT EXISTS document.rattacher
 (
     personnes_id VARCHAR(255) NOT NULL,

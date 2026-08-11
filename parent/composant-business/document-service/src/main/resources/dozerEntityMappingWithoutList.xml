@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<mappings xmlns="http://dozer.sourceforge.net"
+          xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+          xsi:schemaLocation="http://dozer.sourceforge.net
+      http://dozer.sourceforge.net/schema/beanmapping.xsd">
+    <mapping>
+        <class-a>cmr.notep.modele.Documents</class-a>
+        <class-b>cmr.notep.dao.DocumentsEntity</class-b>
+        <field-exclude>
+            <a>attributs</a>
+            <b>attributsEntities</b>
+        </field-exclude>
+        <field-exclude>
+            <a>categories</a>
+            <b>categoriesEntities</b>
+        </field-exclude>
+        <field-exclude>
+            <a>missions</a>
+            <b>missionsEntities</b>
+        </field-exclude>
+        <field-exclude>
+            <a>precoMouvements</a>
+            <b>precoMouvementsEntities</b>
+        </field-exclude>
+        <field-exclude>
+            <a>docEtats</a>
+            <b>docEtatsEntities</b>
+        </field-exclude>
+    </mapping>
+
+</mappings>

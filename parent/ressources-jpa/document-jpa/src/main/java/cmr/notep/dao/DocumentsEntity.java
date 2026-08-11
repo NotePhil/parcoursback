@@ -47,6 +47,9 @@ public class DocumentsEntity {
     @Column(name = "typemouvement")
     private String typeMouvement ;
 
+    @Column(name = "formatcode")
+    private String formatCode ;
+
     @Column(name = "afficherprix")
     private Boolean afficherPrix ;
 
@@ -70,14 +73,17 @@ public class DocumentsEntity {
             joinColumns = @JoinColumn(name = "documents_id"),
             inverseJoinColumns = @JoinColumn(name = "attributs_id"))
     @Mapping("attributs")
-    //@Cascade(org.hibernate.annotations.CascadeType.ALL)
     private List<AttributsEntity> attributsEntities ;
 
     @OneToMany(mappedBy = "documentsEntity", fetch = FetchType.LAZY)
     @Mapping("categories")
     private List<CategoriesEntity> categoriesEntities;
 
-    @ManyToMany(mappedBy = "documentsEntities")
+    @ManyToMany(fetch = FetchType.LAZY  )
+    @JoinTable(name = "traiter",schema = "document",
+            joinColumns = @JoinColumn(name = "documents_id", referencedColumnName = "id"),
+            inverseJoinColumns = @JoinColumn(name="missions_id", referencedColumnName = "id")
+    )
     @Mapping("missions")
     private List<MissionsEntity> missionsEntities ;
 

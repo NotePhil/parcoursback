@@ -23,6 +23,8 @@ public class Documents {
 
     private String description;
 
+    private String formatCode;
+
     private boolean etat;
 
     private Date dateCreation;

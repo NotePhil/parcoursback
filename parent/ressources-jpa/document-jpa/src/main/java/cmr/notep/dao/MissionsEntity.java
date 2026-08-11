@@ -39,11 +39,7 @@ public class MissionsEntity {
     @Column(name="datemodification")
     private Date dateModification ;
 
-    @ManyToMany(fetch = FetchType.LAZY  )
-    @JoinTable(name = "traiter",schema = "document",
-        joinColumns = @JoinColumn(name = "missions_id", referencedColumnName = "id"),
-            inverseJoinColumns = @JoinColumn(name="documents_id", referencedColumnName = "id")
-    )
+    @ManyToMany(mappedBy = "missionsEntities")
     @Mapping("documents")
     private List<DocumentsEntity> documentsEntities ;
 

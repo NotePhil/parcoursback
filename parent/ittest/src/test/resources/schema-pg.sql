@@ -59,6 +59,7 @@ CREATE TABLE IF NOT EXISTS document.documents
     id                   VARCHAR(255)         NOT NULL,
     titre                VARCHAR(255) NOT NULL,
     description          VARCHAR(255),
+    formatcode          VARCHAR(255),
     etat                 BOOLEAN,
     datecreation         DATE,
     datemodification     DATE,
@@ -370,6 +371,7 @@ CREATE TABLE IF NOT EXISTS document.docetats_predecesseurs
 CREATE TABLE IF NOT EXISTS document.caisses
 (
     id               VARCHAR(255) NOT NULL,
+    version          INTEGER DEFAULT 0,
     libelle          VARCHAR(255),
     solde            DOUBLE PRECISION,
     type             VARCHAR(255),

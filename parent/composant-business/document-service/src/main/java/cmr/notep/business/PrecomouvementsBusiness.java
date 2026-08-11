@@ -1,18 +1,26 @@
 package cmr.notep.business;
 
 import java.util.ArrayList;
+import java.util.Collections;
+import java.util.LinkedHashSet;
 import java.util.List;
+import java.util.Objects;
 import java.util.Set;
+import java.util.function.Function;
 import java.util.stream.Collectors;
 
+import cmr.notep.dao.DistributeursEntity;
 import cmr.notep.dao.FamillesEntity;
 import cmr.notep.dao.PrecoMouvementsEntity;
 import cmr.notep.dao.PrecoMouvementsQtesEntity;
 import cmr.notep.dao.RessourcesEntity;
 import cmr.notep.exceptions.ParcoursException;
 import cmr.notep.exceptions.enumeration.ParcoursExceptionCodeEnum;
+import cmr.notep.modele.Distributeurs;
+import cmr.notep.modele.Familles;
 import cmr.notep.modele.PrecoMouvements;
 import cmr.notep.modele.PrecoMouvementsQtes;
+import cmr.notep.repository.DistributeursRepository;
 import cmr.notep.repository.FamillesRepository;
 import cmr.notep.repository.PrecoMouvementsQtesRepository;
 import cmr.notep.repository.PrecoMouvementsRepository;
@@ -24,6 +32,8 @@ import org.springframework.util.CollectionUtils;
 
 import cmr.notep.dao.DaoAccessorService;
 import lombok.extern.slf4j.Slf4j;
+
+import static cmr.notep.util.BeanCopyUtils.copyPropertiesExcludingCollections;
 
 
 @Component
@@ -48,65 +58,66 @@ public class PrecomouvementsBusiness {
     public PrecoMouvements avoirPrecomouvements(String idPreco)
     {
         return dozerMapperBean.map(this.daoAccessorService.getRepository(PrecoMouvementsRepository.class).findById(idPreco)
-                .orElseThrow(()->new RuntimeException("Missions non enregistré")), PrecoMouvements.class);
+                .orElseThrow(()->new  ParcoursException(ParcoursExceptionCodeEnum.NOT_FOUND, "Missions non enregistré")), PrecoMouvements.class);
     }
 
     public PrecoMouvements posterPrecomouvement(PrecoMouvements preco) throws ParcoursException {
-        PrecoMouvementsEntity precoEntity;
+        PrecoMouvementsRepository precoRepository = daoAccessorService.getRepository(PrecoMouvementsRepository.class);
 
-        if (preco.getId() != null) {
-            precoEntity = this.daoAccessorService.getRepository(PrecoMouvementsRepository.class)
-                    .findById(preco.getId())
-                    .orElseThrow(() -> new RuntimeException("PrecoMouvement non trouvé : " + preco.getId()));
-            dozerMapperBean.map(preco, precoEntity);
-        } else {
-            precoEntity = dozerMapperBean.map(preco, PrecoMouvementsEntity.class);
-        }
+        PrecoMouvementsEntity precoEntity = preparerPrecoMouvement(preco, precoRepository);
+        PrecoMouvementsEntity savedPrecoEntity = precoRepository.save(precoEntity);
 
-        // Le précomouvement doit être persisté (et donc disposer d'un id) avant de
-        // traiter ses quantités, car celles-ci référencent precomouvements_id (NOT NULL).
-        precoEntity = this.daoAccessorService.getRepository(PrecoMouvementsRepository.class).save(precoEntity);
+        synchroniserQuantites(preco.getPrecoMouvementsQtes(), savedPrecoEntity);
 
-        gererPrecoMouvementsQtes(preco, precoEntity);
-
-        return dozerMapperBean.map(precoEntity, PrecoMouvements.class);
+        return dozerMapperBean.map(precoRepository.save(savedPrecoEntity), PrecoMouvements.class);
     }
 
-    private void gererPrecoMouvementsQtes(PrecoMouvements preco, PrecoMouvementsEntity precoEntity) throws ParcoursException {
-        List<PrecoMouvementsQtes> qtesList = preco.getPrecoMouvementsQtes();
-        PrecoMouvementsQtesRepository qtesRepo = daoAccessorService.getRepository(PrecoMouvementsQtesRepository.class);
-        FamillesRepository famillesRepository = daoAccessorService.getRepository(FamillesRepository.class);
-        RessourcesRepository ressourcesRepository = daoAccessorService.getRepository(RessourcesRepository.class);
+    private PrecoMouvementsEntity preparerPrecoMouvement(PrecoMouvements preco,
+                                                          PrecoMouvementsRepository precoRepository) {
+        if (preco.getId() == null) {
+            PrecoMouvementsEntity precoEntity = dozerMapperBean.map(preco, PrecoMouvementsEntity.class);
+            precoEntity.setPrecoMouvementsQteEntities(new ArrayList<>());
+            return precoEntity;
+        }
 
-        List<PrecoMouvementsQtesEntity> existingQtes = precoEntity.getPrecoMouvementsQteEntities() != null
-                ? new ArrayList<>(precoEntity.getPrecoMouvementsQteEntities())
-                : new ArrayList<>();
+        PrecoMouvementsEntity precoEntity = precoRepository.findById(preco.getId())
+                .orElseThrow(() -> new  ParcoursException(ParcoursExceptionCodeEnum.NOT_FOUND, "PrecoMouvement non trouvé : " + preco.getId()));
+        copyPropertiesExcludingCollections(preco, precoEntity);
+        initialiserCollectionQuantites(precoEntity);
+        return precoEntity;
+    }
 
-        // Si liste absente ou vide => purger toutes les quantités
-        if (CollectionUtils.isEmpty(qtesList)) {
-            try {
-                for (PrecoMouvementsQtesEntity existing : existingQtes) {
-                    qtesRepo.delete(existing);
-                }
-                if (precoEntity.getPrecoMouvementsQteEntities() != null) {
-                    precoEntity.getPrecoMouvementsQteEntities().clear();
-                }
-            } catch (Exception e) {
-                throw new ParcoursException(ParcoursExceptionCodeEnum.RELATION_SYNC_FAILED,
-                        "Impossible de supprimer les quantités du précomouvement: " + e.getMessage(), e);
-            }
+    private void synchroniserQuantites(List<PrecoMouvementsQtes> qtesDemandes,
+                                       PrecoMouvementsEntity precoEntity) throws ParcoursException {
+        initialiserCollectionQuantites(precoEntity);
+        supprimerQuantitesAbsentes(qtesDemandes, precoEntity);
+
+        if (CollectionUtils.isEmpty(qtesDemandes)) {
             return;
         }
 
-        List<String> newIds = qtesList.stream()
+        for (PrecoMouvementsQtes qteDemandee : qtesDemandes) {
+            PrecoMouvementsQtesEntity savedQte = enregistrerQuantite(qteDemandee, precoEntity);
+            synchroniserFamilles(savedQte, qteDemandee.getFamilles());
+            synchroniserDistributeurs(savedQte, qteDemandee.getDistributeurs());
+            remplacerOuAjouterQuantite(precoEntity, savedQte);
+        }
+    }
+
+    private void supprimerQuantitesAbsentes(List<PrecoMouvementsQtes> qtesDemandes,
+                                            PrecoMouvementsEntity precoEntity) throws ParcoursException {
+        PrecoMouvementsQtesRepository qtesRepo = daoAccessorService.getRepository(PrecoMouvementsQtesRepository.class);
+        Set<String> idsDemandes = CollectionUtils.isEmpty(qtesDemandes)
+                ? Collections.emptySet()
+                : qtesDemandes.stream()
                 .filter(q -> q.getId() != null)
                 .map(PrecoMouvementsQtes::getId)
-                .toList();
+                .collect(Collectors.toSet());
 
-        // Supprimer les anciens non présents dans la nouvelle liste
-        for (PrecoMouvementsQtesEntity existing : existingQtes) {
-            if (!newIds.contains(existing.getId())) {
+        for (PrecoMouvementsQtesEntity existing : new ArrayList<>(precoEntity.getPrecoMouvementsQteEntities())) {
+            if (!idsDemandes.contains(existing.getId())) {
                 try {
+                    detacherRelationsProprietaires(existing);
                     qtesRepo.delete(existing);
                     precoEntity.getPrecoMouvementsQteEntities().remove(existing);
                 } catch (Exception e) {
@@ -115,91 +126,197 @@ public class PrecomouvementsBusiness {
                 }
             }
         }
+    }
 
+    private PrecoMouvementsQtesEntity enregistrerQuantite(PrecoMouvementsQtes qteDemandee,
+                                                           PrecoMouvementsEntity precoEntity) throws ParcoursException {
+        PrecoMouvementsQtesRepository qtesRepo = daoAccessorService.getRepository(PrecoMouvementsQtesRepository.class);
+
+        PrecoMouvementsQtesEntity qteEntity = chargerOuCreerQuantite(qteDemandee, qtesRepo);
+        //appliquerChampsQuantite(qteDemandee, qteEntity);
+        qteEntity.setRessourcesEntity(resoudreRessource(qteDemandee));
+        qteEntity.setPrecoMouvementsEntity(precoEntity);
+
+        try {
+            return qtesRepo.save(qteEntity);
+        } catch (Exception e) {
+            throw new ParcoursException(ParcoursExceptionCodeEnum.RELATION_SYNC_FAILED,
+                    "Impossible d'enregistrer la quantité du précomouvement: " + e.getMessage(), e);
+        }
+    }
+
+    private PrecoMouvementsQtesEntity chargerOuCreerQuantite(PrecoMouvementsQtes qteDemandee,
+                                                              PrecoMouvementsQtesRepository qtesRepo) {
+        if (qteDemandee.getId() == null) {
+            return new PrecoMouvementsQtesEntity();
+        }
+
+        return qtesRepo.findById(qteDemandee.getId())
+                .orElseThrow(() -> new  ParcoursException(ParcoursExceptionCodeEnum.NOT_FOUND, "PrecoMouvementsQte non trouvée : " + qteDemandee.getId()));
+    }
+
+    private void appliquerChampsQuantite(PrecoMouvementsQtes qteDemandee, PrecoMouvementsQtesEntity qteEntity) {
+        qteEntity.setQteMin(qteDemandee.getQuantiteMin());
+        qteEntity.setQteMax(qteDemandee.getQuantiteMax());
+        qteEntity.setMontantMin(qteDemandee.getMontantMin());
+        qteEntity.setMontantMax(qteDemandee.getMontantMax());
+
+        if (qteEntity.getId() == null) {
+            qteEntity.setDateCreation(qteDemandee.getDateCreation());
+        }
+    }
+
+    private RessourcesEntity resoudreRessource(PrecoMouvementsQtes qteDemandee) throws ParcoursException {
+        if (qteDemandee.getRessource() == null) {
+            return null;
+        }
+
+        String ressourceId = qteDemandee.getRessource().getId();
+        if (ressourceId == null) {
+            throw new ParcoursException(ParcoursExceptionCodeEnum.RELATION_SYNC_FAILED,
+                    "Ressource invalide: id manquant sur la quantité du précomouvement");
+        }
+
+        return daoAccessorService.getRepository(RessourcesRepository.class)
+                .findById(ressourceId)
+                .orElseThrow(() -> new  ParcoursException(ParcoursExceptionCodeEnum.NOT_FOUND, "Ressource non trouvée : " + ressourceId));
+    }
+
+    private void synchroniserFamilles(PrecoMouvementsQtesEntity qteEntity,
+                                      List<Familles> famillesDemandees) throws ParcoursException {
+        FamillesRepository famillesRepository = daoAccessorService.getRepository(FamillesRepository.class);
+        Set<String> idsCibles = extraireIdsCibles(
+                famillesDemandees,
+                Familles::getId,
+                "Famille invalide: id manquant sur la quantité du précomouvement"
+        );
+
+        for (FamillesEntity familleExistante : new ArrayList<>(safeList(qteEntity.getFamillesEntities()))) {
+            if (!idsCibles.contains(familleExistante.getId())) {
+                retirerLienQuantite(familleExistante.getPrecoMouvementsQtesEntities(), qteEntity.getId());
+                famillesRepository.save(familleExistante);
+            }
+        }
+
+        List<FamillesEntity> famillesSynchronisees = new ArrayList<>();
+        for (String familleId : idsCibles) {
+            FamillesEntity familleEntity = famillesRepository.findById(familleId)
+                    .orElseThrow(() -> new  ParcoursException(ParcoursExceptionCodeEnum.RELATION_SYNC_FAILED, "Famille non trouvée : " + familleId));
+            initialiserCollectionQuantites(familleEntity);
+            ajouterLienQuantiteSiAbsent(familleEntity.getPrecoMouvementsQtesEntities(), qteEntity);
+            famillesRepository.save(familleEntity);
+            famillesSynchronisees.add(familleEntity);
+        }
+
+        qteEntity.setFamillesEntities(famillesSynchronisees);
+    }
+
+    private void synchroniserDistributeurs(PrecoMouvementsQtesEntity qteEntity,
+                                           List<Distributeurs> distributeursDemandes) throws ParcoursException {
+        DistributeursRepository distributeursRepository = daoAccessorService.getRepository(DistributeursRepository.class);
+        Set<String> idsCibles = extraireIdsCibles(
+                distributeursDemandes,
+                Distributeurs::getId,
+                "Distributeur invalide: id manquant sur la quantité du précomouvement"
+        );
+
+        for (DistributeursEntity distributeurExistant : new ArrayList<>(safeList(qteEntity.getDistributeursEntities()))) {
+            if (!idsCibles.contains(distributeurExistant.getId())) {
+                retirerLienQuantite(distributeurExistant.getPrecoMouvementsQtesEntities(), qteEntity.getId());
+                distributeursRepository.save(distributeurExistant);
+            }
+        }
+
+        List<DistributeursEntity> distributeursSynchronises = new ArrayList<>();
+        for (String distributeurId : idsCibles) {
+            DistributeursEntity distributeurEntity = distributeursRepository.findById(distributeurId)
+                    .orElseThrow(() -> new  ParcoursException(ParcoursExceptionCodeEnum.RELATION_SYNC_FAILED, "Distributeur non trouvé : " + distributeurId));
+            initialiserCollectionQuantites(distributeurEntity);
+            ajouterLienQuantiteSiAbsent(distributeurEntity.getPrecoMouvementsQtesEntities(), qteEntity);
+            distributeursRepository.save(distributeurEntity);
+            distributeursSynchronises.add(distributeurEntity);
+        }
+
+        qteEntity.setDistributeursEntities(distributeursSynchronises);
+    }
+
+    private void detacherRelationsProprietaires(PrecoMouvementsQtesEntity qteEntity) {
+        FamillesRepository famillesRepository = daoAccessorService.getRepository(FamillesRepository.class);
+        for (FamillesEntity familleEntity : new ArrayList<>(safeList(qteEntity.getFamillesEntities()))) {
+            retirerLienQuantite(familleEntity.getPrecoMouvementsQtesEntities(), qteEntity.getId());
+            famillesRepository.save(familleEntity);
+        }
+        qteEntity.setFamillesEntities(new ArrayList<>());
+
+        DistributeursRepository distributeursRepository = daoAccessorService.getRepository(DistributeursRepository.class);
+        for (DistributeursEntity distributeurEntity : new ArrayList<>(safeList(qteEntity.getDistributeursEntities()))) {
+            retirerLienQuantite(distributeurEntity.getPrecoMouvementsQtesEntities(), qteEntity.getId());
+            distributeursRepository.save(distributeurEntity);
+        }
+        qteEntity.setDistributeursEntities(new ArrayList<>());
+    }
+
+    private <T> Set<String> extraireIdsCibles(List<T> elements,
+                                              Function<T, String> idExtractor,
+                                              String messageIdManquant) throws ParcoursException {
+        if (CollectionUtils.isEmpty(elements)) {
+            return Collections.emptySet();
+        }
+
+        Set<String> ids = new LinkedHashSet<>();
+        for (T element : elements) {
+            String id = idExtractor.apply(element);
+            if (id == null) {
+                throw new ParcoursException(ParcoursExceptionCodeEnum.RELATION_SYNC_FAILED, messageIdManquant);
+            }
+            ids.add(id);
+        }
+        return ids;
+    }
+
+    private void remplacerOuAjouterQuantite(PrecoMouvementsEntity precoEntity, PrecoMouvementsQtesEntity savedQte) {
+        initialiserCollectionQuantites(precoEntity);
+        precoEntity.getPrecoMouvementsQteEntities().removeIf(qte -> Objects.equals(qte.getId(), savedQte.getId()));
+        precoEntity.getPrecoMouvementsQteEntities().add(savedQte);
+    }
+
+    private void ajouterLienQuantiteSiAbsent(List<PrecoMouvementsQtesEntity> quantites,
+                                             PrecoMouvementsQtesEntity qteEntity) {
+        if (!contientQuantite(quantites, qteEntity.getId())) {
+            quantites.add(qteEntity);
+        }
+    }
+
+    private boolean contientQuantite(List<PrecoMouvementsQtesEntity> quantites, String qteId) {
+        return quantites.stream().anyMatch(qte -> Objects.equals(qte.getId(), qteId));
+    }
+
+    private void retirerLienQuantite(List<PrecoMouvementsQtesEntity> quantites, String qteId) {
+        if (quantites != null) {
+            quantites.removeIf(qte -> Objects.equals(qte.getId(), qteId));
+        }
+    }
+
+    private <T> List<T> safeList(List<T> quantites) {
+        return quantites == null ? new ArrayList<>() : quantites;
+    }
+
+    private void initialiserCollectionQuantites(PrecoMouvementsEntity precoEntity) {
         if (precoEntity.getPrecoMouvementsQteEntities() == null) {
             precoEntity.setPrecoMouvementsQteEntities(new ArrayList<>());
         }
+    }
 
-        // Ajouter ou mettre à jour
-        for (PrecoMouvementsQtes qte : qtesList) {
-            PrecoMouvementsQtesEntity qteEntity;
-            if (qte.getId() != null) {
-                qteEntity = qtesRepo.findById(qte.getId())
-                        .orElseThrow(() -> new RuntimeException("PrecoMouvementsQte non trouvée : " + qte.getId()));
-                dozerMapperBean.map(qte, qteEntity);
-            } else {
-                qteEntity = dozerMapperBean.map(qte, PrecoMouvementsQtesEntity.class);
-                qteEntity.setId(null);
-            }
-
-            // Les références de relations doivent pointer vers des entités persistées.
-            if (qte.getRessource() != null) {
-                String ressourceId = qte.getRessource().getId();
-                if (ressourceId == null) {
-                    throw new ParcoursException(ParcoursExceptionCodeEnum.RELATION_SYNC_FAILED,
-                            "Ressource invalide: id manquant sur la quantité du précomouvement");
-                }
-                RessourcesEntity ressourceEntity = ressourcesRepository.findById(ressourceId)
-                        .orElseThrow(() -> new RuntimeException("Ressource non trouvée : " + ressourceId));
-                qteEntity.setRessourcesEntity(ressourceEntity);
-            } else {
-                qteEntity.setRessourcesEntity(null);
-            }
-
-            qteEntity.setPrecoMouvementsEntity(precoEntity);
-            try {
-                PrecoMouvementsQtesEntity savedQte = qtesRepo.save(qteEntity);
-
-                // La relation qte<->familles est possédée par FamillesEntity (JoinTable),
-                // on synchronise donc explicitement ce côté propriétaire.
-                List<FamillesEntity> famillesCibles = new ArrayList<>();
-                if (!CollectionUtils.isEmpty(qte.getFamilles())) {
-                    for (cmr.notep.modele.Familles famille : qte.getFamilles()) {
-                        if (famille.getId() == null) {
-                            throw new ParcoursException(ParcoursExceptionCodeEnum.RELATION_SYNC_FAILED,
-                                    "Famille invalide: id manquant sur la quantité du précomouvement");
-                        }
-                        FamillesEntity familleEntity = famillesRepository.findById(famille.getId())
-                                .orElseThrow(() -> new RuntimeException("Famille non trouvée : " + famille.getId()));
-                        if (familleEntity.getPrecoMouvementsQtesEntities() == null) {
-                            familleEntity.setPrecoMouvementsQtesEntities(new ArrayList<>());
-                        }
-                        if (!familleEntity.getPrecoMouvementsQtesEntities().contains(savedQte)) {
-                            familleEntity.getPrecoMouvementsQtesEntities().add(savedQte);
-                        }
-                        famillesRepository.save(familleEntity);
-                        famillesCibles.add(familleEntity);
-                    }
-                }
-
-                if (savedQte.getFamillesEntities() == null) {
-                    savedQte.setFamillesEntities(new ArrayList<>());
-                }
-                Set<String> idsFamillesCibles = famillesCibles.stream().map(FamillesEntity::getId).collect(Collectors.toSet());
-                for (FamillesEntity familleExistante : new ArrayList<>(savedQte.getFamillesEntities())) {
-                    if (!idsFamillesCibles.contains(familleExistante.getId())
-                            && familleExistante.getPrecoMouvementsQtesEntities() != null) {
-                        familleExistante.getPrecoMouvementsQtesEntities().removeIf(q -> savedQte.getId().equals(q.getId()));
-                        famillesRepository.save(familleExistante);
-                    }
-                }
-                savedQte.setFamillesEntities(famillesCibles);
-
-                if (!precoEntity.getPrecoMouvementsQteEntities().contains(savedQte)) {
-                    precoEntity.getPrecoMouvementsQteEntities().add(savedQte);
-                }
-            } catch (ParcoursException e) {
-                throw e;
-            } catch (Exception e) {
-                throw new ParcoursException(ParcoursExceptionCodeEnum.RELATION_SYNC_FAILED,
-                        "Impossible d'enregistrer la quantité du précomouvement: " + e.getMessage(), e);
-            }
+    private void initialiserCollectionQuantites(FamillesEntity familleEntity) {
+        if (familleEntity.getPrecoMouvementsQtesEntities() == null) {
+            familleEntity.setPrecoMouvementsQtesEntities(new ArrayList<>());
         }
-        precoEntity.getPrecoMouvementsQteEntities().forEach(qte -> {
-            if (qte.getPrecoMouvementsEntity() == null) {
-                qte.setPrecoMouvementsEntity(precoEntity);
-            }
-        });
+    }
+
+    private void initialiserCollectionQuantites(DistributeursEntity distributeurEntity) {
+        if (distributeurEntity.getPrecoMouvementsQtesEntities() == null) {
+            distributeurEntity.setPrecoMouvementsQtesEntities(new ArrayList<>());
+        }
     }
 
     public void supprimerPrecomouvement(PrecoMouvements precomouvement) {
@@ -207,15 +324,4 @@ public class PrecomouvementsBusiness {
                 .deleteById(precomouvement.getId().toString());
     }
 
-    public PrecoMouvements modifierPrecomouvement(PrecoMouvements precomouvement) {
-        // Vérifier que le précomouvement existe avant de le modifier
-        this.daoAccessorService.getRepository(PrecoMouvementsRepository.class)
-                .findById(precomouvement.getId().toString())
-                .orElseThrow(() -> new RuntimeException("Précomouvement non enregistré"));
-
-        return dozerMapperBean.map(
-                this.daoAccessorService.getRepository(PrecoMouvementsRepository.class)
-                        .save(dozerMapperBean.map(precomouvement, PrecoMouvementsEntity.class)),
-                PrecoMouvements.class);
-    }
 }

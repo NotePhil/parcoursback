@@ -31,5 +31,5 @@ public interface ICaissesApi {
             produces = MediaType.APPLICATION_JSON_VALUE,
             consumes = MediaType.APPLICATION_JSON_VALUE
     )
-    Caisses posterCaisse(@NonNull @RequestBody Caisses caisse);
+    Caisses posterCaisse(@NonNull @RequestBody Caisses caisse) throws ParcoursException;
 }

@@ -5,11 +5,10 @@ import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.Setter;
 import org.hibernate.annotations.GenericGenerator;
-import org.hibernate.annotations.UuidGenerator;
 import org.hibernate.annotations.JdbcTypeCode;
 import org.hibernate.type.SqlTypes;
 
-import java.util.UUID;
+import java.util.List;
 
 @Getter
 @Setter
@@ -22,6 +21,10 @@ public class CaissesEntity {
     @GenericGenerator(name = "UUID", strategy = "org.hibernate.id.UUIDGenerator")
     @Column(name = "id", nullable = false, updatable = false, columnDefinition = "UUID")
     private String id;
+
+    @Version
+    @Column(name = "version")
+    private Integer version;
 
     @Column(name="libelle",nullable = false)
     private String libelle ;
@@ -37,8 +40,8 @@ public class CaissesEntity {
 
     @JdbcTypeCode(SqlTypes.JSON)
     @Column(name="detailjson", columnDefinition = "jsonb")
-    private DetailsJson detailjson ;
+    private DetailsJson detailsJson ;
 
     @OneToMany(mappedBy = "caissesEntity", fetch = FetchType.LAZY)
-    private java.util.List<MouvementSoldeCaissesEntity> mouvementSoldeCaissesEntities;
+    private List<MouvementSoldeCaissesEntity> mouvementSoldeCaissesEntities;
 }

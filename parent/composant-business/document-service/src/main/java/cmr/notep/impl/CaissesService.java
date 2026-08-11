@@ -2,6 +2,7 @@ package cmr.notep.impl;
 
 import cmr.notep.api.ICaissesApi;
 import cmr.notep.business.CaissesBusiness;
+import cmr.notep.exceptions.ParcoursException;
 import cmr.notep.modele.Caisses;
 import jakarta.transaction.Transactional;
 import lombok.NonNull;
@@ -22,7 +23,7 @@ public class CaissesService implements ICaissesApi {
     }
 
     @Override
-    public Caisses avoirCaisse(@NonNull String idCaisse) {
+    public Caisses avoirCaisse(@NonNull String idCaisse) throws ParcoursException {
         return  caissesBusiness.avoirCaisse(idCaisse);
     }
 
@@ -37,7 +38,7 @@ public class CaissesService implements ICaissesApi {
     }
 
     @Override
-    public Caisses posterCaisse(@NonNull Caisses caisse) {
+    public Caisses posterCaisse(@NonNull Caisses caisse) throws ParcoursException {
         return caissesBusiness.posterCaisse(caisse);
     }
 }

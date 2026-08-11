@@ -7,6 +7,45 @@ Ressources: /ressources/transactions
 Caisses: /caisses/transactions
 ```
 
+## Caisses - CRUD (`/caisses`)
+
+### POST `/caisses`
+- **Sans `id`**: cree une nouvelle caisse.
+- **Avec `id`**: met a jour une caisse existante.
+- **Si `id` inexistant**: retourne une `ParcoursException` avec code `NOT_FOUND`.
+- **Champs proteges en mise a jour**: `type`, `solde`, `detailsJson` sont conserves depuis la base (non destructif).
+- **Version optimiste**: le champ `version` est obligatoire pour eviter les ecrasements concurrents; une version obsolete provoque un conflit de verrouillage optimiste.
+- **Null tolerant**: si `detailsJson` est null dans la requete de mise a jour, la valeur existante est conservee.
+
+**Exemple creation:**
+```json
+{
+  "libelle": "Caisse principale",
+  "type": "CAISSE",
+  "solde": 10000.0,
+  "etat": true,
+  "detailsJson": {
+    "x10000": 5,
+    "x5000": 2
+  }
+}
+```
+
+**Exemple mise a jour controlee:**
+```json
+{
+  "id": "caisse-uuid",
+  "version": 0,
+  "libelle": "Caisse principale - accueil",
+  "etat": false,
+  "type": "TENTATIVE_IGNOREE",
+  "solde": 0.0,
+  "detailsJson": null
+}
+```
+
+---
+
 ## Ressources - Transactions
 
 ### 1. Enregistrer un Mouvement

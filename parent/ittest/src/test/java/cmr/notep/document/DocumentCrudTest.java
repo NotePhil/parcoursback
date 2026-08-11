@@ -103,6 +103,11 @@ public class DocumentCrudTest extends AbstractIttest {
         //suppression de l'attribut dans constituer
         document2.getAttributs().remove(attribut3);
         document2.getAttributs().add(attribut2);
+
+        //récupération d'une mission
+        List<Missions> missions = missionService.avoirToutMissions().stream().
+                filter(m-> !m.getId().equals(document2.getMissions().getFirst().getId())).toList();
+        document2.getMissions().addAll(List.of(missions.getFirst()));
         Documents document3 = documentService.posterDocument(document2);
         Assertions.assertEquals(document2.getIdDocument(), document3.getIdDocument(), "identifiants doivent être identiques");
         Documents document = documentService.avoirDocument("0190615e-1101-7209-9932-7020bbd556f2");
@@ -116,6 +121,8 @@ public class DocumentCrudTest extends AbstractIttest {
         });
         Assertions.assertNotNull(attributSave);
         Assertions.assertNotNull(attributSave2.get());
+        Assertions.assertNotNull(document.getCategories());
+        Assertions.assertEquals(2,document.getMissions().size());
         //documentsList.sort(Comparator.comparing(Documents::getIdDocument));
         //String pathJson = dossier+"/documents_avoirtous_update";
 //        Set<String> fieldsToExclude = new HashSet<>();

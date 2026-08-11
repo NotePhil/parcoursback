@@ -15,4 +15,11 @@ public class MapperBean {
         dozerMapper.setCustomConverters(Arrays.asList(new PersonnesConverter(dozerMapper)));
         return dozerMapper;
     }
+    //ne pas utiliser dans une boucle car on initialise dozer à chaque nouvel appel
+    public static DozerBeanMapper getDozerMapperWithoutList() {
+        DozerBeanMapper dozerMapper = new DozerBeanMapper();
+        dozerMapper.setMappingFiles(Arrays.asList("dozerEntityMappingWithoutList.xml"));
+        dozerMapper.setCustomConverters(Arrays.asList(new PersonnesConverter(dozerMapper)));
+        return dozerMapper;
+    }
 }
