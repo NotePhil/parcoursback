@@ -38,10 +38,7 @@ public class FamillesEntity {
     @UpdateTimestamp
     private Date dateModification;
 
-    @ManyToMany(fetch = FetchType.LAZY)
-    @JoinTable(name = "sapplique",schema = "document",
-            joinColumns = @JoinColumn(name = "familles_id"),
-            inverseJoinColumns = @JoinColumn(name = "precomouvementsqtes_id"))
+    @ManyToMany(mappedBy = "famillesEntities", fetch = FetchType.LAZY)
     @Mapping("precoMouvementsQtes")
     private List<PrecoMouvementsQtesEntity> precoMouvementsQtesEntities;
 

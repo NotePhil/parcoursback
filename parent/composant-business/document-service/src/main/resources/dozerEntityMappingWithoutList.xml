@@ -27,5 +27,16 @@
             <b>docEtatsEntities</b>
         </field-exclude>
     </mapping>
-
+    <mapping>
+        <class-a>cmr.notep.modele.PrecoMouvements</class-a>
+        <class-b>cmr.notep.dao.PrecoMouvementsEntity</class-b>
+        <field-exclude>
+            <a>documents</a>
+            <b>documentsEntities</b>
+        </field-exclude>
+        <field-exclude>
+            <a>precoMouvementsQtes</a>
+            <b>precoMouvementsQteEntities</b>
+        </field-exclude>
+    </mapping>
 </mappings>

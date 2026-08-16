@@ -25,10 +25,7 @@ public class DistributeursEntity extends PersonnesEntity {
     private String code ;
     @Column(name = "raisonsociale")
     private String raisonSociale;
-    @ManyToMany(fetch = FetchType.LAZY)
-    @JoinTable(name = "concerner",schema = "document",
-    joinColumns = @JoinColumn(name = "distributeurs_id"),
-    inverseJoinColumns = @JoinColumn(name = "precomouvementsqtes_id"))
+    @ManyToMany(mappedBy = "distributeursEntities", fetch = FetchType.LAZY)
     @Mapping("precoMouvementsQtes")
     private List<PrecoMouvementsQtesEntity> precoMouvementsQtesEntities;
 

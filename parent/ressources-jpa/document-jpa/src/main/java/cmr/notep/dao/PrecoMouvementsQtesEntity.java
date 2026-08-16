@@ -32,20 +32,25 @@ public class PrecoMouvementsQtesEntity {
     private double montantMin ;
     @Column(name = "montantmax")
     private double montantMax ;
-    @Column(name = "datecreation", updatable = false)
+    @Column(name = "datecreation", columnDefinition = "TIMESTAMP", updatable = false)
     @Temporal(TemporalType.TIMESTAMP)
     @CreationTimestamp
     private Date dateCreation ;
+
     @Temporal(TemporalType.TIMESTAMP)
     @UpdateTimestamp
-    @Column(name="datemodification")
+    @Column(name="datemodification", columnDefinition = "TIMESTAMP")
     private Date dateModification ;
+
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "precomouvements_id")
     @Mapping("precoMouvement")
     private PrecoMouvementsEntity precoMouvementsEntity ;
 
-    @ManyToMany(mappedBy = "precoMouvementsQtesEntities", fetch = FetchType.LAZY)
+    @ManyToMany(fetch = FetchType.LAZY)
+    @JoinTable(name = "sapplique",schema = "document",
+            joinColumns = @JoinColumn(name = "precomouvementsqtes_id"),
+            inverseJoinColumns = @JoinColumn(name = "familles_id"))
     @Mapping("familles")
     private List<FamillesEntity> famillesEntities ;
 
@@ -54,7 +59,10 @@ public class PrecoMouvementsQtesEntity {
     @Mapping("ressource")
     private RessourcesEntity ressourcesEntity;
 
-    @ManyToMany(mappedBy = "precoMouvementsQtesEntities" , fetch = FetchType.LAZY)
+    @ManyToMany(fetch = FetchType.LAZY)
+    @JoinTable(name = "concerner",schema = "document",
+            joinColumns = @JoinColumn(name = "precomouvementsqtes_id"),
+            inverseJoinColumns = @JoinColumn(name = "distributeurs_id"))
     @Mapping("distributeurs")
     private List<DistributeursEntity> distributeursEntities;
 }

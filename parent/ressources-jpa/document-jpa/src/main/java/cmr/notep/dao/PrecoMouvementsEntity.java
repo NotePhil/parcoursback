@@ -29,11 +29,11 @@ public class PrecoMouvementsEntity {
     @Column(name = "etat")
     private boolean etat ;
 
-    @Column(name = "datecreation", updatable = false,nullable = false)
+    @Column(name = "datecreation",columnDefinition = "TIMESTAMP", updatable = false,nullable = false)
     @Temporal(TemporalType.TIMESTAMP)
     @CreationTimestamp
     private Date dateCreation ;
-    @Column(name="datemodification")
+    @Column(name="datemodification", columnDefinition = "TIMESTAMP")
     @Temporal(TemporalType.TIMESTAMP)
     @UpdateTimestamp
     private Date dateModification ;
