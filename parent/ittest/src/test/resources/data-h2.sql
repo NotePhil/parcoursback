@@ -1,14 +1,14 @@
 INSERT INTO document.documents(
-	id, titre, description, etat,typemouvement,afficherunite,afficherdistributeur,prixeditable,contientressources,afficherprix,estencaissable, datecreation, datemodification)
+	id, titre, description, etat,typemouvement,afficherunite,afficherdistributeur,prixeditable,contientressources,afficherprix,estencaissable, datecreation, datemodification,formatcode)
 	VALUES 
-('0190615e-1101-7209-9932-7020bbd556f1', 'Note intervention', 'Document delivre par le medecin ou un infirmier de l''etablissement', true, 'Ajout', true, true, true, true,true,true,'2023-03-31','2023-03-31'),
-('0190615e-1101-7209-9932-7020bbd556f2','Fiche de suivi','Document delivre par le medecin ou un infirmier de l''etablissement',True,'Neutre',true,true,true,true,true,true,'2023-03-31','2023-03-31'),
-('0190615e-1101-7209-9932-7020bbd556f3','Fiche de soin','Document delivre par le medecin ou un infirmier de l''etablissement',True,'Ajout',true,true,true,true,true,true,NULL,NULL),
-('0190615e-1101-7209-9932-7020bbd556f4','Formulaire de sortie','Document delivre par le medecin ou un infirmier de l''etablissement',True,'Neutre',true,true,true,true,true,false,NULL,NULL),
-('0190615e-1101-7209-9932-7020bbd556f5','ordonnance','Document delivre par le medecin ou un infirmier de l''etablissement',True,'Neutre',true,true,true,true,true,false,NULL,NULL),
-('0190615e-1101-7209-9932-7020bbd556f6','Bon de commande','Document delivre par le chef service',True,'Neutre',true,true,true,true,true,false,NULL,NULL),
-('0190615e-1101-7209-9932-7020bbd556f7','Bon de livraison','Document delivre par ',True,'Reduire',true,true,true,true,true,false,NULL,NULL),
-('0190615e-1101-7209-9932-7020bbd556f8','Fiche de selection','Document delivre par le magasinier',True,'Neutre',true,true,true,true,true,false,NULL,NULL);
+('0190615e-1101-7209-9932-7020bbd556f1', 'Note intervention', 'Document delivre par le medecin ou un infirmier de l''etablissement', true, 'Ajout', true, true, true, true,true,true,'2023-03-31','2023-03-31','ALPHA'),
+('0190615e-1101-7209-9932-7020bbd556f2','Fiche de suivi','Document delivre par le medecin ou un infirmier de l''etablissement',True,'Neutre',true,true,true,true,true,true,'2023-03-31','2023-03-31','FACT'),
+('0190615e-1101-7209-9932-7020bbd556f3','Fiche de soin','Document delivre par le medecin ou un infirmier de l''etablissement',True,'Ajout',true,true,true,true,true,true,NULL,NULL,'ALPHA'),
+('0190615e-1101-7209-9932-7020bbd556f4','Formulaire de sortie','Document delivre par le medecin ou un infirmier de l''etablissement',True,'Neutre',true,true,true,true,true,false,NULL,NULL,'FACT'),
+('0190615e-1101-7209-9932-7020bbd556f5','ordonnance','Document delivre par le medecin ou un infirmier de l''etablissement',True,'Neutre',true,true,true,true,true,false,NULL,NULL,'ASCII'),
+('0190615e-1101-7209-9932-7020bbd556f6','Bon de commande','Document delivre par le chef service',True,'Neutre',true,true,true,true,true,false,NULL,NULL,'ALPHA'),
+('0190615e-1101-7209-9932-7020bbd556f7','Bon de livraison','Document delivre par ',True,'Reduire',true,true,true,true,true,false,NULL,NULL,'ASCII'),
+('0190615e-1101-7209-9932-7020bbd556f8','Fiche de selection','Document delivre par le magasinier',True,'Neutre',true,true,true,true,true,false,NULL,NULL,'ALPHA');
 
 --insertion dans la table 'filesattentes'
 INSERT INTO document.filesattentes (id,  etat, datecreation, datemodification) VALUES
@@ -35,9 +35,9 @@ VALUES
 
 INSERT INTO document.attributs (id, titre, description, etat, datecreation, datemodification, type_attribut, valeurpardefaut)
 VALUES
-('a1eebc99-9c0b-4ef8-bb6d-6bb9bd380a11', 'Taille', 'Description Taille', TRUE, '2022-01-01', '2022-01-02', 'Text', null),
+('a1eebc99-9c0b-4ef8-bb6d-6bb9bd380a11', 'Taille', 'Description Taille', TRUE, '2022-01-01', '2022-01-02', 'Number', null),
 ('a2eebc99-9c0b-4ef8-bb6d-6bb9bd380a12', 'Poids', 'Description Poids', TRUE, '2022-01-01', '2022-01-02', 'Number', null),
-('a1eebc99-9c0b-4ef8-bb6d-6bb9bd380a13', 'Age', 'Description age', TRUE, '2022-01-01', '2022-01-02', 'Text', null),
+('a1eebc99-9c0b-4ef8-bb6d-6bb9bd380a13', 'Age', 'Description age', TRUE, '2022-01-01', '2022-01-02', 'Number', null),
 ('a4eebc99-9c0b-4ef8-bb6d-6bb9bd380a14', 'Sexe', 'Sexe ', TRUE, '2022-01-01', '2022-01-02', 'Text', null),
 ('a1eebc99-9c0b-4ef8-bb6d-6bb9bd380a15', 'Teint', 'Coloration', TRUE, '2022-01-01', '2022-01-02', 'Text', 'Noir'),
 ('a6eebc99-9c0b-4ef8-bb6d-6bb9bd380a16', 'Groupe sangin', 'Groupe sangin', TRUE, '2022-01-01', '2022-01-02', 'Radio', 'A, A+, A-, B, B+, B-, AB, AB+, AB-, O, O+, O-'),
