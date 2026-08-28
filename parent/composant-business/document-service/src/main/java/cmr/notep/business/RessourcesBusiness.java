@@ -39,10 +39,10 @@ public class RessourcesBusiness {
                 .collect(Collectors.toList());
     }
 
-    public void supprimerRessource(Ressources Ressources)
+    public void supprimerRessource(Ressources ressources)
     {
         daoAccessorService.getRepository(RessourcesRepository.class)
-                .deleteById(Ressources.getId().toString());
+                .deleteById(ressources.getId().toString());
     }
 
     /**
@@ -68,3 +68,4 @@ public class RessourcesBusiness {
     }
 
 }
+

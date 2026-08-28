@@ -5,7 +5,7 @@ import cmr.notep.api.IFamillesApi;
 import cmr.notep.commun.AbstractIttest;
 import cmr.notep.config.ItTestConfig;
 import cmr.notep.modele.Attributs;
-import cmr.notep.modele.Caracteristique;
+import cmr.notep.modele.Caracteristiques;
 import cmr.notep.modele.Familles;
 import cmr.notep.modele.Ressources;
 import cmr.notep.modele.TypeAttribut;
@@ -70,12 +70,12 @@ public class RessourcesCaracteristiquesTest extends AbstractIttest {
                 .unite("PCS")
                 .dateCreation(new Date())
                 .caracteristiques(List.of(
-                        Caracteristique.builder()
-                                .attributId(attribut1.getId())
+                        Caracteristiques.builder()
+                                .attributs(attribut1)
                                 .valeur("Rouge")
                                 .build(),
-                        Caracteristique.builder()
-                                .attributId(attribut2.getId())
+                        Caracteristiques.builder()
+                                .attributs(attribut2)
                                 .valeur("2.5")
                                 .build()
                 ))
@@ -87,10 +87,10 @@ public class RessourcesCaracteristiquesTest extends AbstractIttest {
         Assertions.assertNotNull(saved.getCaracteristiques(), "Les caractéristiques ne doivent pas être nulles");
         Assertions.assertEquals(2, saved.getCaracteristiques().size(), "Doit avoir 2 caractéristiques");
         Assertions.assertTrue(saved.getCaracteristiques().stream()
-                        .anyMatch(c -> attribut1.getId().equals(c.getAttributId()) && "Rouge".equals(c.getValeur())),
+                        .anyMatch(c -> attribut1.getId().equals(c.getAttributs().getId()) && "Rouge".equals(c.getValeur())),
                 "La caractéristique 'Couleur' doit être présente");
         Assertions.assertTrue(saved.getCaracteristiques().stream()
-                        .anyMatch(c -> attribut2.getId().equals(c.getAttributId()) && "2.5".equals(c.getValeur())),
+                        .anyMatch(c -> attribut2.getId().equals(c.getAttributs().getId()) && "2.5".equals(c.getValeur())),
                 "La caractéristique 'Poids' doit être présente");
         log.info("✓ Test 1 réussi : Ressource créée avec 2 caractéristiques");
     }
@@ -146,8 +146,8 @@ public class RessourcesCaracteristiquesTest extends AbstractIttest {
                 .dateCreation(new Date())
                 .famille(Familles.builder().id(familleInitiale.getId()).build())
                 .caracteristiques(List.of(
-                        Caracteristique.builder().attributId(attribut1.getId()).valeur("M").build(),
-                        Caracteristique.builder().attributId(attribut2.getId()).valeur("Coton").build()
+                        Caracteristiques.builder().attributs(attribut1).valeur("M").build(),
+                        Caracteristiques.builder().attributs(attribut2).valeur("Coton").build()
                 ))
                 .build());
 
@@ -158,8 +158,8 @@ public class RessourcesCaracteristiquesTest extends AbstractIttest {
         // 2. Modification : nouvelle valeur de caractéristiques + nouvelle famille + tentative de modification de quantité
         ressource.setFamille(Familles.builder().id(nouvelleFamille.getId()).build());
         ressource.setCaracteristiques(List.of(
-                Caracteristique.builder().attributId(attribut1.getId()).valeur("L").build(),
-                Caracteristique.builder().attributId(attribut2.getId()).valeur("Laine").build()
+                Caracteristiques.builder().attributs(attribut1).valeur("L").build(),
+                Caracteristiques.builder().attributs(attribut2).valeur("Laine").build()
         ));
         ressource.setQuantite(9999); // Tentative interdite : ne doit pas être prise en compte
 
@@ -170,10 +170,10 @@ public class RessourcesCaracteristiquesTest extends AbstractIttest {
         Assertions.assertEquals(2, updated.getCaracteristiques().size(),
                 "Doit toujours avoir 2 caractéristiques après modification");
         Assertions.assertTrue(updated.getCaracteristiques().stream()
-                        .anyMatch(c -> attribut1.getId().equals(c.getAttributId()) && "L".equals(c.getValeur())),
+                        .anyMatch(c -> attribut1.getId().equals(c.getAttributs().getId()) && "L".equals(c.getValeur())),
                 "La caractéristique 'Taille' doit être mise à jour à 'L'");
         Assertions.assertTrue(updated.getCaracteristiques().stream()
-                        .anyMatch(c -> attribut2.getId().equals(c.getAttributId()) && "Laine".equals(c.getValeur())),
+                        .anyMatch(c -> attribut2.getId().equals(c.getAttributs().getId()) && "Laine".equals(c.getValeur())),
                 "La caractéristique 'Matiere' doit être mise à jour à 'Laine'");
 
         // 3. Vérification cruciale : la quantité n'a pas changé malgré la tentative

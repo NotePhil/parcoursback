@@ -97,7 +97,7 @@ public class DocumentsBusiness {
         CategoriesRepository categorieRepo = daoAccessorService.getRepository(CategoriesRepository.class);
 
         // Si la liste fournie est vide -> purge complète des catégories liées
-        if (CollectionUtils.isEmpty(document.getCategories())) {
+        if (CollectionUtils.isEmpty(document.getCategories())&& !CollectionUtils.isEmpty(documentEntity.getCategoriesEntities())) {
             //TODO loger dans un journal spécifique ces suppressions
             for (CategoriesEntity existing : new ArrayList<>(documentEntity.getCategoriesEntities())) {
                 categoriesBusiness.supprimerCategoryEntity(existing, categorieRepo);
@@ -106,14 +106,14 @@ public class DocumentsBusiness {
         }
         //Ano on si document présent, alors JPA tente de sauvegarder les catégories du  document sans réussir à gérer cette relation avec attribut
         // Appeler le business Categories pour créer/modifier chaque catégorie fournie
-        List<Categories> savedCats = document.getCategories().stream().map(cat -> {
+        List<Categories> savedCats = document.getCategories()!=null ? document.getCategories().stream().map(cat -> {
             try {
                 cat.setDocument(document);
                 return categoriesBusiness.posterCategorie(cat).orElse(null);
             } catch (ParcoursException e) {
                 throw new RuntimeException(e);
             }
-        }).filter(Objects::nonNull).collect(Collectors.toList());
+        }).filter(Objects::nonNull).collect(Collectors.toList()) : new ArrayList<>();
 
         // Construire set des ids souhaités
         Set<String> wantedIds = savedCats.stream()

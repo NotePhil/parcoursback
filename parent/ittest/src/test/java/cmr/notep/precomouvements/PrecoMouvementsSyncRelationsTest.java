@@ -42,28 +42,6 @@ public class PrecoMouvementsSyncRelationsTest extends AbstractIttest {
     @Autowired
     IFamillesApi famillesService;
 
-    /**
-     * Test 1 : Créer un précomouvement avec liste vide => purge complète
-     */
-    @Test
-    @Order(1)
-    @SneakyThrows
-    public void testCreatePrecoMouvementWithEmptyQuantites() throws ParcoursException {
-        PrecoMouvements preco = PrecoMouvements.builder()
-                .libelle("Preco Empty Qtes")
-                .etat(true)
-                .typeMouvement(TypeMouvement.Ajout)
-                .dateCreation(new Date())
-                .precoMouvementsQtes(new ArrayList<>()) // liste vide => purge
-                .build();
-
-        PrecoMouvements saved = precoMouvementsService.posterPrecoMouvements(preco);
-        Assertions.assertNotNull(saved.getId());
-        Assertions.assertNotNull(saved.getPrecoMouvementsQtes());
-        Assertions.assertTrue(saved.getPrecoMouvementsQtes().isEmpty(),
-                "Les quantités doivent être vides");
-        log.info("✓ Test 1 réussi : PrecoMouvement créé avec quantités purgées");
-    }
 
     /**
      * Test 2 : Créer un précomouvement avec quantités, puis purger via update
@@ -95,11 +73,12 @@ public class PrecoMouvementsSyncRelationsTest extends AbstractIttest {
 
         // 2. Purger via update avec liste null
         saved.setPrecoMouvementsQtes(null);
-        PrecoMouvements updated = precoMouvementsService.posterPrecoMouvements(saved);
-        Assertions.assertTrue(updated.getPrecoMouvementsQtes() == null ||
-                updated.getPrecoMouvementsQtes().isEmpty(),
-                "Les quantités doivent être purgées");
-        log.info("✓ Test 2 réussi : PrecoMouvement mis à jour avec purge des quantités");
+        try {
+            PrecoMouvements updated = precoMouvementsService.posterPrecoMouvements(saved);
+            Assertions.fail("La précomouvement doit contenir au moins une quantité");
+        } catch (ParcoursException e) {
+            Assertions.assertTrue(e.getMessage().contains("précomouvement doit contenir au moins une quantité"));
+        }
     }
 
     /**

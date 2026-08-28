@@ -100,7 +100,8 @@ public class PrecomouvementsBusiness {
                     enregistrerQuantite(qteDemandee, precoEntity);
             savedQtes.add(savedQte);
         }
-        precoEntity.getPrecoMouvementsQteEntities().clear();
+        if(precoEntity.getPrecoMouvementsQteEntities() != null)
+            precoEntity.getPrecoMouvementsQteEntities().clear();
         precoEntity.setPrecoMouvementsQteEntities(savedQtes);
     }
 
@@ -152,8 +153,10 @@ public class PrecomouvementsBusiness {
         else {
             PrecoMouvementsQtesEntity qteEntity = qtesRepo.findById(qteDemandee.getId())
                 .orElseThrow(() -> new  ParcoursException(ParcoursExceptionCodeEnum.NOT_FOUND, "PrecoMouvementsQte non trouvée : " + qteDemandee.getId()));
-            qteEntity.getDistributeursEntities().clear();
-            qteEntity.getFamillesEntities().clear();
+            if(qteEntity.getDistributeursEntities() != null )
+                qteEntity.getDistributeursEntities().clear();
+            if(qteEntity.getFamillesEntities() != null )
+                qteEntity.getFamillesEntities().clear();
             dozerMapperBean.map(qteDemandee, qteEntity);
             qteEntity.setPrecoMouvementsEntity(precoEntity);
             return qteEntity;

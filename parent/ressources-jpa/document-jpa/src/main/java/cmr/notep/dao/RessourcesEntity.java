@@ -10,7 +10,6 @@ import org.hibernate.annotations.GenericGenerator;
 import jakarta.persistence.*;
 import java.util.Date;
 import java.util.List;
-import java.util.stream.Collectors;
 
 @Getter
 @Setter
@@ -72,7 +71,7 @@ public class RessourcesEntity {
     @CollectionTable(name = "caracteristiques", schema = "document",
             joinColumns = @JoinColumn(name = "ressources_id"))
     @Mapping("caracteristiques")
-    private List<CaracteristiqueEntity> caracteristiquesEntities;
+    private List<CaracteristiquesEntity> caracteristiquesEntities;
 
     /**
      * Ne pas modifier directement quantite.

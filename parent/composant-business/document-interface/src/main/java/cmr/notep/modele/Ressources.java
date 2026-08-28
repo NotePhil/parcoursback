@@ -29,5 +29,5 @@ public class Ressources {
     private List<PrecoMouvementsQtes> precoMouvementsQtes;
     private Familles famille;
     private List<Promotions> promotions;
-    private List<Caracteristique> caracteristiques;
+    private List<Caracteristiques> caracteristiques;
 }
