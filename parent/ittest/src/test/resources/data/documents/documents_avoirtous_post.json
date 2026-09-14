@@ -1,0 +1,1259 @@
+[ {
+  "idDocument" : null,
+  "titre" : "Bon de commande",
+  "description" : "Document delivre par le chef service",
+  "formatCode" : "ALPHA",
+  "etat" : true,
+  "dateCreation" : null,
+  "dateModification" : null,
+  "typeMouvement" : "Neutre",
+  "afficherPrix" : true,
+  "afficherUnite" : true,
+  "afficherDistributeur" : true,
+  "prixEditable" : true,
+  "contientRessources" : true,
+  "estencaissable" : false,
+  "missions" : [ ],
+  "precoMouvements" : [ {
+    "id" : null,
+    "libelle" : "Perte",
+    "etat" : true,
+    "typeMouvement" : "Reduire",
+    "dateCreation" : null,
+    "dateModification" : null,
+    "precoMouvementsQtes" : [ {
+      "id" : null,
+      "quantiteMin" : 5.0,
+      "quantiteMax" : 50.0,
+      "montantMin" : 200.0,
+      "montantMax" : 2000.0,
+      "dateCreation" : null,
+      "dateModification" : null,
+      "familles" : [ {
+        "id" : null,
+        "libelle" : "Medicaments",
+        "description" : "Medicaments",
+        "etat" : "true",
+        "dateCreation" : null,
+        "dateModification" : null
+      }, {
+        "id" : null,
+        "libelle" : "Consommables Informatiques",
+        "description" : "Consommables Informatiques",
+        "etat" : "true",
+        "dateCreation" : null,
+        "dateModification" : null
+      } ],
+      "ressource" : null,
+      "distributeurs" : [ ]
+    } ]
+  } ],
+  "attributs" : [ {
+    "id" : null,
+    "titre" : "Nom",
+    "description" : "Nom de la personne",
+    "etat" : true,
+    "dateCreation" : null,
+    "dateModification" : null,
+    "type_attribut" : "Text",
+    "valeurParDefaut" : null
+  } ],
+  "categories" : [ {
+    "id" : null,
+    "ordre" : "0",
+    "libelle" : "Conditions Générales",
+    "etat" : null,
+    "dateCreation" : null,
+    "dateModification" : null,
+    "attributs" : [ {
+      "id" : null,
+      "attribut" : {
+        "id" : null,
+        "titre" : "Nom",
+        "description" : "Nom de la personne",
+        "etat" : true,
+        "dateCreation" : null,
+        "dateModification" : null,
+        "type_attribut" : "Text",
+        "valeurParDefaut" : null
+      },
+      "obligatoire" : true,
+      "ordre" : 1
+    } ]
+  } ],
+  "docEtats" : [ ],
+  "documentsAssocies" : [ ]
+}, {
+  "idDocument" : null,
+  "titre" : "Bon de livraison",
+  "description" : "Document delivre par ",
+  "formatCode" : "ASCII",
+  "etat" : true,
+  "dateCreation" : null,
+  "dateModification" : null,
+  "typeMouvement" : "Reduire",
+  "afficherPrix" : true,
+  "afficherUnite" : true,
+  "afficherDistributeur" : true,
+  "prixEditable" : true,
+  "contientRessources" : true,
+  "estencaissable" : false,
+  "missions" : [ ],
+  "precoMouvements" : [ {
+    "id" : null,
+    "libelle" : "Retour",
+    "etat" : true,
+    "typeMouvement" : "Ajout",
+    "dateCreation" : null,
+    "dateModification" : null,
+    "precoMouvementsQtes" : [ {
+      "id" : null,
+      "quantiteMin" : 5.0,
+      "quantiteMax" : 50.0,
+      "montantMin" : 200.0,
+      "montantMax" : 2000.0,
+      "dateCreation" : null,
+      "dateModification" : null,
+      "familles" : [ {
+        "id" : null,
+        "libelle" : "Consommables Informatiques",
+        "description" : "Consommables Informatiques",
+        "etat" : "true",
+        "dateCreation" : null,
+        "dateModification" : null
+      }, {
+        "id" : null,
+        "libelle" : "Accessoires",
+        "description" : "Accessoires",
+        "etat" : "true",
+        "dateCreation" : null,
+        "dateModification" : null
+      }, {
+        "id" : null,
+        "libelle" : "Medicaments",
+        "description" : "Medicaments",
+        "etat" : "true",
+        "dateCreation" : null,
+        "dateModification" : null
+      }, {
+        "id" : null,
+        "libelle" : "BioMedical",
+        "description" : "BioMedical",
+        "etat" : "true",
+        "dateCreation" : null,
+        "dateModification" : null
+      }, {
+        "id" : null,
+        "libelle" : "Medicaments",
+        "description" : "Medicaments",
+        "etat" : "true",
+        "dateCreation" : null,
+        "dateModification" : null
+      } ],
+      "ressource" : null,
+      "distributeurs" : [ ]
+    } ]
+  } ],
+  "attributs" : [ {
+    "id" : null,
+    "titre" : "Adresse",
+    "description" : "Adresse postale",
+    "etat" : true,
+    "dateCreation" : null,
+    "dateModification" : null,
+    "type_attribut" : "Text",
+    "valeurParDefaut" : null
+  } ],
+  "categories" : [ {
+    "id" : null,
+    "ordre" : "0",
+    "libelle" : "Catégorie par Defaut",
+    "etat" : null,
+    "dateCreation" : null,
+    "dateModification" : null,
+    "attributs" : [ {
+      "id" : null,
+      "attribut" : {
+        "id" : null,
+        "titre" : "Adresse",
+        "description" : "Adresse postale",
+        "etat" : true,
+        "dateCreation" : null,
+        "dateModification" : null,
+        "type_attribut" : "Text",
+        "valeurParDefaut" : null
+      },
+      "obligatoire" : true,
+      "ordre" : 1
+    } ]
+  } ],
+  "docEtats" : [ ],
+  "documentsAssocies" : [ ]
+}, {
+  "idDocument" : null,
+  "titre" : "Fiche de selection",
+  "description" : "Document delivre par le magasinier",
+  "formatCode" : "ALPHA",
+  "etat" : true,
+  "dateCreation" : null,
+  "dateModification" : null,
+  "typeMouvement" : "Neutre",
+  "afficherPrix" : true,
+  "afficherUnite" : true,
+  "afficherDistributeur" : true,
+  "prixEditable" : true,
+  "contientRessources" : true,
+  "estencaissable" : false,
+  "missions" : [ ],
+  "precoMouvements" : [ {
+    "id" : null,
+    "libelle" : "Sortie magasin",
+    "etat" : true,
+    "typeMouvement" : "Reduire",
+    "dateCreation" : null,
+    "dateModification" : null,
+    "precoMouvementsQtes" : null
+  } ],
+  "attributs" : [ {
+    "id" : null,
+    "titre" : "Date de naissance",
+    "description" : "Date de naissance",
+    "etat" : true,
+    "dateCreation" : null,
+    "dateModification" : null,
+    "type_attribut" : "Date",
+    "valeurParDefaut" : null
+  } ],
+  "categories" : [ ],
+  "docEtats" : [ ],
+  "documentsAssocies" : [ ]
+}, {
+  "idDocument" : null,
+  "titre" : "Fiche de soin",
+  "description" : "Document delivre par le medecin ou un infirmier de l'etablissement",
+  "formatCode" : "ALPHA",
+  "etat" : true,
+  "dateCreation" : null,
+  "dateModification" : null,
+  "typeMouvement" : "Ajout",
+  "afficherPrix" : true,
+  "afficherUnite" : true,
+  "afficherDistributeur" : true,
+  "prixEditable" : true,
+  "contientRessources" : true,
+  "estencaissable" : true,
+  "missions" : [ {
+    "id" : null,
+    "libelle" : "Hospitalisation",
+    "description" : "bon d'entrée et de sortie est une mission",
+    "etat" : true,
+    "dateCreation" : null,
+    "dateModification" : null,
+    "service" : {
+      "id" : null,
+      "description" : "bien",
+      "libelle" : "Laboratoire",
+      "etat" : true,
+      "dateCreation" : null,
+      "dateModification" : null,
+      "codeUnique" : "S2",
+      "localisation" : "douala"
+    }
+  } ],
+  "precoMouvements" : [ {
+    "id" : null,
+    "libelle" : "Achat",
+    "etat" : true,
+    "typeMouvement" : "Ajout",
+    "dateCreation" : null,
+    "dateModification" : null,
+    "precoMouvementsQtes" : [ {
+      "id" : null,
+      "quantiteMin" : 5.0,
+      "quantiteMax" : 50.0,
+      "montantMin" : 200.0,
+      "montantMax" : 2000.0,
+      "dateCreation" : null,
+      "dateModification" : null,
+      "familles" : [ ],
+      "ressource" : {
+        "id" : null,
+        "version" : 0,
+        "libelle" : "Scanner",
+        "description" : "Scanner",
+        "etat" : true,
+        "dateCreation" : null,
+        "dateModification" : null,
+        "quantite" : 4,
+        "seuilAlerte" : 2,
+        "prixEntree" : 12000.0,
+        "prixSortie" : 20000.0,
+        "unite" : "Packs",
+        "scanBarCode" : null,
+        "famille" : null,
+        "caracteristiques" : null
+      },
+      "distributeurs" : [ ]
+    } ]
+  } ],
+  "attributs" : [ {
+    "id" : null,
+    "titre" : "Teint",
+    "description" : "Coloration",
+    "etat" : true,
+    "dateCreation" : null,
+    "dateModification" : null,
+    "type_attribut" : "Text",
+    "valeurParDefaut" : "Noir"
+  } ],
+  "categories" : [ {
+    "id" : null,
+    "ordre" : "1",
+    "libelle" : "Informations Personnelles",
+    "etat" : null,
+    "dateCreation" : null,
+    "dateModification" : null,
+    "attributs" : [ {
+      "id" : null,
+      "attribut" : {
+        "id" : null,
+        "titre" : "Teint",
+        "description" : "Coloration",
+        "etat" : true,
+        "dateCreation" : null,
+        "dateModification" : null,
+        "type_attribut" : "Text",
+        "valeurParDefaut" : "Noir"
+      },
+      "obligatoire" : true,
+      "ordre" : 1
+    } ]
+  } ],
+  "docEtats" : [ ],
+  "documentsAssocies" : [ ]
+}, {
+  "idDocument" : null,
+  "titre" : "Fiche de suivi",
+  "description" : "Document delivre par le medecin ou un infirmier de l'etablissement",
+  "formatCode" : "FACT",
+  "etat" : true,
+  "dateCreation" : null,
+  "dateModification" : null,
+  "typeMouvement" : "Neutre",
+  "afficherPrix" : true,
+  "afficherUnite" : true,
+  "afficherDistributeur" : true,
+  "prixEditable" : true,
+  "contientRessources" : true,
+  "estencaissable" : true,
+  "missions" : [ {
+    "id" : null,
+    "libelle" : "Resultat Labo",
+    "description" : "Communiquer les résultats du labo aux patients",
+    "etat" : true,
+    "dateCreation" : null,
+    "dateModification" : null,
+    "service" : {
+      "id" : null,
+      "description" : "bien",
+      "libelle" : "Consultation",
+      "etat" : true,
+      "dateCreation" : null,
+      "dateModification" : null,
+      "codeUnique" : "S1",
+      "localisation" : "douala"
+    }
+  } ],
+  "precoMouvements" : [ {
+    "id" : null,
+    "libelle" : "Vente",
+    "etat" : true,
+    "typeMouvement" : "Reduire",
+    "dateCreation" : null,
+    "dateModification" : null,
+    "precoMouvementsQtes" : [ {
+      "id" : null,
+      "quantiteMin" : 20.0,
+      "quantiteMax" : 200.0,
+      "montantMin" : 1000.0,
+      "montantMax" : 10000.0,
+      "dateCreation" : null,
+      "dateModification" : null,
+      "familles" : [ ],
+      "ressource" : {
+        "id" : null,
+        "version" : 0,
+        "libelle" : "Cartouche d'encre",
+        "description" : "Cartouche d'encre",
+        "etat" : true,
+        "dateCreation" : null,
+        "dateModification" : null,
+        "quantite" : 4,
+        "seuilAlerte" : 10,
+        "prixEntree" : 2000.0,
+        "prixSortie" : 3000.0,
+        "unite" : "Boite",
+        "scanBarCode" : null,
+        "famille" : null,
+        "caracteristiques" : null
+      },
+      "distributeurs" : [ ]
+    } ]
+  } ],
+  "attributs" : [ {
+    "id" : null,
+    "titre" : "Age",
+    "description" : "Description age",
+    "etat" : true,
+    "dateCreation" : null,
+    "dateModification" : null,
+    "type_attribut" : "Number",
+    "valeurParDefaut" : null
+  }, {
+    "id" : null,
+    "titre" : "Date de naissance",
+    "description" : "Date de naissance",
+    "etat" : true,
+    "dateCreation" : null,
+    "dateModification" : null,
+    "type_attribut" : "Date",
+    "valeurParDefaut" : null
+  }, {
+    "id" : null,
+    "titre" : "Sexe",
+    "description" : "Sexe ",
+    "etat" : true,
+    "dateCreation" : null,
+    "dateModification" : null,
+    "type_attribut" : "Text",
+    "valeurParDefaut" : null
+  } ],
+  "categories" : [ {
+    "id" : null,
+    "ordre" : "0",
+    "libelle" : "Conditions Générales",
+    "etat" : null,
+    "dateCreation" : null,
+    "dateModification" : null,
+    "attributs" : [ {
+      "id" : null,
+      "attribut" : {
+        "id" : null,
+        "titre" : "Age",
+        "description" : "Description age",
+        "etat" : true,
+        "dateCreation" : null,
+        "dateModification" : null,
+        "type_attribut" : "Number",
+        "valeurParDefaut" : null
+      },
+      "obligatoire" : true,
+      "ordre" : 1
+    }, {
+      "id" : null,
+      "attribut" : {
+        "id" : null,
+        "titre" : "Sexe",
+        "description" : "Sexe ",
+        "etat" : true,
+        "dateCreation" : null,
+        "dateModification" : null,
+        "type_attribut" : "Text",
+        "valeurParDefaut" : null
+      },
+      "obligatoire" : true,
+      "ordre" : 1
+    } ]
+  }, {
+    "id" : null,
+    "ordre" : "1",
+    "libelle" : "Conditions Particulières",
+    "etat" : null,
+    "dateCreation" : null,
+    "dateModification" : null,
+    "attributs" : [ {
+      "id" : null,
+      "attribut" : {
+        "id" : null,
+        "titre" : "Sexe",
+        "description" : "Sexe ",
+        "etat" : true,
+        "dateCreation" : null,
+        "dateModification" : null,
+        "type_attribut" : "Text",
+        "valeurParDefaut" : null
+      },
+      "obligatoire" : true,
+      "ordre" : 1
+    } ]
+  } ],
+  "docEtats" : [ {
+    "id" : null,
+    "ordre" : 10,
+    "dateCreation" : null,
+    "dateModification" : null,
+    "validation" : {
+      "id" : null,
+      "libelle" : "Resultat mise a jour",
+      "code" : "o89",
+      "etat" : "suppression",
+      "dateCreation" : null,
+      "role" : {
+        "id" : null,
+        "titre" : "traiteur",
+        "description" : "Personnel administratif",
+        "etat" : true,
+        "dateCreation" : null,
+        "dateModification" : null,
+        "missions" : [ {
+          "id" : null,
+          "mission" : {
+            "id" : null,
+            "libelle" : "Resultat Labo",
+            "description" : "Communiquer les résultats du labo aux patients",
+            "etat" : true,
+            "dateCreation" : null,
+            "dateModification" : null,
+            "service" : {
+              "id" : null,
+              "description" : "bien",
+              "libelle" : "Consultation",
+              "etat" : true,
+              "dateCreation" : null,
+              "dateModification" : null,
+              "codeUnique" : "S1",
+              "localisation" : "douala"
+            }
+          },
+          "dateFin" : "2024-01-01",
+          "dateCreation" : null,
+          "dateDebut" : "2024-01-01",
+          "etat" : true,
+          "droitAjouter" : true,
+          "droitModifier" : true,
+          "droitConsulter" : true,
+          "droitDeValider" : true
+        } ]
+      },
+      "dateModification" : null,
+      "typeVote" : "multiple",
+      "dureeVote" : 2,
+      "quota" : 7,
+      "typeValidation" : "prioritaire"
+    },
+    "predecesseurDocEtat" : [ {
+      "id" : null,
+      "ordre" : 11,
+      "dateCreation" : null,
+      "dateModification" : null,
+      "validation" : {
+        "id" : null,
+        "libelle" : "Mise en attente",
+        "code" : "o85",
+        "etat" : "traitement",
+        "dateCreation" : null,
+        "role" : {
+          "id" : null,
+          "titre" : "vendeur",
+          "description" : "personnel au contact du client",
+          "etat" : true,
+          "dateCreation" : null,
+          "dateModification" : null,
+          "missions" : [ {
+            "id" : null,
+            "mission" : {
+              "id" : null,
+              "libelle" : "Encaissement",
+              "description" : "recu de paiement lié à une mission",
+              "etat" : true,
+              "dateCreation" : null,
+              "dateModification" : null,
+              "service" : {
+                "id" : null,
+                "description" : "bien",
+                "libelle" : "Consultation",
+                "etat" : true,
+                "dateCreation" : null,
+                "dateModification" : null,
+                "codeUnique" : "S1",
+                "localisation" : "douala"
+              }
+            },
+            "dateFin" : "2024-01-01",
+            "dateCreation" : null,
+            "dateDebut" : "2024-01-01",
+            "etat" : true,
+            "droitAjouter" : true,
+            "droitModifier" : true,
+            "droitConsulter" : true,
+            "droitDeValider" : true
+          } ]
+        },
+        "dateModification" : null,
+        "typeVote" : "multiple",
+        "dureeVote" : 5,
+        "quota" : 7,
+        "typeValidation" : "rechargeable"
+      },
+      "predecesseurDocEtat" : [ ],
+      "etat" : {
+        "id" : null,
+        "libelle" : "Rejete",
+        "description" : "Rejete",
+        "dateCreation" : null,
+        "dateModification" : null
+      }
+    } ],
+    "etat" : {
+      "id" : null,
+      "libelle" : "Valide",
+      "description" : "Valide",
+      "dateCreation" : null,
+      "dateModification" : null
+    }
+  }, {
+    "id" : null,
+    "ordre" : 11,
+    "dateCreation" : null,
+    "dateModification" : null,
+    "validation" : {
+      "id" : null,
+      "libelle" : "Mise en attente",
+      "code" : "o85",
+      "etat" : "traitement",
+      "dateCreation" : null,
+      "role" : {
+        "id" : null,
+        "titre" : "vendeur",
+        "description" : "personnel au contact du client",
+        "etat" : true,
+        "dateCreation" : null,
+        "dateModification" : null,
+        "missions" : [ {
+          "id" : null,
+          "mission" : {
+            "id" : null,
+            "libelle" : "Encaissement",
+            "description" : "recu de paiement lié à une mission",
+            "etat" : true,
+            "dateCreation" : null,
+            "dateModification" : null,
+            "service" : {
+              "id" : null,
+              "description" : "bien",
+              "libelle" : "Consultation",
+              "etat" : true,
+              "dateCreation" : null,
+              "dateModification" : null,
+              "codeUnique" : "S1",
+              "localisation" : "douala"
+            }
+          },
+          "dateFin" : "2024-01-01",
+          "dateCreation" : null,
+          "dateDebut" : "2024-01-01",
+          "etat" : true,
+          "droitAjouter" : true,
+          "droitModifier" : true,
+          "droitConsulter" : true,
+          "droitDeValider" : true
+        } ]
+      },
+      "dateModification" : null,
+      "typeVote" : "multiple",
+      "dureeVote" : 5,
+      "quota" : 7,
+      "typeValidation" : "rechargeable"
+    },
+    "predecesseurDocEtat" : [ ],
+    "etat" : {
+      "id" : null,
+      "libelle" : "Rejete",
+      "description" : "Rejete",
+      "dateCreation" : null,
+      "dateModification" : null
+    }
+  } ],
+  "documentsAssocies" : [ ]
+}, {
+  "idDocument" : null,
+  "titre" : "Formulaire de sortie",
+  "description" : "Document delivre par le medecin ou un infirmier de l'etablissement",
+  "formatCode" : "FACT",
+  "etat" : true,
+  "dateCreation" : null,
+  "dateModification" : null,
+  "typeMouvement" : "Neutre",
+  "afficherPrix" : true,
+  "afficherUnite" : true,
+  "afficherDistributeur" : true,
+  "prixEditable" : true,
+  "contientRessources" : true,
+  "estencaissable" : false,
+  "missions" : [ ],
+  "precoMouvements" : [ {
+    "id" : null,
+    "libelle" : "interdiction Infirmière",
+    "etat" : true,
+    "typeMouvement" : "Neutre",
+    "dateCreation" : null,
+    "dateModification" : null,
+    "precoMouvementsQtes" : [ {
+      "id" : null,
+      "quantiteMin" : 5.0,
+      "quantiteMax" : 50.0,
+      "montantMin" : 200.0,
+      "montantMax" : 2000.0,
+      "dateCreation" : null,
+      "dateModification" : null,
+      "familles" : [ ],
+      "ressource" : {
+        "id" : null,
+        "version" : 0,
+        "libelle" : "Imprimante",
+        "description" : "Imprimante",
+        "etat" : true,
+        "dateCreation" : null,
+        "dateModification" : null,
+        "quantite" : 4,
+        "seuilAlerte" : 2,
+        "prixEntree" : 12000.0,
+        "prixSortie" : 20000.0,
+        "unite" : "Packs",
+        "scanBarCode" : null,
+        "famille" : null,
+        "caracteristiques" : null
+      },
+      "distributeurs" : [ ]
+    }, {
+      "id" : null,
+      "quantiteMin" : 5.0,
+      "quantiteMax" : 50.0,
+      "montantMin" : 200.0,
+      "montantMax" : 2000.0,
+      "dateCreation" : null,
+      "dateModification" : null,
+      "familles" : [ ],
+      "ressource" : {
+        "id" : null,
+        "version" : 0,
+        "libelle" : "Souris",
+        "description" : "Souris",
+        "etat" : true,
+        "dateCreation" : null,
+        "dateModification" : null,
+        "quantite" : 40,
+        "seuilAlerte" : 12,
+        "prixEntree" : 25.0,
+        "prixSortie" : 20.0,
+        "unite" : "Packs",
+        "scanBarCode" : null,
+        "famille" : null,
+        "caracteristiques" : null
+      },
+      "distributeurs" : [ ]
+    } ]
+  } ],
+  "attributs" : [ {
+    "id" : null,
+    "titre" : "Groupe sangin",
+    "description" : "Groupe sangin",
+    "etat" : true,
+    "dateCreation" : null,
+    "dateModification" : null,
+    "type_attribut" : "Radio",
+    "valeurParDefaut" : "A, A+, A-, B, B+, B-, AB, AB+, AB-, O, O+, O-"
+  } ],
+  "categories" : [ {
+    "id" : null,
+    "ordre" : "1",
+    "libelle" : "Informations Primaires",
+    "etat" : null,
+    "dateCreation" : null,
+    "dateModification" : null,
+    "attributs" : [ {
+      "id" : null,
+      "attribut" : {
+        "id" : null,
+        "titre" : "Groupe sangin",
+        "description" : "Groupe sangin",
+        "etat" : true,
+        "dateCreation" : null,
+        "dateModification" : null,
+        "type_attribut" : "Radio",
+        "valeurParDefaut" : "A, A+, A-, B, B+, B-, AB, AB+, AB-, O, O+, O-"
+      },
+      "obligatoire" : true,
+      "ordre" : 1
+    } ]
+  } ],
+  "docEtats" : [ ],
+  "documentsAssocies" : [ ]
+}, {
+  "idDocument" : null,
+  "titre" : "Note intervention",
+  "description" : "Document delivre par le medecin ou un infirmier de l'etablissement",
+  "formatCode" : "ALPHA",
+  "etat" : true,
+  "dateCreation" : null,
+  "dateModification" : null,
+  "typeMouvement" : "Ajout",
+  "afficherPrix" : true,
+  "afficherUnite" : true,
+  "afficherDistributeur" : true,
+  "prixEditable" : true,
+  "contientRessources" : true,
+  "estencaissable" : true,
+  "missions" : [ {
+    "id" : null,
+    "libelle" : "Encaissement",
+    "description" : "recu de paiement lié à une mission",
+    "etat" : true,
+    "dateCreation" : null,
+    "dateModification" : null,
+    "service" : {
+      "id" : null,
+      "description" : "bien",
+      "libelle" : "Consultation",
+      "etat" : true,
+      "dateCreation" : null,
+      "dateModification" : null,
+      "codeUnique" : "S1",
+      "localisation" : "douala"
+    }
+  }, {
+    "id" : null,
+    "libelle" : "Resultat Labo",
+    "description" : "Communiquer les résultats du labo aux patients",
+    "etat" : true,
+    "dateCreation" : null,
+    "dateModification" : null,
+    "service" : {
+      "id" : null,
+      "description" : "bien",
+      "libelle" : "Consultation",
+      "etat" : true,
+      "dateCreation" : null,
+      "dateModification" : null,
+      "codeUnique" : "S1",
+      "localisation" : "douala"
+    }
+  } ],
+  "precoMouvements" : [ {
+    "id" : null,
+    "libelle" : "Inventaire",
+    "etat" : true,
+    "typeMouvement" : "Neutre",
+    "dateCreation" : null,
+    "dateModification" : null,
+    "precoMouvementsQtes" : [ {
+      "id" : null,
+      "quantiteMin" : 10.0,
+      "quantiteMax" : 100.0,
+      "montantMin" : 500.0,
+      "montantMax" : 5000.0,
+      "dateCreation" : null,
+      "dateModification" : null,
+      "familles" : [ ],
+      "ressource" : {
+        "id" : null,
+        "version" : 0,
+        "libelle" : "Paracetamol",
+        "description" : "Paracetamol",
+        "etat" : true,
+        "dateCreation" : null,
+        "dateModification" : null,
+        "quantite" : 4,
+        "seuilAlerte" : 20,
+        "prixEntree" : 1200.0,
+        "prixSortie" : 2000.0,
+        "unite" : "Boite",
+        "scanBarCode" : null,
+        "famille" : null,
+        "caracteristiques" : null
+      },
+      "distributeurs" : [ ]
+    } ]
+  } ],
+  "attributs" : [ {
+    "id" : null,
+    "titre" : "Adresse",
+    "description" : "Adresse postale",
+    "etat" : true,
+    "dateCreation" : null,
+    "dateModification" : null,
+    "type_attribut" : "Text",
+    "valeurParDefaut" : null
+  }, {
+    "id" : null,
+    "titre" : "Age",
+    "description" : "Description age",
+    "etat" : true,
+    "dateCreation" : null,
+    "dateModification" : null,
+    "type_attribut" : "Number",
+    "valeurParDefaut" : null
+  }, {
+    "id" : null,
+    "titre" : "Date de naissance",
+    "description" : "Date de naissance",
+    "etat" : true,
+    "dateCreation" : null,
+    "dateModification" : null,
+    "type_attribut" : "Date",
+    "valeurParDefaut" : null
+  }, {
+    "id" : null,
+    "titre" : "Poids",
+    "description" : "Description Poids",
+    "etat" : true,
+    "dateCreation" : null,
+    "dateModification" : null,
+    "type_attribut" : "Number",
+    "valeurParDefaut" : null
+  }, {
+    "id" : null,
+    "titre" : "Taille",
+    "description" : "Description Taille",
+    "etat" : true,
+    "dateCreation" : null,
+    "dateModification" : null,
+    "type_attribut" : "Number",
+    "valeurParDefaut" : null
+  }, {
+    "id" : null,
+    "titre" : "Teint",
+    "description" : "Coloration",
+    "etat" : true,
+    "dateCreation" : null,
+    "dateModification" : null,
+    "type_attribut" : "Text",
+    "valeurParDefaut" : "Noir"
+  } ],
+  "categories" : [ {
+    "id" : null,
+    "ordre" : "0",
+    "libelle" : "Informations Personnelles",
+    "etat" : null,
+    "dateCreation" : null,
+    "dateModification" : null,
+    "attributs" : [ {
+      "id" : null,
+      "attribut" : {
+        "id" : null,
+        "titre" : "Taille",
+        "description" : "Description Taille",
+        "etat" : true,
+        "dateCreation" : null,
+        "dateModification" : null,
+        "type_attribut" : "Number",
+        "valeurParDefaut" : null
+      },
+      "obligatoire" : true,
+      "ordre" : 1
+    }, {
+      "id" : null,
+      "attribut" : {
+        "id" : null,
+        "titre" : "Age",
+        "description" : "Description age",
+        "etat" : true,
+        "dateCreation" : null,
+        "dateModification" : null,
+        "type_attribut" : "Number",
+        "valeurParDefaut" : null
+      },
+      "obligatoire" : true,
+      "ordre" : 2
+    }, {
+      "id" : null,
+      "attribut" : {
+        "id" : null,
+        "titre" : "Teint",
+        "description" : "Coloration",
+        "etat" : true,
+        "dateCreation" : null,
+        "dateModification" : null,
+        "type_attribut" : "Text",
+        "valeurParDefaut" : "Noir"
+      },
+      "obligatoire" : false,
+      "ordre" : 3
+    } ]
+  }, {
+    "id" : null,
+    "ordre" : "1",
+    "libelle" : "Informations Primaires",
+    "etat" : null,
+    "dateCreation" : null,
+    "dateModification" : null,
+    "attributs" : [ {
+      "id" : null,
+      "attribut" : {
+        "id" : null,
+        "titre" : "Poids",
+        "description" : "Description Poids",
+        "etat" : true,
+        "dateCreation" : null,
+        "dateModification" : null,
+        "type_attribut" : "Number",
+        "valeurParDefaut" : null
+      },
+      "obligatoire" : true,
+      "ordre" : 1
+    }, {
+      "id" : null,
+      "attribut" : {
+        "id" : null,
+        "titre" : "Adresse",
+        "description" : "Adresse postale",
+        "etat" : true,
+        "dateCreation" : null,
+        "dateModification" : null,
+        "type_attribut" : "Text",
+        "valeurParDefaut" : null
+      },
+      "obligatoire" : false,
+      "ordre" : 2
+    }, {
+      "id" : null,
+      "attribut" : {
+        "id" : null,
+        "titre" : "Date de naissance",
+        "description" : "Date de naissance",
+        "etat" : true,
+        "dateCreation" : null,
+        "dateModification" : null,
+        "type_attribut" : "Date",
+        "valeurParDefaut" : null
+      },
+      "obligatoire" : true,
+      "ordre" : 3
+    } ]
+  } ],
+  "docEtats" : [ {
+    "id" : null,
+    "ordre" : 15,
+    "dateCreation" : null,
+    "dateModification" : null,
+    "validation" : {
+      "id" : null,
+      "libelle" : "en cours",
+      "code" : "o78",
+      "etat" : "attente",
+      "dateCreation" : null,
+      "role" : {
+        "id" : null,
+        "titre" : "vendeur",
+        "description" : "personnel au contact du client",
+        "etat" : true,
+        "dateCreation" : null,
+        "dateModification" : null,
+        "missions" : [ {
+          "id" : null,
+          "mission" : {
+            "id" : null,
+            "libelle" : "Encaissement",
+            "description" : "recu de paiement lié à une mission",
+            "etat" : true,
+            "dateCreation" : null,
+            "dateModification" : null,
+            "service" : {
+              "id" : null,
+              "description" : "bien",
+              "libelle" : "Consultation",
+              "etat" : true,
+              "dateCreation" : null,
+              "dateModification" : null,
+              "codeUnique" : "S1",
+              "localisation" : "douala"
+            }
+          },
+          "dateFin" : "2024-01-01",
+          "dateCreation" : null,
+          "dateDebut" : "2024-01-01",
+          "etat" : true,
+          "droitAjouter" : true,
+          "droitModifier" : true,
+          "droitConsulter" : true,
+          "droitDeValider" : true
+        } ]
+      },
+      "dateModification" : null,
+      "typeVote" : "multiple",
+      "dureeVote" : 14,
+      "quota" : 7,
+      "typeValidation" : "prioritaire"
+    },
+    "predecesseurDocEtat" : [ {
+      "id" : null,
+      "ordre" : 11,
+      "dateCreation" : null,
+      "dateModification" : null,
+      "validation" : {
+        "id" : null,
+        "libelle" : "Mise en attente",
+        "code" : "o85",
+        "etat" : "traitement",
+        "dateCreation" : null,
+        "role" : {
+          "id" : null,
+          "titre" : "vendeur",
+          "description" : "personnel au contact du client",
+          "etat" : true,
+          "dateCreation" : null,
+          "dateModification" : null,
+          "missions" : [ {
+            "id" : null,
+            "mission" : {
+              "id" : null,
+              "libelle" : "Encaissement",
+              "description" : "recu de paiement lié à une mission",
+              "etat" : true,
+              "dateCreation" : null,
+              "dateModification" : null,
+              "service" : {
+                "id" : null,
+                "description" : "bien",
+                "libelle" : "Consultation",
+                "etat" : true,
+                "dateCreation" : null,
+                "dateModification" : null,
+                "codeUnique" : "S1",
+                "localisation" : "douala"
+              }
+            },
+            "dateFin" : "2024-01-01",
+            "dateCreation" : null,
+            "dateDebut" : "2024-01-01",
+            "etat" : true,
+            "droitAjouter" : true,
+            "droitModifier" : true,
+            "droitConsulter" : true,
+            "droitDeValider" : true
+          } ]
+        },
+        "dateModification" : null,
+        "typeVote" : "multiple",
+        "dureeVote" : 5,
+        "quota" : 7,
+        "typeValidation" : "rechargeable"
+      },
+      "predecesseurDocEtat" : [ ],
+      "etat" : {
+        "id" : null,
+        "libelle" : "Rejete",
+        "description" : "Rejete",
+        "dateCreation" : null,
+        "dateModification" : null
+      }
+    } ],
+    "etat" : {
+      "id" : null,
+      "libelle" : "En cours",
+      "description" : "En cours",
+      "dateCreation" : null,
+      "dateModification" : null
+    }
+  } ],
+  "documentsAssocies" : [ ]
+}, {
+  "idDocument" : null,
+  "titre" : "TitreTest",
+  "description" : "DescriptionTest",
+  "formatCode" : null,
+  "etat" : true,
+  "dateCreation" : null,
+  "dateModification" : null,
+  "typeMouvement" : null,
+  "afficherPrix" : null,
+  "afficherUnite" : null,
+  "afficherDistributeur" : null,
+  "prixEditable" : null,
+  "contientRessources" : null,
+  "estencaissable" : null,
+  "missions" : null,
+  "precoMouvements" : null,
+  "attributs" : [ {
+    "id" : null,
+    "titre" : "Allergies",
+    "description" : "Allergies connues ",
+    "etat" : true,
+    "dateCreation" : null,
+    "dateModification" : null,
+    "type_attribut" : "Textarea",
+    "valeurParDefaut" : null
+  }, {
+    "id" : null,
+    "titre" : "Groupe sangin",
+    "description" : "Groupe sangin",
+    "etat" : true,
+    "dateCreation" : null,
+    "dateModification" : null,
+    "type_attribut" : "Radio",
+    "valeurParDefaut" : "A, A+, A-, B, B+, B-, AB, AB+, AB-, O, O+, O-"
+  } ],
+  "categories" : [ ],
+  "docEtats" : [ ],
+  "documentsAssocies" : null
+}, {
+  "idDocument" : null,
+  "titre" : "ordonnance",
+  "description" : "Document delivre par le medecin ou un infirmier de l'etablissement",
+  "formatCode" : "ASCII",
+  "etat" : true,
+  "dateCreation" : null,
+  "dateModification" : null,
+  "typeMouvement" : "Neutre",
+  "afficherPrix" : true,
+  "afficherUnite" : true,
+  "afficherDistributeur" : true,
+  "prixEditable" : true,
+  "contientRessources" : true,
+  "estencaissable" : false,
+  "missions" : [ ],
+  "precoMouvements" : [ {
+    "id" : null,
+    "libelle" : "Don",
+    "etat" : true,
+    "typeMouvement" : "Neutre",
+    "dateCreation" : null,
+    "dateModification" : null,
+    "precoMouvementsQtes" : [ ]
+  } ],
+  "attributs" : [ {
+    "id" : null,
+    "titre" : "Allergies",
+    "description" : "Allergies connues ",
+    "etat" : true,
+    "dateCreation" : null,
+    "dateModification" : null,
+    "type_attribut" : "Textarea",
+    "valeurParDefaut" : null
+  } ],
+  "categories" : [ {
+    "id" : null,
+    "ordre" : "1",
+    "libelle" : "Conditions Générales",
+    "etat" : null,
+    "dateCreation" : null,
+    "dateModification" : null,
+    "attributs" : [ {
+      "id" : null,
+      "attribut" : {
+        "id" : null,
+        "titre" : "Allergies",
+        "description" : "Allergies connues ",
+        "etat" : true,
+        "dateCreation" : null,
+        "dateModification" : null,
+        "type_attribut" : "Textarea",
+        "valeurParDefaut" : null
+      },
+      "obligatoire" : true,
+      "ordre" : 1
+    } ]
+  } ],
+  "docEtats" : [ ],
+  "documentsAssocies" : [ ]
+} ]

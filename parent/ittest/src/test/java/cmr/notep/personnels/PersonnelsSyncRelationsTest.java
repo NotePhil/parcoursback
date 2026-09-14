@@ -4,6 +4,7 @@ import cmr.notep.commun.AbstractIttest;
 import cmr.notep.config.ItTestConfig;
 import cmr.notep.exceptions.ParcoursException;
 import cmr.notep.impl.PersonnelsService;
+import cmr.notep.impl.RolesService;
 import cmr.notep.modele.JouerRoles;
 import cmr.notep.modele.Personnels;
 import cmr.notep.modele.Roles;
@@ -37,6 +38,8 @@ public class PersonnelsSyncRelationsTest extends AbstractIttest {
 
     @Autowired
     PersonnelsService personnelService;
+    @Autowired
+    RolesService rolesService;
     /**
      * Test 1 : Créer un personnel avec une liste de rôles vide => purge complète
      */
@@ -45,7 +48,6 @@ public class PersonnelsSyncRelationsTest extends AbstractIttest {
     @SneakyThrows
     public void testCreatePersonnelWithEmptyRoles() {
         Personnels personnel = Personnels.builder()
-                .id(UUID.randomUUID().toString())
                 .mail("empty@test.fr")
                 .telephone("0123456789")
                 .adresse("Test Address")
@@ -73,7 +75,7 @@ public class PersonnelsSyncRelationsTest extends AbstractIttest {
     public void testUpdatePersonnelWithRolePurge() {
         // 1. Créer un personnel avec rôles
         Personnels personnel = Personnels.builder()
-                .id(UUID.randomUUID().toString())
+                //.id(UUID.randomUUID().toString())
                 .mail("withroles@test.fr")
                 .telephone("0123456789")
                 .adresse("Test Address")
@@ -84,8 +86,7 @@ public class PersonnelsSyncRelationsTest extends AbstractIttest {
                 .dateEntree(new Date())
                 .roles(List.of(
                         JouerRoles.builder()
-                                .id(UUID.randomUUID().toString())
-                                .role(Roles.builder().id("role-1").titre("Admin").build())
+                                .role(rolesService.avoirTousRoles().getFirst())
                                 .build()
                 ))
                 .build();
@@ -108,10 +109,13 @@ public class PersonnelsSyncRelationsTest extends AbstractIttest {
     @Order(3)
     @SneakyThrows
     public void testUpdatePersonnelWithRoleSync() {
+        Roles role1 = rolesService.avoirTousRoles().getFirst();
+        Roles role2 = rolesService.avoirTousRoles().getLast();
+        Roles role3 = rolesService.avoirTousRoles().get(1);
         // 1. Créer un personnel avec 2 rôles (role-1, role-2)
         String personnelId = UUID.randomUUID().toString();
         Personnels personnel = Personnels.builder()
-                .id(personnelId)
+               //
                 .mail("sync@test.fr")
                 .telephone("0123456789")
                 .adresse("Test Address")
@@ -122,12 +126,12 @@ public class PersonnelsSyncRelationsTest extends AbstractIttest {
                 .dateEntree(new Date())
                 .roles(List.of(
                         JouerRoles.builder()
-                                .id(UUID.randomUUID().toString())
-                                .role(Roles.builder().id("role-1").titre("Admin").build())
+                                //.id(UUID.randomUUID().toString())
+                                .role(role1)
                                 .build(),
                         JouerRoles.builder()
-                                .id(UUID.randomUUID().toString())
-                                .role(Roles.builder().id("role-2").titre("User").build())
+                                //.id(UUID.randomUUID().toString())
+                                .role(role2)
                                 .build()
                 ))
                 .build();
@@ -135,22 +139,22 @@ public class PersonnelsSyncRelationsTest extends AbstractIttest {
         Personnels saved = personnelService.posterPersonnel(personnel);
         Assertions.assertEquals(2, saved.getRoles().size(), "Doit avoir 2 rôles initialement");
 
-        // 2. Update avec une liste modifiée : garder role-1, supprimer role-2, ajouter role-3
-        String role1Id = saved.getRoles().get(0).getId();
-        saved.setRoles(List.of(
+        // 2. Update avec une liste modifiée : garder , supprimer roleExist, ajouter role-3
+        JouerRoles roleExist = saved.getRoles().get(0);
+        saved.setRoles(List.of(roleExist,
                 JouerRoles.builder()
-                        .id(role1Id)  // existing => update
-                        .role(Roles.builder().id("role-1").titre("AdminUpdated").build())
-                        .build(),
-                JouerRoles.builder()
-                        .id(UUID.randomUUID().toString())  // nouveau => create
-                        .role(Roles.builder().id("role-3").titre("Manager").build())
+                        .role(role3)
                         .build()
         ));
 
         Personnels updated = personnelService.posterPersonnel(saved);
         Assertions.assertEquals(2, updated.getRoles().size(),
                 "Doit avoir 2 rôles après sync (role-1 kept, role-2 removed, role-3 added)");
+        updated.getRoles().forEach(jouerRole -> {
+            Assertions.assertTrue(jouerRole.getRole().getId().equals(roleExist.getId())
+                            || jouerRole.getRole().getId().equals(role3.getId()),
+                    "Les rôles doivent être soit roleExist soit role-3 après sync");
+        });
         log.info("✓ Test 3 réussi : Synchronisation partielle des rôles réussie");
     }
 
@@ -162,7 +166,6 @@ public class PersonnelsSyncRelationsTest extends AbstractIttest {
     @SneakyThrows
     public void testUpdatePersonnelWithInvalidRole() {
         Personnels personnel = Personnels.builder()
-                .id(UUID.randomUUID().toString())
                 .mail("invalid@test.fr")
                 .telephone("0123456789")
                 .adresse("Test Address")

@@ -15,7 +15,9 @@ import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.transaction.annotation.Transactional;
 
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 /**
  * Tests d'intégration pour DocEtats :
@@ -52,7 +54,7 @@ public class DocEtatsCrudTest extends AbstractIttest {
         // 2. Modifier la liste predecesseurDocEtat
         //    → retirer l'ancien prédécesseur, ajouter le nouveau
         // -----------------------------------------------------------------------
-        List<DocEtats> nouveauxPredecesseurs = new ArrayList<>();
+        Set<DocEtats> nouveauxPredecesseurs = new HashSet<>();
         DocEtats nouveauPredecesseur = docEtatService.avoirDocEtat(ID_NOUVEAU_PREDECESSEUR);
         Assertions.assertNotNull(nouveauPredecesseur, "Le nouveau prédécesseur doit exister en base");
         nouveauxPredecesseurs.add(nouveauPredecesseur);
@@ -108,11 +110,11 @@ public class DocEtatsCrudTest extends AbstractIttest {
                 "La validation doit avoir été mise à jour");
 
         // Vérification de la liste predecesseurDocEtat
-        List<DocEtats> predecesseurs = docEtatRecharge.getPredecesseurDocEtat();
+        Set<DocEtats> predecesseurs = docEtatRecharge.getPredecesseurDocEtat();
         Assertions.assertNotNull(predecesseurs, "La liste des prédécesseurs ne doit pas être null");
         Assertions.assertEquals(1, predecesseurs.size(),
                 "La liste des prédécesseurs doit contenir exactement un élément");
-        Assertions.assertEquals(ID_NOUVEAU_PREDECESSEUR, predecesseurs.getFirst().getId(),
+        Assertions.assertEquals(ID_NOUVEAU_PREDECESSEUR, predecesseurs.stream().findFirst().get().getId(),
                 "Le nouveau prédécesseur doit être présent");
 
         boolean ancienPredecesseurAbsent = predecesseurs.stream()

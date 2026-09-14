@@ -3,15 +3,13 @@ package cmr.notep.modele;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import lombok.*;
 
-import java.util.ArrayList;
-import java.util.Date;
-import java.util.List;
+import java.util.*;
 
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
 @ToString(exclude = {"document", "etape"})
-@EqualsAndHashCode(exclude = {"document", "etape"})
+@EqualsAndHashCode(exclude = {"document", "etape", "predecesseurDocEtat"})
 @JsonIgnoreProperties(value = {"document", "etape"}, ignoreUnknown = true)
 @Builder
 public class DocEtats {
@@ -20,7 +18,7 @@ public class DocEtats {
     private Date dateCreation ;
     private Date dateModification;
     private Validations validation;
-    private List<DocEtats> predecesseurDocEtat = new ArrayList<>();
+    private Set<DocEtats> predecesseurDocEtat = new HashSet<>();
     private Etats etat;
     private Documents document;
     private  Etapes etape;

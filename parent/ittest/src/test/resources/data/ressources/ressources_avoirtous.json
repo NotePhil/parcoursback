@@ -1,6 +1,8 @@
 [ {
   "id" : null,
+  "version" : null,
   "libelle" : "Gants",
+  "description" : "Gants",
   "etat" : true,
   "dateCreation" : null,
   "dateModification" : null,
@@ -8,11 +10,22 @@
   "seuilAlerte" : 20,
   "prixEntree" : 1200.0,
   "prixSortie" : 2000.0,
-  "unites" : "Boite",
-  "promotions" : [ ]
+  "unite" : "Boite",
+  "scanBarCode" : null,
+  "famille" : {
+    "id" : null,
+    "libelle" : "BioMedical",
+    "description" : "BioMedical",
+    "etat" : "true",
+    "dateCreation" : null,
+    "dateModification" : null
+  },
+  "caracteristiques" : [ ]
 }, {
   "id" : null,
+  "version" : null,
   "libelle" : "Masque",
+  "description" : "Masque",
   "etat" : true,
   "dateCreation" : null,
   "dateModification" : null,
@@ -20,11 +33,22 @@
   "seuilAlerte" : 20,
   "prixEntree" : 1200.0,
   "prixSortie" : 2000.0,
-  "unites" : "Boite",
-  "promotions" : [ ]
+  "unite" : "Boite",
+  "scanBarCode" : null,
+  "famille" : {
+    "id" : null,
+    "libelle" : "BioMedical",
+    "description" : "BioMedical",
+    "etat" : "true",
+    "dateCreation" : null,
+    "dateModification" : null
+  },
+  "caracteristiques" : [ ]
 }, {
   "id" : null,
+  "version" : null,
   "libelle" : "Gel Hydroalcoolique",
+  "description" : "Gel Hydroalcoolique",
   "etat" : true,
   "dateCreation" : null,
   "dateModification" : null,
@@ -32,11 +56,22 @@
   "seuilAlerte" : 200,
   "prixEntree" : 1200.0,
   "prixSortie" : 2000.0,
-  "unites" : "Litre",
-  "promotions" : [ ]
+  "unite" : "Litre",
+  "scanBarCode" : null,
+  "famille" : {
+    "id" : null,
+    "libelle" : "BioMedical",
+    "description" : "BioMedical",
+    "etat" : "true",
+    "dateCreation" : null,
+    "dateModification" : null
+  },
+  "caracteristiques" : [ ]
 }, {
   "id" : null,
+  "version" : null,
   "libelle" : "Coton",
+  "description" : "Coton",
   "etat" : true,
   "dateCreation" : null,
   "dateModification" : null,
@@ -44,11 +79,22 @@
   "seuilAlerte" : 230,
   "prixEntree" : 1200.0,
   "prixSortie" : 2000.0,
-  "unites" : "Boite",
-  "promotions" : [ ]
+  "unite" : "Boite",
+  "scanBarCode" : null,
+  "famille" : {
+    "id" : null,
+    "libelle" : "BioMedical",
+    "description" : "BioMedical",
+    "etat" : "true",
+    "dateCreation" : null,
+    "dateModification" : null
+  },
+  "caracteristiques" : [ ]
 }, {
   "id" : null,
+  "version" : null,
   "libelle" : "Papier",
+  "description" : "Papier",
   "etat" : true,
   "dateCreation" : null,
   "dateModification" : null,
@@ -56,11 +102,22 @@
   "seuilAlerte" : 20,
   "prixEntree" : 1200.0,
   "prixSortie" : 2000.0,
-  "unites" : "Packs",
-  "promotions" : [ ]
+  "unite" : "Packs",
+  "scanBarCode" : null,
+  "famille" : {
+    "id" : null,
+    "libelle" : "Accessoires",
+    "description" : "Accessoires",
+    "etat" : "true",
+    "dateCreation" : null,
+    "dateModification" : null
+  },
+  "caracteristiques" : [ ]
 }, {
   "id" : null,
+  "version" : null,
   "libelle" : "Encre",
+  "description" : "Encre",
   "etat" : true,
   "dateCreation" : null,
   "dateModification" : null,
@@ -68,11 +125,22 @@
   "seuilAlerte" : 20,
   "prixEntree" : 1200.0,
   "prixSortie" : 2000.0,
-  "unites" : "Boite",
-  "promotions" : [ ]
+  "unite" : "Boite",
+  "scanBarCode" : null,
+  "famille" : {
+    "id" : null,
+    "libelle" : "Accessoires",
+    "description" : "Accessoires",
+    "etat" : "true",
+    "dateCreation" : null,
+    "dateModification" : null
+  },
+  "caracteristiques" : [ ]
 }, {
   "id" : null,
+  "version" : null,
   "libelle" : "Toner",
+  "description" : "Toner",
   "etat" : true,
   "dateCreation" : null,
   "dateModification" : null,
@@ -80,11 +148,22 @@
   "seuilAlerte" : 20,
   "prixEntree" : 1200.0,
   "prixSortie" : 2000.0,
-  "unites" : "Boite",
-  "promotions" : [ ]
+  "unite" : "Boite",
+  "scanBarCode" : null,
+  "famille" : {
+    "id" : null,
+    "libelle" : "Accessoires",
+    "description" : "Accessoires",
+    "etat" : "true",
+    "dateCreation" : null,
+    "dateModification" : null
+  },
+  "caracteristiques" : [ ]
 }, {
   "id" : null,
+  "version" : null,
   "libelle" : "Cahier",
+  "description" : "Cahier",
   "etat" : true,
   "dateCreation" : null,
   "dateModification" : null,
@@ -92,11 +171,22 @@
   "seuilAlerte" : 20,
   "prixEntree" : 1200.0,
   "prixSortie" : 2000.0,
-  "unites" : "Packs",
-  "promotions" : [ ]
+  "unite" : "Packs",
+  "scanBarCode" : null,
+  "famille" : {
+    "id" : null,
+    "libelle" : "Accessoires",
+    "description" : "Accessoires",
+    "etat" : "true",
+    "dateCreation" : null,
+    "dateModification" : null
+  },
+  "caracteristiques" : [ ]
 }, {
   "id" : null,
+  "version" : null,
   "libelle" : "Perfuseur",
+  "description" : "Perfuseur",
   "etat" : true,
   "dateCreation" : null,
   "dateModification" : null,
@@ -104,11 +194,22 @@
   "seuilAlerte" : 20,
   "prixEntree" : 90.0,
   "prixSortie" : 230.0,
-  "unites" : "Boite",
-  "promotions" : [ ]
+  "unite" : "Boite",
+  "scanBarCode" : null,
+  "famille" : {
+    "id" : null,
+    "libelle" : "BioMedical",
+    "description" : "BioMedical",
+    "etat" : "true",
+    "dateCreation" : null,
+    "dateModification" : null
+  },
+  "caracteristiques" : [ ]
 }, {
   "id" : null,
+  "version" : null,
   "libelle" : "Paracetamol",
+  "description" : "Paracetamol",
   "etat" : true,
   "dateCreation" : null,
   "dateModification" : null,
@@ -116,11 +217,22 @@
   "seuilAlerte" : 20,
   "prixEntree" : 1200.0,
   "prixSortie" : 2000.0,
-  "unites" : "Boite",
-  "promotions" : [ ]
+  "unite" : "Boite",
+  "scanBarCode" : null,
+  "famille" : {
+    "id" : null,
+    "libelle" : "Medicaments",
+    "description" : "Medicaments",
+    "etat" : "true",
+    "dateCreation" : null,
+    "dateModification" : null
+  },
+  "caracteristiques" : [ ]
 }, {
   "id" : null,
+  "version" : null,
   "libelle" : "Cartouche d'encre",
+  "description" : "Cartouche d'encre",
   "etat" : true,
   "dateCreation" : null,
   "dateModification" : null,
@@ -128,11 +240,22 @@
   "seuilAlerte" : 10,
   "prixEntree" : 2000.0,
   "prixSortie" : 3000.0,
-  "unites" : "Boite",
-  "promotions" : [ ]
+  "unite" : "Boite",
+  "scanBarCode" : null,
+  "famille" : {
+    "id" : null,
+    "libelle" : "Consommables Informatiques",
+    "description" : "Consommables Informatiques",
+    "etat" : "true",
+    "dateCreation" : null,
+    "dateModification" : null
+  },
+  "caracteristiques" : [ ]
 }, {
   "id" : null,
+  "version" : null,
   "libelle" : "Scanner",
+  "description" : "Scanner",
   "etat" : true,
   "dateCreation" : null,
   "dateModification" : null,
@@ -140,11 +263,22 @@
   "seuilAlerte" : 2,
   "prixEntree" : 12000.0,
   "prixSortie" : 20000.0,
-  "unites" : "Packs",
-  "promotions" : [ ]
+  "unite" : "Packs",
+  "scanBarCode" : null,
+  "famille" : {
+    "id" : null,
+    "libelle" : "Consommables Informatiques",
+    "description" : "Consommables Informatiques",
+    "etat" : "true",
+    "dateCreation" : null,
+    "dateModification" : null
+  },
+  "caracteristiques" : [ ]
 }, {
   "id" : null,
+  "version" : null,
   "libelle" : "Imprimante",
+  "description" : "Imprimante",
   "etat" : true,
   "dateCreation" : null,
   "dateModification" : null,
@@ -152,11 +286,22 @@
   "seuilAlerte" : 2,
   "prixEntree" : 12000.0,
   "prixSortie" : 20000.0,
-  "unites" : "Packs",
-  "promotions" : [ ]
+  "unite" : "Packs",
+  "scanBarCode" : null,
+  "famille" : {
+    "id" : null,
+    "libelle" : "Consommables Informatiques",
+    "description" : "Consommables Informatiques",
+    "etat" : "true",
+    "dateCreation" : null,
+    "dateModification" : null
+  },
+  "caracteristiques" : [ ]
 }, {
   "id" : null,
+  "version" : null,
   "libelle" : "Souris",
+  "description" : "Souris",
   "etat" : true,
   "dateCreation" : null,
   "dateModification" : null,
@@ -164,11 +309,22 @@
   "seuilAlerte" : 12,
   "prixEntree" : 25.0,
   "prixSortie" : 20.0,
-  "unites" : "Packs",
-  "promotions" : [ ]
+  "unite" : "Packs",
+  "scanBarCode" : null,
+  "famille" : {
+    "id" : null,
+    "libelle" : "Consommables Informatiques",
+    "description" : "Consommables Informatiques",
+    "etat" : "true",
+    "dateCreation" : null,
+    "dateModification" : null
+  },
+  "caracteristiques" : [ ]
 }, {
   "id" : null,
+  "version" : null,
   "libelle" : "Stylet",
+  "description" : "Stylet",
   "etat" : true,
   "dateCreation" : null,
   "dateModification" : null,
@@ -176,11 +332,22 @@
   "seuilAlerte" : 9,
   "prixEntree" : 20.0,
   "prixSortie" : 20000.0,
-  "unites" : "Packs",
-  "promotions" : [ ]
+  "unite" : "Packs",
+  "scanBarCode" : null,
+  "famille" : {
+    "id" : null,
+    "libelle" : "Consommables Informatiques",
+    "description" : "Consommables Informatiques",
+    "etat" : "true",
+    "dateCreation" : null,
+    "dateModification" : null
+  },
+  "caracteristiques" : [ ]
 }, {
   "id" : null,
+  "version" : null,
   "libelle" : "Doliprane",
+  "description" : "Doliprane",
   "etat" : true,
   "dateCreation" : null,
   "dateModification" : null,
@@ -188,11 +355,22 @@
   "seuilAlerte" : 40,
   "prixEntree" : 1200.0,
   "prixSortie" : 2000.0,
-  "unites" : "Boite",
-  "promotions" : [ ]
+  "unite" : "Boite",
+  "scanBarCode" : null,
+  "famille" : {
+    "id" : null,
+    "libelle" : "Medicaments",
+    "description" : "Medicaments",
+    "etat" : "true",
+    "dateCreation" : null,
+    "dateModification" : null
+  },
+  "caracteristiques" : [ ]
 }, {
   "id" : null,
+  "version" : null,
   "libelle" : "Pommade",
+  "description" : "Pommade",
   "etat" : true,
   "dateCreation" : null,
   "dateModification" : null,
@@ -200,11 +378,22 @@
   "seuilAlerte" : 20,
   "prixEntree" : 200.0,
   "prixSortie" : 210.0,
-  "unites" : "Litre",
-  "promotions" : [ ]
+  "unite" : "Litre",
+  "scanBarCode" : null,
+  "famille" : {
+    "id" : null,
+    "libelle" : "Medicaments",
+    "description" : "Medicaments",
+    "etat" : "true",
+    "dateCreation" : null,
+    "dateModification" : null
+  },
+  "caracteristiques" : [ ]
 }, {
   "id" : null,
+  "version" : null,
   "libelle" : "Seringue",
+  "description" : "Seringue",
   "etat" : true,
   "dateCreation" : null,
   "dateModification" : null,
@@ -212,6 +401,15 @@
   "seuilAlerte" : 20,
   "prixEntree" : 100.0,
   "prixSortie" : 200.0,
-  "unites" : "Boite",
-  "promotions" : [ ]
+  "unite" : "Boite",
+  "scanBarCode" : null,
+  "famille" : {
+    "id" : null,
+    "libelle" : "BioMedical",
+    "description" : "BioMedical",
+    "etat" : "true",
+    "dateCreation" : null,
+    "dateModification" : null
+  },
+  "caracteristiques" : [ ]
 } ]

@@ -41,7 +41,7 @@ public class PrecoMouvementsEntity {
     @Column(name="typemouvement")
     private String typeMouvement ;
 
-    @ManyToMany(mappedBy = "precoMouvementsEntities")
+    @ManyToMany(mappedBy = "precoMouvements")
     @Mapping("documents")
     private List<DocumentsEntity> documentsEntities ;
 

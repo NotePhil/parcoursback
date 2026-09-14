@@ -10,11 +10,15 @@ import cmr.notep.dao.*;
 import cmr.notep.exceptions.ParcoursException;
 import cmr.notep.exceptions.enumeration.ParcoursExceptionCodeEnum;
 import cmr.notep.modele.Categories;
+import cmr.notep.modele.DocEtats;
 import cmr.notep.modele.Etats;
 import cmr.notep.repository.CategoriesRepository;
+import cmr.notep.repository.DocEtatsRepository;
 import cmr.notep.repository.DocumentsRepository;
 import cmr.notep.repository.EtatsRepository;
+import cmr.notep.utils.BusinessEntityHelper;
 import org.dozer.DozerBeanMapper;
+import org.springframework.dao.DataIntegrityViolationException;
 import org.springframework.stereotype.Component;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -32,12 +36,15 @@ public class DocumentsBusiness {
     private final DaoAccessorService daoAccessorService;
     
     private final CategoriesBusiness categoriesBusiness;
+    private final DocEtatsBusiness docEtatsBusiness;
     private final DozerBeanMapper dozerMapperBean;
     //private final BusinessEntityHelper businessEntityHelper; , BusinessEntityHelper businessEntityHelper
 
-    public DocumentsBusiness(DaoAccessorService daoAccessorService, CategoriesBusiness categoriesBusiness, DozerBeanMapper dozerMapperBean) {
+    public DocumentsBusiness(DaoAccessorService daoAccessorService, CategoriesBusiness categoriesBusiness,
+                              DocEtatsBusiness docEtatsBusiness, DozerBeanMapper dozerMapperBean) {
         this.daoAccessorService = daoAccessorService;
         this.categoriesBusiness = categoriesBusiness;
+        this.docEtatsBusiness = docEtatsBusiness;
         this.dozerMapperBean = dozerMapperBean;
     }
 
@@ -70,8 +77,14 @@ public class DocumentsBusiness {
             // Nouveau document
             documentEntity = dozerMapperBean.map(document, DocumentsEntity.class);
             // S'assurer que les collections sont vides pour les gérer explicitement
-            if (documentEntity.getCategoriesEntities() != null) {
-                documentEntity.getCategoriesEntities().clear();
+            if (documentEntity.getCategories() != null) {
+                documentEntity.getCategories().clear();
+            }
+            if (documentEntity.getDocEtats() != null) {
+                documentEntity.getDocEtats().clear();
+            }
+            if (documentEntity.getDocumentsAssocies() != null) {
+                documentEntity.getDocumentsAssocies().clear();
             }
             documentsRepo.save(documentEntity);
             document.setIdDocument(documentEntity.getId());
@@ -79,16 +92,155 @@ public class DocumentsBusiness {
         
         // Gérer les catégories via le business dédié (synchronisation des entités liées)
         gererCategoriesDocument(document, documentEntity);
-        
+
+        List <DocEtats> docEtatsListToInsert = new ArrayList<>();
+        Map<String, Set<DocEtats>>  docEtatMapBoucle = new HashMap<>();
+        if(!CollectionUtils.isEmpty(document.getDocEtats()))
+            docEtatMapBoucle = BusinessEntityHelper.getDocEtatsListToInsert(document.getDocEtats(),docEtatsListToInsert);
+        // Gérer les états du document (création si id absent, modification si id présent)
+        gererDocEtatsDocument(document, documentEntity,docEtatsListToInsert,docEtatMapBoucle);
+
+        // Gérer les documents associés : simple lien de dépendance vers des documents déjà existants
+        gererDocumentsAssociesDocument(document, documentEntity);
+
         // Pour les relations ManyToMany sans attributs (ex: attributs) on laisse JPA gérer directement via le mapping Dozer
         // Mapper le modèle vers l'entité pour que JPA prenne en charge les relations simples
-        // Attention : ne pas écraser categoriesEntities déjà synchronisées (gérées via gererCategoriesDocument)
+        // Attention : ne pas écraser les collections déjà synchronisées explicitement ci-dessus
         if(document.getIdDocument() != null){
-            copyCollectionsWithDozer(document, documentEntity, dozerMapperBean, "categories");
+            copyCollectionsWithDozer(document, documentEntity, dozerMapperBean, "categories", "docEtats", "documentsAssocies");
         }
 
         DocumentsEntity saved = documentsRepo.save(documentEntity);
         return dozerMapperBean.map(saved, Documents.class);
+    }
+
+    /**
+     * Synchronise les DocEtats d'un document.
+     * <ul>
+     *     <li>Liste absente/vide alors qu'il existe des DocEtats en base → purge complète.</li>
+     *     <li>Occurrence sans {@code id} → création.</li>
+     *     <li>Occurrence avec {@code id} → modification.</li>
+     *     <li>DocEtat existant non présent dans la nouvelle liste → suppression.</li>
+     * </ul>
+     */
+    private void gererDocEtatsDocument(Documents document, DocumentsEntity documentEntity, List<DocEtats> docEtatsListToInsert, Map<String, Set<DocEtats>> docEtatMapBoucle) {
+        DocEtatsRepository docEtatsRepo = daoAccessorService.getRepository(DocEtatsRepository.class);
+
+        // On s'appuie sur une lecture directe en base (et non sur la collection JPA en mémoire,
+        // potentiellement obsolète dans le même contexte de persistance) pour connaître l'état réel.
+        List<DocEtatsEntity> existingEntities = new ArrayList<>();
+        try {
+            existingEntities = docEtatsRepo.findByDocumentsEntityId(documentEntity.getId());
+        } catch (DataIntegrityViolationException e) {
+            throw new ParcoursException(ParcoursExceptionCodeEnum.NOT_FOUND,
+                    "Impossible de récupérer les DocEtats existants pour le document : " + e.getMessage(), e);
+        }
+        // Liste absente/vide → purge complète des DocEtats liés
+        if (CollectionUtils.isEmpty(document.getDocEtats())) {
+            if (!existingEntities.isEmpty()) {
+                //TODO loger dans un journal spécifique ces suppressions
+                for (DocEtatsEntity existing : existingEntities) {
+                    docEtatsBusiness.supprimerDocEtatEntity(existing, docEtatsRepo);
+                }
+            }
+            documentEntity.setDocEtats(new ArrayList<>());
+            return;
+        }
+
+        // Référencer le document (id uniquement, pour éviter tout cycle de mapping) sur chaque occurrence
+        List<DocEtats> savedDocEtats = docEtatsListToInsert.stream().map(docEtat -> {
+            docEtat.setDocument(Documents.builder().idDocument(document.getIdDocument()).build());
+            return docEtatsBusiness.posterDocEtat(docEtat);
+        }).collect(Collectors.toList());
+
+        HashMap<String, DocEtats> savedDocEtatsMap = new HashMap<>();
+        Set<String> wantedIds = savedDocEtats.stream()
+                .map(docEtat -> {
+                    savedDocEtatsMap.put(docEtat.getEtat().getId(), docEtat);
+                    return docEtat.getId();
+                })
+                .filter(Objects::nonNull)
+                .collect(Collectors.toSet());
+
+        // Supprimer les DocEtats existants qui ne sont plus désirés
+        for (DocEtatsEntity existing : existingEntities) {
+            if (!wantedIds.contains(existing.getId())) {
+                docEtatsBusiness.supprimerDocEtatEntity(existing, docEtatsRepo);
+            }
+        }
+
+        docEtatMapBoucle.forEach((etatId, predecesseurs) -> {
+            DocEtats savedDocEtat = savedDocEtatsMap.get(etatId);
+            if (savedDocEtat != null) {
+                predecesseurs = predecesseurs.stream()
+                        .map(predecesseur -> savedDocEtatsMap.get(predecesseur.getEtat().getId()))
+                        .filter(Objects::nonNull)
+                        .collect(Collectors.toSet());
+                if(savedDocEtat.getPredecesseurDocEtat() == null) {
+                    savedDocEtat.setPredecesseurDocEtat(new HashSet<>());
+                }
+                savedDocEtat.getPredecesseurDocEtat().addAll(predecesseurs);
+                docEtatsBusiness.posterDocEtat(savedDocEtat);
+            }
+        });
+
+        // Recharger les entités gérées par JPA pour la relation
+        documentEntity.setDocEtats(savedDocEtats.stream()
+                .map(de -> docEtatsRepo.findById(de.getId())
+                        .orElseThrow(() -> new ParcoursException(ParcoursExceptionCodeEnum.NOT_FOUND,
+                                "DocEtat introuvable après enregistrement : " + de.getId())))
+                .collect(Collectors.toList()));
+    }
+
+    /**
+     * Synchronise les documents associés (dépendances) d'un document.
+     * Règle métier : il ne s'agit que d'un lien de dépendance vers des documents déjà existants en base.
+     * <ul>
+     *     <li>Chaque document associé doit posséder un {@code idDocument} valide et exister en base,
+     *     sinon une exception {@link ParcoursExceptionCodeEnum#NOT_FOUND} est levée.</li>
+     *     <li>Aucune mise à jour du contenu du document associé n'est effectuée : seul le lien est tracé.</li>
+     *     <li>Un document ne peut pas être associé à lui-même.</li>
+     *     <li>Liste {@code null} → aucune modification (champ non fourni par le client).</li>
+     *     <li>Liste vide → purge complète des associations.</li>
+     * </ul>
+     */
+    private void gererDocumentsAssociesDocument(Documents document, DocumentsEntity documentEntity) {
+        // Champ non fourni par le client : on ne touche pas aux associations existantes
+        if (document.getDocumentsAssocies() == null) {
+            return;
+        }
+
+        if (documentEntity.getDocumentsAssocies() == null) {
+            documentEntity.setDocumentsAssocies(new HashSet<>());
+        }
+
+        // Liste vide → purge complète des associations
+        if (document.getDocumentsAssocies().isEmpty()) {
+            documentEntity.getDocumentsAssocies().clear();
+            return;
+        }
+
+        DocumentsRepository documentsRepo = daoAccessorService.getRepository(DocumentsRepository.class);
+
+        Set<DocumentsEntity> resolved = document.getDocumentsAssocies().stream()
+                .map(assoc -> {
+                    String idAssocie = assoc.getIdDocument();
+                    if (idAssocie == null) {
+                        throw new ParcoursException(ParcoursExceptionCodeEnum.OPERATION_INTERDITE,
+                                "Un document associé doit posséder un identifiant existant");
+                    }
+                    if (idAssocie.equals(document.getIdDocument())) {
+                        throw new ParcoursException(ParcoursExceptionCodeEnum.OPERATION_INTERDITE,
+                                "Un document ne peut pas être associé à lui-même");
+                    }
+                    return documentsRepo.findById(idAssocie)
+                            .orElseThrow(() -> new ParcoursException(ParcoursExceptionCodeEnum.NOT_FOUND,
+                                    "Document associé introuvable : " + idAssocie));
+                })
+                .collect(Collectors.toSet());
+
+        documentEntity.getDocumentsAssocies().clear();
+        documentEntity.getDocumentsAssocies().addAll(resolved);
     }
 
     // Synchronise les catégories d'un document : ajout/modification/suppression
@@ -97,9 +249,9 @@ public class DocumentsBusiness {
         CategoriesRepository categorieRepo = daoAccessorService.getRepository(CategoriesRepository.class);
 
         // Si la liste fournie est vide -> purge complète des catégories liées
-        if (CollectionUtils.isEmpty(document.getCategories())&& !CollectionUtils.isEmpty(documentEntity.getCategoriesEntities())) {
+        if (CollectionUtils.isEmpty(document.getCategories())&& !CollectionUtils.isEmpty(documentEntity.getCategories())) {
             //TODO loger dans un journal spécifique ces suppressions
-            for (CategoriesEntity existing : new ArrayList<>(documentEntity.getCategoriesEntities())) {
+            for (CategoriesEntity existing : new ArrayList<>(documentEntity.getCategories())) {
                 categoriesBusiness.supprimerCategoryEntity(existing, categorieRepo);
             }
             return;
@@ -122,12 +274,12 @@ public class DocumentsBusiness {
                 .collect(Collectors.toSet());
 
         // Supprimer les catégories existantes qui ne sont plus désirées
-        if (documentEntity.getCategoriesEntities() != null) {
-            for (CategoriesEntity existing : new ArrayList<>(documentEntity.getCategoriesEntities())) {
+        if (documentEntity.getCategories() != null) {
+            for (CategoriesEntity existing : new ArrayList<>(documentEntity.getCategories())) {
                 if (!wantedIds.contains(existing.getId())) {
                     try {
                         categoriesBusiness.supprimerCategoryEntity(existing, categorieRepo);
-                        documentEntity.getCategoriesEntities().remove(existing);
+                        documentEntity.getCategories().remove(existing);
                     } catch (Exception e) {
                         throw new ParcoursException(cmr.notep.exceptions.enumeration.ParcoursExceptionCodeEnum.RELATION_SYNC_FAILED,
                                 "Impossible de supprimer la catégorie liée: " + e.getMessage(), e);
@@ -135,12 +287,12 @@ public class DocumentsBusiness {
                 }
             }
         } else {
-            documentEntity.setCategoriesEntities(new ArrayList<>());
+            documentEntity.setCategories(new ArrayList<>());
         }
 
         // Mise à jour des relations JPA
-        documentEntity.getCategoriesEntities().clear();
-        documentEntity.setCategoriesEntities(savedCats.stream()
+        documentEntity.getCategories().clear();
+        documentEntity.setCategories(savedCats.stream()
                 .map(cat -> {
                    CategoriesEntity entity = dozerMapperBean.map(cat, CategoriesEntity.class);
                    entity.setDocumentsEntity(documentEntity);
@@ -173,7 +325,7 @@ public class DocumentsBusiness {
         }
         DocumentsEntity documentEntity = optionalDocumentEntity.get();
 
-        boolean exists = documentEntity.getDocEtatsEntities().stream()
+        boolean exists = documentEntity.getDocEtats().stream()
                 .anyMatch(de -> de.getEtatsEntity().getId().equals(etatEntity.getId()));
         if (exists) {
             log.debug("[assignEtatDoc] Etat déjà assigné au document");
@@ -185,7 +337,7 @@ public class DocumentsBusiness {
         newDocEtat.setDocumentsEntity(documentEntity);
         newDocEtat.setDateCreation(new Date());
 
-       documentEntity.getDocEtatsEntities().add(newDocEtat);
+       documentEntity.getDocEtats().add(newDocEtat);
 
        DocumentsEntity savedDocument = this.daoAccessorService.getRepository(DocumentsRepository.class).save(documentEntity);
 

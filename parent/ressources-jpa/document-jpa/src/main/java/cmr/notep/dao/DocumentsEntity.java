@@ -9,9 +9,8 @@ import org.hibernate.annotations.GenericGenerator;
 import org.hibernate.annotations.UuidGenerator;
 
 import jakarta.persistence.*;
-import java.util.Date;
-import java.util.List;
-import java.util.UUID;
+
+import java.util.*;
 
 @Getter
 @Setter
@@ -72,33 +71,36 @@ public class DocumentsEntity {
     @JoinTable(name = "constituer", schema = "document",
             joinColumns = @JoinColumn(name = "documents_id"),
             inverseJoinColumns = @JoinColumn(name = "attributs_id"))
-    @Mapping("attributs")
-    private List<AttributsEntity> attributsEntities ;
+    //@Mapping("attributs")
+    private List<AttributsEntity> attributs ;
 
     @OneToMany(mappedBy = "documentsEntity", fetch = FetchType.LAZY)
-    @Mapping("categories")
-    private List<CategoriesEntity> categoriesEntities;
+   // @Mapping("categories")
+    private List<CategoriesEntity> categories;
 
     @ManyToMany(fetch = FetchType.LAZY  )
     @JoinTable(name = "traiter",schema = "document",
             joinColumns = @JoinColumn(name = "documents_id", referencedColumnName = "id"),
             inverseJoinColumns = @JoinColumn(name="missions_id", referencedColumnName = "id")
     )
-    @Mapping("missions")
-    private List<MissionsEntity> missionsEntities ;
+   // @Mapping("missions")
+    private List<MissionsEntity> missions ;
 
     @ManyToMany(fetch = FetchType.LAZY)
     @JoinTable(name = "suivre", schema = "document",
             joinColumns = @JoinColumn(name = "documents_id"),
             inverseJoinColumns = @JoinColumn(name = "precomouvements_id"))
-    @Mapping("precoMouvements")
-    private List<PrecoMouvementsEntity> precoMouvementsEntities ;
+   // @Mapping("precoMouvements")
+    private List<PrecoMouvementsEntity> precoMouvements ;
 
     @OneToMany(mappedBy = "documentsEntity" , fetch = FetchType.LAZY )
-    @Mapping("docEtats")
-    private List<DocEtatsEntity> docEtatsEntities;
+    //@Mapping("docEtats")
+    private List<DocEtatsEntity> docEtats;
 
-    @ManyToMany(mappedBy = "documentsEntities")
-    @Mapping("promotions")
-    private List<PromotionsEntity> promotionsEntities;
+    @ManyToMany(fetch = FetchType.LAZY)
+    @JoinTable(name = "documents_predecesseurs" ,schema = "document",
+            joinColumns = @JoinColumn(name = "documents_id"),
+            inverseJoinColumns = @JoinColumn(name = "predecesseur_id"))
+    //@Mapping("documentsAssocies")
+    private Set<DocumentsEntity> documentsAssocies = new HashSet<>();
 }

@@ -8,10 +8,8 @@ import org.hibernate.annotations.CreationTimestamp;
 import org.hibernate.annotations.GenericGenerator;
 
 import jakarta.persistence.*;
-import java.util.ArrayList;
-import java.util.Date;
-import java.util.List;
-import java.util.UUID;
+
+import java.util.*;
 
 @Getter
 @Setter
@@ -43,7 +41,7 @@ public class DocEtatsEntity {
             joinColumns = @JoinColumn(name = "docetats_id"),
             inverseJoinColumns = @JoinColumn(name = "predecesseur_id"))
     @Mapping("predecesseurDocEtat")
-    private List<DocEtatsEntity> predecesseursDocEtat = new ArrayList<>();
+    private Set<DocEtatsEntity> predecesseursDocEtat = new HashSet<>();
 
     @ManyToOne
     @JoinColumn(name = "etats_id")

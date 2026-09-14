@@ -383,6 +383,17 @@ CREATE TABLE IF NOT EXISTS document.caracteristiques
     valeur        VARCHAR(255) NOT NULL
 );
 
+CREATE TABLE IF NOT EXISTS document.documents_predecesseurs
+(
+    documents_id       VARCHAR(255) NOT NULL,
+    predecesseur_id VARCHAR(255) NOT NULL,
+    CONSTRAINT pk_documents_predecesseurs PRIMARY KEY (documents_id, predecesseur_id)
+    );
+ALTER TABLE  document.documents_predecesseurs
+    ADD CONSTRAINT IF NOT EXISTS   FK_DOCUMENTS_PREDECESSEURS_ON_DOCUMENTS FOREIGN KEY (documents_id) REFERENCES document.documents (id);
+ALTER TABLE document.documents_predecesseurs
+    ADD CONSTRAINT  IF NOT EXISTS   FK_DOCUMENTS_PREDECESSEURS_SUIVANT_ON_DOCUMENTS FOREIGN KEY (predecesseur_id) REFERENCES document.documents (id);
+
 ALTER TABLE document.docetats_predecesseurs
     ADD CONSTRAINT  IF NOT EXISTS   FK_DOCETATS_PREDECESSEURS_ON_DOCETATS FOREIGN KEY (docetats_id) REFERENCES document.docetats (id);
 ALTER TABLE document.docetats_predecesseurs

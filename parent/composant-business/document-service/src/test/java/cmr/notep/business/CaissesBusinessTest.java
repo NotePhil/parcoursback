@@ -6,6 +6,7 @@ import cmr.notep.exceptions.ParcoursException;
 import cmr.notep.exceptions.enumeration.ParcoursExceptionCodeEnum;
 import cmr.notep.modele.Caisses;
 import cmr.notep.modele.DetailsJson;
+import cmr.notep.modele.TypeCaisse;
 import cmr.notep.repository.CaissesRepository;
 import org.dozer.DozerBeanMapper;
 import org.junit.jupiter.api.BeforeEach;
@@ -78,7 +79,7 @@ class CaissesBusinessTest {
 
         Caisses caisse = Caisses.builder()
                 .libelle("Caisse A")
-                .type("BANQUE")
+                .type(TypeCaisse.carte.name())
                 .solde(10000)
                 .etat(true)
                 .detailsJson(detailsJson)
@@ -181,7 +182,7 @@ class CaissesBusinessTest {
     void testCreationCaisseNonCashSansDetailsJsonDoitPasser() throws ParcoursException {
         Caisses caisse = Caisses.builder()
                 .libelle("Caisse non cash")
-                .type("BANQUE")
+                .type(TypeCaisse.carte.name())
                 .solde(120000)
                 .etat(true)
                 .detailsJson(null)
@@ -190,8 +191,65 @@ class CaissesBusinessTest {
         Caisses resultat = caissesBusiness.posterCaisse(caisse);
 
         assertNotNull(resultat);
-        assertEquals("BANQUE", resultat.getType());
+        assertEquals(TypeCaisse.carte.name(), resultat.getType());
         assertEquals(120000, resultat.getSolde(), 0.0001);
         verify(caissesRepository, times(1)).save(any(CaissesEntity.class));
+    }
+
+    @Test
+    @DisplayName("type null -> erreur INVALID_INPUT")
+    void testTypeNullDoitEchouer() {
+        Caisses caisse = Caisses.builder()
+                .libelle("Caisse type null")
+                .type(null)
+                .solde(1000)
+                .etat(true)
+                .detailsJson(null)
+                .build();
+
+        ParcoursException exception = assertThrows(ParcoursException.class,
+                () -> caissesBusiness.posterCaisse(caisse));
+
+        assertEquals(ParcoursExceptionCodeEnum.INVALID_INPUT, exception.getCode());
+        assertTrue(exception.getMessage().contains("Type de caisse obligatoire"));
+        verify(caissesRepository, never()).save(any(CaissesEntity.class));
+    }
+
+    @Test
+    @DisplayName("type vide -> erreur INVALID_INPUT")
+    void testTypeVideDoitEchouer() {
+        Caisses caisse = Caisses.builder()
+                .libelle("Caisse type vide")
+                .type("   ")
+                .solde(1000)
+                .etat(true)
+                .detailsJson(null)
+                .build();
+
+        ParcoursException exception = assertThrows(ParcoursException.class,
+                () -> caissesBusiness.posterCaisse(caisse));
+
+        assertEquals(ParcoursExceptionCodeEnum.INVALID_INPUT, exception.getCode());
+        assertTrue(exception.getMessage().contains("Type de caisse obligatoire"));
+        verify(caissesRepository, never()).save(any(CaissesEntity.class));
+    }
+
+    @Test
+    @DisplayName("type invalide -> erreur INVALID_INPUT")
+    void testTypeInvalideDoitEchouer() {
+        Caisses caisse = Caisses.builder()
+                .libelle("Caisse type invalide")
+                .type("BANQUE")
+                .solde(1000)
+                .etat(true)
+                .detailsJson(null)
+                .build();
+
+        ParcoursException exception = assertThrows(ParcoursException.class,
+                () -> caissesBusiness.posterCaisse(caisse));
+
+        assertEquals(ParcoursExceptionCodeEnum.INVALID_INPUT, exception.getCode());
+        assertTrue(exception.getMessage().contains("Type de caisse invalide"));
+        verify(caissesRepository, never()).save(any(CaissesEntity.class));
     }
 }

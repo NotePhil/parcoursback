@@ -4,6 +4,7 @@ import cmr.notep.api.ICaissesApi;
 import cmr.notep.commun.AbstractIttest;
 import cmr.notep.config.ItTestConfig;
 import cmr.notep.modele.Caisses;
+import cmr.notep.modele.TypeCaisse;
 import jakarta.persistence.EntityManager;
 import jakarta.persistence.PersistenceContext;
 import lombok.SneakyThrows;
@@ -35,7 +36,7 @@ public class CaissesOptimisticLockingTest extends AbstractIttest {
     public void testModificationAvecMauvaiseVersionLeveException() {
         Caisses created = caisseService.posterCaisse(Caisses.builder()
                 .libelle("Caisse versionnee")
-                .type("CAISSE")
+                .type(TypeCaisse.carte.name())
                 .solde(3000.0)
                 .etat(true)
                 .detailsJson(null)

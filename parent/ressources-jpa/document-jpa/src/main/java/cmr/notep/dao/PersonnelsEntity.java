@@ -36,6 +36,6 @@ public class PersonnelsEntity extends PersonnesEntity {
     private String sexe ;
 
     @OneToMany(mappedBy = "personnelsEntity", fetch = FetchType.LAZY)
-    @Mapping("roles")
-    List<JouerRolesEntity> jouerRolesEntities;
+    //@Mapping("roles")
+    List<JouerRolesEntity> roles;
 }

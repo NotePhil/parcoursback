@@ -6,6 +6,7 @@ import cmr.notep.exceptions.ParcoursException;
 import cmr.notep.exceptions.enumeration.ParcoursExceptionCodeEnum;
 import cmr.notep.modele.Caisses;
 import cmr.notep.modele.DetailsJson;
+import cmr.notep.modele.TypeCaisse;
 import cmr.notep.repository.CaissesRepository;
 import lombok.extern.slf4j.Slf4j;
 import org.dozer.DozerBeanMapper;
@@ -13,7 +14,10 @@ import org.springframework.lang.NonNull;
 import org.springframework.stereotype.Component;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.Arrays;
 import java.util.List;
+import java.util.Locale;
+import java.util.stream.Collectors;
 
 
 @Component
@@ -54,8 +58,10 @@ public class CaissesBusiness {
         CaissesRepository repository = this.daoAccessorService.getRepository(CaissesRepository.class);
 
         if (caisse.getId() == null || caisse.getId().isBlank()) {
+            TypeCaisse typeCaisse = convertirTypeCaisse(caisse.getType());
             CaissesEntity createdToSave = dozerMapperBean.map(caisse, CaissesEntity.class);
-            validerCoherenceSoldeEtDetails(createdToSave);
+            createdToSave.setType(typeCaisse.name());
+            validerCoherenceSoldeEtDetails(createdToSave, typeCaisse);
             CaissesEntity created = repository.save(createdToSave);
             return dozerMapperBean.map(created, Caisses.class);
         }
@@ -65,18 +71,20 @@ public class CaissesBusiness {
                         ParcoursExceptionCodeEnum.NOT_FOUND,
                         "Mise a jour impossible: caisse introuvable: " + caisse.getId()));
 
+        TypeCaisse typeCaisse = convertirTypeCaisse(existing.getType());
+
         CaissesEntity entityToSave = dozerMapperBean.map(caisse, CaissesEntity.class);
-        entityToSave.setType(existing.getType());
+        entityToSave.setType(typeCaisse.name());
         entityToSave.setSolde(existing.getSolde());
         entityToSave.setDetailsJson(existing.getDetailsJson());
-        validerCoherenceSoldeEtDetails(entityToSave);
+        validerCoherenceSoldeEtDetails(entityToSave, typeCaisse);
 
         CaissesEntity saved = repository.save(entityToSave);
         return dozerMapperBean.map(saved, Caisses.class);
     }
 
-    private void validerCoherenceSoldeEtDetails(CaissesEntity caisseEntity) throws ParcoursException {
-        boolean typeCash = caisseEntity.getType() != null && "cash".equalsIgnoreCase(caisseEntity.getType().trim());
+    private void validerCoherenceSoldeEtDetails(CaissesEntity caisseEntity, TypeCaisse typeCaisse) throws ParcoursException {
+        boolean typeCash = TypeCaisse.cash.equals(typeCaisse);
         DetailsJson detailsJson = caisseEntity.getDetailsJson();
 
         // Cas explicitement autorise: caisse cash a zero sans details.
@@ -98,6 +106,28 @@ public class CaissesBusiness {
                         "Solde incoherent avec detailsJson. Attendu: " + soldeCalcule + ", recu: " + caisseEntity.getSolde());
             }
         }
+    }
+
+    private TypeCaisse convertirTypeCaisse(String type) throws ParcoursException {
+        if (type == null || type.isBlank()) {
+            throw new ParcoursException(
+                    ParcoursExceptionCodeEnum.INVALID_INPUT,
+                    "Type de caisse obligatoire. Valeurs autorisees: " + typesAutorises());
+        }
+
+        try {
+            return TypeCaisse.valueOf(type.trim().toLowerCase(Locale.ROOT));
+        } catch (IllegalArgumentException exception) {
+            throw new ParcoursException(
+                    ParcoursExceptionCodeEnum.INVALID_INPUT,
+                    "Type de caisse invalide: " + type + ". Valeurs autorisees: " + typesAutorises());
+        }
+    }
+
+    private String typesAutorises() {
+        return Arrays.stream(TypeCaisse.values())
+                .map(Enum::name)
+                .collect(Collectors.joining(", "));
     }
 
     private double calculerSoldeDepuisDetails(DetailsJson detailsJson) {

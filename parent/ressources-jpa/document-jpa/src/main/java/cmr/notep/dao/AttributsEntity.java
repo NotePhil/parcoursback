@@ -40,7 +40,7 @@ public class AttributsEntity {
     private TypeAttribut type_attribut;
     @Column(name = "valeurpardefaut")
     private String valeurParDefaut;
-    @ManyToMany(mappedBy = "attributsEntities")
+    @ManyToMany(mappedBy = "attributs")
     private List<DocumentsEntity> documentsEntities;
     //@ManyToMany(mappedBy = "attributsEntities")
     //@Mapping("categories")

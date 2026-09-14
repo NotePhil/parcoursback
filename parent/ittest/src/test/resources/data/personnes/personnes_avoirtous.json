@@ -8,10 +8,8 @@
   "dateCreation" : null,
   "dateModification" : null,
   "personnesRatachees" : [ ],
-  "precomouvementsqtes" : [ ],
-  "raisonSociale" : "ENEO",
   "code" : "d190615",
-  "promotions" : [ ]
+  "raisonSociale" : "ENEO"
 }, {
   "type" : "distributeur",
   "id" : null,
@@ -31,10 +29,8 @@
     "dateCreation" : null,
     "dateModification" : null,
     "personnesRatachees" : [ ],
-    "precomouvementsqtes" : [ ],
-    "raisonSociale" : "Brasserie",
     "code" : "d190616",
-    "promotions" : [ ]
+    "raisonSociale" : "Brasserie"
   }, {
     "type" : "personnePhysique",
     "id" : null,
@@ -48,40 +44,10 @@
     "nom" : "Steve",
     "prenom" : "dede",
     "sexe" : "M",
-    "dateNaissance" : 922831200000
-  }, {
-    "type" : "distributeur",
-    "id" : null,
-    "adresse" : "Bastos",
-    "mail" : "pnj@gma.com",
-    "telephone" : "655454545",
-    "qrcodevalue" : "qrcode3",
-    "dateCreation" : null,
-    "dateModification" : null,
-    "personnesRatachees" : [ ],
-    "precomouvementsqtes" : [ ],
-    "raisonSociale" : "Brasserie",
-    "code" : "d190616",
-    "promotions" : [ ]
-  }, {
-    "type" : "personnePhysique",
-    "id" : null,
-    "adresse" : "Douala",
-    "mail" : "steve@gmail.com",
-    "telephone" : "999495487",
-    "qrcodevalue" : "qrcode9",
-    "dateCreation" : null,
-    "dateModification" : null,
-    "personnesRatachees" : [ ],
-    "nom" : "Steve",
-    "prenom" : "dede",
-    "sexe" : "M",
-    "dateNaissance" : 922831200000
+    "dateNaissance" : "1999-03-31"
   } ],
-  "precomouvementsqtes" : [ ],
-  "raisonSociale" : "UCB",
   "code" : "d190619",
-  "promotions" : [ ]
+  "raisonSociale" : "UCB"
 }, {
   "type" : "distributeur",
   "id" : null,
@@ -92,10 +58,8 @@
   "dateCreation" : null,
   "dateModification" : null,
   "personnesRatachees" : [ ],
-  "precomouvementsqtes" : [ ],
-  "raisonSociale" : "Brasserie",
   "code" : "d190616",
-  "promotions" : [ ]
+  "raisonSociale" : "Brasserie"
 }, {
   "type" : "distributeur",
   "id" : null,
@@ -106,10 +70,8 @@
   "dateCreation" : null,
   "dateModification" : null,
   "personnesRatachees" : [ ],
-  "precomouvementsqtes" : [ ],
-  "raisonSociale" : "Pharmacam",
   "code" : "d190614",
-  "promotions" : [ ]
+  "raisonSociale" : "Pharmacam"
 }, {
   "type" : "personnel",
   "id" : null,
@@ -120,9 +82,9 @@
   "dateCreation" : null,
   "dateModification" : null,
   "personnesRatachees" : [ ],
-  "dateEntree" : 1744236000000,
+  "dateEntree" : "2025-04-10",
   "nom" : "Tagne",
-  "dateNaissance" : 955317600000,
+  "dateNaissance" : "2000-04-10",
   "dateSortie" : null,
   "prenom" : "Willy",
   "sexe" : "M",
@@ -130,15 +92,45 @@
     "id" : null,
     "etat" : null,
     "dateCreation" : null,
+    "dateModification" : null,
     "dateFin" : null,
-    "dateDebut" : 1704063600000,
+    "dateDebut" : "2024-01-01",
     "role" : {
       "id" : null,
       "titre" : "vendeur",
       "description" : "personnel au contact du client",
       "etat" : true,
       "dateCreation" : null,
-      "validations" : [ ]
+      "dateModification" : null,
+      "missions" : [ {
+        "id" : null,
+        "mission" : {
+          "id" : null,
+          "libelle" : "Encaissement",
+          "description" : "recu de paiement lié à une mission",
+          "etat" : true,
+          "dateCreation" : null,
+          "dateModification" : null,
+          "service" : {
+            "id" : null,
+            "description" : "bien",
+            "libelle" : "Consultation",
+            "etat" : true,
+            "dateCreation" : null,
+            "dateModification" : null,
+            "codeUnique" : "S1",
+            "localisation" : "douala"
+          }
+        },
+        "dateFin" : "2024-01-01",
+        "dateCreation" : null,
+        "dateDebut" : "2024-01-01",
+        "etat" : true,
+        "droitAjouter" : true,
+        "droitModifier" : true,
+        "droitConsulter" : true,
+        "droitDeValider" : true
+      } ]
     }
   } ]
 }, {
@@ -151,9 +143,9 @@
   "dateCreation" : null,
   "dateModification" : null,
   "personnesRatachees" : [ ],
-  "dateEntree" : 1715205600000,
+  "dateEntree" : "2024-05-09",
   "nom" : "Peter",
-  "dateNaissance" : 1092088800000,
+  "dateNaissance" : "2004-08-10",
   "dateSortie" : null,
   "prenom" : "Alan",
   "sexe" : "M",
@@ -161,15 +153,45 @@
     "id" : null,
     "etat" : null,
     "dateCreation" : null,
+    "dateModification" : null,
     "dateFin" : null,
-    "dateDebut" : 1704063600000,
+    "dateDebut" : "2024-01-01",
     "role" : {
       "id" : null,
       "titre" : "traiteur",
       "description" : "Personnel administratif",
       "etat" : true,
       "dateCreation" : null,
-      "validations" : [ ]
+      "dateModification" : null,
+      "missions" : [ {
+        "id" : null,
+        "mission" : {
+          "id" : null,
+          "libelle" : "Resultat Labo",
+          "description" : "Communiquer les résultats du labo aux patients",
+          "etat" : true,
+          "dateCreation" : null,
+          "dateModification" : null,
+          "service" : {
+            "id" : null,
+            "description" : "bien",
+            "libelle" : "Consultation",
+            "etat" : true,
+            "dateCreation" : null,
+            "dateModification" : null,
+            "codeUnique" : "S1",
+            "localisation" : "douala"
+          }
+        },
+        "dateFin" : "2024-01-01",
+        "dateCreation" : null,
+        "dateDebut" : "2024-01-01",
+        "etat" : true,
+        "droitAjouter" : true,
+        "droitModifier" : true,
+        "droitConsulter" : true,
+        "droitDeValider" : true
+      } ]
     }
   } ]
 }, {
@@ -182,9 +204,9 @@
   "dateCreation" : null,
   "dateModification" : null,
   "personnesRatachees" : [ ],
-  "dateEntree" : 1605567600000,
+  "dateEntree" : "2020-11-17",
   "nom" : "Dombo",
-  "dateNaissance" : 1034200800000,
+  "dateNaissance" : "2002-10-10",
   "dateSortie" : null,
   "prenom" : "Gilles",
   "sexe" : "M",
@@ -192,15 +214,45 @@
     "id" : null,
     "etat" : null,
     "dateCreation" : null,
+    "dateModification" : null,
     "dateFin" : null,
-    "dateDebut" : 1704063600000,
+    "dateDebut" : "2024-01-01",
     "role" : {
       "id" : null,
       "titre" : "marcheur",
       "description" : "commercial sur le terrain",
       "etat" : true,
       "dateCreation" : null,
-      "validations" : [ ]
+      "dateModification" : null,
+      "missions" : [ {
+        "id" : null,
+        "mission" : {
+          "id" : null,
+          "libelle" : "Hospitalisation",
+          "description" : "bon d'entrée et de sortie est une mission",
+          "etat" : true,
+          "dateCreation" : null,
+          "dateModification" : null,
+          "service" : {
+            "id" : null,
+            "description" : "bien",
+            "libelle" : "Laboratoire",
+            "etat" : true,
+            "dateCreation" : null,
+            "dateModification" : null,
+            "codeUnique" : "S2",
+            "localisation" : "douala"
+          }
+        },
+        "dateFin" : "2024-01-01",
+        "dateCreation" : null,
+        "dateDebut" : "2024-01-01",
+        "etat" : true,
+        "droitAjouter" : true,
+        "droitModifier" : true,
+        "droitConsulter" : true,
+        "droitDeValider" : true
+      } ]
     }
   } ]
 }, {
@@ -216,7 +268,7 @@
   "nom" : "Steve",
   "prenom" : "dede",
   "sexe" : "M",
-  "dateNaissance" : 922831200000
+  "dateNaissance" : "1999-03-31"
 }, {
   "type" : "personnePhysique",
   "id" : null,
@@ -227,20 +279,6 @@
   "dateCreation" : null,
   "dateModification" : null,
   "personnesRatachees" : [ {
-    "type" : "distributeur",
-    "id" : null,
-    "adresse" : "Bastos",
-    "mail" : "pnj@gma.com",
-    "telephone" : "655454545",
-    "qrcodevalue" : "qrcode3",
-    "dateCreation" : null,
-    "dateModification" : null,
-    "personnesRatachees" : [ ],
-    "precomouvementsqtes" : [ ],
-    "raisonSociale" : "Brasserie",
-    "code" : "d190616",
-    "promotions" : [ ]
-  }, {
     "type" : "personnel",
     "id" : null,
     "adresse" : "Douala",
@@ -250,9 +288,9 @@
     "dateCreation" : null,
     "dateModification" : null,
     "personnesRatachees" : [ ],
-    "dateEntree" : 1744236000000,
+    "dateEntree" : "2025-04-10",
     "nom" : "Tagne",
-    "dateNaissance" : 955317600000,
+    "dateNaissance" : "2000-04-10",
     "dateSortie" : null,
     "prenom" : "Willy",
     "sexe" : "M",
@@ -260,20 +298,62 @@
       "id" : null,
       "etat" : null,
       "dateCreation" : null,
+      "dateModification" : null,
       "dateFin" : null,
-      "dateDebut" : 1704063600000,
+      "dateDebut" : "2024-01-01",
       "role" : {
         "id" : null,
         "titre" : "vendeur",
         "description" : "personnel au contact du client",
         "etat" : true,
         "dateCreation" : null,
-        "validations" : [ ]
+        "dateModification" : null,
+        "missions" : [ {
+          "id" : null,
+          "mission" : {
+            "id" : null,
+            "libelle" : "Encaissement",
+            "description" : "recu de paiement lié à une mission",
+            "etat" : true,
+            "dateCreation" : null,
+            "dateModification" : null,
+            "service" : {
+              "id" : null,
+              "description" : "bien",
+              "libelle" : "Consultation",
+              "etat" : true,
+              "dateCreation" : null,
+              "dateModification" : null,
+              "codeUnique" : "S1",
+              "localisation" : "douala"
+            }
+          },
+          "dateFin" : "2024-01-01",
+          "dateCreation" : null,
+          "dateDebut" : "2024-01-01",
+          "etat" : true,
+          "droitAjouter" : true,
+          "droitModifier" : true,
+          "droitConsulter" : true,
+          "droitDeValider" : true
+        } ]
       }
     } ]
+  }, {
+    "type" : "distributeur",
+    "id" : null,
+    "adresse" : "Bastos",
+    "mail" : "pnj@gma.com",
+    "telephone" : "655454545",
+    "qrcodevalue" : "qrcode3",
+    "dateCreation" : null,
+    "dateModification" : null,
+    "personnesRatachees" : [ ],
+    "code" : "d190616",
+    "raisonSociale" : "Brasserie"
   } ],
   "nom" : "Phil",
   "prenom" : "dede",
   "sexe" : "M",
-  "dateNaissance" : 922831200000
+  "dateNaissance" : "1999-03-31"
 } ]

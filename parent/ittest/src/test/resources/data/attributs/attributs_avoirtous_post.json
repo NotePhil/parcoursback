@@ -5,7 +5,7 @@
   "etat" : true,
   "dateCreation" : null,
   "dateModification" : null,
-  "type_attribut" : "Text",
+  "type_attribut" : "Number",
   "valeurParDefaut" : null
 }, {
   "id" : null,
@@ -23,7 +23,7 @@
   "etat" : true,
   "dateCreation" : null,
   "dateModification" : null,
-  "type_attribut" : "Text",
+  "type_attribut" : "Number",
   "valeurParDefaut" : null
 }, {
   "id" : null,

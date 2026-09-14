@@ -8,23 +8,27 @@
         <class-b>cmr.notep.dao.DocumentsEntity</class-b>
         <field-exclude>
             <a>attributs</a>
-            <b>attributsEntities</b>
+            <b>attributs</b>
         </field-exclude>
         <field-exclude>
-            <a>categories</a>
-            <b>categoriesEntities</b>
+                <a>categories</a>
+            <b>categories</b>
         </field-exclude>
         <field-exclude>
             <a>missions</a>
-            <b>missionsEntities</b>
+            <b>missions</b>
         </field-exclude>
         <field-exclude>
             <a>precoMouvements</a>
-            <b>precoMouvementsEntities</b>
+            <b>precoMouvements</b>
         </field-exclude>
         <field-exclude>
             <a>docEtats</a>
-            <b>docEtatsEntities</b>
+            <b>docEtats</b>
+        </field-exclude>
+        <field-exclude>
+            <a>documentsAssocies</a>
+            <b>documentsAssocies</b>
         </field-exclude>
     </mapping>
     <mapping>
@@ -37,6 +41,14 @@
         <field-exclude>
             <a>precoMouvementsQtes</a>
             <b>precoMouvementsQteEntities</b>
+        </field-exclude>
+    </mapping>
+    <mapping>
+        <class-a>cmr.notep.modele.Personnels</class-a>
+        <class-b>cmr.notep.dao.PersonnelsEntity</class-b>
+        <field-exclude>
+            <a>roles</a>
+            <b>roles</b>
         </field-exclude>
     </mapping>
 </mappings>

@@ -39,7 +39,7 @@ public class MissionsEntity {
     @Column(name="datemodification")
     private Date dateModification ;
 
-    @ManyToMany(mappedBy = "missionsEntities")
+    @ManyToMany(mappedBy = "missions")
     @Mapping("documents")
     private List<DocumentsEntity> documentsEntities ;
 

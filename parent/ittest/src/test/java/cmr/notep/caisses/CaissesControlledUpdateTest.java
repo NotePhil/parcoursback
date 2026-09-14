@@ -36,23 +36,23 @@ public class CaissesControlledUpdateTest extends AbstractIttest {
 
         Caisses created = caisseService.posterCaisse(Caisses.builder()
                 .libelle("Caisse integration")
-                .type("CAISSE")
-                .solde(1500.75)
+                .type("cash")
+                .solde(50000)
                 .etat(true)
                 .detailsJson(detailsInitiaux)
                 .build());
 
         Assertions.assertNotNull(created.getId(), "La caisse doit etre creee");
         Assertions.assertNotNull(created.getVersion(), "La version doit etre initialisee");
-
+        detailsInitiaux.setX500B(1);
         Caisses tentativeUpdate = Caisses.builder()
                 .id(created.getId())
                 .version(created.getVersion())
                 .libelle("Caisse modifiee")
                 .etat(false)
-                .type("TYPE_INTERDIT")
-                .solde(0.0)
-                .detailsJson(null)
+                .type("cash")
+                .solde(55500)
+                .detailsJson(detailsInitiaux)
                 .build();
 
         Caisses updated = caisseService.posterCaisse(tentativeUpdate);

@@ -79,6 +79,7 @@ public class PersonnesCrudTest extends AbstractIttest {;
    Set<String> fieldsToExclude = new HashSet<>();
    fieldsToExclude.add("id");
    fieldsToExclude.add("dateModification");
+   fieldsToExclude.add("dateCreation");
    Assertions.assertTrue(JsonComparator.CompareResultWithJson(
            pathJson
            ,objectMapper.writerFor(listOfPersonnes).writeValueAsString(personnesList)

@@ -7,6 +7,7 @@ import cmr.notep.modele.Attributs;
 import cmr.notep.modele.Documents;
 import cmr.notep.repository.AttributsRepository;
 import cmr.notep.repository.CategoriesRepository;
+import cmr.notep.repository.DocEtatsRepository;
 import cmr.notep.repository.DocumentsRepository;
 import org.dozer.DozerBeanMapper;
 import org.junit.jupiter.api.BeforeEach;
@@ -38,6 +39,9 @@ class DocumentsBusinessTest {
     private CategoriesBusiness categoriesBusiness;
 
     @Mock
+    private DocEtatsBusiness docEtatsBusiness;
+
+    @Mock
     private DozerBeanMapper dozerMapperBean;
 
     @Mock
@@ -49,14 +53,20 @@ class DocumentsBusinessTest {
     @Mock
     private CategoriesRepository categoriesRepository;
 
+    @Mock
+    private DocEtatsRepository docEtatsRepository;
+
     @BeforeEach
     void setUp() {
         MockitoAnnotations.openMocks(this);
-        documentsBusiness = new DocumentsBusiness(daoAccessorService, categoriesBusiness, dozerMapperBean);
+        documentsBusiness = new DocumentsBusiness(daoAccessorService, categoriesBusiness, docEtatsBusiness, dozerMapperBean);
 
         when(daoAccessorService.getRepository(DocumentsRepository.class)).thenReturn(documentsRepository);
         when(daoAccessorService.getRepository(AttributsRepository.class)).thenReturn(attributsRepository);
         when(daoAccessorService.getRepository(CategoriesRepository.class)).thenReturn(categoriesRepository);
+        when(daoAccessorService.getRepository(DocEtatsRepository.class)).thenReturn(docEtatsRepository);
+        when(docEtatsRepository.findByDocumentsEntityId(org.mockito.ArgumentMatchers.anyString()))
+                .thenReturn(new ArrayList<>());
 
         when(documentsRepository.save(any(DocumentsEntity.class)))
                 .thenAnswer(invocation -> invocation.getArgument(0));
@@ -68,9 +78,9 @@ class DocumentsBusinessTest {
                     model.setIdDocument(entity.getId());
                     model.setTitre(entity.getTitre());
                     model.setDescription(entity.getDescription());
-                    model.setAttributs(entity.getAttributsEntities() == null
+                    model.setAttributs(entity.getAttributs() == null
                             ? new ArrayList<>()
-                            : entity.getAttributsEntities().stream().map(this::toAttribut).toList());
+                            : entity.getAttributs().stream().map(this::toAttribut).toList());
                     return model;
                 });
 
@@ -81,8 +91,8 @@ class DocumentsBusinessTest {
                     entity.setId(model.getIdDocument());
                     entity.setTitre(model.getTitre());
                     entity.setDescription(model.getDescription());
-                    entity.setCategoriesEntities(new ArrayList<>());
-                    entity.setAttributsEntities(new ArrayList<>());
+                    entity.setCategories(new ArrayList<>());
+                    entity.setAttributs(new ArrayList<>());
                     return entity;
                 });
 
@@ -112,8 +122,8 @@ class DocumentsBusinessTest {
         existingEntity.setId("doc-1");
         existingEntity.setTitre("Old titre");
         existingEntity.setDescription("Old description");
-        existingEntity.setCategoriesEntities(new ArrayList<>());
-        existingEntity.setAttributsEntities(new ArrayList<>(List.of(existingAttributEntity("old-attr", "Old attr"))));
+        existingEntity.setCategories(new ArrayList<>());
+        existingEntity.setAttributs(new ArrayList<>(List.of(existingAttributEntity("old-attr", "Old attr"))));
 
         when(documentsRepository.findById("doc-1")).thenReturn(Optional.of(existingEntity));
         when(attributsRepository.findById("attr-1")).thenReturn(Optional.of(existingAttributEntity("attr-1", "Attr 1")));
@@ -123,10 +133,10 @@ class DocumentsBusinessTest {
 
         assertNotNull(saved);
         assertEquals("doc-1", saved.getIdDocument());
-        assertNotNull(existingEntity.getAttributsEntities());
-        assertEquals(2, existingEntity.getAttributsEntities().size(), "La liste attributsEntities doit être synchronisée");
-        assertTrue(existingEntity.getAttributsEntities().stream().anyMatch(attr -> "attr-1".equals(attr.getId())));
-        assertTrue(existingEntity.getAttributsEntities().stream().anyMatch(attr -> "attr-2".equals(attr.getId())));
+        assertNotNull(existingEntity.getAttributs());
+        assertEquals(2, existingEntity.getAttributs().size(), "La liste attributs doit être synchronisée");
+        assertTrue(existingEntity.getAttributs().stream().anyMatch(attr -> "attr-1".equals(attr.getId())));
+        assertTrue(existingEntity.getAttributs().stream().anyMatch(attr -> "attr-2".equals(attr.getId())));
         assertEquals(2, saved.getAttributs().size(), "Le document retourné doit refléter les attributs synchronisés");
     }
 
