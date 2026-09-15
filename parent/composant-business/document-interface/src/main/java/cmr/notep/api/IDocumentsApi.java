@@ -2,8 +2,8 @@ package cmr.notep.api;
 
 import cmr.notep.exceptions.ParcoursException;
 import cmr.notep.modele.AssignEtatDocument;
-import cmr.notep.modele.AssignValidationRoleRequest;
 import cmr.notep.modele.Documents;
+import cmr.notep.modele.Etats;
 import org.springframework.http.MediaType;
 import org.springframework.lang.NonNull;
 import org.springframework.web.bind.annotation.*;
@@ -26,6 +26,12 @@ public interface IDocumentsApi {
     Documents avoirDocument(@NonNull @PathVariable(name = "idDoc") String idDoc) throws ParcoursException;
 
     @GetMapping(
+            path = "/{idDoc}/etats-possibles",
+            produces = MediaType.APPLICATION_JSON_VALUE
+    )
+    List<Etats> avoirEtatsPossiblesDocument(@NonNull @PathVariable(name = "idDoc") String idDoc) throws ParcoursException;
+
+    @GetMapping(
             produces = MediaType.APPLICATION_JSON_VALUE
     )
     List<Documents> avoirTousDocuments();
@@ -39,5 +45,5 @@ public interface IDocumentsApi {
             produces = MediaType.APPLICATION_JSON_VALUE,
             consumes = MediaType.APPLICATION_JSON_VALUE
     )
-    Documents assignEtatDocument(@NonNull @RequestBody AssignEtatDocument assignetatdocument);
+    Documents assignEtatDocument(@RequestBody AssignEtatDocument assignetatdocument);
 }

@@ -247,5 +247,55 @@ public class DocumentDocEtatsAndAssociesTest extends AbstractIttest {
 
         log.info("✓ Test 7 réussi : purge complète des documentsAssocies avec liste vide");
     }
+
+    /**
+     * Test 8 : un document sans DocEtats doit retourner une liste vide d'états possibles
+     */
+    @Test
+    @Order(8)
+    @SneakyThrows
+    public void testEtatsPossiblesDocumentSansDocEtatsRetourneListeVide() {
+        Documents document = creerDocumentMinimal("Document Sans DocEtats " + UUID.randomUUID());
+
+        List<Etats> etatsPossibles = documentService.avoirEtatsPossiblesDocument(document.getIdDocument());
+
+        Assertions.assertNotNull(etatsPossibles, "La réponse ne doit jamais être nulle");
+        Assertions.assertTrue(etatsPossibles.isEmpty(), "La réponse doit être vide lorsqu'aucun DocEtat n'existe");
+
+        log.info("✓ Test 8 réussi : liste vide retournée pour un document sans DocEtats");
+    }
+
+    /**
+     * Test 9 : les états possibles doivent être renvoyés dans l'ordre croissant de DocEtats.ordre
+     */
+    @Test
+    @Order(9)
+    @SneakyThrows
+    public void testEtatsPossiblesDocumentSontOrdonnes() {
+        Documents document = creerDocumentMinimal("Document Etats Possibles " + UUID.randomUUID());
+
+        List<Etats> etatsDisponibles = etatsService.avoirTousEtats();
+        Assertions.assertTrue(etatsDisponibles.size() >= 3, "Il faut au moins trois états en base pour ce test");
+
+        Etats etatPremier = etatsDisponibles.get(0);
+        Etats etatDeuxieme = etatsDisponibles.get(1);
+        Etats etatTroisieme = etatsDisponibles.get(2);
+
+        DocEtats docEtatBas = DocEtats.builder().ordre(30).etat(etatTroisieme).build();
+        DocEtats docEtatMilieu = DocEtats.builder().ordre(20).etat(etatDeuxieme).build();
+        DocEtats docEtatHaut = DocEtats.builder().ordre(10).etat(etatPremier).build();
+
+        document.setDocEtats(new ArrayList<>(List.of(docEtatBas, docEtatMilieu, docEtatHaut)));
+        Documents saved = documentService.posterDocument(document);
+
+        List<Etats> etatsPossibles = documentService.avoirEtatsPossiblesDocument(saved.getIdDocument());
+
+        Assertions.assertEquals(3, etatsPossibles.size(), "Les trois états doivent être retrouvés");
+        Assertions.assertEquals(etatPremier.getId(), etatsPossibles.get(0).getId(), "L'ordre croissant doit être respecté");
+        Assertions.assertEquals(etatDeuxieme.getId(), etatsPossibles.get(1).getId(), "L'ordre croissant doit être respecté");
+        Assertions.assertEquals(etatTroisieme.getId(), etatsPossibles.get(2).getId(), "L'ordre croissant doit être respecté");
+
+        log.info("✓ Test 9 réussi : états possibles ordonnés correctement");
+    }
 }
 

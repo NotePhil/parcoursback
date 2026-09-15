@@ -4,9 +4,11 @@ import cmr.notep.api.IDocumentsApi;
 import cmr.notep.business.DocumentsBusiness;
 import cmr.notep.modele.AssignEtatDocument;
 import cmr.notep.modele.Documents;
+import cmr.notep.modele.Etats;
 import org.springframework.context.annotation.Primary;
 import org.springframework.lang.NonNull;
 import org.springframework.util.Assert;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import jakarta.transaction.Transactional;
@@ -34,6 +36,11 @@ public class DocumentsService implements IDocumentsApi {
     }
 
     @Override
+    public List<Etats> avoirEtatsPossiblesDocument(@NonNull String idDoc) {
+        return documentsBusiness.avoirEtatsPossiblesDocument(idDoc);
+    }
+
+    @Override
     public List<Documents> avoirTousDocuments() {
         return documentsBusiness.avoirTousDocuments();
     }
@@ -44,7 +51,7 @@ public class DocumentsService implements IDocumentsApi {
     }
 
     @Override
-    public Documents assignEtatDocument(AssignEtatDocument assignetatdocument) {
+    public Documents assignEtatDocument(@RequestBody @NonNull AssignEtatDocument assignetatdocument) {
         return documentsBusiness.assignEtatDoc(assignetatdocument.getEtat() ,
                 assignetatdocument.getDocument());
     }

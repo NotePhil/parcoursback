@@ -26,7 +26,6 @@ import cmr.notep.modele.Documents;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.util.CollectionUtils;
 
-import static cmr.notep.util.BeanCopyUtils.copyPropertiesExcludingCollections;
 import static cmr.notep.util.BeanCopyUtils.copyCollectionsWithDozer;
 
 @Component
@@ -57,8 +56,8 @@ public class DocumentsBusiness {
 
     /**
      * Code métier permettant d'enregistrer un nouveau document
-     * @param document
-     * @return
+     * @param document document à créer ou mettre à jour
+     * @return le document sauvegardé avec ses relations synchronisées
      */
     public Documents posterDocument(Documents document){
         log.debug("[posterDocument] poster un document");
@@ -128,7 +127,7 @@ public class DocumentsBusiness {
 
         // On s'appuie sur une lecture directe en base (et non sur la collection JPA en mémoire,
         // potentiellement obsolète dans le même contexte de persistance) pour connaître l'état réel.
-        List<DocEtatsEntity> existingEntities = new ArrayList<>();
+        List<DocEtatsEntity> existingEntities;
         try {
             existingEntities = docEtatsRepo.findByDocumentsEntityId(documentEntity.getId());
         } catch (DataIntegrityViolationException e) {
@@ -149,9 +148,9 @@ public class DocumentsBusiness {
 
         // Référencer le document (id uniquement, pour éviter tout cycle de mapping) sur chaque occurrence
         List<DocEtats> savedDocEtats = docEtatsListToInsert.stream().map(docEtat -> {
-            docEtat.setDocument(Documents.builder().idDocument(document.getIdDocument()).build());
-            return docEtatsBusiness.posterDocEtat(docEtat);
-        }).collect(Collectors.toList());
+               docEtat.setDocument(Documents.builder().idDocument(document.getIdDocument()).build());
+               return docEtatsBusiness.posterDocEtat(docEtat);
+        }).toList();
 
         HashMap<String, DocEtats> savedDocEtatsMap = new HashMap<>();
         Set<String> wantedIds = savedDocEtats.stream()
@@ -263,9 +262,9 @@ public class DocumentsBusiness {
                 cat.setDocument(document);
                 return categoriesBusiness.posterCategorie(cat).orElse(null);
             } catch (ParcoursException e) {
-                throw new RuntimeException(e);
+                throw e;
             }
-        }).filter(Objects::nonNull).collect(Collectors.toList()) : new ArrayList<>();
+        }).filter(Objects::nonNull).toList() : new ArrayList<>();
 
         // Construire set des ids souhaités
         Set<String> wantedIds = savedCats.stream()
@@ -314,14 +313,16 @@ public class DocumentsBusiness {
         Optional<EtatsEntity> optionalEtatEntity = this.daoAccessorService.getRepository(EtatsRepository.class)
                 .findById(etat.getId());
         if (optionalEtatEntity.isEmpty()) {
-            throw new RuntimeException("Etat non trouvé en base : " + etat.getId());
+            throw new ParcoursException(ParcoursExceptionCodeEnum.NOT_FOUND,
+                    "Etat non trouvé en base : " + etat.getId());
         }
         EtatsEntity etatEntity = optionalEtatEntity.get();
 
         Optional<DocumentsEntity> optionalDocumentEntity = this.daoAccessorService.getRepository(DocumentsRepository.class)
                 .findById(document.getIdDocument());
         if (optionalDocumentEntity.isEmpty()) {
-            throw new RuntimeException("Document non trouvé en base : " + document.getIdDocument());
+            throw new ParcoursException(ParcoursExceptionCodeEnum.NOT_FOUND,
+                    "Document non trouvé en base : " + document.getIdDocument());
         }
         DocumentsEntity documentEntity = optionalDocumentEntity.get();
 
@@ -349,21 +350,44 @@ public class DocumentsBusiness {
         return dozerMapperBean.map(
                 this.daoAccessorService.getRepository(DocumentsRepository.class)
                         .findById(idDoc)
-                        .orElseThrow(()->new RuntimeException("Document non trouvé")),Documents.class);
+                        .orElseThrow(() -> new ParcoursException(ParcoursExceptionCodeEnum.NOT_FOUND, "Document non trouvé")),Documents.class);
+    }
+
+    public List<Etats> avoirEtatsPossiblesDocument(String idDoc) {
+        log.debug("[avoirEtatsPossiblesDocument] called for document {}", idDoc);
+
+        // Vérifie que le document existe bien avant de calculer les états possibles.
+        avoirDocument(idDoc);
+
+        List<DocEtats> docEtats = docEtatsBusiness.listeDocEtatsParDocument(idDoc);
+        if (CollectionUtils.isEmpty(docEtats)) {
+            return new ArrayList<>();
+        }
+
+        Map<String, Etats> etatsPossibles = new LinkedHashMap<>();
+        docEtats.stream()
+                .sorted(Comparator.comparingInt(DocEtats::getOrdre)
+                        .thenComparing(docEtat -> docEtat.getId() == null ? "" : docEtat.getId()))
+                .map(DocEtats::getEtat)
+                .filter(Objects::nonNull)
+                .filter(etat -> etat.getId() != null)
+                .forEach(etat -> etatsPossibles.putIfAbsent(etat.getId(), etat));
+
+        return new ArrayList<>(etatsPossibles.values());
     }
 
     public void supprimerDocument(Documents document) {
         log.debug("[supprimerDocument] Suppression du document avec l'ID : " + document.getIdDocument());
         this.daoAccessorService.getRepository(DocumentsRepository.class)
-                .deleteById(document.getIdDocument().toString());
+                .deleteById(document.getIdDocument());
     }
 
     public Documents modifierDocument(Documents document) {
         log.debug("[modifierDocument] Modification du document avec l'ID : " + document.getIdDocument());
         // Vérifier que le document existe avant de le modifier
         this.daoAccessorService.getRepository(DocumentsRepository.class)
-                .findById(document.getIdDocument().toString())
-                .orElseThrow(() -> new RuntimeException("Document non trouvé"));
+                .findById(document.getIdDocument())
+                .orElseThrow(() -> new ParcoursException(ParcoursExceptionCodeEnum.NOT_FOUND, "Document non trouvé"));
 
         if(!CollectionUtils.isEmpty(document.getCategories())) {
             List<Categories> categoriesList = document.getCategories().stream()
@@ -373,11 +397,11 @@ public class DocumentsBusiness {
                             categorie.setDocument(document);
                             return categoriesBusiness.posterCategorie(categorie).orElse(null);
                         } catch (ParcoursException e) {
-                            throw new RuntimeException(e);
+                            throw e;
                         }
                     })
                     .filter(Objects::nonNull)
-                    .collect(Collectors.toList());
+                    .toList();
             document.getCategories().clear();
             document.getCategories().addAll(categoriesList);
         }

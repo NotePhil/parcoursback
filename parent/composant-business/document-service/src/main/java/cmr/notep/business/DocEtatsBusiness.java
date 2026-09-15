@@ -18,7 +18,6 @@ import org.springframework.stereotype.Component;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.util.CollectionUtils;
 
-import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
@@ -196,6 +195,7 @@ public class DocEtatsBusiness {
 
     public List<DocEtats> listeDocEtatsParDocument(@NonNull String idDocument) {
         return docEtatsRepository.findByDocumentsEntityId(idDocument).stream()
+                .sorted(java.util.Comparator.comparingInt(DocEtatsEntity::getOrdre))
                 .map(docEtatsEntity -> dozerMapperBean
                         .map(docEtatsEntity, DocEtats.class)).collect(Collectors.toList());
     }
