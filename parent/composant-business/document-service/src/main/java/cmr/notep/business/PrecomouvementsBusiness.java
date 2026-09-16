@@ -157,6 +157,7 @@ public class PrecomouvementsBusiness {
                 qteEntity.getDistributeursEntities().clear();
             if(qteEntity.getFamillesEntities() != null )
                 qteEntity.getFamillesEntities().clear();
+            qteEntity.setRessourcesEntity(null);
             dozerMapperBean.map(qteDemandee, qteEntity);
             qteEntity.setPrecoMouvementsEntity(precoEntity);
             return qteEntity;

@@ -2,6 +2,7 @@ package cmr.notep.exceptions;
 
 
 import cmr.notep.exceptions.enumeration.ParcoursExceptionCodeEnum;
+import lombok.extern.java.Log;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.ControllerAdvice;
@@ -11,11 +12,13 @@ import org.springframework.web.context.request.WebRequest;
 import java.lang.reflect.UndeclaredThrowableException;
 
 @ControllerAdvice
+@Log
 public class GlobalExceptionHandler {
 
     @ExceptionHandler(ParcoursException.class)
     public ResponseEntity<Object> handleSchoolException(ParcoursException ex, WebRequest request) {
         HttpStatus status = mapExceptionToHttpStatus(ex.getCode());
+        log.severe("Handling ParcoursException: " + ex.getCode() + " - " + ex.getMessage());
         return new ResponseEntity<>(new ErrorResponse(ex.getCode(), ex.getMessage()), status);
     }
 
@@ -25,6 +28,7 @@ public class GlobalExceptionHandler {
         if (cause instanceof ParcoursException parcoursException) {
             return handleSchoolException(parcoursException, request);
         }
+        log.severe("Handling UndeclaredThrowableException: " + ex.getMessage());
         return new ResponseEntity<>(new ErrorResponse(ParcoursExceptionCodeEnum.INTERNAL_ERROR, ex.getMessage()), HttpStatus.INTERNAL_SERVER_ERROR);
     }
 
