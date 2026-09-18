@@ -6,6 +6,7 @@ import cmr.notep.exceptions.ParcoursException;
 import cmr.notep.exceptions.enumeration.ParcoursExceptionCodeEnum;
 import cmr.notep.modele.DocEtats;
 import cmr.notep.modele.Documents;
+import cmr.notep.modele.DocumentsAssocies;
 import cmr.notep.modele.Etats;
 import cmr.notep.modele.Validations;
 import lombok.SneakyThrows;
@@ -20,7 +21,6 @@ import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
-import java.util.UUID;
 
 /**
  * Tests d'intégration ciblés sur l'enrichissement de posterDocument :
@@ -33,13 +33,30 @@ import java.util.UUID;
 @Slf4j
 public class DocumentDocEtatsAndAssociesTest extends AbstractIttest {
 
-    private Documents creerDocumentMinimal(String titre) {
-        Documents document = Documents.builder()
-                .titre(titre)
-                .description("Description " + titre)
-                .etat(true)
-                .build();
-        return documentService.posterDocument(document);
+    private static final String ID_DOCUMENT_SANS_DOC_ETATS = "0190615e-1101-7209-9932-7020bbd556f6";
+    private static final String ID_DOCUMENT_AVEC_DOC_ETAT = "0190615e-1101-7209-9932-7020bbd556f1";
+    private static final String ID_DOCUMENT_ASSOCIE = "0190615e-1101-7209-9932-7020bbd556f2";
+    private static final String ID_VALIDATION_EXISTANTE = "1901bd80-f71b-498b-b247-e7b9bbb3f603";
+    private static final String ID_ETAT_UN = "e190615e-1101-7209-9932-7020bbd556f1";
+    private static final String ID_ETAT_DEUX = "e190615e-1101-7209-9932-7020bbd556f2";
+    private static final String ID_ETAT_TROIS = "e190615e-1101-7209-9932-7020bbd556f3";
+
+    private Documents chargerDocumentExistant(String idDocument) {
+        Documents document = documentService.avoirDocument(idDocument);
+        Assertions.assertNotNull(document, "Le document doit exister en base");
+        return document;
+    }
+
+    private Etats chargerEtatExistant(String idEtat) {
+        Etats etat = etatsService.avoirEtat(idEtat);
+        Assertions.assertNotNull(etat, "L'état doit exister en base");
+        return etat;
+    }
+
+    private Validations chargerValidationExistante(String idValidation) {
+        Validations validation = validationsService.avoirValidation(idValidation);
+        Assertions.assertNotNull(validation, "La validation doit exister en base");
+        return validation;
     }
 
     /**
@@ -49,12 +66,10 @@ public class DocumentDocEtatsAndAssociesTest extends AbstractIttest {
     @Order(1)
     @SneakyThrows
     public void testCreationDocEtatSansIdViaPosterDocument() {
-        Documents document = creerDocumentMinimal("Document DocEtats Creation " + UUID.randomUUID());
+        Documents document = chargerDocumentExistant(ID_DOCUMENT_SANS_DOC_ETATS);
 
-        Etats etat = etatsService.avoirTousEtats().stream().findFirst()
-                .orElseThrow(() -> new AssertionError("Aucun état disponible en base pour le test"));
-        Validations validation = validationsService.avoirTousValidations().stream().findFirst()
-                .orElseThrow(() -> new AssertionError("Aucune validation disponible en base pour le test"));
+        Etats etat = chargerEtatExistant(ID_ETAT_UN);
+        Validations validation = chargerValidationExistante(ID_VALIDATION_EXISTANTE);
 
         DocEtats nouveauDocEtat = DocEtats.builder()
                 .ordre(1)
@@ -84,16 +99,15 @@ public class DocumentDocEtatsAndAssociesTest extends AbstractIttest {
     @Order(2)
     @SneakyThrows
     public void testModificationDocEtatAvecIdViaPosterDocument() {
-        Documents document = creerDocumentMinimal("Document DocEtats Modif " + UUID.randomUUID());
+        Documents document = chargerDocumentExistant(ID_DOCUMENT_AVEC_DOC_ETAT);
 
-        List<Etats> etats = etatsService.avoirTousEtats();
-        Assertions.assertTrue(etats.size() >= 2, "Il faut au moins deux états en base pour ce test");
-        Validations validation = validationsService.avoirTousValidations().stream().findFirst()
-                .orElseThrow(() -> new AssertionError("Aucune validation disponible en base pour le test"));
+        Etats etatInitial = chargerEtatExistant(ID_ETAT_UN);
+        Etats etatFinal = chargerEtatExistant(ID_ETAT_DEUX);
+        Validations validation = chargerValidationExistante(ID_VALIDATION_EXISTANTE);
 
         DocEtats docEtat = DocEtats.builder()
                 .ordre(1)
-                .etat(etats.get(0))
+                .etat(etatInitial)
                 .validation(validation)
                 .build();
         document.setDocEtats(new ArrayList<>(List.of(docEtat)));
@@ -105,7 +119,7 @@ public class DocumentDocEtatsAndAssociesTest extends AbstractIttest {
         // Modification : on change l'état, l'id doit être conservé
         Documents reloaded = documentService.avoirDocument(saved.getIdDocument());
         DocEtats docEtatAModifier = reloaded.getDocEtats().get(0);
-        docEtatAModifier.setEtat(etats.get(1));
+        docEtatAModifier.setEtat(etatFinal);
         reloaded.setDocEtats(new ArrayList<>(List.of(docEtatAModifier)));
 
         Documents updated = documentService.posterDocument(reloaded);
@@ -113,7 +127,7 @@ public class DocumentDocEtatsAndAssociesTest extends AbstractIttest {
         Assertions.assertEquals(1, updated.getDocEtats().size(), "Il doit toujours y avoir un seul DocEtat");
         DocEtats docEtatModifie = updated.getDocEtats().get(0);
         Assertions.assertEquals(idDocEtat, docEtatModifie.getId(), "L'id du DocEtat ne doit pas changer lors d'une modification");
-        Assertions.assertEquals(etats.get(1).getId(), docEtatModifie.getEtat().getId(), "L'état doit avoir été mis à jour");
+        Assertions.assertEquals(etatFinal.getId(), docEtatModifie.getEtat().getId(), "L'état doit avoir été mis à jour");
 
         log.info("✓ Test 2 réussi : DocEtat modifié en conservant son id {}", idDocEtat);
     }
@@ -125,12 +139,10 @@ public class DocumentDocEtatsAndAssociesTest extends AbstractIttest {
     @Order(3)
     @SneakyThrows
     public void testPurgeDocEtatsAvecListeVide() {
-        Documents document = creerDocumentMinimal("Document DocEtats Purge " + UUID.randomUUID());
+        Documents document = chargerDocumentExistant(ID_DOCUMENT_SANS_DOC_ETATS);
 
-        Etats etat = etatsService.avoirTousEtats().stream().findFirst()
-                .orElseThrow(() -> new AssertionError("Aucun état disponible en base pour le test"));
-        Validations validation = validationsService.avoirTousValidations().stream().findFirst()
-                .orElseThrow(() -> new AssertionError("Aucune validation disponible en base pour le test"));
+        Etats etat = chargerEtatExistant(ID_ETAT_UN);
+        Validations validation = chargerValidationExistante(ID_VALIDATION_EXISTANTE);
 
         DocEtats docEtat = DocEtats.builder().ordre(1).etat(etat).validation(validation).build();
         document.setDocEtats(new ArrayList<>(List.of(docEtat)));
@@ -154,18 +166,18 @@ public class DocumentDocEtatsAndAssociesTest extends AbstractIttest {
     @Order(4)
     @SneakyThrows
     public void testLienDocumentsAssociesSansMiseAJour() {
-        Documents documentPrincipal = creerDocumentMinimal("Document Principal " + UUID.randomUUID());
-        Documents documentAssocie = creerDocumentMinimal("Document Associe " + UUID.randomUUID());
+        Documents documentPrincipal = chargerDocumentExistant(ID_DOCUMENT_SANS_DOC_ETATS);
+        Documents documentAssocie = chargerDocumentExistant(ID_DOCUMENT_ASSOCIE);
+        Etats etatAssocie = chargerEtatExistant(ID_ETAT_UN);
         String titreOriginalAssocie = documentAssocie.getTitre();
+        documentAssocie.setTitre("Titre modifié temporairement pour le test");
 
-        // On envoie le document associé avec un titre modifié : cette modification ne doit PAS être persistée
-        Documents documentAssocieAvecModifIgnoree = Documents.builder()
-                .idDocument(documentAssocie.getIdDocument())
-                .titre("Titre modifié qui ne doit pas être pris en compte")
-                .build();
 
-        Set<Documents> documentsAssocies = new HashSet<>();
-        documentsAssocies.add(documentAssocieAvecModifIgnoree);
+        Set<DocumentsAssocies> documentsAssocies = new HashSet<>();
+        documentsAssocies.add(DocumentsAssocies.builder()
+                .document(documentAssocie)
+                .etat(etatAssocie)
+                .build());
         documentPrincipal.setDocumentsAssocies(documentsAssocies);
 
         Documents saved = documentService.posterDocument(documentPrincipal);
@@ -173,7 +185,8 @@ public class DocumentDocEtatsAndAssociesTest extends AbstractIttest {
         Assertions.assertNotNull(saved.getDocumentsAssocies(), "Le lien vers le document associé doit être présent");
         Assertions.assertEquals(1, saved.getDocumentsAssocies().size());
         Assertions.assertTrue(saved.getDocumentsAssocies().stream()
-                        .anyMatch(d -> d.getIdDocument().equals(documentAssocie.getIdDocument())),
+                        .anyMatch(d -> d.getDocument() != null
+                                && d.getDocument().getIdDocument().equals(documentAssocie.getIdDocument())),
                 "Le document associé doit être lié par id");
 
         // Vérifier que le document associé n'a pas été modifié
@@ -191,10 +204,12 @@ public class DocumentDocEtatsAndAssociesTest extends AbstractIttest {
     @Order(5)
     @SneakyThrows
     public void testDocumentAssocieInexistantLeveNotFound() {
-        Documents documentPrincipal = creerDocumentMinimal("Document Principal NotFound " + UUID.randomUUID());
+        Documents documentPrincipal = chargerDocumentExistant(ID_DOCUMENT_SANS_DOC_ETATS);
+        Etats etatAssocie = chargerEtatExistant(ID_ETAT_UN);
 
-        Documents documentInexistant = Documents.builder()
-                .idDocument(UUID.randomUUID().toString())
+        DocumentsAssocies documentInexistant = DocumentsAssocies.builder()
+                .document(Documents.builder().idDocument("99999999-9999-9999-9999-999999999999").build())
+                .etat(etatAssocie)
                 .build();
         documentPrincipal.setDocumentsAssocies(new HashSet<>(Set.of(documentInexistant)));
 
@@ -212,9 +227,13 @@ public class DocumentDocEtatsAndAssociesTest extends AbstractIttest {
     @Order(6)
     @SneakyThrows
     public void testAutoAssociationInterdite() {
-        Documents document = creerDocumentMinimal("Document Auto Association " + UUID.randomUUID());
+        Documents document = chargerDocumentExistant(ID_DOCUMENT_SANS_DOC_ETATS);
+        Etats etatAssocie = chargerEtatExistant(ID_ETAT_UN);
 
-        Documents autoReference = Documents.builder().idDocument(document.getIdDocument()).build();
+        DocumentsAssocies autoReference = DocumentsAssocies.builder()
+                .document(Documents.builder().idDocument(document.getIdDocument()).build())
+                .etat(etatAssocie)
+                .build();
         document.setDocumentsAssocies(new HashSet<>(Set.of(autoReference)));
 
         ParcoursException exception = Assertions.assertThrows(ParcoursException.class,
@@ -231,11 +250,15 @@ public class DocumentDocEtatsAndAssociesTest extends AbstractIttest {
     @Order(7)
     @SneakyThrows
     public void testPurgeDocumentsAssociesAvecListeVide() {
-        Documents documentPrincipal = creerDocumentMinimal("Document Principal Purge " + UUID.randomUUID());
-        Documents documentAssocie = creerDocumentMinimal("Document Associe Purge " + UUID.randomUUID());
+        Documents documentPrincipal = chargerDocumentExistant(ID_DOCUMENT_SANS_DOC_ETATS);
+        Documents documentAssocie = chargerDocumentExistant(ID_DOCUMENT_ASSOCIE);
+        Etats etatAssocie = chargerEtatExistant(ID_ETAT_UN);
 
         documentPrincipal.setDocumentsAssocies(new HashSet<>(Set.of(
-                Documents.builder().idDocument(documentAssocie.getIdDocument()).build())));
+                DocumentsAssocies.builder()
+                        .document(Documents.builder().idDocument(documentAssocie.getIdDocument()).build())
+                        .etat(etatAssocie)
+                        .build())));
         Documents saved = documentService.posterDocument(documentPrincipal);
         Assertions.assertEquals(1, saved.getDocumentsAssocies().size());
 
@@ -255,7 +278,7 @@ public class DocumentDocEtatsAndAssociesTest extends AbstractIttest {
     @Order(8)
     @SneakyThrows
     public void testEtatsPossiblesDocumentSansDocEtatsRetourneListeVide() {
-        Documents document = creerDocumentMinimal("Document Sans DocEtats " + UUID.randomUUID());
+        Documents document = chargerDocumentExistant(ID_DOCUMENT_SANS_DOC_ETATS);
 
         List<Etats> etatsPossibles = documentService.avoirEtatsPossiblesDocument(document.getIdDocument());
 
@@ -272,14 +295,11 @@ public class DocumentDocEtatsAndAssociesTest extends AbstractIttest {
     @Order(9)
     @SneakyThrows
     public void testEtatsPossiblesDocumentSontOrdonnes() {
-        Documents document = creerDocumentMinimal("Document Etats Possibles " + UUID.randomUUID());
+        Documents document = chargerDocumentExistant(ID_DOCUMENT_SANS_DOC_ETATS);
 
-        List<Etats> etatsDisponibles = etatsService.avoirTousEtats();
-        Assertions.assertTrue(etatsDisponibles.size() >= 3, "Il faut au moins trois états en base pour ce test");
-
-        Etats etatPremier = etatsDisponibles.get(0);
-        Etats etatDeuxieme = etatsDisponibles.get(1);
-        Etats etatTroisieme = etatsDisponibles.get(2);
+        Etats etatPremier = chargerEtatExistant(ID_ETAT_UN);
+        Etats etatDeuxieme = chargerEtatExistant(ID_ETAT_DEUX);
+        Etats etatTroisieme = chargerEtatExistant(ID_ETAT_TROIS);
 
         DocEtats docEtatBas = DocEtats.builder().ordre(30).etat(etatTroisieme).build();
         DocEtats docEtatMilieu = DocEtats.builder().ordre(20).etat(etatDeuxieme).build();

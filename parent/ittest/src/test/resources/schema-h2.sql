@@ -383,16 +383,22 @@ CREATE TABLE IF NOT EXISTS document.caracteristiques
     valeur        VARCHAR(255) NOT NULL
 );
 
-CREATE TABLE IF NOT EXISTS document.documents_predecesseurs
+CREATE TABLE IF NOT EXISTS document.documents_associes
 (
-    documents_id       VARCHAR(255) NOT NULL,
-    predecesseur_id VARCHAR(255) NOT NULL,
-    CONSTRAINT pk_documents_predecesseurs PRIMARY KEY (documents_id, predecesseur_id)
+    id            VARCHAR(255) NOT NULL,
+    documents_id  VARCHAR(255) NOT NULL,
+    document_associe_id   VARCHAR(255) NOT NULL,
+    etat_id       VARCHAR(255) NOT NULL,
+    datecreation  DATE,
+    CONSTRAINT pk_documents_associes PRIMARY KEY (id),
+    CONSTRAINT uk_documents_associes UNIQUE (documents_id, document_associe_id, etat_id)
     );
-ALTER TABLE  document.documents_predecesseurs
-    ADD CONSTRAINT IF NOT EXISTS   FK_DOCUMENTS_PREDECESSEURS_ON_DOCUMENTS FOREIGN KEY (documents_id) REFERENCES document.documents (id);
-ALTER TABLE document.documents_predecesseurs
-    ADD CONSTRAINT  IF NOT EXISTS   FK_DOCUMENTS_PREDECESSEURS_SUIVANT_ON_DOCUMENTS FOREIGN KEY (predecesseur_id) REFERENCES document.documents (id);
+ALTER TABLE document.documents_associes
+    ADD CONSTRAINT IF NOT EXISTS FK_DOCUMENTS_ASSOCIES_ON_DOCUMENTS FOREIGN KEY (documents_id) REFERENCES document.documents (id);
+ALTER TABLE document.documents_associes
+    ADD CONSTRAINT IF NOT EXISTS FK_DOCUMENTS_ASSOCIES_ON_DOCUMENT_ASSOCIE FOREIGN KEY (document_associe_id) REFERENCES document.documents (id);
+ALTER TABLE document.documents_associes
+    ADD CONSTRAINT IF NOT EXISTS FK_DOCUMENTS_ASSOCIES_ON_ETAT FOREIGN KEY (etat_id) REFERENCES document.etats (id);
 
 ALTER TABLE document.docetats_predecesseurs
     ADD CONSTRAINT  IF NOT EXISTS   FK_DOCETATS_PREDECESSEURS_ON_DOCETATS FOREIGN KEY (docetats_id) REFERENCES document.docetats (id);

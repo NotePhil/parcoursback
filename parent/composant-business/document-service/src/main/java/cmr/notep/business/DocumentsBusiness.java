@@ -12,6 +12,7 @@ import cmr.notep.exceptions.enumeration.ParcoursExceptionCodeEnum;
 import cmr.notep.modele.Categories;
 import cmr.notep.modele.DocEtats;
 import cmr.notep.modele.Etats;
+import cmr.notep.modele.DocumentsAssocies;
 import cmr.notep.repository.CategoriesRepository;
 import cmr.notep.repository.DocEtatsRepository;
 import cmr.notep.repository.DocumentsRepository;
@@ -92,15 +93,15 @@ public class DocumentsBusiness {
         // Gérer les catégories via le business dédié (synchronisation des entités liées)
         gererCategoriesDocument(document, documentEntity);
 
+        // Gérer les documents associés : simple lien de dépendance vers des documents déjà existants
+        gererDocumentsAssociesDocument(document, documentEntity);
+
         List <DocEtats> docEtatsListToInsert = new ArrayList<>();
         Map<String, Set<DocEtats>>  docEtatMapBoucle = new HashMap<>();
         if(!CollectionUtils.isEmpty(document.getDocEtats()))
             docEtatMapBoucle = BusinessEntityHelper.getDocEtatsListToInsert(document.getDocEtats(),docEtatsListToInsert);
         // Gérer les états du document (création si id absent, modification si id présent)
         gererDocEtatsDocument(document, documentEntity,docEtatsListToInsert,docEtatMapBoucle);
-
-        // Gérer les documents associés : simple lien de dépendance vers des documents déjà existants
-        gererDocumentsAssociesDocument(document, documentEntity);
 
         // Pour les relations ManyToMany sans attributs (ex: attributs) on laisse JPA gérer directement via le mapping Dozer
         // Mapper le modèle vers l'entité pour que JPA prenne en charge les relations simples
@@ -110,7 +111,25 @@ public class DocumentsBusiness {
         }
 
         DocumentsEntity saved = documentsRepo.save(documentEntity);
-        return dozerMapperBean.map(saved, Documents.class);
+        Documents result = dozerMapperBean.map(saved, Documents.class);
+
+        // Dozer peut confondre le document parent et le document associé quand les types sont identiques.
+        // On projette explicitement la collection pour garantir le bon id de document associé côté modèle.
+        if (!CollectionUtils.isEmpty(document.getDocumentsAssocies())) {
+            Set<DocumentsAssocies> associes = document.getDocumentsAssocies().stream()
+                    .map(link -> DocumentsAssocies.builder()
+                            .id(link.getId())
+                            .document(link.getDocument() == null ? null : Documents.builder()
+                                    .idDocument(link.getDocument().getIdDocument())
+                                    .titre(link.getDocument().getTitre())
+                                    .build())
+                            .etat(link.getEtat() == null ? null : Etats.builder().id(link.getEtat().getId()).build())
+                            .build())
+                    .collect(Collectors.toSet());
+            result.setDocumentsAssocies(associes);
+        }
+
+        return result;
     }
 
     /**
@@ -204,7 +223,7 @@ public class DocumentsBusiness {
      * </ul>
      */
     private void gererDocumentsAssociesDocument(Documents document, DocumentsEntity documentEntity) {
-        // Champ non fourni par le client : on ne touche pas aux associations existantes
+        // Champ non fourni par le client : on ne touche pas aux associations existantes.
         if (document.getDocumentsAssocies() == null) {
             return;
         }
@@ -213,30 +232,65 @@ public class DocumentsBusiness {
             documentEntity.setDocumentsAssocies(new HashSet<>());
         }
 
-        // Liste vide → purge complète des associations
+        // Liste vide -> purge complète des associations.
         if (document.getDocumentsAssocies().isEmpty()) {
             documentEntity.getDocumentsAssocies().clear();
             return;
         }
 
         DocumentsRepository documentsRepo = daoAccessorService.getRepository(DocumentsRepository.class);
+        EtatsRepository etatsRepo = daoAccessorService.getRepository(EtatsRepository.class);
 
-        Set<DocumentsEntity> resolved = document.getDocumentsAssocies().stream()
+        Map<String, DocumentsAssociesEntity> existingByBusinessKey = documentEntity.getDocumentsAssocies().stream()
+                .filter(existing -> existing.getDocumentAssocie() != null && existing.getEtat() != null)
+                .collect(Collectors.toMap(
+                        existing -> existing.getDocumentAssocie().getId() + "|" + existing.getEtat().getId(),
+                        existing -> existing,
+                        (a, b) -> a));
+
+        Set<DocumentsAssociesEntity> resolved = document.getDocumentsAssocies().stream()
                 .map(assoc -> {
-                    String idAssocie = assoc.getIdDocument();
+                    if (assoc == null || assoc.getDocument() == null) {
+                        throw new ParcoursException(ParcoursExceptionCodeEnum.OPERATION_INTERDITE,
+                                "Un document associe doit referencer un document existant");
+                    }
+
+                    String idAssocie = assoc.getDocument().getIdDocument();
                     if (idAssocie == null) {
                         throw new ParcoursException(ParcoursExceptionCodeEnum.OPERATION_INTERDITE,
-                                "Un document associé doit posséder un identifiant existant");
+                                "Un document associe doit posseder un identifiant existant");
                     }
+
                     if (idAssocie.equals(document.getIdDocument())) {
                         throw new ParcoursException(ParcoursExceptionCodeEnum.OPERATION_INTERDITE,
-                                "Un document ne peut pas être associé à lui-même");
+                                "Un document ne peut pas etre associe a lui-meme");
                     }
-                    return documentsRepo.findById(idAssocie)
+
+                    if (assoc.getEtat() == null || assoc.getEtat().getId() == null) {
+                        throw new ParcoursException(ParcoursExceptionCodeEnum.OPERATION_INTERDITE,
+                                "Un document associe doit posseder un etat existant");
+                    }
+
+                    DocumentsEntity associeEntity = documentsRepo.findById(idAssocie)
                             .orElseThrow(() -> new ParcoursException(ParcoursExceptionCodeEnum.NOT_FOUND,
-                                    "Document associé introuvable : " + idAssocie));
+                                    "Document associe introuvable : " + idAssocie));
+
+                    EtatsEntity etatEntity = etatsRepo.findById(assoc.getEtat().getId())
+                            .orElseThrow(() -> new ParcoursException(ParcoursExceptionCodeEnum.NOT_FOUND,
+                                    "Etat associe introuvable : " + assoc.getEtat().getId()));
+
+                    String businessKey = idAssocie + "|" + etatEntity.getId();
+                    DocumentsAssociesEntity link = existingByBusinessKey.getOrDefault(businessKey, new DocumentsAssociesEntity());
+
+                    link.setDocumentsEntity(documentEntity);
+                    link.setDocumentAssocie(associeEntity);
+                    link.setEtat(etatEntity);
+                    if (link.getDateCreation() == null) {
+                        link.setDateCreation(new Date());
+                    }
+                    return link;
                 })
-                .collect(Collectors.toSet());
+                .collect(Collectors.toCollection(HashSet::new));
 
         documentEntity.getDocumentsAssocies().clear();
         documentEntity.getDocumentsAssocies().addAll(resolved);

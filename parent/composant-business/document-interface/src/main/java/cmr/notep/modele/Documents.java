@@ -4,7 +4,6 @@ package cmr.notep.modele;
 import java.util.Date;
 import java.util.List;
 import java.util.Set;
-import java.util.UUID;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import lombok.*;
@@ -53,5 +52,5 @@ public class Documents {
     private List<Attributs> attributs ;
     private List<Categories> categories ;
     private List<DocEtats> docEtats;
-    private Set<Documents> documentsAssocies;
+    private Set<DocumentsAssocies> documentsAssocies;
 }

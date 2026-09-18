@@ -2,14 +2,18 @@ package cmr.notep.business;
 
 import cmr.notep.dao.AttributsEntity;
 import cmr.notep.dao.DaoAccessorService;
+import cmr.notep.dao.DocumentsAssociesEntity;
 import cmr.notep.dao.DocumentsEntity;
+import cmr.notep.dao.EtatsEntity;
 import cmr.notep.modele.Attributs;
 import cmr.notep.modele.Documents;
+import cmr.notep.modele.DocumentsAssocies;
 import cmr.notep.modele.Etats;
 import cmr.notep.repository.AttributsRepository;
 import cmr.notep.repository.CategoriesRepository;
 import cmr.notep.repository.DocEtatsRepository;
 import cmr.notep.repository.DocumentsRepository;
+import cmr.notep.repository.EtatsRepository;
 import org.dozer.DozerBeanMapper;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.AfterEach;
@@ -19,8 +23,10 @@ import org.mockito.Mock;
 import org.mockito.MockitoAnnotations;
 
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
 import java.util.Optional;
+import java.util.Set;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
@@ -59,6 +65,9 @@ class DocumentsBusinessTest {
     @Mock
     private DocEtatsRepository docEtatsRepository;
 
+    @Mock
+    private EtatsRepository etatsRepository;
+
     @BeforeEach
     void setUp() {
         mocks = MockitoAnnotations.openMocks(this);
@@ -68,6 +77,7 @@ class DocumentsBusinessTest {
         when(daoAccessorService.getRepository(AttributsRepository.class)).thenReturn(attributsRepository);
         when(daoAccessorService.getRepository(CategoriesRepository.class)).thenReturn(categoriesRepository);
         when(daoAccessorService.getRepository(DocEtatsRepository.class)).thenReturn(docEtatsRepository);
+        when(daoAccessorService.getRepository(EtatsRepository.class)).thenReturn(etatsRepository);
         when(docEtatsRepository.findByDocumentsEntityId(org.mockito.ArgumentMatchers.anyString()))
                 .thenReturn(new ArrayList<>());
         when(docEtatsBusiness.listeDocEtatsParDocument(org.mockito.ArgumentMatchers.anyString()))
@@ -180,6 +190,50 @@ class DocumentsBusinessTest {
         assertEquals("etat-a", result.get(0).getId(), "Le premier état doit être celui du plus petit ordre");
         assertEquals("etat-c", result.get(1).getId(), "Le deuxième état doit respecter l'ordre croissant");
         assertEquals("etat-b", result.get(2).getId(), "Le troisième état doit respecter l'ordre croissant");
+    }
+
+    @Test
+    @DisplayName("posterDocument synchronise les documents associes sans muter le document lie")
+    void posterDocumentDoitSynchroniserDocumentsAssocies() {
+        Documents document = new Documents();
+        document.setIdDocument("doc-1");
+        document.setTitre("Principal");
+
+        Documents linkedDocument = new Documents();
+        linkedDocument.setIdDocument("doc-2");
+        linkedDocument.setTitre("Associe");
+
+        Etats linkedEtat = Etats.builder().id("etat-1").build();
+        Set<DocumentsAssocies> associes = new HashSet<>();
+        associes.add(DocumentsAssocies.builder().document(linkedDocument).etat(linkedEtat).build());
+        document.setDocumentsAssocies(associes);
+
+        DocumentsEntity principalEntity = new DocumentsEntity();
+        principalEntity.setId("doc-1");
+        principalEntity.setCategories(new ArrayList<>());
+        principalEntity.setDocEtats(new ArrayList<>());
+        principalEntity.setDocumentsAssocies(new HashSet<>());
+
+        DocumentsEntity linkedEntity = new DocumentsEntity();
+        linkedEntity.setId("doc-2");
+        linkedEntity.setTitre("Associe");
+
+        EtatsEntity etatEntity = new EtatsEntity();
+        etatEntity.setId("etat-1");
+
+        when(documentsRepository.findById("doc-1")).thenReturn(Optional.of(principalEntity));
+        when(documentsRepository.findById("doc-2")).thenReturn(Optional.of(linkedEntity));
+        when(etatsRepository.findById("etat-1")).thenReturn(Optional.of(etatEntity));
+
+        documentsBusiness.posterDocument(document);
+
+        assertNotNull(principalEntity.getDocumentsAssocies());
+        assertEquals(1, principalEntity.getDocumentsAssocies().size(), "Une seule association doit être synchronisée");
+
+        DocumentsAssociesEntity lien = principalEntity.getDocumentsAssocies().iterator().next();
+        assertEquals("doc-1", lien.getDocumentsEntity().getId(), "Le document parent doit être correctement référencé");
+        assertEquals("etat-1", lien.getEtat().getId(), "L'état doit être correctement référencé");
+        assertNotNull(lien.getDateCreation(), "La date de création du lien doit être renseignée");
     }
 
     private AttributsEntity existingAttributEntity(String id, String titre) {

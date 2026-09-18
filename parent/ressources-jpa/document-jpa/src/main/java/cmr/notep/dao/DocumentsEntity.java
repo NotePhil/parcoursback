@@ -6,7 +6,6 @@ import org.dozer.Mapping;
 import org.hibernate.annotations.UpdateTimestamp;
 import org.hibernate.annotations.CreationTimestamp;
 import org.hibernate.annotations.GenericGenerator;
-import org.hibernate.annotations.UuidGenerator;
 
 import jakarta.persistence.*;
 
@@ -97,10 +96,7 @@ public class DocumentsEntity {
     //@Mapping("docEtats")
     private List<DocEtatsEntity> docEtats;
 
-    @ManyToMany(fetch = FetchType.LAZY)
-    @JoinTable(name = "documents_predecesseurs" ,schema = "document",
-            joinColumns = @JoinColumn(name = "documents_id"),
-            inverseJoinColumns = @JoinColumn(name = "predecesseur_id"))
-    //@Mapping("documentsAssocies")
-    private Set<DocumentsEntity> documentsAssocies = new HashSet<>();
+    @OneToMany(mappedBy = "documentsEntity", fetch = FetchType.LAZY)
+    // @Mapping("documentsAssocies")
+    private Set<DocumentsAssociesEntity> documentsAssocies = new HashSet<>();
 }

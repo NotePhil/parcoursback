@@ -76,6 +76,9 @@ public class BusinessEntityHelper{
         for (String docEtatId : docEtatsIdListToInsert) {
             docEtatMapPrecedent.remove(docEtatId);
             for (Set<DocEtats> predecesseurs : docEtatMapPrecedent.values()) {
+                if (predecesseurs == null) {
+                    continue;
+                }
                 predecesseurs.removeIf(predecesseur -> predecesseur.getEtat().getId().equals(docEtatId));
             }
         }
