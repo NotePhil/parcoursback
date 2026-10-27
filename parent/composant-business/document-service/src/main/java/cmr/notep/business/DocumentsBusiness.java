@@ -13,10 +13,7 @@ import cmr.notep.modele.Categories;
 import cmr.notep.modele.DocEtats;
 import cmr.notep.modele.Etats;
 import cmr.notep.modele.DocumentsAssocies;
-import cmr.notep.repository.CategoriesRepository;
-import cmr.notep.repository.DocEtatsRepository;
-import cmr.notep.repository.DocumentsRepository;
-import cmr.notep.repository.EtatsRepository;
+import cmr.notep.repository.*;
 import cmr.notep.utils.BusinessEntityHelper;
 import org.dozer.DozerBeanMapper;
 import org.springframework.dao.DataIntegrityViolationException;
@@ -50,7 +47,7 @@ public class DocumentsBusiness {
 
     public List<Documents> avoirTousDocuments() {
         log.debug("avoirTousDocuments called");
-       return daoAccessorService.getRepository(DocumentsRepository.class).findAll()
+        return daoAccessorService.getRepository(DocumentsRepository.class).findAll()
                 .stream().map(doc ->dozerMapperBean.map(doc,Documents.class))
                 .collect(Collectors.toList());
     }
@@ -97,11 +94,28 @@ public class DocumentsBusiness {
         gererDocumentsAssociesDocument(document, documentEntity);
 
         List <DocEtats> docEtatsListToInsert = new ArrayList<>();
-        Map<String, Set<DocEtats>>  docEtatMapBoucle = new HashMap<>();
-        if(!CollectionUtils.isEmpty(document.getDocEtats()))
-            docEtatMapBoucle = BusinessEntityHelper.getDocEtatsListToInsert(document.getDocEtats(),docEtatsListToInsert);
+        Map<String, Set<String>> docEtatsPredecesseursParEtat = new HashMap<>();
+        if(!CollectionUtils.isEmpty(document.getDocEtats())) {
+            // Conserver les dépendances d'origine (clé = id état), avant tout traitement d'ordonnancement.
+            docEtatsPredecesseursParEtat = document.getDocEtats().stream()
+                    .filter(Objects::nonNull)
+                    .filter(docEtat -> docEtat.getEtat() != null && docEtat.getEtat().getId() != null)
+                    .collect(Collectors.toMap(
+                            docEtat -> docEtat.getEtat().getId(),
+                            docEtat -> docEtat.getPredecesseurDocEtat() == null
+                                    ? new HashSet<>()
+                                    : docEtat.getPredecesseurDocEtat().stream()
+                                    .filter(Objects::nonNull)
+                                    .filter(predecesseur -> predecesseur.getEtat() != null && predecesseur.getEtat().getId() != null)
+                                    .map(predecesseur -> predecesseur.getEtat().getId())
+                                    .collect(Collectors.toSet()),
+                            (a, b) -> b,
+                            HashMap::new));
+
+            BusinessEntityHelper.getDocEtatsListToInsert(document.getDocEtats(),docEtatsListToInsert);
+        }
         // Gérer les états du document (création si id absent, modification si id présent)
-        gererDocEtatsDocument(document, documentEntity,docEtatsListToInsert,docEtatMapBoucle);
+        gererDocEtatsDocument(document, documentEntity, docEtatsListToInsert, docEtatsPredecesseursParEtat);
 
         // Pour les relations ManyToMany sans attributs (ex: attributs) on laisse JPA gérer directement via le mapping Dozer
         // Mapper le modèle vers l'entité pour que JPA prenne en charge les relations simples
@@ -141,7 +155,7 @@ public class DocumentsBusiness {
      *     <li>DocEtat existant non présent dans la nouvelle liste → suppression.</li>
      * </ul>
      */
-    private void gererDocEtatsDocument(Documents document, DocumentsEntity documentEntity, List<DocEtats> docEtatsListToInsert, Map<String, Set<DocEtats>> docEtatMapBoucle) {
+    private void gererDocEtatsDocument(Documents document, DocumentsEntity documentEntity, List<DocEtats> docEtatsListToInsert, Map<String, Set<String>> docEtatsPredecesseursParEtat) {
         DocEtatsRepository docEtatsRepo = daoAccessorService.getRepository(DocEtatsRepository.class);
 
         // On s'appuie sur une lecture directe en base (et non sur la collection JPA en mémoire,
@@ -168,6 +182,9 @@ public class DocumentsBusiness {
         // Référencer le document (id uniquement, pour éviter tout cycle de mapping) sur chaque occurrence
         List<DocEtats> savedDocEtats = docEtatsListToInsert.stream().map(docEtat -> {
                docEtat.setDocument(Documents.builder().idDocument(document.getIdDocument()).build());
+               // Premiere passe : les predecesseurs n'ont pas encore d'id (non persistes). Ils sont
+               // restaures dans la seconde passe, une fois tous les DocEtats sauvegardes.
+               docEtat.setPredecesseurDocEtat(new HashSet<>());
                return docEtatsBusiness.posterDocEtat(docEtat);
         }).toList();
 
@@ -187,17 +204,15 @@ public class DocumentsBusiness {
             }
         }
 
-        docEtatMapBoucle.forEach((etatId, predecesseurs) -> {
+        docEtatsPredecesseursParEtat.forEach((etatId, predecesseursEtatIds) -> {
             DocEtats savedDocEtat = savedDocEtatsMap.get(etatId);
             if (savedDocEtat != null) {
-                predecesseurs = predecesseurs.stream()
-                        .map(predecesseur -> savedDocEtatsMap.get(predecesseur.getEtat().getId()))
+                Set<DocEtats> predecesseurs = predecesseursEtatIds == null ? new HashSet<>() : predecesseursEtatIds.stream()
+                        .filter(Objects::nonNull)
+                        .map(savedDocEtatsMap::get)
                         .filter(Objects::nonNull)
                         .collect(Collectors.toSet());
-                if(savedDocEtat.getPredecesseurDocEtat() == null) {
-                    savedDocEtat.setPredecesseurDocEtat(new HashSet<>());
-                }
-                savedDocEtat.getPredecesseurDocEtat().addAll(predecesseurs);
+                savedDocEtat.setPredecesseurDocEtat(new HashSet<>(predecesseurs));
                 docEtatsBusiness.posterDocEtat(savedDocEtat);
             }
         });
@@ -228,26 +243,16 @@ public class DocumentsBusiness {
             return;
         }
 
-        if (documentEntity.getDocumentsAssocies() == null) {
-            documentEntity.setDocumentsAssocies(new HashSet<>());
-        }
-
-        // Liste vide -> purge complète des associations.
+        //on rase la base des documents associés pour les recréer à partir de la liste fournie
+        DocumentsAssociesRepository documentsAssociesRepo = daoAccessorService.getRepository(DocumentsAssociesRepository.class);
+        documentEntity.getDocumentsAssocies().forEach(existing -> documentsAssociesRepo.delete(existing));
+        documentEntity.setDocumentsAssocies(new HashSet<>());
+        // Liste vide
         if (document.getDocumentsAssocies().isEmpty()) {
-            documentEntity.getDocumentsAssocies().clear();
             return;
         }
-
         DocumentsRepository documentsRepo = daoAccessorService.getRepository(DocumentsRepository.class);
         EtatsRepository etatsRepo = daoAccessorService.getRepository(EtatsRepository.class);
-
-        Map<String, DocumentsAssociesEntity> existingByBusinessKey = documentEntity.getDocumentsAssocies().stream()
-                .filter(existing -> existing.getDocumentAssocie() != null && existing.getEtat() != null)
-                .collect(Collectors.toMap(
-                        existing -> existing.getDocumentAssocie().getId() + "|" + existing.getEtat().getId(),
-                        existing -> existing,
-                        (a, b) -> a));
-
         Set<DocumentsAssociesEntity> resolved = document.getDocumentsAssocies().stream()
                 .map(assoc -> {
                     if (assoc == null || assoc.getDocument() == null) {
@@ -280,13 +285,18 @@ public class DocumentsBusiness {
                                     "Etat associe introuvable : " + assoc.getEtat().getId()));
 
                     String businessKey = idAssocie + "|" + etatEntity.getId();
-                    DocumentsAssociesEntity link = existingByBusinessKey.getOrDefault(businessKey, new DocumentsAssociesEntity());
+                    DocumentsAssociesEntity link =  new DocumentsAssociesEntity();
 
                     link.setDocumentsEntity(documentEntity);
                     link.setDocumentAssocie(associeEntity);
                     link.setEtat(etatEntity);
                     if (link.getDateCreation() == null) {
                         link.setDateCreation(new Date());
+                    }
+                    try {
+                        link = daoAccessorService.getRepository(DocumentsAssociesRepository.class).save(link);
+                    } catch (Exception e) {
+                        throw new RuntimeException(e);
                     }
                     return link;
                 })
@@ -401,10 +411,53 @@ public class DocumentsBusiness {
 
     public Documents avoirDocument(String idDoc) {
         log.debug("[avoirDocument] called");
-        return dozerMapperBean.map(
-                this.daoAccessorService.getRepository(DocumentsRepository.class)
-                        .findById(idDoc)
-                        .orElseThrow(() -> new ParcoursException(ParcoursExceptionCodeEnum.NOT_FOUND, "Document non trouvé")),Documents.class);
+        DocumentsEntity entity = this.daoAccessorService.getRepository(DocumentsRepository.class)
+                .findById(idDoc)
+                .orElseThrow(() -> new ParcoursException(ParcoursExceptionCodeEnum.NOT_FOUND, "Document non trouvé"));
+        Documents result = dozerMapperBean.map(entity, Documents.class);
+        restaurerPredecesseursDocEtats(entity, result);
+        return result;
+    }
+
+    /**
+     * Dozer perd des prédécesseurs lorsque le graphe des DocEtats contient des cycles
+     * (les objets partiellement mappés sont dédoublonnés dans les HashSet).
+     * Les prédécesseurs du modèle sont donc reconstruits à partir des entités JPA, qui font foi.
+     */
+    private void restaurerPredecesseursDocEtats(DocumentsEntity entity, Documents model) {
+        if (entity == null || model == null || CollectionUtils.isEmpty(model.getDocEtats())
+                || CollectionUtils.isEmpty(entity.getDocEtats())) {
+            return;
+        }
+        Map<String, DocEtats> modelsById = new HashMap<>();
+        for (DocEtats docEtat : model.getDocEtats()) {
+            if (docEtat != null && docEtat.getId() != null) {
+                modelsById.put(docEtat.getId(), docEtat);
+            }
+        }
+        for (DocEtatsEntity docEtatEntity : entity.getDocEtats()) {
+            DocEtats docEtat = modelsById.get(docEtatEntity.getId());
+            if (docEtat == null) {
+                continue;
+            }
+            Set<DocEtats> predecesseurs = new HashSet<>();
+            if (docEtatEntity.getPredecesseursDocEtat() != null) {
+                for (DocEtatsEntity predEntity : docEtatEntity.getPredecesseursDocEtat()) {
+                    DocEtats pred = modelsById.get(predEntity.getId());
+                    // Copie sans prédécesseurs : évite les références circulaires dans le modèle retourné
+                    predecesseurs.add(DocEtats.builder()
+                            .id(predEntity.getId())
+                            .ordre(predEntity.getOrdre())
+                            .dateCreation(predEntity.getDateCreation())
+                            .dateModification(predEntity.getDateModification())
+                            .validation(pred != null ? pred.getValidation() : null)
+                            .etat(pred != null ? pred.getEtat() : null)
+                            .predecesseurDocEtat(new HashSet<>())
+                            .build());
+                }
+            }
+            docEtat.setPredecesseurDocEtat(predecesseurs);
+        }
     }
 
     public List<Etats> avoirEtatsPossiblesDocument(String idDoc) {

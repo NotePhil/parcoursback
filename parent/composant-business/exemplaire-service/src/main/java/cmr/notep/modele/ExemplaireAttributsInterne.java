@@ -1,7 +1,5 @@
 package cmr.notep.modele;
 
-import cmr.notep.modele.Attributs;
-import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import lombok.*;
 
 import java.util.Date;

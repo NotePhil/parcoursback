@@ -25,22 +25,45 @@ public class MouvementsEntity {
     @Column(name = "description" , nullable = false)
     private  String description ;
 
-    @Column(name = "quantite")
-    private int quantite ;
+    @Column(name = "quantite_initiale")
+    private Integer quantiteInitiale;
+
+    @Column(name = "quantite_mouvementee")
+    private Integer quantiteMouvementee;
+
+    @Column(name = "quantite_finale")
+    private Integer quantiteFinale;
 
     @Column(name = "prix")
     private double prix ;
+
+    @Column(name = "type_transaction")
+    private String typeTransaction; // ENTREE, SORTIE, AJUSTEMENT
+
+
+    @Column(name = "validee")
+    private Boolean validee = false;
+
+    @Column(name = "validee_by")
+    private String valideeBy;
+
+    @Column(name = "date_validation")
+    private Date dateValidation;
+
+    @Column(name = "statut")
+    private String statut; // EN_ATTENTE, VALIDEE, REJETEE
 
     @Column(name = "datecreation", updatable = false,nullable = false)
     private Date dateCreation ;
 
     @Column(name = "dateperemption")
     private Date datePeremption ;
+
     @Column(name = "datemodification", columnDefinition = "TIMESTAMP")
     @Temporal(TemporalType.TIMESTAMP)
     @UpdateTimestamp
     private Date dateModification;
-    //PrecoMouvementsEntity
+
     @ElementCollection
     @CollectionTable(name = "respecterprecomouvement", joinColumns = @JoinColumn(name = "mouvements_id"), schema = "exemplaire")
     @Column(name = "precomouvements_id")
@@ -50,12 +73,17 @@ public class MouvementsEntity {
     @CollectionTable(name = "violerprecomouvement", joinColumns = @JoinColumn(name = "mouvements_id"), schema = "exemplaire")
     @Column(name = "precomouvements_id")
     private List<String> precoMouvementsViolerIds;
-    @Column(name = "ressources_id")
-    private String ressourcesId;
+
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "ressourcesreelles_id")
+    @Mapping("ressourceReelleInterne")
+    private RessourcesReellesEntity ressourceReelleEntity;
+
     @Column(name = "distributeurs_id")
     private String distributeursId;
-    @ManyToOne
+
+    @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "exemplaires_id")
-    @Mapping("exemplaireinterne")
+    @Mapping("exemplaireInterne")
     ExemplairesEntity exemplaireEntity;
 }

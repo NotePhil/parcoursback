@@ -366,7 +366,7 @@ Total Déploiement  : ~30 minutes
 - [migration-transactions-soldes.sql](./ittest/src/test/resources/migration-transactions-soldes.sql) - Migration SQL
 
 ### Tests
-- [SoldeRessourcesTransactionBusinessTest.java](./composant-business/document-service/src/test/java/cmr/notep/business/SoldeRessourcesTransactionBusinessTest.java) - Tests d'exemple
+- [SoldeRessourcesTransactionBusinessTest.java](composant-business/exemplaire-service/src/test/java/cmr.notep.business/SoldeRessourcesTransactionBusinessTest.java) - Tests d'exemple
 
 ---
 

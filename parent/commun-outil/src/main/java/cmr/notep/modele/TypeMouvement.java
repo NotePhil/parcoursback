@@ -1,6 +1,5 @@
 package cmr.notep.modele;
 
-
 public enum TypeMouvement {
     Neutre("Neutre"),
     Ajout("Ajout"),

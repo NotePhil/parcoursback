@@ -6,6 +6,7 @@ import cmr.notep.exceptions.enumeration.ParcoursExceptionCodeEnum;
 import cmr.notep.config.ExemplaireConfig;
 import cmr.notep.modele.AssignEtatDocument;
 import cmr.notep.modele.Documents;
+import cmr.notep.modele.Etats;
 import cmr.notep.utile.serialiser.JacksonHelper;
 import cmr.notep.wstools.api.IGenericWsClientApi;
 import cmr.notep.wstools.modeles.GenericWsRequest;
@@ -40,6 +41,11 @@ public class DocumentsClientWs implements IDocumentsApi {
         if (response.getCode() == 200)
             return JacksonHelper.objetFromJson(response.getReponse(), Documents.class);
         throw new ParcoursException(ParcoursExceptionCodeEnum.INTERNAL_ERROR,"Erreur lors de la récupération du document " + idDoc + " code http : " + response.getReponse() + " reponse : " + response.getReponse());
+    }
+
+    @Override
+    public List<Etats> avoirEtatsPossiblesDocument(String idDoc) throws ParcoursException {
+        return List.of();
     }
 
     @Override

@@ -1,4 +1,4 @@
-package cmr.notep.repository;
+package cmr.notep.exemplaire.repository;
 
 import cmr.notep.dao.MouvementSoldeCaissesEntity;
 import org.springframework.data.jpa.repository.JpaRepository;

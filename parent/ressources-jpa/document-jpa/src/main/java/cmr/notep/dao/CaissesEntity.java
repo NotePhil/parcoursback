@@ -42,6 +42,4 @@ public class CaissesEntity {
     @Column(name="detailjson", columnDefinition = "jsonb")
     private DetailsJson detailsJson ;
 
-    @OneToMany(mappedBy = "caissesEntity", fetch = FetchType.LAZY)
-    private List<MouvementSoldeCaissesEntity> mouvementSoldeCaissesEntities;
 }

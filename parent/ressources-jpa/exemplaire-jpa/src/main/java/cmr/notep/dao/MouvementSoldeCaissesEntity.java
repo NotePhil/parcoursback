@@ -3,7 +3,6 @@ package cmr.notep.dao;
 import lombok.Getter;
 import lombok.Setter;
 import org.dozer.Mapping;
-import org.hibernate.annotations.UpdateTimestamp;
 import org.hibernate.annotations.CreationTimestamp;
 import org.hibernate.annotations.GenericGenerator;
 
@@ -17,7 +16,7 @@ import java.util.Date;
 @Getter
 @Setter
 @Entity
-@Table(name = "mouvements_solde_caisses", schema = "document")
+@Table(name = "mouvements_solde_caisses", schema = "exemplaire")
 public class MouvementSoldeCaissesEntity {
     @Id
     @GeneratedValue(generator = "UUID")
@@ -26,9 +25,9 @@ public class MouvementSoldeCaissesEntity {
     private String id;
 
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "caisses_id", nullable = false)
-    @Mapping("caisse")
-    private CaissesEntity caissesEntity;
+    @JoinColumn(name = "caissesreelles_id", nullable = false)
+    @Mapping("caissesReellesInterne")
+    private CaissesReellesEntity caissesEntity;
 
     @Column(name = "solde_initiale")
     private Double soldeInitiale;
@@ -70,4 +69,9 @@ public class MouvementSoldeCaissesEntity {
 
     @Column(name = "statut")
     private String statut; // EN_ATTENTE, VALIDEE, REJETEE
+
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "exemplaires_id")
+    @Mapping("exemplaireInterne")
+    ExemplairesEntity exemplaireEntity;
 }

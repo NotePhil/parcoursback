@@ -1,5 +1,5 @@
 -- insertions des données dans la table exemplaires
-INSERT INTO exemplaire.exemplaires (id, code, codebarre, titre, datecreation, datemodification, personnerattachee,personnebeneficiaire,document_id) VALUES
+INSERT INTO exemplaire.exemplaires (id, code, codebarre, intitule, datecreation, datemodification, personnerattachee,personnebeneficiaire,document_id) VALUES
     ('3190615e-1101-7209-9932-7020bbd556f7', 'Code1', 'CodeBarre1', 'Note intervention personnalisée', '2022-03-07', '2022-03-07', null, '1979bd79-f71b-498b-b247-e7b9bbb3f600','0190615e-1101-7209-9932-7020bbd556f1'),
     ('239d9d41-4850-4984-9d81-189cf44d867d', 'Code2', 'CodeBarre12', 'Fiche de suivi personnalisée', '2022-04-07', '2022-03-07', null, 'd301ff83-2a62-4e6d-aa23-57c7825bcd57','0190615e-1101-7209-9932-7020bbd556f2'),
     ('14d6a6a5-e470-4a43-a33b-37c294974461', 'Code3', 'CodeBarre13', 'Fiche de soin personnalisée', '2022-03-07', '2022-03-07', null, '1979bd79-f71b-498b-b247-e7b9bbb3f600','0190615e-1101-7209-9932-7020bbd556f3'),
@@ -36,13 +36,13 @@ INSERT INTO exemplaire.exemplairesattributs (exemplaires_id, attribut_id, valeur
 ('e9eb182f-baf3-4c27-8179-a8b083c30e09', 'a1eebc99-9c0b-4ef8-bb6d-6bb9bd380a15', 'Brun', '2022-03-07', '2022-03-07');
 
 -- insertions des données dans la table exemplaire.personnesdestinataires
-INSERT INTO exemplaire.personnesdestinataires(exemplaires_id,personneid, dateenvoi,methodeenvoi) VALUES
-('3190615e-1101-7209-9932-7020bbd556f7','1979bd79-f71b-498b-b247-e7b9bbb3f600','2022-03-07','EMAIL'),
-('239d9d41-4850-4984-9d81-189cf44d867d','d301ff83-2a62-4e6d-aa23-57c7825bcd57','2022-03-07','EMAIL'),
-('14d6a6a5-e470-4a43-a33b-37c294974461','1979bd79-f71b-498b-b247-e7b9bbb3f600','2022-03-07','EMAIL'),
-('5b777f4e-ac38-4637-a065-ef87af525e86','0618e585-f82a-4d5f-af1c-54f880d766d3','2022-03-07','EMAIL'),
-('5b777f4e-ac38-4637-a065-ef87af525e86','fdbff692-6b8d-43ab-a196-fcc3114b2daa','2022-03-07','EMAIL'),
-('3190615e-1101-7209-9932-7020bbd556f7','fdbff692-6b8d-43ab-a196-fcc3114b2daa','2022-03-07','EMAIL');
+INSERT INTO exemplaire.correspondants(exemplaires_id, personneid, dateechange, methodeutilisee) VALUES
+('3190615e-1101-7209-9932-7020bbd556f7','1979bd79-f71b-498b-b247-e7b9bbb3f600','2022-03-07 10:30:00','EMAIL'),
+('239d9d41-4850-4984-9d81-189cf44d867d','d301ff83-2a62-4e6d-aa23-57c7825bcd57','2022-03-07 11:30:00','EMAIL'),
+('14d6a6a5-e470-4a43-a33b-37c294974461','1979bd79-f71b-498b-b247-e7b9bbb3f600','2022-03-07 12:30:00','EMAIL'),
+('5b777f4e-ac38-4637-a065-ef87af525e86','0618e585-f82a-4d5f-af1c-54f880d766d3','2022-03-07 13:30:00','EMAIL'),
+('5b777f4e-ac38-4637-a065-ef87af525e86','fdbff692-6b8d-43ab-a196-fcc3114b2daa','2022-03-07 13:45:00','EMAIL'),
+('3190615e-1101-7209-9932-7020bbd556f7','fdbff692-6b8d-43ab-a196-fcc3114b2daa','2022-03-07 10:45:00','EMAIL');
 
 -- insertions des données dans la table exemplaire.exemplairesparents
 INSERT INTO exemplaire.exemplairesparents(exemplaires_id, parent_id) VALUES
@@ -50,13 +50,25 @@ INSERT INTO exemplaire.exemplairesparents(exemplaires_id, parent_id) VALUES
 ('14d6a6a5-e470-4a43-a33b-37c294974461','5b777f4e-ac38-4637-a065-ef87af525e86'),
 ('14d6a6a5-e470-4a43-a33b-37c294974461','6d5a9f88-704d-4715-9336-92835cf9e824');
 
+-- insertions des données dans la table exemplaire.ressourcesreelles
+INSERT INTO exemplaire.ressourcesreelles (id, version, datecreation, datemodification, quantite, seuilalerte, prixentree, prixsortie, unite, scanbarcode, ressource_id) VALUES
+('7190615e-1101-7209-9932-7020bbd556f1', 0, '2022-01-01', '2022-01-02', 10, 2, 1000, 1200, 'BOITE', 'SCAN-001', '6190615e-1101-7209-9932-7020bbd556f1'),
+('7190615e-1101-7209-9932-7020bbd556f2', 0, '2022-01-01', '2022-01-02', 24, 3, 2000, 3000, 'BOITE', 'SCAN-002', '6190615e-1101-7209-9932-7020bbd556f2'),
+('7190615e-1101-7209-9932-7020bbd556f3', 0, '2022-01-01', '2022-01-02', 5, 1, 1500, 2000, 'BOITE', 'SCAN-003', '6190615e-1101-7209-9932-7020bbd556f3'),
+('7190615e-1101-7209-9932-7020bbd556f4', 0, '2022-01-01', '2022-01-02', 5, 1, 1500, 2000, 'BOITE', 'SCAN-004', '6190615e-1101-7209-9932-7020bbd556f4');
+
+-- insertions des données dans la table exemplaire.caissesreelles
+INSERT INTO exemplaire.caissesreelles (id, version, solde, caisse_id, datecreation, datemodification) VALUES
+('8190615e-1101-7209-9932-7020bbd556f1', 0, 200000, 'CAISSE-IT-001', '2022-01-01', '2022-01-02'),
+('8190615e-1101-7209-9932-7020bbd556f2', 0, 205000, 'CAISSE-IT-002', '2022-01-01', '2022-01-02');
+
 -- insertions des données dans la table exemplaire.mouvements
-INSERT INTO exemplaire.mouvements (id,description, quantite, prix, distributeurs_id, ressources_id, dateperemption,exemplaires_id, datecreation, datemodification) VALUES
-('97d314f5-84ad-47cd-874d-9c55f0e45790', 'sur commande',  10, 5000,'1979bd79-f71b-498b-b247-e7b9bbb3f600',  '6190615e-1101-7209-9932-7020bbd556f1', '2025-01-01','3190615e-1101-7209-9932-7020bbd556f7', '2022-01-01', '2022-01-02'),
-('501a31c7-0543-4f24-8f10-b83d3dd96e40', 'sur commande',  20, 3000,'1979bd79-f71b-498b-b247-e7b9bbb3f600',  '6190615e-1101-7209-9932-7020bbd556f2', '2025-01-01','3190615e-1101-7209-9932-7020bbd556f7', '2022-01-01', '2022-01-02'),
-('bfee750d-9b8c-4475-9373-08eff9b3ccb7','vente à credit', 20, 10000, 'd301ff83-2a62-4e6d-aa23-57c7825bcd57', '6190615e-1101-7209-9932-7020bbd556f2', '2025-01-01','14d6a6a5-e470-4a43-a33b-37c294974461', '2022-01-01', '2022-01-02'),
-('0e7cea07-d09e-4f79-be6c-6dd27aecbce6', 'achat express', 5, 2000,'fdbff692-6b8d-43ab-a196-fcc3114b2daa',  '6190615e-1101-7209-9932-7020bbd556f3', null,'5b777f4e-ac38-4637-a065-ef87af525e86', '2022-01-01', '2022-01-02'),
-('decaedc8-a908-4cad-bdd6-0403a2614f22','inventaire', 5, 2000, 'fdbff692-6b8d-43ab-a196-fcc3114b2daa',  '6190615e-1101-7209-9932-7020bbd556f4', null,'6d5a9f88-704d-4715-9336-92835cf9e824', '2022-01-01', '2022-01-02');
+INSERT INTO exemplaire.mouvements (id, description, quantite_initiale, quantite_mouvementee, quantite_finale, prix, type_transaction, validee, validee_by, date_validation, statut, distributeurs_id, ressourcesreelles_id, dateperemption, exemplaires_id, datecreation, datemodification) VALUES
+('97d314f5-84ad-47cd-874d-9c55f0e45790', 'sur commande', 0, 10, 10, 5000, 'ENTREE', true, '1979bd79-f71b-498b-b247-e7b9bbb3f600', '2022-01-02 08:00:00', 'VALIDEE', '1979bd79-f71b-498b-b247-e7b9bbb3f600', '7190615e-1101-7209-9932-7020bbd556f1', '2025-01-01', '3190615e-1101-7209-9932-7020bbd556f7', '2022-01-01', '2022-01-02'),
+('501a31c7-0543-4f24-8f10-b83d3dd96e40', 'sur commande', 4, 20, 24, 3000, 'ENTREE', true, '1979bd79-f71b-498b-b247-e7b9bbb3f600', '2022-01-02 08:30:00', 'VALIDEE', '1979bd79-f71b-498b-b247-e7b9bbb3f600', '7190615e-1101-7209-9932-7020bbd556f2', '2025-01-01', '3190615e-1101-7209-9932-7020bbd556f7', '2022-01-01', '2022-01-02'),
+('bfee750d-9b8c-4475-9373-08eff9b3ccb7', 'vente à credit', 24, 20, 4, 10000, 'SORTIE', true, 'd301ff83-2a62-4e6d-aa23-57c7825bcd57', '2022-01-02 09:00:00', 'VALIDEE', 'd301ff83-2a62-4e6d-aa23-57c7825bcd57', '7190615e-1101-7209-9932-7020bbd556f2', '2025-01-01', '14d6a6a5-e470-4a43-a33b-37c294974461', '2022-01-01', '2022-01-02'),
+('0e7cea07-d09e-4f79-be6c-6dd27aecbce6', 'achat express', 0, 5, 5, 2000, 'ENTREE', false, null, null, 'EN_ATTENTE', 'fdbff692-6b8d-43ab-a196-fcc3114b2daa', '7190615e-1101-7209-9932-7020bbd556f3', null, '5b777f4e-ac38-4637-a065-ef87af525e86', '2022-01-01', '2022-01-02'),
+('decaedc8-a908-4cad-bdd6-0403a2614f22', 'inventaire', 3, 2, 5, 2000, 'AJUSTEMENT', true, 'fdbff692-6b8d-43ab-a196-fcc3114b2daa', '2022-01-02 09:30:00', 'VALIDEE', 'fdbff692-6b8d-43ab-a196-fcc3114b2daa', '7190615e-1101-7209-9932-7020bbd556f4', null, '6d5a9f88-704d-4715-9336-92835cf9e824', '2022-01-01', '2022-01-02');
 
 -- insertions des données dans la table exemplaire.respecterprecomouvement
 INSERT INTO exemplaire.respecterprecomouvement (mouvements_id, precomouvements_id) VALUES

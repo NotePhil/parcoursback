@@ -5,12 +5,7 @@ import cmr.notep.commun.AbstractIttest;
 import cmr.notep.config.ItTestConfig;
 import cmr.notep.exceptions.ParcoursException;
 import cmr.notep.impl.PrecoMouvementsService;
-import cmr.notep.modele.Distributeurs;
-import cmr.notep.modele.Familles;
-import cmr.notep.modele.PrecoMouvements;
-import cmr.notep.modele.PrecoMouvementsQtes;
-import cmr.notep.modele.Ressources;
-import cmr.notep.modele.TypeMouvement;
+import cmr.notep.modele.*;
 import lombok.SneakyThrows;
 import lombok.extern.slf4j.Slf4j;
 import org.junit.jupiter.api.Assertions;
@@ -23,7 +18,6 @@ import org.springframework.transaction.annotation.Transactional;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
-import java.util.UUID;
 
 /**
  * Tests de synchronisation des relations de PrecoMouvements (precoMouvementsQtes).

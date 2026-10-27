@@ -15,19 +15,74 @@ CREATE TABLE IF NOT EXISTS exemplaire.ordreetats
     CONSTRAINT pk_ordreetats PRIMARY KEY (id)
 );
 
+CREATE TABLE IF NOT EXISTS exemplaire.ressourcesreelles
+(
+    id               VARCHAR(255) NOT NULL,
+    version          INTEGER,
+    datecreation     TIMESTAMP,
+    datemodification TIMESTAMP,
+    quantite         INTEGER,
+    seuilalerte      INTEGER,
+    prixentree       DOUBLE PRECISION,
+    prixsortie       DOUBLE PRECISION,
+    unite            VARCHAR(255),
+    scanbarcode      VARCHAR(255),
+    ressource_id     VARCHAR(255),
+    CONSTRAINT pk_ressourcesreelles PRIMARY KEY (id)
+);
+
+CREATE TABLE IF NOT EXISTS exemplaire.caissesreelles
+(
+    id               VARCHAR(255) NOT NULL,
+    version          INTEGER,
+    solde            DOUBLE PRECISION NOT NULL,
+    caisse_id        VARCHAR(255) NOT NULL,
+    datecreation     TIMESTAMP,
+    datemodification TIMESTAMP,
+    CONSTRAINT pk_caissesreelles PRIMARY KEY (id)
+);
+
 CREATE TABLE IF NOT EXISTS exemplaire.mouvements
 (
     id               VARCHAR(255) NOT NULL,
     description      VARCHAR(255) NOT NULL,
-    quantite         INTEGER,
+    quantite_initiale INTEGER,
+    quantite_mouvementee INTEGER,
+    quantite_finale  INTEGER,
     prix             DOUBLE PRECISION,
+    type_transaction VARCHAR(255),
+    validee          BOOLEAN,
+    validee_by       VARCHAR(255),
+    date_validation  TIMESTAMP,
+    statut           VARCHAR(255),
     datecreation     Date NOT NULL,
     dateperemption   Date,
     datemodification Date,
-    ressources_id    VARCHAR(255),
+    ressourcesreelles_id VARCHAR(255),
     distributeurs_id VARCHAR(255),
     exemplaires_id   VARCHAR(255),
     CONSTRAINT pk_mouvements PRIMARY KEY (id)
+);
+
+CREATE TABLE IF NOT EXISTS exemplaire.mouvements_solde_caisses
+(
+    id                VARCHAR(255) NOT NULL,
+    caissesreelles_id VARCHAR(255) NOT NULL,
+    solde_initiale    DOUBLE PRECISION,
+    solde_mouvementee DOUBLE PRECISION,
+    solde_finale      DOUBLE PRECISION,
+    type_transaction  VARCHAR(255),
+    description       VARCHAR(255),
+    motif             VARCHAR(255),
+    code_reference    VARCHAR(255),
+    created_by        VARCHAR(255),
+    datecreation      TIMESTAMP,
+    validee           BOOLEAN,
+    validee_by        VARCHAR(255),
+    date_validation   TIMESTAMP,
+    statut            VARCHAR(255),
+    exemplaires_id    VARCHAR(255),
+    CONSTRAINT pk_mouvements_solde_caisses PRIMARY KEY (id)
 );
 
 CREATE TABLE IF NOT EXISTS exemplaire.respecterprecomouvement
@@ -47,7 +102,7 @@ CREATE TABLE IF NOT EXISTS exemplaire.exemplaires
     id                 VARCHAR(255) NOT NULL,
     code               VARCHAR(255),
     codebarre          VARCHAR(255),
-    titre              VARCHAR(255),
+    intitule              VARCHAR(255),
     document_id        VARCHAR(255) NOT NULL,
     datecreation       Date NOT NULL,
     datemodification   Date,
@@ -71,12 +126,12 @@ CREATE TABLE IF NOT EXISTS exemplaire.exemplairesparents
     parent_id             VARCHAR(255)
 );
 
-CREATE TABLE IF NOT EXISTS exemplaire.personnesdestinataires
+CREATE TABLE IF NOT EXISTS exemplaire.correspondants
 (
     exemplaires_id VARCHAR(255) NOT NULL,
     personneid     VARCHAR(255),
-    dateenvoi      Date,
-    methodeenvoi   VARCHAR(255)
+    dateechange    TIMESTAMP,
+    methodeutilisee   VARCHAR(255)
 );
 
 CREATE TABLE exemplaire.etatsvalidations
@@ -99,11 +154,21 @@ ALTER TABLE exemplaire.exemplairesattributs
 ALTER TABLE exemplaire.exemplairesparents
     ADD CONSTRAINT IF NOT EXISTS fk_exemplairesparents_on_exemplaires_entity FOREIGN KEY (exemplaires_id) REFERENCES exemplaire.exemplaires (id);
 
-ALTER TABLE exemplaire.personnesdestinataires
-    ADD CONSTRAINT IF NOT EXISTS fk_personnesdestinataires_on_exemplaires_entity FOREIGN KEY (exemplaires_id) REFERENCES exemplaire.exemplaires (id);
-
 ALTER TABLE exemplaire.mouvements
     ADD CONSTRAINT IF NOT EXISTS FK_MOUVEMENTS_ON_EXEMPLAIRES FOREIGN KEY (exemplaires_id) REFERENCES exemplaire.exemplaires (id);
+
+ALTER TABLE exemplaire.correspondants
+    ADD CONSTRAINT IF NOT EXISTS fk_correspondants_on_exemplaires_entity FOREIGN KEY (exemplaires_id) REFERENCES exemplaire.exemplaires (id);
+
+
+ALTER TABLE exemplaire.mouvements
+    ADD CONSTRAINT IF NOT EXISTS FK_MOUVEMENTS_ON_RESSOURCESREELLES FOREIGN KEY (ressourcesreelles_id) REFERENCES exemplaire.ressourcesreelles (id);
+
+ALTER TABLE exemplaire.mouvements_solde_caisses
+    ADD CONSTRAINT IF NOT EXISTS FK_MVT_SOLDE_CAISSES_ON_CAISSESREELLES FOREIGN KEY (caissesreelles_id) REFERENCES exemplaire.caissesreelles (id);
+
+ALTER TABLE exemplaire.mouvements_solde_caisses
+    ADD CONSTRAINT IF NOT EXISTS FK_MVT_SOLDE_CAISSES_ON_EXEMPLAIRES FOREIGN KEY (exemplaires_id) REFERENCES exemplaire.exemplaires (id);
 
 ALTER TABLE exemplaire.respecterprecomouvement
     ADD CONSTRAINT IF NOT EXISTS fk_respecterprecomouvement_on_mouvements_entity FOREIGN KEY (mouvements_id) REFERENCES exemplaire.mouvements (id);

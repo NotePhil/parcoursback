@@ -3,7 +3,6 @@ package cmr.notep.business;
 import cmr.notep.dao.DaoAccessorService;
 import cmr.notep.dao.MouvementSoldeRessourcesEntity;
 import cmr.notep.dao.RessourcesEntity;
-import cmr.notep.modele.MouvementSoldeRessource;
 import cmr.notep.repository.MouvementSoldeRessourcesRepository;
 import cmr.notep.repository.RessourcesRepository;
 import org.junit.jupiter.api.BeforeEach;
@@ -17,7 +16,6 @@ import java.util.Optional;
 
 import static org.junit.jupiter.api.Assertions.*;
 import static org.mockito.ArgumentMatchers.any;
-import static org.mockito.ArgumentMatchers.anyString;
 import static org.mockito.Mockito.*;
 
 @DisplayName("Tests - SoldeRessourcesTransactionBusiness")

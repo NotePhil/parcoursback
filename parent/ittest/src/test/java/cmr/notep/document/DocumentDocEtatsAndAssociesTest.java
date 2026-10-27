@@ -20,7 +20,9 @@ import org.springframework.transaction.annotation.Transactional;
 import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
+import java.util.Map;
 import java.util.Set;
+import java.util.stream.Collectors;
 
 /**
  * Tests d'intégration ciblés sur l'enrichissement de posterDocument :
@@ -33,6 +35,9 @@ import java.util.Set;
 @Slf4j
 public class DocumentDocEtatsAndAssociesTest extends AbstractIttest {
 
+    @jakarta.persistence.PersistenceContext
+    private jakarta.persistence.EntityManager entityManager;
+
     private static final String ID_DOCUMENT_SANS_DOC_ETATS = "0190615e-1101-7209-9932-7020bbd556f6";
     private static final String ID_DOCUMENT_AVEC_DOC_ETAT = "0190615e-1101-7209-9932-7020bbd556f1";
     private static final String ID_DOCUMENT_ASSOCIE = "0190615e-1101-7209-9932-7020bbd556f2";
@@ -40,6 +45,7 @@ public class DocumentDocEtatsAndAssociesTest extends AbstractIttest {
     private static final String ID_ETAT_UN = "e190615e-1101-7209-9932-7020bbd556f1";
     private static final String ID_ETAT_DEUX = "e190615e-1101-7209-9932-7020bbd556f2";
     private static final String ID_ETAT_TROIS = "e190615e-1101-7209-9932-7020bbd556f3";
+    private static final String ID_ETAT_QUATRE = "e190615e-1101-7209-9932-7020bbd556f4";
 
     private Documents chargerDocumentExistant(String idDocument) {
         Documents document = documentService.avoirDocument(idDocument);
@@ -316,6 +322,120 @@ public class DocumentDocEtatsAndAssociesTest extends AbstractIttest {
         Assertions.assertEquals(etatTroisieme.getId(), etatsPossibles.get(2).getId(), "L'ordre croissant doit être respecté");
 
         log.info("✓ Test 9 réussi : états possibles ordonnés correctement");
+    }
+
+    /**
+     * Test 10 : scénario JSON fourni (4 états + dépendances croisées/cycliques)
+     * Vérifie que les prédécesseurs persistés correspondent exactement aux ids d'états demandés.
+     */
+    @Test
+    @Order(10)
+    @SneakyThrows
+    public void testPosterDocumentAvecPredecesseursCycliquesConserveLeGrapheDemande() {
+        Documents document = chargerDocumentExistant(ID_DOCUMENT_SANS_DOC_ETATS);
+
+        Etats etatUn = chargerEtatExistant(ID_ETAT_UN);
+        Etats etatDeux = chargerEtatExistant(ID_ETAT_DEUX);
+        Etats etatTrois = chargerEtatExistant(ID_ETAT_TROIS);
+        Etats etatQuatre = chargerEtatExistant(ID_ETAT_QUATRE);
+
+        DocEtats enCours = DocEtats.builder().etat(etatUn).ordre(0).build();
+        DocEtats valide = DocEtats.builder().etat(etatDeux).ordre(0).build();
+        DocEtats rejete = DocEtats.builder().etat(etatTrois).ordre(0).build();
+        DocEtats enAttente = DocEtats.builder().etat(etatQuatre).ordre(0).build();
+
+        valide.setPredecesseurDocEtat(new HashSet<>(Set.of(enCours, enAttente)));
+        rejete.setPredecesseurDocEtat(new HashSet<>(Set.of(enCours, enAttente)));
+        enAttente.setPredecesseurDocEtat(new HashSet<>(Set.of(valide, rejete)));
+
+        document.setDocEtats(new ArrayList<>(List.of(enCours, valide, rejete, enAttente)));
+
+        Documents saved = documentService.posterDocument(document);
+        Assertions.assertEquals(4, saved.getDocEtats().size(), "Les 4 DocEtats doivent être sauvegardés");
+
+        Documents reloaded = documentService.avoirDocument(saved.getIdDocument());
+        Assertions.assertNotNull(reloaded.getDocEtats(), "Les DocEtats rechargés ne doivent pas être nuls");
+        Assertions.assertEquals(4, reloaded.getDocEtats().size(), "Les 4 DocEtats doivent être retrouvés");
+
+        Map<String, Set<String>> predecesseursParEtat = reloaded.getDocEtats().stream()
+                .filter(docEtat -> docEtat.getEtat() != null && docEtat.getEtat().getId() != null)
+                .collect(Collectors.toMap(
+                        docEtat -> docEtat.getEtat().getId(),
+                        docEtat -> docEtat.getPredecesseurDocEtat() == null
+                                ? Set.of()
+                                : docEtat.getPredecesseurDocEtat().stream()
+                                .filter(pred -> pred.getEtat() != null && pred.getEtat().getId() != null)
+                                .map(pred -> pred.getEtat().getId())
+                                .collect(Collectors.toSet())
+                ));
+
+        Assertions.assertEquals(Set.of(), predecesseursParEtat.get(ID_ETAT_UN), "En cours ne doit pas avoir de prédécesseur");
+        Assertions.assertEquals(Set.of(ID_ETAT_UN, ID_ETAT_QUATRE), predecesseursParEtat.get(ID_ETAT_DEUX),
+                "Valide doit dépendre de En cours et En attente");
+        Assertions.assertEquals(Set.of(ID_ETAT_UN, ID_ETAT_QUATRE), predecesseursParEtat.get(ID_ETAT_TROIS),
+                "Rejete doit dépendre de En cours et En attente");
+        Assertions.assertEquals(Set.of(ID_ETAT_DEUX, ID_ETAT_TROIS), predecesseursParEtat.get(ID_ETAT_QUATRE),
+                "En attente doit dépendre de Valide et Rejete");
+
+        log.info("✓ Test 10 réussi : le graphe de prédécesseurs DocEtats est conservé");
+    }
+
+    /**
+     * Test 11 : valide précède rejete, en attente précède rejete et valide, en cours précède valide,
+     * rejete précède en attente. Chaque prédécesseur doit être persisté en base.
+     */
+    @Test
+    @Order(11)
+    @SneakyThrows
+    public void testPosterDocumentAvecCycleValideRejeteEnAttente() {
+        Documents document = chargerDocumentExistant(ID_DOCUMENT_SANS_DOC_ETATS);
+
+        DocEtats enCours = DocEtats.builder().etat(chargerEtatExistant(ID_ETAT_UN)).ordre(0).build();
+        DocEtats valide = DocEtats.builder().etat(chargerEtatExistant(ID_ETAT_DEUX)).ordre(0).build();
+        DocEtats rejete = DocEtats.builder().etat(chargerEtatExistant(ID_ETAT_TROIS)).ordre(0).build();
+        DocEtats enAttente = DocEtats.builder().etat(chargerEtatExistant(ID_ETAT_QUATRE)).ordre(0).build();
+
+        rejete.setPredecesseurDocEtat(new HashSet<>(Set.of(valide, enAttente)));
+        valide.setPredecesseurDocEtat(new HashSet<>(Set.of(enAttente, enCours)));
+        enAttente.setPredecesseurDocEtat(new HashSet<>(Set.of(rejete)));
+
+        document.setDocEtats(new ArrayList<>(List.of(enCours, valide, rejete, enAttente)));
+        Documents saved = documentService.posterDocument(document);
+
+        // Vérification directe en base (table de jointure), indépendante du mapping Dozer en lecture
+        entityManager.flush();
+        List<?> liens = entityManager.createNativeQuery(
+                "select e1.etats_id, e2.etats_id from document.docetats_predecesseurs p "
+                        + "join document.docetats e1 on e1.id = p.docetats_id "
+                        + "join document.docetats e2 on e2.id = p.predecesseur_id "
+                        + "where e1.documents_id = :doc")
+                .setParameter("doc", saved.getIdDocument()).getResultList();
+        Set<String> liensEnBase = liens.stream()
+                .map(l -> ((Object[]) l)[0] + "<-" + ((Object[]) l)[1])
+                .collect(Collectors.toSet());
+        Assertions.assertEquals(Set.of(
+                ID_ETAT_DEUX + "<-" + ID_ETAT_QUATRE, ID_ETAT_DEUX + "<-" + ID_ETAT_UN,
+                ID_ETAT_TROIS + "<-" + ID_ETAT_DEUX, ID_ETAT_TROIS + "<-" + ID_ETAT_QUATRE,
+                ID_ETAT_QUATRE + "<-" + ID_ETAT_TROIS), liensEnBase, "Liens persistés en base");
+
+        Documents reloaded = documentService.avoirDocument(saved.getIdDocument());
+        Map<String, Set<String>> predecesseursParEtat = reloaded.getDocEtats().stream()
+                .collect(Collectors.toMap(
+                        docEtat -> docEtat.getEtat().getId(),
+                        docEtat -> docEtat.getPredecesseurDocEtat() == null
+                                ? Set.<String>of()
+                                : docEtat.getPredecesseurDocEtat().stream()
+                                .map(pred -> pred.getEtat().getId())
+                                .collect(Collectors.toSet())
+                ));
+
+        Assertions.assertEquals(Set.of(), predecesseursParEtat.get(ID_ETAT_UN));
+        Assertions.assertEquals(Set.of(ID_ETAT_QUATRE, ID_ETAT_UN), predecesseursParEtat.get(ID_ETAT_DEUX),
+                "Valide doit dépendre de En attente et En cours");
+        Assertions.assertEquals(Set.of(ID_ETAT_DEUX, ID_ETAT_QUATRE), predecesseursParEtat.get(ID_ETAT_TROIS),
+                "Rejete doit dépendre de Valide et En attente");
+        Assertions.assertEquals(Set.of(ID_ETAT_TROIS), predecesseursParEtat.get(ID_ETAT_QUATRE),
+                "En attente doit dépendre de Rejete");
     }
 }
 

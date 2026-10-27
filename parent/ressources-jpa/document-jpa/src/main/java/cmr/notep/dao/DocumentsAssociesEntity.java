@@ -26,7 +26,6 @@ import java.util.Date;
 @Table(name = "documents_associes", schema = "document")
 @NoArgsConstructor
 @AllArgsConstructor
-@EqualsAndHashCode(of = "id")
 public class DocumentsAssociesEntity {
 
     @Id

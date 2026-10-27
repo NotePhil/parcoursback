@@ -14,6 +14,7 @@ import java.util.stream.Collectors;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertTrue;
+import static org.junit.jupiter.api.Assertions.assertFalse;
 
 @DisplayName("Tests - BusinessEntityHelper")
 class BusinessEntityHelperTest {
@@ -51,6 +52,36 @@ class BusinessEntityHelperTest {
                 idsAsSet(docEtatMapBoucle.get("b")),
                 "Les predecesseurs cycliques de b doivent etre c et d"
         );
+    }
+
+    @Test
+    @DisplayName("getDocEtatsListToInsert gere le cycle valide/rejete/en-attente")
+    void getDocEtatsListToInsertDoitGererCycleComplexe() {
+        DocEtats enCours = docEtat("en-cours");
+        DocEtats valide = docEtat("valide");
+        DocEtats rejete = docEtat("rejete");
+        DocEtats enAttente = docEtat("en-attente");
+
+        // valide precede rejete
+        // en attente precede rejete
+        rejete.setPredecesseurDocEtat(new HashSet<>(Set.of(valide, enAttente)));
+        // en attente precede valide
+        // en cours precede valide
+        valide.setPredecesseurDocEtat(new HashSet<>(Set.of(enAttente, enCours)));
+        // rejete precede en attente
+        enAttente.setPredecesseurDocEtat(new HashSet<>(Set.of(rejete)));
+
+        List<DocEtats> docEtats = List.of(enCours, valide, rejete, enAttente);
+        List<DocEtats> docEtatsListToInsert = new ArrayList<>();
+
+        Map<String, Set<DocEtats>> docEtatMapBoucle =
+                BusinessEntityHelper.getDocEtatsListToInsert(docEtats, docEtatsListToInsert);
+
+        assertEquals(4, docEtatsListToInsert.size(), "Tous les etats doivent etre planifies pour insertion");
+        assertEquals("en-cours", docEtatsListToInsert.get(0).getEtat().getId(), "Le premier etat doit etre en-cours");
+        assertTrue(ids(docEtatsListToInsert).containsAll(List.of("valide", "rejete", "en-attente")));
+
+        assertFalse(docEtatMapBoucle.isEmpty(), "Le graphe contient une boucle qui doit etre detectee");
     }
 
     private static DocEtats docEtat(String idEtat) {

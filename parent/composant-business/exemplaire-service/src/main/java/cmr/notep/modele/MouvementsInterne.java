@@ -10,19 +10,27 @@ import java.util.List;
 @AllArgsConstructor
 @NoArgsConstructor
 @Builder
-@JsonIgnoreProperties({"exemplaire"})
-@ToString(exclude = {"exemplaire"})
-@EqualsAndHashCode(exclude = {"exemplaire"})
+@JsonIgnoreProperties({"exemplaireInterne"})
+@ToString(exclude = {"exemplaireInterne"})
+@EqualsAndHashCode(exclude = {"exemplaireInterne"})
 public class MouvementsInterne {
     private  String id ;
     private  String description ;
-    private int quantite ;
+    private Integer quantiteInitiale;
+    private Integer quantiteMouvementee;
+    private Integer quantiteFinale;
     private double prix ;
+    private String typeTransaction;
+    private Boolean validee;
+    private String valideeBy;
+    private Date dateValidation;
+    private String statut;
     private Date dateCreation ;
     private Date datePeremption ;
+    private Date dateModification;
     private List<String> precoMouvementsRespecterIds;
     private List<String> precoMouvementsViolerIds;
-    private String ressourcesId;
+    private RessourcesReellesInterne ressourceReelleInterne;
     private String distributeursId;
-    private ExemplairesInterne exemplaireinterne;
+    private ExemplairesInterne exemplaireInterne;
 }

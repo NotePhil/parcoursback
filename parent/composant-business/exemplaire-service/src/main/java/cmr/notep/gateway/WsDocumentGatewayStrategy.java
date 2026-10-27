@@ -125,7 +125,7 @@ public class WsDocumentGatewayStrategy implements DocumentGatewayStrategy {
     }
 
     @Override
-    public Personnes avoirPersonne(String personneBeneficiaireId) {
+    public Personnes avoirPersonne(String personneBeneficiaireId) throws ParcoursException {
         return personnesClientWs.avoirPersonne(personneBeneficiaireId);
     }
 }

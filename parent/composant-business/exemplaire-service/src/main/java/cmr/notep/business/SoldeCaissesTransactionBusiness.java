@@ -1,11 +1,15 @@
 package cmr.notep.business;
 
-import cmr.notep.dao.CaissesEntity;
+import cmr.notep.dao.CaissesReellesEntity;
 import cmr.notep.dao.DaoAccessorService;
 import cmr.notep.dao.MouvementSoldeCaissesEntity;
-import cmr.notep.modele.MouvementSoldeCaisse;
-import cmr.notep.repository.CaissesRepository;
-import cmr.notep.repository.MouvementSoldeCaissesRepository;
+import cmr.notep.exceptions.ParcoursException;
+import cmr.notep.exceptions.enumeration.ParcoursExceptionCodeEnum;
+import cmr.notep.exemplaire.repository.CaissesReellesRepository;
+import cmr.notep.exemplaire.repository.MouvementSoldeCaissesRepository;
+import cmr.notep.modele.MouvementSoldeCaisses;
+import cmr.notep.modele.StatutMouvement;
+import cmr.notep.modele.TypeMouvement;
 import lombok.extern.slf4j.Slf4j;
 import org.dozer.DozerBeanMapper;
 import org.springframework.stereotype.Component;
@@ -37,7 +41,7 @@ public class SoldeCaissesTransactionBusiness {
     /**
      * Enregistrer une transaction de mouvement pour une caisse
      */
-    public MouvementSoldeCaisse enregistrerMouvement(
+    public MouvementSoldeCaisses enregistrerMouvement(
             String caissesId,
             Double soldeMovementee,
             String typeTransaction,
@@ -46,7 +50,7 @@ public class SoldeCaissesTransactionBusiness {
             String codeReference,
             String createdBy) {
 
-        CaissesEntity caisse = daoAccessorService.getRepository(CaissesRepository.class)
+        CaissesReellesEntity caisse = daoAccessorService.getRepository(CaissesReellesRepository.class)
                 .findById(caissesId)
                 .orElseThrow(() -> new RuntimeException("Caisse inexistante: " + caissesId));
 
@@ -57,16 +61,16 @@ public class SoldeCaissesTransactionBusiness {
 
         // Calculer le nouveau solde selon le type de transaction
         Double nouveauSolde = caisse.getSolde();
-        if ("CREDIT".equals(typeTransaction)) {
+        if (TypeMouvement.Ajout.name().equalsIgnoreCase(typeTransaction)) {
             nouveauSolde += soldeMovementee;
-        } else if ("DEBIT".equals(typeTransaction)) {
+        } else if (TypeMouvement.Reduire.name().equalsIgnoreCase(typeTransaction)) {
             if (caisse.getSolde() < soldeMovementee) {
-                throw new RuntimeException(
+                throw new ParcoursException(ParcoursExceptionCodeEnum.INVALID_OPERATION,
                         "Solde insuffisant. Disponible: " + caisse.getSolde() +
                         ", Demandé: " + soldeMovementee);
             }
             nouveauSolde -= soldeMovementee;
-        } else if ("AJUSTEMENT".equals(typeTransaction)) {
+        } else if (TypeMouvement.Neutre.name().equalsIgnoreCase(typeTransaction)) {
             nouveauSolde = soldeMovementee;
         }
 
@@ -77,8 +81,8 @@ public class SoldeCaissesTransactionBusiness {
         mouvement.setCodeReference(codeReference);
         mouvement.setCreatedBy(createdBy);
         mouvement.setDateCreation(new Date());
-        mouvement.setStatut("EN_ATTENTE");
-        mouvement.setValidee(false);
+        mouvement.setStatut(StatutMouvement.VALIDE.getStatutMvt());
+        mouvement.setValidee(true);
 
         MouvementSoldeCaissesEntity saved = daoAccessorService
                 .getRepository(MouvementSoldeCaissesRepository.class)
@@ -87,14 +91,14 @@ public class SoldeCaissesTransactionBusiness {
         log.info("Mouvement de caisse enregistré: {} - Type: {} - Montant: {}",
                 caissesId, typeTransaction, soldeMovementee);
 
-        return dozerMapperBean.map(saved, MouvementSoldeCaisse.class);
+        return dozerMapperBean.map(saved, MouvementSoldeCaisses.class);
     }
 
     /**
      * Valider et appliquer un mouvement
      */
     @Transactional
-    public MouvementSoldeCaisse validerMouvement(String mouvementId, String valideeBy) {
+    public MouvementSoldeCaisses validerMouvement(String mouvementId, String valideeBy) {
         MouvementSoldeCaissesEntity mouvement = daoAccessorService
                 .getRepository(MouvementSoldeCaissesRepository.class)
                 .findById(mouvementId)
@@ -105,23 +109,23 @@ public class SoldeCaissesTransactionBusiness {
         }
 
         // Appliquer la modification à la caisse
-        CaissesEntity caisse = mouvement.getCaissesEntity();
+        CaissesReellesEntity caisse = mouvement.getCaissesEntity();
         caisse.setSolde(mouvement.getSoldeFinale());
 
-        daoAccessorService.getRepository(CaissesRepository.class).save(caisse);
+        daoAccessorService.getRepository(CaissesReellesRepository.class).save(caisse);
 
         // Marquer le mouvement comme validé
         mouvement.setValidee(true);
         mouvement.setValideeBy(valideeBy);
         mouvement.setDateValidation(new Date());
-        mouvement.setStatut("VALIDEE");
+        mouvement.setStatut(StatutMouvement.VALIDE.getStatutMvt());
 
         MouvementSoldeCaissesEntity saved = daoAccessorService
                 .getRepository(MouvementSoldeCaissesRepository.class)
                 .save(mouvement);
 
         log.info("Mouvement de caisse validé: {}", mouvementId);
-        return dozerMapperBean.map(saved, MouvementSoldeCaisse.class);
+        return dozerMapperBean.map(saved, MouvementSoldeCaisses.class);
     }
 
     /**
@@ -138,7 +142,7 @@ public class SoldeCaissesTransactionBusiness {
             throw new RuntimeException("Impossible de rejeter un mouvement déjà validé");
         }
 
-        mouvement.setStatut("REJETEE");
+        mouvement.setStatut(StatutMouvement.REJETEE.getStatutMvt());
         mouvement.setDescription(mouvement.getDescription() + " [REJETÉE: " + raison + "]");
 
         daoAccessorService.getRepository(MouvementSoldeCaissesRepository.class).save(mouvement);
@@ -148,23 +152,23 @@ public class SoldeCaissesTransactionBusiness {
     /**
      * Obtenir l'historique des mouvements pour une caisse
      */
-    public List<MouvementSoldeCaisse> obtenirHistorique(String caissesId) {
+    public List<MouvementSoldeCaisses> obtenirHistorique(String caissesId) {
         return daoAccessorService.getRepository(MouvementSoldeCaissesRepository.class)
                 .findByCaissesEntity_Id(caissesId)
                 .stream()
-                .map(m -> dozerMapperBean.map(m, MouvementSoldeCaisse.class))
+                .map(m -> dozerMapperBean.map(m, MouvementSoldeCaisses.class))
                 .collect(Collectors.toList());
     }
 
     /**
      * Obtenir les mouvements en attente de validation
      */
-    public List<MouvementSoldeCaisse> obtenirMouvementsEnAttente(String caissesId) {
+    public List<MouvementSoldeCaisses> obtenirMouvementsEnAttente(String caissesId) {
         return daoAccessorService.getRepository(MouvementSoldeCaissesRepository.class)
                 .findByCaissesEntity_Id(caissesId)
                 .stream()
-                .filter(m -> "EN_ATTENTE".equals(m.getStatut()))
-                .map(m -> dozerMapperBean.map(m, MouvementSoldeCaisse.class))
+                .filter(m -> StatutMouvement.EN_ATTENTE.equals(m.getStatut()))
+                .map(m -> dozerMapperBean.map(m, MouvementSoldeCaisses.class))
                 .collect(Collectors.toList());
     }
 }

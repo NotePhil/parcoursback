@@ -23,8 +23,8 @@ public class ExemplairesEntity {
     private String code;
     @Column(name = "codebarre")
     private String codeBarre;
-    @Column(name = "titre")
-    private String titre;
+    @Column(name = "intitule")
+    private String intitule;
     @Column(name = "personnebeneficiaire")
     private String personneBeneficiaireId;
     @Column(name = "personnerattachee")
@@ -37,6 +37,10 @@ public class ExemplairesEntity {
     @Temporal(TemporalType.TIMESTAMP)
     @UpdateTimestamp
     private Date dateModification;
+    @ElementCollection
+    @CollectionTable(name = "correspondants", joinColumns = @JoinColumn(name = "exemplaires_id"), schema = "exemplaire")
+    @Mapping("personneEmettriceInterne")
+    private List<CorrespondantsEntity>  personneEmettriceEntity;
     //liste des id des exemplaires qui ont servi à la creation de cet exemplaire
     @ElementCollection
     @CollectionTable(name = "exemplairesparents", joinColumns = @JoinColumn(name = "exemplaires_id"), schema = "exemplaire")
@@ -48,14 +52,15 @@ public class ExemplairesEntity {
     @OneToMany(mappedBy = "exemplaireEntity")
     @Mapping("mouvementsInternes")
     private List<MouvementsEntity> mouvementsEntities;
+    @OneToMany(mappedBy = "exemplaireEntity")
+    @Mapping("mouvementSoldeCaissesInternes")
+    private List<MouvementSoldeCaissesEntity> mouvementSoldeCaissesEntities;
     @ElementCollection
-    @CollectionTable(name = "personnesdestinataires", joinColumns = @JoinColumn(name = "exemplaires_id"), schema = "exemplaire")
-    @Column(name = "personneid")
+    @CollectionTable(name = "correspondants", joinColumns = @JoinColumn(name = "exemplaires_id"), schema = "exemplaire")
     @Mapping("personnesDestinatairesInternes")
-    private List<PersonnesDestinatairesEntity> personnesDestinatairesEntities;
+    private List<CorrespondantsEntity> personnesDestinatairesEntities;
     @ElementCollection
     @CollectionTable(name = "exemplairesattributs", joinColumns = @JoinColumn(name = "exemplaires_id"), schema = "exemplaire")
-    @Column(name = "attributsid")
     @Mapping("exemplaireAttributsInternes")
     private List<ExemplaireAttributsEntity> exemplaireAttributsEntities;
 }
