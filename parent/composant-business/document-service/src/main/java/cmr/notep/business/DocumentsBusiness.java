@@ -243,14 +243,24 @@ public class DocumentsBusiness {
             return;
         }
 
-        //on rase la base des documents associés pour les recréer à partir de la liste fournie
         DocumentsAssociesRepository documentsAssociesRepo = daoAccessorService.getRepository(DocumentsAssociesRepository.class);
-        documentEntity.getDocumentsAssocies().forEach(existing -> documentsAssociesRepo.delete(existing));
-        documentEntity.setDocumentsAssocies(new HashSet<>());
+        //on rase la base des documents associés pour les recréer à partir de la liste fournie
+
         // Liste vide
-        if (document.getDocumentsAssocies().isEmpty()) {
+        if (document.getDocumentsAssocies().isEmpty() && !CollectionUtils.isEmpty(documentEntity.getDocumentsAssocies())) {
+            documentEntity.getDocumentsAssocies().forEach(existing -> documentsAssociesRepo.deleteById(existing.getId()));
+            documentEntity.setDocumentsAssocies(new HashSet<>());
             return;
         }
+
+
+        Map<String, DocumentsAssociesEntity> existingByBusinessKey = documentEntity.getDocumentsAssocies().stream()
+                .filter(existing -> existing.getDocumentAssocie() != null && existing.getEtat() != null)
+                .collect(Collectors.toMap(
+                        existing -> existing.getDocumentAssocie().getId() + "|" + existing.getEtat().getId(),
+                        existing -> existing,
+                        (a, b) -> a));
+
         DocumentsRepository documentsRepo = daoAccessorService.getRepository(DocumentsRepository.class);
         EtatsRepository etatsRepo = daoAccessorService.getRepository(EtatsRepository.class);
         Set<DocumentsAssociesEntity> resolved = document.getDocumentsAssocies().stream()
@@ -286,17 +296,16 @@ public class DocumentsBusiness {
 
                     String businessKey = idAssocie + "|" + etatEntity.getId();
                     DocumentsAssociesEntity link =  new DocumentsAssociesEntity();
-
-                    link.setDocumentsEntity(documentEntity);
-                    link.setDocumentAssocie(associeEntity);
-                    link.setEtat(etatEntity);
-                    if (link.getDateCreation() == null) {
-                        link.setDateCreation(new Date());
-                    }
-                    try {
+                    if(!existingByBusinessKey.containsKey(businessKey)) {
+                        link.setDocumentsEntity(documentEntity);
+                        link.setDocumentAssocie(associeEntity);
+                        link.setEtat(etatEntity);
+                        if (link.getDateCreation() == null) {
+                            link.setDateCreation(new Date());
+                        }
                         link = daoAccessorService.getRepository(DocumentsAssociesRepository.class).save(link);
-                    } catch (Exception e) {
-                        throw new RuntimeException(e);
+                    } else {
+                        existingByBusinessKey.remove(businessKey);
                     }
                     return link;
                 })
@@ -304,6 +313,10 @@ public class DocumentsBusiness {
 
         documentEntity.getDocumentsAssocies().clear();
         documentEntity.getDocumentsAssocies().addAll(resolved);
+        //nettoyage des liens qui ne sont plus dans la liste fournie
+        for (DocumentsAssociesEntity existing : existingByBusinessKey.values()) {
+            documentsAssociesRepo.deleteById(existing.getId());
+        }
     }
 
     // Synchronise les catégories d'un document : ajout/modification/suppression
