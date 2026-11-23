@@ -393,6 +393,36 @@ CREATE TABLE IF NOT EXISTS document.documents_associes
     CONSTRAINT pk_documents_associes PRIMARY KEY (id),
     CONSTRAINT uk_documents_associes UNIQUE (documents_id, document_associe_id, etat_id)
     );
+
+CREATE TABLE IF NOT EXISTS document.comptes
+(
+    id                    VARCHAR(255) NOT NULL,
+    datecreation          DATE,
+    etat                  VARCHAR(255),
+    montantdecouvertmax   DOUBLE PRECISION,
+    libelle               VARCHAR(255),
+    personnes_id          VARCHAR(255),
+    solde                 DOUBLE PRECISION,
+    CONSTRAINT pk_comptes PRIMARY KEY (id)
+);
+
+CREATE TABLE IF NOT EXISTS document.mouvementcaisses
+(
+    id                VARCHAR(255) NOT NULL,
+    montant           DOUBLE PRECISION,
+    moyenpaiement     VARCHAR(255),
+    referencepaiement VARCHAR(255),
+    detailjson        VARCHAR(255),
+    etat              VARCHAR(255),
+    typemvt           VARCHAR(255),
+    libelle           VARCHAR(255),
+    caisses_id        VARCHAR(255),
+    comptes_id        VARCHAR(255),
+    personnels_id     VARCHAR(255),
+    exemplaires_id    VARCHAR(255),
+    datecreation      DATE,
+    CONSTRAINT pk_mouvementcaisses PRIMARY KEY (id)
+);
 ALTER TABLE document.documents_associes
     ADD CONSTRAINT IF NOT EXISTS FK_DOCUMENTS_ASSOCIES_ON_DOCUMENTS FOREIGN KEY (documents_id) REFERENCES document.documents (id);
 ALTER TABLE document.documents_associes
@@ -548,3 +578,15 @@ ALTER TABLE document.associer
 
 ALTER TABLE document.categories
     ADD CONSTRAINT  IF NOT EXISTS   FK_CATEGORIES_ON_DOCUMENTS FOREIGN KEY (documents_id) REFERENCES document.documents (id);
+
+ALTER TABLE document.comptes
+    ADD CONSTRAINT  IF NOT EXISTS   FK_COMPTES_ON_PERSONNES FOREIGN KEY (personnes_id) REFERENCES document.personnes (id);
+
+ALTER TABLE document.mouvementcaisses
+    ADD CONSTRAINT  IF NOT EXISTS   FK_MOUVEMENTCAISSES_ON_CAISSES FOREIGN KEY (caisses_id) REFERENCES document.caisses (id);
+
+ALTER TABLE document.mouvementcaisses
+    ADD CONSTRAINT  IF NOT EXISTS   FK_MOUVEMENTCAISSES_ON_COMPTES FOREIGN KEY (comptes_id) REFERENCES document.comptes (id);
+
+ALTER TABLE document.mouvementcaisses
+    ADD CONSTRAINT  IF NOT EXISTS   FK_MOUVEMENTCAISSES_ON_PERSONNELS FOREIGN KEY (personnels_id) REFERENCES document.personnels (personnels_id);

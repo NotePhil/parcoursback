@@ -329,6 +329,31 @@ INSERT INTO document.ressourcespromotions (promotions_id, ressources_id) VALUES
 ('1979bd79-f81b-498b-b247-e7b9bbb3f601', '6190615e-1101-7209-9932-7020bbd556f4'),
 ('1979bd79-f81b-498b-b247-e7b9bbb3f602', '6190615e-1101-7209-9932-7020bbd556f2');
 
+-- Insertion dans la table caisses
+INSERT INTO document.caisses (id, version, libelle, solde, type, detailjson, etat) VALUES
+('a1f8e3b0-4c6d-4e5e-ab7a-2a8b9b9c8d6f', 0, 'Caisse principale', 10000, 'Caisse', '{"x10000": "12", "x5000":"3"}', true),
+('b3a7c8d6-1e2f-3d4c-cb6a-9e8f0a7b6c5d', 0, 'Caisse en ligne', 7500, 'Caisse', '{"x10000": "12", "x5000":"3"}', true),
+('d9e2f1c2-8b3a-4f6c-bd5e-1a7b8a7c6d5e', 0, 'Caisse secondaire3', 5000, 'Caisse', NULL, true),
+('f0a7b6c5-d4e3f2a1-8d9c-7d6e-5f4a3b2c1e0d', 0, 'Caisse mobile3', 3000, 'Caisse', NULL, true);
+
+-- Insertion dans la table comptes
+INSERT INTO document.comptes (id, datecreation, etat, montantdecouvertmax, libelle, personnes_id, solde) VALUES
+('a1f8e3b0-4c6d-4e5e-7b7a-2a8b9b9c8d6f', '2024-08-19', 'true', 500, 'Compte courant', '1979bd79-f71b-498b-b247-e7b9bbb3f600', 14785),
+('d9e2f1c2-8b3a-4f6c-7d5e-1a7b8a7c6d5e', '2024-08-19', 'true', 1000, 'Épargne', '4390615e-1101-7209-9932-7020bbd556f1', 635663.254),
+('b3a7c8d6-1e2f-3d4c-7b6a-9e8f0a7b6c5d', '2024-08-19', 'false', 0, 'Compte jeunesse', '4390615e-1101-7209-9932-7020bbd556f2', 789654.23),
+('f0a7b6c5-d4e3f2a1-7b9c-7d6e-5f4a3b2c1e0d', '2024-08-19', 'true', 2000, 'Compte entreprise', '4390615e-1101-7209-9932-7020bbd556f3', 655318.369),
+('d301ff83-1b62-4e6d-aa23-57c7825bcd57', '2024-08-19', 'true', 1000, 'Épargne', 'd301ff83-2a62-4e6d-aa23-57c7825bcd57', 1153548.35),
+('adbff692-418d-43ab-a196-fcc3114b2daa', '2024-08-19', 'true', 500, 'Compte courant', 'fdbff692-6b8d-43ab-a196-fcc3114b2daa', 31656.325);
+
+-- Insertion dans la table mouvementcaisses
+INSERT INTO document.mouvementcaisses (id, montant, moyenpaiement, referencepaiement, detailjson, etat, typemvt, libelle, caisses_id, comptes_id, personnels_id, exemplaires_id, datecreation) VALUES
+('97d314f5-84ad-77cd-874d-9c55f0e45790', 45.21, 'sur commande', NULL, NULL, NULL, NULL, NULL, 'a1f8e3b0-4c6d-4e5e-ab7a-2a8b9b9c8d6f', 'a1f8e3b0-4c6d-4e5e-7b7a-2a8b9b9c8d6f', '4390615e-1101-7209-9932-7020bbd556f1', 'a1f8e3b0-4c6d-4e5e-9b7a-2a8b9b9c8d6f', '2022-01-02'),
+('bfee750d-9b8c-7475-9373-08eff9b3ccb7', 1258.36, 'vente à credit', NULL, NULL, NULL, NULL, NULL, 'd9e2f1c2-8b3a-4f6c-bd5e-1a7b8a7c6d5e', 'd9e2f1c2-8b3a-4f6c-7d5e-1a7b8a7c6d5e', '4390615e-1101-7209-9932-7020bbd556f2', 'd9e2f1c2-8b3a-4f6c-9d5e-1a7b8a7c6d5e', '2022-01-02'),
+('0e7cea07-d09e-7f79-be6c-6dd27aecbce6', 1548.21, 'achat express', NULL, NULL, NULL, NULL, NULL, 'b3a7c8d6-1e2f-3d4c-cb6a-9e8f0a7b6c5d', 'b3a7c8d6-1e2f-3d4c-7b6a-9e8f0a7b6c5d', '4390615e-1101-7209-9932-7020bbd556f3', 'b3a7c8d6-1e2f-3d4c-5b6a-9e8f0a7b6c5d', '2022-01-02'),
+('decaedc8-a908-7cad-bdd6-0403a2614f22', 4563.21, 'inventaire', NULL, NULL, NULL, NULL, NULL, 'f0a7b6c5-d4e3f2a1-8d9c-7d6e-5f4a3b2c1e0d', 'f0a7b6c5-d4e3f2a1-7b9c-7d6e-5f4a3b2c1e0d', '4390615e-1101-7209-9932-7020bbd556f3', 'f0a7b6c5-d4e3f2a1-8b9c-7d6e-5f4a3b2c1e0d', '2022-01-02'),
+('0e7cea07-d09e-7f79-be6c-6dd27aecbc47', 5245.54, 'sur commande', NULL, NULL, NULL, NULL, NULL, 'b3a7c8d6-1e2f-3d4c-cb6a-9e8f0a7b6c5d', 'd301ff83-1b62-4e6d-aa23-57c7825bcd57', '4390615e-1101-7209-9932-7020bbd556f3', 'a1f1e3b0-4c6d-4e5e-9b7a-2a8b9b9c8d6f', '2022-01-02'),
+('0e7cea07-d09e-7f79-be6c-6dd27aecbc14', 42542453.54, 'sur commande', NULL, NULL, NULL, NULL, NULL, 'f0a7b6c5-d4e3f2a1-8d9c-7d6e-5f4a3b2c1e0d', 'adbff692-418d-43ab-a196-fcc3114b2daa', '4390615e-1101-7209-9932-7020bbd556f1', 'a1f1e4b0-4c6d-4e5e-9b7a-2a8b9b9c8d6f', '2022-01-02');
+
 
 
 
