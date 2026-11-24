@@ -60,7 +60,11 @@ INSERT INTO exemplaire.ressourcesreelles (id, version, datecreation, datemodific
 -- insertions des données dans la table exemplaire.caissesreelles
 INSERT INTO exemplaire.caissesreelles (id, version, solde, caisse_id, datecreation, datemodification) VALUES
 ('8190615e-1101-7209-9932-7020bbd556f1', 0, 200000, 'CAISSE-IT-001', '2022-01-01', '2022-01-02'),
-('8190615e-1101-7209-9932-7020bbd556f2', 0, 205000, 'CAISSE-IT-002', '2022-01-01', '2022-01-02');
+('8190615e-1101-7209-9932-7020bbd556f2', 0, 205000, 'CAISSE-IT-002', '2022-01-01', '2022-01-02'),
+('8190615e-1101-7209-9932-7020bbd556f3', 0, 180000.00, 'c1f8e3b0-4c6d-4e5e-ab7a-2a8b9b9c8d01', '2024-08-20', '2024-08-20'),
+('8190615e-1101-7209-9932-7020bbd556f4', 0, 300000.00, 'c1f8e3b0-4c6d-4e5e-ab7a-2a8b9b9c8d03', '2024-08-20', '2024-08-20'),
+('8190615e-1101-7209-9932-7020bbd556f5', 0, 500000.00, 'c1f8e3b0-4c6d-4e5e-ab7a-2a8b9b9c8d05', '2024-08-20', '2024-08-20'),
+('8190615e-1101-7209-9932-7020bbd556f6', 0, 600000.00, 'c1f8e3b0-4c6d-4e5e-ab7a-2a8b9b9c8d06', '2024-08-20', '2024-08-20');
 
 -- insertions des données dans la table exemplaire.mouvements
 INSERT INTO exemplaire.mouvements (id, description, quantite_initiale, quantite_mouvementee, quantite_finale, prix, type_transaction, validee, validee_by, date_validation, statut, distributeurs_id, ressourcesreelles_id, dateperemption, exemplaires_id, datecreation, datemodification) VALUES

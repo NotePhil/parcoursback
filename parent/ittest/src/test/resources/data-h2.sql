@@ -331,10 +331,17 @@ INSERT INTO document.ressourcespromotions (promotions_id, ressources_id) VALUES
 
 -- Insertion dans la table caisses
 INSERT INTO document.caisses (id, version, libelle, solde, type, detailjson, etat) VALUES
-('a1f8e3b0-4c6d-4e5e-ab7a-2a8b9b9c8d6f', 0, 'Caisse principale', 10000, 'Caisse', '{"x10000": "12", "x5000":"3"}', true),
-('b3a7c8d6-1e2f-3d4c-cb6a-9e8f0a7b6c5d', 0, 'Caisse en ligne', 7500, 'Caisse', '{"x10000": "12", "x5000":"3"}', true),
-('d9e2f1c2-8b3a-4f6c-bd5e-1a7b8a7c6d5e', 0, 'Caisse secondaire3', 5000, 'Caisse', NULL, true),
-('f0a7b6c5-d4e3f2a1-8d9c-7d6e-5f4a3b2c1e0d', 0, 'Caisse mobile3', 3000, 'Caisse', NULL, true);
+('a1f8e3b0-4c6d-4e5e-ab7a-2a8b9b9c8d6f', 0, 'Caisse principale', 10000, 'bitcoin', NULL, true),
+('b3a7c8d6-1e2f-3d4c-cb6a-9e8f0a7b6c5d', 0, 'Caisse en ligne', 7500, 'paypal', NULL, true),
+('d9e2f1c2-8b3a-4f6c-bd5e-1a7b8a7c6d5e', 0, 'Caisse secondaire3', 5000, 'carte visa', NULL, true),
+('f0a7b6c5-d4e3f2a1-8d9c-7d6e-5f4a3b2c1e0d', 0, 'Caisse mobile3', 3000, 'master carte', NULL, true),
+('c1f8e3b0-4c6d-4e5e-ab7a-2a8b9b9c8d01', 0, 'Caisse accueil espèces', 180000.00, 'cash', '{"x1":0,"x2":0,"x5":0,"x10":0,"x25":0,"x50":200,"x100":100,"x500":15,"x500B":15,"x1000":20,"x5000":1,"x10000":9}', false),
+('c1f8e3b0-4c6d-4e5e-ab7a-2a8b9b9c8d07', 0, 'Caisse trésorerie générale', 700000.00, 'solde', NULL, false),
+('c1f8e3b0-4c6d-4e5e-ab7a-2a8b9b9c8d02', 0, 'Caisse encaissement chèques', 200000.00, 'chèque', NULL, false),
+('c1f8e3b0-4c6d-4e5e-ab7a-2a8b9b9c8d03', 0, 'Caisse terminal carte bancaire', 300000.00, 'carte bleue', NULL, false),
+('c1f8e3b0-4c6d-4e5e-ab7a-2a8b9b9c8d05', 0, 'Caisse MTN Mobile Money', 500000.00, 'mtn money', NULL, false),
+('c1f8e3b0-4c6d-4e5e-ab7a-2a8b9b9c8d04', 0, 'Caisse Mobile Money pharmacie', 400000.00, 'mobile money', NULL, false),
+('c1f8e3b0-4c6d-4e5e-ab7a-2a8b9b9c8d06', 0, 'Caisse Orange Money', 600000.00, 'orange money', NULL, false);
 
 -- Insertion dans la table comptes
 INSERT INTO document.comptes (id, datecreation, etat, montantdecouvertmax, libelle, personnes_id, solde) VALUES
@@ -352,7 +359,12 @@ INSERT INTO document.mouvementcaisses (id, montant, moyenpaiement, referencepaie
 ('0e7cea07-d09e-7f79-be6c-6dd27aecbce6', 1548.21, 'achat express', NULL, NULL, NULL, NULL, NULL, 'b3a7c8d6-1e2f-3d4c-cb6a-9e8f0a7b6c5d', 'b3a7c8d6-1e2f-3d4c-7b6a-9e8f0a7b6c5d', '4390615e-1101-7209-9932-7020bbd556f3', 'b3a7c8d6-1e2f-3d4c-5b6a-9e8f0a7b6c5d', '2022-01-02'),
 ('decaedc8-a908-7cad-bdd6-0403a2614f22', 4563.21, 'inventaire', NULL, NULL, NULL, NULL, NULL, 'f0a7b6c5-d4e3f2a1-8d9c-7d6e-5f4a3b2c1e0d', 'f0a7b6c5-d4e3f2a1-7b9c-7d6e-5f4a3b2c1e0d', '4390615e-1101-7209-9932-7020bbd556f3', 'f0a7b6c5-d4e3f2a1-8b9c-7d6e-5f4a3b2c1e0d', '2022-01-02'),
 ('0e7cea07-d09e-7f79-be6c-6dd27aecbc47', 5245.54, 'sur commande', NULL, NULL, NULL, NULL, NULL, 'b3a7c8d6-1e2f-3d4c-cb6a-9e8f0a7b6c5d', 'd301ff83-1b62-4e6d-aa23-57c7825bcd57', '4390615e-1101-7209-9932-7020bbd556f3', 'a1f1e3b0-4c6d-4e5e-9b7a-2a8b9b9c8d6f', '2022-01-02'),
-('0e7cea07-d09e-7f79-be6c-6dd27aecbc14', 42542453.54, 'sur commande', NULL, NULL, NULL, NULL, NULL, 'f0a7b6c5-d4e3f2a1-8d9c-7d6e-5f4a3b2c1e0d', 'adbff692-418d-43ab-a196-fcc3114b2daa', '4390615e-1101-7209-9932-7020bbd556f1', 'a1f1e4b0-4c6d-4e5e-9b7a-2a8b9b9c8d6f', '2022-01-02');
+('0e7cea07-d09e-7f79-be6c-6dd27aecbc14', 42542453.54, 'sur commande', NULL, NULL, NULL, NULL, NULL, 'f0a7b6c5-d4e3f2a1-8d9c-7d6e-5f4a3b2c1e0d', 'adbff692-418d-43ab-a196-fcc3114b2daa', '4390615e-1101-7209-9932-7020bbd556f1', 'a1f1e4b0-4c6d-4e5e-9b7a-2a8b9b9c8d6f', '2022-01-02'),
+('1e7cea07-d09e-7f79-be6c-6dd27aecbc01', 15000.00, 'cash', 'REF-CASH-001', NULL, NULL, NULL, NULL, 'c1f8e3b0-4c6d-4e5e-ab7a-2a8b9b9c8d01', 'a1f8e3b0-4c6d-4e5e-7b7a-2a8b9b9c8d6f', '4390615e-1101-7209-9932-7020bbd556f1', '3190615e-1101-7209-9932-7020bbd556f7', '2024-08-20'),
+('1e7cea07-d09e-7f79-be6c-6dd27aecbc02', 45000.00, 'chèque', 'CHQ-2024-002', NULL, NULL, NULL, NULL, 'c1f8e3b0-4c6d-4e5e-ab7a-2a8b9b9c8d02', 'd9e2f1c2-8b3a-4f6c-7d5e-1a7b8a7c6d5e', '4390615e-1101-7209-9932-7020bbd556f2', '239d9d41-4850-4984-9d81-189cf44d867d', '2024-08-21'),
+('1e7cea07-d09e-7f79-be6c-6dd27aecbc03', 32500.00, 'carte bleue', 'TPE-2024-003', NULL, NULL, NULL, NULL, 'c1f8e3b0-4c6d-4e5e-ab7a-2a8b9b9c8d03', 'f0a7b6c5-d4e3f2a1-7b9c-7d6e-5f4a3b2c1e0d', '4390615e-1101-7209-9932-7020bbd556f3', '14d6a6a5-e470-4a43-a33b-37c294974461', '2024-08-22'),
+('1e7cea07-d09e-7f79-be6c-6dd27aecbc05', 25000.00, 'mtn money', 'MTN-2024-005', NULL, NULL, NULL, NULL, 'c1f8e3b0-4c6d-4e5e-ab7a-2a8b9b9c8d05', 'd301ff83-1b62-4e6d-aa23-57c7825bcd57', '4390615e-1101-7209-9932-7020bbd556f1', '5b777f4e-ac38-4637-a065-ef87af525e86', '2024-08-23'),
+('1e7cea07-d09e-7f79-be6c-6dd27aecbc06', 60000.00, 'orange money', 'OM-2024-006', NULL, NULL, NULL, NULL, 'c1f8e3b0-4c6d-4e5e-ab7a-2a8b9b9c8d06', 'adbff692-418d-43ab-a196-fcc3114b2daa', '4390615e-1101-7209-9932-7020bbd556f2', '6d5a9f88-704d-4715-9336-92835cf9e824', '2024-08-24');
 
 
 
